@@ -23,7 +23,9 @@ before recording the next checkpoint.
   priority, status, and completion conditions.
 - Link selected work to relevant milestones and risks.
 
-The backlog location and tracking tool remain to be selected.
+The proposed initial work-tracking location is the
+[Product Backlog](../../Project-Management/product-backlog.md).
+It is maintained as Markdown in this repository.
 This document does not create GitHub Issues or Projects.
 
 ## 3. Incremental Development
