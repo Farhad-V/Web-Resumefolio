@@ -44,3 +44,12 @@ Growth toward 1,000 users requires future capacity verification.
 
 Detailed requirements, acceptance criteria, delivery milestones,
 and technical architecture will be developed separately.
+
+
+## Delivery Tracking
+
+- [Version 1 target plan](../../Project-Management/version-1-delivery-plan.md)
+- [Product Backlog](../../Project-Management/product-backlog.md)
+- [Private Kanban board](https://github.com/users/Farhad-Valizadegan/projects/6)
+
+Requested delivery target: November 8, 2026, Europe/Berlin. Planning baseline review remains pending.

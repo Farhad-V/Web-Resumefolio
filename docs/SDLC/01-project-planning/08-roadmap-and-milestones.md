@@ -50,7 +50,7 @@ to assumptions, dependencies, and the risk register.
 
 ## 4. Estimates and Scheduling
 
-Dates, sprint duration, and effort estimates are not yet set.
+The project owner requests full Version 1 delivery by November 8, 2026 (Europe/Berlin). Three dated sprint cycles are planned. Effort estimates and schedule feasibility remain unresolved.
 
 Before committing to delivery dates:
 - Establish available development hours.
@@ -91,3 +91,23 @@ delivery expectations must be assessed and recorded.
 - [Assumptions and Dependencies](06-assumptions-and-dependencies.md)
 - [Risk Register](07-risks.md)
 - [Planning Completion Criteria](10-planning-completion-criteria.md)
+
+
+## 8. Target Delivery Checkpoints
+
+[Delivery plan](../../Project-Management/version-1-delivery-plan.md) | [Product backlog](../../Project-Management/product-backlog.md)
+
+| Milestone | Target date (Europe/Berlin) |
+|---|---|
+| M-01 - Planning baseline | 2026-10-30 |
+| M-02 - Requirements baseline | 2026-10-31 |
+| M-03 - Feasibility and design baseline | 2026-11-01 |
+| M-04 - Application foundation | 2026-11-01 |
+| M-05 - Professional presentation | 2026-11-03 |
+| M-06 - Manual application management | 2026-11-04 |
+| M-07 - Work and collaboration | 2026-11-05 |
+| M-08 - CI/CD capability | 2026-11-06 |
+| M-09 - Integrated release candidate | 2026-11-07 |
+| M-10 - Initial deployment and handover | 2026-11-08 |
+
+Dates are requested delivery targets, not evidence of feasibility or completion.

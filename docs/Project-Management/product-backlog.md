@@ -1,49 +1,63 @@
 # Product Backlog
 
-Status: Proposed initial backlog for review
+Status: Active delivery tracking; requirements and estimates continue to be refined
 
-## Working Rules
+Requested Version 1 completion: **November 8, 2026, Europe/Berlin**.
+Availability: full time; no numerical hours assumed.
+Full agreed scope remains included; AI is deferred.
 
-This file is the initial work-tracking location.
-Requirements and acceptance criteria remain authoritative
-in Requirements Engineering; backlog items link to them.
+## Tracking Authority
 
-Item order below is a proposed investigation sequence.
-Dependencies and findings may change that order.
+GitHub issues hold the work descriptions, dependencies, acceptance evidence,
+assignees and live state. The private project board holds workflow status,
+priority, target dates and dated sprint assignments. This file is a durable
+index, not a second live status database. Requirements Engineering remains
+authoritative for requirements and acceptance criteria.
 
-Statuses: Proposed, Ready, In Progress, Blocked, Done.
-No item is currently assigned to a sprint.
+The dates below are target checkpoints, not validated effort forecasts.
+Work packages must be refined into smaller tasks when requirements are reviewed.
+No issue is complete merely because it was created or assigned to a sprint.
 
-The project owner coordinates these items with assistant support.
-Done requires the completion evidence stated for the item.
+[Private Kanban and sprint views](https://github.com/users/Farhad-Valizadegan/projects/6)
 
-## Initial Work Items
+## Work Items
 
-| ID | Work item | Priority | Status | Completion evidence | Related items |
-|---|---|---|---|---|---|
-| PBI-001 | Establish development availability and estimation approach | P1 | Proposed | Available time or explicit uncertainty recorded; estimation review point agreed | ASM-05, M-01 |
-| PBI-002 | Inspect existing server resources and workloads | P1 | Proposed | Sanitized resource inventory and capacity questions recorded | ASM-01, DEP-01, RSK-02 |
-| PBI-003 | Investigate Git CI/CD feasibility | P1 | Proposed | Options, isolation needs, resource constraints, and unresolved questions documented | RSK-03, M-03 |
-| PBI-004 | Verify required Google integration access | P1 | Proposed | Required operations, access conditions, costs, and limitations documented from current evidence | ASM-02, DEP-03 |
-| PBI-005 | Investigate email delivery arrangements | P1 | Proposed | Delivery options, configuration needs, costs, and validation plan recorded | ASM-03, DEP-04 |
-| PBI-006 | Investigate backup and restoration arrangements | P1 | Proposed | Storage options, separation, constraints, and restoration validation plan documented | ASM-04, DEP-05 |
-| PBI-007 | Review the planning baseline | P1 | Proposed | Completion checklist reviewed; blocking and deferred items recorded; owner decision identifies reviewed revision | M-01 |
-| PBI-008 | Develop version 1 requirements incrementally | P1 | Proposed | Reviewed requirements, scenarios, permissions, lifecycle rules, and acceptance criteria linked from this backlog | M-02 |
+| ID | Work package | Milestone | Sprint | Target date |
+|---|---|---|---|---|
+| [PBI-001](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/1) | Record full-time availability and November 8 target | M-01 | SPR-01 | 2026-10-30 |
+| [PBI-002](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/2) | Inspect existing server resources and workloads | M-03 | SPR-01 | 2026-11-01 |
+| [PBI-003](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/3) | Assess isolated Git CI/CD execution feasibility | M-03 | SPR-01 | 2026-11-01 |
+| [PBI-004](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/4) | Verify Gmail and Google Calendar integration access | M-02 | SPR-01 | 2026-10-31 |
+| [PBI-005](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/5) | Validate authentication email delivery arrangements | M-03 | SPR-01 | 2026-11-01 |
+| [PBI-006](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/6) | Plan independent backup storage and restoration | M-03 | SPR-01 | 2026-11-01 |
+| [PBI-007](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/7) | Review M-01 planning baseline and follow-up decisions | M-01 | SPR-01 | 2026-10-30 |
+| [PBI-008](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/8) | Define testable Version 1 requirements and traceability | M-02 | SPR-01 | 2026-10-31 |
+| [PBI-009](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/9) | Select architecture and establish Laravel development foundation | M-03 | SPR-01 | 2026-11-01 |
+| [PBI-010](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/10) | Implement identity, unified sign-in and permission boundaries | M-04 | SPR-01 | 2026-11-01 |
+| [PBI-011](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/11) | Implement responsive application shell and shared UX | M-04 | SPR-01 | 2026-11-01 |
+| [PBI-012](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/12) | Implement professional profiles and tailored resume editing | M-05 | SPR-02 | 2026-11-03 |
+| [PBI-013](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/13) | Implement supporting media and owner-configurable quotas | M-05 | SPR-02 | 2026-11-03 |
+| [PBI-014](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/14) | Implement generated and uploaded resume PDFs | M-05 | SPR-02 | 2026-11-03 |
+| [PBI-015](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/15) | Implement employer links, passwords and sharing statistics | M-05 | SPR-02 | 2026-11-03 |
+| [PBI-016](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/16) | Implement manual ApplyFlow and immutable application records | M-06 | SPR-02 | 2026-11-04 |
+| [PBI-017](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/17) | Implement multi-account Gmail client and application links | M-06 | SPR-02 | 2026-11-04 |
+| [PBI-018](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/18) | Implement calendar, reminders and selected Google sync | M-06 | SPR-02 | 2026-11-04 |
+| [PBI-019](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/19) | Implement Kanban projects, backlog and sprint workflows | M-07 | SPR-02 | 2026-11-05 |
+| [PBI-020](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/20) | Implement real Git repositories and Git transport | M-07 | SPR-02 | 2026-11-05 |
+| [PBI-021](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/21) | Implement Fork, PR review and merge workflows | M-07 | SPR-02 | 2026-11-05 |
+| [PBI-022](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/22) | Implement Git issues, milestones, tags and releases | M-07 | SPR-02 | 2026-11-05 |
+| [PBI-023](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/23) | Implement YAML workflow execution and CI/CD reporting | M-08 | SPR-03 | 2026-11-06 |
+| [PBI-024](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/24) | Implement account suspension, trash, restore and audit rules | M-09 | SPR-02 | 2026-11-07 |
+| [PBI-025](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/25) | Run integrated functional, regression and permission verification | M-09 | SPR-03 | 2026-11-07 |
+| [PBI-026](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/26) | Verify initial capacity, accessibility and failure recovery | M-09 | SPR-03 | 2026-11-07 |
+| [PBI-027](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/27) | Demonstrate backup restoration and deployment rollback | M-09 | SPR-03 | 2026-11-07 |
+| [PBI-028](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/28) | Complete user, admin, deployment and maintenance guidance | M-09 | SPR-03 | 2026-11-07 |
+| [PBI-029](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/29) | Deploy and verify Version 1 release | M-10 | SPR-03 | 2026-11-08 |
 
-## Sequencing Notes
+## Sprint Backlogs
 
-- PBI-001 informs scheduling and planning review.
-- PBI-002 informs CI/CD and deployment feasibility.
-- Investigations may proceed alongside requirements discovery.
-- PBI-007 must explicitly assess unresolved investigations.
-- PBI-008 is a broad work item to refine into smaller items;
-  it is not a single-sprint commitment.
-- These investigation items do not replace the full version 1
-  feature backlog, which will evolve with requirements.
+- [Sprint 1](sprints/SPR-01.md)
+- [Sprint 2](sprints/SPR-02.md)
+- [Sprint 3](sprints/SPR-03.md)
 
-## References
-
-- [Planning Index](../SDLC/01-project-planning/README.md)
-- [Assumptions and Dependencies](../SDLC/01-project-planning/06-assumptions-and-dependencies.md)
-- [Risk Register](../SDLC/01-project-planning/07-risks.md)
-- [Planning Completion Criteria](../SDLC/01-project-planning/10-planning-completion-criteria.md)
+[Working method](../SDLC/01-project-planning/09-working-method-and-change-control.md)

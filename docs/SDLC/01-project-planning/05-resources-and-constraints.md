@@ -35,8 +35,8 @@ Development proceeds through guided, reviewable steps.
 There is no separately staffed delivery or operations team
 assumed in this plan.
 
-Available development hours and a target delivery date
-have not yet been established. Estimates must account for
+Full-time availability and a requested Version 1 deadline of November 8, 2026
+(Europe/Berlin) are recorded. Numerical weekly hours are unconfirmed. Estimates must account for
 learning, implementation, verification, documentation,
 and operational preparation.
 
@@ -54,7 +54,7 @@ and operational preparation.
 ## 5. Planning Implications
 
 The scope is broad relative to the known delivery resources.
-Effort and feasibility must be assessed before setting dates.
+The requested target date is recorded; effort and feasibility remain unverified.
 
 Technical choices must be justified against actual resources.
 If a requirement cannot fit the available resources, record

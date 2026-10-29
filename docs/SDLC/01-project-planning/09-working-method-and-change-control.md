@@ -23,10 +23,10 @@ before recording the next checkpoint.
   priority, status, and completion conditions.
 - Link selected work to relevant milestones and risks.
 
-The proposed initial work-tracking location is the
-[Product Backlog](../../Project-Management/product-backlog.md).
-It is maintained as Markdown in this repository.
-This document does not create GitHub Issues or Projects.
+The [Product Backlog](../../Project-Management/product-backlog.md) indexes
+GitHub issues. GitHub issues and the private delivery board own live status,
+priority, milestone and sprint assignment; avoid duplicate status tables.
+The GitHub delivery project and linked issues are now configured.
 
 ## 3. Incremental Development
 
@@ -47,7 +47,7 @@ A successful commit or push does not establish feature completion.
 
 ## 4. Sprint Planning and Review
 
-Sprint duration and the first sprint plan are not yet agreed.
+Three dated sprint backlogs are configured for October 29-November 8, 2026. See the [delivery plan](../../Project-Management/version-1-delivery-plan.md). Assignment does not establish verified capacity or feature completion.
 
 When using sprints:
 - Define a Sprint Goal.
