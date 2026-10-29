@@ -62,3 +62,25 @@ work can begin; documents and decisions can evolve iteratively.
 
 Current status: all assumptions and external dependency
 arrangements listed here require validation.
+
+## 5. Validation Assignments
+
+Status: Proposed for review
+
+The project owner coordinates these investigations with
+assistant support. Findings must include evidence and be
+reviewed before the dependent commitment.
+
+| Items | Responsible person | Review point | Current status |
+|---|---|---|---|
+| ASM-01, DEP-01 | Project owner | Before accepting the deployment design in M-03 | Unverified |
+| ASM-02, DEP-03 | Project owner | Before accepting integration requirements in M-02; verify implementation access before dependent development | Unverified |
+| ASM-03, DEP-04 | Project owner | Before accepting authentication delivery design in M-03; verify delivery before release | Unverified |
+| ASM-04, DEP-05 | Project owner | Before accepting recovery design in M-03; demonstrate restoration before M-09 acceptance | Unverified |
+| ASM-05 | Project owner | Before accepting delivery dates; record available time during M-01 review | Unverified |
+| DEP-02 | Project owner | Before accepting deployment configuration in M-03; verify live configuration before M-10 | Unverified |
+| DEP-06 | Project owner | At relevant technical selection decisions in M-03 and before dependent implementation | Partially verified: Git and diagram tools demonstrated; application dependencies remain open |
+
+Record results against the existing ASM and DEP identifiers.
+Completion of an investigation does not automatically mean
+the assumption is confirmed or the dependency is available.
