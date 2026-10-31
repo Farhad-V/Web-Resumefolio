@@ -1,0 +1,29 @@
+digraph OutcomeRoadmap {
+  graph [rankdir=TB, bgcolor="white", pad=0.35, ranksep=0.42, nodesep=0.4,
+    fontname="Arial", fontsize=19, labelloc=t,
+    label="Resumefolio | Outcome roadmap\nPrerequisites, not dates - branches do not imply parallel staffing"];
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=12,
+    color="#CBD5E1", margin="0.2,0.14", fillcolor="#DBEAFE"];
+  edge [fontname="Arial", fontsize=10, color="#64748B", arrowsize=0.65];
+  m1 [label="M-01 | Planning baseline\nAccepted with tracked follow-up\nIdentified snapshot under DEC-116", fillcolor="#DCFCE7"];
+  m2 [label="M-02 | Requirements baseline\nReviewed behavior and acceptance criteria"];
+  m3 [label="M-03 | Feasibility and design\nJustified models, choices and resource findings"];
+  investigations [label="EARLY INVESTIGATIONS\nServer, safe CI/CD, Google, email and backup\nBefore dependent commitments", fillcolor="#FEF3C7"];
+  gate [label="AGREED PRE-CODING GATE\nComplete initial SDLC documentation\nReconcile delivery tracking and agree baseline", fillcolor="#EDE9FE"];
+  m4 [label="M-04 | Application foundation\nIdentity, permissions and shared navigation"];
+  m5 [label="M-05 | Professional presentation\nResumes, evidence, PDF and sharing"];
+  m6 [label="M-06 | Manual applications\nSubmission history, email and calendar"];
+  m7 [label="M-07 | Work and collaboration\nKanban and real Git hosting"];
+  m8 [label="M-08 | CI/CD capability\nVerified execution boundaries and controls"];
+  m9 [label="M-09 | Integrated release candidate\nCross-module results, guides and restoration evidence", fillcolor="#FEF3C7"];
+  m10 [label="M-10 | Initial deployment and handover\nIdentified release, live checks and operating guidance", fillcolor="#FEF3C7"];
+  m1 -> m2 -> m3 -> gate -> m4;
+  investigations -> m2 [style=dashed]; investigations -> m3 [style=dashed];
+  m4 -> m5 -> m6;
+  m4 -> m7 -> m8;
+  m5 -> m9; m6 -> m9; m7 -> m9; m8 -> m9;
+  m9 -> m10;
+  {rank=same; m1; investigations;}
+  {rank=same; m5; m7;}
+  {rank=same; m6; m8;}
+}

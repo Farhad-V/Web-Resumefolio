@@ -1,0 +1,19 @@
+digraph PlanningCriteria {
+  graph [rankdir=TB, bgcolor="white", pad=0.35, ranksep=0.4, nodesep=0.4,
+    fontname="Arial", fontsize=19, labelloc=t,
+    label="Resumefolio | Planning acceptance coverage\nThirteen criteria - recorded baseline scope, not technical completion"];
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=12,
+    color="#CBD5E1", margin="0.2,0.14", fillcolor="#DBEAFE"];
+  edge [color="#64748B", arrowsize=0.65];
+  root [label="M-01 | PLANNING ACCEPTANCE\nIdentified candidate + owner decision\nDEC-116: accepted with tracked follow-up", fillcolor="#17324D", fontcolor=white];
+  direction [label="PRODUCT DIRECTION\nPC-01 | Purpose and objectives\lPC-02 | Scope boundaries\lPC-03 | Stakeholders and responsibility\l", fillcolor="#DBEAFE"];
+  delivery [label="OUTPUTS AND CONSTRAINTS\nPC-04 | Deliverables and evidence\lPC-05 | Resources and constraints\l", fillcolor="#EDE9FE"];
+  uncertainty [label="UNCERTAINTY AND FOLLOW-UP\nPC-06 | Assumptions and dependencies\lPC-07 | Reasoned initial risk assessment\lPC-09 | Time and estimation approach\lPC-12 | Blocking / deferred gaps\l", fillcolor="#FEF3C7"];
+  coherence [label="SEQUENCE AND CONSISTENCY\nPC-08 | Milestone prerequisites\lPC-10 | Tracking and next activities\lPC-11 | Documents, diagrams and links\l", fillcolor="#DBEAFE"];
+  decision [label="RECORDED OWNER OUTCOME\nPC-13 | Decision against identified Git revision\nGAP-D01 through GAP-D11 stay tracked", fillcolor="#DCFCE7"];
+  root -> direction; root -> delivery; root -> uncertainty; root -> coherence; root -> decision;
+  {rank=same; direction -> delivery [style=invis];}
+  {rank=same; uncertainty -> coherence [style=invis];}
+  direction -> uncertainty [style=invis]; delivery -> coherence [style=invis];
+  uncertainty -> decision [style=invis]; coherence -> decision [style=invis];
+}

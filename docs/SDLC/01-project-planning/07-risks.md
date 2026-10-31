@@ -1,111 +1,140 @@
-# Risk Register
+# Resumefolio — Risk Register
 
-Status: Reviewed - risk definitions and management approach accepted; risks remain open
+| Item | Current position |
+|---|---|
+| Risk owner | Farhad Valizadegan, project owner; responsible for every listed response and review |
+| Register status | Definitions and management method accepted; all ten risks remain open |
+| Likelihood | Unknown for all ten risks; no measured probability is claimed |
+| Initial judgments | RSK-01–RSK-09: High potential impact / P1; RSK-10: Medium / P2, subject to reassessment |
+| Original decisions | DEC-062 through DEC-074, accepted October 31, 2026 |
+| Planning baseline | Accepted with tracked follow-up under [DEC-116](10-planning-completion-criteria.md#dec-116) |
+| Presentation revision | October 31, 2026; no risk rating, control effectiveness, or closure is newly asserted |
 
-## 1. Initial Risks
+**At a glance:** Risks are possible future problems. A written response is a
+plan, not evidence that a control works. If a risk materializes, record the
+actual problem as a linked issue while keeping the remaining exposure visible.
 
-The risks below identify possible problems.
-They do not claim that failures have already occurred.
+[Assessment terms](#1-assessment-terms) · [Risk map](#2-risk-overview)
+· [Register](#3-initial-risk-register) · [Actions and reviews](#4-review-points-and-warning-signs)
+· [Review and closure](#5-risk-review-issue-handling-and-closure) · [Decision records](#6-accepted-risk-decision-records)
 
-| ID | Risk and potential impact | Proposed response | Related items |
-|---|---|---|---|
-| RSK-01 | Scope exceeds available development time, delaying delivery or reducing verification quality | Estimate work incrementally, review progress, and discuss scope or schedule conflicts explicitly | ASM-05 |
-| RSK-02 | Server resources are insufficient for the combined application, media, Git, and CI/CD workloads | Inspect capacity, evaluate representative loads, and define resource limits before finalizing deployment design | ASM-01, DEP-01 |
-| RSK-03 | CI/CD execution exposes the host, secrets, or other users' data | Define execution isolation, permissions, secret handling, and resource limits; verify controls before enabling execution | DEP-01 |
-| RSK-04 | Access-control errors expose private resumes, files, email, or collaboration resources | Define a permission matrix and test authorized and unauthorized paths, including direct file access | Requirements specification |
-| RSK-05 | Server failure, deletion, or an unsuccessful update causes unrecoverable data loss | Establish backup arrangements, retention, restoration checks, and update recovery procedures | ASM-04, DEP-05 |
-| RSK-06 | Google integration restrictions or service failures interrupt agreed workflows | Verify required operations and access conditions early; define disconnection, retry, and failure behavior | ASM-02, DEP-03 |
-| RSK-07 | Delayed or failed email delivery prevents email-dependent login or notifications | Verify delivery arrangements and define rate limits, retry behavior, and permitted recovery paths | ASM-03, DEP-04 |
-| RSK-08 | Large uploads or accumulated data exhaust storage or processing capacity | Define owner-configurable limits, capacity checks, and storage monitoring | ASM-01, DEP-01 |
-| RSK-09 | Unclear cross-module lifecycle rules cause inconsistent or unexpectedly deleted data | Specify ownership, synchronization, archival, deletion, and recovery scenarios before implementation | Requirements specification |
-| RSK-10 | Limited maintenance time leaves defects, dependencies, or operational failures unattended | Define realistic maintenance responsibilities, update procedures, and operational checks | DEP-06 |
+## 1. Assessment Terms
 
-## 2. Assessment Status
+| Dimension | Meaning in this register |
+|---|---|
+| Likelihood | Chance of occurrence; Unknown until sufficient evidence supports an assessment |
+| High impact | Could expose private data, cause unrecoverable loss, prevent essential workflows, or materially disrupt delivery |
+| Medium impact | Could degrade service or increase maintenance effort without necessarily preventing the whole release |
+| P1 | Investigate early because findings can affect feasibility, architecture, or major commitments |
+| P2 | Address during the relevant design/implementation work before accepting the affected capability |
 
-All listed risks are open for assessment.
+**Keep the dimensions separate.** High impact is not high likelihood. Priority
+is urgency of investigation or response, not a probability or a numerical risk
+score. Initial judgments are reasoned planning assessments, not security-test
+or capacity-test findings.
 
-Likelihood remains unassessed. Preliminary impact judgments and response priorities are proposed in Section 6.
-Ratings must be justified using available evidence rather
-than presented as measured facts.
+RSK-10's Medium/P2 judgment is a general initial view. Reassess upward if a
+specific maintenance failure threatens critical data, security, or availability.
+Urgent incidents are prioritized by their actual consequences.
 
-Security boundaries, recovery arrangements, and infrastructure
-feasibility require early investigation because they can affect
-architecture and delivery sequencing.
+## 2. Risk Overview
 
-## 3. Ownership and Review
+![Ten open risks grouped by the affected planning area](diagrams/risk-overview.png)
 
-The project owner coordinates risk review and response.
+[Open scalable diagram](diagrams/risk-overview.svg) ·
+[Editable Graphviz source](diagrams/risk-overview.dot)
 
-For each assessed risk, record:
-- Likelihood and impact, with the reason for each rating.
-- The agreed response and responsible person.
-- A review milestone or date.
-- Warning signs that require action.
-- Current status and supporting evidence.
-- Remaining risk after the response is implemented.
+The map groups concerns for reading; arrows do not represent causation, a
+technical architecture, or calculated exposure. No likelihood heat map is used
+because the probability assessments remain unknown.
 
-Review risks at milestone checkpoints and when assumptions,
-requirements, infrastructure, or provider conditions change.
+## 3. Initial Risk Register
 
-## 4. Handling Problems
+**Common current state:** All rows are **Open**, with **Unknown likelihood**.
+Potential impact and priority below are preliminary and evidence-dependent.
+The project owner is responsible for every row.
 
-If a risk occurs, record the actual problem as an issue
-and link it to the originating risk.
+| ID | Risk and potential consequence | Initial impact / priority | Planned response | Decision |
+|---|---|---|---|---|
+| RSK-01 | Agreed scope exceeds available time, delaying delivery or weakening verification | High / P1 | Estimate the complete workload after analysis/design; compare capacity and actual progress; expose schedule conflicts | [DEC-074](#dec-074) |
+| RSK-02 | Combined application/media/Git/CI workloads exceed server resources and interrupt essential workflows | High / P1 | Inspect capacity and competing workloads; evaluate representative combined demand; establish limits before deployment design acceptance | [DEC-073](#dec-073) |
+| RSK-03 | CI/CD execution crosses isolation boundaries and exposes host, secrets, or other users' data | High / P1 | Define isolation, permissions, secret handling, cleanup and limits; verify relevant controls before enabling execution | [DEC-072](#dec-072) |
+| RSK-04 | Authorization failures expose or modify private resumes, files, email, or collaboration resources | High / P1 | Define resource/action permissions; verify allowed and denied paths, including direct files and cross-user requests | [DEC-071](#dec-071) |
+| RSK-05 | Failure, deletion, or unsuccessful update causes unrecoverable data loss | High / P1 | Define backup coverage, retention and update recovery; demonstrate restoration and restored-data integrity in a separate environment | [DEC-070](#dec-070) |
+| RSK-06 | Google restrictions or interruptions prevent or corrupt agreed communication/scheduling workflows | High / P1 | Verify access early; specify observable disconnect, retry and reconnection behavior without duplicate or inconsistent operations | [DEC-069](#dec-069) |
+| RSK-07 | Delayed or failed email blocks email-dependent login or notifications | High / P1 | Verify actual delivery; define resend/rate/validity and permitted recovery behavior without bypassing authentication | [DEC-068](#dec-068) |
+| RSK-08 | Uploads and data growth exhaust shared storage or processing capacity | High / P1 | Enforce configurable policy within real capacity; verify quotas, warnings and failed/interrupted-operation behavior | [DEC-067](#dec-067) |
+| RSK-09 | Ambiguous ownership, synchronization, deletion or recovery rules cause cross-module inconsistency or loss | High / P1 | Specify lifecycle rules; preserve submitted copies; verify related success, failure, deletion and recovery scenarios | [DEC-066](#dec-066) |
+| RSK-10 | Solo maintenance capacity delays significant fixes, dependency updates, or operational response | Medium / P2 | Define feasible recurring checks, troubleshooting and update procedures; prioritize actual consequences and record limits | [DEC-065](#dec-065) |
 
-Responses that change agreed scope, spending, or delivery
-commitments require an explicit project-owner decision.
+## 4. Review Points and Warning Signs
 
-A risk is not closed merely because a response is documented.
-Closure requires evidence or a recorded decision accepting
-the remaining risk.
+Review these indicators at the relevant checkpoint and when material conditions
+change. They describe what to watch for, not failures already observed. Numerical
+thresholds must be defined against actual requirements and resource findings.
 
-## 5. References
+| Risk | Reason for initial emphasis | Review gate / next investigation | Warning signs | Related references |
+|---|---|---|---|---|
+| RSK-01 | Broad scope and unverified effort/capacity affect the whole release | Before accepting a forecast; revisit milestones and Sprints | Effort exceeds usable capacity; prerequisites unresolved; verification repeatedly postponed | ASM-05; GAP-D05 |
+| RSK-02 | Shared resource exhaustion can affect multiple capabilities | Before M-03 deployment design; relevant capacity checks before release | Sustained resource pressure, low free storage, queue buildup or operation failures | ASM-01, DEP-01; GAP-D01 |
+| RSK-03 | Execution isolation failure can compromise infrastructure and private data | M-03 security design; verify controls before execution and M-08 acceptance | Jobs access unrelated files/secrets, affect other workloads, or exceed privileges/limits | DEP-01; GAP-D09 |
+| RSK-04 | Private data spans multiple modules and sharing boundaries | M-02 permission rules; M-03 boundaries; each affected increment and integrated M-09 | Unauthorized requests succeed; links expose unrelated content; checks rely only on hidden UI controls | Requirements; GAP-D06 |
+| RSK-05 | Recoverability is not yet demonstrated | Before recovery-design acceptance in M-03; actual restoration/update-recovery evidence before M-09 | Missing/failed backups, inaccessible storage, failed restoration or inconsistent data | ASM-04, DEP-05; GAP-D04 |
+| RSK-06 | External access and availability are outside direct project control | Before dependent requirements/design; access before development; failure checks before acceptance | Operations unavailable, authorization revoked, persistent errors, duplicate/inconsistent retries | ASM-02, DEP-03; GAP-D02 |
+| RSK-07 | Authentication can depend on actual recipient receipt | M-03 delivery design; verify dependent capability and release behavior | Delivery errors, repeated delays or missing login messages | ASM-03, DEP-04; GAP-D03 |
+| RSK-08 | Storage/processing are shared across workflows | M-03 storage design; verify limits/failure behavior before capability acceptance | Declining free space, quota overruns, interrupted uploads or growing queues | ASM-01, DEP-01; GAP-D01/GAP-D10 |
+| RSK-09 | One data operation can affect several workflows and archived evidence | M-02 lifecycle requirements; M-03 data design; relevant integration checks | Unrelated records change/disappear; inconsistent sync; restoration violates relationships/access | Requirements; GAP-D06 |
+| RSK-10 | No additional maintenance staff or continuous coverage is assumed | Before M-09 and release; revisit during operation and capacity changes | Critical updates deferred; significant defects/failures unreviewed; recurring work exceeds time | DEP-06; GAP-D08 |
 
-- [Assumptions and Dependencies](06-assumptions-and-dependencies.md)
-- [Resources and Constraints](05-resources-and-constraints.md)
-- [Version 1 Scope](02-scope.md)
+Use [Assumptions and Dependencies](06-assumptions-and-dependencies.md) for
+investigation assignments and [Planning Completion Criteria](10-planning-completion-criteria.md)
+for accepted GAP follow-up. This register does not duplicate their technical findings.
 
-## 6. Initial Assessment and Review Assignments
+## 5. Risk Review, Issue Handling, and Closure
 
-Status: Reviewed - preliminary assessment approach accepted; judgments remain evidence-dependent
+### Evidence-based review record
 
-These are preliminary planning judgments, not measured
-probabilities or findings from a security or capacity test.
+For every material review, record:
+- Risk identifier, current status, evidence date and affected version/environment where relevant.
+- Likelihood and impact with reasons, including Unknown where evidence is insufficient.
+- Response priority, next action, responsible person, review gate, and warning signs.
+- Actual response/control results and remaining risk after implementation.
+- Any owner decision accepting residual risk, including its limits and implications.
 
-### Assessment Terms
+Reassess at milestone checkpoints and when requirements, assumptions,
+infrastructure, provider conditions, staffing or evidence change. Link actions
+to affected requirements, designs, work items and verification records.
 
-- Likelihood: Unknown until sufficient evidence is available.
-- High impact: Could expose private data, cause unrecoverable
-  loss, prevent essential workflows, or materially disrupt delivery.
-- Medium impact: Could degrade service or increase maintenance
-  effort without necessarily preventing the entire release.
-- P1: Investigate early because findings can affect feasibility,
-  architecture, or major delivery commitments.
-- P2: Address during relevant design and implementation work,
-  before accepting the affected capability.
+### Review and closure flow
 
-All risks remain open. The project owner coordinates responses.
+![Risk review, linked issue handling, and evidence-based closure](diagrams/risk-review-flow.png)
 
-| Risk | Likelihood | Potential impact | Priority | Reason for initial assessment | Review point |
-|---|---|---|---|---|---|
-| RSK-01 | Unknown | High | P1 | Broad scope and unverified effort/capacity make delivery forecasts uncertain despite stated full-time availability | Before accepting a delivery forecast; revisit milestone and Sprint reviews |
-| RSK-02 | Unknown | High | P1 | Server capacity for combined workloads has not been verified | M-03, before accepting deployment design |
-| RSK-03 | Unknown | High | P1 | Executing project code could compromise the host or other data if isolation fails | M-03 security design; controls verified before M-08 acceptance |
-| RSK-04 | Unknown | High | P1 | Permission failures could expose private information across users or sharing boundaries | M-02 permission requirements; verify each affected increment and M-09 |
-| RSK-05 | Unknown | High | P1 | Backup arrangements and recoverability are not yet demonstrated | M-03 recovery design; restoration evidence before M-09 acceptance |
-| RSK-06 | Unknown | High | P1 | Unverified integration access could prevent agreed email or calendar workflows | M-02 integration requirements; verify before dependent development |
-| RSK-07 | Unknown | High | P1 | Email delivery failure could prevent email-dependent authentication | M-03 authentication design; delivery checks before release |
-| RSK-08 | Unknown | High | P1 | Storage exhaustion could affect uploads and other services sharing the server | M-03 storage design; verify limits before affected capability acceptance |
-| RSK-09 | Unknown | High | P1 | Ambiguous deletion and synchronization rules could cause inconsistent or lost data | M-02 lifecycle requirements; M-03 data design |
-| RSK-10 | Unknown | Medium | P2 | Unconfirmed maintenance capacity could delay updates and operational responses | Before M-09 acceptance; review during operation |
+[Open scalable diagram](diagrams/risk-review-flow.svg) ·
+[Editable PlantUML source](diagrams/risk-review-flow.puml)
 
-High impact does not imply high likelihood.
-Priorities may change when evidence becomes available.
+If a risk materializes, record an **issue** linked to it, with evidence, effects,
+owner and next action. An issue is an actual problem; the risk record can still
+retain future or residual exposure. The diagram describes the agreed method,
+not performed investigations or implemented monitoring.
 
-These assignments identify review points; they do not claim
-that responses have been implemented or that risks are resolved.
+Do not close a risk because a response is written. Closure requires appropriate
+evidence **or an explicit owner decision accepting the remaining risk**, with
+limits and implications recorded. Reopen or reassess when relevant evidence or
+conditions change. Acceptance of the planning baseline does not close risks.
 
-## Risk Review Decisions
+Material changes to scope, spending or delivery commitments require a documented
+owner decision under [Working Method and Change Control](09-working-method-and-change-control.md).
+No additional personnel or continuous operational monitoring is assumed.
+
+## 6. Accepted Risk Decision Records
+
+The thirteen records below preserve the original ten risk decisions and the
+shared assessment, ownership and closure methods verbatim. Their historical
+statements about separate baseline review refer to that review stage; later
+planning-only acceptance is [DEC-116](10-planning-completion-criteria.md#dec-116).
+
+<details>
+<summary>Original risk definitions, response rationale, ownership, and closure decisions</summary>
 
 ### RSK-01 Scope and Development Time Review
 
@@ -586,16 +615,43 @@ Rationale: Distinguish planned work from effective response and
 actual issues from possible future events. Keep unresolved exposure
 visible rather than reporting a documented intention as a resolution.
 
-## Document Review Summary
+</details>
 
-The project owner reviewed the definitions and response approaches
-for all ten risks, the separate treatment of likelihood, impact,
-and priority, ownership and review rules, and issue handling and
-closure criteria. Review date: October 31, 2026.
+## 7. Current Status and Revision Summary
 
-Acceptance concerns the register and management approach. All ten
-risks remain open; likelihoods remain unassessed and impact and
-priority judgments are preliminary. Technical investigation, response
-implementation, and verification evidence are still required.
-This review does not accept the overall planning baseline or authorize
-product implementation or release.
+All ten risks remain Open. All likelihoods remain Unknown. Initial impact and
+priority judgments are unchanged: nine High/P1 risks and one Medium/P2 risk,
+with evidence-based reassessment required as conditions evolve.
+
+**Editorial revision — October 31, 2026:** Added readable risk/action tables,
+clarified assessment dimensions, and embedded a Graphviz overview and PlantUML
+review flow. All thirteen original decisions and ten risk IDs are preserved.
+No control effectiveness, security test, capacity result, recovery evidence,
+residual-risk acceptance, or risk closure is introduced. Earlier baseline and
+hash records continue to refer to their original snapshots.
+
+## 8. Diagram Sources and Regeneration
+
+The overview uses Graphviz; the review flow uses PlantUML. Retain editable
+sources, scalable `.svg` outputs and `.png` previews under `diagrams/`.
+Run from the repository root in PowerShell:
+
+```powershell
+$diagramFolder = 'docs\SDLC\01-project-planning\diagrams'
+$graphvizExe = 'C:\Program Files\Graphviz\bin\dot.exe'
+$plantUmlJar = Join-Path $env:LOCALAPPDATA 'Resumefolio\DiagramTools\plantuml.jar'
+
+foreach ($format in 'svg', 'png') {
+    & $graphvizExe "-T$format" -Gdpi=140 `
+        "$diagramFolder\risk-overview.dot" -o "$diagramFolder\risk-overview.$format"
+    if ($LASTEXITCODE -ne 0) { throw "Graphviz failed: $format" }
+
+    java -jar $plantUmlJar -charset UTF-8 "-t$format" `
+        "$diagramFolder\risk-review-flow.puml"
+    if ($LASTEXITCODE -ne 0) { throw "PlantUML failed: $format" }
+}
+```
+
+Use the installed user's PlantUML JAR path if working under another account.
+Save diagram sources as UTF-8 without BOM. Keep summary labels consistent with
+the register whenever evidence changes an assessment or response.

@@ -1,69 +1,158 @@
-# Resources and Constraints
+# Resumefolio — Resources and Constraints
 
-Status: Reviewed - planning principles accepted; resource validation remains open
+| Item | Current position |
+|---|---|
+| Project owner | Farhad Valizadegan; sole delivery and operations owner |
+| Document status | Resource treatment and constraints accepted; technical validation remains open |
+| Original decisions | DEC-045 through DEC-048, accepted October 30, 2026 |
+| Planning baseline | Accepted with tracked follow-up under [DEC-116](10-planning-completion-criteria.md#dec-116) |
+| Presentation revision | October 31, 2026; no capacity, spending, or delivery estimate is added |
 
-## 1. Available Resources
+**At a glance:** Plan with one full-time project owner, the current development
+tools, the existing server, and the available budget. Keep demonstrated tool
+operation separate from reported resources and unverified technical capacity.
 
-| Resource | Current understanding | Verification status |
+**Read this document for:** what is available, which constraints decisions must
+respect, what is still unknown, and how resource conflicts are handled.
+Detailed scope stays in [Scope](02-scope.md); investigation assignments stay in
+[Assumptions and Dependencies](06-assumptions-and-dependencies.md).
+
+[Resource map](#1-resource-and-evidence-map) · [Inventory](#2-resource-inventory)
+· [Constraints](#3-confirmed-constraints) · [Time](#4-delivery-time-and-working-capacity)
+· [Investigations](#5-resource-investigations-and-review-gates) · [Conflict handling](#6-using-evidence-in-planning-decisions)
+· [Decision records](#7-accepted-resource-decision-records)
+
+## 1. Resource and Evidence Map
+
+![Resources distinguished by demonstrated operation, owner report, and required investigation](diagrams/resource-evidence-map.png)
+
+[Open scalable diagram](diagrams/resource-evidence-map.svg) ·
+[Editable Graphviz source](diagrams/resource-evidence-map.dot)
+
+The map classifies the basis of current planning knowledge. Arrows are grouping
+relationships, not network connections or proof that the complete application
+can run on the stated infrastructure.
+
+| Evidence label | Meaning |
+|---|---|
+| Confirmed arrangement | The owner has explicitly confirmed a working arrangement, such as solo full-time delivery |
+| Demonstrated operation | A specific tool workflow has been observed; this does not verify the application's runtime or deployment capacity |
+| Owner-reported resource | The resource was stated as available; current specifications, access configuration, or suitability still need inspection |
+| Unverified characteristic | No sufficient technical evidence has yet been recorded for the dependent decision |
+
+These labels explain the inventory; assumption/dependency validation states
+remain authoritative in the linked investigation document.
+
+## 2. Resource Inventory
+
+| Resource | Available or reported position | Evidence boundary / remaining check |
 |---|---|---|
-| Project owner | Farhad Valizadegan leads the project and development | Confirmed working arrangement |
-| Development environment | Windows and PowerShell; project located under the local XAMPP directory | Location confirmed; application runtime not yet verified |
-| Version control | Git and a private GitHub repository | Commit and push workflow demonstrated |
-| Diagram tools | Graphviz and PlantUML with Java | Diagram generation demonstrated |
-| Hosting | Existing Hetzner server in Germany | Previously stated; specifications and current configuration not yet inspected |
-| Domain | Resumefolio.de | Previously stated; current domain configuration not yet inspected |
-| Reference projects | MultiResume Manager, Git Hosting Platform, OmniDesk, and KanbanFlow | Previously reviewed as references; remain unchanged |
+| Project owner | Farhad advances the project alone, full time | Confirmed working arrangement; numerical hours and throughput are not established |
+| Development environment | Windows and PowerShell; repository under the local XAMPP directory | Local file work is demonstrated; application runtime compatibility is not yet verified |
+| Version control | Git and private GitHub repository | Commit/push workflow demonstrated; this does not establish product Git-hosting functionality |
+| Diagram tools | Graphviz, PlantUML, and Java | Diagram generation has been demonstrated; package/application dependencies still need selection and compatibility checks |
+| Hosting | Existing Hetzner server in Germany | Owner-reported resource; current CPU, memory, storage, OS, workloads, and capacity remain uninspected |
+| Domain | Resumefolio.de | Owner-reported resource; DNS, TLS, routing, and renewal arrangements remain to be verified |
+| Reference projects | MultiResume Manager, Git Hosting Platform, OmniDesk, KanbanFlow | Existing references from prior project work; this revision does not audit their code or authorize changes to them |
 
-## 2. Confirmed Constraints
+Backup storage, provider integration access, and email delivery arrangements are
+**open dependencies**, not newly confirmed resources. Record findings against
+the existing ASM/DEP identifiers rather than adding unsupported availability claims.
 
-- Use the existing server as the initial deployment resource.
-- Work within the available budget.
-- Do not assume additional servers or paid services.
-- Paid AI APIs are not part of the version 1 plan.
-- Use Laravel and object-oriented development.
-- Support an initial deployment target of 10 users.
-- Consider future growth toward approximately 1,000 users
-  without claiming that the initial server supports that capacity.
-- Make file limits configurable by the platform owner,
-  within actual storage and processing capacity.
-- Preserve existing reference projects.
-- Keep credentials and private operational data out of Git.
+## 3. Confirmed Constraints
 
-## 3. Delivery Resources
+| Area | Agreed constraint | Implication for later decisions |
+|---|---|---|
+| Infrastructure | Use the existing server initially | Justify combined workloads and execution limits against actual resources |
+| Budget | Work within available means; assume no extra server or paid service | Quantify needs and alternatives before requesting additional spending |
+| Product AI | Paid AI APIs are not in the Version 1 plan; product AI is excluded by Scope | Do not make the release depend on unagreed AI capabilities or services |
+| Development approach | Laravel and object-oriented development | These constraints do not select the database, frontend, final architecture, Git engine, or CI runner |
+| Initial capacity | Target an initial deployment for 10 users | Define workload and concurrency, then verify capacity; a user count alone is not a load model |
+| Growth | Consider future growth toward approximately 1,000 users | Growth is a design direction, not a verified capability of the initial server |
+| File policy | Platform-owner-configurable upload/storage limits | Effective limits must respect actual storage and processing capacity |
+| Existing work | Preserve reference projects | Prior features are not automatically accepted scope or approved for reuse |
+| Information handling | Keep credentials and private operational data out of Git | Retain reviewable findings without exposing confidential configuration |
 
-Development proceeds through guided, reviewable steps.
-There is no separately staffed delivery or operations team
-assumed in this plan.
+The monetary spending allowance, hosting costs, and numerical resource limits
+are still to be verified. No budget amount or upload quota is invented here.
 
-Full-time availability and a requested Version 1 deadline of November 8, 2026
-(Europe/Berlin) are recorded. Numerical weekly hours are unconfirmed. Estimates must account for
-learning, implementation, verification, documentation,
-and operational preparation.
+## 4. Delivery Time and Working Capacity
 
-## 4. Resource Details Still to Verify
+| Planning fact | Current position |
+|---|---|
+| Delivery staff | One project owner; no separate development, verification, or operations team |
+| Availability | Full time, as confirmed by the owner; numerical weekly hours remain unconfirmed |
+| Requested Version 1 target | November 8, 2026, Europe/Berlin |
+| Forecast status | No validated effort estimate or sufficient-capacity conclusion yet |
+| Estimation review point | After initial analysis/design and before accepting a delivery forecast; revise against actual progress |
 
-- Server CPU, memory, storage, operating system, and free capacity.
-- Existing workloads sharing the server.
-- Available backup storage and its separation from the server.
-- Hosting costs and available spending allowance.
-- Network, upload, and storage limitations.
-- Development runtime versions and required tools.
-- Google integration access and email delivery arrangements.
-- Resource requirements and isolation options for Git CI/CD.
+Available time must cover analysis, learning, implementation, integration,
+verification, documentation, rework, and operational preparation. “Full time”
+does not establish throughput or prove that the requested date is achievable.
 
-## 5. Planning Implications
+Use Agile iterations for feedback, learning, and revision; implementation
+increments add integrated, verified capabilities. No additional staff, mandatory
+set of Scrum ceremonies, or guaranteed release date follows from choosing Agile.
 
-The scope is broad relative to the known delivery resources.
-The requested target date is recorded; effort and feasibility remain unverified.
+Preserve the agreed initial SDLC documentation and pre-implementation baseline
+sequence before coding. Reconcile backlog, Sprint assignments, milestones, and
+forecasts after analysis/design; current dates remain provisional.
+See [Roadmap and Milestones](08-roadmap-and-milestones.md) and ASM-05.
 
-Technical choices must be justified against actual resources.
-If a requirement cannot fit the available resources, record
-the conflict and discuss options with the project owner.
+## 5. Resource Investigations and Review Gates
 
-Do not silently remove agreed scope or assume extra spending.
-Unknown resource details remain open until verified.
+**Responsible person for all rows: the project owner.** These entries summarize
+existing follow-up; validation methods and status are maintained in
+[Validation Assignments](06-assumptions-and-dependencies.md#5-validation-assignments).
 
-## Review Decisions
+| Investigation | Required evidence | Existing reference | Review gate |
+|---|---|---|---|
+| Server resources and competing workloads | CPU, memory, storage, OS, free capacity, current services, representative demand and combined-load findings | ASM-01, DEP-01; GAP-D01 | Before accepting deployment design in M-03; relevant verification before release |
+| Network, uploads, and storage policy | Infrastructure limits, file processing demand, effective quotas, and failure behavior | ASM-01, DEP-01; GAP-D01/GAP-D10 | Requirements and resource design; verify enforcement before affected capability acceptance |
+| Backup storage and recovery | Location, capacity, access, separation, retention, and actual restoration/data-integrity evidence | ASM-04, DEP-05; GAP-D04 | Recovery design in M-03; demonstrated restoration before M-09 acceptance |
+| Costs and spending allowance | Current hosting costs, available allowance, option costs, and any explicit additional-spending decision | Resource constraints; GAP-D01 | Before a dependent cost or infrastructure commitment |
+| Runtime and software tools | Required versions, compatibility, licenses, support/maintenance status, and environment checks | DEP-06; GAP-D08 | At technical selection and before dependent implementation |
+| Google access | Required operations, permissions, conditions, quotas, costs, and operation checks | ASM-02, DEP-03; GAP-D02 | Before dependent requirements/design acceptance; verify access before development |
+| Authentication/notification email | Configuration, actual delivery, limits, costs, retries/failures and recovery paths | ASM-03, DEP-04; GAP-D03 | Before dependent design acceptance and verified capability/release readiness |
+| Safe CI/CD execution | Isolation options, secret/permission boundaries, cleanup and resource-limit evidence | DEP-01, RSK-03; GAP-D09 | Before accepting execution design or enabling jobs; controls verified before M-08 acceptance |
+| Domain and secure access | Administrative control, DNS destination, TLS coverage/validity and renewal | DEP-02; GAP-D07 | Before accepting deployment configuration; live verification before M-10 |
+| Time sufficiency | Decomposed effort ranges, usable capacity, dependencies and observed progress | ASM-05; GAP-D05 | After analysis/design, before accepting a delivery forecast |
+
+GAP references point to the accepted follow-up in
+[Planning Completion Criteria](10-planning-completion-criteria.md). Investigation
+completion can confirm, invalidate, or leave a question unresolved; it does not
+automatically establish availability or feasibility.
+
+## 6. Using Evidence in Planning Decisions
+
+![Resource investigation and explicit handling of a constraint conflict](diagrams/resource-review-flow.png)
+
+[Open scalable diagram](diagrams/resource-review-flow.svg) ·
+[Editable PlantUML source](diagrams/resource-review-flow.puml)
+
+1. Identify the capability and the constraints affecting its decision.
+2. Inspect relevant resources and obtain appropriate evidence.
+3. If evidence is insufficient, record the owner, next action, and review gate; do not accept the dependent commitment as proven feasible.
+4. If a conflict exists, record the evidence, options, expected costs, scope/quality effects, and delivery implications.
+5. The owner decides material scope, spending, or delivery changes; document the rationale and update related artifacts.
+
+A capability is not silently removed to fit a date or server. An additional
+purchase is not assumed. A documented response is not proof that its technical
+controls have been implemented or verified.
+
+The diagram describes review logic, not an executed investigation or authority
+to change the live server. Revisit affected assumptions, risks, designs, and
+tracking when new evidence changes the picture. See [DEC-045](#dec-045).
+
+## 7. Accepted Resource Decision Records
+
+The four original records below preserve the accepted treatment of resources,
+time, Agile delivery, investigations, and conflicts. Their historical statements
+about separate baseline review refer to that stage; later planning-only
+acceptance is recorded under [DEC-116](10-planning-completion-criteria.md#dec-116).
+
+<details>
+<summary>Original resource, time, validation, and conflict-handling decisions</summary>
 
 ### Known Resources and Confirmed Constraints Review
 
@@ -180,17 +269,46 @@ Rationale: Keep delivery planning honest and changes controlled,
 with technical decisions justified against actual resources and
 explicitly recorded product priorities.
 
-## Document Review Summary
+</details>
 
-The project owner reviewed the treatment of available resources,
-confirmed constraints, solo full-time delivery, the iterative and
-incremental Agile approach, evidence-based investigation of open
-resource details, and controlled handling of resource conflicts.
+## 8. Current Status and Revision Summary
 
-Review date: October 30, 2026
+Planning principles and constraints are accepted. Server capacity, current
+provider arrangements, recovery capability, runtime suitability, and effort
+sufficiency remain open at their specified review gates. The target date and
+future 1,000-user direction remain unverified planning expectations.
 
-These planning principles are accepted. Server capacity, provider
-access, recovery arrangements, and other unverified characteristics
-remain open for investigation. The requested November 8 target is
-not a validated forecast. This review does not complete the overall
-planning baseline, authorize production changes, or begin coding.
+**Editorial revision — October 31, 2026:** Reorganized inventory and constraints,
+made evidence boundaries and review gates explicit, and added a Graphviz resource
+map and PlantUML review flow. The four original decision records remain unchanged.
+No server inspection, account connection, purchase, load test, recovery exercise,
+or product implementation is claimed. Earlier baseline hashes remain references
+to their original snapshots rather than this editorial revision.
+
+## 9. Diagram Sources and Regeneration
+
+Keep editable sources, `.svg` outputs, and `.png` previews under `diagrams/`.
+The resource map uses Graphviz; the review flow uses PlantUML. Run from the
+repository root in PowerShell:
+
+```powershell
+$diagramFolder = 'docs\SDLC\01-project-planning\diagrams'
+$graphvizExe = 'C:\Program Files\Graphviz\bin\dot.exe'
+$plantUmlJar = Join-Path $env:LOCALAPPDATA 'Resumefolio\DiagramTools\plantuml.jar'
+
+foreach ($format in 'svg', 'png') {
+    & $graphvizExe "-T$format" -Gdpi=140 `
+        "$diagramFolder\resource-evidence-map.dot" `
+        -o "$diagramFolder\resource-evidence-map.$format"
+    if ($LASTEXITCODE -ne 0) { throw "Graphviz failed: $format" }
+
+    java -jar $plantUmlJar -charset UTF-8 "-t$format" `
+        "$diagramFolder\resource-review-flow.puml"
+    if ($LASTEXITCODE -ne 0) { throw "PlantUML failed: $format" }
+}
+```
+
+The PlantUML path is the recorded per-user installation location. If running
+under a different Windows account, point it to the installed JAR explicitly.
+Save diagram sources as UTF-8 without BOM and review rendered labels alongside
+the text when constraints, resource evidence, or review rules change.

@@ -1,59 +1,147 @@
-# Version 1 Scope
+# Resumefolio — Version 1 Scope
 
-## 6. Version 1 Scope
+| Item | Current position |
+|---|---|
+| Project owner | Farhad Valizadegan; sole project delivery and operations owner |
+| Document status | Scope boundaries accepted; detailed behavior and technical feasibility remain under investigation |
+| Original decisions | DEC-009 through DEC-028, accepted October 29–30, 2026 |
+| Planning baseline | Accepted with tracked follow-up under [DEC-116](10-planning-completion-criteria.md#dec-116) |
+| Presentation revision | October 31, 2026; existing decisions and conditions retained |
 
-Status: Reviewed - scope boundaries accepted; detailed definitions and feasibility follow-up remain open
+**At a glance:** Version 1 brings professional presentation, manual job
+application management, work management, and real Git collaboration into one
+controlled-access environment. AI features, automatic translation, and legacy
+demo migration are outside this release.
 
-### 6.1 In Scope
+**Use this document to answer:** What is included? What is excluded? Which
+conditions and unresolved details must be addressed before delivery decisions?
+Inclusion is a product commitment, not proof of implementation or feasibility.
 
-- Accounts, roles, permissions, and unified sign-in.
-- Professional profiles and tailored resumes.
-- Portfolio content and supporting media.
-- PDF generation and uploaded resume PDFs.
-- Password-protected resume sharing.
-- Manual ApplyFlow for recording opportunities, associating
-  resumes, writing cover letters, and tracking progress.
-- Email and calendar capabilities with agreed integrations.
-- Kanban, projects, boards, tasks, collaboration, and sprints.
-- Real Git hosting, including Git transfer, Fork, Pull Requests,
-  review, Merge, Issues, Milestones, Tags, and Releases.
-- YAML workflows and CI/CD execution, subject to security
-  and resource analysis before implementation.
-- Owner-configurable file limits within infrastructure capacity.
-- Deployment, operational guidance, backups, recovery,
-  and verification of agreed workflows.
+[Overview](#1-scope-overview) · [Included capabilities](#2-in-scope-capability-catalog)
+· [Exclusions](#3-out-of-scope-for-version-1) · [Boundaries](#4-planning-boundaries)
+· [Open definitions](#5-open-definitions-and-review-gates) · [Decision records](#6-accepted-scope-decision-records)
 
-### 6.2 Out of Scope for Version 1
+## 1. Scope Overview
 
-- AI-assisted analysis, recommendations, or content generation.
-- Automatic translation of resume content.
-- Migration of accounts and data from the existing demo.
+![Version 1 inclusions, exclusions, and conditions](diagrams/scope-boundaries.png)
 
-### 6.3 Planning Boundaries
+[Open scalable diagram](diagrams/scope-boundaries.svg) ·
+[Editable Graphviz source](diagrams/scope-boundaries.dot)
 
-- Initial deployment targets 10 users on the existing server.
-- Growth toward approximately 1,000 users informs design;
-  that capacity is not verified for the initial deployment.
-- Paid services, paid AI APIs, and additional infrastructure
-  are not assumed within the available budget.
-- Existing reference projects remain unchanged.
-- Feature depth and acceptance criteria will be specified
-  in Requirements Engineering.
-- Delivery milestones organize implementation without
-  silently removing agreed version 1 capabilities.
+The diagram groups the agreed boundaries. Its arrows describe classification,
+not software architecture, data flow, delivery order, or completed capabilities.
+The catalog below is the detailed planning reference.
 
-### 6.4 Matters Requiring Further Definition
+## 2. In-Scope Capability Catalog
 
-- Detailed email and calendar operations.
-- Kanban workflows, reporting, and automation.
-- Supported YAML workflow syntax and CI/CD execution limits.
-- File types, storage quotas, and upload limits.
-- Performance, backup, recovery, and availability targets.
+SCP references are navigation labels for this catalog, not new requirements.
+Each row links to the original decision and its rationale. Detailed fields,
+behavior, and testable acceptance criteria belong in Requirements Engineering.
 
-These matters require analysis and explicit decisions.
-Their inclusion here does not mean they are already resolved.
+| Ref. | Included capability | Boundary that must be preserved | Decision |
+|---|---|---|---|
+| SCP-01 | Individual accounts, roles, permissions, and unified sign-in | Sign-in does not grant access to unrelated private data or operations | [DEC-028](#dec-028) |
+| SCP-02 | Professional profiles and opportunity-specific resumes | Reuse shared information while preserving independent resume selections, presentation, and overrides | [DEC-027](#dec-027) |
+| SCP-03 | Portfolio and supporting evidence for skills/projects | Add, organize, and display externally created text, media, files, diagrams, and links; select evidence per resume | [DEC-026](#dec-026) |
+| SCP-04 | Generated resume PDFs and uploaded PDFs | Per-resume download selection: generated, uploaded, both, or neither; separate English/German uploaded PDFs with language-specific availability | [DEC-025](#dec-025) |
+| SCP-05 | Password-protected employer sharing without a viewer account | Share only the intended resume and selected content; protect direct file/PDF retrieval; owner can change password or disable link | [DEC-024](#dec-024) |
+| SCP-06 | Manual ApplyFlow | Record company/position, associate resume, manually write cover letter, track progress, and preserve the materials actually submitted | [DEC-023](#dec-023) |
+| SCP-07 | Gmail and calendar capabilities with Google Calendar integration | Read, compose, send, and reply; coordinate interviews, deadlines, follow-ups, and other agreed activities under explicit synchronization rules | [DEC-022](#dec-022) |
+| SCP-08 | Projects, Kanban, boards, tasks, authorized collaboration, Product Backlogs, Backlog Items, Sprints, and Sprint Backlogs | A backlog item may be refined into tasks; one Sprint Backlog combines the Sprint Goal, selected items, and delivery plan | [DEC-021](#dec-021) |
+| SCP-09 | Real Git hosting and collaboration | Create repositories; Clone/Fetch/Pull/Push; branches, file/history browsing; Fork, PR, comments, review and Merge; Issues, Milestones, Tags and Releases | [DEC-020](#dec-020) |
+| SCP-10 | Real YAML workflow and CI/CD execution | Subject to early feasibility, security and resource analysis; define isolation, permissions, secrets, cleanup, limits and deployment approvals | [DEC-019](#dec-019) |
+| SCP-11 | Owner-configurable upload and storage limits | Administration policies must respect actual infrastructure and processing capacity | [DEC-018](#dec-018) |
+| SCP-12 | Deployment and operational readiness | Setup/maintenance guidance, backups, demonstrated restoration, and verification of agreed core workflows | [DEC-017](#dec-017) |
 
-## Scope Review Decisions
+### Important distinctions
+
+- **Application history versus live sharing:** Submitted resume/cover-letter copies remain preserved; a live employer view can reflect later saved changes according to explicit requirements.
+- **Product capability versus development tool:** Resumefolio's Kanban and Git hosting are product features. The GitHub board and repository used to build the product do not demonstrate those features are implemented.
+- **Backlog item versus task:** Product Backlog Items can represent features, defects, improvements, or investigations; they are not necessarily single implementation tasks.
+- **Unified sign-in versus permission:** A collaborator invited to a board must not gain access to private email, unrelated resumes, or repositories merely through that invitation.
+- **Access revocation versus downloaded copies:** Download controls govern product retrieval; disabling a link cannot remove a copy already legitimately downloaded.
+
+## 3. Out of Scope for Version 1
+
+| Exclusion | What remains supported | Reason / decision |
+|---|---|---|
+| AI-assisted analysis, recommendations, and content generation | Users analyze opportunities and prepare application content manually | Focus on core workflows and reduce additional dependencies; [DEC-016](#dec-016) |
+| Automatic translation of resume content | Manually entered and reviewed English and German content | Keep professional wording under user control; [DEC-015](#dec-015) |
+| Automatic migration of old demo accounts and data | Enter required information through normal new-product workflows; preserve the existing demo | Avoid legacy mapping/validation work in this release; [DEC-014](#dec-014) |
+
+Additional limits of the accepted inclusions:
+- Adding video or diagrams does not include building an in-product video editor or diagram-authoring tool.
+- Recording an application as submitted does not add automatic submission to external job platforms.
+- YAML workflows do not imply compatibility with every GitHub Actions workflow.
+- Using reference projects does not automatically include every feature found in them.
+
+These clarifications preserve the recorded decisions; they do not remove an
+agreed capability. Later inclusion of an excluded feature needs its own scope decision.
+
+## 4. Planning Boundaries
+
+| Boundary | Agreed position | Source decision |
+|---|---|---|
+| Initial deployment | Target 10 users on the existing server; workload, concurrency and capacity require evidence | [DEC-013](#dec-013) |
+| Future growth | Consider growth toward approximately 1,000 users without claiming that capacity is supported by the initial infrastructure | [DEC-013](#dec-013) |
+| Budget | Use existing resources; do not assume paid services, paid APIs, or extra infrastructure. Document need, alternatives, costs and consequences for an owner decision | [DEC-012](#dec-012) |
+| Reference projects | MultiResume Manager, Git Hosting Platform, OmniDesk, and KanbanFlow remain unchanged; treat them as references, not automatic specifications | [DEC-011](#dec-011) |
+| Requirements detail | Scope states inclusions/exclusions; Requirements Engineering defines behavior and acceptance criteria | [DEC-010](#dec-010) |
+| Delivery and change | Milestones/Sprints organize delivery without silently removing scope; material changes require rationale, impact assessment and owner decision | [DEC-010](#dec-010) |
+
+Technical constraints such as Laravel and object-oriented development remain in
+[Resources and Constraints](05-resources-and-constraints.md). This document does
+not select the final architecture, frontend, database, Git engine, or runner.
+
+## 5. Open Definitions and Review Gates
+
+The following accepted follow-up remains open. The project owner coordinates
+all items. A pending definition neither excludes its capability nor establishes
+that it is technically feasible.
+
+| Open topic | Required next step | Review gate | Existing tracking |
+|---|---|---|---|
+| Email and calendar operations | Define operations, views, account selection, synchronization, conflicts, reminders and disconnection behavior; validate provider access | Before accepting related requirements; validate access before dependent development | PBI-004, PBI-017, PBI-018; M-02/M-03; GAP-D02 |
+| Kanban behavior, reporting, and automation | Specify item/task relationships, workflows and completion conditions; evaluate design | Requirements review, then analysis/design before dependent commitments | PBI-008, PBI-019; M-02/M-03; GAP-D06 |
+| YAML syntax and CI/CD limits | Investigate execution feasibility early; define supported behavior, isolation, secret handling and limits | Before accepting execution design or enabling execution; verify controls before acceptance | PBI-003, PBI-023; M-03/M-08; GAP-D09 |
+| File types, upload limits, and quotas | Define policy; inspect actual capacity and verify enforcement | Requirements and design; verify before affected capability acceptance | PBI-002, PBI-013; M-02/M-03; GAP-D01/GAP-D10 |
+| Performance, backup, recovery, and availability targets | Define measurable targets; justify design against resources and retain actual verification/restoration evidence | Requirements and design, with evidence before release | PBI-002, PBI-006, PBI-026, PBI-027; M-02/M-03/M-09; GAP-D04/GAP-D10 |
+
+The original assignment and rationale are preserved under [DEC-009](#dec-009).
+The accepted GAP follow-up is in
+[Planning Completion Criteria](10-planning-completion-criteria.md).
+
+### How inclusion becomes an accepted capability
+
+![Review gates between scope inclusion and capability acceptance](diagrams/scope-review-gates.png)
+
+[Open scalable diagram](diagrams/scope-review-gates.svg) ·
+[Editable Graphviz source](diagrams/scope-review-gates.dot)
+
+This is a gate overview, not a dated roadmap or an instruction to finish all
+investigations sequentially. Investigate high-impact feasibility questions early,
+use feedback to revise affected documents, and keep scope changes explicit.
+The agreed initial SDLC documentation, delivery-plan reconciliation, and
+pre-implementation baseline precede product coding.
+
+Scheduling and milestone definitions remain in
+[Roadmap and Milestones](08-roadmap-and-milestones.md). Current dates are
+provisional; this revision does not change GitHub assignments or dates.
+
+## 6. Accepted Scope Decision Records
+
+The expandable record below preserves the original twenty decision sections,
+their identifiers, acceptance dates, rationale, detailed limits, and follow-up.
+The short tables above are a reading aid; these records retain the detailed
+accepted wording. References in the [Planning Decision Register](decision-register.md)
+continue to point to their stable anchors.
+
+Some original entries say overall baseline acceptance is separate. They record
+the review stage at that time; the later planning-only acceptance is DEC-116.
+Neither that acceptance nor this presentation revision claims technical delivery.
+
+<details>
+<summary>Original accepted scope decisions — expand or collapse</summary>
 
 ### Accounts, Roles, Permissions, and Unified Sign-in Review
 
@@ -583,15 +671,46 @@ pretending they are settled or silently reducing agreed scope.
 Record findings, evidence, and any resulting decisions in the
 relevant authoritative documents and linked work items.
 
-## Scope Document Review Summary
+</details>
 
-The project owner reviewed the scope inclusions, exclusions,
-planning boundaries, and the approach to unresolved definitions.
-The review records accepted product boundaries and tracked follow-up,
-not completed implementation, verified feasibility, or approval of
-the overall planning baseline. Detailed requirements remain pending.
+## 7. Document Review and Revision Summary
 
-Current Sprint dates and milestone scheduling remain provisional
-under the agreed documentation-first review approach. Reconcile
-them with the reviewed SDLC documentation before starting product
-implementation; this record does not alter GitHub dates itself.
+The project owner accepted the inclusions, exclusions, planning boundaries,
+and follow-up approach on October 29–30, 2026. Planning baseline acceptance
+was recorded separately under [DEC-116](10-planning-completion-criteria.md#dec-116).
+Detailed requirements and technical validation remain open at their assigned gates.
+
+**Editorial revision — October 31, 2026:** Replaced inherited section numbering
+with a local document structure, added a capability catalog and clear boundary
+tables, and embedded two Graphviz diagrams. The twenty original decision records
+are preserved below the reading summary. No accepted capability, exclusion,
+resource constraint, or provisional delivery date was changed. Earlier hashes
+and baseline evidence continue to identify their original snapshots.
+
+## 8. Diagram Sources and Regeneration
+
+The two diagrams added to this document use Graphviz. Each has an editable
+`.dot` source, a scalable `.svg`, and a `.png` preview in `diagrams/`.
+The earlier `version-1-scope.puml` and its image remain unchanged as the original
+planning mind map linked from the planning index; the catalog and accepted
+records here explain its summarized capability groups and conditions.
+
+Run from the repository root in PowerShell:
+
+```powershell
+$diagramFolder = 'docs\SDLC\01-project-planning\diagrams'
+$graphvizExe = 'C:\Program Files\Graphviz\bin\dot.exe'
+
+foreach ($name in 'scope-boundaries', 'scope-review-gates') {
+    foreach ($format in 'svg', 'png') {
+        & $graphvizExe "-T$format" -Gdpi=140 `
+            "$diagramFolder\$name.dot" -o "$diagramFolder\$name.$format"
+        if ($LASTEXITCODE -ne 0) {
+            throw "Graphviz failed: $name ($format)"
+        }
+    }
+}
+```
+
+Save DOT sources as UTF-8 without BOM. Review images and related text together
+whenever a boundary, label, or condition changes.

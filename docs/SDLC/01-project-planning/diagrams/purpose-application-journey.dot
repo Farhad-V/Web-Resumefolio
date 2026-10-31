@@ -1,0 +1,22 @@
+digraph ApplicationJourney {
+  graph [rankdir=TB, bgcolor="white", pad=0.35, nodesep=0.4, ranksep=0.45,
+    fontname="Arial", fontsize=19, labelloc=t,
+    label="Resumefolio | Example application journey\nConceptual behavior - not a delivery schedule"];
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=12,
+    color="#CBD5E1", margin="0.2,0.14", fillcolor="#F1F5F9"];
+  edge [fontname="Arial", fontsize=10, color="#64748B", arrowsize=0.65];
+  profile [label="Maintain shared professional information", fillcolor="#DBEAFE"];
+  opportunity [label="Record a company and job opportunity\nSelect relevant experience and evidence"];
+  prepare [label="Prepare a tailored resume and manual cover letter\nChoose permitted evidence and PDF downloads", fillcolor="#DBEAFE"];
+  sharing [label="Share a password-protected link\nEmployer sees only selected content", fillcolor="#EDE9FE"];
+  record [label="Record the actual submission\nAssociate the materials actually sent", fillcolor="#FEF3C7"];
+  live [label="LIVE EMPLOYER VIEW\nMay reflect subsequent saved changes\nAccess remains controlled", fillcolor="#EDE9FE"];
+  archive [label="PRESERVED SUBMISSION\nResume and cover-letter copies\nLater source edits do not overwrite them", fillcolor="#FEF3C7"];
+  followup [label="Track application status, correspondence\nand interviews or follow-up dates", fillcolor="#DCFCE7"];
+  profile -> opportunity -> prepare;
+  prepare -> sharing; prepare -> record;
+  sharing -> live;
+  record -> archive -> followup;
+  {rank=same; sharing; record;}
+  {rank=same; live; archive;}
+}

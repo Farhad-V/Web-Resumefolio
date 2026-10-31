@@ -1,0 +1,43 @@
+@startuml
+ title Resumefolio - Planning review and baseline acceptance
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam activity {
+  BackgroundColor #DBEAFE
+  BorderColor #94A3B8
+  FontColor #17324D
+  DiamondBackgroundColor #FEF3C7
+  DiamondBorderColor #94A3B8
+  StartColor #17324D
+  EndColor #17324D
+}
+start
+:Identify planning revision and assess PC-01 through PC-13;
+:Record evidence, corrections and remaining gaps;
+if (Review complete?) then (yes)
+  if (Blocking gaps remain?) then (yes)
+    :Rework required - assign corrections and reassess;
+    stop
+  else (no)
+    if (Non-blocking gaps need deferral?) then (yes)
+      :Record reasons, owner, actions and dependent review gates;
+      :Obtain owner acceptance of the specific deferrals;
+      :Propose Accepted with tracked follow-up;
+    else (no)
+      :Propose Accepted;
+    endif
+    :Project owner records actual review outcome\nagainst the identified Git revision;
+    :Preserve decision and follow-up in version control;
+  endif
+else (not yet)
+  :Pending - continue the evidence review;
+endif
+stop
+legend bottom
+Recording a proposal is not an owner acceptance decision.
+Planning acceptance does not verify technical capacity or authorize coding.
+Later revisions need assessment; a commit alone is not acceptance.
+endlegend
+@enduml

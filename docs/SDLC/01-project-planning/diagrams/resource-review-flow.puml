@@ -1,0 +1,38 @@
+@startuml
+ title Resumefolio - Resource evidence and decision review
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam activity {
+  BackgroundColor #DBEAFE
+  BorderColor #94A3B8
+  FontColor #17324D
+  DiamondBackgroundColor #FEF3C7
+  DiamondBorderColor #94A3B8
+  StartColor #17324D
+  EndColor #17324D
+}
+start
+:Identify capability and constraints;
+:Inspect resources and collect evidence;
+if (Enough evidence for the dependent decision?) then (yes)
+  if (Fits agreed resource, budget and time boundaries?) then (yes)
+    :Record justified decision, evidence and limits;
+    :Continue only within the agreed phase gates;
+  else (conflict)
+    :Document conflict, options, costs and impacts;
+    :Project owner decides material changes;
+    :Update decisions and affected documents;
+    :Reassess resources before dependent commitment;
+  endif
+else (not yet)
+  :Record unknowns, owner, next action and review gate;
+  :Keep dependent commitment unresolved;
+endif
+stop
+legend bottom
+Planning review logic; no server change or technical verification is implied.
+Do not silently remove scope or assume additional spending.
+endlegend
+@enduml

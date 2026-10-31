@@ -1,92 +1,181 @@
-# Assumptions and Dependencies
+# Resumefolio — Assumptions and Dependencies
 
-Status: Reviewed - planning methods accepted; technical validation remains open
+| Item | Current position |
+|---|---|
+| Responsible person | Farhad Valizadegan, project owner; coordinates every investigation in this document |
+| Document status | Validation methods, ownership, and review points accepted; technical findings remain open |
+| Original decisions | DEC-049 through DEC-061, accepted October 30–31, 2026 |
+| Planning baseline | Accepted with tracked follow-up under [DEC-116](10-planning-completion-criteria.md#dec-116) |
+| Presentation revision | October 31, 2026; no assumption or dependency is newly validated |
 
-## 1. Planning Assumptions
+**At a glance:** Six provisional assumptions and six external dependencies
+must be investigated before the decisions that rely on them. Internal
+prerequisites also guide sequencing. Acceptance of an investigation method is
+not confirmation of its result.
 
-These are provisional assumptions, not verified facts.
+[Terms](#1-terms-and-reading-guide) · [Assumptions](#2-planning-assumptions)
+· [External dependencies](#3-external-dependencies) · [Internal prerequisites](#4-internal-dependencies)
+· [Assignments](#5-validation-assignments) · [Status and evidence](#6-status-tracking-and-evidence)
+· [Decision records](#7-accepted-assumption-and-dependency-decisions)
 
-| ID | Assumption | How to validate | Needed before |
-|---|---|---|---|
-| ASM-01 | The existing server can support the initial application workload within the budget | Inspect server resources and workloads; evaluate representative application loads | Finalizing deployment design |
-| ASM-02 | Required Google integrations are available under acceptable access conditions and costs | Check current provider requirements and test the required operations | Committing to integration details |
-| ASM-03 | A suitable email delivery arrangement can support authentication and notifications | Verify configuration, delivery behavior, limits, and costs | Releasing email-dependent workflows |
-| ASM-04 | Suitable backup storage is available within the budget | Identify storage location, capacity, access, and restoration procedure | Approving operational readiness |
-| ASM-05 | Development time is sufficient for the agreed scope | Break down and estimate work after analysis/design; include dependencies and all engineering activities; compare with capacity and actual progress | Accepting a delivery forecast; subsequent milestone and Sprint reviews |
-| ASM-06 | Information needed from users is sufficiently complete and timely for planned workflows | Define inputs and walk through a representative scenario; examine incomplete or delayed information | Accepting affected workflows and schedules |
+## 1. Terms and Reading Guide
 
-If an assumption proves false, record its impact and discuss
-options with the project owner. Do not silently change scope
-or assume additional spending.
+| Term | Meaning here | Example |
+|---|---|---|
+| Assumption | A provisional expectation to investigate, not a verified fact | The existing server can support the combined initial workload |
+| External dependency | A resource, service, or component needed by a workflow | Hosting/network, Google access, or backup storage |
+| Internal dependency | A prerequisite relationship between product decisions or capabilities | Permission rules support protected workflows |
+| Review gate | The decision before which relevant findings must be reviewed | Accepting deployment design in M-03 |
 
-## 2. External Dependencies
+A server can exist while the assumption about its capacity remains unverified.
+A tool can work in isolation while the full application dependency set is still
+unselected or untested. Keep those claims separate.
 
-| ID | Dependency | What depends on it | Verification needed |
-|---|---|---|---|
-| DEP-01 | Hosting server and network | Application availability, storage, Git hosting, and background processing | Resource inventory, access, limits, and current workloads |
-| DEP-02 | Domain, DNS, and TLS | Access through Resumefolio.de and secure browser connections | Domain control, configuration, and certificate arrangements |
-| DEP-03 | Google services | Agreed Gmail and Google Calendar operations | Required permissions, provider conditions, quotas, and failure behavior |
-| DEP-04 | Email delivery | Email-based authentication, notifications, and relevant recovery workflows | Delivery configuration and operational verification |
-| DEP-05 | Backup storage | Recovery after data loss or server failure | Storage separation, access, retention, and restoration checks |
-| DEP-06 | Software packages and development tools | Building, running, and maintaining the application | Compatibility, licenses, maintenance status, and supported versions |
+### Investigation-to-decision map
 
-Provider-specific requirements must be checked when selecting
-and implementing integrations. This document does not claim
-that access, approval, or capacity has already been secured.
+![Assumptions and dependencies connected to their dependent review gates](diagrams/dependency-review-map.png)
 
-## 3. Internal Dependencies
+[Open scalable diagram](diagrams/dependency-review-map.svg) ·
+[Editable Graphviz source](diagrams/dependency-review-map.dot)
 
-- Detailed requirements and scenarios inform system analysis.
-- Analysis and resource findings inform architecture decisions.
-- Identity and permissions support protected workflows.
-- Data ownership and lifecycle rules inform sharing,
-  collaboration, deletion, and recovery.
-- Git CI/CD execution depends on an agreed security model,
-  resource limits, and execution isolation.
-- Release readiness depends on verification evidence,
-  deployment procedures, and demonstrated restoration.
+Read each row as an investigation and its affected decision gate. The map is
+planning traceability, not a runtime architecture, a dated schedule, or evidence
+that the prerequisites have been met. Tables below retain the detailed assignments.
 
-These relationships guide sequencing.
-They do not require every activity to finish before related
-work can begin; documents and decisions can evolve iteratively.
+## 2. Planning Assumptions
 
-## 4. Tracking and Review
+**Current status: all six assumptions remain unverified.** Their validation
+approach is accepted; the expected outcomes have not been established.
 
-- The project owner coordinates validation.
-- Record each validation result and its supporting evidence.
-- Mark assumptions as unverified, confirmed, or invalidated.
-- Mark dependencies as unverified, available, or blocked.
-- Review affected items when scope, infrastructure, or
-  provider conditions change.
-- Link unresolved consequences to the risk register.
-- Never record passwords, tokens, or other secrets as evidence.
+| ID | Provisional assumption | Validation action | Needed before | Decision |
+|---|---|---|---|---|
+| ASM-01 | Existing server capacity is sufficient for the initial workload within budget | Inspect resources and current workloads; define representative combined demand and evaluate it against explicit capacity/performance criteria | Accepting deployment design and dependent capacity commitments | [DEC-061](#dec-061) |
+| ASM-02 | Required Google operations are available under acceptable access conditions and cost | Consult current official requirements; identify permissions, quotas and costs; test required operations | Accepting dependent integration details | [DEC-060](#dec-060) |
+| ASM-03 | Suitable email delivery can support authentication and notifications | Inspect configuration, access, limits, costs and failure behavior; verify actual delivery | Dependent design commitments; verified email-dependent capability/release readiness | [DEC-059](#dec-059) |
+| ASM-04 | Suitable backup storage exists within budget | Inspect location, capacity, separation, access and restoration options; demonstrate restoration and data integrity later | Accepting recovery design; actual recovery evidence before operational readiness | [DEC-057](#dec-057) |
+| ASM-05 | Available development time is sufficient for the complete agreed scope | After analysis/design, decompose and estimate all engineering work; compare effort ranges, dependencies and usable capacity; revise against actual progress | Accepting a delivery forecast; revisit milestone/Sprint reviews | [DEC-055](#dec-055) |
+| ASM-06 | Required user information is sufficiently complete and timely | Define required inputs and intake workflows; walk through representative, incomplete and delayed-input scenarios | Accepting affected workflows and dependent schedule commitments | [DEC-058](#dec-058) |
 
-Current status: all assumptions and external dependency
-arrangements listed here require validation.
+Full-time availability is confirmed, but it does not confirm ASM-05. Likewise,
+a recorded domain, existing backup file, or successful diagram render cannot
+substitute for the investigation needed by another assumption.
+
+If an assumption is invalidated, record its effects and options for the project
+owner. Do not silently remove agreed scope or assume additional spending.
+
+## 3. External Dependencies
+
+| ID | Dependency | What depends on it | Verification required | Current position |
+|---|---|---|---|---|
+| DEP-01 | Hosting server and network | Availability, storage, Git hosting, and background work | Resources, access, limits, current workloads, interruption/failure behavior | Unverified |
+| DEP-02 | Domain, DNS, and TLS | Resumefolio.de routing and secure browser access | Administrative control, intended DNS destination, certificate coverage/validity, configuration and renewal | Unverified |
+| DEP-03 | Google services | Agreed Gmail and Google Calendar operations | Required permissions, provider conditions, quotas, costs, operation/failure and reconnection behavior | Unverified |
+| DEP-04 | Email delivery | Email-dependent authentication, notifications, and relevant recovery paths | Configuration, actual delivery and relevant operational/failure checks | Unverified |
+| DEP-05 | Backup storage | Recovery from server failure or data loss | Separation, capacity, access, retention and actual restoration checks | Unverified |
+| DEP-06 | Software packages and development tools | Building, running, and maintaining the application | Version compatibility, licenses, maintenance/support status, runtime/resource requirements and environment checks | Application dependency set remains unverified; Git and diagram-tool workflows have been demonstrated |
+
+Provider conditions and component information must be checked using current
+primary sources at selection and implementation. No provider approval, full
+application compatibility, or sufficient capacity is implied by listing a name.
+
+For DEP-06, demonstrated subcomponents do not make the entire dependency set
+Available. Select and validate the actual application components before dependent
+commitments. Domain and package selection are separate investigations even
+though they do not each have a matching ASM identifier.
+
+## 4. Internal Dependencies
+
+| Prerequisite | Dependent decision or behavior | Why the relationship matters |
+|---|---|---|
+| Detailed requirements and scenarios | System analysis | Model the agreed behavior rather than inventing hidden requirements |
+| Analysis and resource findings | Architecture and design choices | Justify decisions against actual needs and constraints |
+| Identity and permission rules | Protected workflows | Restrict resources and operations to the authorized user or viewer |
+| Data ownership and lifecycle rules | Sharing, collaboration, synchronization, deletion, archives, and recovery | Prevent unintended cross-module changes or loss of submission evidence |
+| CI/CD security model, isolation and resource limits | Enabling workflow execution | Control the boundary created by executing project code |
+| Actual verification, deployment readiness and demonstrated restoration | Release readiness | Evaluate an identified candidate using evidence rather than file existence |
+
+These relationships guide sequencing and change-impact review. They allow
+feedback and iterative refinement; they do not require every related activity
+to finish before any useful analysis can begin. Preserve the agreed initial
+SDLC documentation, delivery reconciliation and pre-implementation baseline
+before product coding.
 
 ## 5. Validation Assignments
 
-Status: Responsibility assignments and review points accepted; validation outcomes remain open
+This heading is retained for existing links. Assignments and review points are
+accepted; actual findings remain open. **The project owner is responsible for
+every row.** Record evidence before accepting the dependent commitment.
 
-The project owner coordinates these investigations. Findings must include evidence and be
-reviewed before the dependent commitment.
-
-| Items | Responsible person | Review point | Current status |
+| Items | Review gate | Current status | Related accepted follow-up |
 |---|---|---|---|
-| ASM-01, DEP-01 | Project owner | Before accepting the deployment design in M-03 | Unverified |
-| ASM-02, DEP-03 | Project owner | Before accepting integration requirements in M-02; verify implementation access before dependent development | Unverified |
-| ASM-03, DEP-04 | Project owner | Before accepting authentication delivery design in M-03; verify delivery before release | Unverified |
-| ASM-04, DEP-05 | Project owner | Before accepting recovery design in M-03; demonstrate restoration before M-09 acceptance | Unverified |
-| ASM-05 | Project owner | After analysis/design and before accepting a delivery forecast; revisit with actual progress at milestone and Sprint reviews | Unverified: full-time availability stated, sufficiency not demonstrated |
-| ASM-06 | Project owner | During Requirements Engineering before accepting affected workflows; review schedule implications before dependent commitments | Unverified |
-| DEP-02 | Project owner | Before accepting deployment configuration in M-03; verify live configuration before M-10 | Unverified |
-| DEP-06 | Project owner | At relevant technical selection decisions in M-03 and before dependent implementation | Partially verified: Git and diagram tools demonstrated; application dependencies remain open |
+| ASM-01, DEP-01 | Before accepting deployment design in M-03; verify relevant operational behavior before release | Unverified | GAP-D01 |
+| ASM-02, DEP-03 | Before accepting integration requirements in M-02 and dependent design; verify implementation access before development | Unverified | GAP-D02 |
+| ASM-03, DEP-04 | Before accepting authentication delivery design in M-03; verify delivery before dependent release | Unverified | GAP-D03 |
+| ASM-04, DEP-05 | Before accepting recovery design in M-03; demonstrate restoration before M-09 acceptance | Unverified | GAP-D04 |
+| ASM-05 | After analysis/design and before accepting a forecast; revisit at milestone and Sprint reviews | Unverified; full-time availability does not demonstrate sufficiency | GAP-D05 |
+| ASM-06 | During Requirements Engineering before accepting affected workflows; assess timing before dependent commitments | Unverified | GAP-D06 |
+| DEP-02 | Before accepting deployment configuration in M-03; verify live configuration before M-10 | Unverified | GAP-D07 |
+| DEP-06 | At related technical selection in M-03 and before dependent implementation; verify relevant compatibility before release | Application dependencies unverified; demonstrated tool subsets remain distinct | GAP-D08 |
 
-Record results against the existing ASM and DEP identifiers.
-Completion of an investigation does not automatically mean
-the assumption is confirmed or the dependency is available.
+GAP references use the accepted follow-up in
+[Planning Completion Criteria](10-planning-completion-criteria.md). CI/CD
+investigation also follows GAP-D09 and the execution risks in
+[Risk Register](07-risks.md); measurable targets and storage policy follow GAP-D10.
 
-## Review Decisions
+## 6. Status Tracking and Evidence
+
+### Status vocabulary
+
+| Record type | Status | Meaning |
+|---|---|---|
+| Assumption | Unverified | Evidence is missing, incomplete, or insufficient to conclude |
+| Assumption | Confirmed | Relevant evidence supports the stated expectation within recorded limits |
+| Assumption | Invalidated | Evidence contradicts the expectation; assess the impact and options |
+| Dependency | Unverified | Availability/suitability for the required use has not been established |
+| Dependency | Available | Required access and suitability are supported by relevant evidence |
+| Dependency | Blocked | The required resource, access, operation or prerequisite is unavailable or prevents dependent work |
+
+Record partial findings as evidence notes without treating the entire assumption
+or dependency as validated. Review status when requirements, infrastructure,
+versions, provider conditions, or evidence change. A completed investigation can
+still leave an item Unverified or show that it is Invalidated/Blocked.
+
+### Evidence-based state changes
+
+![Separate state models for assumptions and dependencies](diagrams/validation-status-model.png)
+
+[Open scalable diagram](diagrams/validation-status-model.svg) ·
+[Editable PlantUML source](diagrams/validation-status-model.puml)
+
+These diagrams explain permitted status meanings; they do not change any
+current item's status. Confirmation and availability are bounded by the
+reviewed evidence and must be reconsidered when relevant conditions change.
+
+### What a validation record contains
+
+| Field | What to record |
+|---|---|
+| Reference | Existing ASM/DEP identifier and affected requirement, design, work item, or risk |
+| Responsibility and timing | Project owner, investigation date, and dependent review gate |
+| Evidence | Relevant official sources, inspected configuration or identified version/environment, and actual operation/check results |
+| Finding and limits | What the evidence supports or contradicts; remaining unknowns and scope of the conclusion |
+| Resulting status | Unverified/Confirmed/Invalidated for an assumption, or Unverified/Available/Blocked for a dependency |
+| Impact and next action | Affected commitments, options, owner decision where material, and follow-up |
+
+Use [Working Method and Change Control](09-working-method-and-change-control.md)
+for significant decisions and revisions. Link unresolved consequences to
+[Risk Register](07-risks.md) and the relevant work items. Evidence records must
+not contain passwords, tokens, private keys or other secrets.
+
+## 7. Accepted Assumption and Dependency Decisions
+
+The expandable section preserves all thirteen original decisions, their dates,
+IDs, rationale and investigation limits. Historical statements about separate
+baseline review refer to their original stage. Planning-only acceptance was
+later recorded under [DEC-116](10-planning-completion-criteria.md#dec-116).
+
+<details>
+<summary>Original assumption, dependency, validation-method and responsibility decisions</summary>
 
 ### ASM-01 Server Capacity Assumption Review
 
@@ -445,13 +534,45 @@ Rationale: Give open questions accountable ownership and a review
 point before their results are needed. Acceptance of assignments
 does not confirm assumptions, complete tests, or establish resources.
 
-## Document Review Summary
+</details>
 
-The project owner reviewed the assumption treatment, external and
-internal dependencies, evidence-based status tracking, responsibility
-assignments, and review points. Review date: October 31, 2026.
+## 8. Current Review and Revision Summary
 
-These planning methods are accepted. Actual technical investigations,
-provider validation, capacity checks, and restoration evidence remain
-open as identified in this document. This review does not accept the
-overall planning baseline or begin product implementation.
+All six assumptions remain unverified. External arrangements and the application
+dependency set still need validation; prior tool demonstrations do not confirm
+those wider outcomes. Internal prerequisite relationships, investigation
+methods, ownership, status vocabulary, and review gates are accepted.
+
+**Editorial revision — October 31, 2026:** Added a reading guide, clearer status
+and evidence tables, linked review-gate assignments, and two diagrams. The
+thirteen original decision records are unchanged; all ASM/DEP identifiers and
+the existing Validation Assignments anchor are retained. No server inspection,
+provider investigation, integration test, recovery exercise or new dependency
+selection is claimed. Earlier hashes still identify their original snapshots.
+
+## 9. Diagram Sources and Regeneration
+
+The review map uses Graphviz; the state model uses PlantUML. Keep editable
+sources, scalable `.svg` outputs and `.png` previews under `diagrams/`.
+Run from the repository root in PowerShell:
+
+```powershell
+$diagramFolder = 'docs\SDLC\01-project-planning\diagrams'
+$graphvizExe = 'C:\Program Files\Graphviz\bin\dot.exe'
+$plantUmlJar = Join-Path $env:LOCALAPPDATA 'Resumefolio\DiagramTools\plantuml.jar'
+
+foreach ($format in 'svg', 'png') {
+    & $graphvizExe "-T$format" -Gdpi=140 `
+        "$diagramFolder\dependency-review-map.dot" `
+        -o "$diagramFolder\dependency-review-map.$format"
+    if ($LASTEXITCODE -ne 0) { throw "Graphviz failed: $format" }
+
+    java -jar $plantUmlJar -charset UTF-8 "-t$format" `
+        "$diagramFolder\validation-status-model.puml"
+    if ($LASTEXITCODE -ne 0) { throw "PlantUML failed: $format" }
+}
+```
+
+Use the installed user's PlantUML JAR path when working under another account.
+Save diagram sources as UTF-8 without BOM. Keep the model, state vocabulary,
+assignment table and actual validation records consistent when findings change.

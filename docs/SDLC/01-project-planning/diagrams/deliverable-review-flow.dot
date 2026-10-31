@@ -1,0 +1,21 @@
+digraph DeliverableReview {
+  graph [rankdir=TB, bgcolor="white", pad=0.35, ranksep=0.45, nodesep=0.4,
+    fontname="Arial", fontsize=19, labelloc=t,
+    label="Resumefolio | Deliverable completion review\nAccept the output using evidence - file existence is insufficient"];
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=12,
+    color="#CBD5E1", margin="0.2,0.14", fillcolor="#F1F5F9"];
+  edge [color="#64748B", arrowsize=0.65, fontname="Arial", fontsize=10];
+  define [label="Agree the deliverable definition\nCompletion conditions and required evidence", fillcolor="#DBEAFE"];
+  prepare [label="Prepare an identified output revision\nKeep related text, diagrams and product consistent", fillcolor="#DBEAFE"];
+  evidence [label="Inspect or execute relevant checks\nRecord actual results and version / environment", fillcolor="#EDE9FE"];
+  review [shape=diamond, label="Completion conditions\nsatisfied?", fillcolor="#FEF3C7"];
+  rework [label="Record gaps and corrective work\nRevise affected outputs and evidence", fillcolor="#FEE2E2"];
+  accept [label="Record the owner's review outcome\nIdentify accepted revision and remaining follow-up", fillcolor="#DCFCE7"];
+  distinguish [label="Acceptance of an output is distinct from\nrelease, publication and deployment authorization", fillcolor="#F1F5F9"];
+  define -> prepare -> evidence -> review;
+  review -> rework [label="No"];
+  rework -> prepare [style=dashed, label="revise and recheck"];
+  review -> accept [label="Yes"];
+  accept -> distinguish;
+  {rank=same; rework; accept;}
+}

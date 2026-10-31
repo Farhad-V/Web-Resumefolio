@@ -1,49 +1,164 @@
-# Project Deliverables
+# Resumefolio — Project Deliverables
 
-Status: Reviewed - deliverable definitions and completion rules accepted
+| Item | Current position |
+|---|---|
+| Project owner | Farhad Valizadegan; sole delivery and operations owner |
+| Document status | Deliverable definitions and completion rules accepted |
+| Original decisions | DEC-033 through DEC-044, accepted October 30, 2026 |
+| Planning baseline | Accepted with tracked follow-up under [DEC-116](10-planning-completion-criteria.md#dec-116) |
+| Presentation revision | October 31, 2026; original output definitions and decision records retained |
 
-## Expected Outputs
+**At a glance:** Deliverables are the reviewable outputs of the project:
+documents, the runnable application and source, actual verification evidence,
+operating guidance, and an identified release record.
 
-| ID | Deliverable | Evidence of completion |
+**Two different decisions:** Accepting a deliverable's definition specifies
+what must eventually be produced. Accepting the completed deliverable requires
+its agreed evidence. A file, commit, build, or backup copy alone is insufficient.
+
+[Output map](#1-deliverable-map) · [Catalog](#2-deliverable-catalog)
+· [Milestone checkpoints](#3-delivery-checkpoints) · [Completion rules](#4-shared-completion-and-review-rules)
+· [Incremental updates](#5-incremental-delivery-and-change) · [Current status](#6-current-status-and-remaining-work)
+· [Decision records](#7-accepted-deliverable-decision-records)
+
+## 1. Deliverable Map
+
+![Ten project outputs grouped by their purpose](diagrams/deliverable-map.png)
+
+[Open scalable diagram](diagrams/deliverable-map.svg) ·
+[Editable Graphviz source](diagrams/deliverable-map.dot)
+
+This diagram groups outputs by purpose; it is not a delivery schedule or a
+claim that the outputs already exist. Testing, guidance, and operating design
+are developed alongside the work they support, not postponed until the end.
+
+## 2. Deliverable Catalog
+
+Each DEL identifier is retained from the accepted catalog. The linked decision
+contains its detailed definition, rationale, conditions, and limitations.
+
+| ID | Deliverable | Required completion evidence | Decision |
+|---|---|---|---|
+| DEL-01 | Project plan | Reviewed goals, scope, responsibilities, resources, assumptions, risks, and roadmap; tracked open matters; recorded review outcome against an identifiable revision | [DEC-044](#dec-044) |
+| DEL-02 | Requirements specification | Stable requirement identifiers; reviewed scenarios and business rules; testable acceptance criteria; addressed or explicitly assigned ambiguities | [DEC-043](#dec-043) |
+| DEL-03 | System analysis and design | Reviewed models, architecture/data/interface/security decisions; traceability to requirements; alternatives and rationale; consistent text and required diagrams | [DEC-042](#dec-042) |
+| DEL-04 | Version 1 application and source code | Runnable, identifiable revision implementing agreed scope; demonstrated workflows and actual verification; corresponding source/configuration guidance; known limitations | [DEC-041](#dec-041) |
+| DEL-05 | Test documentation and evidence | What was checked, why and how; expected and actual results; requirement/test-case references; tested version/environment; defects and remaining risks | [DEC-040](#dec-040) |
+| DEL-06 | Deployment guide | Verified prerequisites, configuration, installation, updates, rollback/recovery procedures, and recorded constraints for the target version/environment | [DEC-039](#dec-039) |
+| DEL-07 | Backup and recovery guide | Defined coverage, storage and frequency; demonstrated restoration in a separate environment; restored-data integrity/consistency checks and identified evidence | [DEC-038](#dec-038) |
+| DEL-08 | User and administrator guidance | Instructions checked against actual authorized workflows; administrative operations distinguished; consistent explanatory images/diagrams where needed | [DEC-037](#dec-037) |
+| DEL-09 | Release record | Identified source revision/release, delivered scope, limitations, actual verification summary, supporting evidence, and dated owner release decision | [DEC-036](#dec-036) |
+| DEL-10 | Maintenance and operations guide | Reviewable health-check, troubleshooting, dependency-update and recurring-operation procedures, verified where relevant and feasible for the solo arrangement | [DEC-035](#dec-035) |
+
+### Required visual explanation
+
+For DEL-03, readable diagrams accompany written analysis and design. Retain
+editable Graphviz or PlantUML sources and rendered images in version control.
+Diagrams must explain relevant structure and behavior, match the text, and stay
+traceable to requirements and decisions. Neither diagrams alone nor prose
+without the required diagrams satisfies this deliverable.
+
+DEL-08 uses images or diagrams where they help users understand the actual
+workflow. Keep guidance visuals consistent with the application version.
+
+## 3. Delivery Checkpoints
+
+The table shows where deliverables support the existing milestone outcomes.
+It adds no dates or effort commitments and does not replace the authoritative
+[Roadmap and Milestones](08-roadmap-and-milestones.md).
+
+| Deliverable | Relevant milestone review | What must be ready at that point |
 |---|---|---|
-| DEL-01 | Project plan | Reviewed goals, scope, responsibilities, resources, risks, and roadmap |
-| DEL-02 | Requirements specification | Identified requirements, scenarios, business rules, and testable acceptance criteria |
-| DEL-03 | System analysis and design | Reviewed models, architecture decisions, data design, interfaces, and security boundaries |
-| DEL-04 | Version 1 application and source code | Agreed workflows implemented and verified in an identifiable version |
-| DEL-05 | Test documentation and evidence | Test cases, actual execution results, defect records, and remaining risks |
-| DEL-06 | Deployment guide | Verified prerequisites, configuration, installation, update, and rollback procedures |
-| DEL-07 | Backup and recovery guide | Backup procedures and evidence of successful restoration |
-| DEL-08 | User and administrator guidance | Instructions for core user workflows and authorized administration |
-| DEL-09 | Release record | Version, delivered scope, known limitations, verification summary, and release decision |
-| DEL-10 | Maintenance and operations guide | Monitoring, troubleshooting, updates, and routine operational responsibilities |
+| DEL-01 | M-01 | Reviewed planning agreement and explicitly tracked follow-up |
+| DEL-02 | M-02 | Identified, reviewed requirements and acceptance criteria |
+| DEL-03 | M-03 | Justified analysis/design and relevant feasibility findings |
+| DEL-04 | M-04–M-08, then M-09/M-10 | Verified capability increments, an integrated candidate, then identified deployed release |
+| DEL-05 | Each affected increment; integrated M-09 and release review | Actual results for the scope, revision, and environment under review |
+| DEL-06 | Deployment design in M-03; readiness before M-10 | Procedures developed early and verified for the candidate/target environment |
+| DEL-07 | Recovery design in M-03; evidence before M-09 acceptance | Defined recovery approach, then demonstrated restoration and data checks |
+| DEL-08 | M-09 candidate review | Guidance corresponding to the reviewed application |
+| DEL-09 | Release decision and M-10 | Version-specific scope, evidence, limitations and recorded decision |
+| DEL-10 | M-09 readiness and subsequent operation | Usable solo-operation guidance and relevant procedure evidence |
 
-## Completion Rules
+A deliverable may evolve across several milestones. A milestone may require
+several deliverables. The existence of an earlier draft does not establish
+completion of the final application, guidance, or release.
 
-- File existence alone does not demonstrate completion.
-- Each deliverable must have an identifiable version or revision.
-- Test evidence must identify the application version and environment.
-- Unresolved issues and limitations must be recorded.
-- Credentials and private operational data must not appear
-  in repository documentation or shared evidence.
-- Review and acceptance decisions must be recorded.
+## 4. Shared Completion and Review Rules
 
-## Incremental Delivery
+Responsible person and decision-maker: **the project owner**. No separate review
+team or operations team is assumed.
 
-Deliverables will be developed and reviewed incrementally.
-Milestones will group them into meaningful outcomes.
+| Rule | What the review must establish |
+|---|---|
+| Identifiable output | The exact document revision, source version, or release is clear |
+| Relevant evidence | Agreed completion conditions are assessed using actual inspection or executed checks, as appropriate |
+| Reproducible context | Test/procedure evidence identifies the application version and environment; important inputs and limitations are recorded |
+| Transparent results | Passed, failed, blocked, and unexecuted checks remain distinct; unexecuted checks are not reported as successful |
+| Visible remaining work | Defects, limitations, unresolved questions, risks, and follow-up are recorded |
+| Recorded decision | The review outcome, decision-maker, date, and basis for acceptance or further work are retained |
+| Protected evidence | Repository documentation and shared evidence exclude credentials, private keys, tokens, and private operational data |
 
-Documents, diagrams, application behavior, and operating
-instructions must remain consistent as the project changes.
+A failed check requires investigation; it does not by itself prove whether the
+product, test, data, or environment caused the failure. A backup file does not
+prove recoverability. A successful application-code rollback does not by itself
+prove recovery of data affected by an update or migration.
 
-## Current Status
+### From prepared output to reviewed outcome
 
-The expected outputs and their completion rules have been reviewed
-and accepted. This does not claim that the outputs are complete.
+![Evidence-based review and acceptance of a deliverable](diagrams/deliverable-review-flow.png)
 
-Detailed schedules, dependencies, and effort estimates
-will be developed in the roadmap.
+[Open scalable diagram](diagrams/deliverable-review-flow.svg) ·
+[Editable Graphviz source](diagrams/deliverable-review-flow.dot)
 
-## Deliverable Review Decisions
+This is the review logic, not a separate staffed approval chain. The owner
+performs and records the appropriate activities. Open matters must be assessed
+against the agreed completion criteria; documenting a limitation does not
+automatically make a failed condition acceptable.
+
+## 5. Incremental Delivery and Change
+
+Develop and review outputs incrementally. For each affected change:
+1. Identify the relevant requirement, decision, and deliverable revision.
+2. Revise the affected content or product behavior and record the reason.
+3. Update linked diagrams, verification plans/results, and operating guidance as needed.
+4. Review consistency, evidence, limitations, and follow-up before recording completion.
+
+For example, a storage-design change can affect its diagram, test scenarios,
+deployment configuration, and recovery instructions. Updating one document alone
+can leave the delivery package inconsistent.
+
+The initial documentation-first agreement remains in effect: analyze and plan
+all SDLC phases, reconcile delivery tracking, agree the pre-implementation
+baseline, and then begin product coding. Iterative refinement does not remove
+that agreed entry condition. Material scope, cost, or delivery changes follow
+[Working Method and Change Control](09-working-method-and-change-control.md).
+
+## 6. Current Status and Remaining Work
+
+| Output / decision | Current planning position |
+|---|---|
+| Definitions of DEL-01 through DEL-10 | Accepted, including their completion evidence and rationale |
+| DEL-01 planning baseline | The identified planning snapshot was accepted with tracked follow-up under DEC-116; current editorial revisions do not silently replace that accepted snapshot |
+| DEL-02 through DEL-10 actual completion | Not established by this document; requires their own produced outputs, evidence, and review decisions |
+| Technical validation, quality/recovery targets, and estimates | Still tracked at the assigned follow-up gates in Planning Completion Criteria |
+| Application implementation, deployment, and release | Not authorized or reported as complete by acceptance of these definitions |
+
+Use [Planning Completion Criteria](10-planning-completion-criteria.md) for the
+M-01 acceptance record and tracked GAP follow-up. Future delivery records must
+identify the actual versions and results instead of changing this planning
+catalog into an unsupported completion claim.
+
+## 7. Accepted Deliverable Decision Records
+
+The expandable record below preserves the original ten output decisions and
+two shared-method decisions verbatim, including their IDs, dates and rationale.
+Historical Pending statements describe their original review stage; current
+planning acceptance is stated in Section 6 and DEC-116. Later deliverable
+acceptance still requires its own evidence.
+
+<details>
+<summary>Original accepted definitions, completion rules, and incremental-delivery decisions</summary>
 
 ### DEL-01 Project Plan Review
 
@@ -372,17 +487,41 @@ sequence: analyze and plan all SDLC phases, reconcile delivery
 tracking with the reviewed documentation, agree the baseline,
 and then start product implementation.
 
-## Document Review Summary
+</details>
 
-The project owner accepted the definitions and completion criteria
-for all ten deliverables, the requirement for explanatory diagrams
-alongside analysis/design text, the shared completion rules, and
-the incremental-delivery approach.
+## 8. Document Review and Revision Summary
 
-Review date: October 30, 2026
+The project owner accepted all ten output definitions, mandatory analysis/design
+diagrams, shared completion rules, and incremental delivery on October 30, 2026.
+The planning baseline was subsequently accepted with tracked follow-up under
+[DEC-116](10-planning-completion-criteria.md#dec-116).
 
-This review accepts expected outputs and their completion rules.
-It does not establish that the outputs have been produced or
-verified, approve the overall planning baseline, or authorize
-starting product implementation now. Detailed estimates, sequencing,
-and scheduling require their own analysis and review.
+**Editorial revision — October 31, 2026:** Added a readable output/evidence
+catalog, milestone checkpoint mapping, current-status distinctions, and two
+Graphviz diagrams. The twelve original decisions remain unchanged. No new
+product capability, delivery date, test result, staffing arrangement, or release
+authorization is introduced. Earlier source hashes and baseline references
+continue to describe their original snapshots.
+
+## 9. Diagram Sources and Regeneration
+
+Both diagrams use Graphviz. Retain `.dot` sources, scalable `.svg` outputs, and
+`.png` previews together under `diagrams/`. Run from the repository root:
+
+```powershell
+$diagramFolder = 'docs\SDLC\01-project-planning\diagrams'
+$graphvizExe = 'C:\Program Files\Graphviz\bin\dot.exe'
+
+foreach ($name in 'deliverable-map', 'deliverable-review-flow') {
+    foreach ($format in 'svg', 'png') {
+        & $graphvizExe "-T$format" -Gdpi=140 `
+            "$diagramFolder\$name.dot" -o "$diagramFolder\$name.$format"
+        if ($LASTEXITCODE -ne 0) {
+            throw "Graphviz failed: $name ($format)"
+        }
+    }
+}
+```
+
+Save DOT sources as UTF-8 without BOM. Review the diagrams alongside their
+source definitions whenever deliverable grouping or completion rules change.

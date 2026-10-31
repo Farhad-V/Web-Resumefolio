@@ -1,118 +1,167 @@
-# Roadmap and Milestones
+# Resumefolio — Roadmap and Milestones
 
-Status: Reviewed - roadmap definitions and planning methods accepted; schedule reconciliation and milestone completion pending
+| Item | Current position |
+|---|---|
+| Project owner | Farhad Valizadegan; sole delivery and operations owner |
+| Roadmap status | Outcome definitions and review methods accepted; effort and schedule feasibility unresolved |
+| Milestone acceptance | M-01 accepted with tracked follow-up under DEC-116; M-02–M-10 completion remains pending |
+| Requested delivery target | Complete agreed Version 1 by November 8, 2026, Europe/Berlin; not a validated forecast |
+| Original decisions | DEC-075 through DEC-089, accepted October 31, 2026 |
+| Presentation revision | October 31, 2026; no historical date, Sprint assignment, or capability is changed |
 
-## 1. Delivery Approach
+**At a glance:** Milestones are evidence-based outcome checkpoints. They are
+not fixed-duration work periods. The roadmap shows prerequisites and delivery
+outcomes; estimates and live tracking must be reconciled after analysis/design.
 
-Develop the product incrementally through reviewable outcomes.
-Each increment includes relevant requirements, design,
-implementation, verification, and documentation.
+[Visual roadmap](#1-outcome-based-roadmap) · [Milestones](#2-milestone-catalog)
+· [Early investigation](#3-early-investigations) · [Estimation](#4-estimation-and-schedule-reconciliation)
+· [Historical dates](#5-provisional-target-checkpoints) · [Reviews](#6-milestone-review-and-scope-change)
+· [Decision records](#7-accepted-roadmap-decision-records)
 
-The sequence below is provisional. Technical findings may
-change the order without automatically changing version 1 scope.
+## 1. Outcome-Based Roadmap
 
-Testing begins with requirements review and continues
-through development, deployment, and maintenance.
+![Outcome roadmap with prerequisites and the pre-implementation agreement gate](diagrams/outcome-roadmap.png)
 
-## 2. Proposed Milestones
+[Open scalable diagram](diagrams/outcome-roadmap.svg) ·
+[Editable Graphviz source](diagrams/outcome-roadmap.dot)
 
-| ID | Milestone | Reviewable outcome | Main dependencies |
+Solid arrows show the main prerequisite relationships. Dashed arrows show early
+investigations feeding dependent decisions. Branches do not imply parallel
+staffing or simultaneous execution; the owner still plans feasible solo work.
+This is a planning overview, not a complete task graph or a dated forecast.
+
+Before product coding, complete the agreed initial analysis/documentation for
+all SDLC phases, reconcile delivery tracking, and agree the pre-implementation
+baseline. This gate does not create an extra milestone or replace M-03.
+
+A milestone can span several Sprints. A Sprint can contribute to more than one
+milestone. Relevant requirements, design, verification, and documentation evolve
+iteratively; testing starts with requirement review and continues through operation.
+
+## 2. Milestone Catalog
+
+Definitions and completion conditions are accepted. Only a separate review of
+actual outcomes establishes milestone completion. Links retain the original
+milestone decisions and detailed rationale.
+
+| ID | Reviewable outcome | Main prerequisites | Completion evidence / original decision |
 |---|---|---|---|
-| M-01 | Planning baseline | Planning documents reviewed; significant unknowns have owners and review points | Planning completion criteria |
-| M-02 | Requirements baseline | Version 1 workflows, permissions, lifecycle rules, and acceptance criteria reviewed | M-01; stakeholder input |
-| M-03 | Feasibility and design baseline | Architecture and delivery approach justified against resources, integrations, security, and recovery needs | Relevant requirements; resource and dependency investigations |
-| M-04 | Application foundation | Identity, permissions, navigation, and application structure verified | Relevant M-02 and M-03 outcomes |
-| M-05 | Professional presentation | Profiles, resumes, portfolio, media, PDF, and controlled sharing workflows verified | Foundation; file and data lifecycle decisions |
-| M-06 | Manual application management | Manual ApplyFlow, email, and calendar workflows verified together | Foundation; resume workflows; integration validation |
-| M-07 | Work and collaboration | Kanban, collaboration, and agreed Git Forge workflows verified | Foundation; permission model; Git feasibility |
-| M-08 | CI/CD capability | Agreed YAML workflows execute with verified isolation, permissions, secret handling, and resource limits | Git workflows; early CI/CD feasibility and security investigation |
-| M-09 | Integrated release candidate | Cross-module workflows and agreed quality targets verified; operating guides and restoration evidence available | All version 1 capability milestones |
-| M-10 | Initial deployment and handover | Identified release deployed; smoke checks completed; operating responsibilities and release decision recorded | M-09; deployment readiness |
+| M-01 | Planning baseline | Planning completion criteria | Reviewed planning documents, assigned significant unknowns, and identifiable owner decision; [DEC-088](#dec-088). Accepted snapshot: [DEC-116](10-planning-completion-criteria.md#dec-116) |
+| M-02 | Requirements baseline | M-01; relevant stakeholder input and integration findings | Identified requirements, scenarios, permissions, lifecycle rules and testable acceptance criteria reviewed; [DEC-087](#dec-087) |
+| M-03 | Feasibility and design baseline | Relevant requirements; resource/dependency investigations | Justified architecture, data/interfaces/security, deployment and recovery design; consistent diagrams, alternatives and evidence; [DEC-086](#dec-086) |
+| M-04 | Application foundation | Relevant M-02/M-03 outcomes and agreed pre-coding gate | Identity, permissions, navigation and application structure operate in an identified revision with allowed/denied-path results; [DEC-085](#dec-085) |
+| M-05 | Professional presentation | Foundation; file/data lifecycle decisions | Profiles, tailored resumes, portfolio/evidence, PDFs and controlled sharing verified together, including direct-file authorization; [DEC-084](#dec-084) |
+| M-06 | Manual application management | Foundation, resume workflows, validated integrations | Manual ApplyFlow, preserved submitted materials, email and calendar workflows verified together; [DEC-083](#dec-083) |
+| M-07 | Work and collaboration | Foundation, permissions, Git feasibility | Kanban/backlog/Sprint workflows and agreed real Git hosting/collaboration operations verified; [DEC-082](#dec-082) |
+| M-08 | CI/CD capability | Git workflows; early execution feasibility and security findings | Real YAML execution with verified isolation, permissions, secrets, limits and agreed deployment controls; [DEC-081](#dec-081) |
+| M-09 | Integrated release candidate | All Version 1 capability outcomes | Cross-module and agreed quality results, aligned guides, restoration/data-integrity evidence, and release-blocker decisions; [DEC-080](#dec-080) |
+| M-10 | Initial deployment and handover | M-09 and deployment readiness | Identified release deployed, live checks passed, operating guidance aligned, release decision and limitations recorded; [DEC-079](#dec-079) |
 
-Milestones describe outcomes, not fixed-length work periods.
-A milestone may require several sprints.
-A sprint may contribute to more than one milestone.
+**Current acceptance:** M-01 is accepted with tracked follow-up for the identified
+planning snapshot. Editorial changes being reviewed do not silently replace it.
+No M-02–M-10 outcome has been accepted as complete by these planning records.
+For a solo project, handover means the owner can use and operate the release
+with the supplied guidance; it does not assume another delivery/operations team.
 
 ## 3. Early Investigations
 
-Do not postpone high-impact feasibility questions until
-the corresponding feature is due for implementation.
+Do not wait until a feature's implementation slot to discover a decisive
+feasibility constraint. The project owner coordinates each investigation and
+records findings before accepting dependent commitments.
 
-Investigate early:
-- Existing server capacity and competing workloads.
-- Safe Git CI/CD execution within available resources.
-- Required Google integration access and operations.
-- Email delivery arrangements.
-- Backup storage and restoration options.
+| Investigation | Why it is early | Existing references / review gate |
+|---|---|---|
+| Combined server capacity and workloads | Affects deployment, storage, Git and job execution choices | ASM-01, DEP-01, RSK-02/RSK-08; before dependent M-03 design |
+| Safe CI/CD execution | Isolation and resource limits can affect feasibility and architecture | RSK-03, GAP-D09; before execution design acceptance or enabling jobs |
+| Google access and operations | Provider conditions can prevent agreed integrations | ASM-02, DEP-03, RSK-06; before dependent M-02/M-03 decisions |
+| Email delivery | Authentication and notifications depend on actual delivery behavior | ASM-03, DEP-04, RSK-07; before dependent M-03 design and release checks |
+| Backup storage and recovery | Recovery design needs suitable storage; release needs actual restoration | ASM-04, DEP-05, RSK-05; design in M-03, evidence before M-09 |
 
-Use ASM, DEP, and RSK identifiers to connect findings
-to assumptions, dependencies, and the risk register.
+Use [Assumptions and Dependencies](06-assumptions-and-dependencies.md),
+[Resources and Constraints](05-resources-and-constraints.md), and
+[Risk Register](07-risks.md) as the authoritative investigation and risk records.
+A recorded target date does not waive these gates.
 
-## 4. Estimates and Scheduling
+## 4. Estimation and Schedule Reconciliation
 
-The project owner requests full Version 1 delivery by November 8, 2026 (Europe/Berlin). Three dated sprint cycles are recorded provisionally and require reconciliation after analysis and design. Effort estimates and schedule feasibility remain unresolved.
+The three existing dated Sprint cycles are provisional. Full-time availability
+has been confirmed, but numerical capacity and delivery duration have not.
+After the initial analysis and design review:
+1. Decompose the reviewed scope into estimable work with clear outcomes.
+2. Identify dependencies, open investigations, and usable working time.
+3. Include learning, implementation, integration, verification, documentation, operational preparation, and rework.
+4. Use effort ranges where uncertainty remains and record the basis of significant estimates.
+5. Compare the forecast with the requested target and expose any conflict with options and consequences.
+6. Reconcile product/Sprint backlogs, milestone sequencing and dates, and live tracking before accepting the forecast or starting product coding.
+7. During execution, revise estimates using actual progress and record reasons for changes.
 
-Before committing to delivery dates:
-- Establish available development hours.
-- Break milestone outcomes into estimable work.
-- Identify dependencies and unresolved investigations.
-- Include learning, verification, documentation, and rework.
-- Review estimates against demonstrated progress.
+### Reconciliation flow
 
-Record estimates as ranges where uncertainty remains.
-Document the basis for significant estimates and revisions.
+![Evidence-based reconciliation of effort, capacity, target dates, and delivery tracking](diagrams/schedule-reconciliation.png)
 
-## 5. Milestone Reviews
+[Open scalable diagram](diagrams/schedule-reconciliation.svg) ·
+[Editable PlantUML source](diagrams/schedule-reconciliation.puml)
 
-For each milestone, record:
-- The outcome and agreed completion conditions.
-- Related requirements and deliverables.
-- The reviewed version or document revision.
-- Verification evidence and known limitations.
-- Open risks, issues, and follow-up actions.
-- The project owner's review decision.
+This describes the agreed estimation method, not completed estimation or a new
+schedule commitment. Live status and assignments remain in GitHub; local dated
+tables preserve the historical plan until the agreed reconciliation review.
 
-Current status: M-01 is accepted with tracked follow-up under [DEC-116](10-planning-completion-criteria.md#dec-116); M-02 through M-10 completion decisions remain pending.
-Existing planning drafts do not establish completion of M-01.
+## 5. Provisional Target Checkpoints
 
-## 6. Scope and Change
+These are the **original requested target checkpoints**, retained unchanged for
+traceability. They are not verified forecasts, actual completion dates, or
+authorization to bypass requirements, design, or evidence. Times refer to
+Europe/Berlin. M-01's actual owner acceptance was recorded on October 31, 2026,
+separately from its original October 30 target.
 
-Incremental delivery does not remove agreed version 1 scope.
-AI remains outside version 1.
-
-Changes affecting scope, cost, quality commitments, or
-delivery expectations must be assessed and recorded.
-
-## 7. References
-
-- [Scope](02-scope.md)
-- [Deliverables](04-deliverables.md)
-- [Resources and Constraints](05-resources-and-constraints.md)
-- [Assumptions and Dependencies](06-assumptions-and-dependencies.md)
-- [Risk Register](07-risks.md)
-- [Planning Completion Criteria](10-planning-completion-criteria.md)
-
-
-## 8. Target Delivery Checkpoints
-
-[Delivery plan](../../Project-Management/version-1-delivery-plan.md) | [Product backlog](../../Project-Management/product-backlog.md)
-
-| Milestone | Target date (Europe/Berlin) |
+| Milestone | Historical target date |
 |---|---|
-| M-01 - Planning baseline | 2026-10-30 |
-| M-02 - Requirements baseline | 2026-10-31 |
-| M-03 - Feasibility and design baseline | 2026-11-01 |
-| M-04 - Application foundation | 2026-11-01 |
-| M-05 - Professional presentation | 2026-11-03 |
-| M-06 - Manual application management | 2026-11-04 |
-| M-07 - Work and collaboration | 2026-11-05 |
-| M-08 - CI/CD capability | 2026-11-06 |
-| M-09 - Integrated release candidate | 2026-11-07 |
-| M-10 - Initial deployment and handover | 2026-11-08 |
+| M-01 — Planning baseline | 2026-10-30 |
+| M-02 — Requirements baseline | 2026-10-31 |
+| M-03 — Feasibility and design baseline | 2026-11-01 |
+| M-04 — Application foundation | 2026-11-01 |
+| M-05 — Professional presentation | 2026-11-03 |
+| M-06 — Manual application management | 2026-11-04 |
+| M-07 — Work and collaboration | 2026-11-05 |
+| M-08 — CI/CD capability | 2026-11-06 |
+| M-09 — Integrated release candidate | 2026-11-07 |
+| M-10 — Initial deployment and handover | 2026-11-08 |
 
-Dates are requested delivery targets, not evidence of feasibility or completion.
+[Provisional delivery plan](../../Project-Management/version-1-delivery-plan.md)
+· [Product Backlog](../../Project-Management/product-backlog.md)
+· [Private GitHub delivery project](https://github.com/users/Farhad-Valizadegan/projects/6)
 
-## Roadmap Review Decisions
+Reaching a historical target is not evidence that an outcome is complete.
+This document revision does not update remote dates, Sprint membership, or status.
+
+## 6. Milestone Review and Scope Change
+
+For each milestone review, record:
+- Outcome, agreed completion conditions, and related requirements/deliverables.
+- Identified application version or document revision and actual supporting evidence.
+- Known limitations, open risks/issues, and assigned follow-up.
+- The owner's dated decision, rationale, and whether more work is required.
+
+A commit, successful build, target date, or completed task count alone does not
+establish milestone acceptance. Use [Deliverables](04-deliverables.md) and
+[Planning Completion Criteria](10-planning-completion-criteria.md) for the
+relevant output and planning acceptance conditions.
+
+Incremental delivery and changes to sequence do not remove agreed Version 1
+capabilities. Product AI remains outside Version 1. Changes affecting scope,
+cost, quality commitments, or delivery expectations require assessment, recorded
+reasons/options/consequences, and the owner's decision under
+[Working Method and Change Control](09-working-method-and-change-control.md).
+
+## 7. Accepted Roadmap Decision Records
+
+The original fifteen records below retain the roadmap method, ten milestone
+definitions, investigation/estimation/review rules, and scope-change decision.
+Historical Pending statements refer to their original review stage. The current
+M-01 acceptance is DEC-116; definitions do not imply completion of later milestones.
+
+<details>
+<summary>Original roadmap, milestone, estimation, review, and scope-change decisions</summary>
 
 ### Outcome-Based Roadmap and Provisional Scheduling Review
 
@@ -378,11 +427,44 @@ Decision: Incremental delivery and changes to work sequencing do not automatical
 
 Rationale: Keep changes to delivery planning transparent and prevent the agreed product scope from changing without an explicit decision.
 
-## Document Review Summary
+</details>
 
-Status: Roadmap definitions and planning methods reviewed and accepted; schedule reconciliation and milestone completion remain pending
-Review date: October 31, 2026
+## 8. Current Review and Revision Summary
 
-The project owner has accepted the outcome-based roadmap approach, definitions and completion criteria for M-01 through M-10, early feasibility investigation approach, estimation and scheduling method, milestone review method, and scope change rule.
+Milestone definitions and planning methods are accepted. M-01 has a recorded
+planning-only acceptance with tracked follow-up; M-02–M-10 remain pending actual
+completion review. Resource feasibility, detailed estimates and schedule
+reconciliation remain unresolved at the assigned gates.
 
-Existing dates and Sprint assignments remain provisional. Reconcile the backlog, Sprint backlogs, milestones, estimates, and forecasts after the agreed analysis and design work. This review does not validate the requested deadline, complete any milestone, approve the overall planning baseline, or authorize product coding. Technical findings and delivery evidence remain to be obtained in the relevant work.
+**Editorial revision — October 31, 2026:** Added a prerequisite roadmap and
+schedule-reconciliation flow, separated milestone outcomes from historical
+target dates, and clarified current acceptance. All fifteen original decisions,
+ten milestone IDs, and ten historical dates are retained. No milestone is newly
+closed, no delivery estimate is invented, and no remote tracking is changed.
+Earlier baseline hashes continue to identify the original source snapshots.
+
+## 9. Diagram Sources and Regeneration
+
+The outcome roadmap uses Graphviz; the reconciliation flow uses PlantUML.
+Retain editable sources, scalable `.svg` outputs and `.png` previews under
+`diagrams/`. Run from the repository root in PowerShell:
+
+```powershell
+$diagramFolder = 'docs\SDLC\01-project-planning\diagrams'
+$graphvizExe = 'C:\Program Files\Graphviz\bin\dot.exe'
+$plantUmlJar = Join-Path $env:LOCALAPPDATA 'Resumefolio\DiagramTools\plantuml.jar'
+
+foreach ($format in 'svg', 'png') {
+    & $graphvizExe "-T$format" -Gdpi=140 `
+        "$diagramFolder\outcome-roadmap.dot" -o "$diagramFolder\outcome-roadmap.$format"
+    if ($LASTEXITCODE -ne 0) { throw "Graphviz failed: $format" }
+
+    java -jar $plantUmlJar -charset UTF-8 "-t$format" `
+        "$diagramFolder\schedule-reconciliation.puml"
+    if ($LASTEXITCODE -ne 0) { throw "PlantUML failed: $format" }
+}
+```
+
+Use the installed user's PlantUML JAR path under another account. Save source
+files as UTF-8 without BOM and review the diagrams alongside milestone records
+when prerequisites, definitions or planning decisions change.

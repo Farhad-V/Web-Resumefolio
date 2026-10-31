@@ -1,42 +1,64 @@
-# Planning Completion Criteria
+# Resumefolio — Planning Completion Criteria
 
-Status: Planning baseline accepted with tracked follow-up; see DEC-116 for revision and limits
+| Item | Recorded planning position |
+|---|---|
+| Milestone | M-01 — Planning baseline |
+| Owner / decision-maker | Farhad Valizadegan; sole project delivery and operations owner |
+| Review outcome | Accepted with tracked follow-up under [DEC-116](#dec-116) |
+| Review date | October 31, 2026 |
+| Accepted candidate | `511093e788b32dd9b68fb86ff5fff2ac21140672` |
+| Acceptance record | Commit `058866b`; current-status cleanup recorded in `81f02a5` |
+| Planning criteria | PC-01 through PC-13 satisfied for the recorded baseline assessment |
+| Follow-up | GAP-B01–GAP-B03 resolved; GAP-D01–GAP-D11 retained at their agreed review gates |
+| Presentation revision | October 31, 2026; history, decision IDs, source hashes and acceptance scope retained |
 
-## Current Completion Status
+**At a glance:** This document defines how planning is reviewed and records the
+owner's acceptance of an identified planning snapshot. Acceptance of planning
+is different from completed technical investigations, implemented features,
+verified recovery, or release readiness.
 
-The planning review is complete and M-01 is accepted with tracked follow-up.
-All thirteen planning criteria have recorded evidence and are checked.
-DEC-116 records the project owner's acceptance of the reviewed candidate
-511093e788b32dd9b68fb86ff5fff2ac21140672. Commit 058866b preserves that decision.
+**Revision boundary:** Files are currently being reorganized for readability.
+The checked criteria and recorded acceptance below refer to the identified
+baseline and its evidence, not automatic acceptance of every later working-copy
+revision. No new baseline decision, commit, push, or coding authorization is
+created by this presentation update.
 
-No planning-acceptance blocker remains. GAP-B01 through GAP-B03 are resolved.
-GAP-D01 through GAP-D11 remain assigned to the project owner at their recorded
-review gates. These are tracked investigations and later engineering work,
-not evidence that their technical outcomes have already been achieved.
+[Purpose](#1-purpose-and-reading-guide) · [Checklist](#2-review-checklist)
+· [Evidence](#21-evidence-assessment-record) · [Open questions](#3-handling-open-questions)
+· [Outcomes](#4-review-outcomes) · [Baseline record](#5-baseline-review-record)
+· [Follow-up](#6-tracked-follow-up-and-current-gaps) · [Review flow](#7-planning-review-flow)
+· [Original records](#8-original-review-evidence-and-decisions)
 
-Section 2 contains the current assessment, Section 5 the current baseline
-record, and the later review entries preserve the sequence of prior findings.
-Earlier Pending or Rework required statements in those entries describe their
-historical review stage; DEC-116 is the current planning acceptance decision.
-The long source hashes are retained unchanged for later review as requested.
+## 1. Purpose and Reading Guide
 
-This closes Project Planning only. Continue the agreed initial SDLC analysis
-and documentation, reconcile delivery tracking, and agree the pre-implementation
-baseline before product coding. Deployment and release are not authorized here.
+Define the conditions for accepting M-01 and retain the actual review outcome
+against a specific Git revision. A baseline is a reviewed starting point that
+can evolve through documented change control; it is not a freeze on learning.
 
-## 1. Purpose
+| Read this part | To understand |
+|---|---|
+| Sections 2–2.1 | The thirteen criteria and their recorded evidence |
+| Sections 3–4 | How open matters and possible review outcomes are handled |
+| Sections 5–6 | The identified acceptance and remaining follow-up |
+| Section 7 | The overall review logic |
+| Section 8 | Original decisions, assessments, corrections, hashes and historical Pending states |
 
-Define the conditions for accepting M-01: Planning baseline.
+### Planning acceptance coverage
 
-An accepted baseline is a reviewed starting point.
-It can evolve through the documented change-control process.
+![Thirteen criteria grouped by the planning questions they assess](diagrams/planning-criteria-map.png)
 
-Planning acceptance does not mean that requirements,
-architecture, implementation, or release readiness are complete.
+[Open scalable diagram](diagrams/planning-criteria-map.svg) ·
+[Editable Graphviz source](diagrams/planning-criteria-map.dot)
+
+The map groups criteria; arrows do not indicate numerical scores, measured
+technical quality, or execution order. The checklist and source evidence remain
+the acceptance reference.
 
 ## 2. Review Checklist
 
-All thirteen items below have been assessed with recorded evidence. Completion here concerns the planning agreement, not completion of future technical work.
+The thirteen checks below are preserved from the accepted planning assessment.
+A checked planning condition does not claim completion of the future technical
+work it identifies. Later material changes must be assessed against affected criteria.
 
 - [x] PC-01: Purpose, problem statement, intended value, and
   initial objectives are understood and accepted.
@@ -68,60 +90,67 @@ All thirteen items below have been assessed with recorded evidence. Completion h
 
 ### 2.1 Evidence Assessment Record
 
-The table below summarizes the completed planning assessment. Linked detailed records retain the findings, inspected source snapshots, corrections, and follow-up. Source references identify the inspected documents; actual evidence is recorded in the named assessment entries and reconciled with the reviewed candidate under DEC-116. Future corrections belong in the authoritative source document, with affected assessments updated here.
+Assessment date: **October 31, 2026**. Scope: planning and related tracking
+records in candidate `511093e788b32dd9b68fb86ff5fff2ac21140672`, with the actual
+owner decision preserved in commit `058866b` under DEC-116.
 
-Assessment scope: Planning documents and related tracking records in reviewed candidate 511093e788b32dd9b68fb86ff5fff2ac21140672, with acceptance recorded under DEC-116 and preserved in commit 058866b.
-Assessment date: October 31, 2026; project-owner acceptance recorded on the same date.
+The table summarizes the recorded assessment; links open the detailed historical
+evidence below. Original source hashes identify the versions inspected at that
+time and are retained unchanged. They are not current hashes of the editorial
+working copies. Correct future defects in the authoritative source document
+and update affected evidence through the agreed change process.
 
 | Criterion | Primary source or check | Assessment result | Evidence and revision | Remaining action |
 |---|---|---|---|---|
-| PC-01 | [Purpose and Objectives](01-purpose-and-objectives.md) | Satisfied for inspected working copy | See PC-01 Evidence Assessment below; source SHA-256 recorded | None for planning acceptance. |
-| PC-02 | [Scope](02-scope.md) | Satisfied for inspected working copy | See PC-02 Evidence Assessment below; source SHA-256 recorded | Follow up open definitions under GAP-D02, GAP-D06, GAP-D09 and GAP-D10. |
-| PC-03 | [Stakeholders and Responsibilities](03-stakeholders-and-responsibilities.md) | Satisfied for inspected working copy | See PC-03 Evidence Assessment below; source SHA-256 recorded | Update assignments if staffing changes; no current acceptance blocker. |
-| PC-04 | [Deliverables](04-deliverables.md) | Satisfied for inspected working copy | See PC-04 Evidence Assessment below; source SHA-256 recorded | Produce and verify future deliverables at their relevant milestones. |
-| PC-05 | [Resources and Constraints](05-resources-and-constraints.md) | Satisfied for inspected working copy | See PC-05 Evidence Assessment below; source SHA-256 recorded | Investigate resources under GAP-D01, GAP-D07 and GAP-D08. |
-| PC-06 | [Assumptions and Dependencies](06-assumptions-and-dependencies.md) | Satisfied for inspected working copy | See PC-06 Evidence Assessment below; source SHA-256 recorded | Execute validation under GAP-D01 through GAP-D10 at dependent gates. |
-| PC-07 | [Risks](07-risks.md) | Satisfied for inspected working copy | See PC-07 Evidence Assessment below; source SHA-256 recorded | Keep all ten risks open; investigate and verify responses at assigned gates. |
-| PC-08 | [Roadmap and Milestones](08-roadmap-and-milestones.md) | Satisfied for inspected planning-level sequence | See PC-08 Evidence Assessment; source hashes recorded | Obtain feasibility findings and reconcile schedule under GAP-D01, GAP-D05 and GAP-D09. |
-| PC-09 | [Resources](05-resources-and-constraints.md), [Validation Assignments](06-assumptions-and-dependencies.md), and [Roadmap](08-roadmap-and-milestones.md) | Satisfied for inspected planning-level records | See PC-09 Evidence Assessment; source hashes recorded | Quantify capacity and estimate after analysis/design under GAP-D05. |
-| PC-10 | [Working Method](09-working-method-and-change-control.md) and [Product Backlog](../../Project-Management/product-backlog.md) | Satisfied for inspected planning-level records | See PC-10 Evidence Assessment; source hashes recorded | Proceed to Requirements Engineering; reconcile tracking under GAP-D11. |
-| PC-11 | Planning documents, diagram sources and images, and local links | Satisfied after corrections in inspected working copy | See PC-11 Correction and Reassessment; 81 local targets resolve | Corrections and candidate reconciliation complete; maintain consistency as documents evolve. |
-| PC-12 | Open matters across planning documents | Satisfied for accepted working-copy classification | See PC-12 Specific Deferrals Acceptance and Reassessment | GAP-B01 through GAP-B03 resolved; follow accepted GAP-D01 through GAP-D11. |
-| PC-13 | Section 5: Baseline Review Record and identifiable Git revision | Satisfied; planning baseline accepted with tracked follow-up | DEC-116 accepts candidate 511093e788b32dd9b68fb86ff5fff2ac21140672 | Acceptance preserved in commit 058866b; no outstanding planning acceptance action. |
-
-Table structure accepted by the project owner on October 31, 2026.
-Rationale: Keep each criterion's evidence, finding, and remaining action traceable in one assessment location. Creating this table does not satisfy the criteria or accept the baseline.
+| PC-01 | [Purpose and Objectives](01-purpose-and-objectives.md) | Satisfied for inspected working copy | [PC-01 assessment](#pc-01-evidence-assessment); original source hash retained | None for planning acceptance. |
+| PC-02 | [Scope](02-scope.md) | Satisfied for inspected working copy | [PC-02 assessment](#pc-02-evidence-assessment); original source hash retained | Follow up open definitions under GAP-D02, GAP-D06, GAP-D09 and GAP-D10. |
+| PC-03 | [Stakeholders and Responsibilities](03-stakeholders-and-responsibilities.md) | Satisfied for inspected working copy | [PC-03 assessment](#pc-03-evidence-assessment); original source hash retained | Update assignments if staffing changes; no current acceptance blocker. |
+| PC-04 | [Deliverables](04-deliverables.md) | Satisfied for inspected working copy | [PC-04 assessment](#pc-04-evidence-assessment); original source hash retained | Produce and verify future deliverables at their relevant milestones. |
+| PC-05 | [Resources and Constraints](05-resources-and-constraints.md) | Satisfied for inspected working copy | [PC-05 assessment](#pc-05-evidence-assessment); original source hash retained | Investigate resources under GAP-D01, GAP-D07 and GAP-D08. |
+| PC-06 | [Assumptions and Dependencies](06-assumptions-and-dependencies.md) | Satisfied for inspected working copy | [PC-06 assessment](#pc-06-evidence-assessment); original source hash retained | Execute validation under GAP-D01 through GAP-D10 at dependent gates. |
+| PC-07 | [Risks](07-risks.md) | Satisfied for inspected working copy | [PC-07 assessment](#pc-07-evidence-assessment); original source hash retained | Keep all ten risks open; investigate and verify responses at assigned gates. |
+| PC-08 | [Roadmap and Milestones](08-roadmap-and-milestones.md) | Satisfied for inspected planning-level sequence | [PC-08 assessment](#pc-08-evidence-assessment); original source hashes retained | Obtain feasibility findings and reconcile schedule under GAP-D01, GAP-D05 and GAP-D09. |
+| PC-09 | [Resources](05-resources-and-constraints.md), [Validation Assignments](06-assumptions-and-dependencies.md), and [Roadmap](08-roadmap-and-milestones.md) | Satisfied for inspected planning-level records | [PC-09 assessment](#pc-09-evidence-assessment); original source hashes retained | Quantify capacity and estimate after analysis/design under GAP-D05. |
+| PC-10 | [Working Method](09-working-method-and-change-control.md) and [Product Backlog](../../Project-Management/product-backlog.md) | Satisfied for inspected planning-level records | [PC-10 assessment](#pc-10-evidence-assessment); original source hashes retained | Proceed to Requirements Engineering; reconcile tracking under GAP-D11. |
+| PC-11 | Planning documents, diagram sources and images, and local links | Satisfied after corrections in inspected working copy | [PC-11 correction/recheck](#pc-11-correction-and-reassessment); historical link-check results retained | Corrections and candidate reconciliation complete; maintain consistency as documents evolve. |
+| PC-12 | Open matters across planning documents | Satisfied for accepted working-copy classification | [Specific deferral acceptance](#dec-097) | GAP-B01 through GAP-B03 resolved; follow accepted GAP-D01 through GAP-D11. |
+| PC-13 | Section 5: Baseline Review Record and identifiable Git revision | Satisfied; planning baseline accepted with tracked follow-up | [DEC-116](#dec-116) accepts candidate 511093e788b32dd9b68fb86ff5fff2ac21140672 | Acceptance preserved in commit 058866b; no outstanding planning acceptance action. |
 
 ## 3. Handling Open Questions
 
-Not every technical detail must be resolved during planning.
+A question may be deferred only when:
+- Its impact and uncertainty are sufficiently understood for the planning agreement.
+- A responsible person, validation action and review gate are recorded.
+- The gate occurs before the dependent commitment.
+- The project owner accepts the specific deferral.
 
-A question may be deferred when:
-- Its impact and uncertainty are understood sufficiently.
-- A responsible person and validation action are recorded.
-- A review milestone is assigned before dependent commitments.
-- The project owner accepts the proposed deferral.
-
-Do not defer a known feasibility conflict without an agreed
-investigation or response.
-
-Server capacity, integration access, backup arrangements,
-and safe CI/CD execution require explicit follow-up.
-Deferring them does not establish their feasibility.
+Do not defer a known feasibility conflict without an agreed investigation or
+response. Server capacity, integration access, backup arrangements and safe
+CI/CD execution require explicit follow-up. Deferral does not confirm feasibility.
+The accepted specific deferrals are summarized in Section 6; general acceptance
+of the rule does not approve an unspecified future deferral.
 
 ## 4. Review Outcomes
 
-Choose and record one outcome:
-- Pending: the review has not finished.
-- Rework required: blocking gaps must be addressed.
-- Accepted with tracked follow-up: the baseline is accepted
-  and specific non-blocking gaps are assigned.
-- Accepted: all planning criteria are satisfied.
+| Outcome | When it applies |
+|---|---|
+| Pending | The review is unfinished |
+| Rework required | Blocking gaps need correction before acceptance |
+| Accepted with tracked follow-up | The baseline is accepted with specific non-blocking gaps assigned and explicitly accepted |
+| Accepted | Planning conditions are satisfied without needing the tracked-follow-up qualification |
 
-A Git commit or push preserves work.
-It does not by itself record acceptance.
+The recorded outcome here is **Accepted with tracked follow-up**. Although the
+thirteen planning criteria were satisfied, their review explicitly retains
+technical follow-up; do not relabel it as unconditional acceptance.
+
+A Git commit or push preserves work. It is not itself an acceptance decision.
+The actual decision identifies the reviewed revision, decision-maker, date,
+result, limits, and follow-up.
 
 ## 5. Baseline Review Record
+
+The following recorded fields are preserved. They identify the accepted
+planning snapshot; later document reorganization does not silently replace it.
 
 - Milestone: M-01
 - Outcome: Accepted with tracked follow-up
@@ -132,16 +161,69 @@ It does not by itself record acceptance.
 - Deferred items and follow-up: GAP-D01 through GAP-D11, accepted with recorded owners and dependent review gates under PC-12
 - Next agreed activities: Requirements Engineering, then the remaining agreed initial SDLC analysis and documentation; reconcile delivery tracking and agree the pre-implementation baseline before product coding
 
-This record reflects the completed planning review and acceptance. Subsequent material changes require documented assessment and a new or superseding decision.
-Do not mark checklist items complete without evidence.
+Subsequent material changes require documented assessment and a new or
+superseding decision. Do not mark additional work complete without its evidence.
 
-## 6. References
+## 6. Tracked Follow-up and Current Gaps
 
-- [Planning Index](README.md)
-- [Assumptions and Dependencies](06-assumptions-and-dependencies.md)
-- [Risk Register](07-risks.md)
-- [Roadmap and Milestones](08-roadmap-and-milestones.md)
-- [Working Method and Change Control](09-working-method-and-change-control.md)
+### Resolved planning-acceptance blockers
+
+| ID | Original blocker | Recorded resolution |
+|---|---|---|
+| GAP-B01 | Stable identifiers for significant decisions were missing | Decision references and register completed; original completion evidence retained below |
+| GAP-B02 | Final owner outcome and reviewed revision were not recorded | Candidate identified, owner acceptance recorded under DEC-116 and preserved in commit 058866b |
+| GAP-B03 | Specific deferrals had not been accepted as a set | Owner accepted GAP-D01–GAP-D11 under [DEC-097](#dec-097) |
+
+No blocker remains **for the recorded planning-only acceptance**. This does not
+claim that all subsequent engineering prerequisites are resolved.
+
+### Accepted deferred investigations and later work
+
+**Responsible person for every row: the project owner.** All entries remain
+tracked; the summary does not mark their technical work complete. Full original
+reasons, actions and gates remain in [PC-12 gap classification](#pc-12-gap-classification-assessment).
+
+| ID | Remaining work | Review gate before dependent commitment |
+|---|---|---|
+| GAP-D01 | Server resources, workloads, network/storage capacity and actual spending constraints | Before dependent M-03 resource/deployment design; verify relevant behavior before release |
+| GAP-D02 | Gmail/Calendar operations, permissions, conditions and access | Before dependent M-02/M-03 acceptance; validate access before development |
+| GAP-D03 | Authentication/notification delivery and failure/recovery behavior | Before dependent M-03 design; verify capability and release behavior |
+| GAP-D04 | Backup storage, recovery design, measurable goals and actual restoration | Requirements in M-02, design in M-03, restoration evidence before M-09 |
+| GAP-D05 | Usable time, effort ranges, forecast and schedule reconciliation | After analysis/design, before accepting a credible forecast or product coding; revisit execution reviews |
+| GAP-D06 | User inputs, detailed behavior, permissions and cross-module lifecycle rules | Before accepting affected M-02 requirements and M-03 design; verify implementation later |
+| GAP-D07 | Domain control, DNS, TLS and renewal | Before deployment configuration acceptance; live checks before M-10 |
+| GAP-D08 | Runtime/package suitability, licenses, support and realistic solo maintenance | At M-03 selection and before dependent implementation; operating evidence before M-09/release |
+| GAP-D09 | Supported YAML execution, isolation, secrets, permissions and resource limits | Before dependent execution design or enabling jobs; controls verified before M-08 |
+| GAP-D10 | Measurable quality/recovery targets and file/storage policy | Relevant M-02/M-03 acceptance; actual verification before M-09/release |
+| GAP-D11 | Requirement-to-work traceability, live tracking alignment and actual Sprint outcomes | Reconcile after analysis/design before coding; record real outcomes during execution reviews |
+
+All ten risks in [Risk Register](07-risks.md) remain open. A tracked follow-up is
+not closure of the related risk or acceptance of unspecified residual exposure.
+
+## 7. Planning Review Flow
+
+![Planning criteria, gap classification, owner decision and versioned acceptance record](diagrams/planning-acceptance-flow.png)
+
+[Open scalable diagram](diagrams/planning-acceptance-flow.svg) ·
+[Editable PlantUML source](diagrams/planning-acceptance-flow.puml)
+
+The flow explains the review method. The actual planning decision is already
+recorded for its identified snapshot. The diagram does not repeat that approval,
+rebaseline the current working copies, or authorize product coding.
+
+## 8. Original Review Evidence and Decisions
+
+This expandable archive retains the original nineteen decision records, all
+detailed assessments/corrections, source hashes, and the final DEC-116 record.
+The sequence deliberately includes earlier Pending/Rework required states.
+Those statements are dated history, not the current status of the accepted snapshot.
+
+Links from the [Planning Decision Register](decision-register.md) and other
+planning documents retain their original anchors. Expand this section to inspect
+complete records. Hashes have not been removed or recalculated.
+
+<details>
+<summary>Original criteria decisions, evidence assessments, gap reviews, hashes and acceptance record</summary>
 
 ## Planning Completion Review Decisions
 
@@ -776,3 +858,49 @@ Rationale: Establish an identifiable planning agreement whose definitions and ev
 Next activities: Proceed to Requirements Engineering and continue the agreed initial analysis and documentation for all SDLC phases. Reconcile backlog, Sprints, milestones, and delivery forecasts after analysis/design and reach the agreed pre-implementation baseline before product coding. This planning-only acceptance does not authorize product implementation, deployment, or release.
 
 Record interpretation: Earlier Pending outcomes and source hashes are preserved as dated assessment history. This decision is the current M-01 outcome and supersedes the prior pending owner-decision state. PC-01 through PC-12 were reconfirmed against the candidate by the documented content-preserving cleanup and candidate-content checks; PC-13 is completed by this explicit owner decision. The acceptance record and navigation updates will be preserved in a subsequent Git commit, separate from the accepted candidate. Push is not established by this record.
+
+</details>
+
+## 9. Current Revision and Next Activities
+
+**Editorial revision — October 31, 2026:** Reorganized the completion document
+for reading, made criterion evidence clickable, summarized accepted follow-up,
+and added two diagrams. The original checklist, acceptance fields, nineteen
+source decisions and complete historical record are retained. No criterion is
+newly checked, no deferral is closed, and no new baseline acceptance is claimed.
+
+The next agreed engineering activity after planning review is Requirements
+Engineering, followed by the remaining initial SDLC analysis/documentation.
+Reconcile the delivery plan and agree the pre-implementation baseline before
+product coding. Deployment and release require their own evidence and decisions.
+
+References: [Planning Index](README.md) · [Resources](05-resources-and-constraints.md)
+· [Assumptions and Dependencies](06-assumptions-and-dependencies.md)
+· [Risk Register](07-risks.md) · [Roadmap](08-roadmap-and-milestones.md)
+· [Working Method](09-working-method-and-change-control.md)
+
+## 10. Diagram Sources and Regeneration
+
+The criterion map uses Graphviz; the acceptance flow uses PlantUML. Retain
+sources, scalable `.svg` outputs and `.png` previews under `diagrams/`.
+Run from the repository root in PowerShell:
+
+```powershell
+$diagramFolder = 'docs\SDLC\01-project-planning\diagrams'
+$graphvizExe = 'C:\Program Files\Graphviz\bin\dot.exe'
+$plantUmlJar = Join-Path $env:LOCALAPPDATA 'Resumefolio\DiagramTools\plantuml.jar'
+
+foreach ($format in 'svg', 'png') {
+    & $graphvizExe "-T$format" -Gdpi=140 `
+        "$diagramFolder\planning-criteria-map.dot" -o "$diagramFolder\planning-criteria-map.$format"
+    if ($LASTEXITCODE -ne 0) { throw "Graphviz failed: $format" }
+
+    java -jar $plantUmlJar -charset UTF-8 "-t$format" `
+        "$diagramFolder\planning-acceptance-flow.puml"
+    if ($LASTEXITCODE -ne 0) { throw "PlantUML failed: $format" }
+}
+```
+
+Use the installed user's PlantUML JAR path under another account. Save sources
+as UTF-8 without BOM. Keep diagrams aligned with the acceptance rules whenever
+those rules are explicitly revised.
