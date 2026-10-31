@@ -1,6 +1,6 @@
 # Planning Completion Criteria
 
-Status: Reviewed - completion criteria and review process accepted; evidence assessment and baseline acceptance pending
+Status: Planning baseline accepted with tracked follow-up; see DEC-116 for revision and limits
 
 ## 1. Purpose
 
@@ -41,7 +41,7 @@ All items remain pending until reviewed with supporting evidence.
   resolve, and no known contradictory decisions remain unaddressed.
 - [x] PC-12: Remaining gaps are explicitly classified as
   blocking or deferred, with reasons and follow-up actions.
-- [ ] PC-13: The project owner records the review outcome
+- [x] PC-13: The project owner records the review outcome
   against an identifiable Git revision.
 
 ### 2.1 Evidence Assessment Record
@@ -65,7 +65,7 @@ Assessment date: Not yet recorded.
 | PC-10 | [Working Method](09-working-method-and-change-control.md) and [Product Backlog](../../Project-Management/product-backlog.md) | Satisfied for inspected planning-level records | See PC-10 Evidence Assessment; source hashes recorded | Review index consistency under PC-11; reconcile tracking; reconfirm final Git revision |
 | PC-11 | Planning documents, diagram sources and images, and local links | Satisfied after corrections in inspected working copy | See PC-11 Correction and Reassessment; 81 local targets resolve | Reconfirm final Git revision; classify remaining follow-up under PC-12 |
 | PC-12 | Open matters across planning documents | Satisfied for accepted working-copy classification | See PC-12 Specific Deferrals Acceptance and Reassessment | GAP-B01 and GAP-B03 closed; resolve GAP-B02 before final acceptance; execute tracked deferrals at their gates |
-| PC-13 | Section 5: Baseline Review Record and identifiable Git revision | Pending | Not yet assessed | Record actual owner decision against reviewed revision |
+| PC-13 | Section 5: Baseline Review Record and identifiable Git revision | Satisfied; planning baseline accepted with tracked follow-up | DEC-116 accepts candidate 511093e788b32dd9b68fb86ff5fff2ac21140672 | Preserve acceptance record; execute GAP-D01 through GAP-D11 at their gates |
 
 Table structure accepted by the project owner on October 31, 2026.
 Rationale: Keep each criterion's evidence, finding, and remaining action traceable in one assessment location. Creating this table does not satisfy the criteria or accept the baseline.
@@ -102,13 +102,13 @@ It does not by itself record acceptance.
 ## 5. Baseline Review Record
 
 - Milestone: M-01
-- Outcome: Pending
-- Reviewed Git revision: Not yet recorded
-- Review date: Not yet recorded
+- Outcome: Accepted with tracked follow-up
+- Reviewed Git revision: 511093e788b32dd9b68fb86ff5fff2ac21140672 (planning acceptance candidate)
+- Review date: 2026-10-31 (project-owner acceptance decision)
 - Decision-maker: Project owner
-- Blocking gaps: To be assessed
-- Deferred items and follow-up: To be assessed
-- Next agreed activities: To be recorded
+- Blocking gaps: None remaining for this planning-only acceptance; GAP-B01 through GAP-B03 resolved
+- Deferred items and follow-up: GAP-D01 through GAP-D11, accepted with recorded owners and dependent review gates under PC-12
+- Next agreed activities: Requirements Engineering, then the remaining agreed initial SDLC analysis and documentation; reconcile delivery tracking and agree the pre-implementation baseline before product coding
 
 Update this record after the review.
 Do not mark checklist items complete without evidence.
@@ -713,3 +713,39 @@ Evidence reconciliation: Earlier PC-01 through PC-10 source hashes identify the 
 GAP-B03 was already resolved by the recorded owner acceptance of GAP-D01 through GAP-D11. PC-12 remains satisfied for classification and tracked follow-up. Historical gap tables are retained as evidence of the original findings; this completion record updates GAP-B01 to resolved.
 
 Remaining gate: GAP-B02 / PC-13 requires an identifiable reviewed Git revision and the project owner's actual planning acceptance outcome. Baseline outcome remains Pending. The agreed follow-up activities and no-product-coding-before-baseline rule remain in effect. No commit, push, or final owner acceptance is established by this record.
+
+### PC-13 Candidate Revision Review
+
+Assessment date: 2026-10-31
+Candidate Git revision: 511093e788b32dd9b68fb86ff5fff2ac21140672
+Candidate commit: Record reviewed planning decisions and baseline assessment candidate
+Result: Identifiable candidate recorded and checked; final project-owner acceptance decision remains pending. PC-13 remains unchecked.
+
+Evidence: The candidate commit contains the 18 reviewed planning and related tracking documents, including the decision register. All 18 candidate files were compared with committed Git content using Git blob identities after normal repository filtering; every file matched before this review-record update. Staged whitespace checks passed. The earlier local file/fragment checks, diagram inspection, decision-ID verification, and PC-01 through PC-12 assessments are retained in that candidate.
+
+Recommendation: Accept the planning-only baseline with tracked follow-up GAP-D01 through GAP-D11, subject to the project owner's explicit final decision on this candidate. This recommendation is not itself acceptance. Existing risks, technical feasibility, numerical estimates, and provisional dates remain unresolved at their recorded gates.
+
+The final decision record must refer to this candidate revision and can be preserved in a subsequent commit, avoiding a self-referential commit hash. This record update is outside the candidate and leaves its reviewed content unchanged. GAP-B02 remains open until the actual owner decision is recorded. No Push, overall pre-implementation baseline approval, product coding, or release authorization is established by candidate creation.
+
+### Planning Baseline Acceptance Decision
+
+Decision ID: DEC-116
+<a id="dec-116"></a>
+
+Status: Accepted with tracked follow-up
+Review date: 2026-10-31
+Decision-maker: Farhad Valizadegan, project owner
+Milestone: M-01 - Planning baseline
+Accepted candidate Git revision: 511093e788b32dd9b68fb86ff5fff2ac21140672
+
+Decision: The project owner explicitly accepted the proposed planning-only baseline outcome, Accepted with tracked follow-up, for candidate 511093e. This completes PC-13 and records M-01 planning acceptance. GAP-B02 is resolved; GAP-B01 and GAP-B03 were previously resolved as documented. No blocking gap remains for this planning-only agreement.
+
+Evidence: PC-01 through PC-12 have recorded assessments, PC-11 corrections were verified, significant accepted decisions have stable identifiers, and the project owner accepted the specific deferrals GAP-D01 through GAP-D11. The PC-13 candidate review identified the exact Git revision and verified all 18 candidate files against committed content before the acceptance-record update. This subsequent record preserves the owner's actual decision without attempting to embed its own commit hash.
+
+Tracked follow-up: GAP-D01 through GAP-D11 retain their recorded owner, actions, and review gates. All ten project risks remain open. Acceptance does not confirm server capacity, integrations, backup recoverability, execution isolation, numerical estimates, or the November 8 forecast.
+
+Rationale: Establish an identifiable planning agreement whose definitions and evidence have been reviewed, while keeping technical investigation and remaining engineering work explicitly assigned and gated rather than pretending those outcomes already exist.
+
+Next activities: Proceed to Requirements Engineering and continue the agreed initial analysis and documentation for all SDLC phases. Reconcile backlog, Sprints, milestones, and delivery forecasts after analysis/design and reach the agreed pre-implementation baseline before product coding. This planning-only acceptance does not authorize product implementation, deployment, or release.
+
+Record interpretation: Earlier Pending outcomes and source hashes are preserved as dated assessment history. This decision is the current M-01 outcome and supersedes the prior pending owner-decision state. PC-01 through PC-12 were reconfirmed against the candidate by the documented content-preserving cleanup and candidate-content checks; PC-13 is completed by this explicit owner decision. The acceptance record and navigation updates will be preserved in a subsequent Git commit, separate from the accepted candidate. Push is not established by this record.

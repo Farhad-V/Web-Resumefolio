@@ -72,7 +72,7 @@ For each milestone, record:
 - Open risks, issues, and follow-up actions.
 - The project owner's review decision.
 
-Current status: all milestone completion decisions are pending.
+Current status: M-01 is accepted with tracked follow-up under [DEC-116](10-planning-completion-criteria.md#dec-116); M-02 through M-10 completion decisions remain pending.
 Existing planning drafts do not establish completion of M-01.
 
 ## 6. Scope and Change

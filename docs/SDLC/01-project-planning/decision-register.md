@@ -1,6 +1,6 @@
 # Planning Decision Register
 
-Status: Index of previously accepted planning decisions; final baseline acceptance pending
+Status: Index of accepted planning decisions; M-01 accepted with tracked follow-up under DEC-116
 
 This register assigns stable references to existing accepted decisions and
 confirmed working arrangements. The linked source section remains authoritative
@@ -132,3 +132,4 @@ Evidence assessments and document summary statuses are not new product decisions
 | DEC-113 | PC-01 Purpose and Objectives Criterion Review | [Source](10-planning-completion-criteria.md#dec-113) |
 | DEC-114 | Planning Baseline Purpose Review | [Source](10-planning-completion-criteria.md#dec-114) |
 | DEC-115 | 9. Confirmed Agile Direction | [Source](09-working-method-and-change-control.md#dec-115) |
+| DEC-116 | Planning Baseline Acceptance Decision | [Source](10-planning-completion-criteria.md#dec-116) |
