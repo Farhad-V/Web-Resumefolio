@@ -2,6 +2,28 @@
 
 Status: Planning baseline accepted with tracked follow-up; see DEC-116 for revision and limits
 
+## Current Completion Status
+
+The planning review is complete and M-01 is accepted with tracked follow-up.
+All thirteen planning criteria have recorded evidence and are checked.
+DEC-116 records the project owner's acceptance of the reviewed candidate
+511093e788b32dd9b68fb86ff5fff2ac21140672. Commit 058866b preserves that decision.
+
+No planning-acceptance blocker remains. GAP-B01 through GAP-B03 are resolved.
+GAP-D01 through GAP-D11 remain assigned to the project owner at their recorded
+review gates. These are tracked investigations and later engineering work,
+not evidence that their technical outcomes have already been achieved.
+
+Section 2 contains the current assessment, Section 5 the current baseline
+record, and the later review entries preserve the sequence of prior findings.
+Earlier Pending or Rework required statements in those entries describe their
+historical review stage; DEC-116 is the current planning acceptance decision.
+The long source hashes are retained unchanged for later review as requested.
+
+This closes Project Planning only. Continue the agreed initial SDLC analysis
+and documentation, reconcile delivery tracking, and agree the pre-implementation
+baseline before product coding. Deployment and release are not authorized here.
+
 ## 1. Purpose
 
 Define the conditions for accepting M-01: Planning baseline.
@@ -14,7 +36,7 @@ architecture, implementation, or release readiness are complete.
 
 ## 2. Review Checklist
 
-All items remain pending until reviewed with supporting evidence.
+All thirteen items below have been assessed with recorded evidence. Completion here concerns the planning agreement, not completion of future technical work.
 
 - [x] PC-01: Purpose, problem statement, intended value, and
   initial objectives are understood and accepted.
@@ -46,26 +68,26 @@ All items remain pending until reviewed with supporting evidence.
 
 ### 2.1 Evidence Assessment Record
 
-Maintain the assessment evidence in this document. Source references below identify where to investigate; they are not completed verification evidence. For each criterion, record the actual finding, evidence location and revision, assessment date, remaining gaps, and follow-up. Correct defects in the authoritative source document rather than duplicating its content here.
+The table below summarizes the completed planning assessment. Linked detailed records retain the findings, inspected source snapshots, corrections, and follow-up. Source references identify the inspected documents; actual evidence is recorded in the named assessment entries and reconciled with the reviewed candidate under DEC-116. Future corrections belong in the authoritative source document, with affected assessments updated here.
 
-Assessment scope: To be recorded against an identifiable planning revision.
-Assessment date: Not yet recorded.
+Assessment scope: Planning documents and related tracking records in reviewed candidate 511093e788b32dd9b68fb86ff5fff2ac21140672, with acceptance recorded under DEC-116 and preserved in commit 058866b.
+Assessment date: October 31, 2026; project-owner acceptance recorded on the same date.
 
 | Criterion | Primary source or check | Assessment result | Evidence and revision | Remaining action |
 |---|---|---|---|---|
-| PC-01 | [Purpose and Objectives](01-purpose-and-objectives.md) | Satisfied for inspected working copy | See PC-01 Evidence Assessment below; source SHA-256 recorded | Reconfirm against the final reviewed Git revision |
-| PC-02 | [Scope](02-scope.md) | Satisfied for inspected working copy | See PC-02 Evidence Assessment below; source SHA-256 recorded | Reconfirm against the final reviewed Git revision; follow up open definitions |
-| PC-03 | [Stakeholders and Responsibilities](03-stakeholders-and-responsibilities.md) | Satisfied for inspected working copy | See PC-03 Evidence Assessment below; source SHA-256 recorded | Reconfirm against the final reviewed Git revision |
-| PC-04 | [Deliverables](04-deliverables.md) | Satisfied for inspected working copy | See PC-04 Evidence Assessment below; source SHA-256 recorded | Reconfirm against the final reviewed Git revision |
-| PC-05 | [Resources and Constraints](05-resources-and-constraints.md) | Satisfied for inspected working copy | See PC-05 Evidence Assessment below; source SHA-256 recorded | Reconfirm against the final reviewed Git revision; investigate unverified resources |
-| PC-06 | [Assumptions and Dependencies](06-assumptions-and-dependencies.md) | Satisfied for inspected working copy | See PC-06 Evidence Assessment below; source SHA-256 recorded | Reconfirm against the final reviewed Git revision; execute assigned validation |
-| PC-07 | [Risks](07-risks.md) | Satisfied for inspected working copy | See PC-07 Evidence Assessment below; source SHA-256 recorded | Reconfirm against the final reviewed Git revision; investigate risks and verify responses |
-| PC-08 | [Roadmap and Milestones](08-roadmap-and-milestones.md) | Satisfied for inspected planning-level sequence | See PC-08 Evidence Assessment; source hashes recorded | Obtain feasibility findings; reconcile schedule; reconfirm final Git revision |
-| PC-09 | [Resources](05-resources-and-constraints.md), [Validation Assignments](06-assumptions-and-dependencies.md), and [Roadmap](08-roadmap-and-milestones.md) | Satisfied for inspected planning-level records | See PC-09 Evidence Assessment; source hashes recorded | Quantify capacity and estimate after analysis/design; reconfirm final Git revision |
-| PC-10 | [Working Method](09-working-method-and-change-control.md) and [Product Backlog](../../Project-Management/product-backlog.md) | Satisfied for inspected planning-level records | See PC-10 Evidence Assessment; source hashes recorded | Review index consistency under PC-11; reconcile tracking; reconfirm final Git revision |
-| PC-11 | Planning documents, diagram sources and images, and local links | Satisfied after corrections in inspected working copy | See PC-11 Correction and Reassessment; 81 local targets resolve | Reconfirm final Git revision; classify remaining follow-up under PC-12 |
-| PC-12 | Open matters across planning documents | Satisfied for accepted working-copy classification | See PC-12 Specific Deferrals Acceptance and Reassessment | GAP-B01 and GAP-B03 closed; resolve GAP-B02 before final acceptance; execute tracked deferrals at their gates |
-| PC-13 | Section 5: Baseline Review Record and identifiable Git revision | Satisfied; planning baseline accepted with tracked follow-up | DEC-116 accepts candidate 511093e788b32dd9b68fb86ff5fff2ac21140672 | Preserve acceptance record; execute GAP-D01 through GAP-D11 at their gates |
+| PC-01 | [Purpose and Objectives](01-purpose-and-objectives.md) | Satisfied for inspected working copy | See PC-01 Evidence Assessment below; source SHA-256 recorded | None for planning acceptance. |
+| PC-02 | [Scope](02-scope.md) | Satisfied for inspected working copy | See PC-02 Evidence Assessment below; source SHA-256 recorded | Follow up open definitions under GAP-D02, GAP-D06, GAP-D09 and GAP-D10. |
+| PC-03 | [Stakeholders and Responsibilities](03-stakeholders-and-responsibilities.md) | Satisfied for inspected working copy | See PC-03 Evidence Assessment below; source SHA-256 recorded | Update assignments if staffing changes; no current acceptance blocker. |
+| PC-04 | [Deliverables](04-deliverables.md) | Satisfied for inspected working copy | See PC-04 Evidence Assessment below; source SHA-256 recorded | Produce and verify future deliverables at their relevant milestones. |
+| PC-05 | [Resources and Constraints](05-resources-and-constraints.md) | Satisfied for inspected working copy | See PC-05 Evidence Assessment below; source SHA-256 recorded | Investigate resources under GAP-D01, GAP-D07 and GAP-D08. |
+| PC-06 | [Assumptions and Dependencies](06-assumptions-and-dependencies.md) | Satisfied for inspected working copy | See PC-06 Evidence Assessment below; source SHA-256 recorded | Execute validation under GAP-D01 through GAP-D10 at dependent gates. |
+| PC-07 | [Risks](07-risks.md) | Satisfied for inspected working copy | See PC-07 Evidence Assessment below; source SHA-256 recorded | Keep all ten risks open; investigate and verify responses at assigned gates. |
+| PC-08 | [Roadmap and Milestones](08-roadmap-and-milestones.md) | Satisfied for inspected planning-level sequence | See PC-08 Evidence Assessment; source hashes recorded | Obtain feasibility findings and reconcile schedule under GAP-D01, GAP-D05 and GAP-D09. |
+| PC-09 | [Resources](05-resources-and-constraints.md), [Validation Assignments](06-assumptions-and-dependencies.md), and [Roadmap](08-roadmap-and-milestones.md) | Satisfied for inspected planning-level records | See PC-09 Evidence Assessment; source hashes recorded | Quantify capacity and estimate after analysis/design under GAP-D05. |
+| PC-10 | [Working Method](09-working-method-and-change-control.md) and [Product Backlog](../../Project-Management/product-backlog.md) | Satisfied for inspected planning-level records | See PC-10 Evidence Assessment; source hashes recorded | Proceed to Requirements Engineering; reconcile tracking under GAP-D11. |
+| PC-11 | Planning documents, diagram sources and images, and local links | Satisfied after corrections in inspected working copy | See PC-11 Correction and Reassessment; 81 local targets resolve | Corrections and candidate reconciliation complete; maintain consistency as documents evolve. |
+| PC-12 | Open matters across planning documents | Satisfied for accepted working-copy classification | See PC-12 Specific Deferrals Acceptance and Reassessment | GAP-B01 through GAP-B03 resolved; follow accepted GAP-D01 through GAP-D11. |
+| PC-13 | Section 5: Baseline Review Record and identifiable Git revision | Satisfied; planning baseline accepted with tracked follow-up | DEC-116 accepts candidate 511093e788b32dd9b68fb86ff5fff2ac21140672 | Acceptance preserved in commit 058866b; no outstanding planning acceptance action. |
 
 Table structure accepted by the project owner on October 31, 2026.
 Rationale: Keep each criterion's evidence, finding, and remaining action traceable in one assessment location. Creating this table does not satisfy the criteria or accept the baseline.
@@ -103,14 +125,14 @@ It does not by itself record acceptance.
 
 - Milestone: M-01
 - Outcome: Accepted with tracked follow-up
-- Reviewed Git revision: 511093e788b32dd9b68fb86ff5fff2ac21140672 (planning acceptance candidate)
+- Reviewed Git revision: 511093e788b32dd9b68fb86ff5fff2ac21140672 (accepted planning baseline candidate; decision DEC-116)
 - Review date: 2026-10-31 (project-owner acceptance decision)
 - Decision-maker: Project owner
 - Blocking gaps: None remaining for this planning-only acceptance; GAP-B01 through GAP-B03 resolved
 - Deferred items and follow-up: GAP-D01 through GAP-D11, accepted with recorded owners and dependent review gates under PC-12
 - Next agreed activities: Requirements Engineering, then the remaining agreed initial SDLC analysis and documentation; reconcile delivery tracking and agree the pre-implementation baseline before product coding
 
-Update this record after the review.
+This record reflects the completed planning review and acceptance. Subsequent material changes require documented assessment and a new or superseding decision.
 Do not mark checklist items complete without evidence.
 
 ## 6. References
@@ -122,6 +144,11 @@ Do not mark checklist items complete without evidence.
 - [Working Method and Change Control](09-working-method-and-change-control.md)
 
 ## Planning Completion Review Decisions
+
+Historical record: The entries below were recorded as the review progressed.
+Their stage-specific Pending statements and source hashes are retained as
+history, not outstanding current actions. See Current Completion Status,
+Section 5, and DEC-116 for the current outcome.
 
 ### Planning Baseline Purpose Review
 
@@ -381,12 +408,12 @@ Acceptance concerns the record structure. The actual review outcome remains Pend
 
 ## Document Review Summary
 
-Status: Planning completion criteria and review process reviewed and accepted; evidence assessment and baseline acceptance remain pending
+Status: Definition review and planning evidence assessment complete; M-01 accepted with tracked follow-up under DEC-116
 Review date: October 31, 2026
 
 The project owner has accepted the purpose of planning acceptance, criteria PC-01 through PC-13, handling of open questions, review outcome classification, and baseline review record structure.
 
-This completes the definition review of this document, not the assessment of whether its criteria are satisfied. Preserve the unchecked checklist and Pending baseline review outcome until evidence has been reviewed against an identifiable revision and the project owner records the actual acceptance decision. No commit, push, milestone completion, or product implementation is established by this summary.
+The definition review was followed by the recorded PC-01 through PC-13 evidence assessments, corrective work, source reconciliation, and the explicit owner decision DEC-116. All planning criteria are satisfied for this planning-only agreement. GAP-B01 through GAP-B03 are resolved. Accepted follow-up GAP-D01 through GAP-D11 remains at its assigned gates; technical investigation, product implementation, and release readiness are not complete. The accepted candidate and acceptance-record commits are identified in Current Completion Status and Section 5.
 
 ### PC-01 Evidence Assessment
 
