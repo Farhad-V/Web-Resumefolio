@@ -1,6 +1,6 @@
 # Product Backlog
 
-Status: Active delivery tracking; requirements and estimates continue to be refined
+Status: Backlog index with provisional historical scheduling snapshot; requirements and estimates remain under refinement
 
 Requested Version 1 completion: **November 8, 2026, Europe/Berlin**.
 Availability: full time; no numerical hours assumed.
@@ -21,6 +21,12 @@ No issue is complete merely because it was created or assigned to a sprint.
 [Private Kanban and sprint views](https://github.com/users/Farhad-Valizadegan/projects/6)
 
 ## Work Items
+
+The milestone, Sprint, and date columns below preserve the provisional
+historical planning snapshot. They are not a second live assignment record.
+Use the linked GitHub issues and delivery board for current tracking.
+Reconcile this snapshot after analysis/design, preserving the agreed initial
+SDLC documentation and baseline agreement before product coding.
 
 | ID | Work package | Milestone | Sprint | Target date |
 |---|---|---|---|---|

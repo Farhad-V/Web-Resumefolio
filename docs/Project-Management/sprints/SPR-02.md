@@ -1,10 +1,16 @@
 # SPR-02 - Sprint Backlog
 
-Status: Planned; work completion requires evidence
+Status: Provisional historical plan; reconciliation pending; completion requires evidence
 
 Dates: November 2-5, 2026, Europe/Berlin.
 
 ## Sprint Goal
+
+The dates, goal, and selected work in this document preserve the provisional
+historical plan. Live assignments and status belong to the linked GitHub
+issue and board. Reconcile the plan after analysis/design and complete the
+agreed initial SDLC documentation and baseline agreement before product
+coding. Listing implementation work here does not authorize starting it.
 
 Implement professional presentation, manual application management, and collaboration.
 

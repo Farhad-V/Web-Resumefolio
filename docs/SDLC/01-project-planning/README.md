@@ -1,6 +1,6 @@
 # Resumefolio - Project Planning
 
-Status: Draft in progress
+Status: Definition review complete; evidence assessment and planning baseline acceptance pending
 Project owner: Farhad Valizadegan
 
 Each topic has one primary document. File existence does not imply approval
@@ -18,6 +18,8 @@ or completion. See each document for its status.
 - [Roadmap and Milestones](08-roadmap-and-milestones.md)
 - [Working Method and Change Control](09-working-method-and-change-control.md)
 - [Planning Completion Criteria](10-planning-completion-criteria.md)
+
+Decision references: [Planning Decision Register](decision-register.md).
 
 ## Planning Diagrams
 
@@ -42,8 +44,10 @@ Manual ApplyFlow is included in version 1; AI is deferred.
 The initial deployment targets 10 users on the existing server.
 Growth toward 1,000 users requires future capacity verification.
 
-Detailed requirements, acceptance criteria, delivery milestones,
-and technical architecture will be developed separately.
+Reviewed milestone definitions are recorded in [Roadmap and Milestones](08-roadmap-and-milestones.md).
+Detailed requirements, acceptance criteria, and technical architecture remain
+for subsequent engineering work. See [Planning Completion Criteria](10-planning-completion-criteria.md)
+for the ongoing evidence assessment and pending baseline decision.
 
 
 ## Delivery Tracking

@@ -1,6 +1,6 @@
 # Version 1 Delivery Plan
 
-Status: Active target plan; feasibility and estimates unresolved
+Status: Provisional historical target plan; reconciliation, feasibility, and estimates pending
 
 The project owner requests the **complete agreed Version 1 application by
 November 8, 2026 (Europe/Berlin)** and has stated full-time availability.
@@ -8,6 +8,15 @@ The date is a requested deadline, not a verified forecast or release approval.
 Do not remove agreed capabilities or bypass verification to meet the date.
 
 ## Schedule
+
+This is the provisional historical planning snapshot established before the
+initial SDLC documentation review. Dates, goals, and assignments below await
+reconciliation after analysis and design; they are not current execution
+authorization. GitHub issues and the linked delivery project are authoritative
+for live tracking, not evidence that the delivery forecast is feasible.
+
+Complete the agreed initial documentation for all SDLC phases, reconcile the
+backlog and delivery plan, and agree the baseline before product coding.
 
 | Sprint | Dates | Goal |
 |---|---|---|
@@ -21,7 +30,7 @@ and scope/resource conflicts immediately; do not silently shrink scope.
 
 ## Workflow and Definition of Done
 
-Backlog -> Ready -> In Progress -> In Review -> Done.
+Backlog -> To Do -> In Progress -> In Review -> Done.
 Use Blocked for stopped work and record the blocker and next action.
 Done requires agreed outcome, relevant executed checks, evidence, updated
 documentation and a recorded review. A sprint assignment is not an estimate.
