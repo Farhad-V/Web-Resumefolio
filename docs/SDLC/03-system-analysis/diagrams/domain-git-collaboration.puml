@@ -1,0 +1,79 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 8
+skinparam ArrowColor #526B7B
+skinparam ArrowFontSize 11
+skinparam packageStyle rectangle
+skinparam classAttributeIconSize 0
+hide circle
+skinparam classBackgroundColor #EDF4FB
+skinparam classBorderColor #526B7B
+skinparam classHeaderBackgroundColor #DFF1EF
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam rectangleBackgroundColor #EDF4FB
+skinparam rectangleBorderColor #526B7B
+skinparam activityBackgroundColor #EDF4FB
+skinparam activityBorderColor #526B7B
+skinparam activityDiamondBackgroundColor #DFF1EF
+skinparam activityDiamondBorderColor #458F88
+skinparam padding 6
+skinparam nodesep 35
+skinparam ranksep 40
+hide empty members
+title Real Git history and repository collaboration
+top to bottom direction
+class "Git repository\nDM-C32" as repo {
+  Repository identity
+  owner context
+  refs
+}
+class "Git revision\nDM-C33" as revision {
+  Revision identity
+  content/history
+}
+class "Git reference\nDM-C34" as ref {
+  Name/kind
+  target state
+}
+class "Pull request\nDM-C35" as pr {
+  Source/target
+  evaluation context
+  state
+}
+class "Review / comment\nDM-C36" as review {
+  Author
+  reviewed context
+  decision/content
+}
+class "Repository issue\nDM-C37" as issue {
+  Repository context
+  issue state
+}
+class "Repository milestone\nDM-C38" as milestone {
+  Checkpoint
+  related issue context
+}
+class "Release record\nDM-C39" as release {
+  Revision/tag context
+  release assets
+}
+repo -- ref : branch / tag names
+ref -- revision : target Git state
+repo -- pr : source / target repository
+pr -- review : revision-related discussion
+pr -- revision : evaluated source / target
+repo -- issue : repository work
+issue -- milestone : planning checkpoint
+repo -- release : release context
+release -- revision : intended Git state
+legend bottom
+Solid lines: conceptual associations, not process steps.
+Relationship bounds: document 03, section 3.
+An unlabeled end is unspecified, not implicitly one.
+Properties are semantic, not mandatory database fields.
+endlegend
+@enduml

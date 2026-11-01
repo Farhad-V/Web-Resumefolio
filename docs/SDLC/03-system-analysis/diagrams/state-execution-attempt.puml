@@ -1,0 +1,49 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 8
+skinparam ArrowColor #526B7B
+skinparam ArrowFontSize 11
+skinparam stateBackgroundColor #EDF4FB
+skinparam stateBorderColor #526B7B
+skinparam stateStartColor #163E52
+skinparam stateEndColor #163E52
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam nodesep 38
+skinparam ranksep 48
+hide empty description
+top to bottom direction
+
+title SM-M14 — Actual attempt, cancellation request and runner uncertainty
+state "Queued admitted attempt" as Queued
+state "Running confirmed" as Running
+state "Cancellation requested" as Cancel
+state "Succeeded under result\ncontract" as Succeeded
+state "Definite failed attempt" as Failed
+state "Cancellation / stop\nconfirmed" as Cancelled
+state "Attempt state unknown" as Unknown
+[*] --> Queued : scoped initial context
+Queued --> Running : SM-T081 start confirmed\n[enabled / actual start]
+Queued --> Cancelled : SM-T082 queued cancel confirmed\n[queue cancellation confirmed]
+Running --> Succeeded : SM-T083 success confirmed\n[required success confirmed]
+Running --> Failed : SM-T084 failure confirmed\n[definite failed result]
+Running --> Cancel : SM-T085 cancel requested\n[request only]
+Cancel --> Cancelled : SM-T086 stop confirmed\n[actual stop confirmed]
+Cancel --> Succeeded : SM-T087 completion won race\n[actual success evidence]
+Cancel --> Failed : SM-T088 failure won race\n[actual failure evidence]
+Running --> Unknown : SM-T089 runner / result lost\n[actual state unresolved]
+Cancel --> Unknown : SM-T090 stop outcome lost\n[termination unconfirmed]
+Unknown --> Running : SM-T091 runner reconciled\n[same attempt still running]
+Unknown --> Succeeded : SM-T092 result reconciled\n[same attempt success]
+Unknown --> Failed : SM-T093 result reconciled\n[same attempt failed]
+Unknown --> Cancelled : SM-T094 stop reconciled\n[same attempt stop proved]
+legend bottom
+A: accepted core behavior; P: existing proposal; R: proposed refinement.
+State labels are analysis abstractions, not implemented enums.
+Transition tables define full actor, guard, effect and status.
+Unconfirmed operation effects require SM-M18 reconciliation.
+endlegend
+@enduml

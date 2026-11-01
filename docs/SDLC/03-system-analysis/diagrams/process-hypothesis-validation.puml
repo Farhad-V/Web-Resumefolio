@@ -1,0 +1,32 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam ArrowColor #526B7B
+skinparam rectangleBackgroundColor #EDF4FB
+skinparam rectangleBorderColor #526B7B
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam nodesep 38
+skinparam ranksep 42
+title CP — hypothesis support or rejection
+top to bottom direction
+rectangle "Specific suspected mechanism / possible effect\nState competing explanation and affected case" as Hypothesis
+rectangle "Define actual evidence and interpretation\nRelevant case + policy + measure; no invented target/sample size" as Method
+rectangle "Inspect permitted actual case / record limits\nDistinguish genuine rework from intended difference" as Observe
+rectangle "Support, reject or narrow only what evidence warrants\nUnknown remains unknown; no automatic root-cause conclusion" as Result #DFF1EA
+Hypothesis --> Method
+Method --> Observe : later separately performed observation
+Observe --> Result
+Result ..> Hypothesis : refine if another explanation fits
+note bottom of Result
+Current CP-H rows are untested, not confirmed user/product bottlenecks.
+Documentation facts CP-F have a different evidence scope.
+end note
+
+legend bottom
+Source-based analysis; target behavior and hypotheses are not observed current task sequences.
+No interview, business-task timing, live product/reference inspection or improvement test performed.
+endlegend
+@enduml

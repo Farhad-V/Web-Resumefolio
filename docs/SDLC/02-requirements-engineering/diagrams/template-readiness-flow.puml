@@ -1,0 +1,36 @@
+@startuml
+title Resumefolio | Draft record refinement and evidence
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #64748B
+skinparam activity {
+ BackgroundColor #DBEAFE
+ BorderColor #64748B
+ FontColor #17324D
+ DiamondBackgroundColor #FEF3C7
+ DiamondBorderColor #B45309
+ StartColor #17324D
+ EndColor #17324D
+}
+start
+:Copy template and replace placeholders with actual sourced information;
+:Identify actor, resource, obligation / goal and primary criteria;
+:Specify conditions, expected outcomes and relevant exception paths;
+if (Required policy / data / dependency decisions complete?) then (yes)
+ :Review record, links and models against an identified revision;
+ :Record actual observations, findings and owner disposition;
+ :Later perform only appropriate authorized controlled checks;
+ :Retain actual candidate / environment / outcomes and limitations; <<#DCFCE7>>
+else (pending)
+ :Record unresolved question, owner, action and dependent gate; <<#FEF3C7>>
+ :Keep affected acceptance / execution readiness pending;
+endif
+stop
+legend bottom
+Template guidance only: no record ID, policy or acceptance allocated.
+Expected outcomes and planned methods are not actual results.
+A story, criterion, scenario and test result have distinct responsibilities.
+endlegend
+@enduml

@@ -1,0 +1,33 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam ArrowColor #526B7B
+skinparam rectangleBackgroundColor #EDF4FB
+skinparam rectangleBorderColor #526B7B
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam nodesep 38
+skinparam ranksep 42
+title HD — design evaluation record
+top to bottom direction
+rectangle "Exact required outcome / source / affected gate" as Goal
+rectangle "Accepted constraints + proposed detail + unknowns\nTechnical / economic / operating / applicability / schedule criteria" as Criteria
+rectangle "Compare actual candidate options with evidence\nSupport, conflicts, limits, maintenance and change impact" as Compare
+rectangle "Actual scoped decision record when made\nOption / rationale / evidence / consequences / remaining gate" as Decision #DFF1EA
+Goal --> Criteria
+Criteria --> Compare
+Compare --> Decision
+Compare ..> Criteria : unresolved assumption or conflict
+note bottom of Decision
+Twelve questions are prepared; no option selected by this analysis.
+No familiar demo tool, cost guess or passed render chooses architecture.
+Material scope/spending/commitment changes require actual disposition.
+end note
+
+legend bottom
+Qualified analysis/design input, not a selected architecture, accepted forecast or operational proof.
+No coding, provider/host operation, live tracker update, spending or baseline acceptance performed.
+endlegend
+@enduml

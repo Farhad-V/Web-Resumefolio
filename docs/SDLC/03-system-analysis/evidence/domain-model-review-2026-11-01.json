@@ -1,0 +1,1737 @@
+{
+  "revision": "2026-11-01",
+  "scope": "Document 03 conceptual domain model; no baseline/implementation assertion",
+  "source_sha256": {
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md": "d3f8d0b9719f0b60bd008207d362c0f78fd7d0449d755c540c52ab8481bce634",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md": "21064f4cf533b5fdc215d31e943ae9128d1e843c958647f4f0a576785afb261c",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-requirements.md": "9ab0bc50255d5bdacd1165ecbaf315c1dc6ccfed352bd18ee5dba83f6912010b",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md": "0825abe597c9e532cb634569404b61ad8ce29f31dc66e8b7f2afd653892c1570",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/domain-requirements-and-constraints.md": "7f66bc21a824aea3a5613a70843f602b6adb6f0527cd65e0142137048138d906",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md": "dafa6a97e11856c01fcc8462c349d9064c8e962c0cb8e3472abcfbea0ebae173",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md": "a23048e2e5c238c309f054e598c410481def3be7cf28eeab1b92c29bfb654dad",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md": "a3e87d9df789b0caad43c46797794dd8e5936d283966cdca6d2f172ebdde47e8",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md": "e7cc09e5e00547dbd5bf0991d817060d053981b7bd866633da29812760505169",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md": "3ce305eea7fadd531c5ed33aa83c82a92f339854a0efc54d9a65c8bb252eb0cd",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md": "20296582867db99cfb410c613fa95067c41bd3535e4f260b6b8f09a03f487fbb",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md": "671670ee2aa9e2f26bac52ecfd7824279053a1b3277f21dd14d2ee6ff6482e18",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md": "fbd72aa41df3170e19280ec13ebf3c96b73aa131c311fd4c64ea9687a4bc6412",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/README.md": "d37f402bd5d6f6339b890a9c27fe8e6ddebafad86e1086dcb6bad374a158de95",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/requirements-priority-and-readiness.md": "09432d16fb9d833024cd35339c5fda92f5ecfbd1199302aca9bd06fcdacc4ca6",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/requirements-specification.md": "f95f61114a624aae571fe62685133c7b5b4cce9ac3479d13b8237bff4a192118",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md": "87079c565ce8007f6879e79f32a2e9ca56a0ace57e9f2f1df8c17e3d7592ffcf",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md": "ae3dd6e364d53bb608fe2d1c501d02fbb40f53833c354dda36e71b3464a8b226",
+    "docs/SDLC/02-requirements-engineering/05-data-definitions/data-dictionary.md": "eab192fb32c0c81d5d0e0bc481d4d2c0e66ad6cfafbf27f4ab8f9f25913338ce",
+    "docs/SDLC/02-requirements-engineering/07-change-and-baseline/open-questions-and-decisions.md": "dc0a8f850988cda96998ed0cd7b61e03966428b0a977ec9fb31a24a15a89853f",
+    "docs/SDLC/01-project-planning/02-scope.md": "33b218141cef0799afe61adc098b7c42e6eb3ee9b1826c1b3d03f926b332dd82",
+    "docs/SDLC/03-system-analysis/02-system-context-and-boundaries.md": "a990cfdd1d9520b9e33de9875bd9badf3226a76b4f39c681851f465573554a18"
+  },
+  "concept_count": 53,
+  "concepts": {
+    "profile": {
+      "id": "DM-C01",
+      "title": "Professional profile",
+      "meaning": "Reusable private professional source information, distinct from published presentation.",
+      "attrs": "Professional sections; source context",
+      "actions": "Edit source; preview changes",
+      "basis": "PRP-D01 PRP-D04"
+    },
+    "entry": {
+      "id": "DM-C02",
+      "title": "Professional entry",
+      "meaning": "Experience, education, skill or professional-project information; categories do not select implementation subclasses.",
+      "attrs": "Category; professional meaning",
+      "actions": "Maintain source entry",
+      "basis": "PRP-D01 PRP-D05"
+    },
+    "resume": {
+      "id": "DM-C03",
+      "title": "Tailored resume",
+      "meaning": "Independent opportunity-specific selections, wording and presentation.",
+      "attrs": "Content selection; layout; tailoring context",
+      "actions": "Compose; apply selected changes; request publication",
+      "basis": "PRP-D02 PRP-D03 PRP-D04"
+    },
+    "selection": {
+      "id": "DM-C04",
+      "title": "Source selection",
+      "meaning": "Meaning of selecting source information for one resume, without automatic propagation.",
+      "attrs": "Source reference; inclusion/order",
+      "actions": "Select; omit; explicitly apply change",
+      "basis": "PRP-D02 PRP-D04"
+    },
+    "override": {
+      "id": "DM-C05",
+      "title": "Resume-specific override",
+      "meaning": "Independent wording/presentation belonging to the intended resume.",
+      "attrs": "Target content; independent value",
+      "actions": "Edit override; review source difference",
+      "basis": "PRP-D03 PRP-D04"
+    },
+    "evidence": {
+      "id": "DM-C06",
+      "title": "Supporting evidence",
+      "meaning": "Externally authored text, media, files, diagrams or links supporting skills or professional projects.",
+      "attrs": "Category; supporting association; content reference",
+      "actions": "Associate; revise safely",
+      "basis": "PRP-D05 PRP-D09"
+    },
+    "evidencechoice": {
+      "id": "DM-C07",
+      "title": "Evidence selection",
+      "meaning": "Deliberate per-resume disclosure, distinct from evidence existence.",
+      "attrs": "Selected evidence; disclosure intent",
+      "actions": "Select; omit; review disclosure",
+      "basis": "PRP-D06"
+    },
+    "language": {
+      "id": "DM-C08",
+      "title": "Language-specific content",
+      "meaning": "Manually maintained English/German text in its relevant source/resume context.",
+      "attrs": "Language; authored text; context",
+      "actions": "Edit language variant",
+      "basis": "PRP-D07"
+    },
+    "publication": {
+      "id": "DM-C09",
+      "title": "Published presentation",
+      "meaning": "Owner-confirmed effective presentation, semantically distinct from the draft; not a mandatory snapshot table.",
+      "attrs": "Effective content/revision context",
+      "actions": "Confirm publication; expose selected content",
+      "basis": "PRP-D04 PRP-D08 PDF-D07"
+    },
+    "generated": {
+      "id": "DM-C10",
+      "title": "Generated resume PDF",
+      "meaning": "Derived rendition with identifiable represented content and language.",
+      "attrs": "Represented content; language; availability",
+      "actions": "Request generation; report availability",
+      "basis": "PDF-D01 PDF-D07"
+    },
+    "uploaded": {
+      "id": "DM-C11",
+      "title": "Uploaded resume PDF",
+      "meaning": "Independently prepared PDF associated with the intended resume and language.",
+      "attrs": "Artifact identity; language; availability",
+      "actions": "Admit; replace under validation",
+      "basis": "PDF-D02 PDF-D09"
+    },
+    "download": {
+      "id": "DM-C12",
+      "title": "PDF download availability",
+      "meaning": "Per-resume generated/uploaded/both/neither choice with applicable language availability.",
+      "attrs": "Mode; language eligibility",
+      "actions": "Change download configuration",
+      "basis": "PDF-D03"
+    },
+    "link": {
+      "id": "DM-C13",
+      "title": "Protected employer link",
+      "meaning": "Password-protected scoped presentation access without a viewer account; not verified employer identity.",
+      "attrs": "Target context; access state; credential control",
+      "actions": "Change password; disable link",
+      "basis": "PDF-D04 PDF-D06"
+    },
+    "company": {
+      "id": "DM-C14",
+      "title": "Company",
+      "meaning": "Organization information for private application work; no global public directory is implied.",
+      "attrs": "Organization context; supplied details",
+      "actions": "Record; revise organization context",
+      "basis": "APP-D01"
+    },
+    "opportunity": {
+      "id": "DM-C15",
+      "title": "Job opportunity",
+      "meaning": "Position being considered, distinct from the application process for it.",
+      "attrs": "Role context; source/deadline details",
+      "actions": "Record; associate with application",
+      "basis": "APP-D01"
+    },
+    "application": {
+      "id": "DM-C16",
+      "title": "Application record",
+      "meaning": "Manual preparation and progress context relating an opportunity to intended materials.",
+      "attrs": "Progress; intended material associations",
+      "actions": "Prepare; record progress/submission",
+      "basis": "APP-D02 APP-D04 APP-D05"
+    },
+    "letter": {
+      "id": "DM-C17",
+      "title": "Cover letter",
+      "meaning": "Manually authored editable application text, distinct from its actual submitted copy.",
+      "attrs": "Authored text; revision context",
+      "actions": "Edit; save preparation",
+      "basis": "APP-D03"
+    },
+    "submission": {
+      "id": "DM-C18",
+      "title": "Submission record",
+      "meaning": "User-recorded actual submission and completeness context, not proof of receipt.",
+      "attrs": "Actual event context; capture completeness",
+      "actions": "Record submission; record correction",
+      "basis": "APP-D05 APP-D07"
+    },
+    "material": {
+      "id": "DM-C19",
+      "title": "Preserved submitted material",
+      "meaning": "Identifiable actual submitted resume/cover-letter material independent of later live changes.",
+      "attrs": "Actual content/artifact; provenance",
+      "actions": "Capture actual material; identify history",
+      "basis": "APP-D06 APP-D07 PDF-D08"
+    },
+    "connection": {
+      "id": "DM-C20",
+      "title": "Provider connection",
+      "meaning": "Selected user/provider identity and authorized capabilities; product login is not Google consent.",
+      "attrs": "Provider identity; access state",
+      "actions": "Connect; disconnect; reconcile access",
+      "basis": "EGC-D01 EGC-D02 EGC-D11"
+    },
+    "message": {
+      "id": "DM-C21",
+      "title": "Email message / draft",
+      "meaning": "Correspondence with provider message/thread identity and truthful save/send outcomes.",
+      "attrs": "Message/thread context; content; outcome",
+      "actions": "Read; compose; save; send/reply deliberately",
+      "basis": "EGC-D03 EGC-D04 EGC-D05 EGC-D06"
+    },
+    "activity": {
+      "id": "DM-C22",
+      "title": "Calendar activity",
+      "meaning": "Local activity or explicitly related provider event with meaningful time and authority.",
+      "attrs": "Time/zone; provider mapping if applicable",
+      "actions": "Edit; request selected synchronization",
+      "basis": "EGC-D07 EGC-D08"
+    },
+    "reminder": {
+      "id": "DM-C23",
+      "title": "Activity reminder",
+      "meaning": "Notification intent for an authorized activity; scheduling is not demonstrated delivery.",
+      "attrs": "Activity; recipient/time; outcome",
+      "actions": "Schedule; cancel; report outcome",
+      "basis": "EGC-D10"
+    },
+    "project": {
+      "id": "DM-C24",
+      "title": "Work project",
+      "meaning": "Authorized work organization, distinct from professional projects and Git repositories.",
+      "attrs": "Work identity; participant context",
+      "actions": "Organize permitted work",
+      "basis": "PKS-D01 PKS-D06"
+    },
+    "board": {
+      "id": "DM-C25",
+      "title": "Board",
+      "meaning": "Organized work view, not another Product or Sprint Backlog.",
+      "attrs": "Displayed work; column arrangement",
+      "actions": "Configure view; request movement",
+      "basis": "PKS-D01 PKS-D02"
+    },
+    "column": {
+      "id": "DM-C26",
+      "title": "Board column",
+      "meaning": "Configured display organization whose movement rules agree with actual work states.",
+      "attrs": "Label/order; state mapping meaning",
+      "actions": "Configure; map valid movement",
+      "basis": "PKS-D02"
+    },
+    "backlog": {
+      "id": "DM-C27",
+      "title": "Product Backlog",
+      "meaning": "Ordered planned outcomes/work in an authorized work context.",
+      "attrs": "Item ordering; planning context",
+      "actions": "Add; order; refine items",
+      "basis": "PKS-D03"
+    },
+    "item": {
+      "id": "DM-C28",
+      "title": "Backlog Item",
+      "meaning": "Planned outcome with criteria; not interchangeable with a Task or repository Issue.",
+      "attrs": "Outcome; priority; criteria; state",
+      "actions": "Refine; select; evaluate completion",
+      "basis": "PKS-D03 PKS-D04 PKS-D09"
+    },
+    "task": {
+      "id": "DM-C29",
+      "title": "Task",
+      "meaning": "Specific activity contributing to work with its own assignment/completion meaning.",
+      "attrs": "Activity; assignment; due/state context",
+      "actions": "Assign; update; complete activity",
+      "basis": "PKS-D04 PKS-D05"
+    },
+    "sprint": {
+      "id": "DM-C30",
+      "title": "Sprint",
+      "meaning": "Work period with goal and actual outcome; elapsed time does not imply success.",
+      "attrs": "Period; lifecycle; outcome",
+      "actions": "Start; adapt; end under authority",
+      "basis": "PKS-D07 PKS-D09"
+    },
+    "sprintbacklog": {
+      "id": "DM-C31",
+      "title": "Sprint Backlog",
+      "meaning": "One coherent meaning comprising goal, selected Backlog Items and delivery plan.",
+      "attrs": "Goal + selected items + plan",
+      "actions": "Select work; adapt plan; retain outcome",
+      "basis": "PKS-D07 PKS-D08"
+    },
+    "repo": {
+      "id": "DM-C32",
+      "title": "Git repository",
+      "meaning": "Real hosted content/history under repository-specific authority.",
+      "attrs": "Repository identity; owner context; refs",
+      "actions": "Create; authorize real Git operations",
+      "basis": "GIT-D01 GIT-D02 GIT-D03"
+    },
+    "revision": {
+      "id": "DM-C33",
+      "title": "Git revision",
+      "meaning": "Identified repository content/history state used in browsing, review and execution.",
+      "attrs": "Revision identity; content/history",
+      "actions": "Identify; compare; browse",
+      "basis": "GIT-D04 YML-D03"
+    },
+    "ref": {
+      "id": "DM-C34",
+      "title": "Git reference",
+      "meaning": "Named branch or tag associated with Git history; ref names differ from identified revisions.",
+      "attrs": "Name/kind; target state",
+      "actions": "Create/update under ref authority",
+      "basis": "GIT-D02 GIT-D04 GIT-D09"
+    },
+    "pr": {
+      "id": "DM-C35",
+      "title": "Pull request",
+      "meaning": "Proposed integration with explicit source/target repository/ref and evaluated revision context.",
+      "attrs": "Source/target; evaluation context; state",
+      "actions": "Open; discuss; request controlled merge",
+      "basis": "GIT-D06 GIT-D07"
+    },
+    "review": {
+      "id": "DM-C36",
+      "title": "Review / comment",
+      "meaning": "Attributed discussion/review of an intended request/revision, not universal merge permission.",
+      "attrs": "Author; reviewed context; decision/content",
+      "actions": "Comment; submit review",
+      "basis": "GIT-D06 GIT-D07"
+    },
+    "issue": {
+      "id": "DM-C37",
+      "title": "Repository issue",
+      "meaning": "Repository work/discussion record distinct from a work-project Backlog Item.",
+      "attrs": "Repository context; issue state",
+      "actions": "Record; discuss; update",
+      "basis": "GIT-D08"
+    },
+    "milestone": {
+      "id": "DM-C38",
+      "title": "Repository milestone",
+      "meaning": "Repository planning checkpoint for related issue work.",
+      "attrs": "Checkpoint; related issue context",
+      "actions": "Organize repository planning",
+      "basis": "GIT-D08"
+    },
+    "release": {
+      "id": "DM-C39",
+      "title": "Release record",
+      "meaning": "Named release tied to intended Git state and protected assets; not deployment authorization.",
+      "attrs": "Revision/tag context; release assets",
+      "actions": "Publish/manage under reviewed policy",
+      "basis": "GIT-D09"
+    },
+    "workflow": {
+      "id": "DM-C40",
+      "title": "Workflow definition",
+      "meaning": "Supported YAML behavior at identified definition/code context; validation is not execution.",
+      "attrs": "Definition identity; trigger/steps",
+      "actions": "Validate definition; evaluate eligibility",
+      "basis": "YML-D01 YML-D02"
+    },
+    "run": {
+      "id": "DM-C41",
+      "title": "Workflow run",
+      "meaning": "Authorized execution request with evaluated code/definition and actual result context.",
+      "attrs": "Revision/definition; initiator; result",
+      "actions": "Request; reconcile execution outcome",
+      "basis": "YML-D02 YML-D03 YML-D07"
+    },
+    "attempt": {
+      "id": "DM-C42",
+      "title": "Execution attempt",
+      "meaning": "Candidate retry/execution distinction so earlier failed/unknown work is not silently rewritten.",
+      "attrs": "Attempt context; state; resource use",
+      "actions": "Start; cancel; reconcile; retry explicitly",
+      "basis": "YML-D07 YML-D09"
+    },
+    "output": {
+      "id": "DM-C43",
+      "title": "Run output",
+      "meaning": "Logs/artifacts attributable to a producing execution context with protected access/lifecycle.",
+      "attrs": "Producing context; availability; content",
+      "actions": "Expose permitted output; clean eligible data",
+      "basis": "YML-D08 YML-D11"
+    },
+    "secret": {
+      "id": "DM-C44",
+      "title": "Scoped secret authority",
+      "meaning": "Permission to use a secret for a specific repository/event/target; no secret values are modeled.",
+      "attrs": "Permitted use context; restriction",
+      "actions": "Evaluate use authority; revoke",
+      "basis": "YML-D05"
+    },
+    "deployment": {
+      "id": "DM-C45",
+      "title": "Deployment authorization",
+      "meaning": "Separate explicit approval for target and exact revision/artifact, not implied by a successful run.",
+      "attrs": "Target; artifact/revision; approval context",
+      "actions": "Approve/reject intended deployment",
+      "basis": "YML-D10"
+    },
+    "target": {
+      "id": "DM-C46",
+      "title": "Deployment target",
+      "meaning": "Intended environment whose effects and recovery conditions require review.",
+      "attrs": "Target identity; operating constraints",
+      "actions": "Evaluate authorized deployment outcome",
+      "basis": "YML-D10 YML-D12"
+    },
+    "account": {
+      "id": "DM-C47",
+      "title": "User account",
+      "meaning": "Individual application identity and account state; role names do not grant universal access.",
+      "attrs": "Identity context; access state",
+      "actions": "Identify actor; apply account lifecycle",
+      "basis": "ACC-D01 ACC-D02 ACC-D12"
+    },
+    "grant": {
+      "id": "DM-C48",
+      "title": "Resource authority",
+      "meaning": "Role/permission, invitation or membership meaning for actor/resource/action/state; not an ACL schema.",
+      "attrs": "Subject; resource; allowed action/state",
+      "actions": "Evaluate; grant/revoke under authority",
+      "basis": "ACC-D03 ACC-D05 ACC-D09 ACC-D10"
+    },
+    "file": {
+      "id": "DM-C49",
+      "title": "Protected file resource",
+      "meaning": "Admitted content identity with its domain access/reference meaning; not a common storage engine.",
+      "attrs": "Content identity; availability; references",
+      "actions": "Admit; retrieve; replace; retire",
+      "basis": "AFO-D03 AFO-D05 AFO-D06 AFO-D07"
+    },
+    "policy": {
+      "id": "DM-C50",
+      "title": "File/storage policy",
+      "meaning": "Effective admission/accounting rules within an evaluated resource envelope.",
+      "attrs": "Applicability; units/limits; effective context",
+      "actions": "Configure; evaluate policy",
+      "basis": "AFO-D01 AFO-D02 AFO-D04"
+    },
+    "audit": {
+      "id": "DM-C51",
+      "title": "Operational evidence",
+      "meaning": "Restricted evidence of selected sensitive/administrative outcomes, not blanket content logging.",
+      "attrs": "Actor/context; result; visibility",
+      "actions": "Record specified evidence; inspect permitted records",
+      "basis": "AFO-D10 QSR-D13"
+    },
+    "backup": {
+      "id": "DM-C52",
+      "title": "Backup/recovery record",
+      "meaning": "Identity, coverage and access context of recoverable material; existence is not restoration proof.",
+      "attrs": "Recovery point; coverage; result",
+      "actions": "Identify coverage; record backup outcome",
+      "basis": "QSR-D10"
+    },
+    "restore": {
+      "id": "DM-C53",
+      "title": "Restoration assessment",
+      "meaning": "Evaluation of restored integrity, access and external-state reconciliation.",
+      "attrs": "Recovery source; findings; outcome",
+      "actions": "Assess recovery; report actual result",
+      "basis": "QSR-D11 QSR-D12"
+    }
+  },
+  "accepted_core": "Q-D07 core: no automatic resume/live changes; preview/selected apply; separate publication; preserve actual submitted documents",
+  "limits": [
+    "Detailed proposals retain status",
+    "No numeric bounds inferred",
+    "No physical schema selected",
+    "Review cases not executed tests"
+  ],
+  "diagram_revision": "PlantUML readability/notation review of documents 00–03",
+  "active_class_views": [
+    {
+      "name": "domain-professional-presentation",
+      "title": "Professional source and independent resume",
+      "keys": [
+        "profile",
+        "entry",
+        "resume",
+        "selection",
+        "override"
+      ],
+      "edges": [
+        [
+          "profile",
+          "entry",
+          "source entries"
+        ],
+        [
+          "resume",
+          "selection",
+          "selected source content"
+        ],
+        [
+          "selection",
+          "entry",
+          "source reference"
+        ],
+        [
+          "resume",
+          "override",
+          "independent tailoring"
+        ]
+      ],
+      "section": 1
+    },
+    {
+      "name": "domain-evidence-and-language",
+      "title": "Evidence selection and manually authored language",
+      "keys": [
+        "entry",
+        "resume",
+        "evidence",
+        "evidencechoice",
+        "language"
+      ],
+      "edges": [
+        [
+          "evidence",
+          "entry",
+          "supports skill / project"
+        ],
+        [
+          "resume",
+          "evidencechoice",
+          "selected disclosure"
+        ],
+        [
+          "evidencechoice",
+          "evidence",
+          "selected evidence"
+        ],
+        [
+          "entry",
+          "language",
+          "authored variants"
+        ],
+        [
+          "resume",
+          "language",
+          "intended content language"
+        ]
+      ],
+      "section": 1
+    },
+    {
+      "name": "domain-publication-and-sharing",
+      "title": "Publication, PDF availability and protected link",
+      "keys": [
+        "resume",
+        "publication",
+        "generated",
+        "uploaded",
+        "download",
+        "link"
+      ],
+      "edges": [
+        [
+          "resume",
+          "publication",
+          "separately confirmed publication"
+        ],
+        [
+          "publication",
+          "generated",
+          "represented published content"
+        ],
+        [
+          "resume",
+          "uploaded",
+          "supplied PDF association"
+        ],
+        [
+          "resume",
+          "download",
+          "download configuration"
+        ],
+        [
+          "download",
+          "generated",
+          "generated eligibility"
+        ],
+        [
+          "download",
+          "uploaded",
+          "uploaded / language eligibility"
+        ],
+        [
+          "link",
+          "publication",
+          "scoped selected view"
+        ]
+      ],
+      "section": 2
+    },
+    {
+      "name": "domain-applications-and-communication",
+      "title": "Application preparation and actual submitted history",
+      "keys": [
+        "company",
+        "opportunity",
+        "application",
+        "letter",
+        "submission",
+        "material"
+      ],
+      "edges": [
+        [
+          "company",
+          "opportunity",
+          "organization context"
+        ],
+        [
+          "opportunity",
+          "application",
+          "intended position"
+        ],
+        [
+          "application",
+          "letter",
+          "editable preparation"
+        ],
+        [
+          "application",
+          "submission",
+          "recorded submission"
+        ],
+        [
+          "submission",
+          "material",
+          "actual captured material"
+        ]
+      ],
+      "section": 3
+    },
+    {
+      "name": "domain-provider-communication",
+      "title": "Provider communication and explicit application links",
+      "keys": [
+        "application",
+        "connection",
+        "message",
+        "activity",
+        "reminder"
+      ],
+      "edges": [
+        [
+          "application",
+          "message",
+          "explicit correspondence link"
+        ],
+        [
+          "application",
+          "activity",
+          "explicit activity link"
+        ],
+        [
+          "connection",
+          "message",
+          "connected account / capability"
+        ],
+        [
+          "connection",
+          "activity",
+          "selected provider mapping"
+        ],
+        [
+          "activity",
+          "reminder",
+          "notification intent"
+        ]
+      ],
+      "section": 3
+    },
+    {
+      "name": "domain-work-management",
+      "title": "Work views, items, tasks and one Sprint Backlog",
+      "keys": [
+        "project",
+        "board",
+        "column",
+        "backlog",
+        "item",
+        "task",
+        "sprint",
+        "sprintbacklog"
+      ],
+      "edges": [
+        [
+          "project",
+          "board",
+          "work views"
+        ],
+        [
+          "board",
+          "column",
+          "configured columns"
+        ],
+        [
+          "project",
+          "backlog",
+          "planned work"
+        ],
+        [
+          "backlog",
+          "item",
+          "ordered items"
+        ],
+        [
+          "item",
+          "task",
+          "activity refinement"
+        ],
+        [
+          "project",
+          "sprint",
+          "work period"
+        ],
+        [
+          "sprint",
+          "sprintbacklog",
+          "one coherent backlog"
+        ],
+        [
+          "sprintbacklog",
+          "item",
+          "selected outcomes"
+        ],
+        [
+          "sprintbacklog",
+          "task",
+          "delivery plan activities"
+        ]
+      ],
+      "section": 4
+    },
+    {
+      "name": "domain-git-collaboration",
+      "title": "Real Git history and repository collaboration",
+      "keys": [
+        "repo",
+        "revision",
+        "ref",
+        "pr",
+        "review",
+        "issue",
+        "milestone",
+        "release"
+      ],
+      "edges": [
+        [
+          "repo",
+          "ref",
+          "branch / tag names"
+        ],
+        [
+          "ref",
+          "revision",
+          "target Git state"
+        ],
+        [
+          "repo",
+          "pr",
+          "source / target repository"
+        ],
+        [
+          "pr",
+          "review",
+          "revision-related discussion"
+        ],
+        [
+          "pr",
+          "revision",
+          "evaluated source / target"
+        ],
+        [
+          "repo",
+          "issue",
+          "repository work"
+        ],
+        [
+          "issue",
+          "milestone",
+          "planning checkpoint"
+        ],
+        [
+          "repo",
+          "release",
+          "release context"
+        ],
+        [
+          "release",
+          "revision",
+          "intended Git state"
+        ]
+      ],
+      "section": 5
+    },
+    {
+      "name": "domain-execution-and-deployment",
+      "title": "Execution provenance and separate deployment authority",
+      "keys": [
+        "workflow",
+        "run",
+        "attempt",
+        "output",
+        "secret",
+        "deployment",
+        "target"
+      ],
+      "edges": [
+        [
+          "workflow",
+          "run",
+          "effective definition"
+        ],
+        [
+          "run",
+          "attempt",
+          "execution / retry context"
+        ],
+        [
+          "attempt",
+          "output",
+          "produced output"
+        ],
+        [
+          "attempt",
+          "secret",
+          "scoped use authority"
+        ],
+        [
+          "run",
+          "deployment",
+          "evaluated result context"
+        ],
+        [
+          "deployment",
+          "target",
+          "separate target authority"
+        ]
+      ],
+      "section": 6
+    },
+    {
+      "name": "domain-access-files-and-recovery",
+      "title": "Contextual authority, file policy and recoverable data",
+      "keys": [
+        "account",
+        "grant",
+        "file",
+        "policy",
+        "audit",
+        "backup",
+        "restore"
+      ],
+      "edges": [
+        [
+          "account",
+          "grant",
+          "actor context"
+        ],
+        [
+          "grant",
+          "file",
+          "operation authority"
+        ],
+        [
+          "policy",
+          "file",
+          "applicable policy"
+        ],
+        [
+          "grant",
+          "audit",
+          "restricted evidence access"
+        ],
+        [
+          "file",
+          "backup",
+          "identified coverage"
+        ],
+        [
+          "backup",
+          "restore",
+          "recovery candidate"
+        ],
+        [
+          "restore",
+          "grant",
+          "restored-access reconciliation"
+        ]
+      ],
+      "section": 7
+    }
+  ],
+  "legacy_diagrams": [
+    {
+      "name": "domain-professional-presentation",
+      "title": "Professional information and independent tailoring",
+      "keys": [
+        "profile",
+        "entry",
+        "resume",
+        "selection",
+        "override",
+        "evidence",
+        "evidencechoice",
+        "language"
+      ],
+      "edges": [
+        [
+          "profile",
+          "entry",
+          "organizes source information"
+        ],
+        [
+          "entry",
+          "selection",
+          "selected as source"
+        ],
+        [
+          "resume",
+          "selection",
+          "defines inclusion"
+        ],
+        [
+          "resume",
+          "override",
+          "holds independent tailoring"
+        ],
+        [
+          "entry",
+          "evidence",
+          "skill / project supported by"
+        ],
+        [
+          "evidence",
+          "evidencechoice",
+          "deliberately selected"
+        ],
+        [
+          "resume",
+          "evidencechoice",
+          "controls disclosure"
+        ],
+        [
+          "entry",
+          "language",
+          "may carry authored variants"
+        ],
+        [
+          "resume",
+          "language",
+          "uses intended language context"
+        ]
+      ],
+      "basis": "PRP-D01 PRP-D02 PRP-D03 PRP-D04 PRP-D05 PRP-D06 PRP-D07 PRP-D09",
+      "description": "Source selection, independent override and evidence selection answer different questions: what is reused, what is tailored and what is disclosed. Selection/override boxes can become values or association properties; they are not mandated database entities. Evidence support targets the skill/professional-project subjects in the grouped entry box, not automatically every entry category.",
+      "questions": "Q-D06/Q-D08/Q-D09 remain proposals. Profile count, required fields, language fallback and evidence-removal behavior are not finalized. Accepted Q-D07 core behavior applies directly."
+    },
+    {
+      "name": "domain-publication-and-sharing",
+      "title": "Publication, representations and protected sharing",
+      "keys": [
+        "resume",
+        "publication",
+        "generated",
+        "uploaded",
+        "download",
+        "link"
+      ],
+      "edges": [
+        [
+          "resume",
+          "publication",
+          "explicitly confirmed publication"
+        ],
+        [
+          "publication",
+          "generated",
+          "represents identified content"
+        ],
+        [
+          "resume",
+          "uploaded",
+          "associates supplied artifact"
+        ],
+        [
+          "resume",
+          "download",
+          "configures availability"
+        ],
+        [
+          "download",
+          "generated",
+          "filters offered mode"
+        ],
+        [
+          "download",
+          "uploaded",
+          "filters mode / language"
+        ],
+        [
+          "link",
+          "publication",
+          "scopes permitted view"
+        ]
+      ],
+      "basis": "PRP-D04 PRP-D08 PDF-D01 PDF-D02 PDF-D03 PDF-D04 PDF-D05 PDF-D06 PDF-D07",
+      "description": "Published presentation differs from editable resume content. Generated and uploaded PDFs have different provenance; no shared implementation superclass is selected. Changing PDF availability and disabling a link remain independent operations.",
+      "questions": "Q-D10/Q-D11 retain detailed generation/revision/language/link proposals. This model does not accept link count, expiry, exact session-revocation timing, retained revision count or rendering technology."
+    },
+    {
+      "name": "domain-applications-and-communication",
+      "title": "Applications, submitted history and communication",
+      "keys": [
+        "company",
+        "opportunity",
+        "application",
+        "letter",
+        "submission",
+        "material",
+        "connection",
+        "message",
+        "activity",
+        "reminder"
+      ],
+      "edges": [
+        [
+          "company",
+          "opportunity",
+          "provides organization context"
+        ],
+        [
+          "opportunity",
+          "application",
+          "considered through"
+        ],
+        [
+          "application",
+          "letter",
+          "uses editable preparation"
+        ],
+        [
+          "application",
+          "submission",
+          "records actual submission"
+        ],
+        [
+          "submission",
+          "material",
+          "identifies actual captured set"
+        ],
+        [
+          "application",
+          "message",
+          "explicit correspondence association"
+        ],
+        [
+          "application",
+          "activity",
+          "explicit activity association"
+        ],
+        [
+          "connection",
+          "message",
+          "authorizes provider context"
+        ],
+        [
+          "connection",
+          "activity",
+          "authorizes selected provider mapping"
+        ],
+        [
+          "activity",
+          "reminder",
+          "has notification intent"
+        ]
+      ],
+      "basis": "APP-D01 APP-D02 APP-D03 APP-D04 APP-D05 APP-D06 APP-D07 APP-D08 EGC-D01 EGC-D05 EGC-D07 EGC-D08 EGC-D10 EGC-D11",
+      "description": "Preparation, actual submission recording and provider operations have independent meanings. An application refers to its intended resume, while preserved materials identify what was actually submitted. A provider connection does not make every activity remote or every application send mail.",
+      "questions": "Q-D12–Q-D17 retain progress, capture/correction, synchronization and uncertain-result proposals. OAuth is not created; this diagram does not assert provider access or delivery."
+    },
+    {
+      "name": "domain-work-management",
+      "title": "Work projects, backlogs, boards and Sprints",
+      "keys": [
+        "project",
+        "board",
+        "column",
+        "backlog",
+        "item",
+        "task",
+        "sprint",
+        "sprintbacklog"
+      ],
+      "edges": [
+        [
+          "project",
+          "board",
+          "organizes work views"
+        ],
+        [
+          "board",
+          "column",
+          "configures workflow display"
+        ],
+        [
+          "project",
+          "backlog",
+          "organizes planned outcomes"
+        ],
+        [
+          "backlog",
+          "item",
+          "orders work"
+        ],
+        [
+          "item",
+          "task",
+          "may be refined into"
+        ],
+        [
+          "project",
+          "sprint",
+          "plans work period"
+        ],
+        [
+          "sprint",
+          "sprintbacklog",
+          "has one coherent backlog"
+        ],
+        [
+          "sprintbacklog",
+          "item",
+          "selects intended outcomes"
+        ],
+        [
+          "sprintbacklog",
+          "task",
+          "includes delivery plan activities"
+        ]
+      ],
+      "basis": "PKS-D01 PKS-D02 PKS-D03 PKS-D04 PKS-D05 PKS-D06 PKS-D07 PKS-D08 PKS-D09 PKS-D10",
+      "description": "A board presents work; it is not a second backlog. A Backlog Item expresses an outcome and acceptance meaning, while a Task expresses an activity. One Sprint Backlog comprises goal, selected items and delivery plan. Product work management differs from the board used to develop Resumefolio.",
+      "questions": "Q-D18–Q-D20 propose project/backlog counts, task-parent constraints, canonical states, at most one active Sprint and cross-module links. No mandatory cadence, team or extra delivery staff is inferred."
+    },
+    {
+      "name": "domain-git-collaboration",
+      "title": "Real Git and repository collaboration",
+      "keys": [
+        "repo",
+        "revision",
+        "ref",
+        "pr",
+        "review",
+        "issue",
+        "milestone",
+        "release"
+      ],
+      "edges": [
+        [
+          "repo",
+          "revision",
+          "hosts content / history"
+        ],
+        [
+          "repo",
+          "ref",
+          "names branches / tags"
+        ],
+        [
+          "ref",
+          "revision",
+          "identifies target state"
+        ],
+        [
+          "repo",
+          "pr",
+          "participates as source / target"
+        ],
+        [
+          "pr",
+          "review",
+          "receives discussion / review"
+        ],
+        [
+          "pr",
+          "revision",
+          "evaluated source / target context"
+        ],
+        [
+          "repo",
+          "issue",
+          "contains repository work"
+        ],
+        [
+          "issue",
+          "milestone",
+          "may target checkpoint"
+        ],
+        [
+          "repo",
+          "release",
+          "publishes release context"
+        ],
+        [
+          "release",
+          "revision",
+          "identifies intended Git state"
+        ]
+      ],
+      "basis": "GIT-D01 GIT-D02 GIT-D03 GIT-D04 GIT-D05 GIT-D06 GIT-D07 GIT-D08 GIT-D09",
+      "description": "Repository identity, refs and identified revisions are separated so review, merge and execution cannot rely on an ambiguous moving branch name. A fork is another repository with explicit provenance and authority, not an inherited access grant. Issues/milestones differ from work-project items.",
+      "questions": "Q-D21/Q-D22 retain transport, credential, protection, review and merge proposals. No Git engine, merge strategy or public-visibility policy is selected."
+    },
+    {
+      "name": "domain-execution-and-deployment",
+      "title": "Workflow execution and separate deployment authority",
+      "keys": [
+        "workflow",
+        "run",
+        "attempt",
+        "output",
+        "secret",
+        "deployment",
+        "target"
+      ],
+      "edges": [
+        [
+          "workflow",
+          "run",
+          "evaluated definition context"
+        ],
+        [
+          "run",
+          "attempt",
+          "tracks execution / retry context"
+        ],
+        [
+          "attempt",
+          "output",
+          "produces restricted results"
+        ],
+        [
+          "attempt",
+          "secret",
+          "requires scoped use authority"
+        ],
+        [
+          "run",
+          "deployment",
+          "may supply evaluated result"
+        ],
+        [
+          "deployment",
+          "target",
+          "authorizes exact intended effect"
+        ]
+      ],
+      "basis": "YML-D01 YML-D02 YML-D03 YML-D04 YML-D05 YML-D06 YML-D07 YML-D08 YML-D09 YML-D10 YML-D11 YML-D12",
+      "description": "Validation, run request, actual execution, output and deployment approval remain distinct. Run/attempt is a provisional decomposition for retries and unknown outcomes. Deployment approval names target and exact artifact/revision; job code cannot grant itself that authority.",
+      "questions": "Q-D23 remains evidence-gated. Syntax, limits, job/step detail, run/attempt structure and isolation need review/evidence. Real execution remains in scope but is not enabled or proven by this diagram; no runner is placed on the existing host."
+    },
+    {
+      "name": "domain-access-files-and-recovery",
+      "title": "Shared access, files and recoverable operation",
+      "keys": [
+        "account",
+        "grant",
+        "file",
+        "policy",
+        "audit",
+        "backup",
+        "restore"
+      ],
+      "edges": [
+        [
+          "account",
+          "grant",
+          "has contextual authority"
+        ],
+        [
+          "grant",
+          "file",
+          "controls relevant operation"
+        ],
+        [
+          "policy",
+          "file",
+          "constrains admission / accounting"
+        ],
+        [
+          "grant",
+          "audit",
+          "restricts evidence access"
+        ],
+        [
+          "file",
+          "backup",
+          "may fall within recovery coverage"
+        ],
+        [
+          "backup",
+          "restore",
+          "supplies recovery candidate"
+        ],
+        [
+          "restore",
+          "grant",
+          "reconciles restored access"
+        ]
+      ],
+      "basis": "ACC-D01 ACC-D03 ACC-D05 ACC-D09 ACC-D10 ACC-D12 AFO-D01 AFO-D02 AFO-D03 AFO-D04 AFO-D06 AFO-D10 QSR-D10 QSR-D11 QSR-D12 QSR-D13",
+      "description": "Resource authority applies across domain resources; the file edge is an example. Protected file resource is a shared access/reference meaning, not a requirement that Git objects, mail attachments and resume files use one storage engine or quota pool. Recovery records are not public presentation artifacts.",
+      "questions": "Q-D03–Q-D05 and Q-D24–Q-D27 retain detailed grants, quota applicability, retention and operational proposals. Backups are not configured; a backup record cannot substitute for demonstrated restoration."
+    }
+  ],
+  "diagrams": [
+    {
+      "name": "domain-professional-presentation",
+      "title": "Professional source and independent resume",
+      "keys": [
+        "profile",
+        "entry",
+        "resume",
+        "selection",
+        "override"
+      ],
+      "edges": [
+        [
+          "profile",
+          "entry",
+          "source entries"
+        ],
+        [
+          "resume",
+          "selection",
+          "selected source content"
+        ],
+        [
+          "selection",
+          "entry",
+          "source reference"
+        ],
+        [
+          "resume",
+          "override",
+          "independent tailoring"
+        ]
+      ],
+      "section": 1
+    },
+    {
+      "name": "domain-evidence-and-language",
+      "title": "Evidence selection and manually authored language",
+      "keys": [
+        "entry",
+        "resume",
+        "evidence",
+        "evidencechoice",
+        "language"
+      ],
+      "edges": [
+        [
+          "evidence",
+          "entry",
+          "supports skill / project"
+        ],
+        [
+          "resume",
+          "evidencechoice",
+          "selected disclosure"
+        ],
+        [
+          "evidencechoice",
+          "evidence",
+          "selected evidence"
+        ],
+        [
+          "entry",
+          "language",
+          "authored variants"
+        ],
+        [
+          "resume",
+          "language",
+          "intended content language"
+        ]
+      ],
+      "section": 1
+    },
+    {
+      "name": "domain-publication-and-sharing",
+      "title": "Publication, PDF availability and protected link",
+      "keys": [
+        "resume",
+        "publication",
+        "generated",
+        "uploaded",
+        "download",
+        "link"
+      ],
+      "edges": [
+        [
+          "resume",
+          "publication",
+          "separately confirmed publication"
+        ],
+        [
+          "publication",
+          "generated",
+          "represented published content"
+        ],
+        [
+          "resume",
+          "uploaded",
+          "supplied PDF association"
+        ],
+        [
+          "resume",
+          "download",
+          "download configuration"
+        ],
+        [
+          "download",
+          "generated",
+          "generated eligibility"
+        ],
+        [
+          "download",
+          "uploaded",
+          "uploaded / language eligibility"
+        ],
+        [
+          "link",
+          "publication",
+          "scoped selected view"
+        ]
+      ],
+      "section": 2
+    },
+    {
+      "name": "domain-applications-and-communication",
+      "title": "Application preparation and actual submitted history",
+      "keys": [
+        "company",
+        "opportunity",
+        "application",
+        "letter",
+        "submission",
+        "material"
+      ],
+      "edges": [
+        [
+          "company",
+          "opportunity",
+          "organization context"
+        ],
+        [
+          "opportunity",
+          "application",
+          "intended position"
+        ],
+        [
+          "application",
+          "letter",
+          "editable preparation"
+        ],
+        [
+          "application",
+          "submission",
+          "recorded submission"
+        ],
+        [
+          "submission",
+          "material",
+          "actual captured material"
+        ]
+      ],
+      "section": 3
+    },
+    {
+      "name": "domain-provider-communication",
+      "title": "Provider communication and explicit application links",
+      "keys": [
+        "application",
+        "connection",
+        "message",
+        "activity",
+        "reminder"
+      ],
+      "edges": [
+        [
+          "application",
+          "message",
+          "explicit correspondence link"
+        ],
+        [
+          "application",
+          "activity",
+          "explicit activity link"
+        ],
+        [
+          "connection",
+          "message",
+          "connected account / capability"
+        ],
+        [
+          "connection",
+          "activity",
+          "selected provider mapping"
+        ],
+        [
+          "activity",
+          "reminder",
+          "notification intent"
+        ]
+      ],
+      "section": 3
+    },
+    {
+      "name": "domain-work-management",
+      "title": "Work views, items, tasks and one Sprint Backlog",
+      "keys": [
+        "project",
+        "board",
+        "column",
+        "backlog",
+        "item",
+        "task",
+        "sprint",
+        "sprintbacklog"
+      ],
+      "edges": [
+        [
+          "project",
+          "board",
+          "work views"
+        ],
+        [
+          "board",
+          "column",
+          "configured columns"
+        ],
+        [
+          "project",
+          "backlog",
+          "planned work"
+        ],
+        [
+          "backlog",
+          "item",
+          "ordered items"
+        ],
+        [
+          "item",
+          "task",
+          "activity refinement"
+        ],
+        [
+          "project",
+          "sprint",
+          "work period"
+        ],
+        [
+          "sprint",
+          "sprintbacklog",
+          "one coherent backlog"
+        ],
+        [
+          "sprintbacklog",
+          "item",
+          "selected outcomes"
+        ],
+        [
+          "sprintbacklog",
+          "task",
+          "delivery plan activities"
+        ]
+      ],
+      "section": 4
+    },
+    {
+      "name": "domain-git-collaboration",
+      "title": "Real Git history and repository collaboration",
+      "keys": [
+        "repo",
+        "revision",
+        "ref",
+        "pr",
+        "review",
+        "issue",
+        "milestone",
+        "release"
+      ],
+      "edges": [
+        [
+          "repo",
+          "ref",
+          "branch / tag names"
+        ],
+        [
+          "ref",
+          "revision",
+          "target Git state"
+        ],
+        [
+          "repo",
+          "pr",
+          "source / target repository"
+        ],
+        [
+          "pr",
+          "review",
+          "revision-related discussion"
+        ],
+        [
+          "pr",
+          "revision",
+          "evaluated source / target"
+        ],
+        [
+          "repo",
+          "issue",
+          "repository work"
+        ],
+        [
+          "issue",
+          "milestone",
+          "planning checkpoint"
+        ],
+        [
+          "repo",
+          "release",
+          "release context"
+        ],
+        [
+          "release",
+          "revision",
+          "intended Git state"
+        ]
+      ],
+      "section": 5
+    },
+    {
+      "name": "domain-execution-and-deployment",
+      "title": "Execution provenance and separate deployment authority",
+      "keys": [
+        "workflow",
+        "run",
+        "attempt",
+        "output",
+        "secret",
+        "deployment",
+        "target"
+      ],
+      "edges": [
+        [
+          "workflow",
+          "run",
+          "effective definition"
+        ],
+        [
+          "run",
+          "attempt",
+          "execution / retry context"
+        ],
+        [
+          "attempt",
+          "output",
+          "produced output"
+        ],
+        [
+          "attempt",
+          "secret",
+          "scoped use authority"
+        ],
+        [
+          "run",
+          "deployment",
+          "evaluated result context"
+        ],
+        [
+          "deployment",
+          "target",
+          "separate target authority"
+        ]
+      ],
+      "section": 6
+    },
+    {
+      "name": "domain-access-files-and-recovery",
+      "title": "Contextual authority, file policy and recoverable data",
+      "keys": [
+        "account",
+        "grant",
+        "file",
+        "policy",
+        "audit",
+        "backup",
+        "restore"
+      ],
+      "edges": [
+        [
+          "account",
+          "grant",
+          "actor context"
+        ],
+        [
+          "grant",
+          "file",
+          "operation authority"
+        ],
+        [
+          "policy",
+          "file",
+          "applicable policy"
+        ],
+        [
+          "grant",
+          "audit",
+          "restricted evidence access"
+        ],
+        [
+          "file",
+          "backup",
+          "identified coverage"
+        ],
+        [
+          "backup",
+          "restore",
+          "recovery candidate"
+        ],
+        [
+          "restore",
+          "grant",
+          "restored-access reconciliation"
+        ]
+      ],
+      "section": 7
+    }
+  ],
+  "source_sha256_note": "Original source hashes identify the earlier model derivation; later text/diagram review is recorded separately."
+}

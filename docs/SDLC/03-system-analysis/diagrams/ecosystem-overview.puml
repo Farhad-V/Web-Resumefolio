@@ -1,0 +1,51 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam roundcorner 10
+skinparam ArrowColor #526B7B
+skinparam ArrowFontSize 12
+skinparam rectangleBorderColor #526B7B
+skinparam rectangleBackgroundColor #EDF4FB
+skinparam packageBackgroundColor #F6FAFC
+skinparam packageBorderColor #458F88
+skinparam nodesep 45
+skinparam ranksep 55
+skinparam padding 10
+top to bottom direction
+title Resumefolio ecosystem — internal responsibilities and information relationships
+package "Resumefolio product boundary — logical capabilities, not separate deployed services" {
+ rectangle "Profile and tailored resumes\nIndependent content and explicit updates" as P
+ rectangle "Portfolio and evidence\nSelected projects, skills and files" as E
+ rectangle "PDF and protected sharing\nExplicit publication; controlled retrieval" as S
+ rectangle "Application tracking\nOpportunities, progress, actual submitted copies" as A
+ rectangle "Communication\nAccount-scoped mail and calendar activities" as C
+ rectangle "Work management\nProjects, work items, tasks and Sprints" as W
+ rectangle "Product Git hosting\nRepositories, revisions, PRs and reviews" as G
+ rectangle "Workflow execution\nConditional, authorized exact-revision runs" as X #FFF3DF
+ rectangle "Deployment\nSeparate target authorization and result" as D #FFF3DF
+ rectangle "Shared administration and operations\nAccounts / permissions / file policy\nNotification delivery / quality / recovery" as O #E0F1EE
+ P --> S : selected resume version\nseparate publication confirmation
+ E --> S : selected evidence\nsubject to access policy
+ P --> A : selected preparation reference
+ S --> A : preserve actual sent material\nnot a live-content replacement
+ A --> C : deliberate correspondence\nand activity association
+ W --> G : deliberate work-to-revision links
+ G --> X : exact revision + workflow context
+ X --> D : eligible artifact / revision\nseparate deployment decision
+ P -[hidden]-> E
+ C -[hidden]-> W
+ D -[hidden]-> O
+}
+note bottom of O
+Shared authority, file lifecycle and operating rules apply to EVERY area.
+No ownership or permission is inherited merely through a relationship.
+end note
+legend bottom
+Arrows show selected information/reference directions, not automatic triggers or API calls.
+All boxes describe target scope; amber execution/deployment remains capability-gated.
+Profile edits do not automatically alter resumes, publication or previously sent copies.
+External providers and operating facilities are mapped in the companion connections view.
+endlegend
+@enduml

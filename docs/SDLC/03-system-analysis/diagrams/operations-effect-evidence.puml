@@ -1,0 +1,30 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam ArrowColor #526B7B
+skinparam rectangleBackgroundColor #EDF4FB
+skinparam rectangleBorderColor #526B7B
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam nodesep 38
+skinparam ranksep 42
+title SQ — operation effect versus observation
+top to bottom direction
+rectangle "Intended operation / attempt identity\nCurrent exact subject / revision / authority" as Intent
+rectangle "Actual effect evidence\nConfirmed / failed / partial / pending / unknown" as Evidence
+rectangle "Permitted next action\nObserve / reconcile same context; separately eligible retry" as Next
+Intent --> Evidence : request or missing reply is not the effect
+Evidence --> Next : no blind resend / restart / deploy
+note bottom of Evidence
+Failure or timeout does not universally prove old state / rollback.
+Cancel request is not confirmed stop; completion may win race.
+Evidence access itself needs a bounded grant and secret protection.
+end note
+
+legend bottom
+Logical analysis / evidence boundaries, not installed controls or selected architecture.
+No security, load, provider, backup, restore or live-change operation performed.
+endlegend
+@enduml

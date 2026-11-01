@@ -1,0 +1,56 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam ArrowColor #526B7B
+skinparam activityBackgroundColor #EDF4FB
+skinparam activityBorderColor #526B7B
+skinparam activityDiamondBackgroundColor #FFF3DF
+skinparam activityDiamondBorderColor #B99557
+skinparam activityStartColor #163E52
+skinparam activityEndColor #163E52
+skinparam wrapWidth 190
+skinparam maxMessageSize 180
+
+title CF-M01 — Selected resume update and separate publication
+start
+:CF-M01-S01\nInitiating actor\nOwner has changed shared\ninformation and chooses whether to\npreview/apply it for one resume.;
+if (CF-M01-S02\nCurrent source/resume authority\nand intended context valid?) then (yes)
+:CF-M01-S03\nOwner / System\nIdentify source differences and\nintended independent resume;
+if (CF-M01-S04\nOwner chooses to preview and apply\nselected changes?) then (yes)
+:CF-M01-S05\nOwner\nReview selection and preserve\nindependent overrides;
+:CF-M01-S06\nSystem\nRecheck selected context; attempt\nonly permitted selected draft save;
+if (CF-M01-S07\nSelected context still valid and\nsave confirmed?) then (yes)
+:CF-M01-S08\nSystem\nRetain selected draft only;\npreserve other resumes and actual\nsent material;
+if (CF-M01-S09\nOwner separately confirms\npublication?) then (yes)
+:CF-M01-S10\nSystem\nRecheck intended\ncontent/authority; attempt only\nseparately confirmed eligible\npublication;
+if (CF-M01-S11\nPublication actually confirmed?) then (yes)
+:CF-M01-S12\nSystem\nIntended live presentation\nupdated; actual submitted content\npreserved;
+stop
+else (no)
+:CF-M01-S13\nSystem\nPublication unconfirmed or failed;\nreconcile actual presentation;
+stop
+endif
+else (no)
+:CF-M01-S14\nSystem\nDraft saved; live presentation\nunchanged by this save;
+stop
+endif
+else (no)
+:CF-M01-S15\nSystem\nNo successful apply claimed; show\nconflict/failure/uncertainty and\nreconcile;
+stop
+endif
+else (no)
+:CF-M01-S16\nSystem\nSource edit alone changes no\nexisting resume draft or\npublication;
+stop
+endif
+else (no)
+:CF-M01-S17\nSystem\nDeny before prohibited effect or\nprotected disclosure; report unmet\ngate;
+stop
+endif
+legend bottom
+A: accepted profile core only. Other policy detail: P / proposed refinement.
+Step IDs identify full descriptions in the activity view.
+Logical ordering; no atomicity, runtime, timing or execution proof.
+endlegend
+@enduml

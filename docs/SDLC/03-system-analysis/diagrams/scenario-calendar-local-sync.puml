@@ -1,0 +1,67 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 5
+skinparam ArrowColor #526B7B
+skinparam sequenceMessageAlign center
+skinparam sequenceParticipantBackgroundColor #DFF1EF
+skinparam sequenceParticipantBorderColor #526B7B
+skinparam sequenceActorBorderColor #526B7B
+skinparam sequenceLifeLineBorderColor #9AAEB7
+skinparam sequenceGroupBackgroundColor #F8FAFC
+skinparam sequenceGroupBorderColor #7B919E
+skinparam sequenceDividerBackgroundColor #EDF4FB
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam maxMessageSize 220
+hide footbox
+autonumber
+title SB-M08 — Local calendar action versus selected provider synchronization
+actor User as U
+participant "Calendar activity" as A
+participant "Provider connection / mapping" as C
+participant "Selected Google Calendar (external)" as G
+U -> A : Request intended activity or synchronization action
+A -> A : Evaluate authority and explicit time/context
+alt Denied or invalid time / context
+ A --> U : Denied / validation result
+else Permitted
+ alt Local-only activity change
+  A -> A : Retain permitted local content / association
+  A --> U : Actual local save result
+ else Separate selected synchronization request
+  A -> C : Evaluate intended mapping and provider authority
+  alt Disconnected, revoked or ineligible
+   C --> U : No provider action; explicit disconnected result
+  else Eligible future provider interaction
+   C -> G : Read current mapped event / version
+   G --> C : Permitted current data or unavailable / unknown
+   C -> C : Evaluate reviewed direction and conflict conditions
+   alt Conflict, ineligible or unknown input
+    C --> U : Explicit conflict / uncertainty; no blind overwrite
+   else Permitted evaluated context
+    opt Explicitly requested eligible provider write
+     C -> G : Request only the permitted evaluated change
+     G --> C : Actual confirmed / failed / unknown result
+    end
+    alt Required outcome confirmed
+     C -> A : Reconcile mapped fields; preserve local-only meaning
+     A --> U : Actual selected synchronization result
+    else Unsuccessful or unknown outcome
+     C --> U : Actual failed / unknown state; reconcile before retry
+    end
+   end
+  end
+ end
+end
+note over A,G
+Local save does not automatically publish to Google.
+A reminder intention is not proof of actual delivery.
+end note
+legend bottom
+Logical domain interaction, not runtime execution evidence.
+Detailed proposed guards/policies retain their primary status.
+endlegend
+@enduml

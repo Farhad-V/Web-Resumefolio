@@ -1,0 +1,52 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam ArrowColor #526B7B
+skinparam activityBackgroundColor #EDF4FB
+skinparam activityBorderColor #526B7B
+skinparam activityDiamondBackgroundColor #FFF3DF
+skinparam activityDiamondBorderColor #B99557
+skinparam activityStartColor #163E52
+skinparam activityEndColor #163E52
+skinparam wrapWidth 190
+skinparam maxMessageSize 180
+
+title CF-M17 — Reusable actual operation-result classification
+start
+:CF-M17-S01\nInitiating actor\nAn intended operation has a result\nor missing confirmation requiring\nclassification.;
+if (CF-M17-S02\nResult evidence is attributable to\nthe intended operation and\npermitted observation scope?) then (yes)
+:CF-M17-S03\nSystem\nAssess required actual effect and\navailable evidence;
+if (CF-M17-S04\nRequired actual effect confirmed?) then (yes)
+:CF-M17-S05\nSystem\nReport only confirmed intended\nresult;
+stop
+else (no)
+if (CF-M17-S06\nDefinite failed disposition\nestablished?) then (yes)
+:CF-M17-S07\nSystem\nReport definite failure; retain\nknown effects;
+stop
+else (no)
+if (CF-M17-S08\nBounded partial effects\nestablished?) then (yes)
+:CF-M17-S09\nSystem\nReport partial result and affected\ncontext;
+stop
+else (no)
+if (CF-M17-S10\nSame operation confirmed still\npending?) then (yes)
+:CF-M17-S11\nSystem\nReport confirmed pending; observe\nsame operation without duplicate\nlaunch;
+stop
+else (no)
+:CF-M17-S12\nSystem\nReport unknown effect; reconcile\nsame operation before\nconsequential retry;
+stop
+endif
+endif
+endif
+endif
+else (no)
+:CF-M17-S13\nSystem\nDo not attribute unsupported\nresult or disclose protected\nevidence; keep missing context\nunresolved;
+stop
+endif
+legend bottom
+A: accepted profile core only. Other policy detail: P / proposed refinement.
+Step IDs identify full descriptions in the activity view.
+Logical ordering; no atomicity, runtime, timing or execution proof.
+endlegend
+@enduml

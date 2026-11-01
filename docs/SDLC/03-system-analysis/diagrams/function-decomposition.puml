@@ -1,0 +1,42 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #486777
+skinparam ArrowFontSize 12
+skinparam rectangleBackgroundColor #EEF5FA
+skinparam rectangleBorderColor #486777
+skinparam packageBackgroundColor #F7FAFC
+skinparam packageBorderColor #486777
+skinparam componentBackgroundColor #EEF5FA
+skinparam noteBackgroundColor #FFF3DA
+skinparam noteBorderColor #B59865
+skinparam nodesep 35
+skinparam ranksep 45
+skinparam padding 8
+title Functional decomposition — responsibilities, not services
+left to right direction
+rectangle "0 Resumefolio" as root
+rectangle "F01\nEstablish identity and enforce scoped authority" as F01
+root -- F01
+rectangle "F02\nMaintain independent professional presentation" as F02
+root -- F02
+rectangle "F03\nGenerate PDFs and disclose selected material" as F03
+root -- F03
+rectangle "F04\nManage manual applications and actual history" as F04
+root -- F04
+rectangle "F05\nCoordinate authorized mail and calendar" as F05
+root -- F05
+rectangle "F06\nOrganize work and collaboration" as F06
+root -- F06
+rectangle "F07\nHost real Git and repository collaboration" as F07
+root -- F07
+rectangle "F08\nAdmit conditional execution and separate deployment" as F08
+root -- F08
+rectangle "F09\nAdminister files, policy and recoverable operation" as F09
+root -- F09
+legend bottom
+All nine responsibility families retain source constraints; grouping does not select code or deployment units.
+endlegend
+@enduml

@@ -1,0 +1,43 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #486777
+skinparam ArrowFontSize 12
+skinparam rectangleBackgroundColor #EEF5FA
+skinparam rectangleBorderColor #486777
+skinparam packageBackgroundColor #F7FAFC
+skinparam packageBorderColor #486777
+skinparam componentBackgroundColor #EEF5FA
+skinparam noteBackgroundColor #FFF3DA
+skinparam noteBorderColor #B59865
+skinparam nodesep 35
+skinparam ranksep 45
+skinparam padding 8
+title Request/response boundary — protocol-neutral contract
+actor "Authorized user" as User
+boundary "Product interface" as Boundary
+control "Scoped operation" as Operation
+participant "External provider (if applicable)" as Provider
+User -> Boundary : exact intended operation + resource/context
+Boundary -> Operation : validate current authority and input
+alt denied / invalid / stale
+ Operation --> Boundary : scoped denial / validation / conflict
+else eligible local-only operation
+ Operation --> Boundary : attributable local result
+else eligible external effect
+ Operation -> Provider : scoped selected operation
+ alt confirmed provider result
+  Provider --> Operation : attributable result
+  Operation --> Boundary : result with actual effect meaning
+ else transport response absent / uncertain
+  Operation --> Boundary : unknown effect; reconcile exact operation
+ end
+end
+Boundary --> User : permitted result, not secret diagnostics
+
+legend bottom
+Logical API interaction. Endpoint, HTTP method/status, gRPC and retry policy remain unselected; no automatic retry promise.
+endlegend
+@enduml

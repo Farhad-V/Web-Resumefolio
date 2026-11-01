@@ -1,0 +1,44 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam ArrowColor #526B7B
+skinparam activityBackgroundColor #EDF4FB
+skinparam activityBorderColor #526B7B
+skinparam activityDiamondBackgroundColor #FFF3DF
+skinparam activityDiamondBorderColor #B99557
+skinparam activityStartColor #163E52
+skinparam activityEndColor #163E52
+skinparam wrapWidth 190
+skinparam maxMessageSize 180
+
+title CF-M02 — Download settings without link side effects
+start
+:CF-M02-S01\nInitiating actor\nOwner explicitly requests a\ndownload-configuration change.;
+if (CF-M02-S02\nCurrent owner authority for\nintended resume/settings valid?) then (yes)
+:CF-M02-S03\nOwner\nSelect\ngenerated/uploaded/both/neither\nand relevant language choices;
+:CF-M02-S04\nSystem\nEvaluate actual selected\nartifact/language availability and\npolicy;
+if (CF-M02-S05\nConfiguration valid under reviewed\navailability policy?) then (yes)
+:CF-M02-S06\nSystem\nSave intended download\nconfiguration only;
+if (CF-M02-S07\nSave result confirmed?) then (yes)
+:CF-M02-S08\nSystem\nReport saved mode; link enablement\nand page publication unchanged;
+stop
+else (no)
+:CF-M02-S09\nSystem\nReport failed/partial/unknown\nsave; reconcile effective settings;
+stop
+endif
+else (no)
+:CF-M02-S10\nSystem\nExplain invalid or unavailable\noption; do not substitute\nunrelated content;
+stop
+endif
+else (no)
+:CF-M02-S11\nSystem\nDeny before prohibited effect or\nprotected disclosure; report unmet\ngate;
+stop
+endif
+legend bottom
+A: accepted profile core only. Other policy detail: P / proposed refinement.
+Step IDs identify full descriptions in the activity view.
+Logical ordering; no atomicity, runtime, timing or execution proof.
+endlegend
+@enduml

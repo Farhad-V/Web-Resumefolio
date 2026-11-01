@@ -1,0 +1,3020 @@
+{
+  "date": "2026-11-01",
+  "status": "Proposed analysis refinements with bounded accepted profile core",
+  "decisions": [
+    {
+      "id": "RB-D01",
+      "title": "Resource-scoped operation eligibility",
+      "question": "May the intended actor perform this exact protected operation?",
+      "conditions": [
+        {
+          "name": "Scoped authority valid",
+          "meaning": "Exact actor/resource/action scope has an applicable defined grant; invitation, sign-in, another-resource membership or administrator label alone is insufficient.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D01-C01"
+        },
+        {
+          "name": "Current state permits",
+          "meaning": "Applicable account/resource/grant state permits this operation under the current reviewed policy.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D01-C02"
+        },
+        {
+          "name": "Operation conditions met",
+          "meaning": "Required current subject/revision/relationship conditions are satisfied for the intended operation.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D01-C03"
+        }
+      ],
+      "rows": [
+        {
+          "pattern": [
+            "F",
+            "-",
+            "-"
+          ],
+          "result": "DENY_SCOPE",
+          "meaning": "Do not perform protected operation or disclose protected content.",
+          "status": "R",
+          "id": "RB-D01-R01"
+        },
+        {
+          "pattern": [
+            "U",
+            "-",
+            "-"
+          ],
+          "result": "UNRESOLVED_SCOPE",
+          "meaning": "No positive authorization until intended scope/grant is established.",
+          "status": "R",
+          "id": "RB-D01-R02"
+        },
+        {
+          "pattern": [
+            "T",
+            "F",
+            "-"
+          ],
+          "result": "DENY_CURRENT_STATE",
+          "meaning": "Do not use a revoked/ineligible context for the requested effect.",
+          "status": "R",
+          "id": "RB-D01-R03"
+        },
+        {
+          "pattern": [
+            "T",
+            "U",
+            "-"
+          ],
+          "result": "UNRESOLVED_STATE",
+          "meaning": "Reconcile current eligibility; do not assume a stale permission remains effective.",
+          "status": "R",
+          "id": "RB-D01-R04"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "F"
+          ],
+          "result": "REJECT_CONDITIONS",
+          "meaning": "Report invalid/conflicting/ineligible request without claiming success.",
+          "status": "R",
+          "id": "RB-D01-R05"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "U"
+          ],
+          "result": "UNRESOLVED_CONDITIONS",
+          "meaning": "Keep missing policy/evidence visible; do not infer permission.",
+          "status": "R",
+          "id": "RB-D01-R06"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "T"
+          ],
+          "result": "ELIGIBLE_ONLY",
+          "meaning": "Eligibility is established for this scope; actual execution/result still requires its own contract.",
+          "status": "R",
+          "id": "RB-D01-R07"
+        }
+      ],
+      "requirement_ids": [
+        "BRL-D01",
+        "BRL-D06",
+        "ACC-D03",
+        "ACC-D04",
+        "ACC-D05",
+        "ACC-D10",
+        "ACC-D12"
+      ],
+      "domain_keys": [
+        "account",
+        "grant"
+      ],
+      "state_models": [
+        "SM-M02",
+        "SM-M03",
+        "SM-M18"
+      ],
+      "activity_models": [
+        "CF-M10",
+        "CF-M17"
+      ],
+      "limits": "Existing detailed grants/state policies remain proposed. This table does not create a complete role/action matrix, universal admin access or a persistent authorization cache.",
+      "diagram": true,
+      "diagram_name": "rule-rb-d01-decision"
+    },
+    {
+      "id": "RB-D02",
+      "title": "Profile edit, selected apply and separate publication",
+      "question": "Which requested action may affect which presentation?",
+      "conditions": [
+        {
+          "name": "Operation",
+          "meaning": "Supported intended goal; no unsupported operation enters this table.",
+          "domain": [
+            "Source edit",
+            "Apply",
+            "Publish"
+          ],
+          "id": "RB-D02-C01"
+        },
+        {
+          "name": "Explicit confirmation",
+          "meaning": "Owner explicitly confirms this exact selected apply or separately intended publication; preview alone is not confirmation.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D02-C02"
+        },
+        {
+          "name": "Current eligible context",
+          "meaning": "Current intended scope/content is valid and eligible; this abstracts validation rather than choosing a concurrency mechanism.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D02-C03"
+        }
+      ],
+      "rows": [
+        {
+          "pattern": [
+            "Source edit",
+            "-",
+            "-"
+          ],
+          "result": "NO_PROPAGATION",
+          "meaning": "Source edit alone changes no existing resume draft/live presentation; actual sent content remains independent.",
+          "status": "A",
+          "id": "RB-D02-R01"
+        },
+        {
+          "pattern": [
+            "Apply",
+            "F",
+            "-"
+          ],
+          "result": "NO_APPLY",
+          "meaning": "No requested application; keep existing resume content unchanged by source edit alone.",
+          "status": "A",
+          "id": "RB-D02-R02"
+        },
+        {
+          "pattern": [
+            "Apply",
+            "U",
+            "-"
+          ],
+          "result": "UNRESOLVED_CONFIRMATION",
+          "meaning": "Do not infer consent to apply.",
+          "status": "R",
+          "id": "RB-D02-R03"
+        },
+        {
+          "pattern": [
+            "Apply",
+            "T",
+            "F"
+          ],
+          "result": "REJECT_APPLY_CONTEXT",
+          "meaning": "Do not claim eligible selected application.",
+          "status": "R",
+          "id": "RB-D02-R04"
+        },
+        {
+          "pattern": [
+            "Apply",
+            "T",
+            "U"
+          ],
+          "result": "UNRESOLVED_APPLY_CONTEXT",
+          "meaning": "Resolve intended selection/current context before claiming eligible apply.",
+          "status": "R",
+          "id": "RB-D02-R05"
+        },
+        {
+          "pattern": [
+            "Apply",
+            "T",
+            "T"
+          ],
+          "result": "ELIGIBLE_SELECTED_APPLY",
+          "meaning": "Explicit selected apply affects intended draft only; preserve overrides/other resumes/actual history; does not publish.",
+          "status": "A",
+          "id": "RB-D02-R06"
+        },
+        {
+          "pattern": [
+            "Publish",
+            "F",
+            "-"
+          ],
+          "result": "NO_PUBLICATION",
+          "meaning": "Saving/applying alone does not publish.",
+          "status": "A",
+          "id": "RB-D02-R07"
+        },
+        {
+          "pattern": [
+            "Publish",
+            "U",
+            "-"
+          ],
+          "result": "UNRESOLVED_CONFIRMATION",
+          "meaning": "Do not infer separate publication consent.",
+          "status": "R",
+          "id": "RB-D02-R08"
+        },
+        {
+          "pattern": [
+            "Publish",
+            "T",
+            "F"
+          ],
+          "result": "REJECT_PUBLICATION_CONTEXT",
+          "meaning": "Do not claim eligible publication.",
+          "status": "R",
+          "id": "RB-D02-R09"
+        },
+        {
+          "pattern": [
+            "Publish",
+            "T",
+            "U"
+          ],
+          "result": "UNRESOLVED_PUBLICATION_CONTEXT",
+          "meaning": "Resolve exact intended current publication context.",
+          "status": "R",
+          "id": "RB-D02-R10"
+        },
+        {
+          "pattern": [
+            "Publish",
+            "T",
+            "T"
+          ],
+          "result": "ELIGIBLE_SEPARATE_PUBLICATION",
+          "meaning": "Separate confirmed eligible publication may change intended live presentation; actual history stays independent.",
+          "status": "A",
+          "id": "RB-D02-R11"
+        }
+      ],
+      "requirement_ids": [
+        "BRL-D02",
+        "BRL-D05",
+        "PRP-D03",
+        "PRP-D04",
+        "PRP-D08",
+        "PDF-D07"
+      ],
+      "domain_keys": [
+        "profile",
+        "resume",
+        "override",
+        "publication",
+        "material"
+      ],
+      "state_models": [
+        "SM-M01",
+        "SM-M07",
+        "SM-M18"
+      ],
+      "activity_models": [
+        "CF-M01",
+        "CF-M06"
+      ],
+      "limits": "A labels accepted preservation/explicit-action core, not acceptance of abstract validation predicates or implementation labels. Eligibility is not confirmation that a save/publish actually happened.",
+      "diagram": false
+    },
+    {
+      "id": "RB-D03",
+      "title": "PDF mode and requested variant",
+      "question": "Does the saved mode enable the requested PDF category before other checks?",
+      "conditions": [
+        {
+          "name": "Mode",
+          "meaning": "Actual effective per-resume mode, not a pending or assumed settings save.",
+          "domain": [
+            "Generated",
+            "Uploaded",
+            "Both",
+            "Neither"
+          ],
+          "id": "RB-D03-C01"
+        },
+        {
+          "name": "Variant",
+          "meaning": "Requested PDF category; uploaded language availability is checked separately.",
+          "domain": [
+            "Generated",
+            "Uploaded"
+          ],
+          "id": "RB-D03-C02"
+        }
+      ],
+      "rows": [
+        {
+          "pattern": [
+            "Generated",
+            "Generated"
+          ],
+          "result": "MODE_ENABLED",
+          "meaning": "Category is enabled only; still check intended publication/language, actual availability and protected access.",
+          "status": "P",
+          "id": "RB-D03-R01"
+        },
+        {
+          "pattern": [
+            "Generated",
+            "Uploaded"
+          ],
+          "result": "MODE_DISABLED",
+          "meaning": "Do not expose this PDF category through this mode; do not disable page/link or substitute a private variant.",
+          "status": "P",
+          "id": "RB-D03-R02"
+        },
+        {
+          "pattern": [
+            "Uploaded",
+            "Generated"
+          ],
+          "result": "MODE_DISABLED",
+          "meaning": "Do not expose this PDF category through this mode; do not disable page/link or substitute a private variant.",
+          "status": "P",
+          "id": "RB-D03-R03"
+        },
+        {
+          "pattern": [
+            "Uploaded",
+            "Uploaded"
+          ],
+          "result": "MODE_ENABLED",
+          "meaning": "Category is enabled only; still check intended publication/language, actual availability and protected access.",
+          "status": "P",
+          "id": "RB-D03-R04"
+        },
+        {
+          "pattern": [
+            "Both",
+            "Generated"
+          ],
+          "result": "MODE_ENABLED",
+          "meaning": "Category is enabled only; still check intended publication/language, actual availability and protected access.",
+          "status": "P",
+          "id": "RB-D03-R05"
+        },
+        {
+          "pattern": [
+            "Both",
+            "Uploaded"
+          ],
+          "result": "MODE_ENABLED",
+          "meaning": "Category is enabled only; still check intended publication/language, actual availability and protected access.",
+          "status": "P",
+          "id": "RB-D03-R06"
+        },
+        {
+          "pattern": [
+            "Neither",
+            "Generated"
+          ],
+          "result": "MODE_DISABLED",
+          "meaning": "Do not expose this PDF category through this mode; do not disable page/link or substitute a private variant.",
+          "status": "P",
+          "id": "RB-D03-R07"
+        },
+        {
+          "pattern": [
+            "Neither",
+            "Uploaded"
+          ],
+          "result": "MODE_DISABLED",
+          "meaning": "Do not expose this PDF category through this mode; do not disable page/link or substitute a private variant.",
+          "status": "P",
+          "id": "RB-D03-R08"
+        }
+      ],
+      "requirement_ids": [
+        "BRL-D03",
+        "BRL-D10",
+        "PDF-D01",
+        "PDF-D02",
+        "PDF-D03",
+        "PDF-D05",
+        "PDF-D07"
+      ],
+      "domain_keys": [
+        "download",
+        "generated",
+        "uploaded",
+        "language",
+        "publication"
+      ],
+      "state_models": [
+        "SM-M04",
+        "SM-M05"
+      ],
+      "activity_models": [
+        "CF-M02",
+        "CF-M04"
+      ],
+      "limits": "Generated/uploaded/both/neither is a scope capability; timing, stale rendition and language fallback details retain Q-D09/Q-D10 proposal status. No automatic translation or unrelated fallback is inferred.",
+      "diagram": false
+    },
+    {
+      "id": "RB-D04",
+      "title": "Protected selected representation eligibility",
+      "question": "May this exact page/evidence/PDF representation be exposed now?",
+      "conditions": [
+        {
+          "name": "Protected access permits",
+          "meaning": "Applicable exact-link/password/current access context is valid for this request; employer viewer account is not required.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D04-C01"
+        },
+        {
+          "name": "Representation selected",
+          "meaning": "Intended published page/evidence or mode-enabled PDF is selected for this employer context; direct file reference cannot bypass selection.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D04-C02"
+        },
+        {
+          "name": "Exact variant available",
+          "meaning": "Exact requested revision/language/artifact is actually available and eligible under reviewed rendition policy.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D04-C03"
+        }
+      ],
+      "rows": [
+        {
+          "pattern": [
+            "F",
+            "-",
+            "-"
+          ],
+          "result": "DENY_PROTECTED_ACCESS",
+          "meaning": "Do not expose protected content.",
+          "status": "R",
+          "id": "RB-D04-R01"
+        },
+        {
+          "pattern": [
+            "U",
+            "-",
+            "-"
+          ],
+          "result": "UNRESOLVED_ACCESS",
+          "meaning": "No positive exposure decision without established applicable access.",
+          "status": "R",
+          "id": "RB-D04-R02"
+        },
+        {
+          "pattern": [
+            "T",
+            "F",
+            "-"
+          ],
+          "result": "DENY_UNSELECTED",
+          "meaning": "Do not expose unrelated/unselected content or a disabled PDF category.",
+          "status": "R",
+          "id": "RB-D04-R03"
+        },
+        {
+          "pattern": [
+            "T",
+            "U",
+            "-"
+          ],
+          "result": "UNRESOLVED_SELECTION",
+          "meaning": "Resolve intended publication/selection/mode before exposure.",
+          "status": "R",
+          "id": "RB-D04-R04"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "F"
+          ],
+          "result": "UNAVAILABLE_VARIANT",
+          "meaning": "Report unavailable selection/variant; no unrelated or private fallback.",
+          "status": "R",
+          "id": "RB-D04-R05"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "U"
+          ],
+          "result": "UNRESOLVED_VARIANT",
+          "meaning": "Do not claim current available representation based on stale/ambiguous evidence.",
+          "status": "R",
+          "id": "RB-D04-R06"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "T"
+          ],
+          "result": "ELIGIBLE_RETRIEVAL",
+          "meaning": "Expose only permitted exact representation under current retrieval contract; actual completion is separate.",
+          "status": "R",
+          "id": "RB-D04-R07"
+        }
+      ],
+      "requirement_ids": [
+        "BRL-D03",
+        "BRL-D04",
+        "BRL-D10",
+        "PDF-D03",
+        "PDF-D04",
+        "PDF-D05",
+        "PDF-D06",
+        "ACC-D06",
+        "ACC-D07"
+      ],
+      "domain_keys": [
+        "link",
+        "publication",
+        "evidencechoice",
+        "download",
+        "generated",
+        "uploaded",
+        "language"
+      ],
+      "state_models": [
+        "SM-M04",
+        "SM-M05",
+        "SM-M18"
+      ],
+      "activity_models": [
+        "CF-M03",
+        "CF-M04"
+      ],
+      "limits": "Current-request eligibility is distinct from already downloaded copies. Detailed active-session/in-flight/password-change timing remains proposed; no invented duration.",
+      "diagram": true,
+      "diagram_name": "rule-rb-d04-decision"
+    },
+    {
+      "id": "RB-D05",
+      "title": "Fresh request after confirmed link change",
+      "question": "Can a fresh request obtain access through this specific link?",
+      "conditions": [
+        {
+          "name": "Effective enabled state",
+          "meaning": "Actual current link enablement is confirmed; saving PDF mode does not change this fact.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D05-C01"
+        },
+        {
+          "name": "Applicable credentials",
+          "meaning": "Exact current request satisfies adopted password/optional-expiry/current-access policy.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D05-C02"
+        }
+      ],
+      "rows": [
+        {
+          "pattern": [
+            "F",
+            "-"
+          ],
+          "result": "DENY_DISABLED",
+          "meaning": "Fresh request cannot gain protected access via a confirmed disabled link.",
+          "status": "R",
+          "id": "RB-D05-R01"
+        },
+        {
+          "pattern": [
+            "U",
+            "-"
+          ],
+          "result": "UNRESOLVED_LINK_STATE",
+          "meaning": "Reconcile actual effective link state; do not report confirmed disablement or authorize from uncertainty.",
+          "status": "R",
+          "id": "RB-D05-R02"
+        },
+        {
+          "pattern": [
+            "T",
+            "F"
+          ],
+          "result": "DENY_CREDENTIAL_CONTEXT",
+          "meaning": "Reject this protected access context without claiming recall of delivered copies.",
+          "status": "R",
+          "id": "RB-D05-R03"
+        },
+        {
+          "pattern": [
+            "T",
+            "U"
+          ],
+          "result": "UNRESOLVED_CREDENTIAL_POLICY",
+          "meaning": "Do not invent credential/session/expiry timing or permission.",
+          "status": "R",
+          "id": "RB-D05-R04"
+        },
+        {
+          "pattern": [
+            "T",
+            "T"
+          ],
+          "result": "CONTINUE_SELECTION_CHECK",
+          "meaning": "Proceed to RB-D04 selection/representation checks, not unrestricted resource access.",
+          "status": "R",
+          "id": "RB-D05-R05"
+        }
+      ],
+      "requirement_ids": [
+        "BRL-D04",
+        "PDF-D04",
+        "PDF-D05",
+        "PDF-D06",
+        "ACC-D08",
+        "ACC-D12"
+      ],
+      "domain_keys": [
+        "link",
+        "grant",
+        "download"
+      ],
+      "state_models": [
+        "SM-M04",
+        "SM-M18"
+      ],
+      "activity_models": [
+        "CF-M02",
+        "CF-M03",
+        "CF-M04"
+      ],
+      "limits": "Fresh-request disablement is required scope behavior; exact session/in-flight effects remain Q-D05/Q-D11 proposals. Password changes and enable/disable are independent from PDF-mode edits.",
+      "diagram": false
+    },
+    {
+      "id": "RB-D06",
+      "title": "Actual submitted-set completeness",
+      "question": "May this recorded material set be described as complete preservation?",
+      "conditions": [
+        {
+          "name": "Actual identity established",
+          "meaning": "Intended application/event and material actually submitted are identified; current live content is not presumed identical.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D06-C01"
+        },
+        {
+          "name": "Required components present",
+          "meaning": "All required components under the reviewed capture contract are present for this actual set.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D06-C02"
+        },
+        {
+          "name": "Preservation confirmed",
+          "meaning": "Actual required components and associations are confirmed retained in identifiable independent context.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D06-C03"
+        }
+      ],
+      "rows": [
+        {
+          "pattern": [
+            "F",
+            "-",
+            "-"
+          ],
+          "result": "NOT_ACTUAL_SET",
+          "meaning": "Do not substitute current source and claim actual preservation.",
+          "status": "R",
+          "id": "RB-D06-R01"
+        },
+        {
+          "pattern": [
+            "U",
+            "-",
+            "-"
+          ],
+          "result": "UNRESOLVED_PROVENANCE",
+          "meaning": "Retain uncertainty about actual material/event identity.",
+          "status": "R",
+          "id": "RB-D06-R02"
+        },
+        {
+          "pattern": [
+            "T",
+            "F",
+            "-"
+          ],
+          "result": "INCOMPLETE_SET",
+          "meaning": "Report missing required material; progress may still be separately truthful.",
+          "status": "R",
+          "id": "RB-D06-R03"
+        },
+        {
+          "pattern": [
+            "T",
+            "U",
+            "-"
+          ],
+          "result": "UNRESOLVED_COMPLETENESS",
+          "meaning": "Do not claim all required actual components are present.",
+          "status": "R",
+          "id": "RB-D06-R04"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "F"
+          ],
+          "result": "CAPTURE_NOT_COMPLETE",
+          "meaning": "Report definite incomplete/failed preservation with known effects.",
+          "status": "R",
+          "id": "RB-D06-R05"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "U"
+          ],
+          "result": "CAPTURE_UNCONFIRMED",
+          "meaning": "Reconcile actual capture; do not replace uncertainty by a success claim.",
+          "status": "R",
+          "id": "RB-D06-R06"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "T"
+          ],
+          "result": "COMPLETE_ACTUAL_SET",
+          "meaning": "Describe only this confirmed actual set as complete; later source/live edits do not overwrite it.",
+          "status": "R",
+          "id": "RB-D06-R07"
+        }
+      ],
+      "requirement_ids": [
+        "BRL-D02",
+        "BRL-D05",
+        "BRL-D06",
+        "APP-D05",
+        "APP-D06",
+        "APP-D07",
+        "APP-D09",
+        "PDF-D08"
+      ],
+      "domain_keys": [
+        "application",
+        "submission",
+        "material",
+        "letter",
+        "generated",
+        "uploaded"
+      ],
+      "state_models": [
+        "SM-M06",
+        "SM-M07",
+        "SM-M16",
+        "SM-M18"
+      ],
+      "activity_models": [
+        "CF-M05",
+        "CF-M06"
+      ],
+      "limits": "Historical independence is accepted. Required components, provenance, corrections/resubmissions and retention remain detailed proposals. Complete actual history is not a backup or indefinite-retention guarantee.",
+      "diagram": true,
+      "diagram_name": "rule-rb-d06-decision"
+    },
+    {
+      "id": "RB-D07",
+      "title": "Reviewed provider send eligibility",
+      "question": "May the intended message/reply be submitted as a new explicit attempt?",
+      "conditions": [
+        {
+          "name": "Send capability valid",
+          "meaning": "Intended account identity, product/resource authority and actual provider send capability are current.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D07-C01"
+        },
+        {
+          "name": "Final review current",
+          "meaning": "Explicit confirmation matches current sender/recipients/body/attachments/reply context; later changes require renewed review.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D07-C02"
+        },
+        {
+          "name": "Attempt eligible without blind retry",
+          "meaning": "No unresolved prior equivalent send effect is being blindly retried; proposed new attempt is separately eligible.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D07-C03"
+        }
+      ],
+      "rows": [
+        {
+          "pattern": [
+            "F",
+            "-",
+            "-"
+          ],
+          "result": "BLOCK_SEND_CAPABILITY",
+          "meaning": "No provider send action under denied/revoked/wrong-account context.",
+          "status": "R",
+          "id": "RB-D07-R01"
+        },
+        {
+          "pattern": [
+            "U",
+            "-",
+            "-"
+          ],
+          "result": "UNPROVEN_SEND_CAPABILITY",
+          "meaning": "No enabled send claim; establish actual capability.",
+          "status": "R",
+          "id": "RB-D07-R02"
+        },
+        {
+          "pattern": [
+            "T",
+            "F",
+            "-"
+          ],
+          "result": "NO_CURRENT_SEND_CONSENT",
+          "meaning": "Keep unsent intent; do not reuse stale confirmation.",
+          "status": "R",
+          "id": "RB-D07-R03"
+        },
+        {
+          "pattern": [
+            "T",
+            "U",
+            "-"
+          ],
+          "result": "UNRESOLVED_REVIEW",
+          "meaning": "Do not infer final send consent from missing evidence.",
+          "status": "R",
+          "id": "RB-D07-R04"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "F"
+          ],
+          "result": "RECONCILE_BEFORE_RETRY",
+          "meaning": "Do not create blind duplicate; reconcile attributable prior effect.",
+          "status": "R",
+          "id": "RB-D07-R05"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "U"
+          ],
+          "result": "UNRESOLVED_PRIOR_EFFECT",
+          "meaning": "Keep prior acceptance uncertainty visible before consequential resend.",
+          "status": "R",
+          "id": "RB-D07-R06"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "T"
+          ],
+          "result": "ELIGIBLE_SEND_ATTEMPT",
+          "meaning": "May attempt exact reviewed send; classify actual provider outcome with RB-D18, never infer delivery/read.",
+          "status": "R",
+          "id": "RB-D07-R07"
+        }
+      ],
+      "requirement_ids": [
+        "BRL-D06",
+        "BRL-D07",
+        "EGC-D01",
+        "EGC-D02",
+        "EGC-D04",
+        "EGC-D05",
+        "EGC-D06",
+        "EGC-D11",
+        "EGC-D12",
+        "EIF-D08"
+      ],
+      "domain_keys": [
+        "connection",
+        "message"
+      ],
+      "state_models": [
+        "SM-M08",
+        "SM-M09",
+        "SM-M18"
+      ],
+      "activity_models": [
+        "CF-M07",
+        "CF-M17"
+      ],
+      "limits": "OAuth has not been created. This is conditional proposed behavior; provider acceptance is not recipient delivery/read. No deduplication or retry mechanism is selected.",
+      "diagram": true,
+      "diagram_name": "rule-rb-d07-decision"
+    },
+    {
+      "id": "RB-D08",
+      "title": "Local calendar action versus provider mutation",
+      "question": "Does this selected goal require provider capability or conflict resolution?",
+      "conditions": [
+        {
+          "name": "Goal",
+          "meaning": "Supported requested goal; local unlink only removes association.",
+          "domain": [
+            "Local change",
+            "Local unlink",
+            "Provider action"
+          ],
+          "id": "RB-D08-C01"
+        },
+        {
+          "name": "Connection",
+          "meaning": "Actual intended provider identity/capability is usable.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D08-C02"
+        },
+        {
+          "name": "Mapping/context",
+          "meaning": "Relevant account/mapping/version/field-authority context is established and current.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D08-C03"
+        },
+        {
+          "name": "Conflict",
+          "meaning": "A relevant concurrent local/provider conflict is established.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D08-C04"
+        }
+      ],
+      "rows": [
+        {
+          "pattern": [
+            "Local change",
+            "-",
+            "-",
+            "-"
+          ],
+          "result": "LOCAL_CONTRACT",
+          "meaning": "Use current local-operation authority/validation contract; no provider write or active connection inferred.",
+          "status": "R",
+          "id": "RB-D08-R01"
+        },
+        {
+          "pattern": [
+            "Local unlink",
+            "-",
+            "-",
+            "-"
+          ],
+          "result": "LOCAL_UNLINK_CONTRACT",
+          "meaning": "Use permitted local unlink contract; no provider delete or provider write capability required.",
+          "status": "R",
+          "id": "RB-D08-R02"
+        },
+        {
+          "pattern": [
+            "Provider action",
+            "F",
+            "-",
+            "-"
+          ],
+          "result": "BLOCK_PROVIDER_ACTION",
+          "meaning": "No dependent provider mutation; retained copy may remain stale.",
+          "status": "R",
+          "id": "RB-D08-R03"
+        },
+        {
+          "pattern": [
+            "Provider action",
+            "U",
+            "-",
+            "-"
+          ],
+          "result": "UNPROVEN_PROVIDER_ACTION",
+          "meaning": "Do not assume actual provider access.",
+          "status": "R",
+          "id": "RB-D08-R04"
+        },
+        {
+          "pattern": [
+            "Provider action",
+            "T",
+            "F",
+            "-"
+          ],
+          "result": "STALE_OR_INVALID_MAPPING",
+          "meaning": "Reconcile selected account/mapping/current context before mutation.",
+          "status": "R",
+          "id": "RB-D08-R05"
+        },
+        {
+          "pattern": [
+            "Provider action",
+            "T",
+            "U",
+            "-"
+          ],
+          "result": "UNRESOLVED_MAPPING",
+          "meaning": "Do not infer current mapping/field authority.",
+          "status": "R",
+          "id": "RB-D08-R06"
+        },
+        {
+          "pattern": [
+            "Provider action",
+            "T",
+            "T",
+            "T"
+          ],
+          "result": "RESOLVE_CONFLICT",
+          "meaning": "Do not silently overwrite conflicting local/provider changes.",
+          "status": "R",
+          "id": "RB-D08-R07"
+        },
+        {
+          "pattern": [
+            "Provider action",
+            "T",
+            "T",
+            "U"
+          ],
+          "result": "UNRESOLVED_CONFLICT",
+          "meaning": "Assess relevant versions; unknown conflict status is not conflict-free.",
+          "status": "R",
+          "id": "RB-D08-R08"
+        },
+        {
+          "pattern": [
+            "Provider action",
+            "T",
+            "T",
+            "F"
+          ],
+          "result": "ELIGIBLE_PROVIDER_CONTRACT",
+          "meaning": "Perform only exact permitted selected action; classify actual result and freshness separately.",
+          "status": "R",
+          "id": "RB-D08-R09"
+        }
+      ],
+      "requirement_ids": [
+        "BRL-D07",
+        "BRL-D10",
+        "EGC-D07",
+        "EGC-D08",
+        "EGC-D09",
+        "EGC-D10",
+        "EGC-D11",
+        "EGC-D12"
+      ],
+      "domain_keys": [
+        "connection",
+        "activity",
+        "reminder",
+        "application"
+      ],
+      "state_models": [
+        "SM-M08",
+        "SM-M10",
+        "SM-M18"
+      ],
+      "activity_models": [
+        "CF-M08",
+        "CF-M17"
+      ],
+      "limits": "Local paths still require RB-D01/current validation; dashes ignore provider facts only. Reconnection does not make stale mappings fresh or authorize replay. Direction/time/delete/reminder policies remain proposed.",
+      "diagram": false
+    },
+    {
+      "id": "RB-D09",
+      "title": "Subject-specific work completion",
+      "question": "May this task or backlog item be described as completed/accepted?",
+      "conditions": [
+        {
+          "name": "Subject operation",
+          "meaning": "Exact current subject and requested completion/correction are authorized and valid for its state.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D09-C01"
+        },
+        {
+          "name": "Subject criteria",
+          "meaning": "Reviewed criteria for this subject are actually satisfied; task progress alone is not backlog-item acceptance.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D09-C02"
+        },
+        {
+          "name": "Required acceptance",
+          "meaning": "Any separately required item acceptance is actually established; for a task this means its own applicable completion contract, not invented item approval.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D09-C03"
+        }
+      ],
+      "rows": [
+        {
+          "pattern": [
+            "F",
+            "-",
+            "-"
+          ],
+          "result": "REJECT_COMPLETION",
+          "meaning": "Do not force an invalid/unauthorized progress transition.",
+          "status": "R",
+          "id": "RB-D09-R01"
+        },
+        {
+          "pattern": [
+            "U",
+            "-",
+            "-"
+          ],
+          "result": "UNRESOLVED_WORK_CONTEXT",
+          "meaning": "Establish exact subject/state/operation rather than inferring from board position.",
+          "status": "R",
+          "id": "RB-D09-R02"
+        },
+        {
+          "pattern": [
+            "T",
+            "F",
+            "-"
+          ],
+          "result": "NOT_COMPLETE",
+          "meaning": "Retain incomplete result under applicable subject rules.",
+          "status": "R",
+          "id": "RB-D09-R03"
+        },
+        {
+          "pattern": [
+            "T",
+            "U",
+            "-"
+          ],
+          "result": "UNPROVEN_COMPLETION",
+          "meaning": "Do not infer completion from missing criterion evidence.",
+          "status": "R",
+          "id": "RB-D09-R04"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "F"
+          ],
+          "result": "NOT_ACCEPTED",
+          "meaning": "Do not claim item acceptance because all tasks appear Done.",
+          "status": "R",
+          "id": "RB-D09-R05"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "U"
+          ],
+          "result": "UNRESOLVED_ACCEPTANCE",
+          "meaning": "Retain current acceptance uncertainty.",
+          "status": "R",
+          "id": "RB-D09-R06"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "T"
+          ],
+          "result": "SUBJECT_COMPLETION_ESTABLISHED",
+          "meaning": "Report completion/acceptance only for evaluated subject and reviewed contract.",
+          "status": "R",
+          "id": "RB-D09-R07"
+        }
+      ],
+      "requirement_ids": [
+        "BRL-D06",
+        "PKS-D03",
+        "PKS-D04",
+        "PKS-D05",
+        "PKS-D09",
+        "PKS-D11"
+      ],
+      "domain_keys": [
+        "item",
+        "task",
+        "board",
+        "column"
+      ],
+      "state_models": [
+        "SM-M11",
+        "SM-M18"
+      ],
+      "activity_models": [
+        "CF-M09",
+        "CF-M17"
+      ],
+      "limits": "Readiness to select is a separate proposed predicate (SM-F01), not an accepted fourth To do/In progress/Done state. No counts or acceptance role are invented.",
+      "diagram": false
+    },
+    {
+      "id": "RB-D10",
+      "title": "Sprint period end versus goal/item outcome",
+      "question": "May the Sprint-end result be recorded as a concluded period?",
+      "conditions": [
+        {
+          "name": "End transition",
+          "meaning": "Current Sprint scope/state and end/cancel operation are permitted.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D10-C01"
+        },
+        {
+          "name": "Actual period result",
+          "meaning": "Actual period/goal result is identified truthfully; this is not a predicate requiring goal achievement.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D10-C02"
+        },
+        {
+          "name": "Work disposition",
+          "meaning": "Selected items and incomplete work have explicit reviewed disposition; no silent acceptance/erasure/carryover.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D10-C03"
+        }
+      ],
+      "rows": [
+        {
+          "pattern": [
+            "F",
+            "-",
+            "-"
+          ],
+          "result": "REJECT_END",
+          "meaning": "Do not claim invalid period transition.",
+          "status": "R",
+          "id": "RB-D10-R01"
+        },
+        {
+          "pattern": [
+            "U",
+            "-",
+            "-"
+          ],
+          "result": "UNRESOLVED_END",
+          "meaning": "Establish current permitted transition.",
+          "status": "R",
+          "id": "RB-D10-R02"
+        },
+        {
+          "pattern": [
+            "T",
+            "F",
+            "-"
+          ],
+          "result": "MISSING_ACTUAL_RESULT",
+          "meaning": "Do not invent achieved goal or completed work.",
+          "status": "R",
+          "id": "RB-D10-R03"
+        },
+        {
+          "pattern": [
+            "T",
+            "U",
+            "-"
+          ],
+          "result": "UNRESOLVED_GOAL_RESULT",
+          "meaning": "Keep actual goal outcome unconfirmed.",
+          "status": "R",
+          "id": "RB-D10-R04"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "F"
+          ],
+          "result": "INCOMPLETE_END_RECORD",
+          "meaning": "Retain incomplete disposition rather than automatic carryover.",
+          "status": "R",
+          "id": "RB-D10-R05"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "U"
+          ],
+          "result": "UNRESOLVED_DISPOSITION",
+          "meaning": "Resolve required actual item disposition before complete end record.",
+          "status": "R",
+          "id": "RB-D10-R06"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "T"
+          ],
+          "result": "PERIOD_CONCLUSION_RECORDED",
+          "meaning": "May record actual permitted period conclusion even if goal was not achieved and items remain incomplete.",
+          "status": "R",
+          "id": "RB-D10-R07"
+        }
+      ],
+      "requirement_ids": [
+        "BRL-D06",
+        "PKS-D07",
+        "PKS-D08",
+        "PKS-D09",
+        "PKS-D11"
+      ],
+      "domain_keys": [
+        "sprint",
+        "sprintbacklog",
+        "item",
+        "task"
+      ],
+      "state_models": [
+        "SM-M11",
+        "SM-M12",
+        "SM-M18"
+      ],
+      "activity_models": [
+        "CF-M09",
+        "CF-M17"
+      ],
+      "limits": "One composite Sprint Backlog retains goal, selected items and plan. No fixed cadence, extra team member, automatic carryover or all-work-Done precondition is introduced.",
+      "diagram": false
+    },
+    {
+      "id": "RB-D11",
+      "title": "Current revision-specific merge eligibility",
+      "question": "May this exact intended integration be attempted?",
+      "conditions": [
+        {
+          "name": "Merge authority valid",
+          "meaning": "Current repository/source/target and merge-operation authority permit intended integration.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D11-C01"
+        },
+        {
+          "name": "Evaluated revisions current",
+          "meaning": "Intended evaluated source/target revisions match the current relevant integration context.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D11-C02"
+        },
+        {
+          "name": "Review/check policy satisfied",
+          "meaning": "Applicable review/check validity, conflict conditions and reviewed merge policy are satisfied for those revisions.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D11-C03"
+        }
+      ],
+      "rows": [
+        {
+          "pattern": [
+            "F",
+            "-",
+            "-"
+          ],
+          "result": "DENY_MERGE",
+          "meaning": "Do not integrate under unrelated or stale resource authority.",
+          "status": "R",
+          "id": "RB-D11-R01"
+        },
+        {
+          "pattern": [
+            "U",
+            "-",
+            "-"
+          ],
+          "result": "UNRESOLVED_MERGE_SCOPE",
+          "meaning": "Do not assume merge authority.",
+          "status": "R",
+          "id": "RB-D11-R02"
+        },
+        {
+          "pattern": [
+            "T",
+            "F",
+            "-"
+          ],
+          "result": "REEVALUATE_REVISIONS",
+          "meaning": "Re-evaluate changed source/target; do not silently carry old eligibility.",
+          "status": "R",
+          "id": "RB-D11-R03"
+        },
+        {
+          "pattern": [
+            "T",
+            "U",
+            "-"
+          ],
+          "result": "UNRESOLVED_REVISIONS",
+          "meaning": "Establish actual current evaluated context.",
+          "status": "R",
+          "id": "RB-D11-R04"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "F"
+          ],
+          "result": "INELIGIBLE_MERGE",
+          "meaning": "Report conflict/stale review/check or unmet policy without integration success.",
+          "status": "R",
+          "id": "RB-D11-R05"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "U"
+          ],
+          "result": "UNPROVEN_MERGE_ELIGIBILITY",
+          "meaning": "No positive merge decision from missing review/check/policy evidence.",
+          "status": "R",
+          "id": "RB-D11-R06"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "T"
+          ],
+          "result": "ELIGIBLE_INTEGRATION",
+          "meaning": "May attempt only intended integration; actual ref effect must be confirmed/reconciled separately.",
+          "status": "R",
+          "id": "RB-D11-R07"
+        }
+      ],
+      "requirement_ids": [
+        "BRL-D01",
+        "BRL-D06",
+        "GIT-D02",
+        "GIT-D05",
+        "GIT-D06",
+        "GIT-D07",
+        "GIT-D09"
+      ],
+      "domain_keys": [
+        "repo",
+        "ref",
+        "revision",
+        "pr",
+        "review"
+      ],
+      "state_models": [
+        "SM-M03",
+        "SM-M13",
+        "SM-M18"
+      ],
+      "activity_models": [
+        "CF-M11",
+        "CF-M12",
+        "CF-M17"
+      ],
+      "limits": "No merge strategy, reviewer count or solo-review exception is selected. Clone/read/push/review/merge and deployment remain distinct authorities.",
+      "diagram": true,
+      "diagram_name": "rule-rb-d11-decision"
+    },
+    {
+      "id": "RB-D12",
+      "title": "Workflow execution admission",
+      "question": "May an attributable attempt be admitted under the reviewed execution contract?",
+      "conditions": [
+        {
+          "name": "Definition/revision valid",
+          "meaning": "Trigger, evaluated code/revision and supported workflow definition are identified and valid.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D12-C01"
+        },
+        {
+          "name": "Execution authority valid",
+          "meaning": "Current scoped execution/secret authority permits this intended attempt; unrelated repository access is insufficient.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D12-C02"
+        },
+        {
+          "name": "Safe execution demonstrated",
+          "meaning": "Suitable isolation, actual resources/limits, secret boundaries and cleanup/operational conditions are demonstrated for this attempt.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D12-C03"
+        }
+      ],
+      "rows": [
+        {
+          "pattern": [
+            "F",
+            "-",
+            "-"
+          ],
+          "result": "REJECT_WORKFLOW",
+          "meaning": "No unsupported/stale-context execution.",
+          "status": "R",
+          "id": "RB-D12-R01"
+        },
+        {
+          "pattern": [
+            "U",
+            "-",
+            "-"
+          ],
+          "result": "UNRESOLVED_WORKFLOW",
+          "meaning": "Do not infer supported definition or evaluated code.",
+          "status": "R",
+          "id": "RB-D12-R02"
+        },
+        {
+          "pattern": [
+            "T",
+            "F",
+            "-"
+          ],
+          "result": "DENY_EXECUTION",
+          "meaning": "No execution under missing intended authority.",
+          "status": "R",
+          "id": "RB-D12-R03"
+        },
+        {
+          "pattern": [
+            "T",
+            "U",
+            "-"
+          ],
+          "result": "UNRESOLVED_EXECUTION_AUTHORITY",
+          "meaning": "No enablement based on assumed permissions.",
+          "status": "R",
+          "id": "RB-D12-R04"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "F"
+          ],
+          "result": "BLOCK_UNSAFE_OR_UNREADY",
+          "meaning": "Do not enable dependent execution without required conditions.",
+          "status": "R",
+          "id": "RB-D12-R05"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "U"
+          ],
+          "result": "UNPROVEN_EXECUTION_ENVIRONMENT",
+          "meaning": "Current demo/idle capacity does not prove safe suitable execution.",
+          "status": "R",
+          "id": "RB-D12-R06"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "T"
+          ],
+          "result": "ELIGIBLE_ADMISSION_ONLY",
+          "meaning": "May admit attributable attempt under actual reviewed contract; admission is not start/success/output/deploy proof.",
+          "status": "R",
+          "id": "RB-D12-R07"
+        }
+      ],
+      "requirement_ids": [
+        "BRL-D01",
+        "BRL-D06",
+        "YML-D01",
+        "YML-D02",
+        "YML-D03",
+        "YML-D04",
+        "YML-D05",
+        "YML-D06",
+        "YML-D07",
+        "YML-D08",
+        "YML-D09",
+        "YML-D11",
+        "YML-D12"
+      ],
+      "domain_keys": [
+        "workflow",
+        "run",
+        "attempt",
+        "secret",
+        "output"
+      ],
+      "state_models": [
+        "SM-M14",
+        "SM-M18"
+      ],
+      "activity_models": [
+        "CF-M13",
+        "CF-M17"
+      ],
+      "limits": "Safe execution environment is not demonstrated. No isolation technology, resource number, queue, retry protocol or runner topology is chosen.",
+      "diagram": true,
+      "diagram_name": "rule-rb-d12-decision"
+    },
+    {
+      "id": "RB-D13",
+      "title": "Separate target deployment eligibility",
+      "question": "May this exact artifact/revision affect this intended target?",
+      "conditions": [
+        {
+          "name": "Target authority",
+          "meaning": "Separate current exact-target operation/approval conditions are satisfied; merge/build/release is insufficient.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D13-C01"
+        },
+        {
+          "name": "Artifact identity",
+          "meaning": "Exact intended deployable artifact/revision is available and suitable for intended target.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D13-C02"
+        },
+        {
+          "name": "Target conditions",
+          "meaning": "Actual current target/data compatibility/recovery conditions required by reviewed deployment contract are met.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D13-C03"
+        }
+      ],
+      "rows": [
+        {
+          "pattern": [
+            "F",
+            "-",
+            "-"
+          ],
+          "result": "DENY_TARGET_EFFECT",
+          "meaning": "No target action from inherited build/merge permission.",
+          "status": "R",
+          "id": "RB-D13-R01"
+        },
+        {
+          "pattern": [
+            "U",
+            "-",
+            "-"
+          ],
+          "result": "UNRESOLVED_TARGET_AUTHORITY",
+          "meaning": "Do not assume target approval.",
+          "status": "R",
+          "id": "RB-D13-R02"
+        },
+        {
+          "pattern": [
+            "T",
+            "F",
+            "-"
+          ],
+          "result": "REJECT_ARTIFACT_CONTEXT",
+          "meaning": "Do not deploy stale/wrong/unavailable content.",
+          "status": "R",
+          "id": "RB-D13-R03"
+        },
+        {
+          "pattern": [
+            "T",
+            "U",
+            "-"
+          ],
+          "result": "UNRESOLVED_ARTIFACT",
+          "meaning": "Establish intended artifact/revision before consequential action.",
+          "status": "R",
+          "id": "RB-D13-R04"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "F"
+          ],
+          "result": "BLOCK_TARGET_CONDITIONS",
+          "meaning": "Do not proceed under unmet target/recovery conditions.",
+          "status": "R",
+          "id": "RB-D13-R05"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "U"
+          ],
+          "result": "UNPROVEN_TARGET_CONDITIONS",
+          "meaning": "Do not infer safety or recovery ability from build success.",
+          "status": "R",
+          "id": "RB-D13-R06"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "T"
+          ],
+          "result": "ELIGIBLE_TARGET_ATTEMPT",
+          "meaning": "Only intended authorized target effect may be attempted; actual partial/unknown result remains separately assessed.",
+          "status": "R",
+          "id": "RB-D13-R07"
+        }
+      ],
+      "requirement_ids": [
+        "BRL-D01",
+        "BRL-D06",
+        "BRL-D09",
+        "YML-D03",
+        "YML-D08",
+        "YML-D10",
+        "YML-D12",
+        "EIF-D08"
+      ],
+      "domain_keys": [
+        "deployment",
+        "target",
+        "output",
+        "run"
+      ],
+      "state_models": [
+        "SM-M15",
+        "SM-M18"
+      ],
+      "activity_models": [
+        "CF-M14",
+        "CF-M17"
+      ],
+      "limits": "No live deployment, universal rollback or blind retry is authorized. Existing target state must be reconciled before further consequential recovery/retry.",
+      "diagram": false
+    },
+    {
+      "id": "RB-D14",
+      "title": "Effective file admission",
+      "question": "May this exact candidate be admitted under the actual effective policy?",
+      "conditions": [
+        {
+          "name": "Effective policy",
+          "meaning": "Exact action authority and currently effective valid policy are established; a proposed/pending save is not effective.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D14-C01"
+        },
+        {
+          "name": "Candidate conditions",
+          "meaning": "Actual candidate/content/reference and processing requirements satisfy reviewed admission rules.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D14-C02"
+        },
+        {
+          "name": "Actual capacity",
+          "meaning": "Applicable current actual usage, configured limits and concurrent-admission/resource contract permit intended growth.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D14-C03"
+        }
+      ],
+      "rows": [
+        {
+          "pattern": [
+            "F",
+            "-",
+            "-"
+          ],
+          "result": "REJECT_POLICY_CONTEXT",
+          "meaning": "No admission under an invalid/unauthorized effective-policy claim.",
+          "status": "R",
+          "id": "RB-D14-R01"
+        },
+        {
+          "pattern": [
+            "U",
+            "-",
+            "-"
+          ],
+          "result": "UNRESOLVED_POLICY",
+          "meaning": "Reconcile actual effective policy; do not use an unconfirmed new limit.",
+          "status": "R",
+          "id": "RB-D14-R02"
+        },
+        {
+          "pattern": [
+            "T",
+            "F",
+            "-"
+          ],
+          "result": "REJECT_CANDIDATE",
+          "meaning": "Reject candidate without destroying unrelated/protected material.",
+          "status": "R",
+          "id": "RB-D14-R03"
+        },
+        {
+          "pattern": [
+            "T",
+            "U",
+            "-"
+          ],
+          "result": "UNRESOLVED_CANDIDATE",
+          "meaning": "Do not claim an eligible/usable artifact from missing evidence.",
+          "status": "R",
+          "id": "RB-D14-R04"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "F"
+          ],
+          "result": "CAPACITY_REJECTED",
+          "meaning": "Do not exceed reviewed effective allowance or silently delete history for space.",
+          "status": "R",
+          "id": "RB-D14-R05"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "U"
+          ],
+          "result": "UNPROVEN_CAPACITY",
+          "meaning": "Idle free disk/two independent prechecks are not a proven concurrent-admission guarantee.",
+          "status": "R",
+          "id": "RB-D14-R06"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "T"
+          ],
+          "result": "ELIGIBLE_CANDIDATE_ONLY",
+          "meaning": "May process intended candidate; actual usable completion and any capacity reclamation need confirmation.",
+          "status": "R",
+          "id": "RB-D14-R07"
+        }
+      ],
+      "requirement_ids": [
+        "BRL-D03",
+        "BRL-D06",
+        "BRL-D08",
+        "AFO-D01",
+        "AFO-D02",
+        "AFO-D03",
+        "AFO-D04",
+        "AFO-D05",
+        "AFO-D06",
+        "AFO-D07",
+        "AFO-D08",
+        "AFO-D11"
+      ],
+      "domain_keys": [
+        "policy",
+        "file",
+        "generated",
+        "uploaded",
+        "material"
+      ],
+      "state_models": [
+        "SM-M05",
+        "SM-M16",
+        "SM-M18"
+      ],
+      "activity_models": [
+        "CF-M15",
+        "CF-M17"
+      ],
+      "limits": "No numeric quota/retention/resource values or accounting algorithm are invented. Policy lowering is not cleanup; failed replacement does not itself authorize deletion of prior required material.",
+      "diagram": false
+    },
+    {
+      "id": "RB-D15",
+      "title": "Reference-aware physical reclamation eligibility",
+      "question": "May this specific retained information be physically reclaimed?",
+      "conditions": [
+        {
+          "name": "Category policy permits",
+          "meaning": "Exact resource/category reclamation authority and explicit reviewed lifecycle policy apply; archive/unlink/trash are distinct goals.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D15-C01"
+        },
+        {
+          "name": "Retention permits removal",
+          "meaning": "Applicable reviewed retention conditions actually permit reclamation now.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D15-C02"
+        },
+        {
+          "name": "References permit removal",
+          "meaning": "All affected required references/actual-submission obligations permit intended reclamation under reviewed relationship rules.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D15-C03"
+        }
+      ],
+      "rows": [
+        {
+          "pattern": [
+            "F",
+            "-",
+            "-"
+          ],
+          "result": "DENY_RECLAMATION_SCOPE",
+          "meaning": "Do not infer purge authority from archive, association removal or general admin label.",
+          "status": "R",
+          "id": "RB-D15-R01"
+        },
+        {
+          "pattern": [
+            "U",
+            "-",
+            "-"
+          ],
+          "result": "UNRESOLVED_LIFECYCLE_POLICY",
+          "meaning": "No invented deletion cascade, trash period or purge contract.",
+          "status": "R",
+          "id": "RB-D15-R02"
+        },
+        {
+          "pattern": [
+            "T",
+            "F",
+            "-"
+          ],
+          "result": "RETAIN_INELIGIBLE",
+          "meaning": "Do not reclaim merely due to quota pressure or a pending delete request.",
+          "status": "R",
+          "id": "RB-D15-R03"
+        },
+        {
+          "pattern": [
+            "T",
+            "U",
+            "-"
+          ],
+          "result": "UNRESOLVED_RETENTION",
+          "meaning": "Resolve applicable eligibility without inventing a duration.",
+          "status": "R",
+          "id": "RB-D15-R04"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "F"
+          ],
+          "result": "PROTECT_REQUIRED_REFERENCES",
+          "meaning": "Do not silently destroy protected actual history or unrelated content.",
+          "status": "R",
+          "id": "RB-D15-R05"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "U"
+          ],
+          "result": "UNRESOLVED_REFERENCE_EFFECT",
+          "meaning": "Assess actual dependent references; missing evidence is not absence of references.",
+          "status": "R",
+          "id": "RB-D15-R06"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "T"
+          ],
+          "result": "ELIGIBLE_RECLAMATION_ONLY",
+          "meaning": "Eligibility only; report freed storage/data removed only after actual required effect is confirmed.",
+          "status": "R",
+          "id": "RB-D15-R07"
+        }
+      ],
+      "requirement_ids": [
+        "BRL-D05",
+        "BRL-D08",
+        "APP-D07",
+        "APP-D09",
+        "PRP-D10",
+        "PDF-D10",
+        "AFO-D08",
+        "AFO-D11",
+        "QSR-D09",
+        "QSR-D12"
+      ],
+      "domain_keys": [
+        "file",
+        "material",
+        "submission",
+        "grant"
+      ],
+      "state_models": [
+        "SM-M16",
+        "SM-M18"
+      ],
+      "activity_models": [
+        "CF-M15",
+        "CF-M17"
+      ],
+      "limits": "Category-specific policy is required; no universal soft delete, cascade, retention period or physical cleanup action is selected. Restore is independently authorized.",
+      "diagram": true,
+      "diagram_name": "rule-rb-d15-decision"
+    },
+    {
+      "id": "RB-D16",
+      "title": "Scoped usable recovery assessment",
+      "question": "May this isolated recovery be described as demonstrated usable recovery?",
+      "conditions": [
+        {
+          "name": "Source/drill scope established",
+          "meaning": "Protected identified source, required material/coverage, operator authority and suitable isolated target actually exist for the authorized scenario.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D16-C01"
+        },
+        {
+          "name": "Consistency/access checks pass",
+          "meaning": "Restored candidate integrity, required relationships/artifacts, present access and external-state disposition pass defined scoped checks.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D16-C02"
+        },
+        {
+          "name": "Measured criteria satisfied",
+          "meaning": "Actual measurements and required scoped usability/target criteria are defined and satisfied for this drill.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D16-C03"
+        }
+      ],
+      "rows": [
+        {
+          "pattern": [
+            "F",
+            "-",
+            "-"
+          ],
+          "result": "BLOCK_MISSING_PREREQUISITES",
+          "meaning": "No drill/completeness claim without actual source/isolated scope.",
+          "status": "R",
+          "id": "RB-D16-R01"
+        },
+        {
+          "pattern": [
+            "U",
+            "-",
+            "-"
+          ],
+          "result": "UNPROVEN_RECOVERY_SOURCE",
+          "meaning": "No readiness assumption from backup existence or host capacity.",
+          "status": "R",
+          "id": "RB-D16-R02"
+        },
+        {
+          "pattern": [
+            "T",
+            "F",
+            "-"
+          ],
+          "result": "INCOMPLETE_RECOVERY",
+          "meaning": "Record actual gaps/failed checks; do not reactivate old grants or replay external effects by default.",
+          "status": "R",
+          "id": "RB-D16-R03"
+        },
+        {
+          "pattern": [
+            "T",
+            "U",
+            "-"
+          ],
+          "result": "UNCONFIRMED_RECOVERY_CHECKS",
+          "meaning": "Restored bytes alone do not establish usable recovery.",
+          "status": "R",
+          "id": "RB-D16-R04"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "F"
+          ],
+          "result": "TARGETS_NOT_MET",
+          "meaning": "Record actual missed criteria/limits, not blanket success.",
+          "status": "R",
+          "id": "RB-D16-R05"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "U"
+          ],
+          "result": "UNPROVEN_TARGET_RESULT",
+          "meaning": "No invented RPO/RTO or success without defined measured evidence.",
+          "status": "R",
+          "id": "RB-D16-R06"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "T"
+          ],
+          "result": "SCOPED_RECOVERY_DEMONSTRATED",
+          "meaning": "Record demonstrated scoped usable recovery with measurements/limits; no universal guarantee or live-restore authority.",
+          "status": "R",
+          "id": "RB-D16-R07"
+        }
+      ],
+      "requirement_ids": [
+        "BRL-D08",
+        "BRL-D09",
+        "BRL-D10",
+        "QSR-D10",
+        "QSR-D11",
+        "QSR-D12",
+        "QSR-D14",
+        "AFO-D12"
+      ],
+      "domain_keys": [
+        "backup",
+        "restore",
+        "grant",
+        "file"
+      ],
+      "state_models": [
+        "SM-M17",
+        "SM-M18"
+      ],
+      "activity_models": [
+        "CF-M16",
+        "CF-M17"
+      ],
+      "limits": "Backups are not configured. No backup provider, recovery target, retention number, live overwrite or automatic rights restoration is chosen.",
+      "diagram": true,
+      "diagram_name": "rule-rb-d16-decision"
+    },
+    {
+      "id": "RB-D17",
+      "title": "Meaningful language and historical time context",
+      "question": "May the selected language/time-dependent record be interpreted as the intended value?",
+      "conditions": [
+        {
+          "name": "Defined semantic role",
+          "meaning": "Requested manual language variant or relevant event/recorded/displayed-time role is identified under reviewed domain meaning.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D17-C01"
+        },
+        {
+          "name": "Actual value/context",
+          "meaning": "Exact intended variant/value and necessary language/time-zone/precision context are available where required by that domain operation.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D17-C02"
+        },
+        {
+          "name": "Provenance/correction",
+          "meaning": "Required original/corrected/history context remains distinguishable under applicable reviewed policy.",
+          "domain": [
+            "T",
+            "F",
+            "U"
+          ],
+          "id": "RB-D17-C03"
+        }
+      ],
+      "rows": [
+        {
+          "pattern": [
+            "F",
+            "-",
+            "-"
+          ],
+          "result": "REJECT_AMBIGUOUS_ROLE",
+          "meaning": "Do not conflate manual language content or event/recorded/displayed times.",
+          "status": "R",
+          "id": "RB-D17-R01"
+        },
+        {
+          "pattern": [
+            "U",
+            "-",
+            "-"
+          ],
+          "result": "UNRESOLVED_SEMANTICS",
+          "meaning": "Keep missing language/time meaning explicit.",
+          "status": "R",
+          "id": "RB-D17-R02"
+        },
+        {
+          "pattern": [
+            "T",
+            "F",
+            "-"
+          ],
+          "result": "UNAVAILABLE_VALUE",
+          "meaning": "Report missing/unavailable intended value without automatic translation or unrelated fallback.",
+          "status": "R",
+          "id": "RB-D17-R03"
+        },
+        {
+          "pattern": [
+            "T",
+            "U",
+            "-"
+          ],
+          "result": "UNPROVEN_VALUE_CONTEXT",
+          "meaning": "Do not guess time-zone, event order or variant identity.",
+          "status": "R",
+          "id": "RB-D17-R04"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "F"
+          ],
+          "result": "INVALID_HISTORY_MEANING",
+          "meaning": "Do not silently overwrite represented actual event/material meaning.",
+          "status": "R",
+          "id": "RB-D17-R05"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "U"
+          ],
+          "result": "UNRESOLVED_PROVENANCE",
+          "meaning": "Keep uncertain correction/event context visible.",
+          "status": "R",
+          "id": "RB-D17-R06"
+        },
+        {
+          "pattern": [
+            "T",
+            "T",
+            "T"
+          ],
+          "result": "INTERPRETABLE_SCOPED_VALUE",
+          "meaning": "Use only established domain-specific meaning; this does not choose universal timestamp/language storage fields.",
+          "status": "R",
+          "id": "RB-D17-R07"
+        }
+      ],
+      "requirement_ids": [
+        "BRL-D05",
+        "BRL-D07",
+        "BRL-D10",
+        "PRP-D07",
+        "PDF-D02",
+        "APP-D05",
+        "APP-D06",
+        "EGC-D07",
+        "EGC-D10"
+      ],
+      "domain_keys": [
+        "language",
+        "activity",
+        "application",
+        "submission",
+        "material"
+      ],
+      "state_models": [
+        "SM-M06",
+        "SM-M07",
+        "SM-M10",
+        "SM-M18"
+      ],
+      "activity_models": [
+        "CF-M04",
+        "CF-M05",
+        "CF-M06",
+        "CF-M08"
+      ],
+      "limits": "Apply this template to one specific language-dependent or time-dependent decision, not a requirement for both on every record. No automatic translation, timezone value, ordering precision or storage schema is selected.",
+      "diagram": false
+    },
+    {
+      "id": "RB-D18",
+      "title": "Truthful observed result wording",
+      "question": "What may be reported from the normalized evidence disposition for this exact operation?",
+      "conditions": [
+        {
+          "name": "Evidence disposition",
+          "meaning": "Mutually exclusive normalized outcome of evidence assessment, not raw facts presumed mutually exclusive.",
+          "domain": [
+            "Confirmed required effect",
+            "Definite failed disposition",
+            "Bounded partial effects",
+            "Confirmed pending",
+            "Unconfirmed effect",
+            "Denied before effect",
+            "Contradictory evidence"
+          ],
+          "id": "RB-D18-C01"
+        }
+      ],
+      "rows": [
+        {
+          "pattern": [
+            "Confirmed required effect"
+          ],
+          "result": "CONFIRMED_RESULT",
+          "meaning": "Report only required confirmed effect; no inferred recipient reading, universal deployment success or recovery guarantee.",
+          "status": "R",
+          "id": "RB-D18-R01"
+        },
+        {
+          "pattern": [
+            "Definite failed disposition"
+          ],
+          "result": "DEFINITE_FAILURE",
+          "meaning": "Report definite failure with known effects; failure does not universally prove rollback/old subject state.",
+          "status": "R",
+          "id": "RB-D18-R02"
+        },
+        {
+          "pattern": [
+            "Bounded partial effects"
+          ],
+          "result": "PARTIAL_RESULT",
+          "meaning": "Report confirmed partial effects and remaining uncertainty; do not claim full success or full removal.",
+          "status": "R",
+          "id": "RB-D18-R03"
+        },
+        {
+          "pattern": [
+            "Confirmed pending"
+          ],
+          "result": "PENDING",
+          "meaning": "Report same operation still pending/in progress; observation end is not subject termination.",
+          "status": "R",
+          "id": "RB-D18-R04"
+        },
+        {
+          "pattern": [
+            "Unconfirmed effect"
+          ],
+          "result": "UNKNOWN_RESULT",
+          "meaning": "Reconcile attributable same operation; no automatic resend/restart/retry or assumption unchanged.",
+          "status": "R",
+          "id": "RB-D18-R05"
+        },
+        {
+          "pattern": [
+            "Denied before effect"
+          ],
+          "result": "DENIED",
+          "meaning": "Report denied intended prohibited effect; do not imply a previous unknown operation was rolled back.",
+          "status": "R",
+          "id": "RB-D18-R06"
+        },
+        {
+          "pattern": [
+            "Contradictory evidence"
+          ],
+          "result": "UNRESOLVED_EVIDENCE",
+          "meaning": "Do not fabricate normalized certainty; reconcile permitted authoritative evidence before consequential action.",
+          "status": "R",
+          "id": "RB-D18-R07"
+        }
+      ],
+      "requirement_ids": [
+        "BRL-D06",
+        "BRL-D07",
+        "BRL-D08",
+        "BRL-D09",
+        "EIF-D08",
+        "AFO-D07",
+        "AFO-D09",
+        "QSR-D08"
+      ],
+      "domain_keys": [
+        "audit",
+        "grant",
+        "file",
+        "policy"
+      ],
+      "state_models": [
+        "SM-M18"
+      ],
+      "activity_models": [
+        "CF-M17"
+      ],
+      "limits": "This table governs report meaning after evidence assessment, not a mechanism that derives truthful facts from arbitrary logs. Inconsistent/unsupported raw evidence stays unresolved; reporting eligibility does not grant protected evidence access.",
+      "diagram": false
+    }
+  ],
+  "decision_count": 18,
+  "row_count": 131,
+  "input_sha256": {
+    "docs/SDLC/01-project-planning/01-purpose-and-objectives.md": "072a1c98d43b5d53eb37ec2d5f26646dc3bdf3f67e0d7656347f4988a434e37c",
+    "docs/SDLC/01-project-planning/02-scope.md": "33b218141cef0799afe61adc098b7c42e6eb3ee9b1826c1b3d03f926b332dd82",
+    "docs/SDLC/01-project-planning/03-stakeholders-and-responsibilities.md": "74eefec6d54ce1c42a28528af7c39b0a600ebd3da5fa462150485d7469a3f8bf",
+    "docs/SDLC/01-project-planning/04-deliverables.md": "fa398d2c11e2ce3acd337c60d240f4d313f8385d7a46246fecf82ca6950c0284",
+    "docs/SDLC/01-project-planning/05-resources-and-constraints.md": "60fcfc5db21fcaf662e67f66b4667c7b6d75a98cc61d9f6e89999e3d6b57670c",
+    "docs/SDLC/01-project-planning/06-assumptions-and-dependencies.md": "917d3ba25e202c6c788818edac5dc97f8ac08a0e4c0ba76a539fac93f5326df1",
+    "docs/SDLC/01-project-planning/07-risks.md": "05eef4ef225f98bace7aaf8584bef8450c0629ae7ba4a6a2790326bb5bc2ccfb",
+    "docs/SDLC/01-project-planning/08-roadmap-and-milestones.md": "b7fafd073bb46c0cc441248eb7185865ca201881cbd659196553ead38729d08f",
+    "docs/SDLC/01-project-planning/09-working-method-and-change-control.md": "a5ec86e7d887b6c1acafae221c2c23e62cc6c8523bbe52d9a2619e7fdf9bfaa2",
+    "docs/SDLC/01-project-planning/10-planning-completion-criteria.md": "3396822ea3b2b74d99cad56d794ff5ca143ca88554d0552b7a4564c3886b4e65",
+    "docs/SDLC/01-project-planning/11-capacity-and-preliminary-sizing.md": "7ae3efcee720b21f15b361349c63a37743e78e4d52f7c76baa1508d6fee92723",
+    "docs/SDLC/01-project-planning/decision-register.md": "8ff602eddc2679e68985f23d462a458d436e0a36b980fa08cdaa21722f97241b",
+    "docs/SDLC/01-project-planning/project-plan.md": "dfa957970bc01b296013ffbdb65510244ad4ebf95dd359b181f6962f4d47f1dc",
+    "docs/SDLC/01-project-planning/README.md": "f99c00dc02ffd3f8c9418e83e68f48e2fc59f675a9e1b46fdb8f34e5c0fe6019",
+    "docs/SDLC/02-requirements-engineering/README.md": "38b16e6cb87cd8f0e4b923ad0c0950e7e2047b8cdc602e740cb6ab94456fe954",
+    "docs/SDLC/02-requirements-engineering/01-process-and-approach/01-requirements-approach.md": "a0a789d663d6417aef001f4ff89a264980e097245282c16edc8fdd10e1039bf9",
+    "docs/SDLC/02-requirements-engineering/01-process-and-approach/02-feasibility-study.md": "553a92fb8a8d594cb46079a259b87e558ca6b63a9ce5c04f9465b3a5092031cf",
+    "docs/SDLC/02-requirements-engineering/01-process-and-approach/03-requirements-elicitation.md": "ed07bfae14d1eb7270e1e668b442c9657dea70362fefce60fdf164ebd009a07f",
+    "docs/SDLC/02-requirements-engineering/01-process-and-approach/04-analysis-and-negotiation.md": "e003c14579d8497bbac8d4f62b71723c3a17e3021e06e40a7f42fd7f874e589e",
+    "docs/SDLC/02-requirements-engineering/01-process-and-approach/05-requirements-specification.md": "e747e0073c03334c518db39e73ebb1e4875509d60e9f06691129174cb68da7f9",
+    "docs/SDLC/02-requirements-engineering/01-process-and-approach/06-requirements-verification-and-validation.md": "3ff714b629ee03eb245d2b782cb53392089e12f6bad605d2471ee7b935f328c2",
+    "docs/SDLC/02-requirements-engineering/01-process-and-approach/07-requirements-management.md": "2e78f361007f03b15cac26070ecf82e8bbf34419abb7bf2382999484b513552c",
+    "docs/SDLC/02-requirements-engineering/01-process-and-approach/README.md": "f824fb7ebc2f7b0df4a11d9f0a3254e29f090ac1e01378823f9bc846ee36e5d5",
+    "docs/SDLC/02-requirements-engineering/02-stakeholders-and-elicitation/actors-and-system-context.md": "1f95b5adb9ddedcccb486d5eb78cf49f1377d3ca16c0bb9a3fd4d194a4bfc71f",
+    "docs/SDLC/02-requirements-engineering/02-stakeholders-and-elicitation/elicitation-log.md": "cf035242b2f00fb04ed96509cbf148ea415277b35e944833db5bd80a43d4c198",
+    "docs/SDLC/02-requirements-engineering/02-stakeholders-and-elicitation/elicitation-plan-and-techniques.md": "abb6b70d6a887e065fd74e8c614a98205a2b222cbf8c52c86b4fd78002f4c917",
+    "docs/SDLC/02-requirements-engineering/02-stakeholders-and-elicitation/README.md": "dd9ebace2e8b1529820f1a32c817a0525c08afbfd62df7afdafc640dd8df4e28",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md": "d3f8d0b9719f0b60bd008207d362c0f78fd7d0449d755c540c52ab8481bce634",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md": "21064f4cf533b5fdc215d31e943ae9128d1e843c958647f4f0a576785afb261c",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-requirements.md": "9ab0bc50255d5bdacd1165ecbaf315c1dc6ccfed352bd18ee5dba83f6912010b",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md": "0825abe597c9e532cb634569404b61ad8ce29f31dc66e8b7f2afd653892c1570",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/domain-requirements-and-constraints.md": "7f66bc21a824aea3a5613a70843f602b6adb6f0527cd65e0142137048138d906",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md": "dafa6a97e11856c01fcc8462c349d9064c8e962c0cb8e3472abcfbea0ebae173",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md": "a23048e2e5c238c309f054e598c410481def3be7cf28eeab1b92c29bfb654dad",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md": "a3e87d9df789b0caad43c46797794dd8e5936d283966cdca6d2f172ebdde47e8",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md": "e7cc09e5e00547dbd5bf0991d817060d053981b7bd866633da29812760505169",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md": "3ce305eea7fadd531c5ed33aa83c82a92f339854a0efc54d9a65c8bb252eb0cd",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md": "20296582867db99cfb410c613fa95067c41bd3535e4f260b6b8f09a03f487fbb",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md": "671670ee2aa9e2f26bac52ecfd7824279053a1b3277f21dd14d2ee6ff6482e18",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md": "fbd72aa41df3170e19280ec13ebf3c96b73aa131c311fd4c64ea9687a4bc6412",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/README.md": "d37f402bd5d6f6339b890a9c27fe8e6ddebafad86e1086dcb6bad374a158de95",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/requirements-priority-and-readiness.md": "09432d16fb9d833024cd35339c5fda92f5ecfbd1199302aca9bd06fcdacc4ca6",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/requirements-specification.md": "f95f61114a624aae571fe62685133c7b5b4cce9ac3479d13b8237bff4a192118",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md": "87079c565ce8007f6879e79f32a2e9ca56a0ace57e9f2f1df8c17e3d7592ffcf",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md": "ae3dd6e364d53bb608fe2d1c501d02fbb40f53833c354dda36e71b3464a8b226",
+    "docs/SDLC/02-requirements-engineering/04-scenarios-and-models/README.md": "78cb9aa94457721d1cd7c9ddb15fbd23c010bdcfb7204887cea580a2f59fa9e7",
+    "docs/SDLC/02-requirements-engineering/04-scenarios-and-models/user-stories-and-scenarios.md": "05e2c0a8ea741070004d8a97056d8cd77ac0cf8b78a4504354377cdbaab232a3",
+    "docs/SDLC/02-requirements-engineering/05-data-definitions/data-dictionary.md": "eab192fb32c0c81d5d0e0bc481d4d2c0e66ad6cfafbf27f4ab8f9f25913338ce",
+    "docs/SDLC/02-requirements-engineering/05-data-definitions/glossary.md": "14964bd9a89f4ec09ecafa1cf75e3e68b9facf011aec37163d8def119ef9dcea",
+    "docs/SDLC/02-requirements-engineering/05-data-definitions/README.md": "1be25944c80ac43a07a40229e39da308c00bace8a43c898f81f3bbe55868c4c8",
+    "docs/SDLC/02-requirements-engineering/06-validation-and-traceability/README.md": "baa0817f80fd3b446068ca67cd3bd1a520ad70fd132efab659a1a95cb1b4dcd0",
+    "docs/SDLC/02-requirements-engineering/06-validation-and-traceability/remaining-gate-assessment.md": "f803829115ff461ad43cb7bf4c07d425c3ce598d524e7576a49b37c0b76c84b4",
+    "docs/SDLC/02-requirements-engineering/06-validation-and-traceability/requirements-traceability.md": "da93fa95b9badffa5731f190d05a15c7d599a2c70990cbf29f62e2e5fdca3b85",
+    "docs/SDLC/02-requirements-engineering/06-validation-and-traceability/review-plan-and-findings.md": "29c26a5a11aa702359e25c09aa4de43c300235adf0b67ec72b77f561e579ef93",
+    "docs/SDLC/02-requirements-engineering/07-change-and-baseline/change-control.md": "fe48c6f1bb86d30caba0d05c7950a7ff38f31f486dd3c16c6ae4f43a40cdf0c2",
+    "docs/SDLC/02-requirements-engineering/07-change-and-baseline/open-questions-and-decisions.md": "dc0a8f850988cda96998ed0cd7b61e03966428b0a977ec9fb31a24a15a89853f",
+    "docs/SDLC/02-requirements-engineering/07-change-and-baseline/README.md": "c3e6e92ceb79f91a9917e8f1d8bd9aa095ab65afff455c69258dcf3ed8c5c122",
+    "docs/SDLC/02-requirements-engineering/07-change-and-baseline/requirements-answer-review.md": "020e24b92f79f8c71db29b60c54bce81537850843255eb2beac38361bdb3a0fd",
+    "docs/SDLC/02-requirements-engineering/07-change-and-baseline/requirements-review-and-baseline-criteria.md": "fd5b06a8ad6dd0cb93d232043d9ec3bce2b1aafbd0a0b68c11b8ce907dde5044",
+    "docs/SDLC/02-requirements-engineering/diagrams/README.md": "9ee19cc77d63f0d8e3d01a0cf84ebbd291a61dba8a95f65116e6411ad7abaef4",
+    "docs/SDLC/02-requirements-engineering/templates/requirement-template.md": "a8e19514c8d8618b538b31e0cea5f1f61d9301e573e7cb378b30a468425da13d",
+    "docs/SDLC/02-requirements-engineering/templates/scenario-template.md": "08fdf2167b8dae97c1d105e3fec88cd685a841a970e4be7d94fd8bf5ce5504f1",
+    "docs/SDLC/02-requirements-engineering/templates/story-template.md": "9cfbde67a8a9db25e6e43f323159033dcae027bd084aceddd8bccbe90ae03bbb",
+    "docs/SDLC/03-system-analysis/03-domain-model-and-object-oriented-view.md": "669776993c881e9e904494d9abc8316d7497ea089bb5380286bce2febec48641",
+    "docs/SDLC/03-system-analysis/05-data-oriented-view.md": "7c530462ebaf7609bfc22fb693d32e4a9ed9b26c249574e1bb21ad529aea2035",
+    "docs/SDLC/03-system-analysis/06-scenario-based-view.md": "d845d590bbe79dc478b28573239217094629c400d1ec8466302970e5eb95f429",
+    "docs/SDLC/03-system-analysis/07-state-based-view.md": "44cb366af505f941702dc3cb0edc62f2d0459297004bbbeaeb455e662f0d7d1e",
+    "docs/SDLC/03-system-analysis/08-control-flow-based-view.md": "6533423d0105f368f47a91dd61f96ec1622ef36807717fcbb997e9a8eb9c2033",
+    "docs/SDLC/03-system-analysis/evidence/domain-model-review-2026-11-01.json": "db887103f0e0173be2ec4f664d592c5c92d178029deee478c6251e79590ad8c3",
+    "docs/SDLC/03-system-analysis/evidence/scenario-based-review-2026-11-01.json": "ff131aad1b1215d3c6087c0438a3b73f52b133d8e0818efa795eb497f0114bf6",
+    "docs/SDLC/03-system-analysis/evidence/state-based-review-2026-11-01.json": "a3653226ba7e9af60806d2f9ca21c3363530b81698a49efe54f7deb800c131ba",
+    "docs/SDLC/03-system-analysis/evidence/control-flow-review-2026-11-01.json": "dc3f4519b1231c6575c8a560b48f9384622fb06ecd2da6747efaec22d1c4a596"
+  },
+  "limits": "Finite-domain partition/document checks; not real predicate truth, product tests or full criterion coverage",
+  "actual_artifact_checks": {
+    "local_references": 6728,
+    "missing_targets": 0,
+    "rendered_models": 8,
+    "decision_tables": 18,
+    "decision_rows": 131,
+    "declared_combinations": 483,
+    "partition_audits": {
+      "RB-D01": {
+        "combinations": 27,
+        "rules": 7,
+        "uncovered": 0,
+        "overlaps": 0,
+        "unreachable_rules": 0,
+        "combination_hits_per_rule": {
+          "RB-D01-R01": 9,
+          "RB-D01-R02": 9,
+          "RB-D01-R03": 3,
+          "RB-D01-R04": 3,
+          "RB-D01-R05": 1,
+          "RB-D01-R06": 1,
+          "RB-D01-R07": 1
+        }
+      },
+      "RB-D02": {
+        "combinations": 27,
+        "rules": 11,
+        "uncovered": 0,
+        "overlaps": 0,
+        "unreachable_rules": 0,
+        "combination_hits_per_rule": {
+          "RB-D02-R01": 9,
+          "RB-D02-R02": 3,
+          "RB-D02-R03": 3,
+          "RB-D02-R04": 1,
+          "RB-D02-R05": 1,
+          "RB-D02-R06": 1,
+          "RB-D02-R07": 3,
+          "RB-D02-R08": 3,
+          "RB-D02-R09": 1,
+          "RB-D02-R10": 1,
+          "RB-D02-R11": 1
+        }
+      },
+      "RB-D03": {
+        "combinations": 8,
+        "rules": 8,
+        "uncovered": 0,
+        "overlaps": 0,
+        "unreachable_rules": 0,
+        "combination_hits_per_rule": {
+          "RB-D03-R01": 1,
+          "RB-D03-R02": 1,
+          "RB-D03-R03": 1,
+          "RB-D03-R04": 1,
+          "RB-D03-R05": 1,
+          "RB-D03-R06": 1,
+          "RB-D03-R07": 1,
+          "RB-D03-R08": 1
+        }
+      },
+      "RB-D04": {
+        "combinations": 27,
+        "rules": 7,
+        "uncovered": 0,
+        "overlaps": 0,
+        "unreachable_rules": 0,
+        "combination_hits_per_rule": {
+          "RB-D04-R01": 9,
+          "RB-D04-R02": 9,
+          "RB-D04-R03": 3,
+          "RB-D04-R04": 3,
+          "RB-D04-R05": 1,
+          "RB-D04-R06": 1,
+          "RB-D04-R07": 1
+        }
+      },
+      "RB-D05": {
+        "combinations": 9,
+        "rules": 5,
+        "uncovered": 0,
+        "overlaps": 0,
+        "unreachable_rules": 0,
+        "combination_hits_per_rule": {
+          "RB-D05-R01": 3,
+          "RB-D05-R02": 3,
+          "RB-D05-R03": 1,
+          "RB-D05-R04": 1,
+          "RB-D05-R05": 1
+        }
+      },
+      "RB-D06": {
+        "combinations": 27,
+        "rules": 7,
+        "uncovered": 0,
+        "overlaps": 0,
+        "unreachable_rules": 0,
+        "combination_hits_per_rule": {
+          "RB-D06-R01": 9,
+          "RB-D06-R02": 9,
+          "RB-D06-R03": 3,
+          "RB-D06-R04": 3,
+          "RB-D06-R05": 1,
+          "RB-D06-R06": 1,
+          "RB-D06-R07": 1
+        }
+      },
+      "RB-D07": {
+        "combinations": 27,
+        "rules": 7,
+        "uncovered": 0,
+        "overlaps": 0,
+        "unreachable_rules": 0,
+        "combination_hits_per_rule": {
+          "RB-D07-R01": 9,
+          "RB-D07-R02": 9,
+          "RB-D07-R03": 3,
+          "RB-D07-R04": 3,
+          "RB-D07-R05": 1,
+          "RB-D07-R06": 1,
+          "RB-D07-R07": 1
+        }
+      },
+      "RB-D08": {
+        "combinations": 81,
+        "rules": 9,
+        "uncovered": 0,
+        "overlaps": 0,
+        "unreachable_rules": 0,
+        "combination_hits_per_rule": {
+          "RB-D08-R01": 27,
+          "RB-D08-R02": 27,
+          "RB-D08-R03": 9,
+          "RB-D08-R04": 9,
+          "RB-D08-R05": 3,
+          "RB-D08-R06": 3,
+          "RB-D08-R07": 1,
+          "RB-D08-R08": 1,
+          "RB-D08-R09": 1
+        }
+      },
+      "RB-D09": {
+        "combinations": 27,
+        "rules": 7,
+        "uncovered": 0,
+        "overlaps": 0,
+        "unreachable_rules": 0,
+        "combination_hits_per_rule": {
+          "RB-D09-R01": 9,
+          "RB-D09-R02": 9,
+          "RB-D09-R03": 3,
+          "RB-D09-R04": 3,
+          "RB-D09-R05": 1,
+          "RB-D09-R06": 1,
+          "RB-D09-R07": 1
+        }
+      },
+      "RB-D10": {
+        "combinations": 27,
+        "rules": 7,
+        "uncovered": 0,
+        "overlaps": 0,
+        "unreachable_rules": 0,
+        "combination_hits_per_rule": {
+          "RB-D10-R01": 9,
+          "RB-D10-R02": 9,
+          "RB-D10-R03": 3,
+          "RB-D10-R04": 3,
+          "RB-D10-R05": 1,
+          "RB-D10-R06": 1,
+          "RB-D10-R07": 1
+        }
+      },
+      "RB-D11": {
+        "combinations": 27,
+        "rules": 7,
+        "uncovered": 0,
+        "overlaps": 0,
+        "unreachable_rules": 0,
+        "combination_hits_per_rule": {
+          "RB-D11-R01": 9,
+          "RB-D11-R02": 9,
+          "RB-D11-R03": 3,
+          "RB-D11-R04": 3,
+          "RB-D11-R05": 1,
+          "RB-D11-R06": 1,
+          "RB-D11-R07": 1
+        }
+      },
+      "RB-D12": {
+        "combinations": 27,
+        "rules": 7,
+        "uncovered": 0,
+        "overlaps": 0,
+        "unreachable_rules": 0,
+        "combination_hits_per_rule": {
+          "RB-D12-R01": 9,
+          "RB-D12-R02": 9,
+          "RB-D12-R03": 3,
+          "RB-D12-R04": 3,
+          "RB-D12-R05": 1,
+          "RB-D12-R06": 1,
+          "RB-D12-R07": 1
+        }
+      },
+      "RB-D13": {
+        "combinations": 27,
+        "rules": 7,
+        "uncovered": 0,
+        "overlaps": 0,
+        "unreachable_rules": 0,
+        "combination_hits_per_rule": {
+          "RB-D13-R01": 9,
+          "RB-D13-R02": 9,
+          "RB-D13-R03": 3,
+          "RB-D13-R04": 3,
+          "RB-D13-R05": 1,
+          "RB-D13-R06": 1,
+          "RB-D13-R07": 1
+        }
+      },
+      "RB-D14": {
+        "combinations": 27,
+        "rules": 7,
+        "uncovered": 0,
+        "overlaps": 0,
+        "unreachable_rules": 0,
+        "combination_hits_per_rule": {
+          "RB-D14-R01": 9,
+          "RB-D14-R02": 9,
+          "RB-D14-R03": 3,
+          "RB-D14-R04": 3,
+          "RB-D14-R05": 1,
+          "RB-D14-R06": 1,
+          "RB-D14-R07": 1
+        }
+      },
+      "RB-D15": {
+        "combinations": 27,
+        "rules": 7,
+        "uncovered": 0,
+        "overlaps": 0,
+        "unreachable_rules": 0,
+        "combination_hits_per_rule": {
+          "RB-D15-R01": 9,
+          "RB-D15-R02": 9,
+          "RB-D15-R03": 3,
+          "RB-D15-R04": 3,
+          "RB-D15-R05": 1,
+          "RB-D15-R06": 1,
+          "RB-D15-R07": 1
+        }
+      },
+      "RB-D16": {
+        "combinations": 27,
+        "rules": 7,
+        "uncovered": 0,
+        "overlaps": 0,
+        "unreachable_rules": 0,
+        "combination_hits_per_rule": {
+          "RB-D16-R01": 9,
+          "RB-D16-R02": 9,
+          "RB-D16-R03": 3,
+          "RB-D16-R04": 3,
+          "RB-D16-R05": 1,
+          "RB-D16-R06": 1,
+          "RB-D16-R07": 1
+        }
+      },
+      "RB-D17": {
+        "combinations": 27,
+        "rules": 7,
+        "uncovered": 0,
+        "overlaps": 0,
+        "unreachable_rules": 0,
+        "combination_hits_per_rule": {
+          "RB-D17-R01": 9,
+          "RB-D17-R02": 9,
+          "RB-D17-R03": 3,
+          "RB-D17-R04": 3,
+          "RB-D17-R05": 1,
+          "RB-D17-R06": 1,
+          "RB-D17-R07": 1
+        }
+      },
+      "RB-D18": {
+        "combinations": 7,
+        "rules": 7,
+        "uncovered": 0,
+        "overlaps": 0,
+        "unreachable_rules": 0,
+        "combination_hits_per_rule": {
+          "RB-D18-R01": 1,
+          "RB-D18-R02": 1,
+          "RB-D18-R03": 1,
+          "RB-D18-R04": 1,
+          "RB-D18-R05": 1,
+          "RB-D18-R06": 1,
+          "RB-D18-R07": 1
+        }
+      }
+    },
+    "render_dimensions": {
+      "rule-rb-d01-decision": [
+        1141,
+        502
+      ],
+      "rule-rb-d04-decision": [
+        1269,
+        502
+      ],
+      "rule-rb-d06-decision": [
+        1302,
+        502
+      ],
+      "rule-rb-d07-decision": [
+        1407,
+        519
+      ],
+      "rule-rb-d11-decision": [
+        1276,
+        502
+      ],
+      "rule-rb-d12-decision": [
+        1455,
+        502
+      ],
+      "rule-rb-d15-decision": [
+        1475,
+        502
+      ],
+      "rule-rb-d16-decision": [
+        1541,
+        502
+      ]
+    },
+    "source_hashes_unchanged": true,
+    "limits": "Abstract finite-domain partitioning, not real predicate truth or product execution; selected semantic examples are model checks"
+  }
+}

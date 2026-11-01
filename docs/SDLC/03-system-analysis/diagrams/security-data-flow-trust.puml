@@ -1,0 +1,47 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #486777
+skinparam ArrowFontSize 12
+skinparam rectangleBackgroundColor #EEF5FA
+skinparam rectangleBorderColor #486777
+skinparam packageBackgroundColor #F7FAFC
+skinparam packageBorderColor #486777
+skinparam componentBackgroundColor #EEF5FA
+skinparam noteBackgroundColor #FFF3DA
+skinparam noteBorderColor #B59865
+skinparam nodesep 35
+skinparam ranksep 45
+skinparam padding 8
+title Trust-boundary DFD — logical protections to establish
+left to right direction
+rectangle "Untrusted entry zone" {
+ rectangle "Browser / Git client\nUploaded content / workflow code" as client
+}
+rectangle "Product authority boundary" {
+ usecase "Authorize exact\nresource / action / state" as auth
+ usecase "Perform eligible operation" as op
+ database "Protected logical information" as store
+}
+rectangle "External provider / target boundary" {
+ rectangle "Selected provider\nSeparately authorized target" as external
+}
+rectangle "Conditional code execution boundary" {
+ usecase "Admit eligible attempt\nIsolation must be proven" as run
+}
+client --> auth : identity + untrusted intent/content
+auth --> op : eligible scoped context
+store --> op : permitted information
+op --> store : confirmed scoped record change
+op --> client : permitted result / content
+op --> external : selected authorized exchange
+external --> op : attributable result / unknown effect
+op --> run : eligible revision + bounded authority
+run --> op : untrusted output + attempt evidence
+
+legend bottom
+Boundaries express required trust separation, not configured firewalls or proven runner isolation.
+endlegend
+@enduml

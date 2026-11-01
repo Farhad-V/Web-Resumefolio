@@ -1,0 +1,43 @@
+@startuml
+title Resumefolio | Google operation outcomes
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #64748B
+skinparam activity {
+ BackgroundColor #DBEAFE
+ BorderColor #64748B
+ FontColor #17324D
+ DiamondBackgroundColor #FEF3C7
+ DiamondBorderColor #B45309
+ StartColor #17324D
+ EndColor #17324D
+}
+start
+:Identify intended operation, user and selected account / calendar;
+if (Product authority and provider grant valid?) then (yes)
+ :Check operation-specific inputs and user intent;
+ if (Defined conditions satisfied?) then (yes)
+  :Perform bounded authorized provider work;
+  if (Result supported by provider evidence?) then (yes)
+   :Record actual accepted / rejected / partial result;
+  else (unknown)
+   :Preserve uncertainty and reconcile under agreed policy; <<#FEF3C7>>
+  endif
+  :Apply only effects established by the reconciled outcome;
+ else (no)
+  :Report invalid or incomplete request; <<#FEF3C7>>
+ endif
+else (no)
+ :Do not perform protected provider operation;
+ :Show permitted access / reconnect guidance; <<#FEF3C7>>
+endif
+:Show truthful bounded outcome without secrets;
+stop
+legend bottom
+Send acceptance is not recipient delivery or read confirmation.
+Uncertain outbound sends need reconciliation before retry.
+No actual account connection or provider operation is performed here.
+endlegend
+@enduml

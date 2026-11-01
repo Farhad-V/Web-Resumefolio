@@ -1,0 +1,37 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 8
+skinparam ArrowColor #526B7B
+skinparam ArrowFontSize 11
+skinparam stateBackgroundColor #EDF4FB
+skinparam stateBorderColor #526B7B
+skinparam stateStartColor #163E52
+skinparam stateEndColor #163E52
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam nodesep 38
+skinparam ranksep 48
+hide empty description
+top to bottom direction
+
+title SM-M08 — Usable provider capability versus disconnected data
+state "Not connected /\ndisconnected" as Disconnected
+state "Current provider capability\nusable" as Usable
+state "Provider capability\nunavailable" as Unavailable
+[*] --> Disconnected : scoped initial context
+Disconnected --> Usable : SM-T045 connection confirmed\n[actual authorized capability]
+Usable --> Unavailable : SM-T046 access lost / revoked\n[capability no longer usable]
+Usable --> Disconnected : SM-T047 disconnect confirmed\n[authorized / confirmed]
+Unavailable --> Disconnected : SM-T048 disconnect confirmed\n[authorized / confirmed]
+Unavailable --> Usable : SM-T049 reconnect verified\n[identity / permission\nverified]
+Usable --> Usable : SM-T050 grants re-evaluated\n[selected capability still valid]
+legend bottom
+A: accepted core behavior; P: existing proposal; R: proposed refinement.
+State labels are analysis abstractions, not implemented enums.
+Transition tables define full actor, guard, effect and status.
+Unconfirmed operation effects require SM-M18 reconciliation.
+endlegend
+@enduml

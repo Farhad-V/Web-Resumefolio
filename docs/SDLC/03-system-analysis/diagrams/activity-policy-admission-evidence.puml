@@ -1,0 +1,73 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam ArrowColor #526B7B
+skinparam activityBackgroundColor #EDF4FB
+skinparam activityBorderColor #526B7B
+skinparam activityDiamondBackgroundColor #FFF3DF
+skinparam activityDiamondBorderColor #B99557
+skinparam activityStartColor #163E52
+skinparam activityEndColor #163E52
+skinparam wrapWidth 190
+skinparam maxMessageSize 180
+
+title CF-M15 — Effective policy, file admission or restricted evidence
+start
+:CF-M15-S01\nInitiating actor\nActor requests one permitted\npolicy, file-admission or evidence\noperation. Admission refines\nsupporting file paths in the\nexisting scenarios rather than\nallocating a new external use\ncase.;
+if (CF-M15-S02\nExact current\nactor/resource/action authority\nvalid?) then (yes)
+if (CF-M15-S03\nRequest is policy change?) then (yes)
+:CF-M15-S04\nAdministrator\nIdentify intended policy scope and\nactual capacity constraints;
+:CF-M15-S05\nSystem\nValidate policy against actual\nresource/reference context;
+if (CF-M15-S06\nPolicy change valid under\napplicable capacity/reference\nconstraints?) then (yes)
+:CF-M15-S07\nSystem\nAttempt permitted effective policy\nchange;
+if (CF-M15-S08\nActual new effective policy\nconfirmed?) then (yes)
+:CF-M15-S09\nSystem\nReport effective policy; lower\nlimit does not silently delete\nhistory;
+stop
+else (no)
+:CF-M15-S10\nSystem\nReport failed/partial/unknown\npolicy effect; reconcile before\nusing new limits;
+stop
+endif
+else (no)
+:CF-M15-S11\nSystem\nReject invalid policy change; no\nsilent deletion or new effective-\nlimit claim;
+stop
+endif
+else (no)
+if (CF-M15-S12\nRequest is file admission?) then (yes)
+:CF-M15-S13\nSystem\nAssess current effective policy,\nactual content/usage and protected\nreferences;
+if (CF-M15-S14\nAdmission eligible under current\napplicable policy?) then (yes)
+:CF-M15-S15\nSystem\nProcess intended candidate without\nassuming usable completion;
+if (CF-M15-S16\nRequired usable result confirmed?) then (yes)
+:CF-M15-S17\nSystem\nReport admitted usable resource\nwith intended association;
+stop
+else (no)
+:CF-M15-S18\nSystem\nReport pending/failed/unknown\nresult; no usable artifact or\nfreed-space claim;
+stop
+endif
+else (no)
+:CF-M15-S19\nSystem\nReject candidate under applicable\nrule; preserve unrelated/protected\nhistory;
+stop
+endif
+else (no)
+:CF-M15-S20\nSystem\nSelect only permitted evidence\nscope and sensitive-content\nboundaries;
+:CF-M15-S21\nSystem\nRetrieve bounded evidence without\nexposing secrets or unrelated data;
+if (CF-M15-S22\nPermitted retrieval confirmed?) then (yes)
+:CF-M15-S23\nSystem\nReport only bounded available\nevidence;
+stop
+else (no)
+:CF-M15-S24\nSystem\nReport unavailable/incomplete\nretrieval; no invented audit\ncompleteness;
+stop
+endif
+endif
+endif
+else (no)
+:CF-M15-S25\nSystem\nDeny before prohibited effect or\nprotected disclosure; report unmet\ngate;
+stop
+endif
+legend bottom
+A: accepted profile core only. Other policy detail: P / proposed refinement.
+Step IDs identify full descriptions in the activity view.
+Logical ordering; no atomicity, runtime, timing or execution proof.
+endlegend
+@enduml

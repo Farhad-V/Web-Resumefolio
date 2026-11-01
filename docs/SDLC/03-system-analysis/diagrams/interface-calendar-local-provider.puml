@@ -1,0 +1,34 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam ArrowColor #526B7B
+skinparam rectangleBackgroundColor #EDF4FB
+skinparam rectangleBorderColor #526B7B
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam nodesep 38
+skinparam ranksep 45
+left to right direction
+
+title IF-05 — Calendar provider and local mapping
+rectangle "Activity owner / local intent" as User
+rectangle "Resumefolio local activity /\nselected mapping context" as Product
+rectangle "Selected Google Calendar;\nconditional actual capability" as Calendar
+User -[hidden]right-> Product
+User --> Product : Local change/unlink OR\nselected provider action
+Product --> Calendar : Only separately eligible\nintended provider operation
+Calendar --> Product : Event/version/time /\nchanged-access / actual result
+Product --> User : Local result OR\nfresh/stale/conflict/unknown\nmapping
+note bottom of Product
+Local unlink needs no active provider write capability.
+Local unlink does not delete provider event.
+Reconnect does not automatically refresh/replay; conflicts stay explicit.
+end note
+legend bottom
+Logical boundary/exchange meaning; not software components or chosen protocol/schema.
+Full direction, identity, authority, failure, compatibility and evidence limits are in document 12.
+Proposed details remain proposed. No real provider, Git, execution, delivery or recovery action performed.
+endlegend
+@enduml

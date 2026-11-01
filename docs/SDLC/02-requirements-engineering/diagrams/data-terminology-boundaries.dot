@@ -1,0 +1,27 @@
+digraph terms {
+ graph [rankdir=LR,bgcolor="white",pad=0.3,nodesep=0.45,ranksep=0.7,fontname="Arial",fontsize=20,label="Resumefolio | Keep overloaded meanings distinct",labelloc=t];
+ node [shape=box,style="rounded,filled",fillcolor="#DBEAFE",color="#64748B",fontcolor="#17324D",fontname="Arial",fontsize=13,margin="0.18,0.14"];
+ edge [color="#64748B",fontname="Arial",fontsize=11,fontcolor="#17324D",dir=none];
+ source [label="Editable source / current rendition"];
+ hist [label="Actual submitted set
+Later source edits do not overwrite",fillcolor="#DCFCE7"];
+ auth [label="Authentication / membership"];
+ grant [label="Resource + action authorization
+No unrelated private grant",fillcolor="#EDE9FE"];
+ task [label="Task / card position"];
+ accepted [label="Item acceptance / Sprint outcome
+Explicit conditions, goal + items + plan",fillcolor="#EDE9FE"];
+ provider [label="Provider acceptance / unknown response"];
+ delivered [label="Delivery / read confirmation
+Only evidence-supported claims",fillcolor="#FEF3C7"];
+ backup [label="Backup material / recovery point"];
+ restore [label="Demonstrated usable recovery
+Integrity + safe restored access + targets",fillcolor="#DCFCE7"];
+ source -> hist [label="distinct"];
+ auth -> grant [label="distinct"];
+ task -> accepted [label="distinct"];
+ provider -> delivered [label="distinct"];
+ backup -> restore [label="distinct"];
+ {rank=same;source;auth;task;provider;backup;}
+ {rank=same;hist;grant;accepted;delivered;restore;}
+}

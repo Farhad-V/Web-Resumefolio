@@ -1,0 +1,54 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam ArrowColor #526B7B
+skinparam activityBackgroundColor #EDF4FB
+skinparam activityBorderColor #526B7B
+skinparam activityDiamondBackgroundColor #FFF3DF
+skinparam activityDiamondBorderColor #B99557
+skinparam activityStartColor #163E52
+skinparam activityEndColor #163E52
+skinparam wrapWidth 190
+skinparam maxMessageSize 180
+
+title CF-M09 — Refinement, Sprint planning and Sprint completion
+start
+:CF-M09-S01\nInitiating actor\nAuthorized participant requests\nrefinement, Sprint-plan change or\na separate Sprint-end action.;
+if (CF-M09-S02\nCurrent project/item/Sprint\nauthority and applicable state\nvalid?) then (yes)
+if (CF-M09-S03\nRequest is item refinement?) then (yes)
+:CF-M09-S04\nParticipant\nClarify item outcome/criteria and\nrefine tasks;
+:CF-M09-S05\nSystem\nRetain item/task relationships and\nseparate progress/acceptance;
+:CF-M09-S06\nSystem\nUse CF-M17 to classify actual\nresult; return only evidence-\nsupported effect;
+stop
+else (no)
+if (CF-M09-S07\nRequest is Sprint end/cancel?) then (yes)
+:CF-M09-S08\nParticipant\nRecord actual period outcome, goal\nresult and item disposition;
+:CF-M09-S09\nSystem\nRetain incomplete work; require\nexplicit disposition without\nautomatic carryover;
+:CF-M09-S10\nSystem\nApply reviewed permitted Sprint\ntransition;
+:CF-M09-S11\nSystem\nUse CF-M17 to classify actual\nresult; return only evidence-\nsupported effect;
+stop
+else (no)
+:CF-M09-S12\nParticipant\nIdentify coherent Sprint Goal,\nselected items and delivery plan;
+:CF-M09-S13\nSystem\nEvaluate readiness separately from\nTo do/In progress/Done;
+if (CF-M09-S14\nSelection/plan change permitted\nand coherent?) then (yes)
+:CF-M09-S15\nSystem\nSave one composite Sprint Backlog\nmeaning;
+:CF-M09-S16\nSystem\nUse CF-M17 to classify actual\nresult; return only evidence-\nsupported effect;
+stop
+else (no)
+:CF-M09-S17\nSystem\nReport invalid/conflicting plan;\nno automatic readiness or\nacceptance;
+stop
+endif
+endif
+endif
+else (no)
+:CF-M09-S18\nSystem\nDeny before prohibited effect or\nprotected disclosure; report unmet\ngate;
+stop
+endif
+legend bottom
+A: accepted profile core only. Other policy detail: P / proposed refinement.
+Step IDs identify full descriptions in the activity view.
+Logical ordering; no atomicity, runtime, timing or execution proof.
+endlegend
+@enduml

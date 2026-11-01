@@ -1,0 +1,23 @@
+digraph RequirementsRoadmap {
+  graph [rankdir=TB, bgcolor="white", pad=0.35, ranksep=0.40, nodesep=0.30,
+    fontname="Arial", fontsize=20, labelloc=t,
+    label="Resumefolio | Requirements roadmap\nOutcome prerequisites - no dates or duration estimates"];
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=13,
+    color="#64748B", fontcolor="#17324D", margin="0.22,0.16", fillcolor="#DBEAFE"];
+  edge [color="#64748B", arrowsize=0.7, fontname="Arial", fontsize=11];
+  planning [label="M-01 | PLANNING STARTING POINT\nRecorded acceptance under DEC-116\nGAP-D01 through GAP-D11 remain tracked", fillcolor="#DCFCE7"];
+  develop [label="DEVELOP COHERENT REQUIREMENT GROUPS\nCapture sources and actor goals\nAnalyze behavior, rules, data and dependencies"];
+  refine [label="SPECIFY AND REFINE\nAcceptance criteria and planned verification\nScenarios, models and traceability"];
+  review [shape=diamond, style=filled, label="M-02 REVIEW\nCoverage, consistency, testability\nand blocking ambiguity", fillcolor="#FEF3C7", fontsize=12];
+  baseline [label="M-02 | REQUIREMENTS BASELINE\nActual owner decision against an identified revision\nAcceptance pending", fillcolor="#FEF3C7"];
+  design [label="M-03 | FEASIBILITY AND DESIGN\nJustified analysis, design and relevant findings\nSubsequent work", fillcolor="#EDE9FE"];
+  gate [label="EXISTING PRE-IMPLEMENTATION GATE\nInitial documentation for all agreed SDLC phases\nReconciled backlog / Sprints / milestones\nBaseline agreement before product coding", fillcolor="#EDE9FE"];
+  evidence [label="INVESTIGATE EARLY\nServer, Google, email delivery\nRecovery and CI/CD isolation\nBefore dependent commitments", fillcolor="#FFFBEB"];
+  planning -> develop -> refine -> review;
+  review -> develop [label="refine if needed", style=dashed, color="#B45309", constraint=false];
+  review -> baseline [label="criteria met + owner accepts"];
+  baseline -> design -> gate;
+  evidence -> develop [style=dashed, label="relevant findings"];
+  evidence -> design [style=dashed, label="relevant findings"];
+  {rank=same; evidence; refine;}
+}

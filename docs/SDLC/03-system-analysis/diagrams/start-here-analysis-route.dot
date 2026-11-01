@@ -1,0 +1,29 @@
+digraph route {
+graph [rankdir=TB,bgcolor="white",pad="0.3",nodesep="0.45",ranksep="0.50",fontname="Segoe UI",fontsize=17,label="SYSTEM ANALYSIS | WORKING ROUTE
+Iterative models - explicit evidence and handoff",labelloc=t];
+node [shape=box,style="rounded,filled",fontname="Segoe UI",fontsize=13,color="#8daac0",fillcolor="#edf4fb",margin="0.25,0.16",width=5.8];
+edge [fontname="Segoe UI",fontsize=11,color="#547083",arrowsize=0.8];
+inputs [label="1. Use existing sources
+Scope + requirements + scenarios + dictionary
+Read accepted / proposed / unknown status"];
+context [label="2. Define system context
+Actors, responsibilities and external exchanges
+CURRENT: populated draft"];
+domain [label="3. Develop domain and conceptual data
+Concepts, relationships and information authority
+NEXT: core professional presentation",fillcolor="#dff1ef",color="#458f88"];
+behavior [label="4. Explain behavior
+Functions + interactions + states
+Activities + decision rules",fillcolor="#eaf7f4",color="#458f88"];
+contracts [label="5. Connect constraints and contracts
+Authority, preconditions, results and failure
+Preserve source / tailoring / submitted history",fillcolor="#eaf7f4",color="#458f88"];
+review [label="6. Reconcile and verify
+Exact sources + cross-view consistency
+Readable renders + actual findings",fillcolor="#fff3df",color="#c9a363"];
+handoff [label="7. Prepare design handoff
+Reviewed candidate + explicit open gates
+Not automatic baseline approval",fillcolor="#fff3df",color="#c9a363"];
+inputs -> context -> domain -> behavior -> contracts -> review -> handoff;
+review -> domain [style=dashed,color="#8b719f",constraint=false];
+}

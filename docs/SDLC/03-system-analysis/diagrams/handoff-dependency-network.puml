@@ -1,0 +1,37 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #486777
+skinparam ArrowFontSize 12
+skinparam rectangleBackgroundColor #EEF5FA
+skinparam rectangleBorderColor #486777
+skinparam packageBackgroundColor #F7FAFC
+skinparam packageBorderColor #486777
+skinparam componentBackgroundColor #EEF5FA
+skinparam noteBackgroundColor #FFF3DA
+skinparam noteBorderColor #B59865
+skinparam nodesep 35
+skinparam ranksep 45
+skinparam padding 8
+title Dependency network — conditions, not scheduled dates
+top to bottom direction
+rectangle "Requirements + populated analysis\nExact meaning / remaining questions" as analysis
+rectangle "OAuth setup / provider access evidence" as oauth
+rectangle "Resource / isolation feasibility" as capacity
+rectangle "Backup scope / restore evidence" as recovery
+rectangle "Affected design choices\nProtocol / storage / runner / operations" as design
+rectangle "Identified package review\nOwner disposition / delivery reconciliation" as review
+rectangle "Implementation-ready scope" as ready
+analysis --> design : source constraints
+oauth --> design : provider-dependent decisions
+capacity --> design : execution-dependent decisions
+recovery --> design : recoverability-dependent decisions
+design --> review : explicit choices and unresolved gates
+review --> ready : only accepted ready scope
+
+legend bottom
+Edges are conditional prerequisites, not a critical-path estimate, Gantt schedule or new gate for independent work.
+endlegend
+@enduml

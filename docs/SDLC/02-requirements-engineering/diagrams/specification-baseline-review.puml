@@ -1,0 +1,36 @@
+@startuml
+title Resumefolio | Specification review roadmap
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #64748B
+skinparam activity {
+ BackgroundColor #DBEAFE
+ BorderColor #64748B
+ FontColor #17324D
+ DiamondBackgroundColor #FEF3C7
+ DiamondBorderColor #B45309
+ StartColor #17324D
+ EndColor #17324D
+}
+start
+:Use accepted scope, constraints and actual elicitation sources;
+:Review proposed user and YAML / CI-CD specification records;
+:Resolve affected behavior, permission, lifecycle and target questions;
+:Investigate decisive provider / resource / execution dependencies early;
+:Reconcile SRS, domains, dictionary, scenarios and final identifiers;
+:Record actual traceability, review findings and unresolved blockers;
+if (Baseline criteria satisfied for an identified candidate?) then (yes)
+ :Seek and record actual owner baseline disposition; <<#DCFCE7>>
+else (pending / unmet)
+ :Record gap, owner and dependent gate;
+ :Revise affected records and review again; <<#FEF3C7>>
+endif
+stop
+legend bottom
+Current M-02 baseline remains pending; this is a review roadmap.
+Documentation checks are not product verification or provider approval.
+The wider pre-implementation agreement still precedes product coding.
+endlegend
+@enduml

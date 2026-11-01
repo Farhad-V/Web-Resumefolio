@@ -1,0 +1,61 @@
+@startuml
+left to right direction
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam roundcorner 12
+skinparam ArrowColor #64748B
+skinparam actorBorderColor #17324D
+skinparam actorFontColor #17324D
+skinparam usecase {
+ BackgroundColor #EFF6FF
+ BorderColor #64748B
+ FontColor #17324D
+}
+skinparam rectangle {
+ BorderColor #94A3B8
+ FontColor #17324D
+}
+title Resumefolio | Actor goals and use-case overview
+actor "Applicant / resource owner" as applicant
+actor "Employer viewer\n(no product account)" as viewer
+actor "Authorized work / repository participant" as participant
+actor "Invited collaborator" as invitee
+actor "Authorized workflow actor\n(grants to define)" as workflow
+actor "Authorized administrator / platform owner" as admin
+actor "Authorized operator" as operator
+rectangle "Resumefolio | System boundary" {
+ usecase "UC-D01\nTailor professional presentation" as tailor [[../04-scenarios-and-models/user-stories-and-scenarios.md#uc-d01]]
+ usecase "UC-D02\nConfigure PDF and sharing" as share [[../04-scenarios-and-models/user-stories-and-scenarios.md#uc-d02]]
+ usecase "UC-D03\nView selected protected material" as view [[../04-scenarios-and-models/user-stories-and-scenarios.md#uc-d03]]
+ usecase "UC-D04\nPrepare and track an application" as prepare [[../04-scenarios-and-models/user-stories-and-scenarios.md#uc-d04]]
+ usecase "UC-D05\nPreserve actual submitted materials" as capture [[../04-scenarios-and-models/user-stories-and-scenarios.md#uc-d05]]
+ usecase "UC-D06\nUse authorized mail and calendar" as communicate [[../04-scenarios-and-models/user-stories-and-scenarios.md#uc-d06]]
+ usecase "UC-D07\nRefine work and plan Sprints" as plan [[../04-scenarios-and-models/user-stories-and-scenarios.md#uc-d07]]
+ usecase "UC-D08\nAccept scoped collaboration" as join [[../04-scenarios-and-models/user-stories-and-scenarios.md#uc-d08]]
+ usecase "UC-D09\nUse real Git collaboration" as git [[../04-scenarios-and-models/user-stories-and-scenarios.md#uc-d09]]
+ usecase "UC-D10\nRun work / separately control deployment" as run [[../04-scenarios-and-models/user-stories-and-scenarios.md#uc-d10]]
+ usecase "UC-D11\nConfigure policy / inspect evidence" as policy [[../04-scenarios-and-models/user-stories-and-scenarios.md#uc-d11]]
+ usecase "UC-D12\nRestore and reconcile safely" as restore [[../04-scenarios-and-models/user-stories-and-scenarios.md#uc-d12]]
+}
+applicant -- tailor
+applicant -- share
+applicant -- prepare
+applicant -- capture
+applicant -- communicate
+viewer -- view
+participant -- plan
+participant -- git
+invitee -- join
+workflow -- run
+admin -- policy
+operator -- restore
+legend bottom
+12 existing goal bundles. Focused diagrams refine independent operations.
+One person may hold several contexts; grants remain resource/action-specific.
+Execution and restoration remain subject to their existing feasibility/authority gates.
+Associations show proposed external interactions, not permission grants.
+No include/extend dependency or actor inheritance is asserted.
+endlegend
+@enduml

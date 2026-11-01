@@ -1,0 +1,60 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 8
+skinparam ArrowColor #526B7B
+skinparam ArrowFontSize 11
+skinparam packageStyle rectangle
+skinparam classAttributeIconSize 0
+hide circle
+skinparam classBackgroundColor #EDF4FB
+skinparam classBorderColor #526B7B
+skinparam classHeaderBackgroundColor #DFF1EF
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam rectangleBackgroundColor #EDF4FB
+skinparam rectangleBorderColor #526B7B
+skinparam activityBackgroundColor #EDF4FB
+skinparam activityBorderColor #526B7B
+skinparam activityDiamondBackgroundColor #DFF1EF
+skinparam activityDiamondBorderColor #458F88
+skinparam padding 6
+skinparam nodesep 35
+skinparam ranksep 40
+hide empty members
+title Accepted core — explicit apply and separate publication
+start
+:Owner edits shared profile;
+note right
+No automatic change to existing resume drafts
+or published presentations.
+Actual submitted documents stay preserved.
+end note
+if (Owner chooses to review
+changes for a resume?) then (yes)
+ :Preview source differences
+for the intended resume;
+ if (Owner explicitly selects
+and applies changes?) then (yes)
+  :Apply selected changes to that draft
+preserve independent text and other resumes;
+  if (Owner separately confirms
+publication?) then (yes)
+   :Publish intended reviewed content;
+  else (no)
+   :Keep existing published view unchanged;
+  endif
+ else (no)
+  :Keep that draft and live view unchanged;
+ endif
+else (no)
+ :Keep existing resumes and live views unchanged;
+endif
+stop
+legend bottom
+Accepted successful-path model. Denial, failure and conflicts
+need separate contracts; an unsuccessful action is not completion.
+endlegend
+@enduml

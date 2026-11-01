@@ -1,0 +1,39 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #486777
+skinparam ArrowFontSize 12
+skinparam rectangleBackgroundColor #EEF5FA
+skinparam rectangleBorderColor #486777
+skinparam packageBackgroundColor #F7FAFC
+skinparam noteBackgroundColor #FFF3DA
+skinparam noteBorderColor #B59865
+skinparam nodesep 35
+skinparam ranksep 45
+title Trust boundaries and candidate threats
+top to bottom direction
+rectangle "TB1 — Untrusted entry\nBrowser / Git client / uploaded content" as entry #FFF3DA
+rectangle "TB2 — Product authority boundary\nExact identity / resource / action / current state\nContent validation is separate from permission" as product
+database "Protected information\nPrivate records / actual history\nRepository context / scoped credentials" as data
+rectangle "TB3 — Provider boundary\nSelected Google account and operation\nReconcile uncertain remote effects" as provider
+rectangle "TB4 — Conditional code boundary\nUntrusted code / YAML / outputs\nIsolation and resource evidence required" as run #FFF3DA
+rectangle "TB5 — Operator / recovery boundary\nRestricted evidence / current authority\nRestored access and external-state checks" as ops
+entry --> product : SQ-T01/02: wrong or stale authority\nSQ-T03: unsafe supplied content
+product --> data : SQ-T07: reference/usage race\nSQ-T08: stale revision context
+product --> provider : SQ-T05/06: wrong account / duplicate effect
+product --> run : SQ-T04: excessive host/secret/target powers
+run --> ops : SQ-T09: sensitive output disclosure
+data --> ops : SQ-T10: restored old rights/effects
+note bottom of ops
+SQ-T11: a healthy page or missing alert is not assurance.
+SQ-T12: competing workloads can exhaust shared resources.
+These cross-cutting cases affect all applicable boundaries.
+end note
+
+legend bottom
+Arrows identify selected information/power crossings and candidate threats, not proven exploits.
+Boundary labels state required controls; configuration and effectiveness have not been verified.
+endlegend
+@enduml

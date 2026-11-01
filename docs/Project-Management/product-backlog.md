@@ -3,7 +3,7 @@
 Status: Backlog index with provisional historical scheduling snapshot; requirements and estimates remain under refinement
 
 Requested Version 1 completion: **November 8, 2026, Europe/Berlin**.
-Availability: full time; no numerical hours assumed.
+Current owner-stated capacity: **20 total project hours/week**, November 1, 2026; earlier full-time wording is historical. No live issue/board estimate or assignment is changed.
 Full agreed scope remains included; AI is deferred.
 
 ## Tracking Authority
@@ -67,3 +67,7 @@ SDLC documentation and baseline agreement before product coding.
 - [Sprint 3](sprints/SPR-03.md)
 
 [Working method](../SDLC/01-project-planning/09-working-method-and-change-control.md)
+
+## Current Evidence for Reconciliation — November 1, 2026
+
+[Capacity and preliminary sizing](../SDLC/01-project-planning/11-capacity-and-preliminary-sizing.md) maps the existing local work-package references to an unaccepted sizing scenario. The [remaining-gate assessment](../SDLC/02-requirements-engineering/06-validation-and-traceability/remaining-gate-assessment.md) narrows PBI-002–PBI-006 evidence and records provider/runner/recovery limitations. GitHub search returned access limitations and issue retrieval supplied no usable data; remote status, estimates and assignments are not verified or changed.

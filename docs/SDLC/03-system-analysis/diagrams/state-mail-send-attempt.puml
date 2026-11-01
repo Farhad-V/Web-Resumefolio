@@ -1,0 +1,42 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 8
+skinparam ArrowColor #526B7B
+skinparam ArrowFontSize 11
+skinparam stateBackgroundColor #EDF4FB
+skinparam stateBorderColor #526B7B
+skinparam stateStartColor #163E52
+skinparam stateEndColor #163E52
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam nodesep 38
+skinparam ranksep 48
+hide empty description
+top to bottom direction
+
+title SM-M09 — Provider acceptance and unknown mail outcome
+state "Prepared message intent" as Prepared
+state "Submitted; awaiting outcome" as InFlight
+state "Provider acceptance\nconfirmed" as Accepted
+state "Provider rejection\nconfirmed" as Rejected
+state "Provider outcome unknown" as Unknown
+state "Denied before submission" as Denied
+[*] --> Prepared : scoped initial context
+Prepared --> Prepared : SM-T051 reviewed content changes\n[new content needs review]
+Prepared --> Denied : SM-T052 send request denied\n[authority / context denied]
+Prepared --> InFlight : SM-T053 deliberate send / reply\n[review current / authorized]
+InFlight --> Accepted : SM-T054 acceptance confirmed\n[provider confirmation]
+InFlight --> Rejected : SM-T055 rejection confirmed\n[definite rejection]
+InFlight --> Unknown : SM-T056 response ambiguous\n[ambiguous evidence]
+Unknown --> Accepted : SM-T057 provider reconciled\n[matching accepted message]
+Unknown --> Rejected : SM-T058 provider reconciled\n[definite rejection evidence]
+legend bottom
+A: accepted core behavior; P: existing proposal; R: proposed refinement.
+State labels are analysis abstractions, not implemented enums.
+Transition tables define full actor, guard, effect and status.
+Unconfirmed operation effects require SM-M18 reconciliation.
+endlegend
+@enduml

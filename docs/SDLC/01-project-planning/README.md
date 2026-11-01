@@ -167,3 +167,7 @@ and private operational data out of repository documents and shared evidence.
 thirteen Markdown documents and twenty-five diagram sources, reused the document
 navigation map, and preserved original diagram references. No source decision,
 product scope, historical target date or remote board configuration was changed.
+
+## Current Capacity Follow-up
+
+[Confirmed capacity and preliminary sizing](11-capacity-and-preliminary-sizing.md) records the owner's 20-hour/week answer, an unaccepted estimate scenario and the historical target conflict. It supplements the current working plan without altering the accepted historical snapshot.

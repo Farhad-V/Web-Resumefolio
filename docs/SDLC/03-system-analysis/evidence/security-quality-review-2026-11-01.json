@@ -1,0 +1,1607 @@
+{
+  "date": "2026-11-01",
+  "status": "Source-derived security/quality/operating analysis; no product/host/control verification or baseline acceptance",
+  "authority_matrix": [
+    {
+      "id": "SQ-A01",
+      "actor": "Profile owner",
+      "resource": "Intended source profile/entries",
+      "action": "Edit shared information",
+      "gate": "Current own/source action authority and valid intended inputs.",
+      "negative": "Source edit alone cannot update existing resume draft/live/history.",
+      "state": "Keep exact owner/source/current edit context; other resumes remain independent.",
+      "requirement_ids": [
+        "QSR-D05",
+        "QSR-D08",
+        "ACC-D03",
+        "ACC-D04",
+        "PRP-D04"
+      ],
+      "models": [
+        "IF-01",
+        "RB-D01",
+        "RB-D02",
+        "SM-M01"
+      ],
+      "contracts": [
+        "DC-O01"
+      ],
+      "status": "Proposed conditional permission analysis, not an approved role/action matrix"
+    },
+    {
+      "id": "SQ-A02",
+      "actor": "Resume owner",
+      "resource": "One intended tailored draft",
+      "action": "Apply selected source changes",
+      "gate": "Explicit selected apply, current source/resume authority and reviewed context.",
+      "negative": "No automatic override loss, update of other resumes or publication.",
+      "state": "Recheck changed source/draft before permitted effect; failed/unknown is not saved.",
+      "requirement_ids": [
+        "QSR-D05",
+        "QSR-D08",
+        "PRP-D03",
+        "PRP-D04"
+      ],
+      "models": [
+        "IF-01",
+        "RB-D02",
+        "CF-M01"
+      ],
+      "contracts": [
+        "DC-O02"
+      ],
+      "status": "Proposed conditional permission analysis, not an approved role/action matrix"
+    },
+    {
+      "id": "SQ-A03",
+      "actor": "Resume owner",
+      "resource": "Intended presentation",
+      "action": "Publish",
+      "gate": "Separate confirmation and current eligible intended content/publication authority.",
+      "negative": "Draft save alone is not publication; actual submitted material not rewritten.",
+      "state": "Actual confirmed publication differs from unavailable/unknown PDF generation.",
+      "requirement_ids": [
+        "QSR-D08",
+        "PRP-D04",
+        "PRP-D08",
+        "PDF-D07"
+      ],
+      "models": [
+        "IF-01",
+        "RB-D02",
+        "SM-M01"
+      ],
+      "contracts": [
+        "DC-O03"
+      ],
+      "status": "Proposed conditional permission analysis, not an approved role/action matrix"
+    },
+    {
+      "id": "SQ-A04",
+      "actor": "Other private user / guessed reference",
+      "resource": "Private resume/mail/application/file",
+      "action": "Read or mutate",
+      "gate": "No relevant scoped grant means no protected operation.",
+      "negative": "Valid sign-in, guessed identifiers, navigation/search or direct path cannot expose unrelated private content.",
+      "state": "Current exact resource/action/state authority; no implicit universal administrator.",
+      "requirement_ids": [
+        "QSR-D05",
+        "ACC-D03",
+        "ACC-D04",
+        "ACC-D05",
+        "EIF-D03"
+      ],
+      "models": [
+        "IF-01",
+        "IF-02",
+        "IF-03",
+        "RB-D01"
+      ],
+      "contracts": [
+        "DC-O06",
+        "DC-O11"
+      ],
+      "status": "Proposed conditional permission analysis, not an approved role/action matrix"
+    },
+    {
+      "id": "SQ-A05",
+      "actor": "Employer viewer without product account",
+      "resource": "Intended selected published content",
+      "action": "View/retrieve",
+      "gate": "Exact eligible link/password plus selection/mode/actual representation availability.",
+      "negative": "No private workspace/unselected evidence/disabled PDF or unrelated language fallback.",
+      "state": "Fresh disabled-link access denied after effective disable; delivered copies outside recall.",
+      "requirement_ids": [
+        "QSR-D05",
+        "PDF-D03",
+        "PDF-D04",
+        "PDF-D05",
+        "PDF-D06"
+      ],
+      "models": [
+        "IF-02",
+        "RB-D03",
+        "RB-D04",
+        "RB-D05"
+      ],
+      "contracts": [
+        "DC-O06"
+      ],
+      "status": "Proposed conditional permission analysis, not an approved role/action matrix"
+    },
+    {
+      "id": "SQ-A06",
+      "actor": "Resume/link owner",
+      "resource": "Exact protected link/download configuration",
+      "action": "Change settings or disable/change credential",
+      "gate": "Distinct current control power for exact requested action.",
+      "negative": "PDF-mode save does not disable link; unrelated actor cannot change owner controls.",
+      "state": "Credential rotation and existing/in-flight session timing retain separate reviewed policy.",
+      "requirement_ids": [
+        "QSR-D05",
+        "ACC-D08",
+        "ACC-D12",
+        "PDF-D03",
+        "PDF-D06"
+      ],
+      "models": [
+        "IF-01",
+        "IF-02",
+        "SM-M04",
+        "RB-D05"
+      ],
+      "contracts": [
+        "DC-O04",
+        "DC-O05"
+      ],
+      "status": "Proposed conditional permission analysis, not an approved role/action matrix"
+    },
+    {
+      "id": "SQ-A07",
+      "actor": "Project collaborator",
+      "resource": "Granted project/item/task/Sprint",
+      "action": "Perform exact granted work action",
+      "gate": "Current project/resource/action/state grant and subject rules.",
+      "negative": "Board membership does not grant private email, unrelated resumes/repos or secrets.",
+      "state": "Readiness/progress/item acceptance/period outcome are distinct; current grant can change.",
+      "requirement_ids": [
+        "QSR-D05",
+        "QSR-D08",
+        "PKS-D06",
+        "PKS-D09",
+        "ACC-D04"
+      ],
+      "models": [
+        "IF-01",
+        "RB-D09",
+        "RB-D10"
+      ],
+      "contracts": [
+        "DC-O16",
+        "DC-O17",
+        "DC-O18",
+        "DC-O19"
+      ],
+      "status": "Proposed conditional permission analysis, not an approved role/action matrix"
+    },
+    {
+      "id": "SQ-A08",
+      "actor": "Invitation recipient",
+      "resource": "Exact invitation/resource grant",
+      "action": "Accept invitation",
+      "gate": "Intended recipient and current invitation eligibility; actual scoped acceptance confirmed.",
+      "negative": "Invitation/sign-in alone is not effective membership or unrelated private authority.",
+      "state": "Unconfirmed/expired invitation cannot claim active grant; no arbitrary expiry invented.",
+      "requirement_ids": [
+        "QSR-D05",
+        "ACC-D03",
+        "ACC-D05",
+        "ACC-D12"
+      ],
+      "models": [
+        "IF-01",
+        "SM-M03",
+        "RB-D01"
+      ],
+      "contracts": [
+        "DC-O20"
+      ],
+      "status": "Proposed conditional permission analysis, not an approved role/action matrix"
+    },
+    {
+      "id": "SQ-A09",
+      "actor": "Explicit grant controller",
+      "resource": "Exact membership/grant",
+      "action": "Change/revoke rights",
+      "gate": "Reviewed current grant-management power, not generic title.",
+      "negative": "No widening to unrelated resources or recall of delivered data.",
+      "state": "Confirmed current grant governs applicable subsequent checks; in-flight policy scoped.",
+      "requirement_ids": [
+        "QSR-D05",
+        "ACC-D10",
+        "ACC-D12"
+      ],
+      "models": [
+        "IF-01",
+        "SM-M03",
+        "RB-D01"
+      ],
+      "contracts": [
+        "DC-O21"
+      ],
+      "status": "Proposed conditional permission analysis, not an approved role/action matrix"
+    },
+    {
+      "id": "SQ-A10",
+      "actor": "Permitted repository reader/client",
+      "resource": "Intended real repository/ref",
+      "action": "Clone/fetch/pull read",
+      "gate": "Actually supported real client/transport and current read grant.",
+      "negative": "Read/clone is not ref-write, merge, secret or target permission.",
+      "state": "Transfer incomplete/denied remains distinct; moving refs not evaluated immutable context.",
+      "requirement_ids": [
+        "QSR-D05",
+        "GIT-D02",
+        "GIT-D03",
+        "EIF-D06"
+      ],
+      "models": [
+        "IF-06",
+        "CF-M11",
+        "RB-D01"
+      ],
+      "contracts": [
+        "DC-O22"
+      ],
+      "status": "Proposed conditional permission analysis, not an approved role/action matrix"
+    },
+    {
+      "id": "SQ-A11",
+      "actor": "Permitted repository writer",
+      "resource": "Exact protected/unprotected ref",
+      "action": "Push/ref change",
+      "gate": "Current ref-write/protection authority and expected actual current ref conditions.",
+      "negative": "No unrelated ref change, inherited merge approval or deploy authority.",
+      "state": "Stale/conflicting/unknown actual ref result requires reconciliation.",
+      "requirement_ids": [
+        "QSR-D05",
+        "QSR-D08",
+        "GIT-D02",
+        "GIT-D04",
+        "GIT-D07"
+      ],
+      "models": [
+        "IF-06",
+        "RB-D11",
+        "SM-M13"
+      ],
+      "contracts": [
+        "DC-O23"
+      ],
+      "status": "Proposed conditional permission analysis, not an approved role/action matrix"
+    },
+    {
+      "id": "SQ-A12",
+      "actor": "Permitted reviewer/integrator",
+      "resource": "Exact request/source/target revisions",
+      "action": "Review or merge",
+      "gate": "Operation-specific current power and evaluated revision/check/review conditions.",
+      "negative": "A comment or stale approval does not authorize integration/production deployment.",
+      "state": "Changed source/target re-evaluated; unknown merge does not prove unchanged target.",
+      "requirement_ids": [
+        "QSR-D05",
+        "QSR-D08",
+        "GIT-D05",
+        "GIT-D06",
+        "GIT-D07"
+      ],
+      "models": [
+        "IF-01",
+        "RB-D11",
+        "CF-M12"
+      ],
+      "contracts": [
+        "DC-O25",
+        "DC-O26"
+      ],
+      "status": "Proposed conditional permission analysis, not an approved role/action matrix"
+    },
+    {
+      "id": "SQ-A13",
+      "actor": "Connected mailbox user",
+      "resource": "Exact provider account/message context",
+      "action": "Read/search",
+      "gate": "Product-resource scope plus actual intended provider read capability.",
+      "negative": "Project membership or product login is not private mailbox access.",
+      "state": "Lost/revoked access and retained stale copy differ from current fetch.",
+      "requirement_ids": [
+        "QSR-D05",
+        "QSR-D06",
+        "EGC-D01",
+        "EGC-D02",
+        "EGC-D03",
+        "EGC-D11"
+      ],
+      "models": [
+        "IF-04",
+        "SM-M08",
+        "RB-D01"
+      ],
+      "contracts": [
+        "DC-O11"
+      ],
+      "status": "Proposed conditional permission analysis, not an approved role/action matrix"
+    },
+    {
+      "id": "SQ-A14",
+      "actor": "Reviewed message sender",
+      "resource": "Exact final send/reply attempt",
+      "action": "Send/reply",
+      "gate": "Current provider send power and final content confirmation; prior uncertain effect assessed.",
+      "negative": "No stale confirmation, blind resend or recipient delivery/read claim.",
+      "state": "Acceptance/rejection/pending/unknown attributable to intended attempt.",
+      "requirement_ids": [
+        "QSR-D05",
+        "QSR-D08",
+        "EGC-D05",
+        "EGC-D06",
+        "EGC-D12"
+      ],
+      "models": [
+        "IF-04",
+        "SM-M09",
+        "RB-D07"
+      ],
+      "contracts": [
+        "DC-O12",
+        "DC-O38"
+      ],
+      "status": "Proposed conditional permission analysis, not an approved role/action matrix"
+    },
+    {
+      "id": "SQ-A15",
+      "actor": "Local activity owner",
+      "resource": "Local calendar object/mapping",
+      "action": "Local edit/unlink",
+      "gate": "Current local authority and intended association, not active provider-write prerequisite.",
+      "negative": "Local unlink cannot delete provider event or trigger mail/reminder delivery.",
+      "state": "Exact association/current local state; disconnected provider does not make local unlink unauthorized.",
+      "requirement_ids": [
+        "QSR-D05",
+        "EGC-D07",
+        "EGC-D09",
+        "EGC-D11"
+      ],
+      "models": [
+        "IF-05",
+        "RB-D08",
+        "SM-M10"
+      ],
+      "contracts": [
+        "DC-O13",
+        "DC-O14"
+      ],
+      "status": "Proposed conditional permission analysis, not an approved role/action matrix"
+    },
+    {
+      "id": "SQ-A16",
+      "actor": "Connected calendar actor",
+      "resource": "Selected account/calendar/event",
+      "action": "Provider action/sync",
+      "gate": "Actual intended capability, mapping/field authority and reviewed conflict handling.",
+      "negative": "No silent last writer wins, provider delete by local unlink, or reconnect replay.",
+      "state": "Current versions/time; stale/conflict/unknown distinguished before further effects.",
+      "requirement_ids": [
+        "QSR-D05",
+        "QSR-D08",
+        "EGC-D08",
+        "EGC-D09",
+        "EGC-D12"
+      ],
+      "models": [
+        "IF-05",
+        "RB-D08",
+        "SM-M10"
+      ],
+      "contracts": [
+        "DC-O15"
+      ],
+      "status": "Proposed conditional permission analysis, not an approved role/action matrix"
+    },
+    {
+      "id": "SQ-A17",
+      "actor": "Authorized uploader",
+      "resource": "Candidate/association/protected file",
+      "action": "Upload/process/replace/retrieve",
+      "gate": "Current action authority, effective content/policy/reference/capacity contract.",
+      "negative": "Authorized upload does not make content trusted or allow history destruction.",
+      "state": "Candidate/admitted/usable and retained-reference state remain distinct.",
+      "requirement_ids": [
+        "QSR-D05",
+        "QSR-D07",
+        "AFO-D03",
+        "AFO-D05",
+        "AFO-D06",
+        "AFO-D07"
+      ],
+      "models": [
+        "IF-03",
+        "RB-D14",
+        "SM-M05"
+      ],
+      "contracts": [
+        "DC-O32"
+      ],
+      "status": "Proposed conditional permission analysis, not an approved role/action matrix"
+    },
+    {
+      "id": "SQ-A18",
+      "actor": "Explicit policy administrator",
+      "resource": "Intended effective limit/setting",
+      "action": "Change policy",
+      "gate": "Exact reviewed management power and actual valid capacity/reference conditions.",
+      "negative": "Uploader role/general operator title does not imply every setting/private evidence power.",
+      "state": "New limit effective only after actual confirmed change; lowering is not cleanup.",
+      "requirement_ids": [
+        "QSR-D05",
+        "AFO-D01",
+        "AFO-D02",
+        "AFO-D10"
+      ],
+      "models": [
+        "IF-01",
+        "IF-08",
+        "RB-D14"
+      ],
+      "contracts": [
+        "DC-O31"
+      ],
+      "status": "Proposed conditional permission analysis, not an approved role/action matrix"
+    },
+    {
+      "id": "SQ-A19",
+      "actor": "Restricted evidence viewer/operator",
+      "resource": "Exact logs/audit/diagnostic scope",
+      "action": "Read operational evidence",
+      "gate": "Explicit bounded evidence-read grant and sensitive-content policy.",
+      "negative": "No ordinary exposure of secrets, unrelated private content or immutable-audit guarantee.",
+      "state": "Actual incomplete/unknown evidence not universal product health/security proof.",
+      "requirement_ids": [
+        "QSR-D05",
+        "QSR-D06",
+        "QSR-D13",
+        "AFO-D09"
+      ],
+      "models": [
+        "IF-08",
+        "RB-D01",
+        "RB-D18"
+      ],
+      "contracts": [
+        "DC-O33"
+      ],
+      "status": "Proposed conditional permission analysis, not an approved role/action matrix"
+    },
+    {
+      "id": "SQ-A20",
+      "actor": "Authorized workflow trigger",
+      "resource": "Exact definition/code/run/secret scope",
+      "action": "Admit/start eligible attempt",
+      "gate": "Actual suitable isolation/resources/secret authority and supported exact context before execution.",
+      "negative": "Push/definition validity does not grant host/network/arbitrary secret access.",
+      "state": "Current demo not proven safe runner; admission/start/success/output availability distinct.",
+      "requirement_ids": [
+        "QSR-D05",
+        "QSR-D07",
+        "YML-D02",
+        "YML-D04",
+        "YML-D05",
+        "YML-D06",
+        "YML-D12"
+      ],
+      "models": [
+        "IF-07",
+        "RB-D12",
+        "SM-M14"
+      ],
+      "contracts": [
+        "DC-O27"
+      ],
+      "status": "Proposed conditional permission analysis, not an approved role/action matrix"
+    },
+    {
+      "id": "SQ-A21",
+      "actor": "Authorized run controller",
+      "resource": "Exact admitted/running attempt",
+      "action": "Cancel/observe or request new retry",
+      "gate": "Current operation power and actual prior disposition/enabling gates.",
+      "negative": "Cancel request not confirmed stop; retry not duplicate launch of uncertain possibly live work.",
+      "state": "Actual completion may win race; still-running, stop pending and unknown separate.",
+      "requirement_ids": [
+        "QSR-D07",
+        "QSR-D08",
+        "YML-D07",
+        "YML-D09"
+      ],
+      "models": [
+        "IF-07",
+        "SM-M14",
+        "RB-D18"
+      ],
+      "contracts": [
+        "DC-O28",
+        "DC-O29",
+        "DC-O38"
+      ],
+      "status": "Proposed conditional permission analysis, not an approved role/action matrix"
+    },
+    {
+      "id": "SQ-A22",
+      "actor": "Authorized target deployer",
+      "resource": "Exact artifact/revision and target",
+      "action": "Target deployment effect",
+      "gate": "Separate current target approval plus valid artifact/data/recovery conditions.",
+      "negative": "Merge/build/release success is insufficient; no universal rollback or blind redeploy.",
+      "state": "Actual target partial/unknown needs scoped reconciliation before further consequences.",
+      "requirement_ids": [
+        "QSR-D05",
+        "QSR-D07",
+        "QSR-D14",
+        "YML-D10"
+      ],
+      "models": [
+        "IF-07",
+        "RB-D13",
+        "SM-M15"
+      ],
+      "contracts": [
+        "DC-O30"
+      ],
+      "status": "Proposed conditional permission analysis, not an approved role/action matrix"
+    },
+    {
+      "id": "SQ-A23",
+      "actor": "Authorized category controller/recovery operator",
+      "resource": "Retained data / protected recovery source",
+      "action": "Reclaim/restore/isolated recovery",
+      "gate": "Exact category/reference/retention or protected source/isolated target/current access contract.",
+      "negative": "No purge from space pressure, newer-live substitution, old-grant resurrection or provider replay.",
+      "state": "Eligibility, confirmed reclamation, restored bytes and demonstrated usable recovery differ.",
+      "requirement_ids": [
+        "QSR-D09",
+        "QSR-D10",
+        "QSR-D11",
+        "QSR-D12",
+        "BRL-D08"
+      ],
+      "models": [
+        "IF-03",
+        "IF-08",
+        "RB-D15",
+        "RB-D16"
+      ],
+      "contracts": [
+        "DC-O35",
+        "DC-O36",
+        "DC-O37"
+      ],
+      "status": "Proposed conditional permission analysis, not an approved role/action matrix"
+    },
+    {
+      "id": "SQ-A24",
+      "actor": "Specifically authorized account actor",
+      "resource": "Exact account eligibility",
+      "action": "Activate/suspend/reinstate/closure request",
+      "gate": "Current goal-specific account power and reviewed onboarding/closure policy.",
+      "negative": "Authentication recovery does not bypass suspension; activation not universal grants; deletion-pending not physical purge.",
+      "state": "Current account/grant/session consequences remain scoped, not guessed.",
+      "requirement_ids": [
+        "QSR-D05",
+        "ACC-D01",
+        "ACC-D09",
+        "ACC-D11",
+        "ACC-D12"
+      ],
+      "models": [
+        "IF-01",
+        "SM-M02",
+        "RB-D01"
+      ],
+      "contracts": [
+        "DC-O39"
+      ],
+      "status": "Proposed conditional permission analysis, not an approved role/action matrix"
+    }
+  ],
+  "trust_cases": [
+    {
+      "id": "SQ-T01",
+      "title": "Altered private reference",
+      "path": "A valid user/collaborator supplies another private resource identifier through UI/file/provider/Git entry.",
+      "boundary": "Current exact resource/action authority is not implied by sign-in, guessed identifier or unrelated membership.",
+      "planned_case": "Allowed/denied direct/list/search cases for reviewed scopes without disclosing protected content.",
+      "requirement_ids": [
+        "QSR-D05",
+        "ACC-D04",
+        "ACC-D05",
+        "EIF-D03"
+      ],
+      "models": [
+        "IF-01",
+        "IF-02",
+        "IF-03",
+        "IF-06",
+        "RB-D01"
+      ],
+      "status": "Source-derived boundary/failure scenario; not a confirmed vulnerability or executed security test"
+    },
+    {
+      "id": "SQ-T02",
+      "title": "Changed link/password/grant",
+      "path": "A fresh or already-open request outlives a relevant confirmed rights change.",
+      "boundary": "Fresh disabled-link denial is required; existing/in-flight/cached delivery requires its separately reviewed policy; no recall of delivered bytes.",
+      "planned_case": "Controlled fresh/current-session/in-flight cases with actual effective change and explicit applicable policy.",
+      "requirement_ids": [
+        "QSR-D05",
+        "ACC-D12",
+        "PDF-D06"
+      ],
+      "models": [
+        "IF-02",
+        "SM-M04",
+        "RB-D05"
+      ],
+      "status": "Source-derived boundary/failure scenario; not a confirmed vulnerability or executed security test"
+    },
+    {
+      "id": "SQ-T03",
+      "title": "Untrusted content crossing display/processing",
+      "path": "Authorized upload/embed or provider content is malformed/unsupported or interpreted outside permitted content meaning.",
+      "boundary": "Authority to supply data is not proof of trusted/safe content or permission to execute code.",
+      "planned_case": "Reviewed valid/invalid/unsafe content and safe serving/display cases; no live hostile test here.",
+      "requirement_ids": [
+        "QSR-D06",
+        "QSR-D07",
+        "AFO-D05",
+        "EIF-D04"
+      ],
+      "models": [
+        "IF-03",
+        "SM-M05",
+        "RB-D14"
+      ],
+      "status": "Source-derived boundary/failure scenario; not a confirmed vulnerability or executed security test"
+    },
+    {
+      "id": "SQ-T04",
+      "title": "Workflow input reaching host/secret/target",
+      "path": "Repository/workflow content requests resources, credentials, network or deployment powers beyond reviewed contract.",
+      "boundary": "Actual suitable isolation/permission/resource/secret/target evidence required before enablement; no arbitrary host authority.",
+      "planned_case": "Later explicitly authorized isolated negative/positive execution cases only after enabling gates.",
+      "requirement_ids": [
+        "QSR-D07",
+        "YML-D04",
+        "YML-D05",
+        "YML-D06",
+        "YML-D10",
+        "YML-D12"
+      ],
+      "models": [
+        "IF-07",
+        "RB-D12",
+        "RB-D13"
+      ],
+      "status": "Source-derived boundary/failure scenario; not a confirmed vulnerability or executed security test"
+    },
+    {
+      "id": "SQ-T05",
+      "title": "Wrong/revoked provider account",
+      "path": "A product login or retained connection record is treated as actual permission for another account/operation.",
+      "boundary": "Selected current account and operation capability are independent of product grants; retained copies not necessarily fresh.",
+      "planned_case": "Intended/wrong-account/revoked/denied capability cases when actual controlled access exists.",
+      "requirement_ids": [
+        "QSR-D05",
+        "EGC-D01",
+        "EGC-D02",
+        "EGC-D11"
+      ],
+      "models": [
+        "IF-04",
+        "IF-05",
+        "SM-M08"
+      ],
+      "status": "Source-derived boundary/failure scenario; not a confirmed vulnerability or executed security test"
+    },
+    {
+      "id": "SQ-T06",
+      "title": "Ambiguous send and duplicate action",
+      "path": "Response lost or final content changed but old confirmation/automatic retry is reused.",
+      "boundary": "Exact final review and same-attempt reconciliation; acceptance not delivery/read and no blind resend.",
+      "planned_case": "Changed final attachment and ambiguous acceptance cases using controlled future recipients after access setup.",
+      "requirement_ids": [
+        "QSR-D08",
+        "EGC-D05",
+        "EGC-D12",
+        "EIF-D08"
+      ],
+      "models": [
+        "IF-04",
+        "SM-M09",
+        "RB-D07"
+      ],
+      "status": "Source-derived boundary/failure scenario; not a confirmed vulnerability or executed security test"
+    },
+    {
+      "id": "SQ-T07",
+      "title": "Reference/usage race during replacement",
+      "path": "New admissions or cleanup rely on stale capacity/reference state and harm protected retained history.",
+      "boundary": "Current effective policy/actual reference contract; eligibility/admission not usable completion or freed bytes.",
+      "planned_case": "Concurrent growth, failed replacement, protected reference and partial cleanup cases under defined accounting.",
+      "requirement_ids": [
+        "QSR-D02",
+        "QSR-D08",
+        "QSR-D09",
+        "AFO-D04",
+        "AFO-D07",
+        "AFO-D11"
+      ],
+      "models": [
+        "IF-03",
+        "RB-D14",
+        "RB-D15"
+      ],
+      "status": "Source-derived boundary/failure scenario; not a confirmed vulnerability or executed security test"
+    },
+    {
+      "id": "SQ-T08",
+      "title": "Stale Git integration context",
+      "path": "Source/target changes after review/check or prior ref effect is unknown.",
+      "boundary": "Exact current evaluated revisions/authority and actual ref result govern integration, not moving names or stale approval.",
+      "planned_case": "Changed-source/target/protected-ref/conflict/unknown integration cases in later supported isolated real-client environment.",
+      "requirement_ids": [
+        "QSR-D05",
+        "QSR-D08",
+        "GIT-D04",
+        "GIT-D07"
+      ],
+      "models": [
+        "IF-06",
+        "SM-M13",
+        "RB-D11"
+      ],
+      "status": "Source-derived boundary/failure scenario; not a confirmed vulnerability or executed security test"
+    },
+    {
+      "id": "SQ-T09",
+      "title": "Sensitive result/diagnostic disclosure",
+      "path": "Run logs/artifacts, provider errors or ordinary diagnostics expose credentials/private content or allow unrelated read.",
+      "boundary": "Explicit bounded output/evidence access and secret-safe representation; ownership of another context is insufficient.",
+      "planned_case": "Synthetic sensitive markers and unauthorized output/reference cases; no real secret values printed.",
+      "requirement_ids": [
+        "QSR-D06",
+        "QSR-D13",
+        "YML-D08",
+        "AFO-D09"
+      ],
+      "models": [
+        "IF-07",
+        "IF-08",
+        "RB-D01"
+      ],
+      "status": "Source-derived boundary/failure scenario; not a confirmed vulnerability or executed security test"
+    },
+    {
+      "id": "SQ-T10",
+      "title": "Old access/external effects after restore",
+      "path": "Restored grants/mappings/pending actions differ from current rights/provider/ref/target state.",
+      "boundary": "Current access and external disposition need explicit reconciliation; no old-right activation or blind replay.",
+      "planned_case": "Later isolated old-grant/revocation/pending-send/job/deleted-data examples with defined expected dispositions.",
+      "requirement_ids": [
+        "QSR-D11",
+        "QSR-D12",
+        "BRL-D09"
+      ],
+      "models": [
+        "IF-08",
+        "SM-M17",
+        "RB-D16"
+      ],
+      "status": "Source-derived boundary/failure scenario; not a confirmed vulnerability or executed security test"
+    },
+    {
+      "id": "SQ-T11",
+      "title": "False health/audit confidence",
+      "path": "A successful page, incomplete evidence or procedure output is treated as all-service health/security/recovery proof.",
+      "boundary": "Actual bounded evidence with environment/coverage/result/limits; no immutable audit or generic security certification.",
+      "planned_case": "Selected event/evidence-access and missing/partial-result cases; compare exact scoped success definition.",
+      "requirement_ids": [
+        "QSR-D04",
+        "QSR-D13",
+        "QSR-D14",
+        "AFO-D12"
+      ],
+      "models": [
+        "IF-08",
+        "SM-M18",
+        "RB-D18"
+      ],
+      "status": "Source-derived boundary/failure scenario; not a confirmed vulnerability or executed security test"
+    },
+    {
+      "id": "SQ-T12",
+      "title": "Competing workload saturation",
+      "path": "Uploads/media/Git/conditional processing compete with baseline services or recovery/maintenance work.",
+      "boundary": "Actual mixed-workload/resource/limit/degradation contract required; no extrapolation from idle usage or user count.",
+      "planned_case": "Later bounded mixed workload and saturation cases after exact environment/limits/stop conditions are authorized.",
+      "requirement_ids": [
+        "QSR-D01",
+        "QSR-D02",
+        "QSR-D04",
+        "YML-D06",
+        "AFO-D04"
+      ],
+      "models": [
+        "IF-03",
+        "IF-06",
+        "IF-07",
+        "IF-08",
+        "RB-D14"
+      ],
+      "status": "Source-derived boundary/failure scenario; not a confirmed vulnerability or executed security test"
+    }
+  ],
+  "quality_scenarios": [
+    {
+      "id": "SQ-Q01",
+      "title": "Workflow response performance",
+      "stimulus_source": "Authorized supported user/client",
+      "stimulus": "Requests an agreed core interactive or transfer operation.",
+      "environment": "Defined client/network/dataset and concurrent/background mix; relevant warm/cold/processing state identified.",
+      "artifact": "Selected private/employer/file workflow.",
+      "response": "Return actual permitted usable result or truthful degraded/error state; a fast failure is not successful latency.",
+      "measure": "Elapsed duration between declared request submission and defined usable-result boundary; separate successful/failed/partial counts. Time unit and aggregation recorded for each later run.",
+      "decision_needed": "Select exact workloads, start/end, aggregation, threshold and test environment before performance acceptance.",
+      "requirement_ids": [
+        "QSR-D01"
+      ],
+      "models": [
+        "IF-01",
+        "IF-02",
+        "IF-03"
+      ],
+      "contracts": [
+        "DC-O02",
+        "DC-O03",
+        "DC-O06"
+      ],
+      "status": "Planned quality scenario; no product execution",
+      "actual_result": "Not performed by this analysis; no Pass",
+      "threshold_status": "No new numerical target or policy acceptance allocated"
+    },
+    {
+      "id": "SQ-Q02",
+      "title": "Combined resource capacity",
+      "stimulus_source": "Concurrent users/processing/Git/jobs plus baseline services",
+      "stimulus": "Competing defined work approaches actual configured admission/resource envelope.",
+      "environment": "Identified configuration and workload mix including file/temp/retained data, repository growth and eligible background work; no user-count-to-concurrency equivalence.",
+      "artifact": "Shared CPU/memory/disk/network and actual effective admission.",
+      "response": "Respect reviewed actual limits and defined other-workflow behavior; no false completed work under saturation.",
+      "measure": "Observed resource usage/admitted/rejected/pending/failed work by defined interval and accounting units; distinguish retained/temporary growth.",
+      "decision_needed": "Define actual workload/data/concurrency budgets, limits/accounting and measurement method; no capacity extrapolation from idle readings.",
+      "requirement_ids": [
+        "QSR-D02"
+      ],
+      "models": [
+        "IF-03",
+        "IF-06",
+        "IF-07",
+        "RB-D14"
+      ],
+      "contracts": [
+        "DC-O27",
+        "DC-O31",
+        "DC-O32"
+      ],
+      "status": "Planned quality scenario; no product execution",
+      "actual_result": "Not performed by this analysis; no Pass",
+      "threshold_status": "No new numerical target or policy acceptance allocated"
+    },
+    {
+      "id": "SQ-Q03",
+      "title": "Operable accessible supported interaction",
+      "stimulus_source": "User/employer using agreed client/input/language context",
+      "stimulus": "Attempts representative form/navigation/error and long/media-rich content tasks.",
+      "environment": "Explicit client/viewport/input matrix, manual English/German examples and selected assistive/keyboard cases.",
+      "artifact": "Supported interface states and controls.",
+      "response": "Expose context/action/field error and distinguish loading, empty, invalid, denied, incomplete and successful states without color alone.",
+      "measure": "Actual task completion and observed keyboard/focus/label/layout/error defects against selected case criteria; record environment and unresolved cases.",
+      "decision_needed": "Choose supported clients, accessibility standard/level if adopted, task measures and exact criteria; no conformance or native-app claim.",
+      "requirement_ids": [
+        "QSR-D03"
+      ],
+      "models": [
+        "IF-01",
+        "IF-02"
+      ],
+      "contracts": [
+        "DC-O04",
+        "DC-O06",
+        "DC-O07"
+      ],
+      "status": "Planned quality scenario; no product execution",
+      "actual_result": "Not performed by this analysis; no Pass",
+      "threshold_status": "No new numerical target or policy acceptance allocated"
+    },
+    {
+      "id": "SQ-Q04",
+      "title": "Availability and bounded degradation",
+      "stimulus_source": "Dependency/local-path interruption",
+      "stimulus": "Covered required local/provider path becomes unavailable or returns uncertain effect.",
+      "environment": "Defined covered paths, observation interval, usable/degraded success meaning and maintenance treatment.",
+      "artifact": "Product/provider operations and pending work.",
+      "response": "Expose reviewed unavailable/stale/pending/unknown state; reconcile effects without blind replay on return.",
+      "measure": "Actual observations by covered path/window and defined usable/degraded criteria; separately record outage and ambiguous operations.",
+      "decision_needed": "Agree availability target/window/maintenance/fallback/detection/restoration criteria before accepting a percentage or SLA.",
+      "requirement_ids": [
+        "QSR-D04"
+      ],
+      "models": [
+        "IF-04",
+        "IF-05",
+        "IF-08",
+        "RB-D18"
+      ],
+      "contracts": [
+        "DC-O11",
+        "DC-O15",
+        "DC-O38"
+      ],
+      "status": "Planned quality scenario; no product execution",
+      "actual_result": "Not performed by this analysis; no Pass",
+      "threshold_status": "No new numerical target or policy acceptance allocated"
+    },
+    {
+      "id": "SQ-Q05",
+      "title": "Resource isolation and changed access",
+      "stimulus_source": "Different actor, altered direct reference or changed grant",
+      "stimulus": "Requests protected UI/file/provider/Git/execution operation after or without applicable power.",
+      "environment": "Current intended account/grant/link state plus reviewed fresh-request and existing/in-flight policy.",
+      "artifact": "Resource/action/entry-path permission boundary.",
+      "response": "Allow only exact current granted scope; protect private/unselected content and report denied/changed access without secrets.",
+      "measure": "Expected/actual results for each approved matrix row and direct path; distinguish unreviewed policy/unknown behavior from tested denial.",
+      "decision_needed": "Finalize applicable action/state/session/credential policy and controlled cases; matrix here is conditional, not blanket approval.",
+      "requirement_ids": [
+        "QSR-D05"
+      ],
+      "models": [
+        "IF-01",
+        "IF-02",
+        "IF-03",
+        "IF-06",
+        "IF-07",
+        "RB-D01"
+      ],
+      "contracts": [
+        "DC-O05",
+        "DC-O06",
+        "DC-O20",
+        "DC-O21",
+        "DC-O39"
+      ],
+      "status": "Planned quality scenario; no product execution",
+      "actual_result": "Not performed by this analysis; no Pass",
+      "threshold_status": "No new numerical target or policy acceptance allocated"
+    },
+    {
+      "id": "SQ-Q06",
+      "title": "Sensitive information and secrets",
+      "stimulus_source": "Ordinary output/diagnostic reader or unauthorized direct requester",
+      "stimulus": "Attempts to observe sensitive content/credential/configuration/recovery material.",
+      "environment": "Defined content classification, permitted recipients and selected actual transport/storage/credential controls.",
+      "artifact": "Private records, tokens/passwords/keys, outputs/configuration and recovery material.",
+      "response": "Return only permitted bounded evidence; ordinary logs/errors/repository examples do not expose secrets or unrelated private content.",
+      "measure": "Controlled synthetic sensitive markers and authorized/denied access/output cases; actual configuration/protection/renewal evidence with real values excluded.",
+      "decision_needed": "Define classification, transport/storage/key/credential lifecycle and selected controls; no cipher/TLS version or legal certification is invented.",
+      "requirement_ids": [
+        "QSR-D06"
+      ],
+      "models": [
+        "IF-03",
+        "IF-04",
+        "IF-07",
+        "IF-08"
+      ],
+      "contracts": [
+        "DC-O12",
+        "DC-O27",
+        "DC-O33",
+        "DC-O37"
+      ],
+      "status": "Planned quality scenario; no product execution",
+      "actual_result": "Not performed by this analysis; no Pass",
+      "threshold_status": "No new numerical target or policy acceptance allocated"
+    },
+    {
+      "id": "SQ-Q07",
+      "title": "Untrusted content and execution boundary",
+      "stimulus_source": "Authorized uploader/client supplies untrusted content/code",
+      "stimulus": "Malformed/unsupported/unsafe content or workflow attempts cross content/host/secret/network/resource boundary.",
+      "environment": "Reviewed safe content cases; execution tests only in separately authorized suitable isolated environment after enabling gate.",
+      "artifact": "Content validation/serving and conditional run/target boundaries.",
+      "response": "Reject or safely expose only permitted content; before job enablement actually demonstrate required isolation/authority/resource/cleanup; separate target approval.",
+      "measure": "Actual controlled content/isolated execution observations per declared boundary and required negative case; no test on live demo inferred.",
+      "decision_needed": "Define validation depth, safe rendering/embeds, isolation/network/packages/secrets/output/limits and evidence before enabling execution.",
+      "requirement_ids": [
+        "QSR-D07"
+      ],
+      "models": [
+        "IF-03",
+        "IF-07",
+        "RB-D12",
+        "RB-D13"
+      ],
+      "contracts": [
+        "DC-O27",
+        "DC-O28",
+        "DC-O30",
+        "DC-O32"
+      ],
+      "status": "Planned quality scenario; no product execution",
+      "actual_result": "Not performed by this analysis; no Pass",
+      "threshold_status": "No new numerical target or policy acceptance allocated"
+    },
+    {
+      "id": "SQ-Q08",
+      "title": "Integrity and truthful completion",
+      "stimulus_source": "Concurrent edits, interruption or repeated consequential request",
+      "stimulus": "Attempts source/apply/capture/provider/ref/run changes while context/results may differ.",
+      "environment": "Identified exact subjects/revisions/actual historical material and relevant same-operation evidence.",
+      "artifact": "Independent tailoring/history and actual effect state.",
+      "response": "Preserve accepted source/apply/publication/history boundaries; report definite failure/partial/pending/unknown truthfully without blind retries or global rollback claims.",
+      "measure": "Compare attributable before/actual-after effects and protected frame for selected cases; count missing/partial/unknown separately from complete.",
+      "decision_needed": "Define affected conflict/correction/source-of-truth/repetition contracts; no exactly-once or zero-data-loss mechanism is chosen.",
+      "requirement_ids": [
+        "QSR-D08"
+      ],
+      "models": [
+        "SM-M01",
+        "SM-M07",
+        "SM-M18",
+        "RB-D02",
+        "RB-D06",
+        "RB-D18"
+      ],
+      "contracts": [
+        "DC-O01",
+        "DC-O02",
+        "DC-O03",
+        "DC-O09",
+        "DC-O38"
+      ],
+      "status": "Planned quality scenario; no product execution",
+      "actual_result": "Not performed by this analysis; no Pass",
+      "threshold_status": "No new numerical target or policy acceptance allocated"
+    },
+    {
+      "id": "SQ-Q09",
+      "title": "Retention and reference-aware removal",
+      "stimulus_source": "Authorized category controller or quota-pressure context",
+      "stimulus": "Requests archive/unlink/delete/reclaim/restore for information with possible required references.",
+      "environment": "Reviewed per-category authority, retention and actual reference/accounting state.",
+      "artifact": "Actual submissions/shared sources/files/provider data and reclaimed usage.",
+      "response": "Perform only eligible intended action; do not silently erase required/unrelated content or claim full cleanup after partial failure.",
+      "measure": "Actual category/action/reference eligibility and result/usage accounting against defined policy; distinguish retained, removed and unresolved material.",
+      "decision_needed": "Define category duration/trigger/cascade/account-closure/provider/backup-expiry and restoration treatment; preservation is not forever.",
+      "requirement_ids": [
+        "QSR-D09"
+      ],
+      "models": [
+        "SM-M16",
+        "RB-D15"
+      ],
+      "contracts": [
+        "DC-O34",
+        "DC-O35",
+        "DC-O36"
+      ],
+      "status": "Planned quality scenario; no product execution",
+      "actual_result": "Not performed by this analysis; no Pass",
+      "threshold_status": "No new numerical target or policy acceptance allocated"
+    },
+    {
+      "id": "SQ-Q10",
+      "title": "Protected observable covered backup",
+      "stimulus_source": "Authorized backup procedure",
+      "stimulus": "Attempts to create actual protected recovery material for selected covered information.",
+      "environment": "Actually configured source/destination/access/separation/schedule/retention and defined consistency point; currently not configured.",
+      "artifact": "Defined coverage subjects and required configuration/artifacts/relationships.",
+      "response": "Record actual covered point/material/access and failure/missed/incomplete outcome without secrets; backup existence alone not usable recovery.",
+      "measure": "Subject include/reconstruct/exclude dispositions and actual job/material/integrity/access findings with selected time/coverage boundaries.",
+      "decision_needed": "Choose actual coverage, consistency, protection/separation, schedule/retention/failure evidence and facility; no performed backup is claimed.",
+      "requirement_ids": [
+        "QSR-D10"
+      ],
+      "models": [
+        "IF-08",
+        "SM-M17"
+      ],
+      "contracts": [
+        "DC-O37"
+      ],
+      "status": "Planned quality scenario; no product execution",
+      "actual_result": "Not performed by this analysis; no Pass",
+      "threshold_status": "No new numerical target or policy acceptance allocated"
+    },
+    {
+      "id": "SQ-Q11",
+      "title": "Demonstrated scoped usable restoration",
+      "stimulus_source": "Authorized recovery operator",
+      "stimulus": "Defines loss event and requests eligible isolated restore assessment.",
+      "environment": "Actual protected source, identified covered recovery point and suitable isolated target with declared usable-state/measurement criteria.",
+      "artifact": "Required records/artifacts/references and actual selected core workflows.",
+      "response": "Restore candidate, check integrity/current access/external effects and actual usable workflow outcome; report gaps, measured loss/time and limitations.",
+      "measure": "Actual recoverable loss relative to selected event/point and duration from declared start to defined usable state; compare with agreed RPO/RTO, not extraction time alone.",
+      "decision_needed": "Agree scenario coverage/RPO/RTO boundaries/values and actual isolated drill evidence; backups absent, so no readiness Pass.",
+      "requirement_ids": [
+        "QSR-D11"
+      ],
+      "models": [
+        "IF-08",
+        "SM-M17",
+        "RB-D16"
+      ],
+      "contracts": [
+        "DC-O37"
+      ],
+      "status": "Planned quality scenario; no product execution",
+      "actual_result": "Not performed by this analysis; no Pass",
+      "threshold_status": "No new numerical target or policy acceptance allocated"
+    },
+    {
+      "id": "SQ-Q12",
+      "title": "Restored access and external reconciliation",
+      "stimulus_source": "Old recovery point contains revoked rights or pending effects",
+      "stimulus": "Restored state disagrees with current access/provider/ref/run/target/deleted-data context.",
+      "environment": "Authorized isolated recovery with explicit current-vs-recovery-point authority/external-state policy.",
+      "artifact": "Sharing grants/memberships/provider mappings/pending sends/jobs/deployments and deleted data.",
+      "response": "Reassess allowed current access/external disposition before resuming protected/consequential work; no automatic old-right activation or replay.",
+      "measure": "Expected/actual disposition of old grant, disabled share, later revocation, missing newer external event and pending operation cases; mark unresolved source of authority.",
+      "decision_needed": "Define current authority, credential invalidation/deleted-data and resume approval policy; do not pretend local restore rewrites Google/target truth.",
+      "requirement_ids": [
+        "QSR-D12"
+      ],
+      "models": [
+        "SM-M08",
+        "SM-M17",
+        "SM-M18",
+        "RB-D16",
+        "RB-D18"
+      ],
+      "contracts": [
+        "DC-O36",
+        "DC-O37",
+        "DC-O38"
+      ],
+      "status": "Planned quality scenario; no product execution",
+      "actual_result": "Not performed by this analysis; no Pass",
+      "threshold_status": "No new numerical target or policy acceptance allocated"
+    },
+    {
+      "id": "SQ-Q13",
+      "title": "Useful restricted operational evidence",
+      "stimulus_source": "Selected health/error/capacity/sensitive change",
+      "stimulus": "Produces or requests operational evidence/feedback.",
+      "environment": "Defined event/context/time/outcome policy and permitted recipients/access; no configured monitoring job assumed.",
+      "artifact": "Bounded health/error/audit/capacity and evidence access.",
+      "response": "Expose useful attributable actual result/limits only to permitted viewers without secret/private-content leakage.",
+      "measure": "Selected expected/actual event/context/outcome observations and unauthorized evidence-access cases; actual channels/recipient response if later adopted.",
+      "decision_needed": "Define event list/integrity/mutation/time/sampling/retention/channel/alert tolerance/operator action; no immutable log or paid tool implied.",
+      "requirement_ids": [
+        "QSR-D13"
+      ],
+      "models": [
+        "IF-08",
+        "SM-M18",
+        "RB-D18"
+      ],
+      "contracts": [
+        "DC-O31",
+        "DC-O33",
+        "DC-O38"
+      ],
+      "status": "Planned quality scenario; no product execution",
+      "actual_result": "Not performed by this analysis; no Pass",
+      "threshold_status": "No new numerical target or policy acceptance allocated"
+    },
+    {
+      "id": "SQ-Q14",
+      "title": "Version-specific maintainable/recoverable change",
+      "stimulus_source": "Sole authorized delivery/operations owner",
+      "stimulus": "Plans or performs an explicitly authorized future setup/update/maintenance/data change.",
+      "environment": "Identified candidate/environment/compatibility/dependencies and feasible effort within owner availability; project Laravel/OOP constraint retained.",
+      "artifact": "Versioned non-secret procedures, verification and scoped failure/recovery paths.",
+      "response": "Record actual performed results/limits; review failed-change/data compatibility and irreversible limits rather than promise universal rollback.",
+      "measure": "Actual procedure steps/evidence/compatibility/recovery findings and measured operator effort when later performed; mark unperformed steps explicitly.",
+      "decision_needed": "Define supported versions/licenses, windows, change/recovery acceptance and workload; no architecture/upgrade/live-change is selected here.",
+      "requirement_ids": [
+        "QSR-D14"
+      ],
+      "models": [
+        "IF-08",
+        "RB-D16"
+      ],
+      "contracts": [
+        "DC-O30",
+        "DC-O31",
+        "DC-O37"
+      ],
+      "status": "Planned quality scenario; no product execution",
+      "actual_result": "Not performed by this analysis; no Pass",
+      "threshold_status": "No new numerical target or policy acceptance allocated"
+    }
+  ],
+  "recovery_coverage": [
+    {
+      "id": "SQ-R01",
+      "subject": "Accounts, grants and shares",
+      "coverage_decision": "Pending: explicit include/reconstruct/exclude with impact/rationale for selected recovery scenario",
+      "required": "Required identity/resource relationships, ownership and protected link/grant context.",
+      "reconcile": "Later revocations, disabled links, suspended/closed accounts and credential state must not be blindly reactivated.",
+      "requirement_ids": [
+        "QSR-D10",
+        "QSR-D12",
+        "ACC-D12",
+        "PDF-D06"
+      ],
+      "domain_keys": [
+        "account",
+        "grant",
+        "link"
+      ],
+      "actual_evidence": "Backups not configured; no performed covered backup or usable restoration claim"
+    },
+    {
+      "id": "SQ-R02",
+      "subject": "Profiles/resumes/evidence/PDFs",
+      "coverage_decision": "Pending: explicit include/reconstruct/exclude with impact/rationale for selected recovery scenario",
+      "required": "Required source/draft/live identities, selected associations/overrides/language and actual artifacts/provenance.",
+      "reconcile": "Independent tailored/live meanings and artifact availability must remain truthful; a newer rendition cannot stand in for an actual historical copy.",
+      "requirement_ids": [
+        "QSR-D10",
+        "QSR-D11",
+        "PRP-D04",
+        "PDF-D07"
+      ],
+      "domain_keys": [
+        "profile",
+        "resume",
+        "override",
+        "evidence",
+        "publication",
+        "generated",
+        "uploaded",
+        "language"
+      ],
+      "actual_evidence": "Backups not configured; no performed covered backup or usable restoration claim"
+    },
+    {
+      "id": "SQ-R03",
+      "subject": "Applications and actual submitted material",
+      "coverage_decision": "Pending: explicit include/reconstruct/exclude with impact/rationale for selected recovery scenario",
+      "required": "Actual sent resume/letter components, event/provenance and application/material relationships.",
+      "reconcile": "Do not reconstruct actual history from later live content; corrections/missing required components remain distinguishable.",
+      "requirement_ids": [
+        "QSR-D10",
+        "QSR-D11",
+        "APP-D06",
+        "APP-D07"
+      ],
+      "domain_keys": [
+        "application",
+        "letter",
+        "submission",
+        "material"
+      ],
+      "actual_evidence": "Backups not configured; no performed covered backup or usable restoration claim"
+    },
+    {
+      "id": "SQ-R04",
+      "subject": "Projects/backlogs/boards/Sprints",
+      "coverage_decision": "Pending: explicit include/reconstruct/exclude with impact/rationale for selected recovery scenario",
+      "required": "Required work identities/order/state, item/task/Sprint Goal/selected-work/plan and memberships.",
+      "reconcile": "Task completion, item acceptance, period result and current project rights remain distinct after recovery.",
+      "requirement_ids": [
+        "QSR-D10",
+        "QSR-D11",
+        "PKS-D07",
+        "PKS-D08",
+        "PKS-D09"
+      ],
+      "domain_keys": [
+        "project",
+        "board",
+        "backlog",
+        "item",
+        "task",
+        "sprint",
+        "sprintbacklog"
+      ],
+      "actual_evidence": "Backups not configured; no performed covered backup or usable restoration claim"
+    },
+    {
+      "id": "SQ-R05",
+      "subject": "Git hosting and collaboration",
+      "coverage_decision": "Pending: explicit include/reconstruct/exclude with impact/rationale for selected recovery scenario",
+      "required": "Actual required repository objects/refs plus PR/review/issue/release metadata and access context.",
+      "reconcile": "Consistent evaluated history/ref/metadata; current rights and newer external/client effects assessed, not just database startup.",
+      "requirement_ids": [
+        "QSR-D10",
+        "QSR-D11",
+        "QSR-D12",
+        "GIT-D10"
+      ],
+      "domain_keys": [
+        "repo",
+        "revision",
+        "ref",
+        "pr",
+        "review",
+        "issue",
+        "release"
+      ],
+      "actual_evidence": "Backups not configured; no performed covered backup or usable restoration claim"
+    },
+    {
+      "id": "SQ-R06",
+      "subject": "Workflow execution and output",
+      "coverage_decision": "Pending: explicit include/reconstruct/exclude with impact/rationale for selected recovery scenario",
+      "required": "Required definition/evaluated revision/run/attempt/output context and explicitly scoped genuinely needed secret material.",
+      "reconcile": "Pending jobs/unknown attempts/target effects and secret authority must not automatically resume/replay.",
+      "requirement_ids": [
+        "QSR-D10",
+        "QSR-D12",
+        "YML-D03",
+        "YML-D08",
+        "YML-D10"
+      ],
+      "domain_keys": [
+        "workflow",
+        "run",
+        "attempt",
+        "output",
+        "secret",
+        "deployment",
+        "target"
+      ],
+      "actual_evidence": "Backups not configured; no performed covered backup or usable restoration claim"
+    },
+    {
+      "id": "SQ-R07",
+      "subject": "Gmail/calendar local context",
+      "coverage_decision": "Pending: explicit include/reconstruct/exclude with impact/rationale for selected recovery scenario",
+      "required": "Required local data/notes/associations/mappings/account/calendar references under explicitly defined coverage.",
+      "reconcile": "Not an assumed full Gmail/Google backup; current provider truth/capabilities/revocations and pending sends/reminders reconciled.",
+      "requirement_ids": [
+        "QSR-D10",
+        "QSR-D12",
+        "EGC-D08",
+        "EGC-D11",
+        "EGC-D12"
+      ],
+      "domain_keys": [
+        "connection",
+        "message",
+        "activity",
+        "reminder"
+      ],
+      "actual_evidence": "Backups not configured; no performed covered backup or usable restoration claim"
+    },
+    {
+      "id": "SQ-R08",
+      "subject": "Configuration and genuinely required keys",
+      "coverage_decision": "Pending: explicit include/reconstruct/exclude with impact/rationale for selected recovery scenario",
+      "required": "Version/environment-specific non-secret configuration, dependency references and protected recovery access to required secret material where explicitly needed.",
+      "reconcile": "Restored old configuration/credentials are not proof of safe current validity; loss/invalidation and access policy require explicit handling.",
+      "requirement_ids": [
+        "QSR-D06",
+        "QSR-D10",
+        "QSR-D14",
+        "AFO-D12"
+      ],
+      "domain_keys": [
+        "policy",
+        "secret",
+        "grant"
+      ],
+      "actual_evidence": "Backups not configured; no performed covered backup or usable restoration claim"
+    },
+    {
+      "id": "SQ-R09",
+      "subject": "Operational/audit evidence",
+      "coverage_decision": "Pending: explicit include/reconstruct/exclude with impact/rationale for selected recovery scenario",
+      "required": "Selected required history, outcome/context/time, retention and protected integrity/access needs.",
+      "reconcile": "Actual missing/partial history and restored-deleted-data limitations disclosed; no immutable/all-events audit claim.",
+      "requirement_ids": [
+        "QSR-D10",
+        "QSR-D12",
+        "QSR-D13",
+        "AFO-D09"
+      ],
+      "domain_keys": [
+        "audit",
+        "policy",
+        "grant"
+      ],
+      "actual_evidence": "Backups not configured; no performed covered backup or usable restoration claim"
+    }
+  ],
+  "diagrams": [
+    {
+      "name": "security-scoped-authority",
+      "title": "SQ — scoped authority across entry paths"
+    },
+    {
+      "name": "security-untrusted-content-execution",
+      "title": "SQ — data trust and conditional execution"
+    },
+    {
+      "name": "quality-scenario-measurement",
+      "title": "SQ — measurable quality scenario contract"
+    },
+    {
+      "name": "recovery-scoped-usable-state",
+      "title": "SQ — recovery evidence and current authority"
+    },
+    {
+      "name": "operations-effect-evidence",
+      "title": "SQ — operation effect versus observation"
+    },
+    {
+      "name": "operations-resource-envelope",
+      "title": "SQ — mixed workload and observed host limits"
+    }
+  ],
+  "historical_host_evidence": {
+    "source": "docs/SDLC/02-requirements-engineering/06-validation-and-traceability/evidence/server-readonly-check-2026-11-01.json",
+    "observed_at": "2026-11-01T12:26:13+00:00",
+    "limits": [
+      "Initial local command had a quoting/parser error before connection; corrected",
+      "First connection was denied by local permission boundary; approved read-only retry succeeded",
+      "One multiline HTTPS check had a malformed URL error; separately corrected command returned HTTP 200",
+      "No application health/login journey, load, restoration, license or OAuth access test performed",
+      "No matching root cron/named units does not exclude other users, timers, process managers or external schedulers",
+      "No settings, packages, accounts or application data changed"
+    ]
+  },
+  "input_sha256": {
+    "docs/SDLC/01-project-planning/01-purpose-and-objectives.md": "072a1c98d43b5d53eb37ec2d5f26646dc3bdf3f67e0d7656347f4988a434e37c",
+    "docs/SDLC/01-project-planning/02-scope.md": "33b218141cef0799afe61adc098b7c42e6eb3ee9b1826c1b3d03f926b332dd82",
+    "docs/SDLC/01-project-planning/03-stakeholders-and-responsibilities.md": "74eefec6d54ce1c42a28528af7c39b0a600ebd3da5fa462150485d7469a3f8bf",
+    "docs/SDLC/01-project-planning/04-deliverables.md": "fa398d2c11e2ce3acd337c60d240f4d313f8385d7a46246fecf82ca6950c0284",
+    "docs/SDLC/01-project-planning/05-resources-and-constraints.md": "60fcfc5db21fcaf662e67f66b4667c7b6d75a98cc61d9f6e89999e3d6b57670c",
+    "docs/SDLC/01-project-planning/06-assumptions-and-dependencies.md": "917d3ba25e202c6c788818edac5dc97f8ac08a0e4c0ba76a539fac93f5326df1",
+    "docs/SDLC/01-project-planning/07-risks.md": "05eef4ef225f98bace7aaf8584bef8450c0629ae7ba4a6a2790326bb5bc2ccfb",
+    "docs/SDLC/01-project-planning/08-roadmap-and-milestones.md": "b7fafd073bb46c0cc441248eb7185865ca201881cbd659196553ead38729d08f",
+    "docs/SDLC/01-project-planning/09-working-method-and-change-control.md": "a5ec86e7d887b6c1acafae221c2c23e62cc6c8523bbe52d9a2619e7fdf9bfaa2",
+    "docs/SDLC/01-project-planning/10-planning-completion-criteria.md": "3396822ea3b2b74d99cad56d794ff5ca143ca88554d0552b7a4564c3886b4e65",
+    "docs/SDLC/01-project-planning/11-capacity-and-preliminary-sizing.md": "7ae3efcee720b21f15b361349c63a37743e78e4d52f7c76baa1508d6fee92723",
+    "docs/SDLC/01-project-planning/decision-register.md": "8ff602eddc2679e68985f23d462a458d436e0a36b980fa08cdaa21722f97241b",
+    "docs/SDLC/01-project-planning/project-plan.md": "dfa957970bc01b296013ffbdb65510244ad4ebf95dd359b181f6962f4d47f1dc",
+    "docs/SDLC/01-project-planning/README.md": "f99c00dc02ffd3f8c9418e83e68f48e2fc59f675a9e1b46fdb8f34e5c0fe6019",
+    "docs/SDLC/02-requirements-engineering/README.md": "38b16e6cb87cd8f0e4b923ad0c0950e7e2047b8cdc602e740cb6ab94456fe954",
+    "docs/SDLC/02-requirements-engineering/01-process-and-approach/01-requirements-approach.md": "a0a789d663d6417aef001f4ff89a264980e097245282c16edc8fdd10e1039bf9",
+    "docs/SDLC/02-requirements-engineering/01-process-and-approach/02-feasibility-study.md": "553a92fb8a8d594cb46079a259b87e558ca6b63a9ce5c04f9465b3a5092031cf",
+    "docs/SDLC/02-requirements-engineering/01-process-and-approach/03-requirements-elicitation.md": "ed07bfae14d1eb7270e1e668b442c9657dea70362fefce60fdf164ebd009a07f",
+    "docs/SDLC/02-requirements-engineering/01-process-and-approach/04-analysis-and-negotiation.md": "e003c14579d8497bbac8d4f62b71723c3a17e3021e06e40a7f42fd7f874e589e",
+    "docs/SDLC/02-requirements-engineering/01-process-and-approach/05-requirements-specification.md": "e747e0073c03334c518db39e73ebb1e4875509d60e9f06691129174cb68da7f9",
+    "docs/SDLC/02-requirements-engineering/01-process-and-approach/06-requirements-verification-and-validation.md": "3ff714b629ee03eb245d2b782cb53392089e12f6bad605d2471ee7b935f328c2",
+    "docs/SDLC/02-requirements-engineering/01-process-and-approach/07-requirements-management.md": "2e78f361007f03b15cac26070ecf82e8bbf34419abb7bf2382999484b513552c",
+    "docs/SDLC/02-requirements-engineering/01-process-and-approach/README.md": "f824fb7ebc2f7b0df4a11d9f0a3254e29f090ac1e01378823f9bc846ee36e5d5",
+    "docs/SDLC/02-requirements-engineering/02-stakeholders-and-elicitation/actors-and-system-context.md": "1f95b5adb9ddedcccb486d5eb78cf49f1377d3ca16c0bb9a3fd4d194a4bfc71f",
+    "docs/SDLC/02-requirements-engineering/02-stakeholders-and-elicitation/elicitation-log.md": "cf035242b2f00fb04ed96509cbf148ea415277b35e944833db5bd80a43d4c198",
+    "docs/SDLC/02-requirements-engineering/02-stakeholders-and-elicitation/elicitation-plan-and-techniques.md": "abb6b70d6a887e065fd74e8c614a98205a2b222cbf8c52c86b4fd78002f4c917",
+    "docs/SDLC/02-requirements-engineering/02-stakeholders-and-elicitation/README.md": "dd9ebace2e8b1529820f1a32c817a0525c08afbfd62df7afdafc640dd8df4e28",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md": "d3f8d0b9719f0b60bd008207d362c0f78fd7d0449d755c540c52ab8481bce634",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md": "21064f4cf533b5fdc215d31e943ae9128d1e843c958647f4f0a576785afb261c",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-requirements.md": "9ab0bc50255d5bdacd1165ecbaf315c1dc6ccfed352bd18ee5dba83f6912010b",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md": "0825abe597c9e532cb634569404b61ad8ce29f31dc66e8b7f2afd653892c1570",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/domain-requirements-and-constraints.md": "7f66bc21a824aea3a5613a70843f602b6adb6f0527cd65e0142137048138d906",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md": "dafa6a97e11856c01fcc8462c349d9064c8e962c0cb8e3472abcfbea0ebae173",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md": "a23048e2e5c238c309f054e598c410481def3be7cf28eeab1b92c29bfb654dad",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md": "a3e87d9df789b0caad43c46797794dd8e5936d283966cdca6d2f172ebdde47e8",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md": "e7cc09e5e00547dbd5bf0991d817060d053981b7bd866633da29812760505169",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md": "3ce305eea7fadd531c5ed33aa83c82a92f339854a0efc54d9a65c8bb252eb0cd",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md": "20296582867db99cfb410c613fa95067c41bd3535e4f260b6b8f09a03f487fbb",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md": "671670ee2aa9e2f26bac52ecfd7824279053a1b3277f21dd14d2ee6ff6482e18",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md": "fbd72aa41df3170e19280ec13ebf3c96b73aa131c311fd4c64ea9687a4bc6412",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/README.md": "d37f402bd5d6f6339b890a9c27fe8e6ddebafad86e1086dcb6bad374a158de95",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/requirements-priority-and-readiness.md": "09432d16fb9d833024cd35339c5fda92f5ecfbd1199302aca9bd06fcdacc4ca6",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/requirements-specification.md": "f95f61114a624aae571fe62685133c7b5b4cce9ac3479d13b8237bff4a192118",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md": "87079c565ce8007f6879e79f32a2e9ca56a0ace57e9f2f1df8c17e3d7592ffcf",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md": "ae3dd6e364d53bb608fe2d1c501d02fbb40f53833c354dda36e71b3464a8b226",
+    "docs/SDLC/02-requirements-engineering/04-scenarios-and-models/README.md": "78cb9aa94457721d1cd7c9ddb15fbd23c010bdcfb7204887cea580a2f59fa9e7",
+    "docs/SDLC/02-requirements-engineering/04-scenarios-and-models/user-stories-and-scenarios.md": "05e2c0a8ea741070004d8a97056d8cd77ac0cf8b78a4504354377cdbaab232a3",
+    "docs/SDLC/02-requirements-engineering/05-data-definitions/data-dictionary.md": "eab192fb32c0c81d5d0e0bc481d4d2c0e66ad6cfafbf27f4ab8f9f25913338ce",
+    "docs/SDLC/02-requirements-engineering/05-data-definitions/glossary.md": "14964bd9a89f4ec09ecafa1cf75e3e68b9facf011aec37163d8def119ef9dcea",
+    "docs/SDLC/02-requirements-engineering/05-data-definitions/README.md": "1be25944c80ac43a07a40229e39da308c00bace8a43c898f81f3bbe55868c4c8",
+    "docs/SDLC/02-requirements-engineering/06-validation-and-traceability/README.md": "baa0817f80fd3b446068ca67cd3bd1a520ad70fd132efab659a1a95cb1b4dcd0",
+    "docs/SDLC/02-requirements-engineering/06-validation-and-traceability/remaining-gate-assessment.md": "f803829115ff461ad43cb7bf4c07d425c3ce598d524e7576a49b37c0b76c84b4",
+    "docs/SDLC/02-requirements-engineering/06-validation-and-traceability/requirements-traceability.md": "da93fa95b9badffa5731f190d05a15c7d599a2c70990cbf29f62e2e5fdca3b85",
+    "docs/SDLC/02-requirements-engineering/06-validation-and-traceability/review-plan-and-findings.md": "29c26a5a11aa702359e25c09aa4de43c300235adf0b67ec72b77f561e579ef93",
+    "docs/SDLC/02-requirements-engineering/07-change-and-baseline/change-control.md": "fe48c6f1bb86d30caba0d05c7950a7ff38f31f486dd3c16c6ae4f43a40cdf0c2",
+    "docs/SDLC/02-requirements-engineering/07-change-and-baseline/open-questions-and-decisions.md": "dc0a8f850988cda96998ed0cd7b61e03966428b0a977ec9fb31a24a15a89853f",
+    "docs/SDLC/02-requirements-engineering/07-change-and-baseline/README.md": "c3e6e92ceb79f91a9917e8f1d8bd9aa095ab65afff455c69258dcf3ed8c5c122",
+    "docs/SDLC/02-requirements-engineering/07-change-and-baseline/requirements-answer-review.md": "020e24b92f79f8c71db29b60c54bce81537850843255eb2beac38361bdb3a0fd",
+    "docs/SDLC/02-requirements-engineering/07-change-and-baseline/requirements-review-and-baseline-criteria.md": "fd5b06a8ad6dd0cb93d232043d9ec3bce2b1aafbd0a0b68c11b8ce907dde5044",
+    "docs/SDLC/02-requirements-engineering/diagrams/README.md": "9ee19cc77d63f0d8e3d01a0cf84ebbd291a61dba8a95f65116e6411ad7abaef4",
+    "docs/SDLC/02-requirements-engineering/templates/requirement-template.md": "a8e19514c8d8618b538b31e0cea5f1f61d9301e573e7cb378b30a468425da13d",
+    "docs/SDLC/02-requirements-engineering/templates/scenario-template.md": "08fdf2167b8dae97c1d105e3fec88cd685a841a970e4be7d94fd8bf5ce5504f1",
+    "docs/SDLC/02-requirements-engineering/templates/story-template.md": "9cfbde67a8a9db25e6e43f323159033dcae027bd084aceddd8bccbe90ae03bbb",
+    "docs/SDLC/03-system-analysis/01-analysis-purpose-scope-and-approach.md": "562449f91691a8c0b8be95b5404e4c3b8ae340a134dbfd014bf58a55537d1ecd",
+    "docs/SDLC/03-system-analysis/02-system-context-and-boundaries.md": "85ea61dab526ee60af6e20902cdce111dc9cb4785aa33f5e96aad09120fcd90d",
+    "docs/SDLC/03-system-analysis/03-domain-model-and-object-oriented-view.md": "669776993c881e9e904494d9abc8316d7497ea089bb5380286bce2febec48641",
+    "docs/SDLC/03-system-analysis/04-function-oriented-view.md": "7f135f12fe27cb50b8ba852db0b9c89fca6775f6656de3c46149d06ccddb2c92",
+    "docs/SDLC/03-system-analysis/05-data-oriented-view.md": "7c530462ebaf7609bfc22fb693d32e4a9ed9b26c249574e1bb21ad529aea2035",
+    "docs/SDLC/03-system-analysis/06-scenario-based-view.md": "d845d590bbe79dc478b28573239217094629c400d1ec8466302970e5eb95f429",
+    "docs/SDLC/03-system-analysis/07-state-based-view.md": "44cb366af505f941702dc3cb0edc62f2d0459297004bbbeaeb455e662f0d7d1e",
+    "docs/SDLC/03-system-analysis/08-control-flow-based-view.md": "6533423d0105f368f47a91dd61f96ec1622ef36807717fcbb997e9a8eb9c2033",
+    "docs/SDLC/03-system-analysis/09-rule-based-view.md": "cfc605554ee83d7043c61e757c4ecc2a3d2f3244a32b71b265f8325c43e2ab67",
+    "docs/SDLC/03-system-analysis/10-domain-constraints-and-operation-contracts.md": "10a371dd8c28bfe7884d247c5ceef4cc5b4745387f650c4ad88fd7cf514d4246",
+    "docs/SDLC/03-system-analysis/11-model-consistency-traceability-and-review.md": "40f582bc6d23c2dc92909dd07c1f457c4f7000db76a2223b864fef55c72ed0a8",
+    "docs/SDLC/03-system-analysis/12-interfaces-and-external-interactions.md": "8fb1af0d4634b2e868ecb9272feb83926dfde17128a7050d7e8f318dc45af33b",
+    "docs/SDLC/03-system-analysis/14-feasibility-dependencies-and-design-handoff.md": "e36c56624763401d5c474e0a572c998559c7f31fef3267f6642eec0d6b375892",
+    "docs/SDLC/03-system-analysis/15-current-processes-and-bottleneck-analysis.md": "b1cbed5e1c6a8dba3980340dc8d6c86b3d853afc695c30a10219b21acff6bb14",
+    "docs/SDLC/03-system-analysis/evidence/context-input-review-2026-11-01.json": "a3377d0444ea4a95fb161078cfc072c45cd02aef3a8bd8fedd26b2801bc240ab",
+    "docs/SDLC/03-system-analysis/evidence/control-flow-review-2026-11-01.json": "dc3f4519b1231c6575c8a560b48f9384622fb06ecd2da6747efaec22d1c4a596",
+    "docs/SDLC/03-system-analysis/evidence/data-oriented-review-2026-11-01.json": "f41e9b3b6957f78986a411f7ae1a9e95e90a0e62930c3ff188a0dae14b98ece5",
+    "docs/SDLC/03-system-analysis/evidence/domain-model-review-2026-11-01.json": "db887103f0e0173be2ec4f664d592c5c92d178029deee478c6251e79590ad8c3",
+    "docs/SDLC/03-system-analysis/evidence/four-document-diagram-review-2026-11-01.json": "0e32b02596c22abb4e635d368265956840c2216e3fc87ca0feaea6fb39d8ca8a",
+    "docs/SDLC/03-system-analysis/evidence/interface-review-2026-11-01.json": "cb22dedf3a47d6e4c527e18b15de8930d4eaf5367592ec2f420299f1331e0063",
+    "docs/SDLC/03-system-analysis/evidence/model-consistency-review-2026-11-01.json": "227f10e3e07256d1c280735708607ba31e68e7231afd278a09ea4429159f0e4c",
+    "docs/SDLC/03-system-analysis/evidence/operation-contract-review-2026-11-01.json": "b145fa0f08b7a74ebcfc2f5dda2ff3885fb2a337b14993872261ee10a3b98952",
+    "docs/SDLC/03-system-analysis/evidence/rule-based-review-2026-11-01.json": "e6af747c3fc48625277d3130ddc93d338a349a75177044aaa1bac28c899fffe9",
+    "docs/SDLC/03-system-analysis/evidence/scenario-based-review-2026-11-01.json": "ff131aad1b1215d3c6087c0438a3b73f52b133d8e0818efa795eb497f0114bf6",
+    "docs/SDLC/03-system-analysis/evidence/state-based-review-2026-11-01.json": "a3653226ba7e9af60806d2f9ca21c3363530b81698a49efe54f7deb800c131ba",
+    "docs/SDLC/02-requirements-engineering/06-validation-and-traceability/evidence/server-readonly-check-2026-11-01.json": "531479320825e6ed6baf053868e27dd30e6f554f928da8b971189dec0a22dde8"
+  },
+  "limits": "Artifact/source-association checks; conditional permission and planned scenarios are not approved powers, security findings, quantitative targets, legal assurance or product execution",
+  "actual_artifact_checks": {
+    "local_references": 9280,
+    "missing_targets": 0,
+    "authority_rows": 24,
+    "trust_cases": 12,
+    "source_aligned_quality_scenarios": 14,
+    "recovery_subjects": 9,
+    "csv_matrices": 4,
+    "rendered_models": 6,
+    "render_dimensions": {
+      "security-scoped-authority": [
+        738,
+        426
+      ],
+      "security-untrusted-content-execution": [
+        666,
+        542
+      ],
+      "quality-scenario-measurement": [
+        563,
+        582
+      ],
+      "recovery-scoped-usable-state": [
+        705,
+        623
+      ],
+      "operations-effect-evidence": [
+        818,
+        426
+      ],
+      "operations-resource-envelope": [
+        1047,
+        481
+      ]
+    },
+    "historical_host_source_preserved": true,
+    "source_hashes_unchanged": true,
+    "limits": "Artifact/source-association checks, not approved role policy, numerical targets, security certification, load, provider or restoration/product tests"
+  }
+}

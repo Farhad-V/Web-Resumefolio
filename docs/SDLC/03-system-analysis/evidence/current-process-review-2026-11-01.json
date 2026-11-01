@@ -1,0 +1,1100 @@
+{
+  "sources": [
+    {
+      "id": "CP-E01",
+      "title": "Accepted problem and scope",
+      "kind": "Accepted planning direction",
+      "source": "docs/SDLC/01-project-planning/01-purpose-and-objectives.md",
+      "sha256": "072a1c98d43b5d53eb37ec2d5f26646dc3bdf3f67e0d7656347f4988a434e37c",
+      "supported_statement": "Fragmented professional/application work and intended benefits are accepted problem/objective direction.",
+      "limit": "Not measured frequency, observed universal user behavior or a quantified pain level.",
+      "review_date": "2026-11-01"
+    },
+    {
+      "id": "CP-E02",
+      "title": "Elicitation activity and discovery pointers",
+      "kind": "Actual source register/document-extraction record",
+      "source": "docs/SDLC/02-requirements-engineering/02-stakeholders-and-elicitation/elicitation-log.md",
+      "sha256": "cf035242b2f00fb04ed96509cbf148ea415277b35e944833db5bd80a43d4c198",
+      "supported_statement": "LOG-001 records actual documentary extraction; LOG-002 records owner-supplied host observations; later owner inputs are explicitly recorded.",
+      "limit": "No new interview/workshop/daily-task observation is performed here. SRC-05/06 pointers are not inspected current workflows until exact extraction.",
+      "review_date": "2026-11-01"
+    },
+    {
+      "id": "CP-E03",
+      "title": "Dated guest/demo inspection",
+      "kind": "Historical technical observation",
+      "source": "docs/SDLC/02-requirements-engineering/06-validation-and-traceability/evidence/server-readonly-check-2026-11-01.json",
+      "sha256": "531479320825e6ed6baf053868e27dd30e6f554f928da8b971189dec0a22dde8",
+      "supported_statement": "Dated allocated/guest resources, web/database/PHP services, Laravel lockfile and limited operating observations were recorded.",
+      "limit": "Not an end-to-end personal workflow, current capacity/security test or demonstrated backup/restore; original execution limits apply.",
+      "review_date": "2026-11-01"
+    },
+    {
+      "id": "CP-E04",
+      "title": "Accepted core and owner facts",
+      "kind": "Recorded bounded owner decision / input",
+      "source": "docs/SDLC/02-requirements-engineering/07-change-and-baseline/open-questions-and-decisions.md",
+      "sha256": "dc0a8f850988cda96998ed0cd7b61e03966428b0a977ec9fb31a24a15a89853f",
+      "supported_statement": "Explicit source/apply/publication/history core accepted; owner availability 20 hours/week, OAuth not created, backups not configured are known inputs.",
+      "limit": "Intended product behavior and setup facts do not establish existing daily preparation/tool/sending procedure or measured effort.",
+      "review_date": "2026-11-01"
+    },
+    {
+      "id": "CP-E05",
+      "title": "Primary intended cross-module boundaries",
+      "kind": "Proposed requirements with accepted scope basis",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
+      "sha256": "0825abe597c9e532cb634569404b61ad8ce29f31dc66e8b7f2afd653892c1570",
+      "supported_statement": "Resource authority, selected disclosure, actual history, provider/lifecycle/recovery meanings are documented.",
+      "limit": "Proposed target rules are not observed current user/system behavior; older open wording must not reopen accepted profile core.",
+      "review_date": "2026-11-01"
+    },
+    {
+      "id": "CP-E06",
+      "title": "Current qualified handoff",
+      "kind": "Current documentary model/review fact",
+      "source": "docs/SDLC/03-system-analysis/14-feasibility-dependencies-and-design-handoff.md",
+      "sha256": "455449ec1df0076e7b7ff93d1a945a8cd48d3e27e73dfea9f888de82b9dcc16c",
+      "supported_statement": "Working models, current source identity, conditional design questions and remaining function/semantic/dependency work are documented.",
+      "limit": "Document/model/check counts are not real task durations, user research, implementation outcomes or whole-phase acceptance.",
+      "review_date": "2026-11-01"
+    },
+    {
+      "id": "CP-E07",
+      "title": "Proposed elicitation method and reference use",
+      "kind": "Investigation plan / discovery boundary",
+      "source": "docs/SDLC/02-requirements-engineering/02-stakeholders-and-elicitation/elicitation-plan-and-techniques.md",
+      "sha256": "abb6b70d6a887e065fd74e8c614a98205a2b222cbf8c52c86b4fd78002f4c917",
+      "supported_statement": "Reuse existing sources/decisions and select a bounded method for genuine remaining gaps; reference projects need exact inspected provenance.",
+      "limit": "No reference repository/user workflow is inspected by this task; proposed activities are not performed sessions.",
+      "review_date": "2026-11-01"
+    },
+    {
+      "id": "CP-E08",
+      "title": "Local work index and current planning input",
+      "kind": "Historical scheduling index / documented tracking authority",
+      "source": "docs/Project-Management/product-backlog.md",
+      "sha256": "e8558b92e6413b3e567e45ede1c57162f9e2f2be8e42fa824ee611b195eeeae7",
+      "supported_statement": "29 local PBI references and provisional dates/Sprints; GitHub issues/project remain live authority; current capacity input is 20 hours/week.",
+      "limit": "No live issue/board or actual Sprint execution is inspected; historical full-time wording is not a current numerical commitment.",
+      "review_date": "2026-11-01"
+    }
+  ],
+  "processes": [
+    {
+      "id": "CP-P01",
+      "title": "Professional information and targeted preparation",
+      "actor_context": "Intended professional-information/resume owner; actual observed participant/task sample not recorded.",
+      "known": "CP-E01 planning direction and CP-E04 accepted target rule support reuse plus independent tailoring; no actual field-entry session was supplied.",
+      "current_trigger": "Preparation/update need is mentioned in planning; actual initiating event/time for a current case is not observed.",
+      "current_sequence_tools_handoffs": "Actual source documents/tools, order of edits, manual variant handling, waits and handoffs are not established; do not import target UC-D01 as current routine.",
+      "information_authority": "Identify current source of each fact, intended resume-specific override/language/omission and any actual current/live/sent copy distinction.",
+      "evidence_needed": "A bounded authorized current preparation case with anonymized artifacts and explicitly observed edits/re-entry/intentional tailoring; no private source data needed in this document.",
+      "intended_improvement": "Explicit selected reuse can preserve independent text while avoiding unintended propagation; actual efficiency benefit must later be demonstrated.",
+      "requirement_ids": [
+        "BIZ-D01",
+        "USR-D01",
+        "DOM-D01",
+        "DOM-D04",
+        "PRP-D03",
+        "PRP-D04",
+        "BRL-D02"
+      ],
+      "models": [
+        "SB-M01",
+        "SM-M01",
+        "RB-D02",
+        "IF-01"
+      ],
+      "contracts": [
+        "DC-O01",
+        "DC-O02",
+        "DC-O03"
+      ],
+      "parent_questions": [
+        "Q-D06",
+        "Q-D07"
+      ],
+      "status": "Source-defined process area; no observed daily-business task instance recorded by this review"
+    },
+    {
+      "id": "CP-P02",
+      "title": "Presentation, evidence, PDFs and employer access",
+      "actor_context": "Intended owner and employer viewer; actual employer interaction not observed.",
+      "known": "Planning accepts controlled selected presentation. A dated demo page/deployment observation is not a witnessed sharing/revocation workflow.",
+      "current_trigger": "An intended viewing/sharing goal is in scope; no actual current link-creation/download/revocation event sequence recorded.",
+      "current_sequence_tools_handoffs": "Current export/naming/upload/language choice, employer entry, sharing medium and any access problem not established from supplied sources.",
+      "information_authority": "Distinguish intended selection/live presentation, generated/uploaded variant, language and current request authority; do not infer content from filename alone.",
+      "evidence_needed": "A controlled current presentation/retrieval case and any actually supplied before/after access evidence; synthetic target access cases are separate tests, not current-use observations.",
+      "intended_improvement": "Defined selected disclosure/direct retrieval and separate PDF/link controls address possible ambiguity; measured clarity/access outcomes not yet available.",
+      "requirement_ids": [
+        "BIZ-D02",
+        "USR-D02",
+        "USR-D03",
+        "PDF-D02",
+        "PDF-D03",
+        "PDF-D04",
+        "PDF-D05",
+        "PDF-D06"
+      ],
+      "models": [
+        "SB-M02",
+        "SB-M03",
+        "SB-M04",
+        "SM-M04",
+        "RB-D03",
+        "RB-D04",
+        "RB-D05",
+        "IF-02"
+      ],
+      "contracts": [
+        "DC-O04",
+        "DC-O05",
+        "DC-O06"
+      ],
+      "parent_questions": [
+        "Q-D05",
+        "Q-D08",
+        "Q-D09",
+        "Q-D10",
+        "Q-D11"
+      ],
+      "status": "Source-defined process area; no observed daily-business task instance recorded by this review"
+    },
+    {
+      "id": "CP-P03",
+      "title": "Manual application progress and actual sent history",
+      "actor_context": "Intended applicant; no inspected actual application/submission task instance.",
+      "known": "CP-E01/05 require manual preparation and actual-material independence; no real sent resume/letter/email or current register was inspected.",
+      "current_trigger": "Actual opportunity/submission/correction event and its time are not observed; desired manual behavior is not proof of current recording method.",
+      "current_sequence_tools_handoffs": "Current company/opportunity intake, letter preparation, chosen document, submission channel, progress recording and correction steps/tools/handoffs are not established.",
+      "information_authority": "Identify what was actually sent, actual event versus recorded time and how any old/current material is distinguished; latest live source cannot be assumed actual.",
+      "evidence_needed": "A bounded anonymized current case showing stated actual material/event and existing record; distinguish absence of evidence from evidence no record exists.",
+      "intended_improvement": "Explicit manual progress plus identifiable actual material may reduce history ambiguity; completeness/correction/retention outcome needs actual cases.",
+      "requirement_ids": [
+        "BIZ-D03",
+        "USR-D04",
+        "USR-D05",
+        "APP-D01",
+        "APP-D05",
+        "APP-D06",
+        "APP-D07",
+        "DOM-D02"
+      ],
+      "models": [
+        "SB-M05",
+        "SB-M06",
+        "SM-M06",
+        "SM-M07",
+        "RB-D06"
+      ],
+      "contracts": [
+        "DC-O07",
+        "DC-O08",
+        "DC-O09",
+        "DC-O10"
+      ],
+      "parent_questions": [
+        "Q-D12",
+        "Q-D13",
+        "Q-D14"
+      ],
+      "status": "Source-defined process area; no observed daily-business task instance recorded by this review"
+    },
+    {
+      "id": "CP-P04",
+      "title": "Correspondence, calendar and follow-up",
+      "actor_context": "Intended communication/calendar user; actual daily mailbox/calendar procedure not observed.",
+      "known": "Owner has not created the intended product OAuth project. This does not establish whether or how the person currently uses standalone Gmail/calendar.",
+      "current_trigger": "Current received message/deadline/follow-up trigger and actual timing not observed.",
+      "current_sequence_tools_handoffs": "Actual account/tool switching, message drafting/sending, deadline entry, reminder handling or misses are not measured or reconstructed from desired integration scope.",
+      "information_authority": "Separate local notes/activity/mapping, selected account/provider-owned fields, final send intent, actual acceptance and recipient receipt.",
+      "evidence_needed": "A relevant current coordination task with permitted anonymized timeline; account access/failure tests belong to separately authorized provider verification.",
+      "intended_improvement": "Explicit local/provider authority, selected synchronization and truthful send outcomes address possible coordination gaps, not proven missed-follow-up rates.",
+      "requirement_ids": [
+        "BIZ-D04",
+        "USR-D06",
+        "EGC-D05",
+        "EGC-D08",
+        "EGC-D11",
+        "EIF-D08",
+        "DOM-D05"
+      ],
+      "models": [
+        "SB-M07",
+        "SB-M08",
+        "SM-M08",
+        "SM-M09",
+        "SM-M10",
+        "RB-D07",
+        "RB-D08",
+        "IF-04",
+        "IF-05"
+      ],
+      "contracts": [
+        "DC-O11",
+        "DC-O12",
+        "DC-O13",
+        "DC-O14",
+        "DC-O15"
+      ],
+      "parent_questions": [
+        "Q-D15",
+        "Q-D16",
+        "Q-D17"
+      ],
+      "status": "Source-defined process area; no observed daily-business task instance recorded by this review"
+    },
+    {
+      "id": "CP-P05",
+      "title": "Work management, collaboration and delivery tracking",
+      "actor_context": "Sole project owner and intended collaborators; no independent team/Sprint execution observation.",
+      "known": "CP-E08 indexes historical work packages and identifies remote tracking authority; working models describe intended item/task/Sprint meaning.",
+      "current_trigger": "Actual item selection, work start, acceptance and Sprint-end events not verified through live board or observed case.",
+      "current_sequence_tools_handoffs": "Current board/membership/refinement/planning/review routines and actual carryover/rework not established from provisional local dates.",
+      "information_authority": "Distinguish item/task, readiness/progress/acceptance, coherent Sprint Goal/selection/plan and actual period/goal outcome.",
+      "evidence_needed": "An actual authorized local or live work-record review with source/revision/date and observed outcome; no remote assignments are queried or changed here.",
+      "intended_improvement": "Explicit work/period meaning and deliberate cross-module links may improve coherence; actual user effort or completion benefit remains unmeasured.",
+      "requirement_ids": [
+        "BIZ-D04",
+        "USR-D07",
+        "USR-D08",
+        "PKS-D03",
+        "PKS-D07",
+        "PKS-D09",
+        "PKS-D10"
+      ],
+      "models": [
+        "SB-M09",
+        "SB-M10",
+        "SM-M11",
+        "SM-M12",
+        "RB-D09",
+        "RB-D10",
+        "IF-01"
+      ],
+      "contracts": [
+        "DC-O16",
+        "DC-O17",
+        "DC-O18",
+        "DC-O19",
+        "DC-O20",
+        "DC-O21"
+      ],
+      "parent_questions": [
+        "Q-D18",
+        "Q-D19",
+        "Q-D20",
+        "Q-D28"
+      ],
+      "status": "Source-defined process area; no observed daily-business task instance recorded by this review"
+    },
+    {
+      "id": "CP-P06",
+      "title": "Git collaboration and conditional workflow execution",
+      "actor_context": "Intended real Git user/reviewer/trigger actor; no current product-hosting/client/job task sample inspected.",
+      "known": "Development Git/diagram workflows and named prior references do not establish product Git hosting or safe actual CI execution.",
+      "current_trigger": "No observed current clone/push/review/merge/run/deploy trigger sequence; supported target operations are requirements, not current behavior.",
+      "current_sequence_tools_handoffs": "Actual current repository hosting/client/ref/review/job/target workflow and failures are not established; no reference project or arbitrary code execution performed.",
+      "information_authority": "Identify exact repository/ref/evaluated revision/review/attempt and separate actual target authority; client transport/admin SSH/development GitHub are not interchangeable evidence.",
+      "evidence_needed": "Exact authorized repository/client/current-case evidence or a scoped future verification plan with source revision; isolate any later execution investigation under existing gate.",
+      "intended_improvement": "Explicit real-ref/review/attempt/target boundaries address possible stale-context/unknown-effect problems; no actual interoperability/safety/latency improvement proved.",
+      "requirement_ids": [
+        "BIZ-D04",
+        "USR-D09",
+        "USR-D10",
+        "GIT-D03",
+        "GIT-D07",
+        "GIT-D10",
+        "YML-D04",
+        "YML-D10"
+      ],
+      "models": [
+        "SB-M11",
+        "SB-M12",
+        "SB-M13",
+        "SB-M14",
+        "SM-M13",
+        "SM-M14",
+        "SM-M15",
+        "IF-06",
+        "IF-07"
+      ],
+      "contracts": [
+        "DC-O22",
+        "DC-O23",
+        "DC-O25",
+        "DC-O26",
+        "DC-O27",
+        "DC-O28",
+        "DC-O29",
+        "DC-O30"
+      ],
+      "parent_questions": [
+        "Q-D21",
+        "Q-D22",
+        "Q-D23"
+      ],
+      "status": "Source-defined process area; no observed daily-business task instance recorded by this review"
+    },
+    {
+      "id": "CP-P07",
+      "title": "File/setting/evidence administration and retirement",
+      "actor_context": "Intended content owner and explicitly authorized administrator; actual daily admin cases not observed.",
+      "known": "CP-E03 reports historical guest free-resource snapshot, not current quota/replacement/access/cleanup behavior. Primary sources require effective reference-aware policies.",
+      "current_trigger": "No actual current upload-replacement/policy/cleanup incident or frequency observed.",
+      "current_sequence_tools_handoffs": "Current types/limits/tool/procedure, admission wait, temporary growth, actual accounting and removal/restore sequence are not established.",
+      "information_authority": "Keep effective policy, intended candidate/usable content, actual required references/retained history, eligibility and confirmed usage release separate.",
+      "evidence_needed": "An authorized bounded case with actual effective policy/usage/reference/result context; never delete data or run load/cleanup just to fill this analysis.",
+      "intended_improvement": "Explicit current policy/reference/outcome semantics address potential false completion and unintended loss; no measured failure rate or freed-capacity result exists.",
+      "requirement_ids": [
+        "USR-D11",
+        "AFO-D01",
+        "AFO-D04",
+        "AFO-D07",
+        "AFO-D08",
+        "AFO-D11",
+        "QSR-D09"
+      ],
+      "models": [
+        "SB-M15",
+        "SM-M05",
+        "SM-M16",
+        "RB-D14",
+        "RB-D15",
+        "IF-03"
+      ],
+      "contracts": [
+        "DC-O31",
+        "DC-O32",
+        "DC-O33",
+        "DC-O34",
+        "DC-O35",
+        "DC-O36"
+      ],
+      "parent_questions": [
+        "Q-D24",
+        "Q-D25"
+      ],
+      "status": "Source-defined process area; no observed daily-business task instance recorded by this review"
+    },
+    {
+      "id": "CP-P08",
+      "title": "Operating, maintenance and recovery",
+      "actor_context": "Recorded sole project owner/operator; technical observation scope known, complete operating routine not observed.",
+      "known": "Owner reports 20 total hours/week and no backups; dated Ubuntu/Nginx/MySQL/PHP/Laravel/demo inventory exists. OAuth setup absence is distinct from operating delivery.",
+      "current_trigger": "The historical read-only inspection is recorded; no observed incident/update/backup/restore task timeline supplied.",
+      "current_sequence_tools_handoffs": "Actual recurring maintenance/delivery/alert/recovery procedure, time burden and interruption history are not established. Narrow root cron/unit searches do not exclude other mechanisms.",
+      "information_authority": "Separate actual effective configuration, protected source, consistent point/current rights/external pending work and demonstrated usable result.",
+      "evidence_needed": "A later bounded authorized operating/procedure observation with non-secret evidence; backup/restore needs actual source/coverage/criteria and isolated scope.",
+      "intended_improvement": "Defined evidence/procedures/coverage and reconciliation support operational readiness; no extra on-call budget, RPO/RTO or measured operational improvement is inferred.",
+      "requirement_ids": [
+        "BIZ-D05",
+        "USR-D12",
+        "QSR-D10",
+        "QSR-D11",
+        "QSR-D12",
+        "QSR-D14",
+        "DOM-D08"
+      ],
+      "models": [
+        "SB-M16",
+        "SM-M17",
+        "SM-M18",
+        "RB-D16",
+        "IF-08",
+        "SQ-Q10",
+        "SQ-Q11",
+        "SQ-Q12",
+        "SQ-Q14"
+      ],
+      "contracts": [
+        "DC-O33",
+        "DC-O37",
+        "DC-O38"
+      ],
+      "parent_questions": [
+        "Q-D26",
+        "Q-D27",
+        "Q-D28"
+      ],
+      "status": "Source-defined process area; no observed daily-business task instance recorded by this review"
+    }
+  ],
+  "facts": [
+    {
+      "id": "CP-F01",
+      "title": "Remaining function/flow substance",
+      "observed": "04 contains five To develop prompts; 14 explicitly retains this gap.",
+      "impact": "A completed balanced function/DFD package cannot be claimed from the current artifact set.",
+      "cause_status": "The section is unpopulated; why it was left pending and any elapsed delay are not established.",
+      "next_action": "Complete 04 against existing scope/dictionary/DA-F meanings before claiming whole-analysis completion.",
+      "source": "docs/SDLC/03-system-analysis/04-function-oriented-view.md",
+      "parents": [
+        "SA-F01",
+        "RF-D02"
+      ],
+      "status": "Confirmed bounded documentary condition; not a measured personal-process bottleneck"
+    },
+    {
+      "id": "CP-F02",
+      "title": "Association is not semantic sufficiency",
+      "observed": "11 records 20 bounded criterion walkthroughs, not a complete review of all 470; 14 retains exact semantic reconciliation.",
+      "impact": "Current source/model counts cannot establish all criteria/paths or readiness.",
+      "cause_status": "Mapping scope is explicitly bounded; no runtime failure or user-delay cause inferred.",
+      "next_action": "Refine affected exact cases/inputs/outcomes and justified direct/derived trace; retain historical inventory scope.",
+      "source": "docs/SDLC/03-system-analysis/11-model-consistency-traceability-and-review.md",
+      "parents": [
+        "SA-F02",
+        "SA-F03",
+        "RF-D01",
+        "RF-D02"
+      ],
+      "status": "Confirmed bounded documentary condition; not a measured personal-process bottleneck"
+    },
+    {
+      "id": "CP-F03",
+      "title": "Accepted core versus broad open wording",
+      "observed": "The accepted profile rule coexists with older BRL-D02/D03 open-definition wording, as already flagged by rule/handoff reviews.",
+      "impact": "Older wording must not reopen explicit apply/separate publication/history acceptance.",
+      "cause_status": "Document wording needs scoped synchronization; actual user-data inconsistency is not demonstrated.",
+      "next_action": "Preserve accepted core and synchronize only stale broad wording during appropriate source update; do not ask for the same acceptance again.",
+      "source": "docs/SDLC/03-system-analysis/09-rule-based-view.md",
+      "parents": [
+        "SA-F04",
+        "RB-F01",
+        "Q-D07"
+      ],
+      "status": "Confirmed bounded documentary condition; not a measured personal-process bottleneck"
+    },
+    {
+      "id": "CP-F04",
+      "title": "Historical availability wording",
+      "observed": "Resources/index retain historical full-time/provisional wording while explicit current sections say 20 total hours/week.",
+      "impact": "Using old wording as current capacity would invalidate a new estimate; no new forecast is accepted here.",
+      "cause_status": "Historical/editorial boundary is documented; actual schedule slippage or rework duration not measured.",
+      "next_action": "Use current 20-hour input and reconcile affected wording/work/forecast after design without rewriting accepted planning history.",
+      "source": "docs/SDLC/01-project-planning/05-resources-and-constraints.md",
+      "parents": [
+        "GAP-D05",
+        "GAP-D11",
+        "Q-D28"
+      ],
+      "status": "Confirmed bounded documentary condition; not a measured personal-process bottleneck"
+    },
+    {
+      "id": "CP-F05",
+      "title": "Selected operation/path detail remains bounded",
+      "observed": "10/12/14 label supporting lifecycle mappings and missing exhaustive draft/credential/connection/output/retirement routes.",
+      "impact": "A selected contract association cannot prove every consequential path is fully specified.",
+      "cause_status": "Deliberately selected coverage, not a confirmed product defect or demonstrated incident.",
+      "next_action": "Refine affected exact operation/policy/path where a dependent decision needs it; allocate no fictitious verified UC coverage.",
+      "source": "docs/SDLC/03-system-analysis/12-interfaces-and-external-interactions.md",
+      "parents": [
+        "SA-F03",
+        "SA-F05",
+        "RF-D02",
+        "RF-D03"
+      ],
+      "status": "Confirmed bounded documentary condition; not a measured personal-process bottleneck"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "CP-H01",
+      "title": "Unnecessary repeated fact entry",
+      "process": "CP-P01",
+      "suspected_mechanism": "The same professional fact might be independently re-entered where controlled reuse would be useful.",
+      "possible_effect": "Potential extra effort or unintended divergence, if present in an actual case.",
+      "competing_explanation": "Different wording/language/detail can be deliberate tailoring and has business value; low-frequency manual work may be appropriate.",
+      "supporting_evidence_needed": "Observe the same fact/intent across an actual bounded case; label copy/re-entry versus intentional tailoring and record effort/context.",
+      "rejection_or_limit": "Reject or narrow if no repeated entry is seen, variants are deliberate, or observed rework has another cause.",
+      "intended_response": "Explicit selected reuse while preserving independent overrides is accepted target behavior; do not claim automatic propagation or measured time savings.",
+      "measures": [
+        "CP-M01",
+        "CP-M02",
+        "CP-M03"
+      ],
+      "requirement_ids": [
+        "BIZ-D01",
+        "USR-D01",
+        "DOM-D01",
+        "DOM-D04",
+        "PRP-D03",
+        "PRP-D04",
+        "BRL-D02"
+      ],
+      "models": [
+        "SB-M01",
+        "SM-M01",
+        "RB-D02",
+        "IF-01"
+      ],
+      "contracts": [
+        "DC-O01",
+        "DC-O02",
+        "DC-O03"
+      ],
+      "parents": [
+        "Q-D06",
+        "Q-D07"
+      ],
+      "status": "Untested bottleneck hypothesis; no frequency, delay, severity or root cause measured"
+    },
+    {
+      "id": "CP-H02",
+      "title": "Ambiguity of intended shared variant",
+      "process": "CP-P02",
+      "suspected_mechanism": "Current tools/naming/availability/access context might make it difficult to identify the intended page/file/language.",
+      "possible_effect": "Potential selection/retrieval correction or confusing access result.",
+      "competing_explanation": "Multiple legitimate language/presentation variants or deliberate access restriction are not errors; availability failure may have a different cause.",
+      "supporting_evidence_needed": "Record intended versus actually selected representation, applicable current policy, actual feedback and any correction in a controlled relevant case.",
+      "rejection_or_limit": "Reject or narrow when intended meaning/selection is clear or differences are legitimate; do not label every differing file a defect.",
+      "intended_response": "Separate selected publication, mode, link access and actual variant availability; no unrelated fallback or claimed clarity improvement without evidence.",
+      "measures": [
+        "CP-M03",
+        "CP-M05",
+        "CP-M06"
+      ],
+      "requirement_ids": [
+        "BIZ-D02",
+        "USR-D02",
+        "USR-D03",
+        "PDF-D02",
+        "PDF-D03",
+        "PDF-D04",
+        "PDF-D05",
+        "PDF-D06"
+      ],
+      "models": [
+        "SB-M02",
+        "SB-M03",
+        "SB-M04",
+        "SM-M04",
+        "RB-D03",
+        "RB-D04",
+        "RB-D05",
+        "IF-02"
+      ],
+      "contracts": [
+        "DC-O04",
+        "DC-O05",
+        "DC-O06"
+      ],
+      "parents": [
+        "Q-D05",
+        "Q-D08",
+        "Q-D09",
+        "Q-D10",
+        "Q-D11"
+      ],
+      "status": "Untested bottleneck hypothesis; no frequency, delay, severity or root cause measured"
+    },
+    {
+      "id": "CP-H03",
+      "title": "Uncertain actual submission history",
+      "process": "CP-P03",
+      "suspected_mechanism": "Current recording may not preserve an identifiable actual set/event independently of later editable/live content.",
+      "possible_effect": "Potential inability to establish what was actually sent or to interpret corrections.",
+      "competing_explanation": "A trustworthy external archive/manual method may already exist; absence of inspected evidence is not evidence the history is absent.",
+      "supporting_evidence_needed": "Inspect a permitted anonymized actual case and its material/provenance/recorded-time context, including deliberate resubmission/correction.",
+      "rejection_or_limit": "Reject or narrow if existing actual history is reliably identifiable; do not infer failure from current source differing from an older actual copy.",
+      "intended_response": "Explicit actual-material capture and distinguishable manual progress/corrections support intended traceability, not a proven reduced error rate.",
+      "measures": [
+        "CP-M03",
+        "CP-M07",
+        "CP-M09"
+      ],
+      "requirement_ids": [
+        "BIZ-D03",
+        "USR-D04",
+        "USR-D05",
+        "APP-D01",
+        "APP-D05",
+        "APP-D06",
+        "APP-D07",
+        "DOM-D02"
+      ],
+      "models": [
+        "SB-M05",
+        "SB-M06",
+        "SM-M06",
+        "SM-M07",
+        "RB-D06"
+      ],
+      "contracts": [
+        "DC-O07",
+        "DC-O08",
+        "DC-O09",
+        "DC-O10"
+      ],
+      "parents": [
+        "Q-D12",
+        "Q-D13",
+        "Q-D14"
+      ],
+      "status": "Untested bottleneck hypothesis; no frequency, delay, severity or root cause measured"
+    },
+    {
+      "id": "CP-H04",
+      "title": "Coordination/handoff friction",
+      "process": "CP-P04",
+      "suspected_mechanism": "Cross-tool/account/activity handoffs might obscure the next intended action or actual completion.",
+      "possible_effect": "Potential retrieval effort, duplicated entry or missed defined follow-up.",
+      "competing_explanation": "Tool separation may be intentional/effective; a late action may be user choice, changed deadline or unrelated interruption.",
+      "supporting_evidence_needed": "Record an actual intended handoff/deadline/action/time meaning and observed outcome; distinguish external acceptance from receipt and actual reminders.",
+      "rejection_or_limit": "Reject or narrow if handoffs work well or no agreed expectation was missed; tool-switch count alone proves no harm.",
+      "intended_response": "Deliberate selected local/provider coordination and truthful outcomes address possible friction, not automatic send/sync or demonstrated productivity gain.",
+      "measures": [
+        "CP-M01",
+        "CP-M04",
+        "CP-M05",
+        "CP-M09"
+      ],
+      "requirement_ids": [
+        "BIZ-D04",
+        "USR-D06",
+        "EGC-D05",
+        "EGC-D08",
+        "EGC-D11",
+        "EIF-D08",
+        "DOM-D05"
+      ],
+      "models": [
+        "SB-M07",
+        "SB-M08",
+        "SM-M08",
+        "SM-M09",
+        "SM-M10",
+        "RB-D07",
+        "RB-D08",
+        "IF-04",
+        "IF-05"
+      ],
+      "contracts": [
+        "DC-O11",
+        "DC-O12",
+        "DC-O13",
+        "DC-O14",
+        "DC-O15"
+      ],
+      "parents": [
+        "Q-D15",
+        "Q-D16",
+        "Q-D17"
+      ],
+      "status": "Untested bottleneck hypothesis; no frequency, delay, severity or root cause measured"
+    },
+    {
+      "id": "CP-H05",
+      "title": "Work status versus actual accepted outcome",
+      "process": "CP-P05",
+      "suspected_mechanism": "Current item/task/board/Sprint meaning may be interpreted inconsistently across records or participants.",
+      "possible_effect": "Potential ambiguous acceptance, period result or explicit incomplete-work disposition.",
+      "competing_explanation": "Different status views can represent different valid subjects; work may intentionally be incomplete or not accepted.",
+      "supporting_evidence_needed": "Inspect a real authorized work instance with explicit subject/criteria/period outcome and actual recorded disposition; no inference from dates/columns alone.",
+      "rejection_or_limit": "Reject or narrow if interpretations are clear and correct; never call all tasks Done equivalent to accepted item.",
+      "intended_response": "Maintain separate item/task/readiness/acceptance and coherent Sprint Backlog/actual end meanings; no automatic carryover or measured throughput claim.",
+      "measures": [
+        "CP-M03",
+        "CP-M05",
+        "CP-M09"
+      ],
+      "requirement_ids": [
+        "BIZ-D04",
+        "USR-D07",
+        "USR-D08",
+        "PKS-D03",
+        "PKS-D07",
+        "PKS-D09",
+        "PKS-D10"
+      ],
+      "models": [
+        "SB-M09",
+        "SB-M10",
+        "SM-M11",
+        "SM-M12",
+        "RB-D09",
+        "RB-D10",
+        "IF-01"
+      ],
+      "contracts": [
+        "DC-O16",
+        "DC-O17",
+        "DC-O18",
+        "DC-O19",
+        "DC-O20",
+        "DC-O21"
+      ],
+      "parents": [
+        "Q-D18",
+        "Q-D19",
+        "Q-D20",
+        "Q-D28"
+      ],
+      "status": "Untested bottleneck hypothesis; no frequency, delay, severity or root cause measured"
+    },
+    {
+      "id": "CP-H06",
+      "title": "Stale ref/review or ambiguous execution effect",
+      "process": "CP-P06",
+      "suspected_mechanism": "Current Git/review/job/target references may not retain exact evaluated revision or actual attempt effect.",
+      "possible_effect": "Potential recheck/rework or unsafe repetition if such a case exists.",
+      "competing_explanation": "Current external tools may already preserve correct revision/attempt context; no product hosting or unsafe runner has been observed here.",
+      "supporting_evidence_needed": "Use exact permitted source/client/ref/review/attempt evidence and relevant existing policy; any actual execution check requires its own safe authorized scope.",
+      "rejection_or_limit": "Reject or narrow where correct context/reconciliation already exists; no vulnerability, slow job or unsafe configuration claim from a missing inspection.",
+      "intended_response": "Explicit revision/attempt/output and separate target authority constrain intended product behavior; actual interoperability/safety benefit needs evidence.",
+      "measures": [
+        "CP-M03",
+        "CP-M06",
+        "CP-M09"
+      ],
+      "requirement_ids": [
+        "BIZ-D04",
+        "USR-D09",
+        "USR-D10",
+        "GIT-D03",
+        "GIT-D07",
+        "GIT-D10",
+        "YML-D04",
+        "YML-D10"
+      ],
+      "models": [
+        "SB-M11",
+        "SB-M12",
+        "SB-M13",
+        "SB-M14",
+        "SM-M13",
+        "SM-M14",
+        "SM-M15",
+        "IF-06",
+        "IF-07"
+      ],
+      "contracts": [
+        "DC-O22",
+        "DC-O23",
+        "DC-O25",
+        "DC-O26",
+        "DC-O27",
+        "DC-O28",
+        "DC-O29",
+        "DC-O30"
+      ],
+      "parents": [
+        "Q-D21",
+        "Q-D22",
+        "Q-D23"
+      ],
+      "status": "Untested bottleneck hypothesis; no frequency, delay, severity or root cause measured"
+    },
+    {
+      "id": "CP-H07",
+      "title": "Admission/replacement/accounting uncertainty",
+      "process": "CP-P07",
+      "suspected_mechanism": "Current policy/usage/reference and completion meanings may not stay aligned during replacement, interruption or growth.",
+      "possible_effect": "Potential false usable/freed-space result, rework or required-material loss if observed.",
+      "competing_explanation": "Existing policy/procedure may handle this correctly; intentional rejection/retention is not a processing defect.",
+      "supporting_evidence_needed": "Observe a bounded permitted case with actual effective policy/current references/usage and result; no cleanup/load on live data just to create evidence.",
+      "rejection_or_limit": "Reject or narrow if actual semantics hold; do not infer capacity saturation from fixed allocation or a failed unrelated action.",
+      "intended_response": "Effective reference-aware admission/cleanup and truthful partial results are proposed controls, not proven reclaimed capacity or a universal rollback.",
+      "measures": [
+        "CP-M05",
+        "CP-M06",
+        "CP-M07",
+        "CP-M09"
+      ],
+      "requirement_ids": [
+        "USR-D11",
+        "AFO-D01",
+        "AFO-D04",
+        "AFO-D07",
+        "AFO-D08",
+        "AFO-D11",
+        "QSR-D09"
+      ],
+      "models": [
+        "SB-M15",
+        "SM-M05",
+        "SM-M16",
+        "RB-D14",
+        "RB-D15",
+        "IF-03"
+      ],
+      "contracts": [
+        "DC-O31",
+        "DC-O32",
+        "DC-O33",
+        "DC-O34",
+        "DC-O35",
+        "DC-O36"
+      ],
+      "parents": [
+        "Q-D24",
+        "Q-D25"
+      ],
+      "status": "Untested bottleneck hypothesis; no frequency, delay, severity or root cause measured"
+    },
+    {
+      "id": "CP-H08",
+      "title": "Operational effort or dependency interruption pressure",
+      "process": "CP-P08",
+      "suspected_mechanism": "Required recurring maintenance/integration/recovery work might compete with the same limited owner time and shared resources.",
+      "possible_effect": "Potential delayed operating response or engineering work if observed against defined expectations.",
+      "competing_explanation": "Current actual workload may be small or managed by other mechanisms; 20 hours/week alone does not establish a bottleneck.",
+      "supporting_evidence_needed": "Record a relevant authorized procedure/event and actual effort/wait/result/resource context; distinguish known absent backups from a measured outage or recovery duration.",
+      "rejection_or_limit": "Reject or narrow if work fits the evaluated conditions; no schedule/resource/recovery conclusion from idle readings or no observed incident.",
+      "intended_response": "Explicit operating scope, coverage/evidence and feasible work reconciliation support readiness; no additional staffing, service purchase or measured improvement claimed.",
+      "measures": [
+        "CP-M01",
+        "CP-M08",
+        "CP-M09",
+        "CP-M10"
+      ],
+      "requirement_ids": [
+        "BIZ-D05",
+        "USR-D12",
+        "QSR-D10",
+        "QSR-D11",
+        "QSR-D12",
+        "QSR-D14",
+        "DOM-D08"
+      ],
+      "models": [
+        "SB-M16",
+        "SM-M17",
+        "SM-M18",
+        "RB-D16",
+        "IF-08",
+        "SQ-Q10",
+        "SQ-Q11",
+        "SQ-Q12",
+        "SQ-Q14"
+      ],
+      "contracts": [
+        "DC-O33",
+        "DC-O37",
+        "DC-O38"
+      ],
+      "parents": [
+        "Q-D26",
+        "Q-D27",
+        "Q-D28"
+      ],
+      "status": "Untested bottleneck hypothesis; no frequency, delay, severity or root cause measured"
+    }
+  ],
+  "measures": [
+    {
+      "id": "CP-M01",
+      "title": "Active/wait/elapsed case time",
+      "operational_definition": "For one defined case, record declared start/end and distinguish observed active work, waiting and interruption intervals without double counting.",
+      "required_data": "Task identity/goal, event/recorded-time meaning, observed timestamps/intervals, participant context and permitted data.",
+      "interpretation": "Elapsed time is not automatically system latency; unexplained idle time is not established waiting caused by a tool.",
+      "actual_result": "Not measured in this task; no numerical baseline or target benefit",
+      "target_status": "No sample size, threshold, time saving or improvement percentage selected"
+    },
+    {
+      "id": "CP-M02",
+      "title": "Repeated-entry and intentional-tailoring events",
+      "operational_definition": "Count observed same-fact re-entry separately from deliberate tailoring, language maintenance, correction and new information.",
+      "required_data": "Exact factual identity/intent, relevant change events and observed reason/classification where available.",
+      "interpretation": "Repeated values or multiple resume versions alone are not waste; unknown reasons remain unknown.",
+      "actual_result": "Not measured in this task; no numerical baseline or target benefit",
+      "target_status": "No sample size, threshold, time saving or improvement percentage selected"
+    },
+    {
+      "id": "CP-M03",
+      "title": "Identity/version/meaning ambiguity",
+      "operational_definition": "Record observed cases where intended source/draft/live/actual material/revision/subject cannot be established, with exact evidence and consequences.",
+      "required_data": "Expected representation/subject/event and actual available identity/provenance/policy at the observed moment.",
+      "interpretation": "A legitimate difference is not an error. Missing inspected evidence is not proof the real record is absent.",
+      "actual_result": "Not measured in this task; no numerical baseline or target benefit",
+      "target_status": "No sample size, threshold, time saving or improvement percentage selected"
+    },
+    {
+      "id": "CP-M04",
+      "title": "Defined follow-up/handoff outcome",
+      "operational_definition": "For an explicit agreed expected action/deadline, compare actual observed action/outcome and distinguish changed expectation or missing evidence.",
+      "required_data": "Intended recipient/next action, defined time/timezone/criteria and actual records/observation.",
+      "interpretation": "Do not equate provider acceptance with recipient receipt, lateness with failure, or all tool switches with harmful delay.",
+      "actual_result": "Not measured in this task; no numerical baseline or target benefit",
+      "target_status": "No sample size, threshold, time saving or improvement percentage selected"
+    },
+    {
+      "id": "CP-M05",
+      "title": "Context retrieval/transition effort",
+      "operational_definition": "Record the actual steps/handoffs needed to locate intended resource/context, with optional observed active/wait intervals.",
+      "required_data": "Bounded same-goal case, observed resource/actor context, tool/step transitions and interruptions.",
+      "interpretation": "A count of tools or clicks is not by itself a quality defect or proof one unified view is better.",
+      "actual_result": "Not measured in this task; no numerical baseline or target benefit",
+      "target_status": "No sample size, threshold, time saving or improvement percentage selected"
+    },
+    {
+      "id": "CP-M06",
+      "title": "Applicable authorization/result correctness",
+      "operational_definition": "For a defined current policy and authorized controlled case, compare expected exact scope/result with actual observation.",
+      "required_data": "Reviewed actor/resource/action/state policy, intended entry path, controlled inputs and actual permitted evidence.",
+      "interpretation": "This is a separate verification design if synthetic; it is not an observed personal workflow or performed penetration test.",
+      "actual_result": "Not measured in this task; no numerical baseline or target benefit",
+      "target_status": "No sample size, threshold, time saving or improvement percentage selected"
+    },
+    {
+      "id": "CP-M07",
+      "title": "Actual-material completeness",
+      "operational_definition": "For an inspected actual-submission case, distinguish confirmed required components, missing and unknown provenance/retention under the reviewed capture policy.",
+      "required_data": "Actual event/material identity, required component definition and permitted retained evidence.",
+      "interpretation": "No completeness rate with absent/undefined denominator; unknowns are reported separately and no latest-live substitution allowed.",
+      "actual_result": "Not measured in this task; no numerical baseline or target benefit",
+      "target_status": "No sample size, threshold, time saving or improvement percentage selected"
+    },
+    {
+      "id": "CP-M08",
+      "title": "Procedure effort and coverage",
+      "operational_definition": "For a defined actual operating task, record steps/effort/dependencies/known covered outcome and limitations within the same project-time budget.",
+      "required_data": "Identified environment/procedure/source/date, authorized non-secret observation and actual result.",
+      "interpretation": "A plan or backup artifact is not a performed restore. Do not invent RPO/RTO or an operations allowance beyond 20 total hours/week.",
+      "actual_result": "Not measured in this task; no numerical baseline or target benefit",
+      "target_status": "No sample size, threshold, time saving or improvement percentage selected"
+    },
+    {
+      "id": "CP-M09",
+      "title": "Rework/interruption/repetition meaning",
+      "operational_definition": "Classify actually observed correction, retry or new event by its intended cause/context and actual prior effect rather than counting every repeated action as rework.",
+      "required_data": "Exact original/next operation context, observed state/evidence and stated reason if known.",
+      "interpretation": "Missing response is not proof no effect; distinguish legitimate new submission/correction from harmful duplicate.",
+      "actual_result": "Not measured in this task; no numerical baseline or target benefit",
+      "target_status": "No sample size, threshold, time saving or improvement percentage selected"
+    },
+    {
+      "id": "CP-M10",
+      "title": "Paired improvement comparison",
+      "operational_definition": "Compare explicitly matched baseline and candidate cases under defined equivalent goal/data/environment/criteria; record actual outcomes and limitations.",
+      "required_data": "Real observed baseline and actual candidate run/feedback with compatible methods; annotate any material difference.",
+      "interpretation": "With no baseline or candidate run there is no demonstrated improvement. No percentage/success/effect estimate can be derived from diagram/model counts.",
+      "actual_result": "Not measured in this task; no numerical baseline or target benefit",
+      "target_status": "No sample size, threshold, time saving or improvement percentage selected"
+    }
+  ],
+  "diagrams": [
+    {
+      "name": "process-evidence-classes",
+      "title": "CP — current evidence versus target and hypothesis"
+    },
+    {
+      "name": "process-documented-artifact-trail",
+      "title": "CP — documented artifact relationships"
+    },
+    {
+      "name": "process-current-workflow-questions",
+      "title": "CP — bounded current-process evidence need"
+    },
+    {
+      "name": "process-hypothesis-validation",
+      "title": "CP — hypothesis support or rejection"
+    },
+    {
+      "name": "process-improvement-evidence",
+      "title": "CP — intended improvement versus demonstrated result"
+    }
+  ],
+  "input_sha256": {
+    "docs/SDLC/01-project-planning/01-purpose-and-objectives.md": "072a1c98d43b5d53eb37ec2d5f26646dc3bdf3f67e0d7656347f4988a434e37c",
+    "docs/SDLC/01-project-planning/02-scope.md": "33b218141cef0799afe61adc098b7c42e6eb3ee9b1826c1b3d03f926b332dd82",
+    "docs/SDLC/01-project-planning/03-stakeholders-and-responsibilities.md": "74eefec6d54ce1c42a28528af7c39b0a600ebd3da5fa462150485d7469a3f8bf",
+    "docs/SDLC/01-project-planning/04-deliverables.md": "fa398d2c11e2ce3acd337c60d240f4d313f8385d7a46246fecf82ca6950c0284",
+    "docs/SDLC/01-project-planning/05-resources-and-constraints.md": "60fcfc5db21fcaf662e67f66b4667c7b6d75a98cc61d9f6e89999e3d6b57670c",
+    "docs/SDLC/01-project-planning/06-assumptions-and-dependencies.md": "917d3ba25e202c6c788818edac5dc97f8ac08a0e4c0ba76a539fac93f5326df1",
+    "docs/SDLC/01-project-planning/07-risks.md": "05eef4ef225f98bace7aaf8584bef8450c0629ae7ba4a6a2790326bb5bc2ccfb",
+    "docs/SDLC/01-project-planning/08-roadmap-and-milestones.md": "b7fafd073bb46c0cc441248eb7185865ca201881cbd659196553ead38729d08f",
+    "docs/SDLC/01-project-planning/09-working-method-and-change-control.md": "a5ec86e7d887b6c1acafae221c2c23e62cc6c8523bbe52d9a2619e7fdf9bfaa2",
+    "docs/SDLC/01-project-planning/10-planning-completion-criteria.md": "3396822ea3b2b74d99cad56d794ff5ca143ca88554d0552b7a4564c3886b4e65",
+    "docs/SDLC/01-project-planning/11-capacity-and-preliminary-sizing.md": "7ae3efcee720b21f15b361349c63a37743e78e4d52f7c76baa1508d6fee92723",
+    "docs/SDLC/01-project-planning/decision-register.md": "8ff602eddc2679e68985f23d462a458d436e0a36b980fa08cdaa21722f97241b",
+    "docs/SDLC/01-project-planning/project-plan.md": "dfa957970bc01b296013ffbdb65510244ad4ebf95dd359b181f6962f4d47f1dc",
+    "docs/SDLC/01-project-planning/README.md": "f99c00dc02ffd3f8c9418e83e68f48e2fc59f675a9e1b46fdb8f34e5c0fe6019",
+    "docs/SDLC/02-requirements-engineering/README.md": "38b16e6cb87cd8f0e4b923ad0c0950e7e2047b8cdc602e740cb6ab94456fe954",
+    "docs/SDLC/02-requirements-engineering/01-process-and-approach/01-requirements-approach.md": "a0a789d663d6417aef001f4ff89a264980e097245282c16edc8fdd10e1039bf9",
+    "docs/SDLC/02-requirements-engineering/01-process-and-approach/02-feasibility-study.md": "553a92fb8a8d594cb46079a259b87e558ca6b63a9ce5c04f9465b3a5092031cf",
+    "docs/SDLC/02-requirements-engineering/01-process-and-approach/03-requirements-elicitation.md": "ed07bfae14d1eb7270e1e668b442c9657dea70362fefce60fdf164ebd009a07f",
+    "docs/SDLC/02-requirements-engineering/01-process-and-approach/04-analysis-and-negotiation.md": "e003c14579d8497bbac8d4f62b71723c3a17e3021e06e40a7f42fd7f874e589e",
+    "docs/SDLC/02-requirements-engineering/01-process-and-approach/05-requirements-specification.md": "e747e0073c03334c518db39e73ebb1e4875509d60e9f06691129174cb68da7f9",
+    "docs/SDLC/02-requirements-engineering/01-process-and-approach/06-requirements-verification-and-validation.md": "3ff714b629ee03eb245d2b782cb53392089e12f6bad605d2471ee7b935f328c2",
+    "docs/SDLC/02-requirements-engineering/01-process-and-approach/07-requirements-management.md": "2e78f361007f03b15cac26070ecf82e8bbf34419abb7bf2382999484b513552c",
+    "docs/SDLC/02-requirements-engineering/01-process-and-approach/README.md": "f824fb7ebc2f7b0df4a11d9f0a3254e29f090ac1e01378823f9bc846ee36e5d5",
+    "docs/SDLC/02-requirements-engineering/02-stakeholders-and-elicitation/actors-and-system-context.md": "1f95b5adb9ddedcccb486d5eb78cf49f1377d3ca16c0bb9a3fd4d194a4bfc71f",
+    "docs/SDLC/02-requirements-engineering/02-stakeholders-and-elicitation/elicitation-log.md": "cf035242b2f00fb04ed96509cbf148ea415277b35e944833db5bd80a43d4c198",
+    "docs/SDLC/02-requirements-engineering/02-stakeholders-and-elicitation/elicitation-plan-and-techniques.md": "abb6b70d6a887e065fd74e8c614a98205a2b222cbf8c52c86b4fd78002f4c917",
+    "docs/SDLC/02-requirements-engineering/02-stakeholders-and-elicitation/README.md": "dd9ebace2e8b1529820f1a32c817a0525c08afbfd62df7afdafc640dd8df4e28",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md": "d3f8d0b9719f0b60bd008207d362c0f78fd7d0449d755c540c52ab8481bce634",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md": "21064f4cf533b5fdc215d31e943ae9128d1e843c958647f4f0a576785afb261c",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-requirements.md": "9ab0bc50255d5bdacd1165ecbaf315c1dc6ccfed352bd18ee5dba83f6912010b",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md": "0825abe597c9e532cb634569404b61ad8ce29f31dc66e8b7f2afd653892c1570",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/domain-requirements-and-constraints.md": "7f66bc21a824aea3a5613a70843f602b6adb6f0527cd65e0142137048138d906",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md": "dafa6a97e11856c01fcc8462c349d9064c8e962c0cb8e3472abcfbea0ebae173",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md": "a23048e2e5c238c309f054e598c410481def3be7cf28eeab1b92c29bfb654dad",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md": "a3e87d9df789b0caad43c46797794dd8e5936d283966cdca6d2f172ebdde47e8",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md": "e7cc09e5e00547dbd5bf0991d817060d053981b7bd866633da29812760505169",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md": "3ce305eea7fadd531c5ed33aa83c82a92f339854a0efc54d9a65c8bb252eb0cd",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md": "20296582867db99cfb410c613fa95067c41bd3535e4f260b6b8f09a03f487fbb",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md": "671670ee2aa9e2f26bac52ecfd7824279053a1b3277f21dd14d2ee6ff6482e18",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md": "fbd72aa41df3170e19280ec13ebf3c96b73aa131c311fd4c64ea9687a4bc6412",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/README.md": "d37f402bd5d6f6339b890a9c27fe8e6ddebafad86e1086dcb6bad374a158de95",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/requirements-priority-and-readiness.md": "09432d16fb9d833024cd35339c5fda92f5ecfbd1199302aca9bd06fcdacc4ca6",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/requirements-specification.md": "f95f61114a624aae571fe62685133c7b5b4cce9ac3479d13b8237bff4a192118",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md": "87079c565ce8007f6879e79f32a2e9ca56a0ace57e9f2f1df8c17e3d7592ffcf",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md": "ae3dd6e364d53bb608fe2d1c501d02fbb40f53833c354dda36e71b3464a8b226",
+    "docs/SDLC/02-requirements-engineering/04-scenarios-and-models/README.md": "78cb9aa94457721d1cd7c9ddb15fbd23c010bdcfb7204887cea580a2f59fa9e7",
+    "docs/SDLC/02-requirements-engineering/04-scenarios-and-models/user-stories-and-scenarios.md": "05e2c0a8ea741070004d8a97056d8cd77ac0cf8b78a4504354377cdbaab232a3",
+    "docs/SDLC/02-requirements-engineering/05-data-definitions/data-dictionary.md": "eab192fb32c0c81d5d0e0bc481d4d2c0e66ad6cfafbf27f4ab8f9f25913338ce",
+    "docs/SDLC/02-requirements-engineering/05-data-definitions/glossary.md": "14964bd9a89f4ec09ecafa1cf75e3e68b9facf011aec37163d8def119ef9dcea",
+    "docs/SDLC/02-requirements-engineering/05-data-definitions/README.md": "1be25944c80ac43a07a40229e39da308c00bace8a43c898f81f3bbe55868c4c8",
+    "docs/SDLC/02-requirements-engineering/06-validation-and-traceability/README.md": "baa0817f80fd3b446068ca67cd3bd1a520ad70fd132efab659a1a95cb1b4dcd0",
+    "docs/SDLC/02-requirements-engineering/06-validation-and-traceability/remaining-gate-assessment.md": "f803829115ff461ad43cb7bf4c07d425c3ce598d524e7576a49b37c0b76c84b4",
+    "docs/SDLC/02-requirements-engineering/06-validation-and-traceability/requirements-traceability.md": "da93fa95b9badffa5731f190d05a15c7d599a2c70990cbf29f62e2e5fdca3b85",
+    "docs/SDLC/02-requirements-engineering/06-validation-and-traceability/review-plan-and-findings.md": "29c26a5a11aa702359e25c09aa4de43c300235adf0b67ec72b77f561e579ef93",
+    "docs/SDLC/02-requirements-engineering/07-change-and-baseline/change-control.md": "fe48c6f1bb86d30caba0d05c7950a7ff38f31f486dd3c16c6ae4f43a40cdf0c2",
+    "docs/SDLC/02-requirements-engineering/07-change-and-baseline/open-questions-and-decisions.md": "dc0a8f850988cda96998ed0cd7b61e03966428b0a977ec9fb31a24a15a89853f",
+    "docs/SDLC/02-requirements-engineering/07-change-and-baseline/README.md": "c3e6e92ceb79f91a9917e8f1d8bd9aa095ab65afff455c69258dcf3ed8c5c122",
+    "docs/SDLC/02-requirements-engineering/07-change-and-baseline/requirements-answer-review.md": "020e24b92f79f8c71db29b60c54bce81537850843255eb2beac38361bdb3a0fd",
+    "docs/SDLC/02-requirements-engineering/07-change-and-baseline/requirements-review-and-baseline-criteria.md": "fd5b06a8ad6dd0cb93d232043d9ec3bce2b1aafbd0a0b68c11b8ce907dde5044",
+    "docs/SDLC/02-requirements-engineering/diagrams/README.md": "9ee19cc77d63f0d8e3d01a0cf84ebbd291a61dba8a95f65116e6411ad7abaef4",
+    "docs/SDLC/02-requirements-engineering/templates/requirement-template.md": "a8e19514c8d8618b538b31e0cea5f1f61d9301e573e7cb378b30a468425da13d",
+    "docs/SDLC/02-requirements-engineering/templates/scenario-template.md": "08fdf2167b8dae97c1d105e3fec88cd685a841a970e4be7d94fd8bf5ce5504f1",
+    "docs/SDLC/02-requirements-engineering/templates/story-template.md": "9cfbde67a8a9db25e6e43f323159033dcae027bd084aceddd8bccbe90ae03bbb",
+    "docs/SDLC/03-system-analysis/01-analysis-purpose-scope-and-approach.md": "562449f91691a8c0b8be95b5404e4c3b8ae340a134dbfd014bf58a55537d1ecd",
+    "docs/SDLC/03-system-analysis/02-system-context-and-boundaries.md": "85ea61dab526ee60af6e20902cdce111dc9cb4785aa33f5e96aad09120fcd90d",
+    "docs/SDLC/03-system-analysis/03-domain-model-and-object-oriented-view.md": "669776993c881e9e904494d9abc8316d7497ea089bb5380286bce2febec48641",
+    "docs/SDLC/03-system-analysis/04-function-oriented-view.md": "7f135f12fe27cb50b8ba852db0b9c89fca6775f6656de3c46149d06ccddb2c92",
+    "docs/SDLC/03-system-analysis/05-data-oriented-view.md": "7c530462ebaf7609bfc22fb693d32e4a9ed9b26c249574e1bb21ad529aea2035",
+    "docs/SDLC/03-system-analysis/06-scenario-based-view.md": "d845d590bbe79dc478b28573239217094629c400d1ec8466302970e5eb95f429",
+    "docs/SDLC/03-system-analysis/07-state-based-view.md": "44cb366af505f941702dc3cb0edc62f2d0459297004bbbeaeb455e662f0d7d1e",
+    "docs/SDLC/03-system-analysis/08-control-flow-based-view.md": "6533423d0105f368f47a91dd61f96ec1622ef36807717fcbb997e9a8eb9c2033",
+    "docs/SDLC/03-system-analysis/09-rule-based-view.md": "cfc605554ee83d7043c61e757c4ecc2a3d2f3244a32b71b265f8325c43e2ab67",
+    "docs/SDLC/03-system-analysis/10-domain-constraints-and-operation-contracts.md": "10a371dd8c28bfe7884d247c5ceef4cc5b4745387f650c4ad88fd7cf514d4246",
+    "docs/SDLC/03-system-analysis/11-model-consistency-traceability-and-review.md": "40f582bc6d23c2dc92909dd07c1f457c4f7000db76a2223b864fef55c72ed0a8",
+    "docs/SDLC/03-system-analysis/12-interfaces-and-external-interactions.md": "8fb1af0d4634b2e868ecb9272feb83926dfde17128a7050d7e8f318dc45af33b",
+    "docs/SDLC/03-system-analysis/13-security-quality-and-operational-analysis.md": "5e29bf58571a51a9a69bbc141bc27dafed9d3d6f5b45f16c870f96b80e31c969",
+    "docs/SDLC/03-system-analysis/14-feasibility-dependencies-and-design-handoff.md": "455449ec1df0076e7b7ff93d1a945a8cd48d3e27e73dfea9f888de82b9dcc16c",
+    "docs/SDLC/03-system-analysis/evidence/context-input-review-2026-11-01.json": "a3377d0444ea4a95fb161078cfc072c45cd02aef3a8bd8fedd26b2801bc240ab",
+    "docs/SDLC/03-system-analysis/evidence/control-flow-review-2026-11-01.json": "dc3f4519b1231c6575c8a560b48f9384622fb06ecd2da6747efaec22d1c4a596",
+    "docs/SDLC/03-system-analysis/evidence/data-oriented-review-2026-11-01.json": "f41e9b3b6957f78986a411f7ae1a9e95e90a0e62930c3ff188a0dae14b98ece5",
+    "docs/SDLC/03-system-analysis/evidence/design-handoff-review-2026-11-01.json": "c7ed0011e35f478ba8a6f34a08d676712fdfdb2695a48d96b0a87f06dc2cfa71",
+    "docs/SDLC/03-system-analysis/evidence/domain-model-review-2026-11-01.json": "db887103f0e0173be2ec4f664d592c5c92d178029deee478c6251e79590ad8c3",
+    "docs/SDLC/03-system-analysis/evidence/four-document-diagram-review-2026-11-01.json": "0e32b02596c22abb4e635d368265956840c2216e3fc87ca0feaea6fb39d8ca8a",
+    "docs/SDLC/03-system-analysis/evidence/interface-review-2026-11-01.json": "cb22dedf3a47d6e4c527e18b15de8930d4eaf5367592ec2f420299f1331e0063",
+    "docs/SDLC/03-system-analysis/evidence/model-consistency-review-2026-11-01.json": "227f10e3e07256d1c280735708607ba31e68e7231afd278a09ea4429159f0e4c",
+    "docs/SDLC/03-system-analysis/evidence/operation-contract-review-2026-11-01.json": "b145fa0f08b7a74ebcfc2f5dda2ff3885fb2a337b14993872261ee10a3b98952",
+    "docs/SDLC/03-system-analysis/evidence/rule-based-review-2026-11-01.json": "e6af747c3fc48625277d3130ddc93d338a349a75177044aaa1bac28c899fffe9",
+    "docs/SDLC/03-system-analysis/evidence/scenario-based-review-2026-11-01.json": "ff131aad1b1215d3c6087c0438a3b73f52b133d8e0818efa795eb497f0114bf6",
+    "docs/SDLC/03-system-analysis/evidence/security-quality-review-2026-11-01.json": "7d5b963551039c3abca3c47f36a6253281ae858cae82602da2395736f58732ad",
+    "docs/SDLC/03-system-analysis/evidence/state-based-review-2026-11-01.json": "a3653226ba7e9af60806d2f9ca21c3363530b81698a49efe54f7deb800c131ba",
+    "docs/SDLC/02-requirements-engineering/06-validation-and-traceability/evidence/server-readonly-check-2026-11-01.json": "531479320825e6ed6baf053868e27dd30e6f554f928da8b971189dec0a22dde8",
+    "docs/Project-Management/product-backlog.md": "e8558b92e6413b3e567e45ede1c57162f9e2f2be8e42fa824ee611b195eeeae7"
+  },
+  "business_task_observations_performed_this_task": 0,
+  "interviews": 0,
+  "benchmarks": 0,
+  "confirmed_measured_business_bottlenecks": 0,
+  "phase_accepted": false
+}

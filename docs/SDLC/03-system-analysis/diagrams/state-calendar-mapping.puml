@@ -1,0 +1,42 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 8
+skinparam ArrowColor #526B7B
+skinparam ArrowFontSize 11
+skinparam stateBackgroundColor #EDF4FB
+skinparam stateBorderColor #526B7B
+skinparam stateStartColor #163E52
+skinparam stateEndColor #163E52
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam nodesep 38
+skinparam ranksep 48
+hide empty description
+top to bottom direction
+
+title SM-M10 — Local/provider mapping and freshness
+state "Local-only / unmapped\nactivity" as Local
+state "Mapped fields confirmed\ncurrent" as Fresh
+state "Mapped copy stale /\ndisconnected" as Stale
+state "Mapped change requires\nresolution" as Conflict
+state "Provider event removed /\nunavailable" as Removed
+[*] --> Local : scoped initial context
+Local --> Fresh : SM-T059 explicit mapping confirmed\n[selected mapping confirmed]
+Fresh --> Stale : SM-T060 provider / connection\nchanges\n[freshness no longer proven]
+Fresh --> Conflict : SM-T061 concurrent edits found\n[conflicting versions]
+Stale --> Conflict : SM-T062 conflict established\n[conflict evidence]
+Stale --> Fresh : SM-T063 mapped state reconciled\n[fresh result confirmed]
+Conflict --> Fresh : SM-T064 resolution confirmed\n[explicit confirmed resolution]
+Fresh --> Removed : SM-T065 provider deletion confirmed\n[provider deletion evidence]
+Fresh --> Local : SM-T066 unlink local mapping\n[local unlink only]
+Removed --> Local : SM-T067 clear removed mapping\n[explicit local action]
+legend bottom
+A: accepted core behavior; P: existing proposal; R: proposed refinement.
+State labels are analysis abstractions, not implemented enums.
+Transition tables define full actor, guard, effect and status.
+Unconfirmed operation effects require SM-M18 reconciliation.
+endlegend
+@enduml

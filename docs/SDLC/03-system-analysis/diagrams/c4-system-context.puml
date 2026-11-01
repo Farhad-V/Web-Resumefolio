@@ -1,0 +1,40 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #486777
+skinparam ArrowFontSize 12
+skinparam rectangleBackgroundColor #EEF5FA
+skinparam rectangleBorderColor #486777
+skinparam packageBackgroundColor #F7FAFC
+skinparam packageBorderColor #486777
+skinparam componentBackgroundColor #EEF5FA
+skinparam noteBackgroundColor #FFF3DA
+skinparam noteBorderColor #B59865
+skinparam nodesep 35
+skinparam ranksep 45
+skinparam padding 8
+title C4 Level 1 — target product context
+!include <C4/C4_Context>
+LAYOUT_TOP_DOWN()
+Person(owner,"Owner / applicant","Professional content, applications, communication")
+Person(viewer,"Employer viewer","Selected password-protected presentation")
+Person(member,"Authorized collaborator","Work, repository and permitted execution actions")
+Person(operator,"Authorized operator","Administration and recoverable operation")
+System(product,"Resumefolio","Professional presentation, manual applications, mail/calendar, work and real Git; conditional execution")
+System_Ext(google,"Google services","Selected Gmail and Calendar capabilities; OAuth not configured")
+System_Ext(target,"Deployment target","Conditional, separately authorized target; not selected")
+System_Ext(ops,"Operating dependencies","Domain/TLS, delivery and recovery facilities; availability must be established")
+Rel(owner,product,"Uses own authorized functions")
+Rel(viewer,product,"Requests selected permitted content")
+Rel(member,product,"Uses resource-specific collaboration")
+Rel(operator,product,"Performs explicitly permitted operations")
+Rel(product,google,"Exchanges selected mail/calendar information")
+Rel(product,target,"Requests separately authorized effects, conditionally")
+Rel(product,ops,"Uses applicable operating capabilities")
+
+legend bottom
+Target scope context; external capability shown does not mean configured or verified.
+endlegend
+@enduml

@@ -1,0 +1,38 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 8
+skinparam ArrowColor #526B7B
+skinparam ArrowFontSize 11
+skinparam stateBackgroundColor #EDF4FB
+skinparam stateBorderColor #526B7B
+skinparam stateStartColor #163E52
+skinparam stateEndColor #163E52
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam nodesep 38
+skinparam ranksep 48
+hide empty description
+top to bottom direction
+
+title SM-M16 — User-managed record retention and actual reclamation
+state "Active record/content\ncontext" as Active
+state "Archived; retained under\npolicy" as Archived
+state "Deletion requested /\nretained trash" as Trashed
+state "Eligible reclamation\nconfirmed" as Reclaimed
+[*] --> Active : scoped initial context
+Active --> Archived : SM-T104 archive confirmed\n[authorized / confirmed]
+Archived --> Active : SM-T105 restore visibility\n[eligible explicit restore]
+Active --> Trashed : SM-T106 delete request confirmed\n[authorized / confirmed]
+Archived --> Trashed : SM-T107 delete request confirmed\n[authorized / confirmed]
+Trashed --> Active : SM-T108 restore retained item\n[retained / eligible /\nauthorized]
+Trashed --> Reclaimed : SM-T109 reclamation confirmed\n[eligible / no protected refs]
+legend bottom
+A: accepted core behavior; P: existing proposal; R: proposed refinement.
+State labels are analysis abstractions, not implemented enums.
+Transition tables define full actor, guard, effect and status.
+Unconfirmed operation effects require SM-M18 reconciliation.
+endlegend
+@enduml

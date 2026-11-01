@@ -1,0 +1,42 @@
+@startuml
+title Resumefolio | File admission and truthful outcomes
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #64748B
+skinparam activity {
+ BackgroundColor #DBEAFE
+ BorderColor #64748B
+ FontColor #17324D
+ DiamondBackgroundColor #FEF3C7
+ DiamondBorderColor #B45309
+ StartColor #17324D
+ EndColor #17324D
+}
+start
+:Identify actor, target resource, operation and effective policy;
+if (Required resource/action authority present?) then (yes)
+ :Evaluate applicable content, size, quota and resource conditions;
+ if (Admission conditions satisfied?) then (yes)
+  :Perform required processing and association;
+  if (Completion conditions and applicable limits hold?) then (yes)
+   :Expose usable success and consistent accounting; <<#DCFCE7>>
+  else (failure / interruption)
+   :Do not expose partial work as successful content; <<#FEF3C7>>
+   :Preserve retained references; apply agreed failure / cleanup rules;
+  endif
+ else (no)
+  :Reject or report the defined admission failure; <<#FEF3C7>>
+ endif
+else (no)
+ :Deny protected operation without unrelated disclosure; <<#FEF3C7>>
+endif
+:Report the actual bounded outcome to the authorized context;
+stop
+legend bottom
+Conceptual behavior, not a storage design or selected transaction/validation order.
+Concurrent admissions must obey the agreed quota; a single early check is not sufficient evidence.
+Numerical limits, formats, retention, cleanup timing and feedback rules require decisions.
+endlegend
+@enduml

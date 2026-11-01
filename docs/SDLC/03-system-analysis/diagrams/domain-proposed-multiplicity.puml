@@ -1,0 +1,44 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #486777
+skinparam ArrowFontSize 12
+skinparam rectangleBackgroundColor #EEF5FA
+skinparam rectangleBorderColor #486777
+skinparam packageBackgroundColor #F7FAFC
+skinparam packageBorderColor #486777
+skinparam componentBackgroundColor #EEF5FA
+skinparam noteBackgroundColor #FFF3DA
+skinparam noteBorderColor #B59865
+skinparam nodesep 35
+skinparam ranksep 45
+skinparam padding 8
+title UML class detail — explicit proposed relationship ends
+top to bottom direction
+hide empty methods
+class "Professional profile" as Profile {
+ owner context
+ source information
+}
+class "Tailored resume" as Resume {
+ independent content context
+ selected presentation
+}
+class "Source selection" as Selection {
+ selected entry identity
+ inclusion context
+}
+class "Independent override" as Override {
+ target field
+ independent value
+}
+Profile "1" -- "0..*" Resume : P: reusable source context
+Resume "1" -- "0..*" Selection : P: selected source entries
+Resume "1" -- "0..*" Override : P: retained independent tailoring
+
+legend bottom
+P = existing working proposal from file 05, not new owner acceptance. Properties are conceptual, not SQL columns.
+endlegend
+@enduml

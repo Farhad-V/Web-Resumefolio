@@ -1,0 +1,31 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam ArrowColor #526B7B
+skinparam rectangleBackgroundColor #EDF4FB
+skinparam rectangleBorderColor #526B7B
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam nodesep 38
+skinparam ranksep 42
+title HD — conditional handoff position
+top to bottom direction
+rectangle "Populated selected inputs\n03, 05–10 models/contracts; 12 interfaces; 13 scenarios\nSource hashes identify current working package" as Models
+rectangle "Remaining analysis specificity\n04 functions/DFDs; exact criterion/path/policy reconciliation\n15 has no observed current-process study" as Remaining #FFF3DF
+rectangle "Qualified design input package\nAccepted core + marked proposals + scoped gates" as Package #DFF1EA
+rectangle "Later actual coherent design/baseline review\nRequired decisions/evidence/conditions identified" as Review
+Models --> Package : useful current input
+Remaining --> Package : limits whole-phase completion
+Package --> Review : no automatic acceptance
+note bottom of Review
+This file does not create final architecture or product code.
+Incomplete whole-phase acceptance does not force a folder restart.
+end note
+
+legend bottom
+Qualified analysis/design input, not a selected architecture, accepted forecast or operational proof.
+No coding, provider/host operation, live tracker update, spending or baseline acceptance performed.
+endlegend
+@enduml

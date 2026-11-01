@@ -1,0 +1,37 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 8
+skinparam ArrowColor #526B7B
+skinparam ArrowFontSize 11
+skinparam stateBackgroundColor #EDF4FB
+skinparam stateBorderColor #526B7B
+skinparam stateStartColor #163E52
+skinparam stateEndColor #163E52
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam nodesep 38
+skinparam ranksep 48
+hide empty description
+top to bottom direction
+
+title SM-M02 — Proposed account access eligibility
+state "Invitation pending" as Pending
+state "Active account context" as Active
+state "Suspended account context" as Suspended
+state "Deletion pending" as Deletion
+[*] --> Pending : scoped initial context
+Pending --> Active : SM-T008 activation confirmed\n[verified / activated]
+Active --> Suspended : SM-T009 suspension confirmed\n[authorized / confirmed]
+Suspended --> Active : SM-T010 reinstatement confirmed\n[explicit reinstatement]
+Active --> Deletion : SM-T011 deletion request accepted\n[authorized / confirmed]
+Suspended --> Deletion : SM-T012 deletion request accepted\n[reviewed closure policy]
+legend bottom
+A: accepted core behavior; P: existing proposal; R: proposed refinement.
+State labels are analysis abstractions, not implemented enums.
+Transition tables define full actor, guard, effect and status.
+Unconfirmed operation effects require SM-M18 reconciliation.
+endlegend
+@enduml

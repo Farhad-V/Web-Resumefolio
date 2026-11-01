@@ -1,0 +1,59 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #486777
+skinparam ArrowFontSize 12
+skinparam rectangleBackgroundColor #EEF5FA
+skinparam rectangleBorderColor #486777
+skinparam packageBackgroundColor #F7FAFC
+skinparam packageBorderColor #486777
+skinparam componentBackgroundColor #EEF5FA
+skinparam noteBackgroundColor #FFF3DA
+skinparam noteBorderColor #B59865
+skinparam nodesep 35
+skinparam ranksep 45
+skinparam padding 8
+title DFD — logical information ownership
+left to right direction
+usecase "F01\nEstablish identity and enforce scoped authority" as F01
+database "D1 Identity / scoped grants" as D1
+D1 --> F01 : I1a current context
+F01 --> D1 : I1b authorized confirmed change
+usecase "F02\nMaintain independent professional presentation" as F02
+database "D2 Professional content / publications" as D2
+D2 --> F02 : I2a current context
+F02 --> D2 : I2b authorized confirmed change
+usecase "F03\nGenerate PDFs and disclose selected material" as F03
+database "D3 Representation / sharing context" as D3
+D3 --> F03 : I3a current context
+F03 --> D3 : I3b authorized confirmed change
+usecase "F04\nManage manual applications and actual history" as F04
+database "D4 Applications / submitted history" as D4
+D4 --> F04 : I4a current context
+F04 --> D4 : I4b authorized confirmed change
+usecase "F05\nCoordinate authorized mail and calendar" as F05
+database "D5 Communication / calendar mappings" as D5
+D5 --> F05 : I5a current context
+F05 --> D5 : I5b authorized confirmed change
+usecase "F06\nOrganize work and collaboration" as F06
+database "D6 Work / Sprint planning" as D6
+D6 --> F06 : I6a current context
+F06 --> D6 : I6b authorized confirmed change
+usecase "F07\nHost real Git and repository collaboration" as F07
+database "D7 Repositories / review context" as D7
+D7 --> F07 : I7a current context
+F07 --> D7 : I7b authorized confirmed change
+usecase "F08\nAdmit conditional execution and separate deployment" as F08
+database "D8 Attempts / artifacts / target evidence" as D8
+D8 --> F08 : I8a current context
+F08 --> D8 : I8b authorized confirmed change
+usecase "F09\nAdminister files, policy and recoverable operation" as F09
+database "D9 Policy / files / recovery evidence" as D9
+D9 --> F09 : I9a current context
+F09 --> D9 : I9b authorized confirmed change
+legend bottom
+Stores are logical information groups, not databases. Read/write does not grant access; unknown effects require reconciliation.
+endlegend
+@enduml

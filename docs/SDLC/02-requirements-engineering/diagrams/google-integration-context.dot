@@ -1,0 +1,29 @@
+digraph google {
+ graph [bgcolor="white", pad=0.3, ranksep=0.7, nodesep=0.4, fontname="Arial", fontsize=20, labelloc=t];
+ node [shape=box, style="rounded,filled", fillcolor="#DBEAFE", color="#64748B", fontcolor="#17324D", fontname="Arial", fontsize=13, margin="0.18,0.14"];
+ edge [color="#64748B", fontname="Arial", fontsize=11, fontcolor="#17324D"];
+ graph [rankdir=LR,label="Resumefolio | Google integration boundaries"];
+ user [label="Product user
+Applicable resource/action authority"];
+ mail [label="Private correspondence
+Read / compose / send / reply"];
+ cal [label="Agreed calendar activities
+Interviews / deadlines / follow-ups
+Personal and project schedules"];
+ app [label="Application work
+Explicit correspondence/activity links",fillcolor="#EDE9FE"];
+ conn [label="Selected authorized connection
+Account / calendar / granted access",fillcolor="#FEF3C7"];
+ gmail [label="Gmail
+Required access remains unverified",fillcolor="#DCFCE7"];
+ gcal [label="Google Calendar
+Explicit synchronization contract",fillcolor="#DCFCE7"];
+ user -> mail; user -> cal;
+ mail -> conn [label="authorized operations"]; cal -> conn [label="selected integration"];
+ conn -> gmail; conn -> gcal;
+ app -> mail [style=dashed,dir=none];
+ app -> cal [style=dashed,dir=none];
+ note [label="Board collaborators / employer viewers
+No private mail grant through that role",fillcolor="#FEF3C7"];
+ {rank=same;user;note;}
+}

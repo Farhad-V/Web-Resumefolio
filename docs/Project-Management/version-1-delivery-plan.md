@@ -3,7 +3,8 @@
 Status: Provisional historical target plan; reconciliation, feasibility, and estimates pending
 
 The project owner requests the **complete agreed Version 1 application by
-November 8, 2026 (Europe/Berlin)** and has stated full-time availability.
+November 8, 2026 (Europe/Berlin)**. Earlier availability was described as full time;
+the current owner-stated capacity is **20 total project hours/week**, November 1, 2026.
 The date is a requested deadline, not a verified forecast or release approval.
 Do not remove agreed capabilities or bypass verification to meet the date.
 
@@ -57,3 +58,7 @@ Do not claim delivery solely because the target date has arrived.
 - [Private GitHub Project](https://github.com/users/Farhad-Valizadegan/projects/6)
 - [Issues](https://github.com/Farhad-Valizadegan/web-resumefolio/issues)
 - [Milestones](https://github.com/Farhad-Valizadegan/web-resumefolio/milestones)
+
+## Current Capacity Conflict
+
+The [preliminary full-scope sizing](../SDLC/01-project-planning/11-capacity-and-preliminary-sizing.md) does not support promising the historical November 8 date with 20 hours/week. It is a low-confidence scenario pending initial analysis/design and actual tracking access, not a replacement committed schedule. Preserve the historical Sprint snapshot above; do not start product coding or silently drop scope to fit it.

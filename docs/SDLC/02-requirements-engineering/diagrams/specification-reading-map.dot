@@ -1,0 +1,25 @@
+digraph reading {
+ graph [rankdir=TB,bgcolor="white",pad=0.3,nodesep=0.4,ranksep=0.6,fontname="Arial",fontsize=20,label="Resumefolio | Distributed specification reading map",labelloc=t];
+ node [shape=box,style="rounded,filled",fillcolor="#DBEAFE",color="#64748B",fontcolor="#17324D",fontname="Arial",fontsize=13,margin="0.18,0.14"];
+ edge [color="#64748B"];
+ entry [label="SRS entry point + accepted Scope
+Product boundary / levels / constraints",fillcolor="#EDE9FE"];
+ goals [label="Business outcomes + actor goals
+User Requirements: proposed actor goals",fillcolor="#FEF3C7"];
+ presentation [label="Professional workflows
+Profiles / resumes / portfolio
+PDF + sharing / applications / Google"];
+ work [label="Work and collaboration
+Projects / Kanban / Sprints / real Git
+YAML + CI/CD: proposed controlled execution",fillcolor="#FEF3C7"];
+ cross [label="Cross-cutting contracts
+Accounts / lifecycle / domain / interfaces
+Administration / quality + security + recovery"];
+ support [label="Shared meaning and actual evidence
+Dictionary / scenarios / questions
+Traceability / findings / baseline criteria",fillcolor="#DCFCE7"];
+ entry -> goals;
+ goals -> presentation; goals -> work;
+ presentation -> cross; work -> cross;
+ cross -> support;
+}

@@ -84,8 +84,8 @@ A recorded target date does not waive these gates.
 
 ## 4. Estimation and Schedule Reconciliation
 
-The three existing dated Sprint cycles are provisional. Full-time availability
-has been confirmed, but numerical capacity and delivery duration have not.
+The three existing dated Sprint cycles are provisional. Current availability is 20 total project hours/week, confirmed by the owner on
+November 1, 2026; delivery duration remains unaccepted pending design and estimation.
 After the initial analysis and design review:
 1. Decompose the reviewed scope into estimable work with clear outcomes.
 2. Identify dependencies, open investigations, and usable working time.
@@ -468,3 +468,7 @@ foreach ($format in 'svg', 'png') {
 Use the installed user's PlantUML JAR path under another account. Save source
 files as UTF-8 without BOM and review the diagrams alongside milestone records
 when prerequisites, definitions or planning decisions change.
+
+## Current Capacity and Estimate Scenario
+
+[Confirmed 20-hour capacity and preliminary sizing](11-capacity-and-preliminary-sizing.md) now provide numerical input and a low-confidence work-package scenario. The historical target table and original decisions remain unchanged. An actual accepted forecast and pre-coding baseline still require the stated analysis/design, evidence and owner review gates.
