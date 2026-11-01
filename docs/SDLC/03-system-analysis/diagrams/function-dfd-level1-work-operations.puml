@@ -1,0 +1,49 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #486777
+skinparam ArrowFontSize 12
+skinparam rectangleBackgroundColor #EEF5FA
+skinparam rectangleBorderColor #486777
+skinparam packageBackgroundColor #F7FAFC
+skinparam packageBorderColor #486777
+skinparam componentBackgroundColor #EEF5FA
+skinparam noteBackgroundColor #FFF3DA
+skinparam noteBorderColor #B59865
+skinparam nodesep 35
+skinparam ranksep 45
+skinparam padding 8
+title DFD Level 1 — work-operations
+left to right direction
+rectangle "Private user / collaborator" as human <<external>>
+rectangle "Real Git client" as gitclient <<external>>
+rectangle "Conditional execution facility" as runner <<external>>
+rectangle "Separate deployment target" as target <<external>>
+rectangle "Authorized operator / operating facilities" as operator <<external>>
+usecase "F06\nOrganize work and collaboration" as F06
+usecase "F07\nHost real Git and repository collaboration" as F07
+usecase "F08\nAdmit conditional execution and separate deployment" as F08
+usecase "F09\nAdminister files, policy and recoverable operation" as F09
+human --> F06 : B08a
+F06 --> human : B08b
+human --> F07 : B09a
+F07 --> human : B09b
+human --> F08 : B11a
+F08 --> human : B11b
+human --> F09 : B15a
+F09 --> human : B15b
+gitclient --> F07 : B10a
+F07 --> gitclient : B10b
+runner --> F08 : B12a
+F08 --> runner : B12b
+target --> F08 : B13a
+F08 --> target : B13b
+operator --> F09 : B14a
+F09 --> operator : B14b
+
+legend bottom
+Two panels form one Level 1 decomposition. Bxx meanings and internal store flows are defined in file 04.
+endlegend
+@enduml

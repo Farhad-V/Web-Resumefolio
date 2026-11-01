@@ -1,0 +1,38 @@
+@startuml
+title Resumefolio | Protected resume and PDF retrieval
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #64748B
+skinparam activity {
+ BackgroundColor #DBEAFE
+ BorderColor #64748B
+ FontColor #17324D
+ DiamondBackgroundColor #FEF3C7
+ DiamondBorderColor #B45309
+ StartColor #17324D
+ EndColor #17324D
+}
+start
+:Identify requested resume / selected content / PDF variant;
+if (Sharing context eligible and request authorized?) then (yes)
+ if (Content selected; download enabled if requested?) then (yes)
+  if (Correct language / variant / rendition usable?) then (yes)
+   :Deliver only permitted content under serving policy; <<#DCFCE7>>
+  else (missing / stale / failed)
+   :Show defined unavailable or processing outcome; <<#FEF3C7>>
+  endif
+ else (no)
+  :Do not expose unselected or disabled material; <<#FEF3C7>>
+ endif
+else (no)
+ :Do not disclose protected content; <<#FEF3C7>>
+endif
+stop
+legend bottom
+Direct URLs follow the same resource and availability boundary.
+Conceptual checks; detailed session, cache and in-flight policy pending.
+Disabling access cannot remove an already downloaded copy.
+endlegend
+@enduml

@@ -1,0 +1,34 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam ArrowColor #526B7B
+skinparam rectangleBackgroundColor #EDF4FB
+skinparam rectangleBorderColor #526B7B
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam nodesep 38
+skinparam ranksep 42
+title HD — existing gate relationships
+left to right direction
+rectangle "Existing GAP-D01–GAP-D11 follow-up\nAuthority remains in accepted planning records" as Gaps
+rectangle "Affected M-02/M-03 decisions\nInputs / access / resources / design / recovery / quality" as Design
+rectangle "Before execution enablement / M-08\nActual safe supported execution + target controls" as Execution #FFF3DF
+rectangle "Before M-09/M-10 readiness\nActual integrated / quality / restoration / live evidence" as Release #FFF3DF
+rectangle "After analysis/design, before product coding\nWork / effort / live tracking reconciliation + agreed baseline" as Coding
+Gaps --> Design : decisive findings
+Gaps --> Execution : actual enabling controls
+Gaps --> Release : later actual results
+Gaps --> Coding : GAP-D05 / GAP-D11
+note bottom of Design
+Actual future release tests are not all prerequisites for drafting analysis.
+M-01 remains accepted for its historical identified scope only.
+No new milestone or completed milestone is created here.
+end note
+
+legend bottom
+Qualified analysis/design input, not a selected architecture, accepted forecast or operational proof.
+No coding, provider/host operation, live tracker update, spending or baseline acceptance performed.
+endlegend
+@enduml

@@ -1,0 +1,41 @@
+@startuml
+title Resumefolio | Recovery evidence roadmap
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #64748B
+skinparam activity {
+ BackgroundColor #DBEAFE
+ BorderColor #64748B
+ FontColor #17324D
+ DiamondBackgroundColor #FEF3C7
+ DiamondBorderColor #B45309
+ StartColor #17324D
+ EndColor #17324D
+}
+start
+:Define recovery loss scenario, usable state and RPO / RTO criteria;
+:Identify required records, artifacts, configuration and access relationships;
+if (Coverage, storage access and safe isolated drill ready?) then (yes)
+ :Select identified consistent recovery point / reconciliation procedure;
+ :Restore only in the authorized isolated environment;
+ :Measure actual timing and recovered data loss;
+ :Verify integrity, artifacts, references and core workflow outcomes;
+ :Reconcile old grants, deleted data, provider state and pending external effects;
+ if (Agreed coverage, access and recovery criteria supported?) then (yes)
+  :Record supported bounded recovery evidence; <<#DCFCE7>>
+ else (unmet / incomplete)
+  :Record actual failures, limitations and required actions; <<#FEF3C7>>
+ endif
+else (pending)
+ :Record missing prerequisites and dependent gate; <<#FEF3C7>>
+endif
+:Route actual findings to the owner and readiness review;
+stop
+legend bottom
+Evidence roadmap, not a live recovery instruction or a successful drill.
+No numerical target, storage provider or automatic job replay selected.
+Backup existence does not demonstrate restored usability or safe access.
+endlegend
+@enduml

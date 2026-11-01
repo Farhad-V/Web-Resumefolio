@@ -1,0 +1,19 @@
+constraint,title,selected_contracts
+DC-I01,Scoped identity,DC-O01; DC-O06; DC-O07; DC-O11; DC-O13; DC-O14; DC-O15; DC-O16; DC-O20; DC-O21; DC-O22; DC-O23; DC-O24; DC-O25; DC-O32; DC-O33; DC-O34; DC-O36; DC-O37; DC-O38; DC-O39
+DC-I02,Independent tailoring,DC-O01; DC-O02
+DC-I03,Separate publication,DC-O02; DC-O03
+DC-I04,Actual historical independence,DC-O01; DC-O02; DC-O03; DC-O09; DC-O10; DC-O34; DC-O35; DC-O36
+DC-I05,Selected disclosure,DC-O04; DC-O05; DC-O06; DC-O32
+DC-I06,Independent representation dimensions,DC-O03; DC-O04; DC-O05; DC-O06; DC-O32
+DC-I07,Completeness is an evidence claim,DC-O07; DC-O08; DC-O09; DC-O10
+DC-I08,Current scoped authority,DC-O05; DC-O06; DC-O11; DC-O12; DC-O20; DC-O21; DC-O22; DC-O23; DC-O26; DC-O27; DC-O30; DC-O31; DC-O33; DC-O36; DC-O37; DC-O38; DC-O39
+DC-I09,Provider/local separation,DC-O11; DC-O12; DC-O13; DC-O14; DC-O15
+DC-I10,Work and period meaning,DC-O16; DC-O17; DC-O18; DC-O19
+DC-I11,Evaluated revision context,DC-O22; DC-O23; DC-O24; DC-O25; DC-O26; DC-O27; DC-O29; DC-O30
+DC-I12,Attempt and target separation,DC-O27; DC-O28; DC-O29; DC-O30
+DC-I13,Effective versus requested policy,DC-O04; DC-O31; DC-O32; DC-O35
+DC-I14,Reference-aware retirement,DC-O09; DC-O10; DC-O31; DC-O32; DC-O34; DC-O35; DC-O36; DC-O37; DC-O39
+DC-I15,Language/time provenance,DC-O07; DC-O08; DC-O09; DC-O10; DC-O13; DC-O15
+DC-I16,Recovery evidence and access,DC-O37
+DC-I17,Truthful observed effects,DC-O08; DC-O11; DC-O12; DC-O17; DC-O19; DC-O27; DC-O28; DC-O29; DC-O30; DC-O31; DC-O33; DC-O35; DC-O37; DC-O38
+DC-I18,No implicit consequential propagation,DC-O12; DC-O14; DC-O15; DC-O21; DC-O23; DC-O24; DC-O26; DC-O30; DC-O36; DC-O37; DC-O39

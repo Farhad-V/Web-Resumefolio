@@ -23,8 +23,9 @@ tailored resumes and evidence, controlled employer sharing, and organized
 job-application work. Version 1 also includes the agreed email/calendar,
 work-management and real Git collaboration capabilities.
 
-Initial planning uses one full-time project owner, Laravel and object-oriented
-development, the existing server, and available resources. The initial target is
+Initial planning used one full-time project owner. The current owner-stated
+capacity is 20 total project hours/week (November 1, 2026). Laravel and
+object-oriented development, the existing server and available resources remain the basis. The initial target is
 10 users; growth toward approximately 1,000 is a design direction, not verified
 capacity. Product AI and automatic translation are outside Version 1.
 
@@ -118,3 +119,7 @@ foreach ($format in 'svg', 'png') {
 Save DOT as UTF-8 without BOM. Update navigation when a source moves; revise
 product or planning decisions in their authoritative topic documents, recording
 material changes through the agreed change-control process.
+
+## Current Capacity and Sizing Follow-up
+
+See [confirmed weekly capacity and preliminary sizing](11-capacity-and-preliminary-sizing.md). Current 20-hour capacity is an actual owner input; the range is an unaccepted estimate scenario. M-01 historical acceptance and all later review gates remain unchanged.

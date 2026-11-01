@@ -1,0 +1,35 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam ArrowColor #526B7B
+skinparam rectangleBackgroundColor #EDF4FB
+skinparam rectangleBorderColor #526B7B
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam nodesep 38
+skinparam ranksep 42
+top to bottom direction
+
+title DC-O12 — Submit a reviewed mail send/reply attempt
+rectangle "BEFORE / ELIGIBILITY\nFinal intended message reviewed; actual\nsend authority current" as Before
+rectangle "CONFIRMED SUCCESS ONLY\nAttributable provider acceptance only if\nactually confirmed" as After
+rectangle "FRAME / PROTECTED MEANING\nNo inferred recipient delivery/read;\nunknown acceptance is not safe resend" as Frame #DFF1EA
+Before --> After : DC-O12\npermitted effect actually confirmed
+After -[hidden]down-> Frame
+note bottom of Before
+Current exact authority and full preconditions apply.
+This is a logical contract relation, not execution order.
+end note
+note bottom of Frame
+If effect is partial, pending or unknown, do not claim After.
+Use same-operation evidence/reconciliation (DC-O38).
+Frame constrains this operation, not independent concurrent work.
+end note
+legend bottom
+Full inputs, pre/postconditions, frame, exceptions and policy status are in document 10.
+Accepted profile core remains accepted; other detail is a proposed analysis refinement.
+No transaction, implementation component, rollback or deployment authority is selected.
+endlegend
+@enduml

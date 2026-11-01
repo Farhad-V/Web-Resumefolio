@@ -1,0 +1,18 @@
+digraph Feasibility {
+ graph [rankdir=TB,bgcolor="white",pad=0.35,ranksep=0.45,nodesep=0.35,
+ fontname="Arial",fontsize=20,labelloc=t,label="Resumefolio | Feasibility assessment\nFive dimensions - conclusions require actual evidence"];
+ node [shape=box,style="rounded,filled",fontname="Arial",fontsize=13,color="#64748B",fontcolor="#17324D",margin="0.22,0.16"];
+ edge [color="#64748B",arrowsize=0.7];
+ root [label="AGREED VERSION 1 SCOPE\nExisting resources, budget and solo delivery\nEvaluate options before dependent commitments",fillcolor="#17324D",fontcolor=white];
+ economic [label="ECONOMIC\nActual allowance and recurring costs\nCosted alternatives and owner decision",fillcolor="#DBEAFE"];
+ technical [label="TECHNICAL\nServer, integrations, Git and CI/CD\nSecurity, storage and recovery evidence",fillcolor="#EDE9FE"];
+ operational [label="OPERATIONAL\nDeployment, maintenance and incidents\nFeasible solo procedures and workload",fillcolor="#DCFCE7"];
+ legal [label="LEGAL / CONTRACTUAL\nIdentify applicable obligations\nDated authoritative findings and open questions",fillcolor="#FCE7F3"];
+ schedule [label="SCHEDULE\nFull engineering effort and dependencies\nUsable capacity and evidence-based forecast",fillcolor="#FEF3C7"];
+ output [label="BOUNDED FINDINGS AND DECISION\nEvidence + limits + impacts + alternatives\nProceed / revise / defer / stop the evaluated option\nNo overall feasibility finding is recorded yet",fillcolor="#F1F5F9"];
+ root -> economic;root -> technical;root -> operational;root -> legal;root -> schedule;
+ economic -> output;technical -> output;operational -> output;legal -> output;schedule -> output;
+ {rank=same;economic;technical;operational;}
+ {rank=same;legal;schedule;}
+ technical -> legal [style=invis];operational -> schedule [style=invis];
+}

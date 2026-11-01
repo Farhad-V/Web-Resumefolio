@@ -1,0 +1,39 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam ArrowColor #526B7B
+skinparam rectangleBackgroundColor #EDF4FB
+skinparam rectangleBorderColor #526B7B
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam nodesep 38
+skinparam ranksep 45
+left to right direction
+
+title IF-08 — Operational configuration, delivery and recovery
+rectangle "Specifically authorized operator" as Operator
+rectangle "Resumefolio\noperating/configuration/evidence\ncontext" as Product
+rectangle "Applicable\nhost/runtime/domain/TLS\ndependency" as Runtime
+rectangle "Applicable selected notification\nfacility; not assumed Gmail" as Delivery
+rectangle "Future defined independent\nbackup / isolated restore\nfacility" as Recovery
+Operator -[hidden]right-> Product
+Operator --> Product : Scoped non-secret\nconfiguration / evidence /\nrecovery goal
+Product --> Operator : Actual bounded\nsetting/delivery/recovery\nevidence
+Product ..> Runtime : Operational dependence; actual\nsuitability required
+Product --> Delivery : Conditional authorized\ndelivery intent
+Delivery --> Product : Actual disposition; receipt\nnot inferred
+Product --> Recovery : Conditional scoped recovery\nmaterial / isolated assessment
+Recovery --> Product : Actual source / restored\ncandidate / scoped findings
+note bottom of Product
+Backups are not configured. No live restore or extra service purchase implied.
+User Gmail is not authentication/recovery mail infrastructure.
+Restored bytes / backup existence are not demonstrated usable recovery.
+end note
+legend bottom
+Logical boundary/exchange meaning; not software components or chosen protocol/schema.
+Full direction, identity, authority, failure, compatibility and evidence limits are in document 12.
+Proposed details remain proposed. No real provider, Git, execution, delivery or recovery action performed.
+endlegend
+@enduml

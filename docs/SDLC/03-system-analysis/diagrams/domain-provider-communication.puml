@@ -1,0 +1,62 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 8
+skinparam ArrowColor #526B7B
+skinparam ArrowFontSize 11
+skinparam packageStyle rectangle
+skinparam classAttributeIconSize 0
+hide circle
+skinparam classBackgroundColor #EDF4FB
+skinparam classBorderColor #526B7B
+skinparam classHeaderBackgroundColor #DFF1EF
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam rectangleBackgroundColor #EDF4FB
+skinparam rectangleBorderColor #526B7B
+skinparam activityBackgroundColor #EDF4FB
+skinparam activityBorderColor #526B7B
+skinparam activityDiamondBackgroundColor #DFF1EF
+skinparam activityDiamondBorderColor #458F88
+skinparam padding 6
+skinparam nodesep 35
+skinparam ranksep 40
+hide empty members
+title Provider communication and explicit application links
+top to bottom direction
+class "Application record\nDM-C16" as application {
+  Progress
+  intended material associations
+}
+class "Provider connection\nDM-C20" as connection {
+  Provider identity
+  access state
+}
+class "Email message / draft\nDM-C21" as message {
+  Message/thread context
+  content
+  outcome
+}
+class "Calendar activity\nDM-C22" as activity {
+  Time/zone
+  provider mapping if applicable
+}
+class "Activity reminder\nDM-C23" as reminder {
+  Activity
+  recipient/time
+  outcome
+}
+application -- message : explicit correspondence link
+application -- activity : explicit activity link
+connection -- message : connected account / capability
+connection -- activity : selected provider mapping
+activity -- reminder : notification intent
+legend bottom
+Solid lines: conceptual associations, not process steps.
+Relationship bounds: document 03, section 3.
+An unlabeled end is unspecified, not implicitly one.
+Properties are semantic, not mandatory database fields.
+endlegend
+@enduml

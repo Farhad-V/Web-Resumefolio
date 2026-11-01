@@ -1,0 +1,26 @@
+digraph lifecycle {
+ graph [rankdir=LR, bgcolor="white", pad=0.3, nodesep=0.5, ranksep=0.7, fontname="Arial", fontsize=20, label="Resumefolio | Data lifecycle boundaries", labelloc=t];
+ node [shape=box, style="rounded,filled", fillcolor="#DBEAFE", color="#64748B", fontcolor="#17324D", fontname="Arial", fontsize=13, margin="0.18,0.14"];
+ edge [color="#64748B", fontname="Arial", fontsize=11, fontcolor="#17324D"];
+ profile [label="Editable professional profile
+Shared information"];
+ resume [label="Tailored resume
+Independent selection / overrides"];
+ evidence [label="Evidence and PDF variants
+Explicit selection / availability"];
+ live [label="Controlled live employer view
+Only authorized selected content",fillcolor="#EDE9FE"];
+ history [label="Preserved actual submitted materials
+Resume + cover letter
+Not overwritten by later source edits",fillcolor="#DCFCE7"];
+ policy [label="Explicit lifecycle policies
+References / retention / recovery
+Details pending owner review",fillcolor="#FEF3C7"];
+ profile -> resume [label="defined propagation"];
+ resume -> live [label="defined live revision"];
+ evidence -> live [label="authorized retrieval"];
+ resume -> history [label="defined capture of actual materials"];
+ history -> policy [label="retirement governed by",style=dashed];
+ evidence -> policy [label="reference-aware removal",style=dashed];
+ live -> policy [label="access change rules",style=dashed];
+}

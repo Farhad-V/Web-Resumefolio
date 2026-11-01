@@ -56,7 +56,7 @@ approach is accepted; the expected outcomes have not been established.
 | ASM-05 | Available development time is sufficient for the complete agreed scope | After analysis/design, decompose and estimate all engineering work; compare effort ranges, dependencies and usable capacity; revise against actual progress | Accepting a delivery forecast; revisit milestone/Sprint reviews | [DEC-055](#dec-055) |
 | ASM-06 | Required user information is sufficiently complete and timely | Define required inputs and intake workflows; walk through representative, incomplete and delayed-input scenarios | Accepting affected workflows and dependent schedule commitments | [DEC-058](#dec-058) |
 
-Full-time availability is confirmed, but it does not confirm ASM-05. Likewise,
+The current owner-stated availability is 20 total project hours/week (November 1, 2026); this does not confirm ASM-05. Likewise,
 a recorded domain, existing backup file, or successful diagram render cannot
 substitute for the investigation needed by another assumption.
 
@@ -67,11 +67,11 @@ owner. Do not silently remove agreed scope or assume additional spending.
 
 | ID | Dependency | What depends on it | Verification required | Current position |
 |---|---|---|---|---|
-| DEP-01 | Hosting server and network | Availability, storage, Git hosting, and background work | Resources, access, limits, current workloads, interruption/failure behavior | Unverified |
+| DEP-01 | Hosting server and network | Availability, storage, Git hosting, and background work | Observed allocation, guest OS, free resources and active web/database/PHP services; combined demand, network limits and interruption/failure behavior still need evidence | Partially observed; suitability remains unverified |
 | DEP-02 | Domain, DNS, and TLS | Resumefolio.de routing and secure browser access | Administrative control, intended DNS destination, certificate coverage/validity, configuration and renewal | Unverified |
 | DEP-03 | Google services | Agreed Gmail and Google Calendar operations | Required permissions, provider conditions, quotas, costs, operation/failure and reconnection behavior | Unverified |
 | DEP-04 | Email delivery | Email-dependent authentication, notifications, and relevant recovery paths | Configuration, actual delivery and relevant operational/failure checks | Unverified |
-| DEP-05 | Backup storage | Recovery from server failure or data loss | Separation, capacity, access, retention and actual restoration checks | Unverified |
+| DEP-05 | Backup storage | Recovery from server failure or data loss | Owner reports no backups set up; independent destination, separation, access, retention and restoration remain to establish | Backup setup absent by owner report; storage suitability and recovery unverified |
 | DEP-06 | Software packages and development tools | Building, running, and maintaining the application | Version compatibility, licenses, maintenance/support status, runtime/resource requirements and environment checks | Application dependency set remains unverified; Git and diagram-tool workflows have been demonstrated |
 
 Provider conditions and component information must be checked using current
@@ -108,10 +108,10 @@ every row.** Record evidence before accepting the dependent commitment.
 
 | Items | Review gate | Current status | Related accepted follow-up |
 |---|---|---|---|
-| ASM-01, DEP-01 | Before accepting deployment design in M-03; verify relevant operational behavior before release | Unverified | GAP-D01 |
+| ASM-01, DEP-01 | Before accepting deployment design in M-03; verify relevant operational behavior before release | DEP-01 inventory partially observed; ASM-01 combined-workload sufficiency remains unverified | GAP-D01 |
 | ASM-02, DEP-03 | Before accepting integration requirements in M-02 and dependent design; verify implementation access before development | Unverified | GAP-D02 |
 | ASM-03, DEP-04 | Before accepting authentication delivery design in M-03; verify delivery before dependent release | Unverified | GAP-D03 |
-| ASM-04, DEP-05 | Before accepting recovery design in M-03; demonstrate restoration before M-09 acceptance | Unverified | GAP-D04 |
+| ASM-04, DEP-05 | Before accepting recovery design in M-03; demonstrate restoration before M-09 acceptance | Owner reports no backup setup; actual destination/suitability and recovery not established | GAP-D04 |
 | ASM-05 | After analysis/design and before accepting a forecast; revisit at milestone and Sprint reviews | Unverified; full-time availability does not demonstrate sufficiency | GAP-D05 |
 | ASM-06 | During Requirements Engineering before accepting affected workflows; assess timing before dependent commitments | Unverified | GAP-D06 |
 | DEP-02 | Before accepting deployment configuration in M-03; verify live configuration before M-10 | Unverified | GAP-D07 |
@@ -576,3 +576,15 @@ foreach ($format in 'svg', 'png') {
 Use the installed user's PlantUML JAR path when working under another account.
 Save diagram sources as UTF-8 without BOM. Keep the model, state vocabulary,
 assignment table and actual validation records consistent when findings change.
+
+## November 1, 2026 — DEP-01 Inventory Evidence
+
+Owner-supplied panel screenshots and SSH output establish a bounded current inventory; see [recorded observations and limits](../02-requirements-engineering/01-process-and-approach/02-feasibility-study.md#server-observation-2026-11-01). CPU/RAM/disk allocation, guest OS and the observed running stack are no longer wholly unknown. This is partial progress on DEP-01, not verification of ASM-01: representative combined application/media/Git/job demand, resource limits, performance and operational suitability remain unverified. All six capacity/access/recovery/time assumptions remain unverified as assumptions; no accepted GAP-D item is closed.
+
+## November 1, 2026 — ASM-05 Capacity Input
+
+The actual owner answer is 20 project hours/week, including learning/docs/tests. [Preliminary sizing](11-capacity-and-preliminary-sizing.md) exposes the historical target conflict but remains an unaccepted low-confidence estimate. ASM-05 sufficiency remains unverified; historical full-time wording in original decision records is preserved as history.
+
+## November 1, 2026 — DEP-05 Owner Clarification
+
+The owner confirmed backups have not been set up. DEP-05 now records an unmet setup dependency rather than an unknown owner answer. ASM-04 (suitable storage within budget) remains unverified: lack of configured backups does not prove that no suitable storage exists. GAP-D04 remains open with its original design/readiness gates. No new spending, provider setting, backup operation or restoration is authorized by recording this fact.

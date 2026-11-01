@@ -1,0 +1,50 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 5
+skinparam ArrowColor #526B7B
+skinparam sequenceMessageAlign center
+skinparam sequenceParticipantBackgroundColor #DFF1EF
+skinparam sequenceParticipantBorderColor #526B7B
+skinparam sequenceActorBorderColor #526B7B
+skinparam sequenceLifeLineBorderColor #9AAEB7
+skinparam sequenceGroupBackgroundColor #F8FAFC
+skinparam sequenceGroupBorderColor #7B919E
+skinparam sequenceDividerBackgroundColor #EDF4FB
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam maxMessageSize 220
+hide footbox
+autonumber
+title SB-M04 — Selected protected retrieval and unavailable variants
+actor "Employer viewer" as U
+participant "Protected employer link" as L
+participant "Published presentation" as P
+participant "Requested evidence / PDF" as A
+U -> L : Open link; supply required password
+L -> L : Evaluate current access and intended scope
+alt Invalid password or ineligible link
+ L --> U : Denied; no protected content
+else Eligible sharing context
+ U -> L : Request page, evidence or PDF variant
+ L -> P : Resolve intended selected published context
+ P -> A : Evaluate resource selection, authority and availability
+ alt Outside scope or current access denied
+  A --> U : Denied; no unrelated disclosure
+ else Requested language / artifact unavailable
+  A --> U : Explicit unavailable / processing / failed state
+ else Permitted available content
+  A --> U : Only requested permitted content
+ end
+end
+note over L,A
+Direct file requests require the same applicable checks.
+A password is not verified employer identity.
+end note
+legend bottom
+Logical domain interaction, not runtime execution evidence.
+Detailed proposed guards/policies retain their primary status.
+endlegend
+@enduml

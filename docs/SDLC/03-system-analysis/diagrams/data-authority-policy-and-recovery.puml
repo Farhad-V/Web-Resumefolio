@@ -1,0 +1,59 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 5
+skinparam classAttributeIconSize 0
+hide circle
+skinparam classBackgroundColor #EDF4FB
+skinparam classBorderColor #526B7B
+skinparam classHeaderBackgroundColor #DFF1EF
+skinparam ArrowColor #526B7B
+skinparam ArrowFontSize 11
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam nodesep 35
+skinparam ranksep 42
+skinparam padding 6
+hide empty members
+top to bottom direction
+
+title Data — contextual access, effective policy and recovery coverage
+entity "Account / actor context" as A {
+  application identity
+  account state
+}
+entity "Resource authority" as G {
+  subject + resource + action
+  grant / revocation context
+}
+entity "Protected content resource" as F {
+  content identity / references
+  admission / availability
+}
+entity "Effective file policy" as P {
+  applicability + units / limits
+  effective change context
+}
+entity "Recovery record" as B {
+  recovery point / coverage
+  protected source identity
+}
+entity "Restore assessment" as R {
+  recovery source / scenario
+  integrity + access + actual outcome
+}
+A -- G : scoped authority, not universal role
+G -- F : permitted resource operation
+P -- F : applicable policy / accounting
+F -- B : identified coverage example
+B ||--o{ R : P: recovery assessments
+R -- G : restored-access reconciliation
+legend bottom
+Conceptual ER view; not tables or foreign keys.
+P = explicit working proposal, not owner acceptance.
+A = established scope meaning. Unmarked counts are unspecified.
+One / optional / many symbols describe relationship ends.
+endlegend
+@enduml

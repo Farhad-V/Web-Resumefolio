@@ -1,0 +1,36 @@
+@startuml
+title Resumefolio | Conceptual data-definition review
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #64748B
+skinparam activity {
+ BackgroundColor #DBEAFE
+ BorderColor #64748B
+ FontColor #17324D
+ DiamondBackgroundColor #FEF3C7
+ DiamondBorderColor #B45309
+ StartColor #17324D
+ EndColor #17324D
+}
+start
+:Identify preferred term, subject / element and actual source;
+:State meaning, conceptual form and affected domain context;
+:Identify authority, access and relationship semantics;
+:Define requiredness, valid / invalid examples and lifecycle effects;
+if (Critical rules and applicability resolved?) then (yes)
+ :Reconcile dictionary, glossary, requirements and scenario paths;
+ :Record actual owner disposition for an identified revision; <<#DCFCE7>>
+ :Link later design decisions to reviewed semantics;
+else (pending)
+ :Record question, owner and dependent acceptance gate; <<#FEF3C7>>
+ :Do not promote example metadata into a committed field or rule;
+endif
+stop
+legend bottom
+Conceptual review roadmap; no schema, grant, quota or retention period selected.
+Primary requirements own behavior; definitions keep shared meaning consistent.
+A definition or diagram alone does not establish acceptance or product evidence.
+endlegend
+@enduml

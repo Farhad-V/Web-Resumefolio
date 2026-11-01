@@ -1,0 +1,51 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 8
+skinparam ArrowColor #526B7B
+skinparam ArrowFontSize 11
+skinparam packageStyle rectangle
+skinparam classAttributeIconSize 0
+hide circle
+skinparam classBackgroundColor #EDF4FB
+skinparam classBorderColor #526B7B
+skinparam classHeaderBackgroundColor #DFF1EF
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam rectangleBackgroundColor #EDF4FB
+skinparam rectangleBorderColor #526B7B
+skinparam activityBackgroundColor #EDF4FB
+skinparam activityBorderColor #526B7B
+skinparam activityDiamondBackgroundColor #DFF1EF
+skinparam activityDiamondBorderColor #458F88
+skinparam padding 6
+skinparam nodesep 35
+skinparam ranksep 40
+hide empty members
+title Resumefolio — clients, providers and operating dependencies
+left to right direction
+rectangle "Human browser / device\nIF-01 private; IF-02 employer\nIF-03 file exchange" as B
+rectangle "Real Git client\nIF-06" as G
+rectangle "Host / runtime / domain / TLS\nIF-08 — suitability still gated" as H #FFF3DF
+rectangle "Independent recovery facilities\nIF-08 — not configured" as K #FFF3DF
+rectangle "Resumefolio\nLogical product responsibilities\nAuthorization + truthful outcomes" as RF #DFF1EF
+rectangle "Google Gmail\nIF-04 — OAuth not created" as M
+rectangle "Selected Google Calendar\nIF-05 — access not established" as C
+rectangle "Approved deployment target\nIF-07 — runner placement undecided" as T
+rectangle "Notification delivery\nIF-08 — actual delivery unverified" as N #FFF3DF
+B -- RF : actions / content / authorized results
+G -- RF : real Git requests / results
+H .. RF : operating constraints
+K .. RF : recovery dependency
+RF -- M : authorized mail operations / outcomes
+RF -- C : selected event operations / outcomes
+RF -- T : separately approved effects / outcomes
+RF .. N : delivery dependency
+legend bottom
+Solid associations summarize bidirectional exchanges; section 3
+specifies each direction. Dashed links denote operating dependence.
+No protocol, physical topology or usable service is asserted.
+endlegend
+@enduml

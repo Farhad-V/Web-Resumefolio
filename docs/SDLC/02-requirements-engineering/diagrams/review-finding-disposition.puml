@@ -1,0 +1,40 @@
+@startuml
+title Resumefolio | Finding disposition and actual recheck
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #64748B
+skinparam activity {
+ BackgroundColor #DBEAFE
+ BorderColor #64748B
+ FontColor #17324D
+ DiamondBackgroundColor #FEF3C7
+ DiamondBorderColor #B45309
+ StartColor #17324D
+ EndColor #17324D
+}
+start
+:Identify reviewed input revision, method and bounded actual observation;
+:Record finding, affected records, evidence, impact and owner;
+:Obtain actual owner disposition under applicable authority;
+if (Correction selected?) then (yes)
+ :Change the affected primary records and related links under scope;
+ :Identify new revision and perform actual relevant recheck;
+ if (Correction supported and impacts reconciled?) then (yes)
+  :Record resolved disposition with actual evidence; <<#DCFCE7>>
+ else (unmet / incomplete)
+  :Keep finding open with next action and gate; <<#FEF3C7>>
+ endif
+else (other disposition)
+ :Record justified rejection / permitted deferral only if actually decided;
+ :Retain rationale, authority, gate and remaining obligations; <<#FEF3C7>>
+endif
+:Assess baseline readiness separately against identified candidate;
+stop
+legend bottom
+Proposed procedure; RF-D01-D05 remain open in this revision.
+A proposed fix, source link or rendered diagram is not closure evidence.
+Requirements review is separate from actual product test / release acceptance.
+endlegend
+@enduml

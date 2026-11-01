@@ -1,0 +1,31 @@
+digraph workflow {
+graph [rankdir=TB,bgcolor="white",pad="0.3",nodesep="0.5",ranksep="0.48",fontname="Segoe UI",fontsize=16,label="ACCEPTED PROFILE-UPDATE WORKFLOW
+Independent resume text and actual submitted copies are preserved throughout",labelloc=t];
+node [shape=box,style="rounded,filled",fontname="Segoe UI",fontsize=12,color="#8daac0",fillcolor="#edf4fb",margin="0.2,0.13"];
+edge [fontname="Segoe UI",fontsize=11,color="#547083",arrowsize=0.8];
+edit [label="Owner edits shared profile information"];
+unchanged [label="Existing resume drafts and live views
+remain unchanged by the source edit",fillcolor="#fff3df",color="#c9a363"];
+preview [label="Owner previews the source changes
+for the intended resume"];
+apply [shape=diamond,style=filled,label="Apply selected
+changes?",fillcolor="#e6f4f2",color="#458f88"];
+noapply [label="No apply action
+Existing resume draft remains unchanged",fillcolor="#f2f4f6",color="#a6b4bd"];
+draft [label="Explicitly apply selected changes and save
+Preserve independent overrides / other resumes",fillcolor="#dff1ef",color="#458f88"];
+publish [shape=diamond,style=filled,label="Separately confirm
+publication?",fillcolor="#e6f4f2",color="#458f88"];
+nopublish [label="No publication action
+Current live presentation remains unchanged",fillcolor="#f2f4f6",color="#a6b4bd"];
+live [label="Publish the intended reviewed content
+Actual submitted materials remain unchanged",fillcolor="#eaf7ed",color="#6b9f7b"];
+edit -> unchanged -> preview -> apply;
+{rank=same; apply; noapply;}
+apply -> noapply [label="No"];
+apply -> draft [label="Yes"];
+draft -> publish;
+{rank=same; publish; nopublish;}
+publish -> nopublish [label="No"];
+publish -> live [label="Yes"];
+}

@@ -1,0 +1,39 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam ArrowColor #526B7B
+skinparam activityBackgroundColor #EDF4FB
+skinparam activityBorderColor #526B7B
+skinparam activityDiamondBackgroundColor #FFF3DF
+skinparam activityDiamondBorderColor #B99557
+skinparam activityStartColor #163E52
+skinparam activityEndColor #163E52
+skinparam wrapWidth 190
+skinparam maxMessageSize 180
+
+title CF-M03 — Independent link disablement and fresh request
+start
+:CF-M03-S01\nInitiating actor\nOwner separately requests\ndisablement of a specific link.;
+if (CF-M03-S02\nCurrent owner can control the\nexact link?) then (yes)
+:CF-M03-S03\nOwner\nSeparately request disablement; no\nPDF edit required;
+:CF-M03-S04\nSystem\nAttempt exact permitted link-state\nchange;
+if (CF-M03-S05\nEffective disablement confirmed?) then (yes)
+:CF-M03-S06\nViewer / System\nEvaluate a fresh protected request\nagainst current link state;
+:CF-M03-S07\nSystem\nDeny fresh access via disabled\nlink; preserve download\nconfiguration;
+stop
+else (no)
+:CF-M03-S08\nSystem\nDo not report disabled; retain\nknown outcome and reconcile\nunknown effect;
+stop
+endif
+else (no)
+:CF-M03-S09\nSystem\nDeny before prohibited effect or\nprotected disclosure; report unmet\ngate;
+stop
+endif
+legend bottom
+A: accepted profile core only. Other policy detail: P / proposed refinement.
+Step IDs identify full descriptions in the activity view.
+Logical ordering; no atomicity, runtime, timing or execution proof.
+endlegend
+@enduml

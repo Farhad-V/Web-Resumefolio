@@ -1,0 +1,63 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 5
+skinparam ArrowColor #526B7B
+skinparam sequenceMessageAlign center
+skinparam sequenceParticipantBackgroundColor #DFF1EF
+skinparam sequenceParticipantBorderColor #526B7B
+skinparam sequenceActorBorderColor #526B7B
+skinparam sequenceLifeLineBorderColor #9AAEB7
+skinparam sequenceGroupBackgroundColor #F8FAFC
+skinparam sequenceGroupBorderColor #7B919E
+skinparam sequenceDividerBackgroundColor #EDF4FB
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam maxMessageSize 220
+hide footbox
+autonumber
+title SB-M01 — Explicit source application and separate publication
+actor Owner as U
+participant "Professional profile" as P
+participant "Tailored resume" as R
+participant "Published presentation" as V
+note over U,V
+Scope starts after a confirmed authorized source edit.
+That edit alone changed neither resume nor live view.
+end note
+opt Owner chooses preview
+ U -> R : Preview changes for this resume
+ R -> P : Read permitted source context
+ P --> R : Identified source differences
+ R --> U : Preview; independent overrides identified
+ opt Owner explicitly selects and applies
+  U -> R : Apply selected changes and save
+  R -> R : Check authority and current context
+  alt Denied, stale, conflicting or unsuccessful
+   R --> U : Actual denial/conflict/save failure; no success claim
+  else Selected application confirmed
+   R --> U : Updated intended draft; overrides preserved
+   opt Owner separately confirms publication
+    U -> V : Publish intended reviewed content
+    V -> R : Evaluate intended content / current authority
+    R --> V : Permitted content or rejection
+    alt Publication confirmed
+     V --> U : Intended effective publication
+    else Denied or unsuccessful publication
+     V --> U : Actual result; no false live-update claim
+    end
+   end
+  end
+ end
+end
+note over P,V
+Other resumes and actual submitted material are not rewritten.
+Publication is never inferred from preview or apply.
+end note
+legend bottom
+Logical domain interaction, not runtime execution evidence.
+Detailed proposed guards/policies retain their primary status.
+endlegend
+@enduml

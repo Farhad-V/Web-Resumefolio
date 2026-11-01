@@ -1,0 +1,59 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 5
+skinparam ArrowColor #526B7B
+skinparam sequenceMessageAlign center
+skinparam sequenceParticipantBackgroundColor #DFF1EF
+skinparam sequenceParticipantBorderColor #526B7B
+skinparam sequenceActorBorderColor #526B7B
+skinparam sequenceLifeLineBorderColor #9AAEB7
+skinparam sequenceGroupBackgroundColor #F8FAFC
+skinparam sequenceGroupBorderColor #7B919E
+skinparam sequenceDividerBackgroundColor #EDF4FB
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam maxMessageSize 220
+hide footbox
+autonumber
+title SB-M15 — Effective policy, file admission and restricted evidence
+actor "Actor in the relevant authority context" as U
+participant "Effective file policy" as P
+participant "Protected file resource" as F
+participant "Restricted operational evidence" as E
+U -> P : Request one intended policy / admission / evidence action
+P -> P : Evaluate current action-specific authority
+alt Denied
+ P --> U : Denied; no protected action / evidence disclosure
+else Permitted requested operation
+ alt Authorized policy change
+  U -> P : Supply intended policy change
+  P -> P : Validate applicable measured envelope / effective rules
+  P --> U : Actual effective or unapplied / failed result
+ else Authorized file admission
+  U -> F : Supply intended file and resource context
+  F -> P : Evaluate format / size / quota / applicable references
+  P --> F : Permitted admission or rejection
+  alt Admission permitted
+   F -> F : Validate / process and retain only permitted association
+   F --> U : Actual available / partial / failed processing result
+  else Admission rejected
+   F --> U : Rejected; no usable-admission claim
+  end
+ else Inspect permitted operation evidence
+  U -> E : Request specific resource / operation evidence
+  E -> E : Evaluate evidence visibility and secret protection
+  E --> U : Only permitted actual bounded evidence / denial
+ end
+end
+note over P,E
+These are separate requested goals, not a mandatory chain.
+No automatic history deletion, blanket admin grant or false reclamation.
+end note
+legend bottom
+Logical domain interaction, not runtime execution evidence.
+Detailed proposed guards/policies retain their primary status.
+endlegend
+@enduml

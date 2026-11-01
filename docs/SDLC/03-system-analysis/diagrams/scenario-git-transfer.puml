@@ -1,0 +1,53 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 5
+skinparam ArrowColor #526B7B
+skinparam sequenceMessageAlign center
+skinparam sequenceParticipantBackgroundColor #DFF1EF
+skinparam sequenceParticipantBorderColor #526B7B
+skinparam sequenceActorBorderColor #526B7B
+skinparam sequenceLifeLineBorderColor #9AAEB7
+skinparam sequenceGroupBackgroundColor #F8FAFC
+skinparam sequenceGroupBorderColor #7B919E
+skinparam sequenceDividerBackgroundColor #EDF4FB
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam maxMessageSize 220
+hide footbox
+autonumber
+title SB-M11 — Real Git read transfer versus authorized ref update
+participant "Git client (external)" as C
+participant "Repository" as R
+participant "Git reference" as F
+participant "Evaluated Git content" as V
+C -> R : Request intended clone/read or push
+R -> R : Evaluate current repository / operation authority
+alt Denied
+ R --> C : Rejected; no private transfer or ref change
+else Permitted operation
+ alt Clone / authorized read transfer
+  R -> V : Identify permitted content / refs
+  V --> C : Actual transfer result / interruption
+ else Push intended change
+  R -> F : Evaluate intended ref authority and current state
+  alt Protected, stale or conflicting ref condition
+   F --> C : Rejection / conflict; no accepted-update claim
+  else Eligible update
+   F -> V : Apply permitted Git change under current-state contract
+   V --> F : Actual completion / failure / uncertainty
+   F --> C : Truthful ref/transfer outcome
+  end
+ end
+end
+note over R,V
+No engine, transport implementation or transaction strategy chosen.
+Actual product Git capability still needs controlled interoperability evidence.
+end note
+legend bottom
+Logical domain interaction, not runtime execution evidence.
+Detailed proposed guards/policies retain their primary status.
+endlegend
+@enduml

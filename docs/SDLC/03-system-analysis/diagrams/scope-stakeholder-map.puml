@@ -1,0 +1,35 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #486777
+skinparam ArrowFontSize 12
+skinparam rectangleBackgroundColor #EEF5FA
+skinparam rectangleBorderColor #486777
+skinparam packageBackgroundColor #F7FAFC
+skinparam packageBorderColor #486777
+skinparam componentBackgroundColor #EEF5FA
+skinparam noteBackgroundColor #FFF3DA
+skinparam noteBorderColor #B59865
+skinparam nodesep 35
+skinparam ranksep 45
+skinparam padding 8
+title Scope and stakeholder map
+top to bottom direction
+rectangle "Resumefolio\nFull agreed Version 1 scope" as system
+rectangle "Owner / applicant\nProfessional presentation\nManual applications\nMail / calendar" as owner
+rectangle "Employer viewer\nSelected protected presentation\nNo product account required" as viewer
+rectangle "Authorized participant\nWork / Sprints / Git\nConditional execution" as participant
+rectangle "Authorized operator\nAdministration / recovery\n20 total project hours per week" as operator
+rectangle "Excluded\nProduct AI / automatic translation\nAutomatic old-demo migration" as excluded #FFF3DA
+owner --> system : scoped goals
+viewer --> system : selected disclosure only
+participant --> system : resource-specific authority
+operator --> system : explicit operating powers
+system ..> excluded : outside agreed boundary
+
+legend bottom
+Logical analysis; relationships do not confer authority or select implementation.
+endlegend
+@enduml

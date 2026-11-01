@@ -1,0 +1,51 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #486777
+skinparam ArrowFontSize 12
+skinparam rectangleBackgroundColor #EEF5FA
+skinparam rectangleBorderColor #486777
+skinparam packageBackgroundColor #F7FAFC
+skinparam packageBorderColor #486777
+skinparam componentBackgroundColor #EEF5FA
+skinparam noteBackgroundColor #FFF3DA
+skinparam noteBorderColor #B59865
+skinparam nodesep 35
+skinparam ranksep 45
+skinparam padding 8
+title DC-O02 — UML object snapshots and frame condition
+top to bottom direction
+object "before : SourceContext" as source {
+  selectedChange = available
+}
+object "before : ResumeDraft" as before {
+ selectedField = oldValue
+ independentOverride = retainedValue
+}
+object "after confirmed apply : ResumeDraft" as after {
+ selectedField = selectedNewValue
+ independentOverride = retainedValue
+}
+object "frame : LivePresentation" as live {
+  content = unchangedByApply
+}
+object "frame : SubmittedMaterial" as sent {
+  content = unchangedByApply
+}
+source ..> after : selected explicit apply
+before ..> after : DC-O02 confirmed postcondition
+after ..> live : no automatic publication
+after ..> sent : no overwrite of actual history
+note bottom of before
+Precondition: exact intended draft, current authority/context,
+selected changes and explicit confirmation.
+Failure/unknown effects follow the operation contract;
+this is only the confirmed-success snapshot.
+end note
+
+legend bottom
+Symbolic analysis values, not stored records or proposed database fields. See DC-O02 and accepted profile policy.
+endlegend
+@enduml

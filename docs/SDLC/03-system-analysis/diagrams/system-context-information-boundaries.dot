@@ -1,0 +1,32 @@
+digraph G {rankdir=TB;graph [bgcolor="white",pad="0.35",nodesep="0.40",ranksep="0.85",fontname="Segoe UI",fontsize=16];node [shape=box,style="rounded,filled",fillcolor="#edf4fb",color="#547083",fontname="Segoe UI",fontsize=12,margin="0.18,0.14"];edge [color="#547083",fontname="Segoe UI",fontsize=10,arrowsize=0.7];
+owner [label="Resource owner
+Explicit actions",fillcolor="#dff1ef"];
+viewer [label="Employer viewer
+Link / password / resource request"];
+subgraph cluster_product {label="RESUMEFOLIO
+Logical product responsibilities";labeljust=l;color="#547083";style="rounded";fontname="Segoe UI";fontsize=14;
+private [label="PRIVATE INFORMATION
+Profile + independent resume content
+Evidence + application work"];
+publish [label="SELECTED PUBLISHED PRESENTATION
+Explicit publication
+Selected evidence / available PDFs",fillcolor="#dff1ef"];
+history [label="ACTUAL SUBMITTED MATERIALS
+Preserved independently of later edits
+Not automatically public",fillcolor="#fff3df"];
+auth [label="CURRENT ACCESS DECISION
+Actor / resource / operation / state
+Direct retrieval also checked",fillcolor="#163e52",fontcolor="white"];
+private -> publish [label="Preview / selected apply
+then separate publish confirmation"];
+private -> history [label="Record actual submitted materials
+not an automatic publication copy"];
+publish -> auth [label="Only selected available content"];
+}
+owner -> private [label="Authorized edit / preparation"];
+viewer -> auth [label="Protected view / download request"];
+result [label="AUTHORIZED PRESENTATION / ARTIFACT
+Or denial / unavailable result",fillcolor="#dff1ef"];
+auth -> result [label="Scoped result"];
+owner -> publish [style=dashed,label="Publication authority"];
+}

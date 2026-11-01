@@ -1,0 +1,52 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam ArrowColor #526B7B
+skinparam activityBackgroundColor #EDF4FB
+skinparam activityBorderColor #526B7B
+skinparam activityDiamondBackgroundColor #FFF3DF
+skinparam activityDiamondBorderColor #B99557
+
+title RB-D01 — Resource-scoped operation eligibility
+start
+if (RB-D01-C01\nScoped authority valid = T?) then (yes)
+if (RB-D01-C02\nCurrent state permits = T?) then (yes)
+if (RB-D01-C03\nOperation conditions met = T?) then (yes)
+:RB-D01-R07\nELIGIBLE ONLY;
+stop
+else (no)
+if (RB-D01-C03 = F?) then (yes)
+:RB-D01-R05\nREJECT CONDITIONS;
+stop
+else (U)
+:RB-D01-R06\nUNRESOLVED CONDITIONS;
+stop
+endif
+endif
+else (no)
+if (RB-D01-C02 = F?) then (yes)
+:RB-D01-R03\nDENY CURRENT STATE;
+stop
+else (U)
+:RB-D01-R04\nUNRESOLVED STATE;
+stop
+endif
+endif
+else (no)
+if (RB-D01-C01 = F?) then (yes)
+:RB-D01-R01\nDENY SCOPE;
+stop
+else (U)
+:RB-D01-R02\nUNRESOLVED SCOPE;
+stop
+endif
+endif
+legend bottom
+Decision alternatives, not execution steps or evaluation timing.
+T = established true; F = established false; U = unresolved.
+Conditions and full results are defined in the rule table.
+All rows here are proposed analysis refinements; no new policy acceptance.
+endlegend
+@enduml

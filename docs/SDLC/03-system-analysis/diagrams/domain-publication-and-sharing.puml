@@ -1,0 +1,69 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 8
+skinparam ArrowColor #526B7B
+skinparam ArrowFontSize 11
+skinparam packageStyle rectangle
+skinparam classAttributeIconSize 0
+hide circle
+skinparam classBackgroundColor #EDF4FB
+skinparam classBorderColor #526B7B
+skinparam classHeaderBackgroundColor #DFF1EF
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam rectangleBackgroundColor #EDF4FB
+skinparam rectangleBorderColor #526B7B
+skinparam activityBackgroundColor #EDF4FB
+skinparam activityBorderColor #526B7B
+skinparam activityDiamondBackgroundColor #DFF1EF
+skinparam activityDiamondBorderColor #458F88
+skinparam padding 6
+skinparam nodesep 35
+skinparam ranksep 40
+hide empty members
+title Publication, PDF availability and protected link
+top to bottom direction
+class "Tailored resume\nDM-C03" as resume {
+  Content selection
+  layout
+  tailoring context
+}
+class "Published presentation\nDM-C09" as publication {
+  Effective content/revision context
+}
+class "Generated resume PDF\nDM-C10" as generated {
+  Represented content
+  language
+  availability
+}
+class "Uploaded resume PDF\nDM-C11" as uploaded {
+  Artifact identity
+  language
+  availability
+}
+class "PDF download availability\nDM-C12" as download {
+  Mode
+  language eligibility
+}
+class "Protected employer link\nDM-C13" as link {
+  Target context
+  access state
+  credential control
+}
+resume -- publication : separately confirmed publication
+publication -- generated : represented published content
+resume -- uploaded : supplied PDF association
+resume -- download : download configuration
+download -- generated : generated eligibility
+download -- uploaded : uploaded / language eligibility
+link -- publication : scoped selected view
+legend bottom
+Solid lines: conceptual associations, not process steps.
+Relationship bounds: document 03, section 3.
+An unlabeled end is unspecified, not implicitly one.
+Properties are semantic, not mandatory database fields.
+endlegend
+@enduml

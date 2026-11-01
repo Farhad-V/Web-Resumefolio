@@ -8,7 +8,7 @@
 | Planning baseline | Accepted with tracked follow-up under [DEC-116](10-planning-completion-criteria.md#dec-116) |
 | Presentation revision | October 31, 2026; no capacity, spending, or delivery estimate is added |
 
-**At a glance:** Plan with one full-time project owner, the current development
+**At a glance:** Plan with one project owner at the currently confirmed 20 hours/week, the current development
 tools, the existing server, and the available budget. Keep demonstrated tool
 operation separate from reported resources and unverified technical capacity.
 
@@ -51,7 +51,7 @@ remain authoritative in the linked investigation document.
 | Development environment | Windows and PowerShell; repository under the local XAMPP directory | Local file work is demonstrated; application runtime compatibility is not yet verified |
 | Version control | Git and private GitHub repository | Commit/push workflow demonstrated; this does not establish product Git-hosting functionality |
 | Diagram tools | Graphviz, PlantUML, and Java | Diagram generation has been demonstrated; package/application dependencies still need selection and compatibility checks |
-| Hosting | Existing Hetzner server in Germany | Owner-reported resource; current CPU, memory, storage, OS, workloads, and capacity remain uninspected |
+| Hosting | Existing Hetzner server in Germany | Observed allocation and guest inventory from owner-supplied screenshots/SSH output on November 1, 2026: 2 vCPU, 4 GB RAM, 40 GB local disk, Ubuntu 24.04.4 LTS; Nginx, MySQL and PHP 8.3-FPM running with an existing Laravel deployment. Combined workload capacity remains unverified |
 | Domain | Resumefolio.de | Owner-reported resource; DNS, TLS, routing, and renewal arrangements remain to be verified |
 | Reference projects | MultiResume Manager, Git Hosting Platform, OmniDesk, KanbanFlow | Existing references from prior project work; this revision does not audit their code or authorize changes to them |
 
@@ -81,7 +81,7 @@ are still to be verified. No budget amount or upload quota is invented here.
 | Planning fact | Current position |
 |---|---|
 | Delivery staff | One project owner; no separate development, verification, or operations team |
-| Availability | Full time, as confirmed by the owner; numerical weekly hours remain unconfirmed |
+| Availability | Current owner input November 1, 2026: 20 total project hours/week, including learning, documentation and testing; earlier full-time wording is historical |
 | Requested Version 1 target | November 8, 2026, Europe/Berlin |
 | Forecast status | No validated effort estimate or sufficient-capacity conclusion yet |
 | Estimation review point | After initial analysis/design and before accepting a delivery forecast; revise against actual progress |
@@ -312,3 +312,13 @@ The PlantUML path is the recorded per-user installation location. If running
 under a different Windows account, point it to the installed JAR explicitly.
 Save diagram sources as UTF-8 without BOM and review rendered labels alongside
 the text when constraints, resource evidence, or review rules change.
+
+## November 1, 2026 — Observed Hosting Inventory
+
+The owner authorized recording the previously supplied server observations. See the [bounded observation record](../02-requirements-engineering/01-process-and-approach/02-feasibility-study.md#server-observation-2026-11-01) for provenance, exact observed quantities and remaining checks. This updates the current working-copy inventory; it does not alter the accepted historical M-01 snapshot or confirm ASM-01 capacity sufficiency.
+
+The server is occupied by an existing deployment. Its available memory/disk at low load are a point-in-time observation, not a reserved allocation or application performance limit. No new server access or operational change was performed to prepare this documentation update. Domain configuration was observed in Nginx; actual DNS, TLS validity/renewal, account control and provider conditions remain separate checks.
+
+## November 1, 2026 — Numerical Capacity Clarification
+
+The owner answered 20 hours/week to the usable project-capacity question. Use this current input rather than an unspecified full-time capacity for new forecasts; preserve historical DEC records and accepted snapshot scope. [Preliminary sizing](11-capacity-and-preliminary-sizing.md) supplies a low-confidence scenario, not an accepted completion date. The [operating assessment](../02-requirements-engineering/06-validation-and-traceability/remaining-gate-assessment.md) adds bounded mail/OAuth declaration, worker/timer, certificate and tool findings; these do not establish full operating readiness.

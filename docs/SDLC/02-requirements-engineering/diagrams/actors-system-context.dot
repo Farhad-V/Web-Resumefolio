@@ -1,0 +1,27 @@
+digraph ActorsContext {
+ graph [rankdir=LR,bgcolor="white",pad=0.35,ranksep=0.75,nodesep=0.35,fontname="Arial",fontsize=20,labelloc=t,
+ label="Resumefolio | System context\nExternal actors, exchanges and dependencies - proposed domain context"];
+ node [shape=box,style="rounded,filled",fontname="Arial",fontsize=12,color="#64748B",fontcolor="#17324D",margin="0.2,0.14",fillcolor="#DBEAFE"];
+ edge [color="#64748B",arrowsize=0.7,fontname="Arial",fontsize=10];
+ operator [label="AUTHORIZED OPERATOR\nDefined maintenance / recovery context",fillcolor="#FEF3C7"];
+ user [label="REGISTERED USER / RESOURCE OWNER\nOwn professional information and application work"];
+ collaborator [label="INVITED COLLABORATOR\nAuthorized project / board / repository context"];
+ viewer [label="EMPLOYER VIEWER\nProtected shared resume and selected content"];
+ admin [label="PLATFORM OWNER / ADMINISTRATOR\nSpecified administrative operations"];
+ system [label="RESUMEFOLIO PRODUCT BOUNDARY\nProfiles / resumes / evidence / PDF / sharing\nManual ApplyFlow / email / calendar\nWork management / real Git / conditional CI/CD\nAgreed administration and operational readiness",fillcolor="#17324D",fontcolor=white,fontsize=14];
+ google [label="GOOGLE SERVICES\nGmail and Calendar\nRequired operations / consent / sync",fillcolor="#EDE9FE"];
+ mail [label="EMAIL DELIVERY\nAuthentication / notification support",fillcolor="#EDE9FE"];
+ git [label="GIT CLIENT\nAuthorized real Git transport\nProtocol / credentials to define",fillcolor="#EDE9FE"];
+ ops [label="OPERATIONAL DEPENDENCIES\nHosting / network / DNS / TLS\nBackup / recovery / software runtimes\nActual suitability remains unverified",fillcolor="#FEF3C7"];
+ user -> system [dir=both,label="professional / application information\nprivate authorized requests and results"];
+ collaborator -> system [dir=both,label="work / repository collaboration\nscoped requests and results"];
+ viewer -> system [dir=both,label="sharing password / content requests\nselected authorized content"];
+ admin -> system [dir=both,label="permitted policy changes\neffective values / operation outcomes"];
+ system -> google [dir=both,label="authorized mail / activity exchange"];
+ system -> mail [label="delivery dependency"];
+ git -> system [dir=both,label="Git operations"];
+ ops -> system [style=dashed,label="operation / availability dependence"];
+ operator -> system [dir=both,label="authorized operation / recovery\nactual outcomes and limitations"];
+ {rank=same;user;collaborator;viewer;admin;operator;}
+ {rank=same;google;mail;git;ops;}
+}

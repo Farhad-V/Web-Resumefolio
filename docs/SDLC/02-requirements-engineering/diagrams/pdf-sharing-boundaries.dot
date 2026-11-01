@@ -1,0 +1,25 @@
+digraph model {
+graph [bgcolor="white",pad=0.3,nodesep=0.45,ranksep=0.75,fontname="Arial",fontsize=20,labelloc=t];
+node [shape=box,style="rounded,filled",fillcolor="#DBEAFE",color="#64748B",fontcolor="#17324D",fontname="Arial",fontsize=13,margin="0.18,0.14"];
+edge [color="#64748B",fontname="Arial",fontsize=11,fontcolor="#17324D"];
+graph [rankdir=LR,label="Resumefolio | PDF, sharing and copy boundaries"];
+authored [label="Authored resume
+Defined content / revision"];
+generated [label="Generated PDF
+Defined rendition / revision"];
+uploaded [label="Uploaded PDFs
+Separate English / German variants"];
+shared [label="Controlled employer context
+Password + selected content
+Per-resume download availability",fillcolor="#EDE9FE"];
+downloaded [label="Legitimately downloaded copy
+Cannot be recalled by disabling link",fillcolor="#FEF3C7"];
+history [label="Preserved actual submitted copy
+Separate application-history policy",fillcolor="#DCFCE7"];
+authored -> generated [label="defined generation"];
+generated -> shared [label="if enabled / authorized"];
+uploaded -> shared [label="enabled language / variant"];
+shared -> downloaded [label="authorized retrieval"];
+generated -> history [style=dashed,label="only if actually submitted / captured"];
+uploaded -> history [style=dashed,label="only if actually submitted / captured"];
+}

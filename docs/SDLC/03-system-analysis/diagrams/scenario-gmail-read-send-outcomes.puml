@@ -1,0 +1,59 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 5
+skinparam ArrowColor #526B7B
+skinparam sequenceMessageAlign center
+skinparam sequenceParticipantBackgroundColor #DFF1EF
+skinparam sequenceParticipantBorderColor #526B7B
+skinparam sequenceActorBorderColor #526B7B
+skinparam sequenceLifeLineBorderColor #9AAEB7
+skinparam sequenceGroupBackgroundColor #F8FAFC
+skinparam sequenceGroupBorderColor #7B919E
+skinparam sequenceDividerBackgroundColor #EDF4FB
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam maxMessageSize 220
+hide footbox
+autonumber
+title SB-M07 — Read or deliberately send with truthful provider outcomes
+actor User as U
+participant "Provider connection" as C
+participant "Message / draft context" as M
+participant "Google Gmail (external)" as G
+U -> C : Request intended read or reviewed send/reply
+C -> C : Evaluate product and provider authority / account
+alt Missing, revoked or wrong-context access
+ C --> U : Denied / disconnected; no provider action
+else Authorized future capability
+ alt Read selected correspondence
+  C -> G : Request permitted account / item context
+  G --> M : Authorized data or bounded failure
+  M -> M : Apply permitted safe-content / display rules
+  M --> U : Permitted content / actual failure
+ else Deliberate reviewed send or reply
+  U -> M : Confirm sender, recipients, content and attachments
+  M -> G : Submit only the permitted intended message
+  alt Provider acceptance confirmed
+   G --> M : Actual provider reference / confirmation
+   M --> U : Provider accepted; delivery/read not established
+  else Definite rejection / failure
+   G --> M : Definite bounded rejection
+   M --> U : Failed / rejected result
+  else Ambiguous response / timeout
+   M -> M : Retain unknown outcome and intended context
+   M --> U : Unknown; reconcile before explicit retry
+  end
+ end
+end
+note over C,G
+Logical future interaction. OAuth has not been created.
+Reading, draft handling, sending and reply are distinct actions.
+end note
+legend bottom
+Logical domain interaction, not runtime execution evidence.
+Detailed proposed guards/policies retain their primary status.
+endlegend
+@enduml

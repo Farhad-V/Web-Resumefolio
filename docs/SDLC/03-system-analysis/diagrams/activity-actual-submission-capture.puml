@@ -1,0 +1,44 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam ArrowColor #526B7B
+skinparam activityBackgroundColor #EDF4FB
+skinparam activityBorderColor #526B7B
+skinparam activityDiamondBackgroundColor #FFF3DF
+skinparam activityDiamondBorderColor #B99557
+skinparam activityStartColor #163E52
+skinparam activityEndColor #163E52
+skinparam wrapWidth 190
+skinparam maxMessageSize 180
+
+title CF-M06 — Capture actual submitted materials
+start
+:CF-M06-S01\nInitiating actor\nApplicant identifies actual\nsubmitted resume/letter material\nfor the intended application.;
+if (CF-M06-S02\nCurrent application authority and\nactual event/material context\nvalid?) then (yes)
+:CF-M06-S03\nApplicant\nIdentify what was actually sent,\nincluding external/uploaded\nvariants;
+:CF-M06-S04\nSystem\nAssess provenance and required\nresume/letter/material components;
+if (CF-M06-S05\nActual intended components\navailable?) then (yes)
+:CF-M06-S06\nSystem\nCapture identifiable actual\nmaterial independently of current\nlive source;
+if (CF-M06-S07\nAll required actual components\nconfirmed preserved?) then (yes)
+:CF-M06-S08\nSystem\nReport complete actual set; later\nprofile/publication edits leave it\nunchanged;
+stop
+else (no)
+:CF-M06-S09\nSystem\nReport incomplete/failed/unknown\ncapture truthfully; preserve\ndistinguishable evidence;
+stop
+endif
+else (no)
+:CF-M06-S10\nSystem\nRecord missing material; no\ncurrent-live substitution or\ncomplete-preservation claim;
+stop
+endif
+else (no)
+:CF-M06-S11\nSystem\nDeny before prohibited effect or\nprotected disclosure; report unmet\ngate;
+stop
+endif
+legend bottom
+A: accepted profile core only. Other policy detail: P / proposed refinement.
+Step IDs identify full descriptions in the activity view.
+Logical ordering; no atomicity, runtime, timing or execution proof.
+endlegend
+@enduml
