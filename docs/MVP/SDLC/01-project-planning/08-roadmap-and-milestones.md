@@ -145,7 +145,7 @@ separately from its original October 30 target.
 
 [Provisional delivery plan](../../Project-Management/version-1-delivery-plan.md)
 · [Product Backlog](../../Project-Management/product-backlog.md)
-· [Private GitHub delivery project](https://github.com/users/Farhad-Valizadegan/projects/6)
+· [Private GitHub delivery project](https://github.com/users/Farhad-V/projects/7)
 
 Reaching a historical target is not evidence that an outcome is complete.
 This document revision does not update remote dates, Sprint membership, or status.

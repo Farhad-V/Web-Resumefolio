@@ -141,7 +141,7 @@ and agree the pre-implementation baseline before product coding.
 
 - [Product Backlog index](../../Project-Management/product-backlog.md)
 - [Provisional Version 1 delivery plan](../../Project-Management/version-1-delivery-plan.md)
-- [Private GitHub project — Kanban and Sprint views](https://github.com/users/Farhad-Valizadegan/projects/6)
+- [Private GitHub project — MVP Kanban](https://github.com/users/Farhad-V/projects/7)
 
 GitHub issues and the delivery project hold live work status and assignments.
 Local dates and Sprint selections preserve provisional historical plans until
