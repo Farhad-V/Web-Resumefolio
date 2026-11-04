@@ -31,11 +31,11 @@ Existing PBI-001–029 identities are preserved; PBI-030–034 isolate Setup, id
 | <a id="pbi-027"></a>[PBI-027](https://github.com/Farhad-V/Web-Resumefolio/issues/27) | Demonstrate coherent restore and deployment recovery | M-09 | PBI-006, PBI-024, PBI-020, PBI-033 | QSR / AFO; G4 |
 | <a id="pbi-028"></a>[PBI-028](https://github.com/Farhad-V/Web-Resumefolio/issues/28) | Complete user, admin and operating guidance | M-09 | PBI-025, PBI-027 | EIF / QSR / USR; G4; G6 |
 | <a id="pbi-029"></a>[PBI-029](https://github.com/Farhad-V/Web-Resumefolio/issues/29) | Review and deploy the initial MVP release | M-10 | PBI-025, PBI-026, PBI-027, PBI-028 | USR / QSR; G6 |
-| <a id="pbi-030"></a>[PBI-030](#pbi-030) | Create isolated Laravel applications and reproducible Setup | M-04 | PBI-009, PBI-002 | DOM / EIF; G1 |
-| <a id="pbi-031"></a>[PBI-031](#pbi-031) | Prove ProjectForge SSO and native Git security spike | M-07 | PBI-030, PBI-010, PBI-002 | ACC / GIT; G2 |
-| <a id="pbi-032"></a>[PBI-032](#pbi-032) | Implement Core and ProjectForge scoped identity/API | M-07 | PBI-031, PBI-010 | ACC / EIF; G2; G3 |
-| <a id="pbi-033"></a>[PBI-033](#pbi-033) | Implement atomic publication and protected artifact history | M-05 | PBI-012, PBI-013, PBI-014 | PRP / BRL / APP; G3 |
-| <a id="pbi-034"></a>[PBI-034](#pbi-034) | Enforce storage reservations and bounded Git/media admission | M-05 | PBI-002, PBI-030 | AFO / QSR / GIT; G2; G5 |
+| <a id="pbi-030"></a>[PBI-030](https://github.com/Farhad-V/Web-Resumefolio/issues/37) | Create isolated Laravel applications and reproducible Setup | M-04 | PBI-009, PBI-002 | DOM / EIF; G1 |
+| <a id="pbi-031"></a>[PBI-031](https://github.com/Farhad-V/Web-Resumefolio/issues/38) | Prove ProjectForge SSO and native Git security spike | M-07 | PBI-030, PBI-010, PBI-002 | ACC / GIT; G2 |
+| <a id="pbi-032"></a>[PBI-032](https://github.com/Farhad-V/Web-Resumefolio/issues/39) | Implement Core and ProjectForge scoped identity/API | M-07 | PBI-031, PBI-010 | ACC / EIF; G2; G3 |
+| <a id="pbi-033"></a>[PBI-033](https://github.com/Farhad-V/Web-Resumefolio/issues/40) | Implement atomic publication and protected artifact history | M-05 | PBI-012, PBI-013, PBI-014 | PRP / BRL / APP; G3 |
+| <a id="pbi-034"></a>[PBI-034](https://github.com/Farhad-V/Web-Resumefolio/issues/41) | Enforce storage reservations and bounded Git/media admission | M-05 | PBI-002, PBI-030 | AFO / QSR / GIT; G2; G5 |
 
 ## Package completion conditions
 
