@@ -1,100 +1,177 @@
 # Product Backlog
 
-## Current implementation baseline — November 4, 2026
+Updated November 4, 2026. This is the current scope and dependency index, not a duplicate live status database. [Baseline](../baseline/README.md) and [criterion dispositions](../baseline/criterion-dispositions.md) own requirement/policy applicability. [Roadmap and Milestones](../SDLC/01-project-planning/08-roadmap-and-milestones.md#2-milestone-catalog) owns outcome definitions and acceptance. Live task state, evidence and blockers belong in GitHub Issues and Kanban. No Sprint or delivery deadline is assigned.
 
-[BL-MVP-2026-11-04.1](../baseline/README.md) selects the MVP technical mechanisms, numerical policies, priorities and requirement/criterion dispositions under Farhad’s explicit delegation. It supersedes earlier Proposed/pending mechanism and whole-baseline statements below for MVP design input. Future clauses and dated evidence remain separate. Runtime/actor validation, credentials, Git isolation, capacity and backup/restore still require the named implementation/Release gates; this update reports no product test Pass.
+## Current MVP work packages
 
-### Prior source material and rationale (superseded where this Baseline selects a different MVP choice)
+Existing PBI-001–029 identities are preserved; PBI-030–034 isolate Setup, identity/Git feasibility, API, immutable history and quota risks already required by the Baseline. New packages refine existing scope and do not add capabilities. Prefix links mean the applicable selected criteria only; the original 470 plus 10 supplemental checks are not all MVP obligations.
 
-Status: Backlog index with provisional historical scheduling snapshot; requirements and estimates remain under refinement
-
-Historical requested completion: **November 8, 2026, Europe/Berlin**; unverified and not a current MVP forecast.
-Current owner-stated capacity: **20 total project hours/week**, November 1, 2026; earlier full-time wording is historical. No live issue/board estimate or assignment is changed.
-Version 1 is the owner-defined MVP; mail/calendar, AI and advanced ProjectForge capabilities are deferred.
-
-## Current MVP delivery disposition
-
-The dated sprint/issue assignments below are preserved as historical snapshots, not live assignments or MVP delivery promises. Core and basic ProjectForge remain MVP. PBI-003/004/017/018/021/023 are future; PBI-019 and PBI-022 split simple Kanban/issues into MVP and advanced backlog/Sprints/milestones/tags/releases into future. PBI-016 is integrated manual job applications with actual materials, status, next action and follow-up date. Existing identity/files/security/recovery evidence is still required. No GitHub issue, project board or external assignment was changed. Re-estimate against 20 total project hours/week; November 8 is unverified history.
-
-Authority: [OWNER-MVP-2026-11-04](../SDLC/01-project-planning/owner-mvp-decision-2026-11-04.md).
-
-## Tracking Authority
-
-GitHub issues hold the work descriptions, dependencies, acceptance evidence,
-assignees and live state. The private project board holds workflow status,
-priority, target dates and dated sprint assignments. This file is a durable
-index, not a second live status database. Requirements Engineering remains
-authoritative for requirements and acceptance criteria.
-
-The dates below are target checkpoints, not validated effort forecasts.
-Work packages must be refined into smaller tasks when requirements are reviewed.
-No issue is complete merely because it was created or assigned to a sprint.
-
-[Private Kanban and sprint views](https://github.com/users/Farhad-Valizadegan/projects/6)
-
-## MVP Work Allocation — November 4
-
-| Existing items | Current disposition |
-| --- | --- |
-| PBI-001/007/008/009 | Reconcile planning/requirements/design and task estimates to MVP; preserve historical dates |
-| PBI-002/005/006 | MVP capacity/auth-delivery-if-selected/recoverable-backup investigations |
-| PBI-010–016 | MVP core; PBI-011 includes dashboard; PBI-013 includes private same-server library; PBI-016 includes next action/follow-up |
-| PBI-020 | MVP ProjectForge repositories, native transfers/permissions/file-history plus user-scoped core API |
-| PBI-019 | Split: simple Kanban MVP; advanced backlog/Sprints deferred |
-| PBI-022 | Split: issues MVP; milestones/tags/releases deferred |
-| PBI-024–029 | MVP audit/lifecycle, integrated verification, capacity, demonstrated recovery, guidance/release; no deployment performed here |
-| PBI-003/004/017/018/021/023 | Deferred: runner/provider investigations, Gmail/Calendar, advanced review/merge and execution |
-
-Core/ProjectForge API identity/revocation, private media safe range delivery and MVP re-estimation need local task refinement under these existing packages before implementation. No external issue was created or edited.
-
-## Historical Work Items
-
-The milestone, Sprint, and date columns below preserve the provisional
-historical planning snapshot. They are not a second live assignment record.
-Use the linked GitHub issues and delivery board for current tracking.
-Reconcile this snapshot after analysis/design, preserving the agreed initial
-SDLC documentation and baseline agreement before product coding.
-
-| ID | Work package | Milestone | Sprint | Target date |
+| ID | Outcome | Milestone | Dependencies | Acceptance / gate |
 | --- | --- | --- | --- | --- |
-| [PBI-001](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/1) | Record full-time availability and November 8 target | M-01 | SPR-01 | 2026-10-30 |
-| [PBI-002](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/2) | Inspect existing server resources and workloads | M-03 | SPR-01 | 2026-11-01 |
-| [PBI-003](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/3) | Assess isolated Git CI/CD execution feasibility | M-03 | SPR-01 | 2026-11-01 |
-| [PBI-004](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/4) | Verify Gmail and Google Calendar integration access | M-02 | SPR-01 | 2026-10-31 |
-| [PBI-005](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/5) | Validate authentication email delivery arrangements | M-03 | SPR-01 | 2026-11-01 |
-| [PBI-006](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/6) | Plan independent backup storage and restoration | M-03 | SPR-01 | 2026-11-01 |
-| [PBI-007](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/7) | Review M-01 planning baseline and follow-up decisions | M-01 | SPR-01 | 2026-10-30 |
-| [PBI-008](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/8) | Define testable Version 1 requirements and traceability | M-02 | SPR-01 | 2026-10-31 |
-| [PBI-009](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/9) | Select architecture and establish Laravel development foundation | M-03 | SPR-01 | 2026-11-01 |
-| [PBI-010](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/10) | Implement identity, unified sign-in and permission boundaries | M-04 | SPR-01 | 2026-11-01 |
-| [PBI-011](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/11) | Implement responsive application shell and shared UX | M-04 | SPR-01 | 2026-11-01 |
-| [PBI-012](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/12) | Implement professional profiles and tailored resume editing | M-05 | SPR-02 | 2026-11-03 |
-| [PBI-013](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/13) | Implement supporting media and owner-configurable quotas | M-05 | SPR-02 | 2026-11-03 |
-| [PBI-014](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/14) | Implement generated and uploaded resume PDFs | M-05 | SPR-02 | 2026-11-03 |
-| [PBI-015](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/15) | Implement employer links, passwords and sharing statistics | M-05 | SPR-02 | 2026-11-03 |
-| [PBI-016](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/16) | Implement manual job application management and immutable application records | M-06 | SPR-02 | 2026-11-04 |
-| [PBI-017](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/17) | Implement multi-account Gmail client and application links | M-06 | SPR-02 | 2026-11-04 |
-| [PBI-018](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/18) | Implement calendar, reminders and selected Google sync | M-06 | SPR-02 | 2026-11-04 |
-| [PBI-019](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/19) | Implement Kanban projects, backlog and sprint workflows | M-07 | SPR-02 | 2026-11-05 |
-| [PBI-020](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/20) | Implement real Git repositories and Git transport | M-07 | SPR-02 | 2026-11-05 |
-| [PBI-021](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/21) | Implement Fork, PR review and merge workflows | M-07 | SPR-02 | 2026-11-05 |
-| [PBI-022](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/22) | Implement Git issues, milestones, tags and releases | M-07 | SPR-02 | 2026-11-05 |
-| [PBI-023](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/23) | Implement YAML workflow execution and CI/CD reporting | M-08 | SPR-03 | 2026-11-06 |
-| [PBI-024](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/24) | Implement account suspension, trash, restore and audit rules | M-09 | SPR-02 | 2026-11-07 |
-| [PBI-025](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/25) | Run integrated functional, regression and permission verification | M-09 | SPR-03 | 2026-11-07 |
-| [PBI-026](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/26) | Verify initial capacity, accessibility and failure recovery | M-09 | SPR-03 | 2026-11-07 |
-| [PBI-027](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/27) | Demonstrate backup restoration and deployment rollback | M-09 | SPR-03 | 2026-11-07 |
-| [PBI-028](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/28) | Complete user, admin, deployment and maintenance guidance | M-09 | SPR-03 | 2026-11-07 |
-| [PBI-029](https://github.com/Farhad-Valizadegan/web-resumefolio/issues/29) | Deploy and verify Version 1 release | M-10 | SPR-03 | 2026-11-08 |
+| [PBI-001](https://github.com/Farhad-V/Web-Resumefolio/issues/1) | Record 20-hour capacity and MVP scope | M-01 | None | BIZ / DOM; G0 |
+| [PBI-002](https://github.com/Farhad-V/Web-Resumefolio/issues/2) | Verify shared-host capacity and isolation prerequisites | M-03 | None | AFO / QSR; G1; G5 |
+| [PBI-005](https://github.com/Farhad-V/Web-Resumefolio/issues/5) | Verify invitation and recovery SMTP delivery | M-03 | PBI-002 | ACC / EIF; G4 |
+| [PBI-006](https://github.com/Farhad-V/Web-Resumefolio/issues/6) | Verify independent backup destination and restore plan | M-03 | PBI-002 | QSR / AFO; G4 |
+| [PBI-007](https://github.com/Farhad-V/Web-Resumefolio/issues/7) | Review current planning allocation and tracked follow-ups | M-01 | PBI-001 | BIZ / DOM; G0 |
+| [PBI-008](https://github.com/Farhad-V/Web-Resumefolio/issues/8) | Validate MVP requirement and criterion coverage | M-02 | PBI-007 | USR / BIZ / DOM; G0 |
+| [PBI-009](https://github.com/Farhad-V/Web-Resumefolio/issues/9) | Reconcile selected Design and technical baseline | M-03 | PBI-008 | DOM / EIF / QSR; G0; G1 |
+| [PBI-010](https://github.com/Farhad-V/Web-Resumefolio/issues/10) | Implement invited identity and resource authorization | M-04 | PBI-030 | ACC; G3 |
+| [PBI-011](https://github.com/Farhad-V/Web-Resumefolio/issues/11) | Implement dashboard and responsive application shell | M-04 | PBI-010 | EIF / USR; G3; G5 |
+| [PBI-012](https://github.com/Farhad-V/Web-Resumefolio/issues/12) | Implement Profile and independent Resume drafts | M-05 | PBI-010 | PRP / BRL; G3 |
+| [PBI-013](https://github.com/Farhad-V/Web-Resumefolio/issues/13) | Implement private My Files and Media library | M-05 | PBI-010, PBI-002 | AFO / PRP; G3; G5 |
+| [PBI-014](https://github.com/Farhad-V/Web-Resumefolio/issues/14) | Implement generated and uploaded language-specific PDFs | M-05 | PBI-012, PBI-013 | PDF; G3; G5 |
+| [PBI-015](https://github.com/Farhad-V/Web-Resumefolio/issues/15) | Implement password links and protected selected-content retrieval | M-05 | PBI-012, PBI-013, PBI-014 | PDF / ACC; G3 |
+| [PBI-016](https://github.com/Farhad-V/Web-Resumefolio/issues/16) | Implement manual applications and actual submitted history | M-06 | PBI-012, PBI-014, PBI-033 | APP / BRL; G3 |
+| [PBI-019](https://github.com/Farhad-V/Web-Resumefolio/issues/19) | Implement ProjectForge fixed issue Kanban | M-07 | PBI-022 | PKS; G3 |
+| [PBI-020](https://github.com/Farhad-V/Web-Resumefolio/issues/20) | Implement native repositories and real Git transfers | M-07 | PBI-031, PBI-032, PBI-034 | GIT; G2; G3 |
+| [PBI-022](https://github.com/Farhad-V/Web-Resumefolio/issues/22) | Implement basic ProjectForge repository issues | M-07 | PBI-032, PBI-020 | GIT / PKS; G3 |
+| [PBI-024](https://github.com/Farhad-V/Web-Resumefolio/issues/24) | Implement account suspension, lifecycle and audit | M-09 | PBI-010, PBI-013, PBI-033 | ACC / AFO / BRL / QSR; G3; G4 |
+| [PBI-025](https://github.com/Farhad-V/Web-Resumefolio/issues/25) | Verify integrated MVP acceptance and authorization | M-09 | PBI-011, PBI-015, PBI-016, PBI-019, PBI-024, PBI-032 | ACC / PRP / PDF / APP / GIT / PKS; G3; G6 |
+| [PBI-026](https://github.com/Farhad-V/Web-Resumefolio/issues/26) | Measure capacity, browsers and accessibility | M-09 | PBI-025, PBI-034 | QSR / EIF; G5 |
+| [PBI-027](https://github.com/Farhad-V/Web-Resumefolio/issues/27) | Demonstrate coherent restore and deployment recovery | M-09 | PBI-006, PBI-024, PBI-020, PBI-033 | QSR / AFO; G4 |
+| [PBI-028](https://github.com/Farhad-V/Web-Resumefolio/issues/28) | Complete user, admin and operating guidance | M-09 | PBI-025, PBI-027 | EIF / QSR / USR; G4; G6 |
+| [PBI-029](https://github.com/Farhad-V/Web-Resumefolio/issues/29) | Review and deploy the initial MVP release | M-10 | PBI-025, PBI-026, PBI-027, PBI-028 | USR / QSR; G6 |
+| [PBI-030](#pbi-030) | Create isolated Laravel applications and reproducible Setup | M-04 | PBI-009, PBI-002 | DOM / EIF; G1 |
+| [PBI-031](#pbi-031) | Prove ProjectForge SSO and native Git security spike | M-07 | PBI-030, PBI-010, PBI-002 | ACC / GIT; G2 |
+| [PBI-032](#pbi-032) | Implement Core and ProjectForge scoped identity/API | M-07 | PBI-031, PBI-010 | ACC / EIF; G2; G3 |
+| [PBI-033](#pbi-033) | Implement atomic publication and protected artifact history | M-05 | PBI-012, PBI-013, PBI-014 | PRP / BRL / APP; G3 |
+| [PBI-034](#pbi-034) | Enforce storage reservations and bounded Git/media admission | M-05 | PBI-002, PBI-030 | AFO / QSR / GIT; G2; G5 |
 
-## Sprint Backlogs
+## Package completion conditions
 
-- [Sprint 1](sprints/SPR-01.md)
-- [Sprint 2](sprints/SPR-02.md)
-- [Sprint 3](sprints/SPR-03.md)
+### PBI-001 — Record 20-hour capacity and MVP scope
 
-[Working method](../SDLC/01-project-planning/09-working-method-and-change-control.md)
+Record the actual 20 total project hours/week, including learning/docs/tests/operations. Preserve old dates only as historical; no new delivery deadline is promised.
 
-## Current Evidence for Reconciliation — November 1, 2026
+### PBI-002 — Verify shared-host capacity and isolation prerequisites
 
-[Capacity and preliminary sizing](../SDLC/01-project-planning/11-capacity-and-preliminary-sizing.md) maps the existing local work-package references to an unaccepted sizing scenario. The [remaining-gate assessment](../SDLC/02-requirements-engineering/06-validation-and-traceability/remaining-gate-assessment.md) narrows PBI-002–PBI-006 evidence and records provider/runner/recovery limitations. GitHub search returned access limitations and issue retrieval supplied no usable data; remote status, estimates and assignments are not verified or changed.
+Record sanitized actual host resources/workloads, disk reservation headroom, independent users/DB/storage and required Nginx modules. No infrastructure change is implied by this investigation.
+
+### PBI-005 — Verify invitation and recovery SMTP delivery
+
+Select actual operator SMTP configuration, demonstrate receipt with authorized test addresses, truthful outcomes, throttling and recovery. Never expose secrets or confuse log transport with delivery.
+
+### PBI-006 — Verify independent backup destination and restore plan
+
+Verify restic destination capacity/access, separate recovery keys, consistent Core/ProjectForge capture and 7 daily/4 weekly retention; prepare isolated restore procedure. Actual restore is PBI-027.
+
+### PBI-007 — Review current planning allocation and tracked follow-ups
+
+Review the current scope, dependencies, 20-hour capacity, risk and evidence gates. Preserve original M-01 acceptance without claiming later outcome acceptance.
+
+### PBI-008 — Validate MVP requirement and criterion coverage
+
+Review the selected Baseline, preserved criterion dispositions and 10 supplemental checks as an implementation input. Establish the applicable specification-to-test-plan mapping and requirements walkthrough; actual product results and actor acceptance remain PBI-025/G6, not prerequisites to Setup.
+
+### PBI-009 — Reconcile selected Design and technical baseline
+
+Use selected T01–T10 and Q-D decisions, separate Core/ProjectForge trust/storage, private media and recovery design. Resolve real compatibility/feasibility findings; selected documents are not installed runtime evidence. Setup is PBI-030.
+
+### PBI-010 — Implement invited identity and resource authorization
+
+Implement admin invitation, no public signup, Login/recovery/Admin TOTP, current-session revocation, explicit policies and private cross-user denial. SMTP acceptance depends on PBI-005.
+
+### PBI-011 — Implement dashboard and responsive application shell
+
+Provide authorized navigation and dashboard for Core/manual applications/basic ProjectForge. Keyboard/mobile/language/failure states must not imply unauthorized data or completed external actions.
+
+### PBI-012 — Implement Profile and independent Resume drafts
+
+Private Profile, multiple tailored resumes/portfolio, manual English/German variants, selected source preview/apply and independent overrides. Publishing is separately confirmed and stale edits conflict.
+
+### PBI-013 — Implement private My Files and Media library
+
+Same Core server outside public webroot, selected supported video/audio/image/text/PDF formats and safe YouTube embeds. Quarantine/type/dimension checks, private-by-default storage and per-resume selection; upload never publishes.
+
+### PBI-014 — Implement generated and uploaded language-specific PDFs
+
+Trusted-template Dompdf, EN/DE fonts/page flow, separate generated/uploaded modes and immutable private artifacts. Missing/failed language is explicit; remote resources and arbitrary user HTML are disabled.
+
+### PBI-015 — Implement password links and protected selected-content retrieval
+
+Employer views only the selected published resume/media/PDF without owner login. Link/password revocation applies to every future preview/direct/range request; no public storage URL or shared-cache bypass. Any access statistics must be minimal, private and avoid adding new analytics scope.
+
+### PBI-016 — Implement manual applications and actual submitted history
+
+Company/opportunity, authored cover letter, manual status, next action and follow-up date. Capture actual submitted immutable bytes/checksums and append corrections/resubmissions; no email/calendar dependency or invented send success.
+
+### PBI-019 — Implement ProjectForge fixed issue Kanban
+
+Fixed To do / In progress / Done board for authorized issues, explicit assignee/priority/due date, safe movement and membership changes. General backlog/Sprints/configurable column workflows are after MVP.
+
+### PBI-020 — Implement native repositories and real Git transfers
+
+Independent ProjectForge native bare Git/Smart HTTP with scoped expiring PATs, current Core status and repository grants; real clone/fetch/pull/push and safe file/history browsing. Dedicated process/path/hook/env isolation; no SSH/user workflow runner.
+
+### PBI-022 — Implement basic ProjectForge repository issues
+
+Authorized issue creation, updates, assignee and repository context. Basic issue access does not grant repository writes. Milestone/release management and advanced collaboration UI are outside product MVP; GitHub project Milestones used to manage this work are unrelated.
+
+### PBI-024 — Implement account suspension, lifecycle and audit
+
+Current account revocation, private-content policies, 30-day trash, reference-aware cleanup and bounded append-only audit metadata. Preserve actual history and reapply deletion/revocation after restore; no admin implicit content access.
+
+### PBI-025 — Verify integrated MVP acceptance and authorization
+
+Run requirement-linked positive/denied/stale/failure/regression journeys against the identified candidate; intended actor review and complete sanitized evidence. Deferred provider/review/runner paths are not release prerequisites.
+
+### PBI-026 — Measure capacity, browsers and accessibility
+
+Measure selected T09 workload, latency/error limits, browser/keyboard/zoom and WCAG target plus PDF bounds and disk quotas. Targets are not prior measurements and no 30-day availability result is invented.
+
+### PBI-027 — Demonstrate coherent restore and deployment recovery
+
+Timed isolated encrypted backup restore of both systems, immutable artifacts, Git refs, current grants/deletion/revocation and outbox without external replay. Test code rollback separately from data recovery.
+
+### PBI-028 — Complete user, admin and operating guidance
+
+Document real clean Setup/run/test, actual interfaces, user/admin flows, backup/restore, patching and operational response; link candidate-specific evidence. Keep documentation current with implementation.
+
+### PBI-029 — Review and deploy the initial MVP release
+
+Before any deployment confirm required gate evidence, actual candidate, credentials/TLS, compatible migrations, tested recovery and owner Release decision. Then execute the separately reviewed deployment procedure and record live checks. Creating this issue performs no deployment.
+
+### PBI-030 — Create isolated Laravel applications and reproducible Setup
+
+Create Core and independent ProjectForge scaffolds using selected maintained versions, isolated MySQL databases/users, lockfiles and clean build/test commands. No demo migration or live server change; document verified Setup.
+
+### PBI-031 — Prove ProjectForge SSO and native Git security spike
+
+Run real isolated clients plus OAuth state/PKCE/redirect, current-account revocation, forged/expired/wrong-repo credentials, dumb/anonymous transport denial, paths/header/env/hooks and quota/ref races. Failures require Design revision before enabling Git, never a fake pass.
+
+### PBI-032 — Implement Core and ProjectForge scoped identity/API
+
+OAuth authorization code + PKCE binds immutable Core identity; independent sessions/databases. Short-lived signed audience/scoped API tokens, local grants and fresh fail-closed Core status checks; correct timeout/retry behavior and no browser service-wide bearer.
+
+### PBI-033 — Implement atomic publication and protected artifact history
+
+Source/draft/publication/submission identities, optimistic versions, immutable bytes and protected reference reservations, short local transactions/outbox/idempotency and cleanup reconciliation. Interrupted capture cannot appear complete or delete referenced history.
+
+### PBI-034 — Enforce storage reservations and bounded Git/media admission
+
+Implement selected per-file/user/global quotas including temporary/quarantine bytes, disk reserve and concurrent reservations; bound Git requests/processes and deny exhaustion safely without losing committed data.
+
+## Deferred after MVP
+
+These original work items remain open future planning, not failed or completed MVP tasks. Remove obsolete MVP deadline/Sprint assignments. Keep their history and do not delete or mark them complete merely to improve the board.
+
+| ID | Future outcome | Reference |
+| --- | --- | --- |
+| [PBI-003](https://github.com/Farhad-V/Web-Resumefolio/issues/3) | Assess future isolated workflow execution | M-08 |
+| [PBI-004](https://github.com/Farhad-V/Web-Resumefolio/issues/4) | Assess future Gmail and Calendar provider access | Future planning; no MVP milestone |
+| [PBI-017](https://github.com/Farhad-V/Web-Resumefolio/issues/17) | Implement future personal Gmail client | Future planning; no MVP milestone |
+| [PBI-018](https://github.com/Farhad-V/Web-Resumefolio/issues/18) | Implement future Calendar and provider synchronization | Future planning; no MVP milestone |
+| [PBI-021](https://github.com/Farhad-V/Web-Resumefolio/issues/21) | Implement future advanced review and merge | Future planning; no MVP milestone |
+| [PBI-023](https://github.com/Farhad-V/Web-Resumefolio/issues/23) | Implement future user YAML execution and deployment | M-08 |
+
+Advanced general backlog/Sprints/configurable boards and advanced Git milestones/releases formerly bundled into PBI-019/022 remain future specifications; those existing issue identities now track only their MVP slices. The product’s future milestone feature is distinct from GitHub Milestones used to manage development.
+
+## Execution rules
+
+Each GitHub issue has one stable PBI identity, outcome, dependencies, links to exact selected criteria and a verification checklist. Large packages may be decomposed into linked child tasks when execution begins. A broad issue title is not a completed plan or test result.
+
+Use Backlog → Ready → In progress → In review → Done; use Blocked with an explicit dependency/next action and Deferred for after-MVP work. Ready requires satisfied dependencies and an executable next action. Done requires actual outcome and relevant verification evidence, not issue creation or elapsed target date. Do not create Sprint/Iteration assignments now. Existing Sprint documents/issues remain historical and are excluded from current MVP execution selection.
+
+No implementation is started by reconciling this backlog. Estimates and delivery dates remain uncommitted; available capacity is 20 total project hours/week.
+
+[Delivery workflow](version-1-delivery-plan.md) · [GitHub Issues](https://github.com/Farhad-V/Web-Resumefolio/issues) · [Historical backlog snapshot](history/2026-11-04-before-tracking-reconciliation/product-backlog.md)
