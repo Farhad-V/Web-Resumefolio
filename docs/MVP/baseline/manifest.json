@@ -90,11 +90,11 @@
     },
     {
       "path": "docs/MVP/SDLC/04-system-design/07-design-decisions/ADR-006-selected-mvp-implementation-baseline.md",
-      "sha256": "a4e8653bc87c9a365fbe3d1b1c9f3a076067b9707a3725221b3ecffcf88bea37"
+      "sha256": "1fe78f377a8a3d2a6bac5ccde1157ebbd5b438b6c4cd82781bc8174deb573849"
     },
     {
       "path": "docs/MVP/baseline/README.md",
-      "sha256": "b136b1f61d6d6bfeceecb361da03c54c3e1c68955af38a9c1a96c43d5cb4ee98"
+      "sha256": "ad3c34b5a2e6ef7de19ed5cbb3f08941c5852dc8cc372053ad849f07f0d33472"
     },
     {
       "path": "docs/MVP/baseline/criterion-dispositions.csv",
@@ -102,7 +102,7 @@
     },
     {
       "path": "docs/MVP/baseline/criterion-dispositions.md",
-      "sha256": "7595dcd09745df675fb2f7a66b1b00a88356ebf95bdce190b9cc8c2daf2d5639"
+      "sha256": "a5de0a4fb2ca81841fd7f0bf9896385f507e628383e373980182f2f81ea1fa1a"
     },
     {
       "path": "docs/MVP/baseline/diagrams/baseline-gates.dot",
@@ -130,15 +130,15 @@
     },
     {
       "path": "docs/MVP/baseline/diagrams/selected-architecture.dot",
-      "sha256": "a4a66b33a6b527b79118f616e0d12cfa536be2f0d27dfe0b29f5fb94947fc3fa"
+      "sha256": "e9dbc6e4d7efb153384cbf23a6dff22d10e317c63e40585e669818244aa50f34"
     },
     {
       "path": "docs/MVP/baseline/diagrams/selected-architecture.png",
-      "sha256": "3cd184dff7f8011a98c6c1cc831e9f1e675974bed6996dc871a107624cad4155"
+      "sha256": "8ed46060029712e093c469f0406ed9e14edb693f5b9d86396e5598b81db7ccaa"
     },
     {
       "path": "docs/MVP/baseline/diagrams/selected-architecture.svg",
-      "sha256": "9c49c98066844fe7800703ec82d1cf99842c076f03c3173ca9ac5c424aeaf39f"
+      "sha256": "8f272e5c686dab82af497431f3c5b38579c47068a45a4f6c9c878936ab2db581"
     },
     {
       "path": "docs/MVP/baseline/implementation-sequence.md",
@@ -162,10 +162,14 @@
     },
     {
       "path": "docs/MVP/baseline/technical-decisions.md",
-      "sha256": "ce12afdcc16ca41e74d3e8c69a69d8a4eab13579006252213863ad7fca16a3a8"
+      "sha256": "9cab291e99e52c08ba9ac885b8f3ed5feb365b31863a95bcdd7e4da34cd92052"
+    },
+    {
+      "path": "docs/MVP/SDLC/04-system-design/07-design-decisions/ADR-007-react-inertia-frontend.md",
+      "sha256": "ffa6e38285662cd8eaab2bc40fc6dbae9cb709ff690134daa130e77a447fa269"
     }
   ],
-  "documentation_revision": "1.3",
-  "revision_note": "Reconcile selected policy status and revision references; defer provider-only BRL-D07 consistently; normalize the requirement register and remove duplicated superseded answer prose.",
-  "previous_manifest_url": "https://github.com/Farhad-V/Web-Resumefolio/blob/5b3bfd9b2d82785eca2191f65893311736828a6c/docs/MVP/baseline/manifest.json"
+  "documentation_revision": "1.4",
+  "revision_note": "Farhad explicitly selects React/Inertia on Laravel for interactive UI; retain Blade PDFs. No scope or runtime completion change.",
+  "previous_manifest_url": "https://github.com/Farhad-V/Web-Resumefolio/blob/ec500e9586625bd16e11a444a280ce99972f58e6/docs/MVP/baseline/manifest.json"
 }

@@ -1,6 +1,6 @@
 # MVP — Implementation Baseline
 
-**Baseline: BL-MVP-2026-11-04.1 · Status: selected for implementation · Documentation revision: 1.3**
+**Baseline: BL-MVP-2026-11-04.1 · Status: selected for implementation · Documentation revision: 1.4**
 
 Selected on November 4, 2026 by Codex under Farhad’s explicit instruction to complete technical decisions and establish the Baseline. This is delegated design authority; no personal owner review, running implementation, deployment or product test is fabricated.
 
@@ -16,6 +16,10 @@ The current MVP scope is unchanged: Resumefolio core plus a separate ProjectForg
 2. This dated Baseline selects technical and numerical policy details through the current delegated instruction. Within that scope it supersedes earlier Proposed/pending mechanism and baseline-status statements. Historical reviews and future specifications retain their dates and meaning.
 3. The requirement and criterion registers preserve existing IDs and distinguish selected MVP obligations, narrowed mixed obligations and deferred future work. A future clause never becomes an MVP release gate by sharing a parent record.
 4. A later material choice requires an attributable change, impacted requirements/tests, compatibility/recovery analysis and a new Baseline revision. Update the manifest after review; do not edit frozen hashes to suggest an earlier snapshot contained later changes.
+
+## Frontend amendment — documentation revision 1.4
+
+Farhad explicitly selected React with Inertia on Laravel after confirming familiarity with both frontend approaches. This replaces only the interactive Blade/Alpine selection; Blade remains for PDF templates. [ADR-007](../SDLC/04-system-design/07-design-decisions/ADR-007-react-inertia-frontend.md) records consequences and verification. No implementation is claimed.
 
 ## What is complete and what is not
 
