@@ -1,10 +1,6 @@
 # Resumefolio — User Requirements
 
-## Current implementation baseline — November 4, 2026
-
-[BL-MVP-2026-11-04.1](../../../baseline/README.md) selects the MVP technical mechanisms, numerical policies, priorities and requirement/criterion dispositions under Farhad’s explicit delegation. It supersedes earlier Proposed/pending mechanism and whole-baseline statements below for MVP design input. Future clauses and dated evidence remain separate. Runtime/actor validation, credentials, Git isolation, capacity and backup/restore still require the named implementation/Release gates; this update reports no product test Pass.
-
-### Prior source material and rationale (superseded where this Baseline selects a different MVP choice)
+Current implementation choices and scope: [Baseline](../../../baseline/README.md). Runtime verification remains subject to its gates.
 
 | Item | Current position |
 | --- | --- |
@@ -21,12 +17,6 @@
 · [Requirements](#3-proposed-requirements) · [Models](#4-behavior-and-boundary-models)
 · [Scenarios](#5-planned-verification) · [Decisions](#6-open-decisions-and-gates)
 · [Review](#7-traceability-and-review-readiness)
-
-## MVP requirement applicability and remaining review
-
-Apply the current candidate release register: retain core presentation/sharing/manual applications/private files and basic ProjectForge; defer mail/calendar, advanced Git review/releases, advanced backlog/Sprints and YAML execution/deployment. Candidate IDs and planned verification stay intact. Mixed criteria must be scoped individually; allocation does not approve proposed numbers, priority or a complete baseline. Older 157-candidate/470-criterion evidence is historical larger-product coverage, not an MVP pass. Keep source, independent resume draft, explicit publication and actual submitted material identities distinct. Profile changes require preview/select/apply and cannot mutate publication or submitted history. Manual applications include status, next action and follow-up date without mail/calendar dependencies.
-
-Authority: [OWNER-MVP-2026-11-04](../../01-project-planning/owner-mvp-decision-2026-11-04.md). [Candidate allocation](mvp-release-allocation.md).
 
 ## 1. Purpose and Accepted Boundary
 
@@ -345,7 +335,7 @@ in section 2 and in each verification plan. The [SRS](requirements-specification
 coordinates levels; user outcomes complement detailed functional, interface,
 quality and lifecycle criteria rather than replacing them.
 
-Use the [requirement template](../templates/requirement-template.md) when allocating
+Use the [requirement template](requirements-specification.md) when allocating
 final IDs. Link allocated records/scenarios and actual evidence in
 [Traceability](../06-validation-and-traceability/requirements-traceability.md).
 Record actual inspection outcomes in [Review Findings](../06-validation-and-traceability/review-plan-and-findings.md).

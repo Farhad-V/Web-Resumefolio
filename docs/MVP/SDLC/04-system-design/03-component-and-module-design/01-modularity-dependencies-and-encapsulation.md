@@ -6,11 +6,7 @@
 
 [Boundaries](#1-module-boundaries-and-owned-responsibilities) · [Contracts](#2-public-contracts-and-internal-encapsulation) · [Dependencies](#3-dependency-direction-and-coordination) · [Injection](#4-dependency-injection-and-object-lifetime) · [Evaluation](#5-cohesion-coupling-and-boundary-review) · [Handoff](#6-implementation-handoff-and-current-limits) · [Essential views](#8-essential-modularity-and-encapsulation-views)
 
-## MVP system allocation and design status
-
-The accepted system boundary separates the Resumefolio core from ProjectForge, joined by an authenticated user-scoped API. Logical responsibilities remain useful within each system; they do not authorize a shared core/ProjectForge process, database or transaction. Core owns dashboard, invited accounts, professional presentation, protected sharing, manual applications and same-server private My Files & Media. ProjectForge MVP owns real repositories/transfers/permissions, file/history browsing, issues and simple Kanban. Its selected engine is native Git Smart HTTP behind the independent Laravel ProjectForge service, with its own MySQL 8.4 database and OS/storage boundaries on the existing host; BL-MVP-2026-11-04.1 governs implementation and evidence gates. The future communications system is independently private and API connected. Advanced Git review/releases, backlog/Sprints and execution/deployment remain deferred. Keep source, independent resume draft, explicit publication and actual submitted material identities distinct. Profile changes require preview/select/apply and cannot mutate publication or submitted history. Manual applications include status, next action and follow-up date without mail/calendar dependencies.
-
-Authority: [OWNER-MVP-2026-11-04](../../01-project-planning/owner-mvp-decision-2026-11-04.md).
+Current MVP scope and selected mechanisms: [Baseline](../../../baseline/README.md). Deferred provider, advanced collaboration and workflow-execution designs are not MVP prerequisites.
 
 ## Source context
 
@@ -128,7 +124,7 @@ These are review/check specifications, not observed tests or proven module enfor
 
 ## 6. Implementation handoff and current limits
 
-For each actual module package, document exported/internal elements, provided/required operations, owned records/invariants, consumer projections, dependency/transaction boundaries, adapter contracts and construction/lifetime rules. Keep exact types/classes/algorithms and technical scenarios together using the [component package template](component-template/README.md).
+For each actual module package, document exported/internal elements, provided/required operations, owned records/invariants, consumer projections, dependency/transaction boundaries, adapter contracts and construction/lifetime rules. Keep exact types/classes/algorithms and technical scenarios together using the [component package template](README.md).
 
 Map the package to the [implementation artifacts](02-implementation-view-and-artifacts.md), [shared data design](../04-data-design/README.md), [interface contracts](../05-interface-and-api-design/README.md) and [security/quality](../06-design-quality-and-security-analysis/README.md). A physical schema, shared database or common release artifact must not erase logical ownership.
 
@@ -236,6 +232,6 @@ No analyzer, CI job or accepted threshold is installed/selected by this document
 
 ### Deliberately omitted duplicates
 
-Component provided/required interfaces and boundary sequences already live in the actual [component records](README.md) and [complete template](component-template/README.md); do not copy their contracts into a second source here. The layered view combines dependency inversion with allowed/prohibited direction; the before/after view explains coupling/cohesion without another nearly identical diagram. Populate a code DSM only after selecting actual packages, dependency kind and inspected candidate. Intended architecture links are not measured implementation imports or proof of no cycles.
+Component provided/required interfaces and boundary sequences already live in the actual [component records](README.md) and [complete template](README.md); do not copy their contracts into a second source here. The layered view combines dependency inversion with allowed/prohibited direction; the before/after view explains coupling/cohesion without another nearly identical diagram. Populate a code DSM only after selecting actual packages, dependency kind and inspected candidate. Intended architecture links are not measured implementation imports or proof of no cycles.
 
 No source module, dependency tool/configuration, CI check, import analysis or production mutation is created by this authoring update. Exact package/visibility enforcement, actual source graph, compatibility and owner-policy checks remain implementation/evidence work.

@@ -25,11 +25,7 @@ the product's actual requirement records belong in the linked SRS domain files.
 · [Review](#9-review-and-baseline-readiness) · [Next work](#10-current-position-and-next-work)
 · [Diagrams](#11-diagram-maintenance)
 
-## MVP requirement applicability and remaining review
-
-Apply the current candidate release register: retain core presentation/sharing/manual applications/private files and basic ProjectForge; defer mail/calendar, advanced Git review/releases, advanced backlog/Sprints and YAML execution/deployment. Candidate IDs and planned verification stay intact. Mixed criteria must be scoped individually; allocation does not approve proposed numbers, priority or a complete baseline. Older 157-candidate/470-criterion evidence is historical larger-product coverage, not an MVP pass. Keep source, independent resume draft, explicit publication and actual submitted material identities distinct. Profile changes require preview/select/apply and cannot mutate publication or submitted history. Manual applications include status, next action and follow-up date without mail/calendar dependencies.
-
-Authority: [OWNER-MVP-2026-11-04](../../01-project-planning/owner-mvp-decision-2026-11-04.md). [Candidate allocation](../03-requirements-specification/mvp-release-allocation.md).
+Current MVP scope and selected mechanisms: [Baseline](../../../baseline/README.md). Deferred provider, advanced collaboration and workflow-execution designs are not MVP prerequisites.
 
 ## 1. Purpose, Inputs and Boundaries
 
@@ -86,7 +82,7 @@ primary record for each obligation and reference it from other views.
 
 ## 3. Requirement Record Content
 
-Use the existing [Requirement Record Template](../templates/requirement-template.md).
+Use the existing [Requirement Record Template](../03-requirements-specification/requirements-specification.md).
 The table below explains its fields rather than defining a competing template.
 Use sufficient detail for the obligation and its risks; do not fill unknown fields
 with invented values simply to make the record look finished.
@@ -166,7 +162,7 @@ Include relevant success, alternative, negative and failure cases. A happy-path
 criterion alone is not adequate for a protected sharing boundary. Link shared
 cross-cutting criteria rather than copying a divergent version into every record.
 
-The [template](../templates/requirement-template.md#planned-verification-method)
+The [template](../03-requirements-specification/requirements-specification.md)
 supports inspection, analysis, demonstration and test. Choose one or more methods
 with a reason and record their preconditions, pass condition and future evidence
 reference. For quality claims, distinguish modeled estimates from measurements

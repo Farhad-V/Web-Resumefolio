@@ -14,11 +14,7 @@ Owner and decision authority: Farhad. Updated November 2, 2026.
 
 [Editable source](01-software-architecture/diagrams/mvp-system-boundaries.puml) · [PNG](01-software-architecture/diagrams/mvp-system-boundaries.png). Historical broader-product figures below retain earlier alternatives/detail; they do not define the current system boundary.
 
-## MVP system allocation and design status
-
-The accepted system boundary separates the Resumefolio core from ProjectForge, joined by an authenticated user-scoped API. Logical responsibilities remain useful within each system; they do not authorize a shared core/ProjectForge process, database or transaction. Core owns dashboard, invited accounts, professional presentation, protected sharing, manual applications and same-server private My Files & Media. ProjectForge MVP owns real repositories/transfers/permissions, file/history browsing, issues and simple Kanban. Its selected engine is native Git Smart HTTP behind the independent Laravel ProjectForge service, with its own MySQL 8.4 database and OS/storage boundaries on the existing host; BL-MVP-2026-11-04.1 governs implementation and evidence gates. The future communications system is independently private and API connected. Advanced Git review/releases, backlog/Sprints and execution/deployment remain deferred. Keep source, independent resume draft, explicit publication and actual submitted material identities distinct. Profile changes require preview/select/apply and cannot mutate publication or submitted history. Manual applications include status, next action and follow-up date without mail/calendar dependencies.
-
-Authority: [OWNER-MVP-2026-11-04](../01-project-planning/owner-mvp-decision-2026-11-04.md).
+Current MVP scope and selected mechanisms: [Baseline](../../baseline/README.md). Deferred provider, advanced collaboration and workflow-execution designs are not MVP prerequisites.
 
 ## 1. Inputs and source authority
 
@@ -54,7 +50,7 @@ The six core topics organize technical concerns; shared ADRs occupy a seventh su
 
 FAU's architecture model to component design model to code progression informs the approach. Its logical, use-case, process, implementation and deployment viewpoints are distributed across these topic owners. The [reference/coverage map](01-reference-and-coverage-map.md) records lecture provenance and adaptation limits; it does not establish standards compliance.
 
-Each concrete component keeps one coherent design record/package under topic 03, using the [component template](03-component-and-module-design/component-template/README.md). Shared topics own common rules; resource owners specify their exact realization and invariants. Requirements/analysis remain in their existing folders. Cross-cutting overviews provide navigation rather than a competing policy source.
+Each concrete component keeps one coherent design record/package under topic 03, using the [component template](03-component-and-module-design/README.md). Shared topics own common rules; resource owners specify their exact realization and invariants. Requirements/analysis remain in their existing folders. Cross-cutting overviews provide navigation rather than a competing policy source.
 
 ## 4. Working approach
 

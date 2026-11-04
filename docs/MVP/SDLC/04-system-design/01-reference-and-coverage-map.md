@@ -6,11 +6,7 @@ Updated November 2, 2026. **Status:** source-provenance and documentation-covera
 
 [Provenance](#1-source-provenance-and-limits) · [FAU content](#2-what-the-lectures-support) · [Coverage](#3-current-project-coverage-map) · [Adaptations](#4-project-adaptations-and-source-authority) · [Use](#5-reading-and-maintenance)
 
-## MVP system allocation and design status
-
-The accepted system boundary separates the Resumefolio core from ProjectForge, joined by an authenticated user-scoped API. Logical responsibilities remain useful within each system; they do not authorize a shared core/ProjectForge process, database or transaction. Core owns dashboard, invited accounts, professional presentation, protected sharing, manual applications and same-server private My Files & Media. ProjectForge MVP owns real repositories/transfers/permissions, file/history browsing, issues and simple Kanban. Its selected engine is native Git Smart HTTP behind the independent Laravel ProjectForge service, with its own MySQL 8.4 database and OS/storage boundaries on the existing host; BL-MVP-2026-11-04.1 governs implementation and evidence gates. The future communications system is independently private and API connected. Advanced Git review/releases, backlog/Sprints and execution/deployment remain deferred. Keep source, independent resume draft, explicit publication and actual submitted material identities distinct. Profile changes require preview/select/apply and cannot mutate publication or submitted history. Manual applications include status, next action and follow-up date without mail/calendar dependencies.
-
-Authority: [OWNER-MVP-2026-11-04](../01-project-planning/owner-mvp-decision-2026-11-04.md).
+Current MVP scope and selected mechanisms: [Baseline](../../baseline/README.md). Deferred provider, advanced collaboration and workflow-execution designs are not MVP prerequisites.
 
 ## 1. Source provenance and limits
 
@@ -74,7 +70,7 @@ The six topics organize documentation, not runtime services. Architecture Model 
 | Concern | Owning project record |
 | --- | --- |
 | Modularity, dependencies and encapsulation | [Module design](03-component-and-module-design/01-modularity-dependencies-and-encapsulation.md) |
-| Responsibilities, data/classes, algorithms, failures and coding constraints | [Component catalog](03-component-and-module-design/README.md) and [complete component template](03-component-and-module-design/component-template/README.md) |
+| Responsibilities, data/classes, algorithms, failures and coding constraints | [Component catalog](03-component-and-module-design/README.md) and [complete component template](03-component-and-module-design/README.md) |
 | OO principles and justified patterns | [Design principles/OO approach](02-detailed-and-object-oriented-design/01-design-principles-and-object-oriented-approach.md) |
 | Evolution, smells, refactoring and debt | [Evolution record](02-detailed-and-object-oriented-design/05-design-evolution-refactoring-and-technical-debt.md) |
 | Logical/physical data refinement and integrity | [Data model](04-data-design/01-analysis-to-logical-and-physical-data-models.md) |

@@ -6,11 +6,7 @@
 
 [Responsibilities](#1-responsibilities-and-dependency-direction) · [Principles](#2-design-principles-in-this-project) · [Model](#3-class-and-object-modeling) · [Patterns](#4-pattern-selection-and-consequences) · [Behavior](#5-operation-contracts-and-object-lifetime) · [Review](#6-review-and-component-handoff) · [OO visual package](#8-object-oriented-visual-and-responsibility-package)
 
-## MVP system allocation and design status
-
-The accepted system boundary separates the Resumefolio core from ProjectForge, joined by an authenticated user-scoped API. Logical responsibilities remain useful within each system; they do not authorize a shared core/ProjectForge process, database or transaction. Core owns dashboard, invited accounts, professional presentation, protected sharing, manual applications and same-server private My Files & Media. ProjectForge MVP owns real repositories/transfers/permissions, file/history browsing, issues and simple Kanban. Its selected engine is native Git Smart HTTP behind the independent Laravel ProjectForge service, with its own MySQL 8.4 database and OS/storage boundaries on the existing host; BL-MVP-2026-11-04.1 governs implementation and evidence gates. The future communications system is independently private and API connected. Advanced Git review/releases, backlog/Sprints and execution/deployment remain deferred. Keep source, independent resume draft, explicit publication and actual submitted material identities distinct. Profile changes require preview/select/apply and cannot mutate publication or submitted history. Manual applications include status, next action and follow-up date without mail/calendar dependencies.
-
-Authority: [OWNER-MVP-2026-11-04](../../01-project-planning/owner-mvp-decision-2026-11-04.md).
+Current MVP scope and selected mechanisms: [Baseline](../../../baseline/README.md). Deferred provider, advanced collaboration and workflow-execution designs are not MVP prerequisites.
 
 ## Source and design authority
 
@@ -140,7 +136,7 @@ These are planned review criteria, not completed product tests. Later component 
 
 ### Where concrete prescriptions belong
 
-Use the [complete component package template](../03-component-and-module-design/component-template/README.md) and [actual component catalog](../03-component-and-module-design/README.md) for signatures, computational data/classes, algorithms and technical scenarios. Link shared [data](../04-data-design/README.md), [interface](../05-interface-and-api-design/README.md) and [security](../06-design-quality-and-security-analysis/README.md) choices instead of duplicating policy.
+Use the [complete component package template](../03-component-and-module-design/README.md) and [actual component catalog](../03-component-and-module-design/README.md) for signatures, computational data/classes, algorithms and technical scenarios. Link shared [data](../04-data-design/README.md), [interface](../05-interface-and-api-design/README.md) and [security](../06-design-quality-and-security-analysis/README.md) choices instead of duplicating policy.
 
 Record significant alternatives and consequences in [design decisions](../07-design-decisions/README.md). Use [evolution and debt](05-design-evolution-refactoring-and-technical-debt.md) for actual smells/compatibility/refactoring work, and [design review/handoff](../06-design-quality-and-security-analysis/05-design-review-traceability-and-handoff.md) for identified candidate findings and disposition.
 

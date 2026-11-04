@@ -1,10 +1,6 @@
 # Resumefolio — Requirements Change Control
 
-## Current implementation baseline — November 4, 2026
-
-[BL-MVP-2026-11-04.1](../../../baseline/README.md) selects the MVP technical mechanisms, numerical policies, priorities and requirement/criterion dispositions under Farhad’s explicit delegation. It supersedes earlier Proposed/pending mechanism and whole-baseline statements below for MVP design input. Future clauses and dated evidence remain separate. Runtime/actor validation, credentials, Git isolation, capacity and backup/restore still require the named implementation/Release gates; this update reports no product test Pass.
-
-### Prior source material and rationale (superseded where this Baseline selects a different MVP choice)
+Current implementation choices and scope: [Baseline](../../../baseline/README.md). Runtime verification remains subject to its gates.
 
 | Item | Current position |
 | --- | --- |
@@ -22,12 +18,6 @@ history and recheck affected evidence; a changed file is not new acceptance.
 [Authority](#1-authority-and-change-categories) · [Workflow](#2-proposed-workflow)
 · [Impact](#3-impact-and-decision-record) · [Register](#4-change-register)
 · [Evidence](#5-revision-history-and-recheck) · [Review](#6-review-readiness)
-
-## MVP requirement applicability and remaining review
-
-Apply the current candidate release register: retain core presentation/sharing/manual applications/private files and basic ProjectForge; defer mail/calendar, advanced Git review/releases, advanced backlog/Sprints and YAML execution/deployment. Candidate IDs and planned verification stay intact. Mixed criteria must be scoped individually; allocation does not approve proposed numbers, priority or a complete baseline. Older 157-candidate/470-criterion evidence is historical larger-product coverage, not an MVP pass. Keep source, independent resume draft, explicit publication and actual submitted material identities distinct. Profile changes require preview/select/apply and cannot mutate publication or submitted history. Manual applications include status, next action and follow-up date without mail/calendar dependencies.
-
-Authority: [OWNER-MVP-2026-11-04](../../01-project-planning/owner-mvp-decision-2026-11-04.md). [Candidate allocation](../03-requirements-specification/mvp-release-allocation.md).
 
 ## 1. Authority and Change Categories
 

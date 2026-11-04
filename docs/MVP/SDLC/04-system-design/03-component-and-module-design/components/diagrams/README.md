@@ -2,11 +2,7 @@
 
 Proposed implementation views; not executed product evidence.
 
-## MVP system allocation and design status
-
-The accepted system boundary separates the Resumefolio core from ProjectForge, joined by an authenticated user-scoped API. Logical responsibilities remain useful within each system; they do not authorize a shared core/ProjectForge process, database or transaction. Core owns dashboard, invited accounts, professional presentation, protected sharing, manual applications and same-server private My Files & Media. ProjectForge MVP owns real repositories/transfers/permissions, file/history browsing, issues and simple Kanban. Its engine, deployment and database remain open. The future communications system is independently private and API connected. Advanced Git review/releases, backlog/Sprints and execution/deployment remain deferred. Keep source, independent resume draft, explicit publication and actual submitted material identities distinct. Profile changes require preview/select/apply and cannot mutate publication or submitted history. Manual applications include status, next action and follow-up date without mail/calendar dependencies.
-
-Authority: [OWNER-MVP-2026-11-04](../../../../01-project-planning/owner-mvp-decision-2026-11-04.md).
+Current MVP scope and selected mechanisms: [Baseline](../../../../../baseline/README.md). Deferred provider, advanced collaboration and workflow-execution designs are not MVP prerequisites.
 
 ## Manual Applications LC-04
 
@@ -80,9 +76,9 @@ Authority: [OWNER-MVP-2026-11-04](../../../../01-project-planning/owner-mvp-deci
 ## Applications context and logical landscape package
 
 - [Provided and required component interfaces](applications-interfaces.svg) · [PlantUML](applications-interfaces.puml) · [PNG](applications-interfaces.png)
-- [C4 Level 1: Resumefolio system context](applications-system-context.svg) · [PlantUML](applications-system-context.puml) · [PNG](applications-system-context.png)
-- [C4 Level 2: modular application and stores](applications-containers.svg) · [PlantUML](applications-containers.puml) · [PNG](applications-containers.png)
-- [Logical capability landscape](applications-portfolio.svg) · [PlantUML](applications-portfolio.puml) · [PNG](applications-portfolio.png)
+- [C4 Level 1: Resumefolio system context](../../../01-software-architecture/diagrams/drivers-c4-system-context.svg) · [PlantUML](../../../01-software-architecture/diagrams/drivers-c4-system-context.puml) · [PNG](../../../01-software-architecture/diagrams/drivers-c4-system-context.png)
+- [C4 Level 2: modular application and stores](../../../01-software-architecture/diagrams/boundaries-c4-containers.svg) · [PlantUML](../../../01-software-architecture/diagrams/boundaries-c4-containers.puml) · [PNG](../../../01-software-architecture/diagrams/boundaries-c4-containers.png)
+- [Logical capability landscape](../../../../03-system-analysis/diagrams/scope-stakeholder-map.svg) · [PlantUML](../../../../03-system-analysis/diagrams/scope-stakeholder-map.puml) · [PNG](../../../../03-system-analysis/diagrams/scope-stakeholder-map.png)
 - [Applications inbound and outbound dependencies](applications-dependencies.svg) · [PlantUML](applications-dependencies.puml) · [PNG](applications-dependencies.png)
 - [Applications layered architecture](applications-layers.svg) · [PlantUML](applications-layers.puml) · [PNG](applications-layers.png)
 - [Internal responsibility areas within LC-04](applications-internal-structure.svg) · [PlantUML](applications-internal-structure.puml) · [PNG](applications-internal-structure.png)
@@ -90,7 +86,7 @@ Authority: [OWNER-MVP-2026-11-04](../../../../01-project-planning/owner-mvp-deci
 - [Integration types and evidence boundaries](applications-integration.svg) · [PlantUML](applications-integration.puml) · [PNG](applications-integration.png)
 - [Actual submission capture across owner contracts](applications-cross-owner-sequence.svg) · [PlantUML](applications-cross-owner-sequence.puml) · [PNG](applications-cross-owner-sequence.png)
 - [UML use cases for the manual Applications capability](applications-use-cases.svg) · [PlantUML](applications-use-cases.puml) · [PNG](applications-use-cases.png)
-- [Optional deployment mapping of logical roles](applications-deployment.svg) · [PlantUML](applications-deployment.puml) · [PNG](applications-deployment.png)
+- [Optional deployment mapping of logical roles](../../../01-software-architecture/diagrams/drivers-uml-deployment.svg) · [PlantUML](../../../01-software-architecture/diagrams/drivers-uml-deployment.puml) · [PNG](../../../01-software-architecture/diagrams/drivers-uml-deployment.png)
 
 [Owning LC-04 document, inventory/capability/interface/stack/data/quality/lifecycle tables and decision note](../applications.md#7-application-context-and-landscape-package). Applications means manual job applications; logical neighbors are not separate deployed software applications.
 
@@ -99,8 +95,8 @@ Authority: [OWNER-MVP-2026-11-04](../../../../01-project-planning/owner-mvp-deci
 **Release applicability:** future-domain design retained after MVP; core operating/deployment and recovery controls still apply to MVP where relevant.
 
 - [Communication and calendar interfaces](comm-interfaces.svg) · [PlantUML](comm-interfaces.puml) · [PNG](comm-interfaces.png)
-- [C4 Level 1: users and external provider](comm-context.svg) · [PlantUML](comm-context.puml) · [PNG](comm-context.png)
-- [C4 Level 2: actual proposed runtime boundaries](comm-containers.svg) · [PlantUML](comm-containers.puml) · [PNG](comm-containers.png)
+- [C4 Level 1: users and external provider](../../../../02-requirements-engineering/diagrams/use-cases-mail-and-calendar.svg) · [PlantUML](../../../../02-requirements-engineering/diagrams/use-cases-mail-and-calendar.puml) · [PNG](../../../../02-requirements-engineering/diagrams/use-cases-mail-and-calendar.png)
+- [C4 Level 2: actual proposed runtime boundaries](../../../../02-requirements-engineering/diagrams/use-cases-mail-and-calendar.svg) · [PlantUML](../../../../02-requirements-engineering/diagrams/use-cases-mail-and-calendar.puml) · [PNG](../../../../02-requirements-engineering/diagrams/use-cases-mail-and-calendar.png)
 - [Owner communication and calendar use cases](comm-use-cases.svg) · [PlantUML](comm-use-cases.puml) · [PNG](comm-use-cases.png)
 - [Domain classes and optional requested concepts](comm-domain.svg) · [PlantUML](comm-domain.puml) · [PNG](comm-domain.png)
 - [Logical ERD: owned and observed records](comm-erd.svg) · [PlantUML](comm-erd.puml) · [PNG](comm-erd.png)
@@ -115,7 +111,7 @@ Authority: [OWNER-MVP-2026-11-04](../../../../01-project-planning/owner-mvp-deci
 - [Selected scope versus protocol alternatives](comm-integration-options.svg) · [PlantUML](comm-integration-options.puml) · [PNG](comm-integration-options.png)
 - [Conditional free-busy lookup](comm-free-busy.svg) · [PlantUML](comm-free-busy.puml) · [PNG](comm-free-busy.png)
 - [Conditional calendar reconciliation and conflict resolution](comm-sync.svg) · [PlantUML](comm-sync.puml) · [PNG](comm-sync.png)
-- [Optional trusted runtime placement](comm-deployment.svg) · [PlantUML](comm-deployment.puml) · [PNG](comm-deployment.png)
+- [Optional trusted runtime placement](../../../../02-requirements-engineering/diagrams/use-cases-mail-and-calendar.svg) · [PlantUML](../../../../02-requirements-engineering/diagrams/use-cases-mail-and-calendar.puml) · [PNG](../../../../02-requirements-engineering/diagrams/use-cases-mail-and-calendar.png)
 
 [Owning LC-05 document and seven time/interface/channel/ownership/privacy/failure/quality tables](../communication-and-calendar.md#8-communication-calendar-and-delivery-view-package). Unselected protocols/channels and conditional invitation/free-busy behavior are not new accepted capabilities.
 
@@ -123,7 +119,7 @@ Authority: [OWNER-MVP-2026-11-04](../../../../01-project-planning/owner-mvp-deci
 
 - [Files provided and required interfaces](files-interfaces.svg) · [PlantUML](files-interfaces.puml) · [PNG](files-interfaces.png)
 - [C4 Level 1: artifact-related system context](files-context.svg) · [PlantUML](files-context.puml) · [PNG](files-context.png)
-- [C4 Level 2: modular runtime and storage](files-containers.svg) · [PlantUML](files-containers.puml) · [PNG](files-containers.png)
+- [C4 Level 2: modular runtime and storage](files-context.svg) · [PlantUML](files-context.puml) · [PNG](files-context.png)
 - [Artifact operations and separately owned sharing](files-use-cases.svg) · [PlantUML](files-use-cases.puml) · [PNG](files-use-cases.png)
 - [Artifact, reference and operation classes](files-domain.svg) · [PlantUML](files-domain.puml) · [PNG](files-domain.png)
 - [Logical artifact and ledger relationships](files-erd.svg) · [PlantUML](files-erd.puml) · [PNG](files-erd.png)
@@ -134,12 +130,12 @@ Authority: [OWNER-MVP-2026-11-04](../../../../01-project-planning/owner-mvp-deci
 - [Operation and job knowledge states](files-job-state.svg) · [PlantUML](files-job-state.puml) · [PNG](files-job-state.png)
 - [Private candidate processing pipeline](files-pipeline.svg) · [PlantUML](files-pipeline.puml) · [PNG](files-pipeline.png)
 - [Concurrent reference replacement conflict resolution](files-concurrent-edits.svg) · [PlantUML](files-concurrent-edits.puml) · [PNG](files-concurrent-edits.png)
-- [Storage architecture options and unselected tiers](files-storage-options.svg) · [PlantUML](files-storage-options.puml) · [PNG](files-storage-options.png)
+- [Storage architecture options and unselected tiers](files-context.svg) · [PlantUML](files-context.puml) · [PNG](files-context.png)
 - [Logical hierarchy versus canonical storage identity](files-paths.svg) · [PlantUML](files-paths.puml) · [PNG](files-paths.png)
 - [Version, trash, restore and physical reclaim flow](files-trash.svg) · [PlantUML](files-trash.puml) · [PNG](files-trash.png)
 - [Logical job lanes, reconciliation and intervention](files-queues.svg) · [PlantUML](files-queues.puml) · [PNG](files-queues.png)
-- [Storage and sync integration options](files-integrations.svg) · [PlantUML](files-integrations.puml) · [PNG](files-integrations.png)
-- [Optional deployment mapping for Files capabilities](files-deployment.svg) · [PlantUML](files-deployment.puml) · [PNG](files-deployment.png)
+- [Storage and sync integration options](files-context.svg) · [PlantUML](files-context.puml) · [PNG](files-context.png)
+- [Optional deployment mapping for Files capabilities](../../../01-software-architecture/diagrams/drivers-uml-deployment.svg) · [PlantUML](../../../01-software-architecture/diagrams/drivers-uml-deployment.puml) · [PNG](../../../01-software-architecture/diagrams/drivers-uml-deployment.png)
 
 [Owning LC-09 document and seven interface/permission/audit/policy/failure/ownership/quality tables](../files-and-operations.md#8-files-storage-and-operations-view-package). Conditional folder/transport/backend/processing views are not new scope or installed facilities.
 
@@ -162,7 +158,7 @@ Authority: [OWNER-MVP-2026-11-04](../../../../01-project-planning/owner-mvp-deci
 - [Authorization decision and enforcement flow](identity-essential-authorization.svg) · [PlantUML](identity-essential-authorization.puml) · [PNG](identity-essential-authorization.png)
 - [Scoped roles, attributes and resource ownership](identity-essential-access-model.svg) · [PlantUML](identity-essential-access-model.puml) · [PNG](identity-essential-access-model.png)
 - [Session lifecycle and separate credential scopes](identity-essential-session-state.svg) · [PlantUML](identity-essential-session-state.puml) · [PNG](identity-essential-session-state.png)
-- [Clients, trusted application and external scopes](identity-essential-trust-boundaries.svg) · [PlantUML](identity-essential-trust-boundaries.puml) · [PNG](identity-essential-trust-boundaries.png)
+- [Clients, trusted application and external scopes](../../../06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.svg) · [PlantUML](../../../06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.puml) · [PNG](../../../06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.png)
 
 [Owning LC-01 essential package and scope rationale](../identity-and-access.md#7-essential-identity-and-access-views). Reuses the existing domain model; federation and role hierarchy are not selected.
 
@@ -187,7 +183,7 @@ Authority: [OWNER-MVP-2026-11-04](../../../../01-project-planning/owner-mvp-deci
 
 ## Essential Work Management views
 
-- [Work ownership and scoped interfaces](work-essential-components.svg) · [PlantUML](work-essential-components.puml) · [PNG](work-essential-components.png)
+- [Work ownership and scoped interfaces](work-essential-views.svg) · [PlantUML](work-essential-views.puml) · [PNG](work-essential-views.png)
 - [Candidate task lifecycle versus acceptance](work-essential-task-state.svg) · [PlantUML](work-essential-task-state.puml) · [PNG](work-essential-task-state.png)
 - [Guarded work creation, assignment and transition](work-essential-transition.svg) · [PlantUML](work-essential-transition.puml) · [PNG](work-essential-transition.png)
 - [One authoritative work model, multiple permitted projections](work-essential-views.svg) · [PlantUML](work-essential-views.puml) · [PNG](work-essential-views.png)
@@ -217,15 +213,15 @@ Current MVP figures replace the former common-product boundary. Future and histo
 
 | Editable source | Current applicability |
 | --- | --- |
-| [applications-containers.puml](applications-containers.puml) | MVP systems|
-| [applications-deployment.puml](applications-deployment.puml) | MVP deployment|
+| [applications-containers.puml](../../../01-software-architecture/diagrams/boundaries-c4-containers.puml) | MVP systems|
+| [applications-deployment.puml](../../../01-software-architecture/diagrams/drivers-uml-deployment.puml) | MVP deployment|
 | [applications-integration.puml](applications-integration.puml) | MVP core / cross-cutting|
 | [calendar-reconciliation-route.puml](calendar-reconciliation-route.puml) | Future after MVP|
-| [comm-deployment.puml](comm-deployment.puml) | Future communications|
+| [comm-deployment.puml](../../../../02-requirements-engineering/diagrams/use-cases-mail-and-calendar.puml) | Future communications|
 | [communication-owned-model.puml](communication-owned-model.puml) | Future after MVP|
 | [communication-send-sequence.puml](communication-send-sequence.puml) | Future after MVP|
-| [files-deployment.puml](files-deployment.puml) | MVP deployment|
-| [identity-essential-trust-boundaries.puml](identity-essential-trust-boundaries.puml) | MVP systems|
+| [files-deployment.puml](../../../01-software-architecture/diagrams/drivers-uml-deployment.puml) | MVP deployment|
+| [identity-essential-trust-boundaries.puml](../../../06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.puml) | MVP systems|
 | [work-essential-sprint-planning.puml](work-essential-sprint-planning.puml) | Future after MVP|
 | [work-mutation-sprint-close.puml](work-mutation-sprint-close.puml) | Future after MVP|
 | [workflow-deployment-sequence.puml](workflow-deployment-sequence.puml) | Future after MVP|
@@ -240,9 +236,9 @@ Current MVP figures replace the former common-product boundary. Future and histo
 | [workflow-essential-topology.puml](workflow-essential-topology.puml) | Future after MVP|
 | [workflow-trust-model.puml](workflow-trust-model.puml) | Future after MVP|
 
-| [applications-portfolio.puml](applications-portfolio.puml) | MVP systems|
-| [comm-containers.puml](comm-containers.puml) | Future communications|
-| [comm-context.puml](comm-context.puml) | Future communications|
+| [applications-portfolio.puml](../../../../03-system-analysis/diagrams/scope-stakeholder-map.puml) | MVP systems|
+| [comm-containers.puml](../../../../02-requirements-engineering/diagrams/use-cases-mail-and-calendar.puml) | Future communications|
+| [comm-context.puml](../../../../02-requirements-engineering/diagrams/use-cases-mail-and-calendar.puml) | Future communications|
 | [comm-domain.puml](comm-domain.puml) | Future after MVP|
 | [comm-erd.puml](comm-erd.puml) | Future after MVP|
 | [comm-event-state.puml](comm-event-state.puml) | Future after MVP|
@@ -264,35 +260,35 @@ Current MVP figures replace the former common-product boundary. Future and histo
 | [git-essential-pr-state.puml](git-essential-pr-state.puml) | Future after MVP|
 | [git-merge-sequence.puml](git-merge-sequence.puml) | Future after MVP|
 | [git-owned-model.puml](git-owned-model.puml) | Future after MVP|
-| [work-essential-components.puml](work-essential-components.puml) | MVP ProjectForge|
+| [work-essential-components.puml](work-essential-views.puml) | MVP ProjectForge|
 | [work-essential-task-state.puml](work-essential-task-state.puml) | Future after MVP|
 | [work-essential-views.puml](work-essential-views.puml) | MVP ProjectForge|
 | [work-owned-model.puml](work-owned-model.puml) | Future after MVP|
 
 ## Complete diagram alignment — November 4
 
-[Full project inventory and verification limits](../../../../diagram-alignment-review-2026-11-04.md). This current disposition supersedes earlier partial diagram-allocation lists.
+[Full project inventory and verification limits](../../../01-software-architecture/diagrams/README.md). This current disposition supersedes earlier partial diagram-allocation lists.
 
 | Editable source or visual | Current applicability | Matching exports |
 | --- | --- | --- |
 | [applications-capture-sequence.puml](applications-capture-sequence.puml) | MVP core / cross-cutting| [SVG](applications-capture-sequence.svg) · [PNG](applications-capture-sequence.png) |
-| [applications-containers.puml](applications-containers.puml) | MVP systems| [SVG](applications-containers.svg) · [PNG](applications-containers.png) |
+| [applications-containers.puml](../../../01-software-architecture/diagrams/boundaries-c4-containers.puml) | MVP systems| [SVG](../../../01-software-architecture/diagrams/boundaries-c4-containers.svg) · [PNG](../../../01-software-architecture/diagrams/boundaries-c4-containers.png) |
 | [applications-cross-owner-sequence.puml](applications-cross-owner-sequence.puml) | MVP core / cross-cutting| [SVG](applications-cross-owner-sequence.svg) · [PNG](applications-cross-owner-sequence.png) |
 | [applications-dependencies.puml](applications-dependencies.puml) | MVP core / cross-cutting| [SVG](applications-dependencies.svg) · [PNG](applications-dependencies.png) |
-| [applications-deployment.puml](applications-deployment.puml) | MVP deployment| [SVG](applications-deployment.svg) · [PNG](applications-deployment.png) |
+| [applications-deployment.puml](../../../01-software-architecture/diagrams/drivers-uml-deployment.puml) | MVP deployment| [SVG](../../../01-software-architecture/diagrams/drivers-uml-deployment.svg) · [PNG](../../../01-software-architecture/diagrams/drivers-uml-deployment.png) |
 | [applications-integration.puml](applications-integration.puml) | MVP core / cross-cutting| [SVG](applications-integration.svg) · [PNG](applications-integration.png) |
 | [applications-interfaces.puml](applications-interfaces.puml) | MVP core / cross-cutting| [SVG](applications-interfaces.svg) · [PNG](applications-interfaces.png) |
 | [applications-internal-structure.puml](applications-internal-structure.puml) | MVP core| [SVG](applications-internal-structure.svg) · [PNG](applications-internal-structure.png) |
 | [applications-layers.puml](applications-layers.puml) | MVP core / cross-cutting| [SVG](applications-layers.svg) · [PNG](applications-layers.png) |
 | [applications-owned-model.puml](applications-owned-model.puml) | MVP core| [SVG](applications-owned-model.svg) · [PNG](applications-owned-model.png) |
 | [applications-packages.puml](applications-packages.puml) | MVP core / cross-cutting| [SVG](applications-packages.svg) · [PNG](applications-packages.png) |
-| [applications-portfolio.puml](applications-portfolio.puml) | MVP systems| [SVG](applications-portfolio.svg) · [PNG](applications-portfolio.png) |
-| [applications-system-context.puml](applications-system-context.puml) | MVP systems| [SVG](applications-system-context.svg) · [PNG](applications-system-context.png) |
+| [applications-portfolio.puml](../../../../03-system-analysis/diagrams/scope-stakeholder-map.puml) | MVP systems| [SVG](../../../../03-system-analysis/diagrams/scope-stakeholder-map.svg) · [PNG](../../../../03-system-analysis/diagrams/scope-stakeholder-map.png) |
+| [applications-system-context.puml](../../../01-software-architecture/diagrams/drivers-c4-system-context.puml) | MVP systems| [SVG](../../../01-software-architecture/diagrams/drivers-c4-system-context.svg) · [PNG](../../../01-software-architecture/diagrams/drivers-c4-system-context.png) |
 | [applications-use-cases.puml](applications-use-cases.puml) | MVP core / cross-cutting| [SVG](applications-use-cases.svg) · [PNG](applications-use-cases.png) |
 | [calendar-reconciliation-route.puml](calendar-reconciliation-route.puml) | Future after MVP| [SVG](calendar-reconciliation-route.svg) · [PNG](calendar-reconciliation-route.png) |
-| [comm-containers.puml](comm-containers.puml) | Future communications| [SVG](comm-containers.svg) · [PNG](comm-containers.png) |
-| [comm-context.puml](comm-context.puml) | Future communications| [SVG](comm-context.svg) · [PNG](comm-context.png) |
-| [comm-deployment.puml](comm-deployment.puml) | Future communications| [SVG](comm-deployment.svg) · [PNG](comm-deployment.png) |
+| [comm-containers.puml](../../../../02-requirements-engineering/diagrams/use-cases-mail-and-calendar.puml) | Future communications| [SVG](../../../../02-requirements-engineering/diagrams/use-cases-mail-and-calendar.svg) · [PNG](../../../../02-requirements-engineering/diagrams/use-cases-mail-and-calendar.png) |
+| [comm-context.puml](../../../../02-requirements-engineering/diagrams/use-cases-mail-and-calendar.puml) | Future communications| [SVG](../../../../02-requirements-engineering/diagrams/use-cases-mail-and-calendar.svg) · [PNG](../../../../02-requirements-engineering/diagrams/use-cases-mail-and-calendar.png) |
+| [comm-deployment.puml](../../../../02-requirements-engineering/diagrams/use-cases-mail-and-calendar.puml) | Future communications| [SVG](../../../../02-requirements-engineering/diagrams/use-cases-mail-and-calendar.svg) · [PNG](../../../../02-requirements-engineering/diagrams/use-cases-mail-and-calendar.png) |
 | [comm-domain.puml](comm-domain.puml) | Future after MVP| [SVG](comm-domain.svg) · [PNG](comm-domain.png) |
 | [comm-erd.puml](comm-erd.puml) | Future after MVP| [SVG](comm-erd.svg) · [PNG](comm-erd.png) |
 | [comm-event-state.puml](comm-event-state.puml) | Future after MVP| [SVG](comm-event-state.svg) · [PNG](comm-event-state.png) |
@@ -313,13 +309,13 @@ Current MVP figures replace the former common-product boundary. Future and histo
 | [files-admission-sequence.puml](files-admission-sequence.puml) | MVP core / cross-cutting| [SVG](files-admission-sequence.svg) · [PNG](files-admission-sequence.png) |
 | [files-artifact-state.puml](files-artifact-state.puml) | MVP core / cross-cutting| [SVG](files-artifact-state.svg) · [PNG](files-artifact-state.png) |
 | [files-concurrent-edits.puml](files-concurrent-edits.puml) | MVP core / cross-cutting| [SVG](files-concurrent-edits.svg) · [PNG](files-concurrent-edits.png) |
-| [files-containers.puml](files-containers.puml) | MVP core media| [SVG](files-containers.svg) · [PNG](files-containers.png) |
+| [files-containers.puml](files-context.puml) | MVP core media| [SVG](files-context.svg) · [PNG](files-context.png) |
 | [files-context.puml](files-context.puml) | MVP core media| [SVG](files-context.svg) · [PNG](files-context.png) |
-| [files-deployment.puml](files-deployment.puml) | MVP deployment| [SVG](files-deployment.svg) · [PNG](files-deployment.png) |
+| [files-deployment.puml](../../../01-software-architecture/diagrams/drivers-uml-deployment.puml) | MVP deployment| [SVG](../../../01-software-architecture/diagrams/drivers-uml-deployment.svg) · [PNG](../../../01-software-architecture/diagrams/drivers-uml-deployment.png) |
 | [files-domain.puml](files-domain.puml) | MVP core / cross-cutting| [SVG](files-domain.svg) · [PNG](files-domain.png) |
 | [files-download.puml](files-download.puml) | MVP core / cross-cutting| [SVG](files-download.svg) · [PNG](files-download.png) |
 | [files-erd.puml](files-erd.puml) | MVP core / cross-cutting| [SVG](files-erd.svg) · [PNG](files-erd.png) |
-| [files-integrations.puml](files-integrations.puml) | MVP core media| [SVG](files-integrations.svg) · [PNG](files-integrations.png) |
+| [files-integrations.puml](files-context.puml) | MVP core media| [SVG](files-context.svg) · [PNG](files-context.png) |
 | [files-interfaces.puml](files-interfaces.puml) | MVP core / cross-cutting| [SVG](files-interfaces.svg) · [PNG](files-interfaces.png) |
 | [files-job-state.puml](files-job-state.puml) | MVP core / cross-cutting| [SVG](files-job-state.svg) · [PNG](files-job-state.png) |
 | [files-owned-model.puml](files-owned-model.puml) | MVP core / cross-cutting| [SVG](files-owned-model.svg) · [PNG](files-owned-model.png) |
@@ -328,7 +324,7 @@ Current MVP figures replace the former common-product boundary. Future and histo
 | [files-queues.puml](files-queues.puml) | MVP core / cross-cutting| [SVG](files-queues.svg) · [PNG](files-queues.png) |
 | [files-reclamation-route.puml](files-reclamation-route.puml) | MVP core / cross-cutting| [SVG](files-reclamation-route.svg) · [PNG](files-reclamation-route.png) |
 | [files-share.puml](files-share.puml) | MVP core / cross-cutting| [SVG](files-share.svg) · [PNG](files-share.png) |
-| [files-storage-options.puml](files-storage-options.puml) | MVP core media| [SVG](files-storage-options.svg) · [PNG](files-storage-options.png) |
+| [files-storage-options.puml](files-context.puml) | MVP core media| [SVG](files-context.svg) · [PNG](files-context.png) |
 | [files-trash.puml](files-trash.puml) | MVP core / cross-cutting| [SVG](files-trash.svg) · [PNG](files-trash.png) |
 | [files-upload.puml](files-upload.puml) | MVP core / cross-cutting| [SVG](files-upload.svg) · [PNG](files-upload.png) |
 | [files-use-cases.puml](files-use-cases.puml) | MVP core / cross-cutting| [SVG](files-use-cases.svg) · [PNG](files-use-cases.png) |
@@ -347,7 +343,7 @@ Current MVP figures replace the former common-product boundary. Future and histo
 | [identity-essential-authorization.puml](identity-essential-authorization.puml) | MVP core / cross-cutting| [SVG](identity-essential-authorization.svg) · [PNG](identity-essential-authorization.png) |
 | [identity-essential-components.puml](identity-essential-components.puml) | MVP core / cross-cutting| [SVG](identity-essential-components.svg) · [PNG](identity-essential-components.png) |
 | [identity-essential-session-state.puml](identity-essential-session-state.puml) | MVP core / cross-cutting| [SVG](identity-essential-session-state.svg) · [PNG](identity-essential-session-state.png) |
-| [identity-essential-trust-boundaries.puml](identity-essential-trust-boundaries.puml) | MVP systems| [SVG](identity-essential-trust-boundaries.svg) · [PNG](identity-essential-trust-boundaries.png) |
+| [identity-essential-trust-boundaries.puml](../../../06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.puml) | MVP systems| [SVG](../../../06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.svg) · [PNG](../../../06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.png) |
 | [identity-owned-model.puml](identity-owned-model.puml) | MVP core / cross-cutting| [SVG](identity-owned-model.svg) · [PNG](identity-owned-model.png) |
 | [presentation-essential-components.puml](presentation-essential-components.puml) | MVP core / cross-cutting| [SVG](presentation-essential-components.svg) · [PNG](presentation-essential-components.png) |
 | [presentation-essential-lifecycle.puml](presentation-essential-lifecycle.puml) | MVP core / cross-cutting| [SVG](presentation-essential-lifecycle.svg) · [PNG](presentation-essential-lifecycle.png) |
@@ -362,7 +358,7 @@ Current MVP figures replace the former common-product boundary. Future and histo
 | [sharing-essential-link-state.puml](sharing-essential-link-state.puml) | MVP core / cross-cutting| [SVG](sharing-essential-link-state.svg) · [PNG](sharing-essential-link-state.png) |
 | [sharing-owned-model.puml](sharing-owned-model.puml) | MVP core / cross-cutting| [SVG](sharing-owned-model.svg) · [PNG](sharing-owned-model.png) |
 | [sharing-protected-retrieval.puml](sharing-protected-retrieval.puml) | MVP core / cross-cutting| [SVG](sharing-protected-retrieval.svg) · [PNG](sharing-protected-retrieval.png) |
-| [work-essential-components.puml](work-essential-components.puml) | MVP ProjectForge| [SVG](work-essential-components.svg) · [PNG](work-essential-components.png) |
+| [work-essential-components.puml](work-essential-views.puml) | MVP ProjectForge| [SVG](work-essential-views.svg) · [PNG](work-essential-views.png) |
 | [work-essential-sprint-planning.puml](work-essential-sprint-planning.puml) | Future after MVP| [SVG](work-essential-sprint-planning.svg) · [PNG](work-essential-sprint-planning.png) |
 | [work-essential-task-state.puml](work-essential-task-state.puml) | Future after MVP| [SVG](work-essential-task-state.svg) · [PNG](work-essential-task-state.png) |
 | [work-essential-transition.puml](work-essential-transition.puml) | MVP ProjectForge| [SVG](work-essential-transition.svg) · [PNG](work-essential-transition.png) |

@@ -6,11 +6,7 @@
 
 [Source layout](#1-proposed-source-organization) · [Mappings](#2-component-to-artifact-mapping) · [Build](#3-dependency-and-build-organization) · [Configuration](#4-configuration-operating-data-and-generated-content) · [Release](#5-release-manifest-and-promotion) · [Review](#6-verification-and-completion) · [Essential views](#8-essential-implementation-and-artifact-views)
 
-## MVP system allocation and design status
-
-The accepted system boundary separates the Resumefolio core from ProjectForge, joined by an authenticated user-scoped API. Logical responsibilities remain useful within each system; they do not authorize a shared core/ProjectForge process, database or transaction. Core owns dashboard, invited accounts, professional presentation, protected sharing, manual applications and same-server private My Files & Media. ProjectForge MVP owns real repositories/transfers/permissions, file/history browsing, issues and simple Kanban. Its selected engine is native Git Smart HTTP behind the independent Laravel ProjectForge service, with its own MySQL 8.4 database and OS/storage boundaries on the existing host; BL-MVP-2026-11-04.1 governs implementation and evidence gates. The future communications system is independently private and API connected. Advanced Git review/releases, backlog/Sprints and execution/deployment remain deferred. Keep source, independent resume draft, explicit publication and actual submitted material identities distinct. Profile changes require preview/select/apply and cannot mutate publication or submitted history. Manual applications include status, next action and follow-up date without mail/calendar dependencies.
-
-Authority: [OWNER-MVP-2026-11-04](../../01-project-planning/owner-mvp-decision-2026-11-04.md).
+Current MVP scope and selected mechanisms: [Baseline](../../../baseline/README.md). Deferred provider, advanced collaboration and workflow-execution designs are not MVP prerequisites.
 
 ## Source context
 
@@ -188,9 +184,9 @@ Only **three complementary diagrams** are added here; no new tables. Reuse the e
 
 ### 8.2 UML-style artifacts and manifestation boundaries
 
-![UML-style artifacts and manifestation boundaries](diagrams/implementation-essential-artifacts.svg)
+![UML-style artifacts and manifestation boundaries](diagrams/implementation-essential-overview.svg)
 
-[Editable PlantUML](diagrams/implementation-essential-artifacts.puml) · [PNG](diagrams/implementation-essential-artifacts.png)
+[Editable PlantUML](diagrams/implementation-essential-overview.puml) · [PNG](diagrams/implementation-essential-overview.png)
 
 The «manifest» dependency denotes UML artifact manifestation, distinct from the release-manifest document identifying output/provenance. Git/executor artifacts are conditional evaluated prerequisites, not installed products. A checksum alone is not authorization or origin assurance.
 

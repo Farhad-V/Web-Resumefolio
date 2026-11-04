@@ -1,6 +1,6 @@
 # MVP — Implementation Baseline
 
-**Baseline: BL-MVP-2026-11-04.1 · Status: selected for implementation · Documentation revision: 1.1**
+**Baseline: BL-MVP-2026-11-04.1 · Status: selected for implementation · Documentation revision: 1.2**
 
 Selected on November 4, 2026 by Codex under Farhad’s explicit instruction to complete technical decisions and establish the Baseline. This is delegated design authority; no personal owner review, running implementation, deployment or product test is fabricated.
 
@@ -23,8 +23,7 @@ Selected: scope allocation, stack, frontend/database choices, access and integra
 
 Not demonstrated: user acceptance, installed package compatibility, native Git containment, SMTP delivery, production capacity, live backup/restore or Release readiness. These require implementation or operational evidence; their owners and exit criteria are in the gate register. The Baseline is a design input, not an M-02/M-03 test Pass certificate.
 
-The independent Advisor runtime could not be identified by its installed preflight; no Advisor consultation result exists. Codex performed the documented review and checks directly.
 
 ## Version meaning
 
-Keep this folder named `MVP`. Documentation revision 1.0 and this Baseline ID do not create a Software Release. During development use 0.1.0 or a prerelease tag when an actual artifact exists. Target the first stable production contract at 1.0.0 after Release gates pass; compatible features then increment MINOR, compatible fixes PATCH and breaking public contracts MAJOR. A subsequent SDLC cycle does not automatically imply v2. No new Release folders, Git tags or Releases are created by this documentation change.
+Keep this folder named `MVP`. Documentation revisions and this Baseline ID do not create a Software Release. During development use 0.1.0 or a prerelease tag when an actual artifact exists. Target the first stable production contract at 1.0.0 after Release gates pass; compatible features then increment MINOR, compatible fixes PATCH and breaking public contracts MAJOR. A subsequent SDLC cycle does not automatically imply v2. No new Release folders, Git tags or Releases are created by this documentation change.

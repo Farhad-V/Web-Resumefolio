@@ -22,11 +22,7 @@ behavioral wording; those detailed drafts still await acceptance.
 · [Elements](#10-cross-cutting-element-definitions) · [Trace links](#11-requirement-and-scenario-cross-references)
 · [Maintenance](#9-maintenance-and-review)
 
-## MVP requirement applicability and remaining review
-
-MVP data includes private LibraryItem (owner, supported kind, upload or external YouTube reference, private default), selected ResumeMediaReference governed by publication/sharing, and Application nextAction/followUpDate alongside status and actual submitted manifests. Field names are conceptual, not a physical schema. Private bytes stay on the same core server. ProjectForge owns repositories/issues/simple Kanban through user-scoped API; shared core tables are not assumed. Provider accounts, advanced Sprint/review/release and execution entities remain future data.
-
-Authority: [OWNER-MVP-2026-11-04](../../01-project-planning/owner-mvp-decision-2026-11-04.md). [Candidate allocation](../03-requirements-specification/mvp-release-allocation.md).
+Current MVP scope and selected mechanisms: [Baseline](../../../baseline/README.md). Deferred provider, advanced collaboration and workflow-execution designs are not MVP prerequisites.
 
 ## 1. Record Conventions
 

@@ -27,11 +27,7 @@ feasibility study or an accepted requirements baseline.
 · [Open work](#9-current-position-and-next-work) · [Sources](#10-authoritative-project-references)
 · [Diagrams](#11-diagram-maintenance)
 
-## MVP requirement applicability and remaining review
-
-Apply the current candidate release register: retain core presentation/sharing/manual applications/private files and basic ProjectForge; defer mail/calendar, advanced Git review/releases, advanced backlog/Sprints and YAML execution/deployment. Candidate IDs and planned verification stay intact. Mixed criteria must be scoped individually; allocation does not approve proposed numbers, priority or a complete baseline. Older 157-candidate/470-criterion evidence is historical larger-product coverage, not an MVP pass. Keep source, independent resume draft, explicit publication and actual submitted material identities distinct. Profile changes require preview/select/apply and cannot mutate publication or submitted history. Manual applications include status, next action and follow-up date without mail/calendar dependencies.
-
-Authority: [OWNER-MVP-2026-11-04](../../01-project-planning/owner-mvp-decision-2026-11-04.md). [Candidate allocation](../03-requirements-specification/mvp-release-allocation.md).
+Current MVP scope and selected mechanisms: [Baseline](../../../baseline/README.md). Deferred provider, advanced collaboration and workflow-execution designs are not MVP prerequisites.
 
 ## 1. Approach and Rationale
 
@@ -151,9 +147,9 @@ requirements. Domain documents own their detailed records. Use the
 
 | Record | Minimum useful content |
 | --- | --- |
-| [Requirement](../templates/requirement-template.md) | Identifier, source, rationale, actor/permission boundary, behavior, conditions, lifecycle, failures, priority, status, dependencies, acceptance criteria and planned verification |
-| [Scenario](../templates/scenario-template.md) / use case | Goal, trigger, actors, preconditions, steps, alternatives, exceptions, postconditions, relevant rules and requirement links |
-| [User story](../templates/story-template.md) | Role, capability and value, linked to detailed behavior and acceptance criteria; a story alone is not a full specification |
+| [Requirement](../03-requirements-specification/requirements-specification.md) | Identifier, source, rationale, actor/permission boundary, behavior, conditions, lifecycle, failures, priority, status, dependencies, acceptance criteria and planned verification |
+| [Scenario](../03-requirements-specification/requirements-specification.md) / use case | Goal, trigger, actors, preconditions, steps, alternatives, exceptions, postconditions, relevant rules and requirement links |
+| [User story](../03-requirements-specification/requirements-specification.md) | Role, capability and value, linked to detailed behavior and acceptance criteria; a story alone is not a full specification |
 | [Review finding](../06-validation-and-traceability/review-plan-and-findings.md) | Reviewed revision, actual method/reviewer/date, finding, owner, disposition and evidence |
 | [Open question or change](../07-change-and-baseline/open-questions-and-decisions.md) | Affected records, uncertainty, owner, next action and review gate; use [change control](../07-change-and-baseline/change-control.md) for material revisions |
 

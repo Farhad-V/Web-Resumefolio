@@ -1,10 +1,6 @@
 # Resumefolio — Deployment Topology Nodes and Networks
 
-## Current implementation baseline — November 4, 2026
-
-[BL-MVP-2026-11-04.1](../../../baseline/README.md) selects the MVP technical mechanisms, numerical policies, priorities and requirement/criterion dispositions under Farhad’s explicit delegation. It supersedes earlier Proposed/pending mechanism and whole-baseline statements below for MVP design input. Future clauses and dated evidence remain separate. Runtime/actor validation, credentials, Git isolation, capacity and backup/restore still require the named implementation/Release gates; this update reports no product test Pass.
-
-### Prior source material and rationale (superseded where this Baseline selects a different MVP choice)
+Current implementation choices and scope: [Baseline](../../../baseline/README.md). Runtime verification remains subject to its gates.
 
 **Current deployment constraint:** core uploads/media stay in private directories on the Resumefolio server. Core runtime/database mechanisms remain design work; ProjectForge is a distinct API-connected system whose engine, physical placement and database are undecided. Independent recoverable backups and least privilege remain required. Untrusted workflow execution is deferred.
 
@@ -18,12 +14,6 @@
 
 [Editable source](diagrams/mvp-system-boundaries.puml) · [PNG](diagrams/mvp-system-boundaries.png). Historical broader-product figures below retain earlier alternatives/detail; they do not define the current system boundary.
 
-## MVP system allocation and design status
-
-The accepted system boundary separates the Resumefolio core from ProjectForge, joined by an authenticated user-scoped API. Logical responsibilities remain useful within each system; they do not authorize a shared core/ProjectForge process, database or transaction. Core owns dashboard, invited accounts, professional presentation, protected sharing, manual applications and same-server private My Files & Media. ProjectForge MVP owns real repositories/transfers/permissions, file/history browsing, issues and simple Kanban. Its selected engine is native Git Smart HTTP behind the independent Laravel ProjectForge service, with its own MySQL 8.4 database and OS/storage boundaries on the existing host; BL-MVP-2026-11-04.1 governs implementation and evidence gates. The future communications system is independently private and API connected. Advanced Git review/releases, backlog/Sprints and execution/deployment remain deferred. Keep source, independent resume draft, explicit publication and actual submitted material identities distinct. Profile changes require preview/select/apply and cannot mutate publication or submitted history. Manual applications include status, next action and follow-up date without mail/calendar dependencies.
-
-Authority: [OWNER-MVP-2026-11-04](../../01-project-planning/owner-mvp-decision-2026-11-04.md).
-
 ## 1. Observed inputs and design boundaries
 
 Use [resources and constraints](../../01-project-planning/05-resources-and-constraints.md), [capacity planning](../../01-project-planning/11-capacity-and-preliminary-sizing.md), [analysis handoff](../../03-system-analysis/07-review-and-design-handoff/14-feasibility-dependencies-and-design-handoff.md), [architecture options](01-design-drivers-and-solution-options.md) and [runtime design](03-process-view-concurrency-and-runtime-behavior.md).
@@ -36,9 +26,9 @@ Use existing resources and 20 total project hours/week; no extra paid host/servi
 
 ## 2. Proposed nodes and runtime environments
 
-![Proposed deployment responsibilities and boundaries](diagrams/deployment-candidate-topology.svg)
+![Proposed deployment responsibilities and boundaries](diagrams/logical-component-ownership.svg)
 
-[Editable DOT](diagrams/deployment-candidate-topology.dot) · [PNG](diagrams/deployment-candidate-topology.png)
+[Editable DOT](diagrams/logical-component-ownership.dot) · [PNG](diagrams/logical-component-ownership.png)
 
 ### DN-01 — Client environment
 
@@ -78,9 +68,9 @@ Google, outbound delivery facilities and any separately managed deployment targe
 
 **Release applicability:** future-domain design retained after MVP; core operating/deployment and recovery controls still apply to MVP where relevant.
 
-![Required communication zones](diagrams/network-access-zones.svg)
+![Required communication zones](diagrams/logical-component-ownership.svg)
 
-[Editable DOT](diagrams/network-access-zones.dot) · [PNG](diagrams/network-access-zones.png)
+[Editable DOT](diagrams/logical-component-ownership.dot) · [PNG](diagrams/logical-component-ownership.png)
 
 **Public application ingress:** expose only intended HTTPS routes and evaluated Git transport. Serve public static assets separately from protected artifact/repository storage. Reject directory/path bypasses and enforce current permission before protected delivery. TLS termination and any proxy-to-application link need an explicit trusted forwarding configuration.
 
@@ -190,9 +180,9 @@ The same context anchor is reused; deployment nodes, subnets and optional infras
 
 ### 9.2 UML deployment — nodes, artifacts and environments
 
-![UML deployment — nodes, artifacts and environments](diagrams/deployment-uml-nodes-artifacts.svg)
+![UML deployment — nodes, artifacts and environments](diagrams/drivers-uml-deployment.svg)
 
-[Editable PlantUML](diagrams/deployment-uml-nodes-artifacts.puml) · [PNG](diagrams/deployment-uml-nodes-artifacts.png)
+[Editable PlantUML](diagrams/drivers-uml-deployment.puml) · [PNG](diagrams/drivers-uml-deployment.png)
 
 This view distinguishes physical/environment nodes, UML execution environments, deployable release artifacts and retained operating data. It is a proposed mapping, not a fresh inventory or configured runtime.
 
@@ -222,9 +212,9 @@ This fulfills the orchestration view as a clearly unelected alternative. Officia
 
 ### 9.6 Network segmentation — logical security zones
 
-![Network segmentation — logical security zones](diagrams/deployment-security-segmentation.svg)
+![Network segmentation — logical security zones](../06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.svg)
 
-[Editable PlantUML](diagrams/deployment-security-segmentation.puml) · [PNG](diagrams/deployment-security-segmentation.png)
+[Editable PlantUML](../06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.puml) · [PNG](../06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.png)
 
 DMZ is a logical public-facing edge role here, not an installed physical subnet. Evaluate actual provider/host/local-process rules and ingress/egress behavior. Do not infer private-network encryption, firewall coverage or user-level authorization from a colored zone. Detailed controls remain in the [security design](../06-design-quality-and-security-analysis/02-security-threat-modeling-and-trust-boundaries.md).
 

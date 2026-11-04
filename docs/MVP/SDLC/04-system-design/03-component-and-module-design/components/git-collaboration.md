@@ -6,11 +6,7 @@
 
 [Authority](#1-source-authority-and-boundaries) · [Contracts](#2-public-operations) · [Data](#3-owned-model-and-storage-boundaries) · [Merge](#4-revision-bound-review-and-merge-protocol) · [Failure](#5-security-concurrency-and-recovery) · [Review](#6-verification-and-open-decisions) · [Essential views](#7-essential-git-and-collaboration-views)
 
-## MVP system allocation and design status
-
-ProjectForge is a separate system connected to the core through an authenticated user-scoped API. MVP includes real repositories, clone/fetch/pull/push, repository permissions, file/history browsing, issues and simple Kanban. Git commits normally occur in the client. Full advanced review/merge/releases, fork/review workflows, milestones, advanced backlog/Sprints and YAML execution/deployment are deferred. The engine, database, physical deployment and Git transport remain undecided. No shared core database/transaction or full GitHub parity is promised.
-
-Authority: [OWNER-MVP-2026-11-04](../../../01-project-planning/owner-mvp-decision-2026-11-04.md).
+Current MVP scope and selected mechanisms: [Baseline](../../../../baseline/README.md). Deferred provider, advanced collaboration and workflow-execution designs are not MVP prerequisites.
 
 ## 1. Source authority and boundaries
 
@@ -135,7 +131,7 @@ Use real isolated native Git/client/transport checks alongside policy/handler te
 
 Evaluate engine/library/service versus direct native integration, actual supported version/transport/client matrix, authentication/scope/rotation, hook/process isolation, source/target/grant coordination, native/SQL reconciliation, quotas/temp growth, fork retention and release lifecycle. Resolve detailed Q-D21/Q-D22 policy and physical signature/schema choices, record exact criterion mappings and actual candidate review before dependent implementation.
 
-Follow [component template](../component-template/README.md), [runtime](../../01-software-architecture/03-process-view-concurrency-and-runtime-behavior.md), [Files reference coordination](files-and-operations.md), [API contracts](../../05-interface-and-api-design/README.md), [security](../../06-design-quality-and-security-analysis/README.md) and [review/handoff](../../06-design-quality-and-security-analysis/05-design-review-traceability-and-handoff.md). These component/class/interaction views adapt the FAU refinement approach without claiming a selected engine, accepted schema, actual security assurance or baseline approval.
+Follow [component template](../README.md), [runtime](../../01-software-architecture/03-process-view-concurrency-and-runtime-behavior.md), [Files reference coordination](files-and-operations.md), [API contracts](../../05-interface-and-api-design/README.md), [security](../../06-design-quality-and-security-analysis/README.md) and [review/handoff](../../06-design-quality-and-security-analysis/05-design-review-traceability-and-handoff.md). These component/class/interaction views adapt the FAU refinement approach without claiming a selected engine, accepted schema, actual security assurance or baseline approval.
 
 [Component catalog](../README.md) · [Component diagram catalog](diagrams/README.md)
 

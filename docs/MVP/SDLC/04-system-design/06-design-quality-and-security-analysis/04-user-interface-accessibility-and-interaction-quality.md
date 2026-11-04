@@ -1,22 +1,12 @@
 # Resumefolio — User Interface, Accessibility and Interaction Quality
 
-## Current implementation baseline — November 4, 2026
-
-[BL-MVP-2026-11-04.1](../../../baseline/README.md) selects the MVP technical mechanisms, numerical policies, priorities and requirement/criterion dispositions under Farhad’s explicit delegation. It supersedes earlier Proposed/pending mechanism and whole-baseline statements below for MVP design input. Future clauses and dated evidence remain separate. Runtime/actor validation, credentials, Git isolation, capacity and backup/restore still require the named implementation/Release gates; this update reports no product test Pass.
-
-### Prior source material and rationale (superseded where this Baseline selects a different MVP choice)
+Current implementation choices and scope: [Baseline](../../../baseline/README.md). Runtime verification remains subject to its gates.
 
 **Purpose:** define shared navigation, interaction states, content distinctions and accessibility verification obligations for owner, collaborator and employer journeys.
 
 **Status:** proposed interaction design, November 2, 2026. Q-D25's WCAG/client/viewport target remains proposed. This document creates no implemented screens, approved visual system, user-study result or accessibility conformance claim.
 
 [Sources](#1-sources-and-experience-boundaries) · [Navigation](#2-navigation-and-context) · [Journeys](#3-consequential-journey-design) · [States](#4-forms-feedback-and-recovery) · [Accessibility](#5-accessibility-and-responsive-behavior) · [Review](#6-verification-and-handoff)
-
-## MVP system allocation and design status
-
-The accepted system boundary separates the Resumefolio core from ProjectForge, joined by an authenticated user-scoped API. Logical responsibilities remain useful within each system; they do not authorize a shared core/ProjectForge process, database or transaction. Core owns dashboard, invited accounts, professional presentation, protected sharing, manual applications and same-server private My Files & Media. ProjectForge MVP owns real repositories/transfers/permissions, file/history browsing, issues and simple Kanban. Its selected engine is native Git Smart HTTP behind the independent Laravel ProjectForge service, with its own MySQL 8.4 database and OS/storage boundaries on the existing host; BL-MVP-2026-11-04.1 governs implementation and evidence gates. The future communications system is independently private and API connected. Advanced Git review/releases, backlog/Sprints and execution/deployment remain deferred. Keep source, independent resume draft, explicit publication and actual submitted material identities distinct. Profile changes require preview/select/apply and cannot mutate publication or submitted history. Manual applications include status, next action and follow-up date without mail/calendar dependencies.
-
-Authority: [OWNER-MVP-2026-11-04](../../01-project-planning/owner-mvp-decision-2026-11-04.md).
 
 ## 1. Sources and experience boundaries
 

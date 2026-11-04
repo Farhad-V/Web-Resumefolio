@@ -1,10 +1,6 @@
 # Resumefolio — External Interface Requirements
 
-## Current implementation baseline — November 4, 2026
-
-[BL-MVP-2026-11-04.1](../../../baseline/README.md) selects the MVP technical mechanisms, numerical policies, priorities and requirement/criterion dispositions under Farhad’s explicit delegation. It supersedes earlier Proposed/pending mechanism and whole-baseline statements below for MVP design input. Future clauses and dated evidence remain separate. Runtime/actor validation, credentials, Git isolation, capacity and backup/restore still require the named implementation/Release gates; this update reports no product test Pass.
-
-### Prior source material and rationale (superseded where this Baseline selects a different MVP choice)
+Current implementation choices and scope: [Baseline](../../../baseline/README.md). Runtime verification remains subject to its gates.
 
 | Item | Current position |
 | --- | --- |
@@ -64,10 +60,10 @@ The IF labels below are local inventory references, not new product requirement 
 | IF-07 Execution/deployment boundary | Authorized workflow inputs, permissions/secrets, outputs and approved targets | DEC-019, conditional; [YAML and CI/CD](yaml-workflows-and-cicd.md) | Isolation, triggers, syntax, network/target authority, logs/artifacts, limits and approval |
 | IF-08 Operational dependencies | Authorized operator and selected runtime, notification delivery, backup/restore facilities | DEC-017; resource DEP-01–DEP-06; [Quality and Recovery](quality-security-and-recovery-requirements.md) | Actual facilities, delivery/access contracts, configuration, coverage and procedure evidence |
 
-![People, clients and dependencies at the product boundary](../diagrams/external-interface-context.png)
+![People, clients and dependencies at the product boundary](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.png)
 
-[Scalable SVG](../diagrams/external-interface-context.svg) ·
-[Editable Graphviz](../diagrams/external-interface-context.dot)
+[Scalable SVG](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.svg) ·
+[Editable Graphviz](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot)
 
 Lines group conceptual exchanges, not internal services, chosen protocols or
 automatic data flows. IF-07 remains conditional on feasibility/security gates.
@@ -388,7 +384,7 @@ interface is configured and M-02 is not completed by this revision.
 
 | Diagram | Source | SVG | PNG |
 | --- | --- | --- | --- |
-| External interface context | [DOT](../diagrams/external-interface-context.dot) | [SVG](../diagrams/external-interface-context.svg) | [PNG](../diagrams/external-interface-context.png) |
+| External interface context | [DOT](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot) | [SVG](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.svg) | [PNG](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.png) |
 | Interaction outcomes | [PlantUML](../diagrams/external-interface-outcomes.puml) | [SVG](../diagrams/external-interface-outcomes.svg) | [PNG](../diagrams/external-interface-outcomes.png) |
 
 Follow the [diagram guide](../diagrams/README.md). Keep sources, captions and renders

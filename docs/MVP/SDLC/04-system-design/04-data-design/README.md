@@ -1,10 +1,6 @@
 # Resumefolio — Data Design
 
-## Current implementation baseline — November 4, 2026
-
-[BL-MVP-2026-11-04.1](../../../baseline/README.md) selects the MVP technical mechanisms, numerical policies, priorities and requirement/criterion dispositions under Farhad’s explicit delegation. It supersedes earlier Proposed/pending mechanism and whole-baseline statements below for MVP design input. Future clauses and dated evidence remain separate. Runtime/actor validation, credentials, Git isolation, capacity and backup/restore still require the named implementation/Release gates; this update reports no product test Pass.
-
-### Prior source material and rationale (superseded where this Baseline selects a different MVP choice)
+Current implementation choices and scope: [Baseline](../../../baseline/README.md). Runtime verification remains subject to its gates.
 
 **Use this folder to understand how analysis information becomes owned records, physical integrity rules and recoverable storage behavior.** It defines shared data mechanisms; each component keeps its concrete data structures and operation-specific invariants in its own design package.
 
@@ -13,12 +9,6 @@ Owner and decision authority: Farhad. Updated November 2, 2026.
 **Current position:** both documents are populated with project-specific proposed design and **15 distinct diagrams**: seven model/refinement views and eight persistence/lifecycle views. Each has an editable PlantUML source and SVG/PNG exports. They do not establish a final database/cache/storage engine, executable schema, configured backup, accepted retention policy or verified recovery capability.
 
 [Reading route](#1-reading-route) · [Document guide](#2-find-the-right-record) · [Diagrams](#3-diagram-gallery-and-catalog) · [Boundaries](#4-ownership-and-shared-invariants) · [Readiness](#5-review-and-implementation-readiness)
-
-## MVP system allocation and design status
-
-MVP data ownership follows distinct core and ProjectForge systems; do not infer a common database or cross-system ACID transaction. Core retains private library metadata, protected artifacts, selected resume media, application status/next action/follow-up and immutable submitted manifests. ProjectForge owns basic repositories/issues/Kanban; its database is undecided. Mail/account/provider, advanced Sprint/review/release and runner tables below are future models. My Files & Media is a core private library with optional per-resume selection. Supported uploads remain in private directories on the same Resumefolio server, with type/size/quota enforcement, safe serving and backup/recovery. Direct, preview and byte-range requests use current owner or selected-resume/viewer authority. Upload does not publish. External YouTube links use simple embedded playback; private uploads are not sent to YouTube. No extra media platform or heavyweight editor/transcoding is selected.
-
-Authority: [OWNER-MVP-2026-11-04](../../01-project-planning/owner-mvp-decision-2026-11-04.md).
 
 ## 1. Reading route
 
@@ -90,7 +80,7 @@ The [complete diagram catalog](diagrams/README.md) links **15 PlantUML sources, 
 
 ### Reading boundaries
 
-Use the [analysis data model](../../03-system-analysis/02-domain-and-information-analysis/05-data-oriented-view.md) for authoritative conceptual meaning, the [component data template](../03-component-and-module-design/component-template/02-data-model-and-class-structure.md) for component-specific class/ORM refinements, and [Operations/Recovery](../06-design-quality-and-security-analysis/03-operations-backup-recovery-and-resilience.md) for actual procedures and readiness evidence. Shared storage choices do not transfer another module's write authority.
+Use the [analysis data model](../../03-system-analysis/02-domain-and-information-analysis/05-data-oriented-view.md) for authoritative conceptual meaning, the [component data template](../03-component-and-module-design/README.md) for component-specific class/ORM refinements, and [Operations/Recovery](../06-design-quality-and-security-analysis/03-operations-backup-recovery-and-resilience.md) for actual procedures and readiness evidence. Shared storage choices do not transfer another module's write authority.
 
 Replicas, sharding, alternate document/search stores, distributed caches, tiered storage and CDN remain unselected options. No TTL, retention, backup schedule, RPO/RTO, physical engine or legal erasure disposition is accepted by these diagrams. Current unconfigured-backup status remains an explicit operating gap.
 

@@ -1,22 +1,12 @@
 # Resumefolio — Persistence, Caching and Data Lifecycle
 
-## Current implementation baseline — November 4, 2026
-
-[BL-MVP-2026-11-04.1](../../../baseline/README.md) selects the MVP technical mechanisms, numerical policies, priorities and requirement/criterion dispositions under Farhad’s explicit delegation. It supersedes earlier Proposed/pending mechanism and whole-baseline statements below for MVP design input. Future clauses and dated evidence remain separate. Runtime/actor validation, credentials, Git isolation, capacity and backup/restore still require the named implementation/Release gates; this update reports no product test Pass.
-
-### Prior source material and rationale (superseded where this Baseline selects a different MVP choice)
+Current implementation choices and scope: [Baseline](../../../baseline/README.md). Runtime verification remains subject to its gates.
 
 **Purpose:** define how owned state, private artifacts and external observations remain consistent through normal writes, cache reuse, replacement, retirement and recovery.
 
 **Status:** proposed shared technical design, November 2, 2026. No database/cache engine, retention duration, backup destination or numerical recovery target is accepted here. No storage facility is configured by this update.
 
 [Scope](#1-authority-and-storage-responsibilities) · [Persistence](#2-persistence-strategy-and-consistency) · [Caching](#3-cache-policy-and-invalidation) · [Lifecycle](#4-admission-replacement-and-reclamation) · [Recovery](#5-backup-and-recovery-consistency) · [Review](#6-verification-and-implementation-handoff) · [Essential views](#7-essential-persistence-cache-and-recovery-views)
-
-## MVP system allocation and design status
-
-MVP data ownership follows distinct core and ProjectForge systems; do not infer a common database or cross-system ACID transaction. Core retains private library metadata, protected artifacts, selected resume media, application status/next action/follow-up and immutable submitted manifests. ProjectForge owns basic repositories/issues/Kanban; its database is undecided. Mail/account/provider, advanced Sprint/review/release and runner tables below are future models. My Files & Media is a core private library with optional per-resume selection. Supported uploads remain in private directories on the same Resumefolio server, with type/size/quota enforcement, safe serving and backup/recovery. Direct, preview and byte-range requests use current owner or selected-resume/viewer authority. Upload does not publish. External YouTube links use simple embedded playback; private uploads are not sent to YouTube. No extra media platform or heavyweight editor/transcoding is selected.
-
-Authority: [OWNER-MVP-2026-11-04](../../01-project-planning/owner-mvp-decision-2026-11-04.md).
 
 ## 1. Authority and storage responsibilities
 

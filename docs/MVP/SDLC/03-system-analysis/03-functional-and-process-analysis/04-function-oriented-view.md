@@ -6,11 +6,7 @@ Owner: Farhad. Updated: November 1, 2026.
 
 Status: Populated logical analysis; exact criterion sufficiency and owner acceptance remain pending.
 
-## MVP analysis boundary and evidence applicability
-
-The accepted system boundary separates the Resumefolio core from ProjectForge, joined by an authenticated user-scoped API. Logical responsibilities remain useful within each system; they do not authorize a shared core/ProjectForge process, database or transaction. Core owns dashboard, invited accounts, professional presentation, protected sharing, manual applications and same-server private My Files & Media. ProjectForge MVP owns real repositories/transfers/permissions, file/history browsing, issues and simple Kanban. Its engine, deployment and database remain open. The future communications system is independently private and API connected. Advanced Git review/releases, backlog/Sprints and execution/deployment remain deferred. My Files & Media is a core private library with optional per-resume selection. Supported uploads remain in private directories on the same Resumefolio server, with type/size/quota enforcement, safe serving and backup/recovery. Direct, preview and byte-range requests use current owner or selected-resume/viewer authority. Upload does not publish. External YouTube links use simple embedded playback; private uploads are not sent to YouTube. No extra media platform or heavyweight editor/transcoding is selected. Retained mail, advanced review/Sprint and execution models describe future behavior. Historical comparison/evidence results retain their original candidate/date and are not newly executed MVP checks.
-
-Authority: [OWNER-MVP-2026-11-04](../../01-project-planning/owner-mvp-decision-2026-11-04.md).
+Current MVP scope and selected mechanisms: [Baseline](../../../baseline/README.md). Deferred provider, advanced collaboration and workflow-execution designs are not MVP prerequisites.
 
 ## Authoritative Inputs
 
@@ -241,9 +237,9 @@ Rectangles denote external entities, ovals logical transformations, database-sha
 
 ### Context DFD
 
-![function-dfd-context](../diagrams/function-dfd-context.svg)
+![function-dfd-context](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg)
 
-[Editable source](../diagrams/function-dfd-context.puml) · [PNG](../diagrams/function-dfd-context.png)
+[Editable source](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) · [PNG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.png)
 
 ### Level 1 DFD for professional content and communication
 
@@ -257,9 +253,9 @@ Rectangles denote external entities, ovals logical transformations, database-sha
 
 **Release applicability:** future-domain design retained after MVP; core operating/deployment and recovery controls still apply to MVP where relevant.
 
-![function-dfd-level1-work-operations](../diagrams/function-dfd-level1-work-operations.svg)
+![function-dfd-level1-work-operations](../diagrams/function-store-information.svg)
 
-[Editable source](../diagrams/function-dfd-level1-work-operations.puml) · [PNG](../diagrams/function-dfd-level1-work-operations.png)
+[Editable source](../diagrams/function-store-information.puml) · [PNG](../diagrams/function-store-information.png)
 
 ### Logical store information flows
 

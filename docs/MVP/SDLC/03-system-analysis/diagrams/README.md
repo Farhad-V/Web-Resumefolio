@@ -2,11 +2,7 @@
 
 Revision: November 1, 2026. Active sources are **PlantUML `.puml`** and native **BPMN `.bpmn`**, with SVG and PNG exports. The catalog covers reviewed documents 00–03 and the populated data (05), scenario (06), state (07), activity (08), rule (09) and contract (10) and consistency-review (11) and interface (12) and security/quality/operating (13) and handoff (14) views. Functional and behavioral views are populated; exact semantic review and phase acceptance remain separate work.
 
-## MVP analysis boundary and evidence applicability
-
-The accepted system boundary separates the Resumefolio core from ProjectForge, joined by an authenticated user-scoped API. Logical responsibilities remain useful within each system; they do not authorize a shared core/ProjectForge process, database or transaction. Core owns dashboard, invited accounts, professional presentation, protected sharing, manual applications and same-server private My Files & Media. ProjectForge MVP owns real repositories/transfers/permissions, file/history browsing, issues and simple Kanban. Its engine, deployment and database remain open. The future communications system is independently private and API connected. Advanced Git review/releases, backlog/Sprints and execution/deployment remain deferred. Retained mail, advanced review/Sprint and execution models describe future behavior. Historical comparison/evidence results retain their original candidate/date and are not newly executed MVP checks.
-
-Authority: [OWNER-MVP-2026-11-04](../../01-project-planning/owner-mvp-decision-2026-11-04.md).
+Current MVP scope and selected mechanisms: [Baseline](../../../baseline/README.md). Deferred provider, advanced collaboration and workflow-execution designs are not MVP prerequisites.
 
 ## Reading and Maintenance Rules
 
@@ -28,9 +24,9 @@ Authority: [OWNER-MVP-2026-11-04](../../01-project-planning/owner-mvp-decision-2
 | 00 / section 3 | Accepted core — explicit apply and separate publication | Activity / accepted successful path | [PlantUML](start-here-profile-publication.puml) | [SVG](start-here-profile-publication.svg) | [PNG](start-here-profile-publication.png) |
 | 01 / section 2 | Analysis — source authority and feedback | Artifact dependency | [PlantUML](analysis-inputs-and-outputs.puml) | [SVG](analysis-inputs-and-outputs.svg) | [PNG](analysis-inputs-and-outputs.png) |
 | 01 / section 4 | Seven views — complementary questions, one coherent model | Model-view map | [PlantUML](analysis-seven-view-consistency.puml) | [SVG](analysis-seven-view-consistency.svg) | [PNG](analysis-seven-view-consistency.png) |
-| 02 / section 2 | Resumefolio — human roles and authority contexts | UML actor / system context | [PlantUML](system-context-human.puml) | [SVG](system-context-human.svg) | [PNG](system-context-human.png) |
-| 02 / section 3 | Resumefolio — clients, providers and operating dependencies | Logical external context | [PlantUML](system-context-external.puml) | [SVG](system-context-external.svg) | [PNG](system-context-external.png) |
-| 02 / section 6 | Information authority — edit, publish, retrieve and preserve | Information-authority context | [PlantUML](system-context-information-boundaries.puml) | [SVG](system-context-information-boundaries.svg) | [PNG](system-context-information-boundaries.png) |
+| 02 / section 2 | Resumefolio — human roles and authority contexts | UML actor / system context | [PlantUML](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) | [SVG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg) | [PNG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.png) |
+| 02 / section 3 | Resumefolio — clients, providers and operating dependencies | Logical external context | [PlantUML](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) | [SVG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg) | [PNG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.png) |
+| 02 / section 6 | Information authority — edit, publish, retrieve and preserve | Information-authority context | [PlantUML](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) | [SVG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg) | [PNG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.png) |
 | 03 / section 2.1 | Professional source and independent resume | UML conceptual class view | [PlantUML](domain-professional-presentation.puml) | [SVG](domain-professional-presentation.svg) | [PNG](domain-professional-presentation.png) |
 | 03 / section 2.1 | Evidence selection and manually authored language | UML conceptual class view | [PlantUML](domain-evidence-and-language.puml) | [SVG](domain-evidence-and-language.svg) | [PNG](domain-evidence-and-language.png) |
 | 03 / section 2.2 | Publication, PDF availability and protected link | UML conceptual class view | [PlantUML](domain-publication-and-sharing.puml) | [SVG](domain-publication-and-sharing.svg) | [PNG](domain-publication-and-sharing.png) |
@@ -231,24 +227,24 @@ See the [file-by-file report](../evidence/notation-alignment-review-2026-11-01.m
 | --- | --- | --- | --- | --- |
 | Document navigation — 00 through 15 | Document dependency graph | [Source](documentation-navigation.puml) | [SVG](documentation-navigation.svg) | [PNG](documentation-navigation.png) |
 | Scope and stakeholder map | Stakeholder and scope diagram | [Source](scope-stakeholder-map.puml) | [SVG](scope-stakeholder-map.svg) | [PNG](scope-stakeholder-map.png) |
-| C4 Level 1 — target product context | C4 Level 1 | [Source](c4-system-context.puml) | [SVG](c4-system-context.svg) | [PNG](c4-system-context.png) |
+| C4 Level 1 — target product context | C4 Level 1 | [Source](../../04-system-design/01-software-architecture/diagrams/drivers-c4-system-context.puml) | [SVG](../../04-system-design/01-software-architecture/diagrams/drivers-c4-system-context.svg) | [PNG](../../04-system-design/01-software-architecture/diagrams/drivers-c4-system-context.png) |
 | C4 Level 2 — historical demo evidence only | C4 Level 2, bounded historical inventory | [Source](c4-observed-demo-containers.puml) | [SVG](c4-observed-demo-containers.svg) | [PNG](c4-observed-demo-containers.png) |
-| UML packages — logical domain groupings | UML package | [Source](domain-package-responsibilities.puml) | [SVG](domain-package-responsibilities.svg) | [PNG](domain-package-responsibilities.png) |
+| UML packages — logical domain groupings | UML package | [Source](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) | [SVG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg) | [PNG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.png) |
 | UML class detail — explicit proposed relationship ends | UML class with multiplicities | [Source](domain-proposed-multiplicity.puml) | [SVG](domain-proposed-multiplicity.svg) | [PNG](domain-proposed-multiplicity.png) |
-| DFD context — external information boundary | DFD context | [Source](function-dfd-context.puml) | [SVG](function-dfd-context.svg) | [PNG](function-dfd-context.png) |
+| DFD context — external information boundary | DFD context | [Source](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) | [SVG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg) | [PNG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.png) |
 | DFD Level 1 — content | DFD Level 1 | [Source](function-dfd-level1-content.puml) | [SVG](function-dfd-level1-content.svg) | [PNG](function-dfd-level1-content.png) |
-| DFD Level 1 — work-operations | DFD Level 1 | [Source](function-dfd-level1-work-operations.puml) | [SVG](function-dfd-level1-work-operations.svg) | [PNG](function-dfd-level1-work-operations.png) |
+| DFD Level 1 — work-operations | DFD Level 1 | [Source](function-store-information.puml) | [SVG](function-store-information.svg) | [PNG](function-store-information.png) |
 | Functional decomposition — responsibilities, not services | Functional decomposition tree | [Source](function-decomposition.puml) | [SVG](function-decomposition.svg) | [PNG](function-decomposition.png) |
 | DFD — logical information ownership | DFD logical stores | [Source](function-store-information.puml) | [SVG](function-store-information.svg) | [PNG](function-store-information.png) |
 | DFD Level 2 — F02 selected apply and publication | DFD Level 2 | [Source](function-profile-level2.puml) | [SVG](function-profile-level2.svg) | [PNG](function-profile-level2.png) |
 | DC-O02 — UML object snapshots and frame condition | UML object snapshots | [Source](contract-apply-object-snapshots.puml) | [SVG](contract-apply-object-snapshots.svg) | [PNG](contract-apply-object-snapshots.png) |
 | Selected traceability matrix — associations, not test results | Traceability matrix graphic | [Source](traceability-selected-matrix.puml) | [SVG](traceability-selected-matrix.svg) | [PNG](traceability-selected-matrix.png) |
-| UML component view — interface responsibilities | UML component-style logical interface view | [Source](interface-logical-components.puml) | [SVG](interface-logical-components.svg) | [PNG](interface-logical-components.png) |
+| UML component view — interface responsibilities | UML component-style logical interface view | [Source](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) | [SVG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg) | [PNG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.png) |
 | Request/response boundary — protocol-neutral contract | UML sequence | [Source](interface-request-response-contract.puml) | [SVG](interface-request-response-contract.svg) | [PNG](interface-request-response-contract.png) |
-| Trust-boundary DFD — logical protections to establish | Security DFD | [Source](security-data-flow-trust.puml) | [SVG](security-data-flow-trust.svg) | [PNG](security-data-flow-trust.png) |
+| Trust-boundary DFD — logical protections to establish | Security DFD | [Source](../../04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.puml) | [SVG](../../04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.svg) | [PNG](../../04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.png) |
 | UML deployment — historical demo observation | UML deployment | [Source](deployment-observed-host.puml) | [SVG](deployment-observed-host.svg) | [PNG](deployment-observed-host.png) |
 | Dependency network — conditions, not scheduled dates | Dependency network | [Source](handoff-dependency-network.puml) | [SVG](handoff-dependency-network.svg) | [PNG](handoff-dependency-network.png) |
-| Resumefolio — analysis ecosystem | High-level system overview | [Source](ecosystem-overview.puml) | [SVG](ecosystem-overview.svg) | [PNG](ecosystem-overview.png) |
+| Resumefolio — analysis ecosystem | High-level system overview | [Source](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) | [SVG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg) | [PNG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.png) |
 | As-Is — evidence-bounded current-process view | BPMN 2.0 | [Source](process-bpmn-as-is-boundary.bpmn) | [SVG](process-bpmn-as-is-boundary.svg) | [PNG](process-bpmn-as-is-boundary.png) |
 | To-Be — selected apply and separate publication | BPMN 2.0 | [Source](process-bpmn-target-publication.bpmn) | [SVG](process-bpmn-target-publication.svg) | [PNG](process-bpmn-target-publication.png) |
 
@@ -267,7 +263,7 @@ These views distinguish candidate controls, dated inventory and conditional futu
 
 | View | Editable | SVG | PNG |
 | --- | --- | --- | --- |
-| Trust boundaries and candidate threats | [PlantUML](security-threat-boundary-model.puml) | [SVG](security-threat-boundary-model.svg) | [PNG](security-threat-boundary-model.png) |
+| Trust boundaries and candidate threats | [PlantUML](../../04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.puml) | [SVG](../../04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.svg) | [PNG](../../04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.png) |
 | Infrastructure topology — observed demo and explicit gaps | [PlantUML](security-infrastructure-topology.puml) | [SVG](security-infrastructure-topology.svg) | [PNG](security-infrastructure-topology.png) |
 | HA / failover — conditional decision and verification sequence | [PlantUML](security-ha-failover-sequence.puml) | [SVG](security-ha-failover-sequence.svg) | [PNG](security-ha-failover-sequence.png) |
 | Disaster recovery — restore, validate and controlled resumption | [PlantUML](security-disaster-recovery-sequence.puml) | [SVG](security-disaster-recovery-sequence.svg) | [PNG](security-disaster-recovery-sequence.png) |
@@ -278,8 +274,8 @@ The two coordinated maps cover logical product areas and all eight existing IF f
 
 | View | Source | SVG | PNG |
 | --- | --- | --- | --- |
-| Internal ecosystem and information relationships | [PlantUML](ecosystem-overview.puml) | [SVG](ecosystem-overview.svg) | [PNG](ecosystem-overview.png) |
-| External connections, directions and status | [PlantUML](ecosystem-platform-connections.puml) | [SVG](ecosystem-platform-connections.svg) | [PNG](ecosystem-platform-connections.png) |
+| Internal ecosystem and information relationships | [PlantUML](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) | [SVG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg) | [PNG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.png) |
+| External connections, directions and status | [PlantUML](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) | [SVG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg) | [PNG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.png) |
 
 ## November 4 release applicability
 
@@ -292,7 +288,7 @@ Current MVP figures replace the former common-product boundary. Future and histo
 | [activity-pull-request-review-merge.puml](activity-pull-request-review-merge.puml) | Future after MVP|
 | [activity-separate-deployment.puml](activity-separate-deployment.puml) | Future after MVP|
 | [activity-workflow-admission-attempt.puml](activity-workflow-admission-attempt.puml) | Future after MVP|
-| [c4-system-context.puml](c4-system-context.puml) | MVP systems|
+| [c4-system-context.puml](../../04-system-design/01-software-architecture/diagrams/drivers-c4-system-context.puml) | MVP systems|
 | [data-execution-provenance-and-targets.puml](data-execution-provenance-and-targets.puml) | Future after MVP|
 | [data-provider-and-calendar-context.puml](data-provider-and-calendar-context.puml) | Future after MVP|
 | [data-work-and-sprint-planning.puml](data-work-and-sprint-planning.puml) | Future after MVP|
@@ -300,16 +296,16 @@ Current MVP figures replace the former common-product boundary. Future and histo
 | [domain-applications-and-communication.puml](domain-applications-and-communication.puml) | MVP core|
 | [domain-execution-and-deployment.dot](domain-execution-and-deployment.dot) | Future after MVP|
 | [domain-execution-and-deployment.puml](domain-execution-and-deployment.puml) | Future after MVP|
-| [domain-package-responsibilities.puml](domain-package-responsibilities.puml) | MVP core / cross-cutting|
+| [domain-package-responsibilities.puml](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) | MVP core / cross-cutting|
 | [domain-provider-communication.puml](domain-provider-communication.puml) | Future after MVP|
-| [ecosystem-overview.puml](ecosystem-overview.puml) | MVP core / cross-cutting|
-| [ecosystem-platform-connections.puml](ecosystem-platform-connections.puml) | MVP core / cross-cutting|
+| [ecosystem-overview.puml](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) | MVP core / cross-cutting|
+| [ecosystem-platform-connections.puml](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) | MVP core / cross-cutting|
 | [function-decomposition.puml](function-decomposition.puml) | MVP systems|
-| [function-dfd-context.puml](function-dfd-context.puml) | MVP core / cross-cutting|
+| [function-dfd-context.puml](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) | MVP core / cross-cutting|
 | [interface-calendar-local-provider.puml](interface-calendar-local-provider.puml) | Mixed MVP / future|
 | [interface-execution-separate-target.puml](interface-execution-separate-target.puml) | Future after MVP|
 | [interface-gmail-reviewed-effects.puml](interface-gmail-reviewed-effects.puml) | Future after MVP|
-| [interface-logical-components.puml](interface-logical-components.puml) | MVP core / cross-cutting|
+| [interface-logical-components.puml](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) | MVP core / cross-cutting|
 | [process-current-workflow-questions.puml](process-current-workflow-questions.puml) | Method / document navigation|
 | [scenario-calendar-local-sync.puml](scenario-calendar-local-sync.puml) | Mixed MVP / future|
 | [scenario-gmail-read-send-outcomes.puml](scenario-gmail-read-send-outcomes.puml) | Future after MVP|
@@ -324,12 +320,12 @@ Current MVP figures replace the former common-product boundary. Future and histo
 | [state-provider-connection.puml](state-provider-connection.puml) | Future after MVP|
 | [state-pull-request-lifecycle.puml](state-pull-request-lifecycle.puml) | Future after MVP|
 | [state-sprint-lifecycle.puml](state-sprint-lifecycle.puml) | Future after MVP|
-| [system-context-external.dot](system-context-external.dot) | MVP core / cross-cutting|
-| [system-context-external.puml](system-context-external.puml) | MVP core / cross-cutting|
-| [system-context-human.dot](system-context-human.dot) | MVP core / cross-cutting|
-| [system-context-human.puml](system-context-human.puml) | MVP core / cross-cutting|
-| [system-context-information-boundaries.dot](system-context-information-boundaries.dot) | MVP core / cross-cutting|
-| [system-context-information-boundaries.puml](system-context-information-boundaries.puml) | MVP core / cross-cutting|
+| [system-context-external.dot](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot) | MVP core / cross-cutting|
+| [system-context-external.puml](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) | MVP core / cross-cutting|
+| [system-context-human.dot](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot) | MVP core / cross-cutting|
+| [system-context-human.puml](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) | MVP core / cross-cutting|
+| [system-context-information-boundaries.dot](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot) | MVP core / cross-cutting|
+| [system-context-information-boundaries.puml](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) | MVP core / cross-cutting|
 
 | [domain-work-management.puml](domain-work-management.puml) | Future after MVP|
 | [function-store-information.puml](function-store-information.puml) | MVP systems|
@@ -341,15 +337,15 @@ Alternative Graphviz export for [domain-applications-and-communication.dot](doma
 
 Alternative Graphviz export for [domain-execution-and-deployment.dot](domain-execution-and-deployment.dot): [SVG](domain-execution-and-deployment-graphviz.svg) · [PNG](domain-execution-and-deployment-graphviz.png). The ordinary same-stem exports follow the PlantUML source.
 
-Alternative Graphviz export for [system-context-external.dot](system-context-external.dot): [SVG](system-context-external-graphviz.svg) · [PNG](system-context-external-graphviz.png). The ordinary same-stem exports follow the PlantUML source.
+Alternative Graphviz export for [system-context-external.dot](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot): [SVG](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.svg) · [PNG](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.png). The ordinary same-stem exports follow the PlantUML source.
 
-Alternative Graphviz export for [system-context-human.dot](system-context-human.dot): [SVG](system-context-human-graphviz.svg) · [PNG](system-context-human-graphviz.png). The ordinary same-stem exports follow the PlantUML source.
+Alternative Graphviz export for [system-context-human.dot](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot): [SVG](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.svg) · [PNG](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.png). The ordinary same-stem exports follow the PlantUML source.
 
-Alternative Graphviz export for [system-context-information-boundaries.dot](system-context-information-boundaries.dot): [SVG](system-context-information-boundaries-graphviz.svg) · [PNG](system-context-information-boundaries-graphviz.png). The ordinary same-stem exports follow the PlantUML source.
+Alternative Graphviz export for [system-context-information-boundaries.dot](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot): [SVG](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.svg) · [PNG](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.png). The ordinary same-stem exports follow the PlantUML source.
 
 ## Complete diagram alignment — November 4
 
-[Full project inventory and verification limits](../../diagram-alignment-review-2026-11-04.md). This current disposition supersedes earlier partial diagram-allocation lists.
+[Full project inventory and verification limits](../../04-system-design/01-software-architecture/diagrams/README.md). This current disposition supersedes earlier partial diagram-allocation lists.
 
 | Editable source or visual | Current applicability | Matching exports |
 | --- | --- | --- |
@@ -375,7 +371,7 @@ Alternative Graphviz export for [system-context-information-boundaries.dot](syst
 | [analysis-seven-view-consistency.dot](analysis-seven-view-consistency.dot) | MVP core / cross-cutting| [SVG](analysis-seven-view-consistency-graphviz.svg) · [PNG](analysis-seven-view-consistency-graphviz.png) |
 | [analysis-seven-view-consistency.puml](analysis-seven-view-consistency.puml) | MVP core / cross-cutting| [SVG](analysis-seven-view-consistency.svg) · [PNG](analysis-seven-view-consistency.png) |
 | [c4-observed-demo-containers.puml](c4-observed-demo-containers.puml) | Historical / alternative| [SVG](c4-observed-demo-containers.svg) · [PNG](c4-observed-demo-containers.png) |
-| [c4-system-context.puml](c4-system-context.puml) | MVP systems| [SVG](c4-system-context.svg) · [PNG](c4-system-context.png) |
+| [c4-system-context.puml](../../04-system-design/01-software-architecture/diagrams/drivers-c4-system-context.puml) | MVP systems| [SVG](../../04-system-design/01-software-architecture/diagrams/drivers-c4-system-context.svg) · [PNG](../../04-system-design/01-software-architecture/diagrams/drivers-c4-system-context.png) |
 | [contract-apply-object-snapshots.puml](contract-apply-object-snapshots.puml) | MVP core / cross-cutting| [SVG](contract-apply-object-snapshots.svg) · [PNG](contract-apply-object-snapshots.png) |
 | [contract-constraint-application.puml](contract-constraint-application.puml) | MVP core / cross-cutting| [SVG](contract-constraint-application.svg) · [PNG](contract-constraint-application.png) |
 | [contract-dc-o02-boundary.puml](contract-dc-o02-boundary.puml) | MVP core / cross-cutting| [SVG](contract-dc-o02-boundary.svg) · [PNG](contract-dc-o02-boundary.png) |
@@ -407,7 +403,7 @@ Alternative Graphviz export for [system-context-information-boundaries.dot](syst
 | [domain-execution-and-deployment.puml](domain-execution-and-deployment.puml) | Future after MVP| [SVG](domain-execution-and-deployment.svg) · [PNG](domain-execution-and-deployment.png) |
 | [domain-git-collaboration.dot](domain-git-collaboration.dot) | Future after MVP| [SVG](domain-git-collaboration-graphviz.svg) · [PNG](domain-git-collaboration-graphviz.png) |
 | [domain-git-collaboration.puml](domain-git-collaboration.puml) | Future after MVP| [SVG](domain-git-collaboration.svg) · [PNG](domain-git-collaboration.png) |
-| [domain-package-responsibilities.puml](domain-package-responsibilities.puml) | MVP core / cross-cutting| [SVG](domain-package-responsibilities.svg) · [PNG](domain-package-responsibilities.png) |
+| [domain-package-responsibilities.puml](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) | MVP core / cross-cutting| [SVG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg) · [PNG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.png) |
 | [domain-professional-presentation.dot](domain-professional-presentation.dot) | MVP core / cross-cutting| [SVG](domain-professional-presentation-graphviz.svg) · [PNG](domain-professional-presentation-graphviz.png) |
 | [domain-professional-presentation.puml](domain-professional-presentation.puml) | MVP core / cross-cutting| [SVG](domain-professional-presentation.svg) · [PNG](domain-professional-presentation.png) |
 | [domain-proposed-multiplicity.puml](domain-proposed-multiplicity.puml) | MVP core / cross-cutting| [SVG](domain-proposed-multiplicity.svg) · [PNG](domain-proposed-multiplicity.png) |
@@ -416,12 +412,12 @@ Alternative Graphviz export for [system-context-information-boundaries.dot](syst
 | [domain-publication-and-sharing.puml](domain-publication-and-sharing.puml) | MVP core / cross-cutting| [SVG](domain-publication-and-sharing.svg) · [PNG](domain-publication-and-sharing.png) |
 | [domain-work-management.dot](domain-work-management.dot) | Future after MVP| [SVG](domain-work-management-graphviz.svg) · [PNG](domain-work-management-graphviz.png) |
 | [domain-work-management.puml](domain-work-management.puml) | Future after MVP| [SVG](domain-work-management.svg) · [PNG](domain-work-management.png) |
-| [ecosystem-overview.puml](ecosystem-overview.puml) | MVP core / cross-cutting| [SVG](ecosystem-overview.svg) · [PNG](ecosystem-overview.png) |
-| [ecosystem-platform-connections.puml](ecosystem-platform-connections.puml) | MVP core / cross-cutting| [SVG](ecosystem-platform-connections.svg) · [PNG](ecosystem-platform-connections.png) |
+| [ecosystem-overview.puml](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) | MVP core / cross-cutting| [SVG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg) · [PNG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.png) |
+| [ecosystem-platform-connections.puml](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) | MVP core / cross-cutting| [SVG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg) · [PNG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.png) |
 | [function-decomposition.puml](function-decomposition.puml) | MVP systems| [SVG](function-decomposition.svg) · [PNG](function-decomposition.png) |
-| [function-dfd-context.puml](function-dfd-context.puml) | MVP core / cross-cutting| [SVG](function-dfd-context.svg) · [PNG](function-dfd-context.png) |
+| [function-dfd-context.puml](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) | MVP core / cross-cutting| [SVG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg) · [PNG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.png) |
 | [function-dfd-level1-content.puml](function-dfd-level1-content.puml) | MVP core| [SVG](function-dfd-level1-content.svg) · [PNG](function-dfd-level1-content.png) |
-| [function-dfd-level1-work-operations.puml](function-dfd-level1-work-operations.puml) | MVP systems| [SVG](function-dfd-level1-work-operations.svg) · [PNG](function-dfd-level1-work-operations.png) |
+| [function-dfd-level1-work-operations.puml](function-store-information.puml) | MVP systems| [SVG](function-store-information.svg) · [PNG](function-store-information.png) |
 | [function-profile-level2.puml](function-profile-level2.puml) | MVP core / cross-cutting| [SVG](function-profile-level2.svg) · [PNG](function-profile-level2.png) |
 | [function-store-information.puml](function-store-information.puml) | MVP systems| [SVG](function-store-information.svg) · [PNG](function-store-information.png) |
 | [handoff-delivery-reconciliation.puml](handoff-delivery-reconciliation.puml) | Method / document navigation| [SVG](handoff-delivery-reconciliation.svg) · [PNG](handoff-delivery-reconciliation.png) |
@@ -435,7 +431,7 @@ Alternative Graphviz export for [system-context-information-boundaries.dot](syst
 | [interface-execution-separate-target.puml](interface-execution-separate-target.puml) | Future after MVP| [SVG](interface-execution-separate-target.svg) · [PNG](interface-execution-separate-target.png) |
 | [interface-file-candidate-result.puml](interface-file-candidate-result.puml) | MVP core / cross-cutting| [SVG](interface-file-candidate-result.svg) · [PNG](interface-file-candidate-result.png) |
 | [interface-gmail-reviewed-effects.puml](interface-gmail-reviewed-effects.puml) | Future after MVP| [SVG](interface-gmail-reviewed-effects.svg) · [PNG](interface-gmail-reviewed-effects.png) |
-| [interface-logical-components.puml](interface-logical-components.puml) | MVP core / cross-cutting| [SVG](interface-logical-components.svg) · [PNG](interface-logical-components.png) |
+| [interface-logical-components.puml](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) | MVP core / cross-cutting| [SVG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg) · [PNG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.png) |
 | [interface-operating-delivery-recovery.puml](interface-operating-delivery-recovery.puml) | Mixed MVP / future| [SVG](interface-operating-delivery-recovery.svg) · [PNG](interface-operating-delivery-recovery.png) |
 | [interface-private-human-context.puml](interface-private-human-context.puml) | MVP core / cross-cutting| [SVG](interface-private-human-context.svg) · [PNG](interface-private-human-context.png) |
 | [interface-real-git-client.puml](interface-real-git-client.puml) | MVP ProjectForge| [SVG](interface-real-git-client.svg) · [PNG](interface-real-git-client.png) |
@@ -479,12 +475,12 @@ Alternative Graphviz export for [system-context-information-boundaries.dot](syst
 | [scenario-work-refine-plan-end.puml](scenario-work-refine-plan-end.puml) | Mixed MVP / future| [SVG](scenario-work-refine-plan-end.svg) · [PNG](scenario-work-refine-plan-end.png) |
 | [scenario-workflow-admission-attempt.puml](scenario-workflow-admission-attempt.puml) | Future after MVP| [SVG](scenario-workflow-admission-attempt.svg) · [PNG](scenario-workflow-admission-attempt.png) |
 | [scope-stakeholder-map.puml](scope-stakeholder-map.puml) | MVP systems| [SVG](scope-stakeholder-map.svg) · [PNG](scope-stakeholder-map.png) |
-| [security-data-flow-trust.puml](security-data-flow-trust.puml) | MVP systems| [SVG](security-data-flow-trust.svg) · [PNG](security-data-flow-trust.png) |
+| [security-data-flow-trust.puml](../../04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.puml) | MVP systems| [SVG](../../04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.svg) · [PNG](../../04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.png) |
 | [security-disaster-recovery-sequence.puml](security-disaster-recovery-sequence.puml) | MVP core / cross-cutting| [SVG](security-disaster-recovery-sequence.svg) · [PNG](security-disaster-recovery-sequence.png) |
 | [security-ha-failover-sequence.puml](security-ha-failover-sequence.puml) | MVP core / cross-cutting| [SVG](security-ha-failover-sequence.svg) · [PNG](security-ha-failover-sequence.png) |
 | [security-infrastructure-topology.puml](security-infrastructure-topology.puml) | Historical / alternative| [SVG](security-infrastructure-topology.svg) · [PNG](security-infrastructure-topology.png) |
 | [security-scoped-authority.puml](security-scoped-authority.puml) | MVP core / cross-cutting| [SVG](security-scoped-authority.svg) · [PNG](security-scoped-authority.png) |
-| [security-threat-boundary-model.puml](security-threat-boundary-model.puml) | MVP systems| [SVG](security-threat-boundary-model.svg) · [PNG](security-threat-boundary-model.png) |
+| [security-threat-boundary-model.puml](../../04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.puml) | MVP systems| [SVG](../../04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.svg) · [PNG](../../04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.png) |
 | [security-untrusted-content-execution.puml](security-untrusted-content-execution.puml) | Mixed MVP / future| [SVG](security-untrusted-content-execution.svg) · [PNG](security-untrusted-content-execution.png) |
 | [start-here-analysis-route.dot](start-here-analysis-route.dot) | MVP core / cross-cutting| [SVG](start-here-analysis-route-graphviz.svg) · [PNG](start-here-analysis-route-graphviz.png) |
 | [start-here-analysis-route.puml](start-here-analysis-route.puml) | MVP core / cross-cutting| [SVG](start-here-analysis-route.svg) · [PNG](start-here-analysis-route.png) |
@@ -508,10 +504,10 @@ Alternative Graphviz export for [system-context-information-boundaries.dot](syst
 | [state-sprint-lifecycle.puml](state-sprint-lifecycle.puml) | Future after MVP| [SVG](state-sprint-lifecycle.svg) · [PNG](state-sprint-lifecycle.png) |
 | [state-submitted-set-completeness.puml](state-submitted-set-completeness.puml) | MVP core / cross-cutting| [SVG](state-submitted-set-completeness.svg) · [PNG](state-submitted-set-completeness.png) |
 | [state-work-item-task.puml](state-work-item-task.puml) | MVP core / cross-cutting| [SVG](state-work-item-task.svg) · [PNG](state-work-item-task.png) |
-| [system-context-external.dot](system-context-external.dot) | MVP core / cross-cutting| [SVG](system-context-external-graphviz.svg) · [PNG](system-context-external-graphviz.png) |
-| [system-context-external.puml](system-context-external.puml) | MVP core / cross-cutting| [SVG](system-context-external.svg) · [PNG](system-context-external.png) |
-| [system-context-human.dot](system-context-human.dot) | MVP core / cross-cutting| [SVG](system-context-human-graphviz.svg) · [PNG](system-context-human-graphviz.png) |
-| [system-context-human.puml](system-context-human.puml) | MVP core / cross-cutting| [SVG](system-context-human.svg) · [PNG](system-context-human.png) |
-| [system-context-information-boundaries.dot](system-context-information-boundaries.dot) | MVP core / cross-cutting| [SVG](system-context-information-boundaries-graphviz.svg) · [PNG](system-context-information-boundaries-graphviz.png) |
-| [system-context-information-boundaries.puml](system-context-information-boundaries.puml) | MVP core / cross-cutting| [SVG](system-context-information-boundaries.svg) · [PNG](system-context-information-boundaries.png) |
+| [system-context-external.dot](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot) | MVP core / cross-cutting| [SVG](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.svg) · [PNG](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.png) |
+| [system-context-external.puml](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) | MVP core / cross-cutting| [SVG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg) · [PNG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.png) |
+| [system-context-human.dot](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot) | MVP core / cross-cutting| [SVG](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.svg) · [PNG](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.png) |
+| [system-context-human.puml](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) | MVP core / cross-cutting| [SVG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg) · [PNG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.png) |
+| [system-context-information-boundaries.dot](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot) | MVP core / cross-cutting| [SVG](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.svg) · [PNG](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.png) |
+| [system-context-information-boundaries.puml](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) | MVP core / cross-cutting| [SVG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg) · [PNG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.png) |
 | [traceability-selected-matrix.puml](traceability-selected-matrix.puml) | Historical / alternative| [SVG](traceability-selected-matrix.svg) · [PNG](traceability-selected-matrix.png) |

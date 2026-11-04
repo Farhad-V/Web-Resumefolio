@@ -6,11 +6,7 @@
 
 [Sources](#1-source-authority-and-boundaries) · [Contracts](#2-public-operations) · [Model](#3-owned-classes-and-logical-data) · [Algorithms](#4-submission-capture-and-correction-algorithms) · [Failures](#5-concurrency-failure-and-lifecycle-scenarios) · [Review](#6-verification-and-open-decisions) · [Landscape package](#7-application-context-and-landscape-package)
 
-## MVP system allocation and design status
-
-Manual job application management belongs to the Resumefolio core; ApplyFlow is its former name, not a separate branded platform. Each application preserves actual submitted materials, status, next action and follow-up date, together with its company/opportunity and selected resume/cover letter. Later source edits cannot change the recorded submitted set. Recording a submission is manual. APP-D08 requires manual follow-up fields in MVP; correspondence/calendar/provider links are deferred and cannot be required for tracking.
-
-Authority: [OWNER-MVP-2026-11-04](../../../01-project-planning/owner-mvp-decision-2026-11-04.md).
+Current MVP scope and selected mechanisms: [Baseline](../../../../baseline/README.md). Deferred provider, advanced collaboration and workflow-execution designs are not MVP prerequisites.
 
 ## 1. Source authority and boundaries
 
@@ -144,7 +140,7 @@ Use deterministic policy/handler checks and actual persistence/reference/concurr
 
 Q-D12/13/14 detailed field/state/capture/correction/retention dispositions; physical types/limits and constraints; exact operation signatures; Files reference handshake and local atomicity; usable material/provenance evidence; criterion-level comparison and actual review. These remain visible engineering/source decisions rather than default values.
 
-Follow the [component template](../component-template/README.md), [runtime protocol](../../01-software-architecture/03-process-view-concurrency-and-runtime-behavior.md), [interface design](../../05-interface-and-api-design/README.md), [security/quality](../../06-design-quality-and-security-analysis/README.md) and [review/handoff](../../06-design-quality-and-security-analysis/05-design-review-traceability-and-handoff.md). The class/sequence diagrams are proposed technical views, not full physical schema or implemented runtime traces. No live application send/capture, migration, restoration or baseline acceptance is performed.
+Follow the [component template](../README.md), [runtime protocol](../../01-software-architecture/03-process-view-concurrency-and-runtime-behavior.md), [interface design](../../05-interface-and-api-design/README.md), [security/quality](../../06-design-quality-and-security-analysis/README.md) and [review/handoff](../../06-design-quality-and-security-analysis/05-design-review-traceability-and-handoff.md). The class/sequence diagrams are proposed technical views, not full physical schema or implemented runtime traces. No live application send/capture, migration, restoration or baseline acceptance is performed.
 
 [Component catalog](../README.md) · [Application diagram catalog](diagrams/README.md)
 
@@ -162,25 +158,25 @@ Provided circle and required sockets denote logical contracts, not allocated net
 
 ### 7.2 C4 Level 1: Resumefolio system context
 
-![C4 Level 1: Resumefolio system context](diagrams/applications-system-context.svg)
+![C4 Level 1: Resumefolio system context](../../01-software-architecture/diagrams/drivers-c4-system-context.svg)
 
-[Editable PlantUML](diagrams/applications-system-context.puml) · [PNG](diagrams/applications-system-context.png)
+[Editable PlantUML](../../01-software-architecture/diagrams/drivers-c4-system-context.puml) · [PNG](../../01-software-architecture/diagrams/drivers-c4-system-context.png)
 
 C4-style Level 1 scope is the whole software system; LC-04 is not promoted to a separate system. Public viewers have no Applications access merely because they can view a published resume. No internal module boxes appear at this level.
 
 ### 7.3 C4 Level 2: modular application and stores
 
-![C4 Level 2: modular application and stores](diagrams/applications-containers.svg)
+![C4 Level 2: modular application and stores](../../01-software-architecture/diagrams/boundaries-c4-containers.svg)
 
-[Editable PlantUML](diagrams/applications-containers.puml) · [PNG](diagrams/applications-containers.png)
+[Editable PlantUML](../../01-software-architecture/diagrams/boundaries-c4-containers.puml) · [PNG](../../01-software-architecture/diagrams/boundaries-c4-containers.png)
 
 C4-style containers are applications/runtimes and data stores, not Docker units or nine services. Worker and provider facilities remain subject to enabling evidence. Sharing one database does not allow another module to write Applications state.
 
 ### 7.4 Logical capability landscape
 
-![Logical capability landscape](diagrams/applications-portfolio.svg)
+![Logical capability landscape](../../../03-system-analysis/diagrams/scope-stakeholder-map.svg)
 
-[Editable PlantUML](diagrams/applications-portfolio.puml) · [PNG](diagrams/applications-portfolio.png)
+[Editable PlantUML](../../../03-system-analysis/diagrams/scope-stakeholder-map.puml) · [PNG](../../../03-system-analysis/diagrams/scope-stakeholder-map.png)
 
 Portfolio-style map of nine logical modules grouped for navigation, not separate deployed applications, teams or enterprise systems. Grouping does not create new integration requirements; Work/Git/Workflow have no implied Applications lifecycle authority.
 
@@ -242,9 +238,9 @@ Design-level use-case summary, not allocated new use-case IDs or exact criterion
 
 ### 7.12 Optional deployment mapping of logical roles
 
-![Optional deployment mapping of logical roles](diagrams/applications-deployment.svg)
+![Optional deployment mapping of logical roles](../../01-software-architecture/diagrams/drivers-uml-deployment.svg)
 
-[Editable PlantUML](diagrams/applications-deployment.puml) · [PNG](diagrams/applications-deployment.png)
+[Editable PlantUML](../../01-software-architecture/diagrams/drivers-uml-deployment.puml) · [PNG](../../01-software-architecture/diagrams/drivers-uml-deployment.png)
 
 Optional candidate mapping, not an installed topology or assertion that one host meets capacity/recovery needs. Refer to the owning deployment document; dated demo allocations are not production sizing guarantees.
 
@@ -339,6 +335,6 @@ No numeric availability, latency, concurrency, retention or RPO/RTO target is ac
 
 **Proposed application of existing ADRs, not a new accepted decision:** retain LC-04 within the modular application and access neighbors through public contracts ([ADR-001](../../07-design-decisions/ADR-001-modular-application-boundaries.md)); preserve separate publication and actual-history identities ([ADR-002](../../07-design-decisions/ADR-002-explicit-publication-and-history.md)); keep consequential external attempts under their owning durable reconciliation protocol ([ADR-003](../../07-design-decisions/ADR-003-durable-external-attempts.md)). All retain their Proposed status.
 
-The simplest alternative to separate deployment avoids adding network/operating/consistency costs before actual evidence justifies extraction. A future independent Applications service requires a new explicit ADR covering contracts, migration, identity, protected references, resource/recovery cost and operating support; this package does not select that alternative. Refer to the [ADR template](../../07-design-decisions/ADR-template.md) and [deployment owner](../../01-software-architecture/04-deployment-topology-nodes-and-networks.md).
+The simplest alternative to separate deployment avoids adding network/operating/consistency costs before actual evidence justifies extraction. A future independent Applications service requires a new explicit ADR covering contracts, migration, identity, protected references, resource/recovery cost and operating support; this package does not select that alternative. Refer to the [ADR template](../../07-design-decisions/README.md) and [deployment owner](../../01-software-architecture/04-deployment-topology-nodes-and-networks.md).
 
 These views/tables complement the detailed class/capture algorithms above. They do not close exact acceptance criteria, accept Q-D12/13/14, select a physical topology, establish capacity or execute capture/send/recovery. Verify the actual candidate through the owning review/handoff process.

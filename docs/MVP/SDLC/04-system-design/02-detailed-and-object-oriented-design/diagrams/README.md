@@ -8,11 +8,7 @@ These are proposed technical illustrations, not implemented classes or complete 
 
 [Owning principles document](../01-design-principles-and-object-oriented-approach.md) · [Detailed Design index](../README.md)
 
-## MVP system allocation and design status
-
-The accepted system boundary separates the Resumefolio core from ProjectForge, joined by an authenticated user-scoped API. Logical responsibilities remain useful within each system; they do not authorize a shared core/ProjectForge process, database or transaction. Core owns dashboard, invited accounts, professional presentation, protected sharing, manual applications and same-server private My Files & Media. ProjectForge MVP owns real repositories/transfers/permissions, file/history browsing, issues and simple Kanban. Its engine, deployment and database remain open. The future communications system is independently private and API connected. Advanced Git review/releases, backlog/Sprints and execution/deployment remain deferred. Keep source, independent resume draft, explicit publication and actual submitted material identities distinct. Profile changes require preview/select/apply and cannot mutate publication or submitted history. Manual applications include status, next action and follow-up date without mail/calendar dependencies.
-
-Authority: [OWNER-MVP-2026-11-04](../../../01-project-planning/owner-mvp-decision-2026-11-04.md).
+Current MVP scope and selected mechanisms: [Baseline](../../../../baseline/README.md). Deferred provider, advanced collaboration and workflow-execution designs are not MVP prerequisites.
 
 ## Design evolution and debt
 
@@ -72,7 +68,7 @@ Authority: [OWNER-MVP-2026-11-04](../../../01-project-planning/owner-mvp-decisio
 
 ## Complete diagram alignment — November 4
 
-[Full project inventory and verification limits](../../../diagram-alignment-review-2026-11-04.md). This current disposition supersedes earlier partial diagram-allocation lists.
+[Full project inventory and verification limits](../../01-software-architecture/diagrams/README.md). This current disposition supersedes earlier partial diagram-allocation lists.
 
 | Editable source or visual | Current applicability | Matching exports |
 | --- | --- | --- |

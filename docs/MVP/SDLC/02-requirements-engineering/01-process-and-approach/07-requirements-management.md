@@ -26,11 +26,7 @@ own actual records; this process document does not create a competing live track
 · [Examples](#9-worked-management-examples) · [Readiness](#10-completion-checklist-and-current-position)
 · [Diagrams](#11-diagram-maintenance)
 
-## MVP requirement applicability and remaining review
-
-Apply the current candidate release register: retain core presentation/sharing/manual applications/private files and basic ProjectForge; defer mail/calendar, advanced Git review/releases, advanced backlog/Sprints and YAML execution/deployment. Candidate IDs and planned verification stay intact. Mixed criteria must be scoped individually; allocation does not approve proposed numbers, priority or a complete baseline. Older 157-candidate/470-criterion evidence is historical larger-product coverage, not an MVP pass. Keep source, independent resume draft, explicit publication and actual submitted material identities distinct. Profile changes require preview/select/apply and cannot mutate publication or submitted history. Manual applications include status, next action and follow-up date without mail/calendar dependencies.
-
-Authority: [OWNER-MVP-2026-11-04](../../01-project-planning/owner-mvp-decision-2026-11-04.md). [Candidate allocation](../03-requirements-specification/mvp-release-allocation.md).
+Current MVP scope and selected mechanisms: [Baseline](../../../baseline/README.md). Deferred provider, advanced collaboration and workflow-execution designs are not MVP prerequisites.
 
 ## 1. Information Ownership and Responsibilities
 
@@ -86,7 +82,7 @@ navigation keys and illustrative examples are not allocated requirement IDs.
 ### Identity and evolution rules
 
 - Keep an identifier attached to its original meaning; do not renumber for display order or recycle a retired reference.
-- Keep title, module, exact source, rationale, actor/context, obligation, criteria, status and revision identifiable through the [requirement template](../templates/requirement-template.md).
+- Keep title, module, exact source, rationale, actor/context, obligation, criteria, status and revision identifiable through the [requirement template](../03-requirements-specification/requirements-specification.md).
 - When a record is split, merged or replaced, preserve its source and history, identify successor/predecessor links and review affected traceability.
 - A wording correction that preserves meaning need not create a new requirement ID; record material revisions and their rationale.
 - A substantively revised proposal must remain distinguishable from the earlier accepted revision, even when the logical requirement keeps the same ID.

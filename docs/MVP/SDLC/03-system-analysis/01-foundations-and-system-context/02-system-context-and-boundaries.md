@@ -14,11 +14,7 @@ Status: populated full-product logical context model, with accepted scope and ac
 
 [Editable source](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) · [PNG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.png). Historical broader-product figures below retain earlier alternatives/detail; they do not define the current system boundary.
 
-## MVP analysis boundary and evidence applicability
-
-The accepted system boundary separates the Resumefolio core from ProjectForge, joined by an authenticated user-scoped API. Logical responsibilities remain useful within each system; they do not authorize a shared core/ProjectForge process, database or transaction. Core owns dashboard, invited accounts, professional presentation, protected sharing, manual applications and same-server private My Files & Media. ProjectForge MVP owns real repositories/transfers/permissions, file/history browsing, issues and simple Kanban. Its engine, deployment and database remain open. The future communications system is independently private and API connected. Advanced Git review/releases, backlog/Sprints and execution/deployment remain deferred. My Files & Media is a core private library with optional per-resume selection. Supported uploads remain in private directories on the same Resumefolio server, with type/size/quota enforcement, safe serving and backup/recovery. Direct, preview and byte-range requests use current owner or selected-resume/viewer authority. Upload does not publish. External YouTube links use simple embedded playback; private uploads are not sent to YouTube. No extra media platform or heavyweight editor/transcoding is selected. Retained mail, advanced review/Sprint and execution models describe future behavior. Historical comparison/evidence results retain their original candidate/date and are not newly executed MVP checks.
-
-Authority: [OWNER-MVP-2026-11-04](../../01-project-planning/owner-mvp-decision-2026-11-04.md).
+Current MVP scope and selected mechanisms: [Baseline](../../../baseline/README.md). Deferred provider, advanced collaboration and workflow-execution designs are not MVP prerequisites.
 
 ## Ecosystem and Connected Platforms
 
@@ -26,17 +22,17 @@ These two coordinated views provide the whole-product map without forcing intern
 
 ### Internal areas and relationships
 
-![Internal ecosystem: product areas and information relationships](../diagrams/ecosystem-overview.svg)
+![Internal ecosystem: product areas and information relationships](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg)
 
-[PlantUML source](../diagrams/ecosystem-overview.puml) · [PNG](../diagrams/ecosystem-overview.png)
+[PlantUML source](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) · [PNG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.png)
 
 The overview covers profile/resume, portfolio/evidence, PDF/sharing, applications, communication, work/Sprints, Git, execution, deployment and shared administration/operations. Relationship arrows show selected references or information movement; they do not create automatic synchronization or authorization. Actual submitted materials remain independent of later live changes. Shared access and lifecycle rules apply to every area, including those without a drawn cross-cutting arrow.
 
 ### External connections and current evidence
 
-![Connected platforms: directions, boundaries and status](../diagrams/ecosystem-platform-connections.svg)
+![Connected platforms: directions, boundaries and status](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg)
 
-[PlantUML source](../diagrams/ecosystem-platform-connections.puml) · [PNG](../diagrams/ecosystem-platform-connections.png)
+[PlantUML source](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) · [PNG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.png)
 
 | Product area / participant | Detailed interface and connection status |
 | --- | --- |
@@ -79,9 +75,9 @@ SCP/DEC sources are in [accepted scope](../../01-project-planning/02-scope.md#2-
 
 ## 2. Human Actors and Authority Boundaries
 
-![Human contexts and source-derived domain interactions](../diagrams/system-context-human.svg)
+![Human contexts and source-derived domain interactions](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg)
 
-[PNG](../diagrams/system-context-human.png) · [Editable PlantUML](../diagrams/system-context-human.puml)
+[PNG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.png) · [Editable PlantUML](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml)
 
 | Context | Requests / supplied information | Responses / result meaning | Authority limit |
 | --- | --- | --- | --- |
@@ -96,9 +92,9 @@ Source: [actor catalog](../../02-requirements-engineering/02-stakeholders-and-el
 
 ## 3. External Participants, Exchanges and Dependencies
 
-![External client/provider exchanges and operational dependencies](../diagrams/system-context-external.svg)
+![External client/provider exchanges and operational dependencies](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg)
 
-[PNG](../diagrams/system-context-external.png) · [Editable PlantUML](../diagrams/system-context-external.puml)
+[PNG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.png) · [Editable PlantUML](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml)
 
 **Existing interface:** IF-01
 
@@ -252,9 +248,9 @@ See [questions](../../02-requirements-engineering/07-change-and-baseline/open-qu
 
 ## 6. Logical Responsibility and Disclosure Boundaries
 
-![Logical information and authority boundaries](../diagrams/system-context-information-boundaries.svg)
+![Logical information and authority boundaries](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg)
 
-[PNG](../diagrams/system-context-information-boundaries.png) · [Editable PlantUML](../diagrams/system-context-information-boundaries.puml)
+[PNG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.png) · [Editable PlantUML](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml)
 
 This is an information-authority view, not a database or network diagram. The enclosing box denotes product responsibilities. Internal groups are logical distinctions, not separately deployed components. Solid arrows show selected-content, request or result direction; dashed arrows identify explicit authority or captured-content provenance. They do not mean automatic propagation. Colors supplement the labels.
 
@@ -332,9 +328,9 @@ Review this context again when scope, an interacting participant, an authority b
 
 The first diagram models target scope. The second is an explicitly historical, partial demo container inventory, not the final product architecture. [C4 containers](https://c4model.com/diagrams/container) represent applications/data stores; deployment nodes are separate. Technology/service observations come from the [dated server record](../../02-requirements-engineering/06-validation-and-traceability/evidence/server-readonly-check-2026-11-01.json). A complete target container design belongs to the design handoff; unobserved connections are not invented.
 
-![c4-system-context](../diagrams/c4-system-context.svg)
+![c4-system-context](../../04-system-design/01-software-architecture/diagrams/drivers-c4-system-context.svg)
 
-[Editable source](../diagrams/c4-system-context.puml) · [PNG](../diagrams/c4-system-context.png)
+[Editable source](../../04-system-design/01-software-architecture/diagrams/drivers-c4-system-context.puml) · [PNG](../../04-system-design/01-software-architecture/diagrams/drivers-c4-system-context.png)
 
 ![Historical or unselected alternative — c4-observed-demo-containers](../diagrams/c4-observed-demo-containers.svg)
 
