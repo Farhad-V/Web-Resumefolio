@@ -8,11 +8,11 @@ All version numbers below select supported major/minor lines. Project Setup must
 
 ## T01 — Runtime, frontend and persistence
 
-Select Laravel 13, PHP 8.4 on a maintained security patch, Composer 2, MySQL 8.4 LTS / InnoDB / utf8mb4, Eloquent and migrations. Use server-rendered Blade, Alpine.js 3, Tailwind CSS 4 and Vite with Node.js 24 LTS for builds. No SPA, second application state framework or Redis is required initially. Use framework-compatible Vite integration versions resolved at Setup. Laravel 13 supports PHP 8.4; an old locally installed 8.4.1 is not a production patch decision.
+Select Laravel 13, PHP 8.4 on a maintained security patch, Composer 2, MySQL 8.4 LTS / InnoDB / utf8mb4, Eloquent and migrations. Use React 19 with Inertia 3 on Laravel, Tailwind CSS 4 and Vite with Node.js 24 LTS for builds. Laravel owns routing, controllers, sessions, authentication and authorization; Inertia delivers React pages within each application. No separate browser REST API or independently deployed frontend is introduced. Blade remains for trusted server-side PDF templates, not the interactive application UI. Alpine.js is not part of the selected UI stack. Resolve compatible maintained patch versions and Laravel/Inertia/Vite adapters during Setup. Redis is not required initially. Laravel 13 supports PHP 8.4; an old locally installed 8.4.1 is not a production patch decision.
 
 Both systems use this stack but have separate databases, database users, application keys, processes, sessions, storage roots and OS users. No cross-system SQL joins or transactions. Existing demo databases are not migrated automatically. A new isolated schema avoids an accidental live MySQL upgrade.
 
-Alternatives: React SPA adds API/state/testing work without a current requirement; SQLite simplifies setup but diverges from the selected production concurrency/persistence; PostgreSQL is capable but changes the existing MySQL operating context. Revisit only with measured incompatibility or a new interaction requirement.
+Owner-approved frontend amendment: [ADR-007](../SDLC/04-system-design/07-design-decisions/ADR-007-react-inertia-frontend.md) replaces the initial Blade/Alpine application UI selection. Farhad knows both approaches and selected React/Inertia for interactive forms, dashboard and reusable UI components. A separately deployed React SPA would add an unnecessary browser API/authentication boundary. SQLite diverges from the selected production persistence; PostgreSQL changes the existing MySQL operating context. The independent Core/ProjectForge boundary and all acceptance/security obligations remain unchanged.
 
 ## T02 — Core identity and authorization
 

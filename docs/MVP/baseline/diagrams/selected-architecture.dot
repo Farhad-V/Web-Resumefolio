@@ -1,7 +1,7 @@
 digraph MVP {
 graph [rankdir=TB,bgcolor="#0b1220",pad="0.35",nodesep="0.45",ranksep="0.6",fontname="Arial",fontcolor="#e5edf7",label="MVP — Selected architecture | BL-MVP-2026-11-04.1",labelloc=t,fontsize=22];
 node [shape=box,style="rounded,filled",fillcolor="#172f4b",color="#6ba7ef",fontname="Arial",fontcolor="#e5edf7",fontsize=12,margin="0.2,0.15"];edge [fontname="Arial",fontcolor="#e5edf7",fontsize=10,color="#8fa6c2"];
-user [label="Invited user / Admin\nBlade + Alpine + Tailwind"];
+user [label="Invited user / Admin\nReact + Inertia + Tailwind"];
 employer [label="Employer\nPassword link; no account"];
 subgraph cluster_host {label="Existing server — separate identities and storage; shared failure domain";fontsize=14;fontsize=14;color="#40536b";style=rounded;
 core [label="Resumefolio Core\nLaravel 13 / PHP 8.4\nFortify + Passport"];

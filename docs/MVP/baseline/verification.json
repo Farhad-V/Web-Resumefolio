@@ -1,10 +1,12 @@
 {
-  "documentation_revision": "1.3",
+  "documentation_revision": "1.4",
   "requirement_ids_preserved": 157,
   "acceptance_criteria_preserved": 470,
   "requirement_register_blank_rows": 0,
   "provider_sync_allocation": "Deferred consistently",
   "local_links_checked": 13523,
   "missing_links": 0,
-  "runtime_tests": "Not executed; documentation corrections only"
+  "runtime_tests": "Not executed; documentation-only frontend decision amendment",
+  "frontend": "Selected React 19 / Inertia 3 on Laravel; Blade PDF templates retained; not installed",
+  "manifest_hashes_verified": 40
 }

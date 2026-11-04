@@ -11,7 +11,7 @@ Status: Not started. This is a checklist for recording verified Setup, not a run
 | Framework / runtime | Laravel 13 / maintained PHP 8.4 patch | Not recorded |
 | Dependency management | Composer 2; compatible pinned dependencies | No project lockfile recorded |
 | Database | Isolated MySQL 8.4 LTS / InnoDB / utf8mb4 | Not created or verified |
-| Frontend | Blade / Alpine 3 / Tailwind 4 / Vite | Not installed |
+| Frontend | React 19 / Inertia 3 / Tailwind 4 / Vite; Blade for PDF templates | Not installed |
 | Build runtime | Node 24 LTS | Project build not verified |
 | Core / ProjectForge | Separate applications, DB users, keys, sessions and storage | No working application setup recorded |
 

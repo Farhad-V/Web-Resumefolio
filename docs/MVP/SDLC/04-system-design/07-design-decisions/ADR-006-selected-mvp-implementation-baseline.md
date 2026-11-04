@@ -8,6 +8,8 @@ Farhad explicitly delegated completion of technical decisions and the Baseline. 
 
 ADR-002’s explicit publication/history realization, ADR-003’s durable/outcome-truthful effects and ADR-004’s compatible incremental evolution are selected for MVP implementation subject to T05’s concrete transactions, protected artifact references, idempotency and outbox rules. Provider/workflow-specific portions remain deferred. ADR-001 cannot override the separate-system boundary already selected by ADR-005.
 
+Frontend amendment: [ADR-007 — React and Inertia](ADR-007-react-inertia-frontend.md) records Farhad’s later selection for T01; other Baseline decisions remain in force.
+
 ## Alternatives, consequences and validation
 
 [Technical decisions](../../../baseline/technical-decisions.md) records the SPA/database/Git-platform alternatives, selected mechanisms and revisit triggers. The principal cost/risk is the independent identity/API/native Git boundary; G2 is mandatory before enabling it. Same-host operation remains a shared failure domain. No feature scope is removed to hide that risk.

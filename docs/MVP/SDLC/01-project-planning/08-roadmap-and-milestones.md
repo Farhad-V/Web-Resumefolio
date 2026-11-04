@@ -5,7 +5,7 @@
 
 This file is the single canonical milestone definition catalog. [Project Management](../../Project-Management/version-1-delivery-plan.md) links here; GitHub Milestones mirror IDs, outcome summaries and this source link while Issues/Kanban carry execution state. Complete documentation first, then synchronize existing remote items without duplicates. No Sprint planning or current deadline is assigned.
 
-The [selected Baseline](../../baseline/README.md), documentation revision 1.3, selects the M-02/M-03 documentary requirements/technical choices. This does not assert actor validation or runtime/dependency/host/restore evidence. The actual implementation gates remain explicit. M-01 acceptance describes its recorded planning snapshot; milestone or task closure still needs actual completion evidence. Old dates and pending-mechanism wording below are historical where superseded by the Baseline.
+The [selected Baseline](../../baseline/README.md), documentation revision 1.4, selects the M-02/M-03 documentary requirements/technical choices. This does not assert actor validation or runtime/dependency/host/restore evidence. The actual implementation gates remain explicit. M-01 acceptance describes its recorded planning snapshot; milestone or task closure still needs actual completion evidence. Old dates and pending-mechanism wording below are historical where superseded by the Baseline.
 
 M-01–M-07, M-09 and M-10 are retained MVP outcomes. M-08 remains a separate after-MVP workflow-execution outcome, with no MVP due date or release prerequisite. Do not confuse GitHub Milestones used to manage the project with the deferred product feature for repository milestones/releases.
 

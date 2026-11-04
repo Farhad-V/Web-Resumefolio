@@ -16,6 +16,8 @@ Status: Not started. The responsibilities below are selected Design, not claims 
 | ProjectForge — SSO, grants, native Git, files/history and issues/board | Not created | Not started |
 | Each system — local persistence, outbox, jobs and audit | Not created | Not started |
 
+React pages and reusable components belong to each Laravel application through Inertia. Laravel routes/controllers and policies retain server-side authority; client-side visibility is not authorization. Keep trusted Blade PDF templates separate from interactive React pages. No source paths or installed adapters are asserted before scaffolding.
+
 Map responsibilities to actual namespaces/directories after scaffolding. Keep Core and ProjectForge databases, keys, sessions and private storage separate; do not introduce a shared process/database to make this table easier to fill.
 
 ## Record database changes when implemented
