@@ -1,0 +1,34 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+allowmixing
+title Proposed — Consistent backup set and isolated usable restore
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+rectangle "Required compatible recovery set" {
+ database "Relational state / command / intent / reference ledger" as D
+ folder "Private bytes / publication and actual-material manifests" as F
+ folder "Native Git repositories / refs" as G
+ rectangle "Configuration identities + usable protected keys" as K
+}
+rectangle "Actual coordinated capture procedure\nconsistent recoverable point / compatibility evidence" as C
+rectangle "Independent protected recovery source\nnot configured by documented inventory" as B
+rectangle "Isolated restore target\noutbound consequential effects disabled" as R
+rectangle "Verify records / bytes / keys / refs / current authority\nrebuild derived cache; reconcile unresolved external effects" as V
+rectangle "Actual scoped disposition\nusable result + measured loss/time + remaining limits" as O
+D --> C
+F --> C
+G --> C
+K --> C
+C ..> B : only actual established usable mechanism
+B ..> R : only authorized available source
+R --> V
+V --> O
+note bottom of B
+ Full / incremental / point-in-time capture are unselected implementation options.
+ No schedule, RPO, RTO, destination or restore readiness established.
+ Redundancy / replication is not sufficient proof of usable backup.
+end note
+
+@enduml

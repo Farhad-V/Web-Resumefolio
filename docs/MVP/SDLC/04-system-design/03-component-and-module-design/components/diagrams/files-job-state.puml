@@ -1,0 +1,25 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Proposed — Operation and job knowledge states
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+[*] --> Queued
+Queued --> Running : current guarded claim and eligibility
+Queued --> CancelledBeforeDispatch : confirmed prevention of dispatch
+Running --> Succeeded : actual operation-specific completion evidence
+Running --> FailedKnown : authoritative known failure
+Running --> Reconciling : partial / unknown effect
+Running --> StopRequested : cancellation intent
+StopRequested --> Succeeded : completion wins race
+StopRequested --> StoppedConfirmed : actual facility stop evidence
+StopRequested --> Reconciling : stop/effect unknown
+Reconciling --> Succeeded : completion established
+Reconciling --> FailedKnown : actual known failure evidence
+note right of StoppedConfirmed
+ Stop confirmation is separate from cleanup.
+ Terminal job state is not reclaimed capacity.
+end note
+
+@enduml

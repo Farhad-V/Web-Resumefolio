@@ -1,0 +1,24 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Future after MVP. Provider, advanced Sprint/review, or untrusted execution requirement retained as deferred.
+allowmixing
+title AFTER MVP — Proposed — Logical work flow and channel eligibility
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+component "Explicit reviewed send / reminder intent" as I
+database "Durable attributable work" as D
+queue "Logical pending lane\nnot selected broker" as Q
+component "Current guarded worker admission" as W
+component "Selected evaluated email capability" as E
+component "Unselected alternatives\npush / SMS / chat" as U #EEEEEE
+component "Actual accepted / rejected / partial / unknown observation" as O
+I --> D
+D --> Q
+Q --> W
+W --> E : only actual eligible intent
+E --> O
+O --> D : current claim / evidence
+U ..> W : no dispatch until separately sourced and enabled
+
+@enduml

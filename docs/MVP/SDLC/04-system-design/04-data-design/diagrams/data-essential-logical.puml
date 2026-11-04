@@ -1,0 +1,32 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Proposed / illustrative — Logical ERD: exact publication and live selection
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+entity Resume {
+ * resumeId : identity <<PK>>
+ ownerId : actor identity
+}
+entity Draft {
+ * resumeId : identity <<PK, FK Resume>>
+ version : revision
+ selectedContent : validated value
+}
+entity PublicationRevision {
+ * revisionId : identity <<PK>>
+ resumeId : identity <<FK Resume>>
+ sourceDraftVersion : revision provenance
+ confirmedContent : immutable value
+}
+entity LiveSelection {
+ * resumeId : identity <<PK, FK Resume>>
+ revisionId : identity <<same-resume FK>>
+}
+Resume ||--|| Draft
+Resume ||--o{ PublicationRevision
+Resume ||--o| LiveSelection
+PublicationRevision ||--o| LiveSelection
+
+@enduml

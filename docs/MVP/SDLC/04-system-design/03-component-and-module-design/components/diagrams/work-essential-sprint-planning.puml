@@ -1,0 +1,25 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Future after MVP. Provider, advanced Sprint/review, or untrusted execution requirement retained as deferred.
+title AFTER MVP — Proposed — Coherent Sprint planning, execution and review
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+start
+:Refine backlog meaning and criteria under current project scope;
+:Explicitly select goal, eligible items and delivery plan/tasks;
+:Guard and persist one coherent Sprint Backlog;
+:Execute work; update task and item observations explicitly;
+:Review actual outcomes against identified criteria and goal;
+:Record item acceptance and goal outcome by actual authority;
+:Close period with exact goal/scope/plan and observed outcomes;
+if (Incomplete work remains?) then (yes)
+ :Apply only reviewed explicit incomplete-work disposition;
+ :Select any future Sprint scope deliberately; no inferred carry-over;
+else (no)
+ :Preserve actual completion / acceptance evidence;
+endif
+:Retain closed-period context independently of later item edits;
+stop
+
+@enduml

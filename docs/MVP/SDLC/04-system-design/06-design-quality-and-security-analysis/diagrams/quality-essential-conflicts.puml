@@ -1,0 +1,29 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Proposed — Quality trade-off hypotheses and non-negotiable invariants
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+rectangle "Current authorization / synchronized invalidation" as A
+rectangle "Latency / dependency pressure" as L
+rectangle "Exact immutable history / protected references" as H
+rectangle "Storage / cleanup / recovery burden" as S
+rectangle "More worker concurrency" as C
+rectangle "Queue delay / web resource contention" as W
+rectangle "AFTER MVP: untrusted-code containment" as I
+rectangle "Capacity / setup / operating effort" as O
+A --> L : correctness benefit; possible cost to measure
+H --> S : integrity benefit; retention/lifecycle cost to assess
+C --> W : may reduce waiting while increasing contention
+I --> O : required safety boundary; actual resource cost to establish
+A -[hidden]down-> H
+H -[hidden]down-> C
+C -[hidden]down-> I
+note bottom of H
+ These are hypotheses, not measured correlations or scores.
+ Security/history invariants are constraints, not tradeable benchmark points.
+ No numerical worker, retention or latency setting is selected.
+end note
+
+@enduml

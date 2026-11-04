@@ -1,0 +1,39 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Mixed MVP / future. Retained broader-product associations require explicit future node labels; MVP uses only core/basic ProjectForge.
+title MVP + EXPLICIT FUTURE PATHS — schedule reconciliation
+ title Resumefolio - Schedule reconciliation after analysis and design
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam activity {
+  BackgroundColor #DBEAFE
+  BorderColor #94A3B8
+  FontColor #17324D
+  DiamondBackgroundColor #FEF3C7
+  DiamondBorderColor #94A3B8
+  StartColor #17324D
+  EndColor #17324D
+}
+start
+:Review analysis/design and unresolved findings;
+:Break scope into estimable work and prerequisites;
+:Establish usable solo capacity;
+:Include learning, implementation, integration,\nverification, documentation and rework;
+:Estimate ranges and compare forecast with requested target;
+if (Conflict with target or available resources?) then (yes)
+  :Record evidence, options and consequences;
+  :Project owner decides material changes;
+else (no identified conflict)
+  :Record estimate basis and remaining uncertainty;
+endif
+:Reconcile backlog, Sprints, milestones and live tracking;
+:Record agreed forecast and pre-implementation baseline;
+:During execution, revise using actual progress;
+stop
+legend bottom
+Existing dates remain provisional until this review occurs.
+Do not silently remove scope or bypass verification to preserve a target.
+This diagram does not perform rescheduling or authorize product coding now.
+endlegend
+@enduml

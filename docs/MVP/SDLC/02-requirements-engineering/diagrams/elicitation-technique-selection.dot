@@ -1,0 +1,18 @@
+// OWNER-MVP-2026-11-04 review: Method / document navigation. Scope-independent process/navigation; provider or runner examples are not MVP prerequisites.
+digraph TechniqueSelection {
+ graph [rankdir=LR,bgcolor="white",pad=0.35,ranksep=0.7,nodesep=0.3,fontname="Arial",fontsize=20,labelloc=t,
+ label="Resumefolio | Choose a technique for the information gap\nUse the lightest suitable method - participation and evidence limits remain explicit"];
+ node [shape=box,style="rounded,filled",fontname="Arial",fontsize=12,color="#64748B",fontcolor="#17324D",margin="0.2,0.14",fillcolor="#DBEAFE"];
+ edge [color="#64748B",arrowsize=0.7,fontname="Arial",fontsize=10];
+ gap [label="IDENTIFY THE GAP\nActor goal + known scope\nMissing information / evidence",fillcolor="#17324D",fontcolor=white];
+ documents [label="EXISTING KNOWLEDGE\nDocument analysis\nExact source / revision and interpretation"];
+ discussion [label="GOALS AND RULES\nFocused owner discussion / interview\nActual answers and reviewed meaning"];
+ walkthrough [label="WORKFLOW OR INTERACTION\nScenario walkthrough / prototype\nActual feedback and unresolved behavior",fillcolor="#EDE9FE"];
+ observation [label="ACTUAL CURRENT PRACTICE\nObservation with suitable permission\nObserved steps, context and limitations",fillcolor="#EDE9FE"];
+ workshop [label="COMPETING PERSPECTIVES\nWorkshop / brainstorming if suitable\nReal participants, options and disagreement",fillcolor="#FEF3C7"];
+ survey [label="BROADER USER PATTERN\nSurvey with a real relevant population\nActual responses and sampling limits",fillcolor="#FEF3C7"];
+ output [label="ACTUAL RECORD AND HANDOFF\nMethod / rationale + source / date\nSeparate raw evidence and interpretation\nReview status + owner / next action / gate",fillcolor="#DCFCE7"];
+ gap -> documents;gap -> discussion;gap -> walkthrough;gap -> observation;gap -> workshop;gap -> survey;
+ documents -> output;discussion -> output;walkthrough -> output;observation -> output;workshop -> output;survey -> output;
+ {rank=same;documents;discussion;walkthrough;observation;workshop;survey;}
+}

@@ -1,0 +1,34 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Proposed — Authentication and conditional second factor
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+actor User
+participant "Trusted login entry" as E
+participant "Identity owner" as I
+participant "Evaluated credential / factor mechanism" as V
+database "Current account / session state" as D
+User -> E : selected login proof over protected transport
+E -> I : validated bounded authentication request
+I -> V : verify actual required primary proof
+V --> I : actual verified / failed / unavailable result
+alt valid proof and eligible current account
+ opt accepted policy requires additional factor / step-up
+  I -> V : verify scoped second-factor proof
+  V --> I : verified / failed / unavailable
+ end
+ I -> D : establish fresh session only if every required proof succeeded\nand current account remains eligible
+ D --> I : actual session context or refusal
+ I --> E : protected session result / safe failure
+else failed / unavailable / ineligible
+ I --> E : safe generic refusal; no bypass
+end
+E --> User : actual authentication result
+note over E,D
+ No passwords, factor values or raw session IDs in ordinary logs.
+ Concrete fixation, cookie, CSRF, throttling and factor mechanisms need evaluation.
+end note
+
+@enduml

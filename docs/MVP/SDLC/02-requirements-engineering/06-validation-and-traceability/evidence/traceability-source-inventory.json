@@ -1,0 +1,1642 @@
+{
+  "activity": "RV-D01 documentary inventory and explicit-citation inspection",
+  "date": "2026-10-31",
+  "recorder": "Codex",
+  "owner_review": "not recorded",
+  "scope": "Current working-copy documentary structure/citations, not product tests, full semantic review, Git baseline or live backlog audit",
+  "method": "Parse candidate headings, source/criterion/method markers and explicit UC trace/source citations; SHA-256 of inspected source bytes",
+  "counts": {
+    "candidate_records": 157,
+    "criteria_bullets_observed": 470,
+    "use_case_bundles": 12,
+    "stories": 12,
+    "scenario_path_anchors": 60,
+    "candidates_explicitly_cited_by_bundles": 123,
+    "candidates_without_explicit_bundle_citation": 34
+  },
+  "sources": [
+    {
+      "path": "SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "sha256": "379c0d6287433007b0cd0c2aaa408803bddee1f9238bb3805cf11a9746f55031"
+    },
+    {
+      "path": "SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "sha256": "140f353ed4b9a53013126fad4c73a4b28c3c76ff14a918170bcf586dc73b6318"
+    },
+    {
+      "path": "SDLC/02-requirements-engineering/03-requirements-specification/business-requirements.md",
+      "sha256": "11892dca9f0c258cbb994567ea09658c90be798b3dd7d00131cf354e0e203726"
+    },
+    {
+      "path": "SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
+      "sha256": "e9b0ad9982b601735ce4cd770e2de6ee5dc02401d7f2d6e5f5e2af5b9d9dd629"
+    },
+    {
+      "path": "SDLC/02-requirements-engineering/03-requirements-specification/domain-requirements-and-constraints.md",
+      "sha256": "83b0468940811e85cc233e86ce51d2f5d3c01b95576f1d74b04e01119ff09610"
+    },
+    {
+      "path": "SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "sha256": "686169becdc3ce425314db5fc1037409a97220f6689e1591367aa7ce0d6b9ffc"
+    },
+    {
+      "path": "SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md",
+      "sha256": "7b2dac39665ca59fe89909a73ccf6541df173ec10b3bee45ba4cf703e4b7a721"
+    },
+    {
+      "path": "SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md",
+      "sha256": "54e97e9c5a19505caffb961d185c74fa2839ab95663358c973c3b2e93f7b57b7"
+    },
+    {
+      "path": "SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md",
+      "sha256": "79ecf1c0197a2ddec56b987acad66a341a9c4ee9f037c52c7d88a5cc873c56f3"
+    },
+    {
+      "path": "SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md",
+      "sha256": "a77918914336209d4f3e15fea1aefb98822da9a72aeacf330074970cddc513f4"
+    },
+    {
+      "path": "SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md",
+      "sha256": "5fb4b45b5fdbc66efa163af58091da26bd20806a2f8e79f86e2ed9b97d13c532"
+    },
+    {
+      "path": "SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "sha256": "2a38c5d2f5b0ace77880c410e512e9bce4dbc19d7cabb66ac6e6b498503f8f92"
+    },
+    {
+      "path": "SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "sha256": "11242917ec901bd04908cac67b173dc6d1061195e79ada67bae0b47f23616f0e"
+    },
+    {
+      "path": "SDLC/02-requirements-engineering/03-requirements-specification/requirements-specification.md",
+      "sha256": "1c0279dbc279328402d60bc6b83a46d52dbae92973bc3069e0250a4ed446b762"
+    },
+    {
+      "path": "SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "sha256": "0e14f77c91a9ce03959e0b9c287d6bf50aada85cbdd9649bf5106adb5dd00412"
+    },
+    {
+      "path": "SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "sha256": "e05567e72c56dedfda93671dbbf31c352cb6bbbc1ead358a9e1243c170fad258"
+    },
+    {
+      "path": "SDLC/02-requirements-engineering/04-scenarios-and-models/user-stories-and-scenarios.md",
+      "sha256": "bd509c8f23c6596850ab735c11abd87b23ff72264e121896ced1a526af631d33"
+    },
+    {
+      "path": "SDLC/02-requirements-engineering/03-requirements-specification/README.md",
+      "sha256": "fe522f9bd5a43a15e7565dcb8acd38e852cf4149add003e5dd65459e302029b9"
+    },
+    {
+      "path": "SDLC/02-requirements-engineering/05-data-definitions/data-dictionary.md",
+      "sha256": "6fadd557284d348ce0df496201f62c8f5e1cf061bda57bd976cf5516dffc9aa4"
+    },
+    {
+      "path": "SDLC/02-requirements-engineering/05-data-definitions/glossary.md",
+      "sha256": "14964bd9a89f4ec09ecafa1cf75e3e68b9facf011aec37163d8def119ef9dcea"
+    },
+    {
+      "path": "SDLC/01-project-planning/02-scope.md",
+      "sha256": "33b218141cef0799afe61adc098b7c42e6eb3ee9b1826c1b3d03f926b332dd82"
+    },
+    {
+      "path": "SDLC/01-project-planning/01-purpose-and-objectives.md",
+      "sha256": "072a1c98d43b5d53eb37ec2d5f26646dc3bdf3f67e0d7656347f4988a434e37c"
+    },
+    {
+      "path": "SDLC/01-project-planning/10-planning-completion-criteria.md",
+      "sha256": "3396822ea3b2b74d99cad56d794ff5ca143ca88554d0552b7a4564c3886b4e65"
+    },
+    {
+      "path": "SDLC/01-project-planning/08-roadmap-and-milestones.md",
+      "sha256": "bad3ccf32fd991cdc55f80fa72c6af50e67bbe819e44441baf4ae4dcc1fc6683"
+    },
+    {
+      "path": "Project-Management/product-backlog.md",
+      "sha256": "cd4abcbfe4e0b7e1244446b55ac4a1ce808f0c3716e72908cf7e3c256fcfe561"
+    },
+    {
+      "path": "SDLC/02-requirements-engineering/07-change-and-baseline/requirements-review-and-baseline-criteria.md",
+      "sha256": "8b8086de2d89f670d675378d6cf41e7f62533788b0facf9b0a36cd2f585b7f52"
+    }
+  ],
+  "records": [
+    {
+      "id": "ACC-D01",
+      "title": "Individual Account Context",
+      "file": "accounts-authentication-and-permissions.md",
+      "anchor": "acc-d01-individual-account-context",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "ACC-D02",
+      "title": "Unified Sign-in Across Authorized Sections",
+      "file": "accounts-authentication-and-permissions.md",
+      "anchor": "acc-d02-unified-sign-in-across-authorized-sections",
+      "criteria_bullets": 2,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "ACC-D03",
+      "title": "Resource and Operation Authorization",
+      "file": "accounts-authentication-and-permissions.md",
+      "anchor": "acc-d03-resource-and-operation-authorization",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "04",
+        "08"
+      ]
+    },
+    {
+      "id": "ACC-D04",
+      "title": "Cross-user Private-data Isolation",
+      "file": "accounts-authentication-and-permissions.md",
+      "anchor": "acc-d04-cross-user-private-data-isolation",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "04",
+        "08"
+      ]
+    },
+    {
+      "id": "ACC-D05",
+      "title": "Limited Collaboration Authority",
+      "file": "accounts-authentication-and-permissions.md",
+      "anchor": "acc-d05-limited-collaboration-authority",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "08"
+      ]
+    },
+    {
+      "id": "ACC-D06",
+      "title": "Employer Access Without a Viewer Account",
+      "file": "accounts-authentication-and-permissions.md",
+      "anchor": "acc-d06-employer-access-without-a-viewer-account",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "03"
+      ]
+    },
+    {
+      "id": "ACC-D07",
+      "title": "Protected Shared File and PDF Retrieval",
+      "file": "accounts-authentication-and-permissions.md",
+      "anchor": "acc-d07-protected-shared-file-and-pdf-retrieval",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "03"
+      ]
+    },
+    {
+      "id": "ACC-D08",
+      "title": "Owner Control of Employer-link Access",
+      "file": "accounts-authentication-and-permissions.md",
+      "anchor": "acc-d08-owner-control-of-employer-link-access",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "02",
+        "03"
+      ]
+    },
+    {
+      "id": "ACC-D09",
+      "title": "Explicit Administrative Powers",
+      "file": "accounts-authentication-and-permissions.md",
+      "anchor": "acc-d09-explicit-administrative-powers",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "11"
+      ]
+    },
+    {
+      "id": "ACC-D10",
+      "title": "Authorization of Access-grant Changes",
+      "file": "accounts-authentication-and-permissions.md",
+      "anchor": "acc-d10-authorization-of-access-grant-changes",
+      "criteria_bullets": 2,
+      "explicit_bundle_citations": [
+        "08"
+      ]
+    },
+    {
+      "id": "ACC-D11",
+      "title": "No Authentication Bypass on Delivery/Provider Failure",
+      "file": "accounts-authentication-and-permissions.md",
+      "anchor": "acc-d11-no-authentication-bypass-on-deliveryprovider-failure",
+      "criteria_bullets": 2,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "ACC-D12",
+      "title": "End-of-access and Lifecycle Enforcement",
+      "file": "accounts-authentication-and-permissions.md",
+      "anchor": "acc-d12-end-of-access-and-lifecycle-enforcement",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "08"
+      ]
+    },
+    {
+      "id": "AFO-D01",
+      "title": "Owner-configurable Upload and Storage Policy",
+      "file": "administration-files-and-operational-behavior.md",
+      "anchor": "afo-d01-owner-configurable-upload-and-storage-policy",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "11"
+      ]
+    },
+    {
+      "id": "AFO-D02",
+      "title": "Policy Consistent with Evaluated Infrastructure",
+      "file": "administration-files-and-operational-behavior.md",
+      "anchor": "afo-d02-policy-consistent-with-evaluated-infrastructure",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "11"
+      ]
+    },
+    {
+      "id": "AFO-D03",
+      "title": "Per-file Admission Limit",
+      "file": "administration-files-and-operational-behavior.md",
+      "anchor": "afo-d03-per-file-admission-limit",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "11"
+      ]
+    },
+    {
+      "id": "AFO-D04",
+      "title": "Aggregate Quota and Concurrent Admission",
+      "file": "administration-files-and-operational-behavior.md",
+      "anchor": "afo-d04-aggregate-quota-and-concurrent-admission",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "11"
+      ]
+    },
+    {
+      "id": "AFO-D05",
+      "title": "Supported Content and Validation",
+      "file": "administration-files-and-operational-behavior.md",
+      "anchor": "afo-d05-supported-content-and-validation",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "11"
+      ]
+    },
+    {
+      "id": "AFO-D06",
+      "title": "File-resource Authorization and Isolation",
+      "file": "administration-files-and-operational-behavior.md",
+      "anchor": "afo-d06-file-resource-authorization-and-isolation",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "11"
+      ]
+    },
+    {
+      "id": "AFO-D07",
+      "title": "Truthful Completion and Interrupted-operation Handling",
+      "file": "administration-files-and-operational-behavior.md",
+      "anchor": "afo-d07-truthful-completion-and-interrupted-operation-handling",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "11"
+      ]
+    },
+    {
+      "id": "AFO-D08",
+      "title": "Safe Replacement and Lifecycle Effects",
+      "file": "administration-files-and-operational-behavior.md",
+      "anchor": "afo-d08-safe-replacement-and-lifecycle-effects",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "11"
+      ]
+    },
+    {
+      "id": "AFO-D09",
+      "title": "Operational Outcomes and Capacity Warnings",
+      "file": "administration-files-and-operational-behavior.md",
+      "anchor": "afo-d09-operational-outcomes-and-capacity-warnings",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "11"
+      ]
+    },
+    {
+      "id": "AFO-D10",
+      "title": "Administrative Operation Evidence",
+      "file": "administration-files-and-operational-behavior.md",
+      "anchor": "afo-d10-administrative-operation-evidence",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "11"
+      ]
+    },
+    {
+      "id": "AFO-D11",
+      "title": "Bounded Cleanup and Storage Reclamation",
+      "file": "administration-files-and-operational-behavior.md",
+      "anchor": "afo-d11-bounded-cleanup-and-storage-reclamation",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "11"
+      ]
+    },
+    {
+      "id": "AFO-D12",
+      "title": "Version-specific Operational Guidance and Readiness",
+      "file": "administration-files-and-operational-behavior.md",
+      "anchor": "afo-d12-version-specific-operational-guidance-and-readiness",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "11",
+        "12"
+      ]
+    },
+    {
+      "id": "BIZ-D01",
+      "title": "Reusable Information and Relevant Professional Presentation",
+      "file": "business-requirements.md",
+      "anchor": "biz-d01-reusable-information-and-relevant-professional-presentation",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "BIZ-D02",
+      "title": "Controlled Disclosure of Professional Information",
+      "file": "business-requirements.md",
+      "anchor": "biz-d02-controlled-disclosure-of-professional-information",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "BIZ-D03",
+      "title": "Traceable Manual Applications and Preserved Submission History",
+      "file": "business-requirements.md",
+      "anchor": "biz-d03-traceable-manual-applications-and-preserved-submission-history",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "BIZ-D04",
+      "title": "Coordinated Authorized Work in One Product Experience",
+      "file": "business-requirements.md",
+      "anchor": "biz-d04-coordinated-authorized-work-in-one-product-experience",
+      "criteria_bullets": 4,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "BIZ-D05",
+      "title": "Usable, Maintainable and Recoverable Initial Operation",
+      "file": "business-requirements.md",
+      "anchor": "biz-d05-usable-maintainable-and-recoverable-initial-operation",
+      "criteria_bullets": 4,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "BRL-D01",
+      "title": "Resource-specific Authority",
+      "file": "business-rules-and-data-lifecycle.md",
+      "anchor": "brl-d01-resource-specific-authority",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "BRL-D02",
+      "title": "Shared Information and Independent Tailoring",
+      "file": "business-rules-and-data-lifecycle.md",
+      "anchor": "brl-d02-shared-information-and-independent-tailoring",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "01"
+      ]
+    },
+    {
+      "id": "BRL-D03",
+      "title": "Explicit Shared Content and Download Availability",
+      "file": "business-rules-and-data-lifecycle.md",
+      "anchor": "brl-d03-explicit-shared-content-and-download-availability",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "BRL-D04",
+      "title": "Access Changes Govern Subsequent Retrieval",
+      "file": "business-rules-and-data-lifecycle.md",
+      "anchor": "brl-d04-access-changes-govern-subsequent-retrieval",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "BRL-D05",
+      "title": "Preserve Actual Submitted Materials",
+      "file": "business-rules-and-data-lifecycle.md",
+      "anchor": "brl-d05-preserve-actual-submitted-materials",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "05"
+      ]
+    },
+    {
+      "id": "BRL-D06",
+      "title": "Validation and Truthful State Changes",
+      "file": "business-rules-and-data-lifecycle.md",
+      "anchor": "brl-d06-validation-and-truthful-state-changes",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "04",
+        "07"
+      ]
+    },
+    {
+      "id": "BRL-D07",
+      "title": "Explicit Provider Synchronization Authority",
+      "file": "business-rules-and-data-lifecycle.md",
+      "anchor": "brl-d07-explicit-provider-synchronization-authority",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "06"
+      ]
+    },
+    {
+      "id": "BRL-D08",
+      "title": "Reference-aware Retirement",
+      "file": "business-rules-and-data-lifecycle.md",
+      "anchor": "brl-d08-reference-aware-retirement",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "05",
+        "12"
+      ]
+    },
+    {
+      "id": "BRL-D09",
+      "title": "Recovery Preserves Defined Business Consistency",
+      "file": "business-rules-and-data-lifecycle.md",
+      "anchor": "brl-d09-recovery-preserves-defined-business-consistency",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "12"
+      ]
+    },
+    {
+      "id": "BRL-D10",
+      "title": "Defined Language and Time Meaning",
+      "file": "business-rules-and-data-lifecycle.md",
+      "anchor": "brl-d10-defined-language-and-time-meaning",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "04"
+      ]
+    },
+    {
+      "id": "DOM-D01",
+      "title": "Consistent Professional-information Meaning",
+      "file": "domain-requirements-and-constraints.md",
+      "anchor": "dom-d01-consistent-professional-information-meaning",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "DOM-D02",
+      "title": "Application History Represents Actual Submitted Material",
+      "file": "domain-requirements-and-constraints.md",
+      "anchor": "dom-d02-application-history-represents-actual-submitted-material",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "DOM-D03",
+      "title": "Authorization Follows the Resource and Operation",
+      "file": "domain-requirements-and-constraints.md",
+      "anchor": "dom-d03-authorization-follows-the-resource-and-operation",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "DOM-D04",
+      "title": "Explicit Human-authored Language and Application Work",
+      "file": "domain-requirements-and-constraints.md",
+      "anchor": "dom-d04-explicit-human-authored-language-and-application-work",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "DOM-D05",
+      "title": "Explicit External-service Applicability",
+      "file": "domain-requirements-and-constraints.md",
+      "anchor": "dom-d05-explicit-external-service-applicability",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "DOM-D06",
+      "title": "Establish Information-handling Applicability",
+      "file": "domain-requirements-and-constraints.md",
+      "anchor": "dom-d06-establish-information-handling-applicability",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "DOM-D07",
+      "title": "Verify Reuse and Licensing Before Adoption",
+      "file": "domain-requirements-and-constraints.md",
+      "anchor": "dom-d07-verify-reuse-and-licensing-before-adoption",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "DOM-D08",
+      "title": "Evidence-based Operation Within Constraints",
+      "file": "domain-requirements-and-constraints.md",
+      "anchor": "dom-d08-evidence-based-operation-within-constraints",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "EGC-D01",
+      "title": "Authorized Connection and Account Context",
+      "file": "email-calendar-and-google-integration.md",
+      "anchor": "egc-d01-authorized-connection-and-account-context",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "06"
+      ]
+    },
+    {
+      "id": "EGC-D02",
+      "title": "Justified Permissions and Private-resource Isolation",
+      "file": "email-calendar-and-google-integration.md",
+      "anchor": "egc-d02-justified-permissions-and-private-resource-isolation",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "06"
+      ]
+    },
+    {
+      "id": "EGC-D03",
+      "title": "Read Authorized Correspondence",
+      "file": "email-calendar-and-google-integration.md",
+      "anchor": "egc-d03-read-authorized-correspondence",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "06"
+      ]
+    },
+    {
+      "id": "EGC-D04",
+      "title": "Manual Compose and Draft Handling",
+      "file": "email-calendar-and-google-integration.md",
+      "anchor": "egc-d04-manual-compose-and-draft-handling",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "06"
+      ]
+    },
+    {
+      "id": "EGC-D05",
+      "title": "Deliberate Send and Truthful Outcome",
+      "file": "email-calendar-and-google-integration.md",
+      "anchor": "egc-d05-deliberate-send-and-truthful-outcome",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "06"
+      ]
+    },
+    {
+      "id": "EGC-D06",
+      "title": "Reply Context and Conversation Association",
+      "file": "email-calendar-and-google-integration.md",
+      "anchor": "egc-d06-reply-context-and-conversation-association",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "06"
+      ]
+    },
+    {
+      "id": "EGC-D07",
+      "title": "Calendar Activities and Time Meaning",
+      "file": "email-calendar-and-google-integration.md",
+      "anchor": "egc-d07-calendar-activities-and-time-meaning",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "06"
+      ]
+    },
+    {
+      "id": "EGC-D08",
+      "title": "Explicit Synchronization Contract",
+      "file": "email-calendar-and-google-integration.md",
+      "anchor": "egc-d08-explicit-synchronization-contract",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "06"
+      ]
+    },
+    {
+      "id": "EGC-D09",
+      "title": "Application Relationships Preserve Boundaries",
+      "file": "email-calendar-and-google-integration.md",
+      "anchor": "egc-d09-application-relationships-preserve-boundaries",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "06"
+      ]
+    },
+    {
+      "id": "EGC-D10",
+      "title": "Reminders and Notification Outcomes",
+      "file": "email-calendar-and-google-integration.md",
+      "anchor": "egc-d10-reminders-and-notification-outcomes",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "06"
+      ]
+    },
+    {
+      "id": "EGC-D11",
+      "title": "Disconnect, Revocation and Reconnect",
+      "file": "email-calendar-and-google-integration.md",
+      "anchor": "egc-d11-disconnect-revocation-and-reconnect",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "06"
+      ]
+    },
+    {
+      "id": "EGC-D12",
+      "title": "Bounded Failures, Recovery and Feasibility Evidence",
+      "file": "email-calendar-and-google-integration.md",
+      "anchor": "egc-d12-bounded-failures-recovery-and-feasibility-evidence",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "06"
+      ]
+    },
+    {
+      "id": "EIF-D01",
+      "title": "Reviewable Interface Contracts",
+      "file": "external-interface-requirements.md",
+      "anchor": "eif-d01-reviewable-interface-contracts",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "EIF-D02",
+      "title": "Clear, Operable User Interaction",
+      "file": "external-interface-requirements.md",
+      "anchor": "eif-d02-clear-operable-user-interaction",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "EIF-D03",
+      "title": "Consistent Authorization Across Entry Paths",
+      "file": "external-interface-requirements.md",
+      "anchor": "eif-d03-consistent-authorization-across-entry-paths",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "03"
+      ]
+    },
+    {
+      "id": "EIF-D04",
+      "title": "Protected File and PDF Exchange",
+      "file": "external-interface-requirements.md",
+      "anchor": "eif-d04-protected-file-and-pdf-exchange",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "02",
+        "03"
+      ]
+    },
+    {
+      "id": "EIF-D05",
+      "title": "Explicit Google Provider Contracts",
+      "file": "external-interface-requirements.md",
+      "anchor": "eif-d05-explicit-google-provider-contracts",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "06"
+      ]
+    },
+    {
+      "id": "EIF-D06",
+      "title": "Real Git-client Interoperability",
+      "file": "external-interface-requirements.md",
+      "anchor": "eif-d06-real-git-client-interoperability",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "09"
+      ]
+    },
+    {
+      "id": "EIF-D07",
+      "title": "Bounded Workflow and Deployment Interfaces",
+      "file": "external-interface-requirements.md",
+      "anchor": "eif-d07-bounded-workflow-and-deployment-interfaces",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "10"
+      ]
+    },
+    {
+      "id": "EIF-D08",
+      "title": "Operation-specific Failure and Repetition Semantics",
+      "file": "external-interface-requirements.md",
+      "anchor": "eif-d08-operation-specific-failure-and-repetition-semantics",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "06"
+      ]
+    },
+    {
+      "id": "EIF-D09",
+      "title": "Operational Configuration and Recovery Boundaries",
+      "file": "external-interface-requirements.md",
+      "anchor": "eif-d09-operational-configuration-and-recovery-boundaries",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "EIF-D10",
+      "title": "Consistent Exchange Meaning and Lifecycle",
+      "file": "external-interface-requirements.md",
+      "anchor": "eif-d10-consistent-exchange-meaning-and-lifecycle",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "GIT-D01",
+      "title": "Repository Creation and Ownership",
+      "file": "git-hosting-and-collaboration.md",
+      "anchor": "git-d01-repository-creation-and-ownership",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "09"
+      ]
+    },
+    {
+      "id": "GIT-D02",
+      "title": "Repository and Ref Authorization",
+      "file": "git-hosting-and-collaboration.md",
+      "anchor": "git-d02-repository-and-ref-authorization",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "08",
+        "09"
+      ]
+    },
+    {
+      "id": "GIT-D03",
+      "title": "Real Clone, Fetch, Pull and Push",
+      "file": "git-hosting-and-collaboration.md",
+      "anchor": "git-d03-real-clone-fetch-pull-and-push",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "09"
+      ]
+    },
+    {
+      "id": "GIT-D04",
+      "title": "Branches, Files and History Browsing",
+      "file": "git-hosting-and-collaboration.md",
+      "anchor": "git-d04-branches-files-and-history-browsing",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "09"
+      ]
+    },
+    {
+      "id": "GIT-D05",
+      "title": "Fork Provenance and Permission Boundaries",
+      "file": "git-hosting-and-collaboration.md",
+      "anchor": "git-d05-fork-provenance-and-permission-boundaries",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "09"
+      ]
+    },
+    {
+      "id": "GIT-D06",
+      "title": "Pull Requests, Comments and Review",
+      "file": "git-hosting-and-collaboration.md",
+      "anchor": "git-d06-pull-requests-comments-and-review",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "09"
+      ]
+    },
+    {
+      "id": "GIT-D07",
+      "title": "Controlled Merge and Conflict Outcomes",
+      "file": "git-hosting-and-collaboration.md",
+      "anchor": "git-d07-controlled-merge-and-conflict-outcomes",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "09"
+      ]
+    },
+    {
+      "id": "GIT-D08",
+      "title": "Issues and Milestones",
+      "file": "git-hosting-and-collaboration.md",
+      "anchor": "git-d08-issues-and-milestones",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "09"
+      ]
+    },
+    {
+      "id": "GIT-D09",
+      "title": "Tags and Releases",
+      "file": "git-hosting-and-collaboration.md",
+      "anchor": "git-d09-tags-and-releases",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "09"
+      ]
+    },
+    {
+      "id": "GIT-D10",
+      "title": "Lifecycle, Capacity and Recovery",
+      "file": "git-hosting-and-collaboration.md",
+      "anchor": "git-d10-lifecycle-capacity-and-recovery",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "09"
+      ]
+    },
+    {
+      "id": "APP-D01",
+      "title": "Company and Opportunity Context",
+      "file": "manual-application-management.md",
+      "anchor": "app-d01-company-and-opportunity-context",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "04"
+      ]
+    },
+    {
+      "id": "APP-D02",
+      "title": "Relevant Resume Association",
+      "file": "manual-application-management.md",
+      "anchor": "app-d02-relevant-resume-association",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "04"
+      ]
+    },
+    {
+      "id": "APP-D03",
+      "title": "Manually Authored Cover Letter",
+      "file": "manual-application-management.md",
+      "anchor": "app-d03-manually-authored-cover-letter",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "04"
+      ]
+    },
+    {
+      "id": "APP-D04",
+      "title": "Explicit Progress States and Transitions",
+      "file": "manual-application-management.md",
+      "anchor": "app-d04-explicit-progress-states-and-transitions",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "04"
+      ]
+    },
+    {
+      "id": "APP-D05",
+      "title": "User-directed Submission Recording",
+      "file": "manual-application-management.md",
+      "anchor": "app-d05-user-directed-submission-recording",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "04",
+        "05"
+      ]
+    },
+    {
+      "id": "APP-D06",
+      "title": "Preserved Actual Submitted Copies",
+      "file": "manual-application-management.md",
+      "anchor": "app-d06-preserved-actual-submitted-copies",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "05"
+      ]
+    },
+    {
+      "id": "APP-D07",
+      "title": "Correction and Repeated Submissions",
+      "file": "manual-application-management.md",
+      "anchor": "app-d07-correction-and-repeated-submissions",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "05"
+      ]
+    },
+    {
+      "id": "APP-D08",
+      "title": "Correspondence, Calendar and Follow-up Links",
+      "file": "manual-application-management.md",
+      "anchor": "app-d08-correspondence-calendar-and-follow-up-links",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "05"
+      ]
+    },
+    {
+      "id": "APP-D09",
+      "title": "Private Access, Archive and Recovery",
+      "file": "manual-application-management.md",
+      "anchor": "app-d09-private-access-archive-and-recovery",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "05"
+      ]
+    },
+    {
+      "id": "PDF-D01",
+      "title": "Generated Resume PDF",
+      "file": "pdf-and-controlled-sharing.md",
+      "anchor": "pdf-d01-generated-resume-pdf",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "PDF-D02",
+      "title": "Uploaded PDF and Language Identity",
+      "file": "pdf-and-controlled-sharing.md",
+      "anchor": "pdf-d02-uploaded-pdf-and-language-identity",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "02"
+      ]
+    },
+    {
+      "id": "PDF-D03",
+      "title": "Per-resume Download Choices",
+      "file": "pdf-and-controlled-sharing.md",
+      "anchor": "pdf-d03-per-resume-download-choices",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "02",
+        "03"
+      ]
+    },
+    {
+      "id": "PDF-D04",
+      "title": "Scoped Password-protected Employer Access",
+      "file": "pdf-and-controlled-sharing.md",
+      "anchor": "pdf-d04-scoped-password-protected-employer-access",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "03"
+      ]
+    },
+    {
+      "id": "PDF-D05",
+      "title": "Direct File and PDF Authorization",
+      "file": "pdf-and-controlled-sharing.md",
+      "anchor": "pdf-d05-direct-file-and-pdf-authorization",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "03"
+      ]
+    },
+    {
+      "id": "PDF-D06",
+      "title": "Owner Password and Link Controls",
+      "file": "pdf-and-controlled-sharing.md",
+      "anchor": "pdf-d06-owner-password-and-link-controls",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "02",
+        "03"
+      ]
+    },
+    {
+      "id": "PDF-D07",
+      "title": "Explicit Live-revision and Rendition Behavior",
+      "file": "pdf-and-controlled-sharing.md",
+      "anchor": "pdf-d07-explicit-live-revision-and-rendition-behavior",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "PDF-D08",
+      "title": "Downloaded-copy and Submission Distinctions",
+      "file": "pdf-and-controlled-sharing.md",
+      "anchor": "pdf-d08-downloaded-copy-and-submission-distinctions",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "05"
+      ]
+    },
+    {
+      "id": "PDF-D09",
+      "title": "Failure-safe Processing and Content Handling",
+      "file": "pdf-and-controlled-sharing.md",
+      "anchor": "pdf-d09-failure-safe-processing-and-content-handling",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "PDF-D10",
+      "title": "Reference-aware Retirement and Recovery",
+      "file": "pdf-and-controlled-sharing.md",
+      "anchor": "pdf-d10-reference-aware-retirement-and-recovery",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "05"
+      ]
+    },
+    {
+      "id": "PRP-D01",
+      "title": "Reusable Professional Information",
+      "file": "profiles-resumes-and-portfolio.md",
+      "anchor": "prp-d01-reusable-professional-information",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "01"
+      ]
+    },
+    {
+      "id": "PRP-D02",
+      "title": "Opportunity-specific Resume Composition",
+      "file": "profiles-resumes-and-portfolio.md",
+      "anchor": "prp-d02-opportunity-specific-resume-composition",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "01"
+      ]
+    },
+    {
+      "id": "PRP-D03",
+      "title": "Independent Selections, Layouts and Overrides",
+      "file": "profiles-resumes-and-portfolio.md",
+      "anchor": "prp-d03-independent-selections-layouts-and-overrides",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "01"
+      ]
+    },
+    {
+      "id": "PRP-D04",
+      "title": "Explicit Shared-source Update Rules",
+      "file": "profiles-resumes-and-portfolio.md",
+      "anchor": "prp-d04-explicit-shared-source-update-rules",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "01"
+      ]
+    },
+    {
+      "id": "PRP-D05",
+      "title": "Skill and Project Evidence Management",
+      "file": "profiles-resumes-and-portfolio.md",
+      "anchor": "prp-d05-skill-and-project-evidence-management",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "01"
+      ]
+    },
+    {
+      "id": "PRP-D06",
+      "title": "Per-resume Evidence Selection and Disclosure",
+      "file": "profiles-resumes-and-portfolio.md",
+      "anchor": "prp-d06-per-resume-evidence-selection-and-disclosure",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "01"
+      ]
+    },
+    {
+      "id": "PRP-D07",
+      "title": "Manually Maintained English and German Content",
+      "file": "profiles-resumes-and-portfolio.md",
+      "anchor": "prp-d07-manually-maintained-english-and-german-content",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "01"
+      ]
+    },
+    {
+      "id": "PRP-D08",
+      "title": "Clear Presentation and Rendition Boundaries",
+      "file": "profiles-resumes-and-portfolio.md",
+      "anchor": "prp-d08-clear-presentation-and-rendition-boundaries",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "PRP-D09",
+      "title": "Safe Content Admission and Truthful Save Outcomes",
+      "file": "profiles-resumes-and-portfolio.md",
+      "anchor": "prp-d09-safe-content-admission-and-truthful-save-outcomes",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "PRP-D10",
+      "title": "Reference-aware Retirement and Historical Independence",
+      "file": "profiles-resumes-and-portfolio.md",
+      "anchor": "prp-d10-reference-aware-retirement-and-historical-independence",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "PKS-D01",
+      "title": "Project and Board Context",
+      "file": "projects-kanban-and-sprints.md",
+      "anchor": "pks-d01-project-and-board-context",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "07"
+      ]
+    },
+    {
+      "id": "PKS-D02",
+      "title": "Configurable Columns and Valid Work Movement",
+      "file": "projects-kanban-and-sprints.md",
+      "anchor": "pks-d02-configurable-columns-and-valid-work-movement",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "07"
+      ]
+    },
+    {
+      "id": "PKS-D03",
+      "title": "Product Backlog and Item Definition",
+      "file": "projects-kanban-and-sprints.md",
+      "anchor": "pks-d03-product-backlog-and-item-definition",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "07"
+      ]
+    },
+    {
+      "id": "PKS-D04",
+      "title": "Item Refinement and Task Relationships",
+      "file": "projects-kanban-and-sprints.md",
+      "anchor": "pks-d04-item-refinement-and-task-relationships",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "07"
+      ]
+    },
+    {
+      "id": "PKS-D05",
+      "title": "Assignment, Priority and Due-date Handling",
+      "file": "projects-kanban-and-sprints.md",
+      "anchor": "pks-d05-assignment-priority-and-due-date-handling",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "07"
+      ]
+    },
+    {
+      "id": "PKS-D06",
+      "title": "Scoped Collaboration and Membership Changes",
+      "file": "projects-kanban-and-sprints.md",
+      "anchor": "pks-d06-scoped-collaboration-and-membership-changes",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "08"
+      ]
+    },
+    {
+      "id": "PKS-D07",
+      "title": "Sprint Goal and Selected Backlog Items",
+      "file": "projects-kanban-and-sprints.md",
+      "anchor": "pks-d07-sprint-goal-and-selected-backlog-items",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "07"
+      ]
+    },
+    {
+      "id": "PKS-D08",
+      "title": "One Coherent Sprint Backlog",
+      "file": "projects-kanban-and-sprints.md",
+      "anchor": "pks-d08-one-coherent-sprint-backlog",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "07"
+      ]
+    },
+    {
+      "id": "PKS-D09",
+      "title": "Explicit Completion and Sprint-end Outcomes",
+      "file": "projects-kanban-and-sprints.md",
+      "anchor": "pks-d09-explicit-completion-and-sprint-end-outcomes",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "07"
+      ]
+    },
+    {
+      "id": "PKS-D10",
+      "title": "Deliberate Cross-module Links, Reports and Automation",
+      "file": "projects-kanban-and-sprints.md",
+      "anchor": "pks-d10-deliberate-cross-module-links-reports-and-automation",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "07"
+      ]
+    },
+    {
+      "id": "PKS-D11",
+      "title": "Truthful Changes, Retirement and Recovery",
+      "file": "projects-kanban-and-sprints.md",
+      "anchor": "pks-d11-truthful-changes-retirement-and-recovery",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "07"
+      ]
+    },
+    {
+      "id": "QSR-D01",
+      "title": "Response Performance Under Defined Workloads",
+      "file": "quality-security-and-recovery-requirements.md",
+      "anchor": "qsr-d01-response-performance-under-defined-workloads",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "QSR-D02",
+      "title": "Combined Capacity and Bounded Resource Use",
+      "file": "quality-security-and-recovery-requirements.md",
+      "anchor": "qsr-d02-combined-capacity-and-bounded-resource-use",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "11"
+      ]
+    },
+    {
+      "id": "QSR-D03",
+      "title": "Operable, Accessible and Compatible Interaction",
+      "file": "quality-security-and-recovery-requirements.md",
+      "anchor": "qsr-d03-operable-accessible-and-compatible-interaction",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "QSR-D04",
+      "title": "Observable Availability and Controlled Degradation",
+      "file": "quality-security-and-recovery-requirements.md",
+      "anchor": "qsr-d04-observable-availability-and-controlled-degradation",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "QSR-D05",
+      "title": "Identity, Resource Isolation and Changed Access",
+      "file": "quality-security-and-recovery-requirements.md",
+      "anchor": "qsr-d05-identity-resource-isolation-and-changed-access",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "09"
+      ]
+    },
+    {
+      "id": "QSR-D06",
+      "title": "Sensitive Information and Secret Protection",
+      "file": "quality-security-and-recovery-requirements.md",
+      "anchor": "qsr-d06-sensitive-information-and-secret-protection",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "QSR-D07",
+      "title": "Safe Content and Untrusted Execution Boundaries",
+      "file": "quality-security-and-recovery-requirements.md",
+      "anchor": "qsr-d07-safe-content-and-untrusted-execution-boundaries",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "10"
+      ]
+    },
+    {
+      "id": "QSR-D08",
+      "title": "Data Integrity and Truthful Completion",
+      "file": "quality-security-and-recovery-requirements.md",
+      "anchor": "qsr-d08-data-integrity-and-truthful-completion",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "01",
+        "05",
+        "09"
+      ]
+    },
+    {
+      "id": "QSR-D09",
+      "title": "Deliberate Retention and Reference-aware Removal",
+      "file": "quality-security-and-recovery-requirements.md",
+      "anchor": "qsr-d09-deliberate-retention-and-reference-aware-removal",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": []
+    },
+    {
+      "id": "QSR-D10",
+      "title": "Defined, Protected and Observable Backups",
+      "file": "quality-security-and-recovery-requirements.md",
+      "anchor": "qsr-d10-defined-protected-and-observable-backups",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "12"
+      ]
+    },
+    {
+      "id": "QSR-D11",
+      "title": "Demonstrated Restoration and Recovery Targets",
+      "file": "quality-security-and-recovery-requirements.md",
+      "anchor": "qsr-d11-demonstrated-restoration-and-recovery-targets",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "12"
+      ]
+    },
+    {
+      "id": "QSR-D12",
+      "title": "Safe Restored Access and External-state Reconciliation",
+      "file": "quality-security-and-recovery-requirements.md",
+      "anchor": "qsr-d12-safe-restored-access-and-external-state-reconciliation",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "10",
+        "12"
+      ]
+    },
+    {
+      "id": "QSR-D13",
+      "title": "Useful, Restricted Operational Evidence",
+      "file": "quality-security-and-recovery-requirements.md",
+      "anchor": "qsr-d13-useful-restricted-operational-evidence",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "11",
+        "12"
+      ]
+    },
+    {
+      "id": "QSR-D14",
+      "title": "Maintainable, Verifiable and Recoverable Changes",
+      "file": "quality-security-and-recovery-requirements.md",
+      "anchor": "qsr-d14-maintainable-verifiable-and-recoverable-changes",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "12"
+      ]
+    },
+    {
+      "id": "USR-D01",
+      "title": "Reuse and Tailor Professional Information",
+      "file": "user-requirements.md",
+      "anchor": "usr-d01-reuse-and-tailor-professional-information",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "01"
+      ]
+    },
+    {
+      "id": "USR-D02",
+      "title": "Control PDF and Employer Sharing",
+      "file": "user-requirements.md",
+      "anchor": "usr-d02-control-pdf-and-employer-sharing",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "02"
+      ]
+    },
+    {
+      "id": "USR-D03",
+      "title": "View Intended Professional Material Without an Account",
+      "file": "user-requirements.md",
+      "anchor": "usr-d03-view-intended-professional-material-without-an-account",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "03"
+      ]
+    },
+    {
+      "id": "USR-D04",
+      "title": "Prepare and Track Applications Manually",
+      "file": "user-requirements.md",
+      "anchor": "usr-d04-prepare-and-track-applications-manually",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "04"
+      ]
+    },
+    {
+      "id": "USR-D05",
+      "title": "Keep a Trustworthy Record of Actual Submitted Materials",
+      "file": "user-requirements.md",
+      "anchor": "usr-d05-keep-a-trustworthy-record-of-actual-submitted-materials",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "05"
+      ]
+    },
+    {
+      "id": "USR-D06",
+      "title": "Coordinate Correspondence and Activities",
+      "file": "user-requirements.md",
+      "anchor": "usr-d06-coordinate-correspondence-and-activities",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "06"
+      ]
+    },
+    {
+      "id": "USR-D07",
+      "title": "Plan and Adapt Authorized Work",
+      "file": "user-requirements.md",
+      "anchor": "usr-d07-plan-and-adapt-authorized-work",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "07"
+      ]
+    },
+    {
+      "id": "USR-D08",
+      "title": "Collaborate Within Invited Resource Boundaries",
+      "file": "user-requirements.md",
+      "anchor": "usr-d08-collaborate-within-invited-resource-boundaries",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "08"
+      ]
+    },
+    {
+      "id": "USR-D09",
+      "title": "Use Real Repository Collaboration",
+      "file": "user-requirements.md",
+      "anchor": "usr-d09-use-real-repository-collaboration",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "09"
+      ]
+    },
+    {
+      "id": "USR-D10",
+      "title": "Run Agreed Checks and Control Deployment Separately",
+      "file": "user-requirements.md",
+      "anchor": "usr-d10-run-agreed-checks-and-control-deployment-separately",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "10"
+      ]
+    },
+    {
+      "id": "USR-D11",
+      "title": "Administer Explicit Policy and Understand Failures",
+      "file": "user-requirements.md",
+      "anchor": "usr-d11-administer-explicit-policy-and-understand-failures",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "11"
+      ]
+    },
+    {
+      "id": "USR-D12",
+      "title": "Operate and Recover an Identified Release",
+      "file": "user-requirements.md",
+      "anchor": "usr-d12-operate-and-recover-an-identified-release",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "12"
+      ]
+    },
+    {
+      "id": "YML-D01",
+      "title": "Defined Supported Workflow Contract",
+      "file": "yaml-workflows-and-cicd.md",
+      "anchor": "yml-d01-defined-supported-workflow-contract",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "10"
+      ]
+    },
+    {
+      "id": "YML-D02",
+      "title": "Explicit Triggers and Run Authority",
+      "file": "yaml-workflows-and-cicd.md",
+      "anchor": "yml-d02-explicit-triggers-and-run-authority",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "10"
+      ]
+    },
+    {
+      "id": "YML-D03",
+      "title": "Run Identity and Reproducible Context",
+      "file": "yaml-workflows-and-cicd.md",
+      "anchor": "yml-d03-run-identity-and-reproducible-context",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "10"
+      ]
+    },
+    {
+      "id": "YML-D04",
+      "title": "Isolation and Untrusted-code Boundary",
+      "file": "yaml-workflows-and-cicd.md",
+      "anchor": "yml-d04-isolation-and-untrusted-code-boundary",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "10"
+      ]
+    },
+    {
+      "id": "YML-D05",
+      "title": "Scoped Secrets and Credentials",
+      "file": "yaml-workflows-and-cicd.md",
+      "anchor": "yml-d05-scoped-secrets-and-credentials",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "10"
+      ]
+    },
+    {
+      "id": "YML-D06",
+      "title": "Resource Admission and Limits",
+      "file": "yaml-workflows-and-cicd.md",
+      "anchor": "yml-d06-resource-admission-and-limits",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "10"
+      ]
+    },
+    {
+      "id": "YML-D07",
+      "title": "Truthful Run and Step Outcomes",
+      "file": "yaml-workflows-and-cicd.md",
+      "anchor": "yml-d07-truthful-run-and-step-outcomes",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "10"
+      ]
+    },
+    {
+      "id": "YML-D08",
+      "title": "Restricted Logs and Artifacts",
+      "file": "yaml-workflows-and-cicd.md",
+      "anchor": "yml-d08-restricted-logs-and-artifacts",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "10"
+      ]
+    },
+    {
+      "id": "YML-D09",
+      "title": "Cancellation, Retry and Runner-loss Recovery",
+      "file": "yaml-workflows-and-cicd.md",
+      "anchor": "yml-d09-cancellation-retry-and-runner-loss-recovery",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "10"
+      ]
+    },
+    {
+      "id": "YML-D10",
+      "title": "Separate Controlled Deployment Stage",
+      "file": "yaml-workflows-and-cicd.md",
+      "anchor": "yml-d10-separate-controlled-deployment-stage",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "10"
+      ]
+    },
+    {
+      "id": "YML-D11",
+      "title": "Workspace Cleanup and Retained Evidence",
+      "file": "yaml-workflows-and-cicd.md",
+      "anchor": "yml-d11-workspace-cleanup-and-retained-evidence",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "10"
+      ]
+    },
+    {
+      "id": "YML-D12",
+      "title": "Feasibility, Operational Guidance and Enabling Gate",
+      "file": "yaml-workflows-and-cicd.md",
+      "anchor": "yml-d12-feasibility-operational-guidance-and-enabling-gate",
+      "criteria_bullets": 3,
+      "explicit_bundle_citations": [
+        "10"
+      ]
+    }
+  ]
+}

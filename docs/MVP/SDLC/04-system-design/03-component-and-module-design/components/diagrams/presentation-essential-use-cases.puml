@@ -1,0 +1,29 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Proposed — Essential owner and viewer intentions
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+left to right direction
+actor "Authorized owner" as O
+actor "Permitted viewer" as V
+rectangle "Professional Presentation" {
+ usecase "Maintain reusable professional source" as S
+ usecase "Compose independent resume\nselections / order / layout / overrides" as D
+ usecase "Preview differences and apply selected changes" as A
+ usecase "Preview exact draft" as P
+ usecase "Separately confirm exact publication" as C
+}
+rectangle "Representation / Sharing" {
+ usecase "Resolve eligible page / rendition / link" as R
+}
+O --> S
+O --> D
+O --> A
+O --> P
+O --> C
+O --> R
+V --> R
+
+@enduml

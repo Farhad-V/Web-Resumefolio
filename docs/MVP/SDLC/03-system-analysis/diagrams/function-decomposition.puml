@@ -1,0 +1,16 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP systems. Restore an actual functional decomposition rather than reuse a whole-system context image.
+title MVP functional decomposition — separate responsibilities
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam wrapWidth 190
+rectangle "Version 1 = MVP" as M
+rectangle "Core\nF01 invited identity / dashboard\nF02 profile / independent resumes / portfolio\nF03 PDF / selected protected sharing\nF04 manual applications / actual materials / follow-up\nF09 private same-server files / audit / recovery" as C
+rectangle "Separate ProjectForge\nF06 issues / simple Kanban\nF07 native Git / permissions / file-history" as P #DCF2E5
+rectangle "AFTER MVP\nF05 independent private communications\nAdvanced F06 backlog / Sprints\nAdvanced F07 review / merge / releases\nF08 YAML execution / deployment; AI" as F #F8EBD7
+M --> C : current core responsibilities
+M --> P : current API-connected system
+C <--> P : authenticated user-scoped API
+M ..> F : future scope only; no MVP dependency
+@enduml

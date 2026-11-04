@@ -1,0 +1,18 @@
+// OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+digraph DeliverableMap {
+  graph [rankdir=TB, bgcolor="white", pad=0.35, ranksep=0.45, nodesep=0.4,
+    fontname="Arial", fontsize=19, labelloc=t,
+    label="Resumefolio | Deliverable map\nTen outputs grouped by purpose - not completion status"];
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=12,
+    color="#CBD5E1", margin="0.2,0.15", fillcolor="#F1F5F9"];
+  edge [color="#64748B", arrowsize=0.65];
+  root [label="REVIEWABLE PROJECT OUTPUTS\nEach needs a version, evidence and review outcome", fillcolor="#17324D", fontcolor=white];
+  define [label="DEFINE AND JUSTIFY\nDEL-01 | Project plan\lDEL-02 | Requirements specification\lDEL-03 | Analysis and design with diagrams\l", fillcolor="#DBEAFE"];
+  build [label="BUILD AND VERIFY\nDEL-04 | Runnable application and source\lDEL-05 | Test documentation and actual results\l", fillcolor="#DCFCE7"];
+  operate [label="EXPLAIN AND OPERATE\nDEL-06 | Deployment guide\lDEL-07 | Backup and recovery guide\lDEL-08 | User and administrator guidance\lDEL-10 | Maintenance and operations guide\l", fillcolor="#EDE9FE"];
+  release [label="IDENTIFY THE RELEASE\nDEL-09 | Release record\lVersion, scope, evidence, limitations\land the owner's release decision\l", fillcolor="#FEF3C7"];
+  root -> define; root -> build; root -> operate; root -> release;
+  {rank=same; define -> build [style=invis];}
+  {rank=same; operate -> release [style=invis];}
+  define -> operate [style=invis]; build -> release [style=invis];
+}

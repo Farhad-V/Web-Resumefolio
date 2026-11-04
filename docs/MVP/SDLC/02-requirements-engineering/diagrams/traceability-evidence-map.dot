@@ -1,0 +1,28 @@
+// OWNER-MVP-2026-11-04 review: Method / document navigation. Scope-independent process/navigation; provider or runner examples are not MVP prerequisites.
+digraph model {
+graph [rankdir=TB,bgcolor="white",pad=0.3,nodesep=0.45,ranksep=0.65,fontname="Arial",fontsize=20,labelloc=t];
+node [shape=box,style="rounded,filled",fillcolor="#DBEAFE",color="#64748B",fontcolor="#17324D",fontname="Arial",fontsize=13,margin="0.18,0.14"];
+edge [color="#64748B",fontname="Arial",fontsize=11,fontcolor="#17324D"];
+graph [label="Resumefolio | Evidence states in the traceability chain"];
+source [label="Accepted scope / objectives
+Source authority retains its limits"];
+candidate [label="Primary proposed records
+157 candidates + source / criteria / method"];
+scenario [label="Explicit candidate-to-bundle citations
+123 candidates cited / 34 uncited
+Specific criterion-path mapping pending",fillcolor="#FEF3C7"];
+inspect [label="Actual RV-D01 evidence
+Source hashes + inventory
+Bounded structure / citation findings",fillcolor="#DCFCE7"];
+down [label="Exact PBI / design / code / product-result links
+Not assigned per candidate here",fillcolor="#FEF3C7"];
+owner [label="Actual semantic / owner / product decisions
+Pending or separate later evidence",fillcolor="#EDE9FE"];
+source -> candidate;
+candidate -> scenario [label="observed citations only"];
+candidate -> inspect [label="inspected structure"];
+scenario -> inspect [label="observed path references"];
+candidate -> down [style=dashed,label="verify actual artifacts later"];
+inspect -> owner [label="does not equal approval"];
+down -> owner [style=dashed,label="actual evidence needed"];
+}

@@ -1,0 +1,38 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Future after MVP. Provider, advanced Sprint/review, or untrusted execution requirement retained as deferred.
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 8
+skinparam ArrowColor #526B7B
+skinparam ArrowFontSize 11
+skinparam stateBackgroundColor #EDF4FB
+skinparam stateBorderColor #526B7B
+skinparam stateStartColor #163E52
+skinparam stateEndColor #163E52
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam nodesep 38
+skinparam ranksep 48
+hide empty description
+top to bottom direction
+
+title AFTER MVP — SM-M12 — Sprint period and recorded actual outcome
+state "Planned" as Planned
+state "Active" as Active
+state "Completed period; actual\noutcome recorded" as Completed
+state "Cancelled period; history\nretained" as Cancelled
+[*] --> Planned : scoped initial context
+Planned --> Active : SM-T072 start confirmed\n[valid start / coherent plan]
+Planned --> Cancelled : SM-T073 cancel confirmed\n[authorized / confirmed]
+Active --> Active : SM-T074 plan adaptation confirmed\n[reviewed active change]
+Active --> Completed : SM-T075 end confirmed\n[actual outcome recorded]
+Active --> Cancelled : SM-T076 cancel confirmed\n[authorized / confirmed]
+legend bottom
+A: accepted core behavior; P: existing proposal; R: proposed refinement.
+State labels are analysis abstractions, not implemented enums.
+Transition tables define full actor, guard, effect and status.
+Unconfirmed operation effects require SM-M18 reconciliation.
+endlegend
+@enduml

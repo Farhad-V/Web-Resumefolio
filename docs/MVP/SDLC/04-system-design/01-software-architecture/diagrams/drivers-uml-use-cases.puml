@@ -1,0 +1,44 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Mixed MVP / future. Retained broader-product associations require explicit future node labels; MVP uses only core/basic ProjectForge.
+title MVP + EXPLICIT FUTURE PATHS — Resumefolio — selected UML use-case scope (existing UC-D bundles)
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam wrapWidth 190
+
+left to right direction
+actor "Private user" as U
+actor "Employer viewer" as E
+actor "Scoped collaborator" as C
+actor "Authorized operator" as O
+rectangle Resumefolio {
+ usecase "UC-D01\nTailor independent resumes" as U1
+ usecase "UC-D02\nConfigure PDF / sharing controls" as U2
+ usecase "UC-D03\nView selected protected material" as U3
+ usecase "UC-D04\nPrepare manual application / progress" as U4
+ usecase "UC-D05\nPreserve actual submitted material" as U5
+ usecase "UC-D06\nCoordinate authorized mail / calendar" as U6
+ usecase "UC-D07\n[AFTER MVP] Refine work / coherent Sprint plan" as U7
+ usecase "UC-D08\nAccept scoped collaboration / changed access" as U8
+ usecase "UC-D09\nUse real Git / current review" as U9
+ usecase "UC-D10\nGated execution / separate target stage" as U10
+ usecase "UC-D11\nManage effective policy / evidence" as U11
+ usecase "UC-D12\nRestore and reconcile access / effects" as U12
+}
+U --> U1
+U --> U2
+E --> U3
+U --> U4
+U --> U5
+U --> U6
+C --> U7
+C --> U8
+C --> U9
+U --> U10
+O --> U11
+O --> U12
+legend bottom
+ Overview associations do not allocate final roles or require automatic side effects.
+ Exact actor/action policy and operation-level use cases remain in the source catalog.
+endlegend
+@enduml

@@ -1,0 +1,24 @@
+// OWNER-MVP-2026-11-04 review: Method / document navigation. Scope-independent process/navigation; provider or runner examples are not MVP prerequisites.
+digraph model {
+graph [rankdir=TB,bgcolor="white",pad=0.3,nodesep=0.45,ranksep=0.65,fontname="Arial",fontsize=20,labelloc=t];
+node [shape=box,style="rounded,filled",fillcolor="#DBEAFE",color="#64748B",fontcolor="#17324D",fontname="Arial",fontsize=13,margin="0.18,0.14"];
+edge [color="#64748B",fontname="Arial",fontsize=11,fontcolor="#17324D"];
+graph [label="Resumefolio | Validation and traceability review route"];
+source [label="Accepted intent + actual primary records
+Identify source / revision / actor context"];
+inspect [label="RV-D01: actual documentary inspection
+157 candidates / 470 criterion bullets
+12 bundles / 60 path drafts",fillcolor="#DCFCE7"];
+cites [label="Observed explicit citations
+123 cited / 34 not explicitly cited
+Not criterion-level sufficiency",fillcolor="#FEF3C7"];
+review [label="Pending semantic and actor / owner review
+Policy readiness / exact paths
+Actual downstream artifact mappings",fillcolor="#FEF3C7"];
+findings [label="RF-D01-D05: open findings
+Owner response + actual recheck evidence"];
+decision [label="Separate identified baseline disposition
+M-02 pending
+Later product / recovery / release evidence separate",fillcolor="#EDE9FE"];
+source -> inspect; inspect -> cites; cites -> review; review -> findings; findings -> decision;
+}

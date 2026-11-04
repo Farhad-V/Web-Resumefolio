@@ -1,0 +1,16 @@
+// OWNER-MVP-2026-11-04 review: Method / document navigation. Scope-independent process/navigation; provider or runner examples are not MVP prerequisites.
+digraph RE {
+ graph [rankdir=TB,bgcolor=white,fontname="Arial",label="Resumefolio - Requirements Engineering\nDraft process and artifact structure",labelloc=t,fontsize=20,pad=0.3];
+ node [shape=box,style="rounded,filled",fillcolor="#EFF6FF",fontname="Arial",color="#94A3B8",margin="0.2,0.15"];
+ edge [color="#64748B"];
+ re [label="Requirements Engineering",fillcolor="#17324D",fontcolor=white];
+ p [label="01 Process and Approach\nFeasibility / Elicitation / Analysis\nSpecification / V&V / Management"];
+ e [label="02 Stakeholders and Elicitation\nActors / Techniques / Source records"];
+ s [label="03 Requirements Specification\nBusiness / User / Functional\nQuality / Domain / Interfaces"];
+ m [label="04 Scenarios and Models\nStories / Use cases / Visual models"];
+ d [label="05 Data Definitions\nGlossary / Data dictionary"];
+ v [label="06 Validation and Traceability\nReview plan / Findings / Links"];
+ c [label="07 Change and Baseline\nQuestions / Change impact / Acceptance"];
+ re -> p; p -> {e s m}; e -> d; s -> v; m -> c;
+ {rank=same;e;s;m;} {rank=same;d;v;c;}
+}

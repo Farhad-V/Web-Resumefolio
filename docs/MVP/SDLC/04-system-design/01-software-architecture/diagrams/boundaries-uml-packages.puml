@@ -1,0 +1,25 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP systems. Separate composition roots and public API adapter from internal module contracts.
+title Candidate packages — no shared core/ProjectForge composition root
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam wrapWidth 190
+package "Core source / composition" {
+ package "IdentityAccess" as I
+ package "Presentation" as P
+ package "Sharing" as S
+ package "Applications" as A
+ package "FilesOperations" as F
+ S ..> P : public contracts
+ A ..> F : protected references
+}
+package "Core ProjectForge API adapter" as AD
+package "Separate ProjectForge source / composition\nRepository / issue / simple-board owners" as G
+A ..> AD
+AD ..> G : authenticated user-scoped API\nnot shared ORM / migrations
+package "Future independent communications API\nAdvanced work / Git / execution" as X #F8EBD7
+note bottom of G
+ Concrete package names, engine and database remain proposals.
+end note
+@enduml

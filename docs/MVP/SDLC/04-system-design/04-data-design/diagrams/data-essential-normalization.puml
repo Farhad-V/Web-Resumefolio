@@ -1,0 +1,24 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Reference / design method. Native Git/OO/data notation illustration, not a commitment to advanced product features.
+title Proposed / illustrative — Normalization walkthrough with explicit example dependencies
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+rectangle "UNNORMALIZED teaching relation\nResume(resumeId, title, ownerId, ownerName,\n repeating entries[entryId, entryLabel, position])" as U
+rectangle "1NF flat teaching relation\nSelection(resumeId, entryId, position, title,\n ownerId, ownerName, entryLabel)\nCandidate key: (resumeId, entryId)" as N1
+rectangle "2NF\nResume(resumeId PK, title, ownerId, ownerName)\nEntry(entryId PK, entryLabel)\nSelection(resumeId PK/FK, entryId PK/FK, position)" as N2
+rectangle "3NF\nOwner(ownerId PK, ownerName)\nResume(resumeId PK, title, ownerId FK)\nEntry(entryId PK, entryLabel)\nSelection(resumeId PK/FK, entryId PK/FK, position)" as N3
+U --> N1 : remove repeating group; atomic values for this example
+N1 --> N2 : remove partial key dependencies
+N2 --> N3 : remove ownerName transitive dependency
+note bottom of N2
+ Assumed example functional dependencies:
+ resumeId -> title, ownerId
+ ownerId -> ownerName
+ entryId -> entryLabel
+ (resumeId, entryId) -> position
+ No other dependencies or alternate keys asserted.
+end note
+
+@enduml

@@ -1,0 +1,60 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 8
+skinparam ArrowColor #526B7B
+skinparam ArrowFontSize 11
+skinparam packageStyle rectangle
+skinparam classAttributeIconSize 0
+hide circle
+skinparam classBackgroundColor #EDF4FB
+skinparam classBorderColor #526B7B
+skinparam classHeaderBackgroundColor #DFF1EF
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam rectangleBackgroundColor #EDF4FB
+skinparam rectangleBorderColor #526B7B
+skinparam activityBackgroundColor #EDF4FB
+skinparam activityBorderColor #526B7B
+skinparam activityDiamondBackgroundColor #DFF1EF
+skinparam activityDiamondBorderColor #458F88
+skinparam padding 6
+skinparam nodesep 35
+skinparam ranksep 40
+hide empty members
+title Seven views — complementary questions, one coherent model
+top to bottom direction
+package "Structure" as ST {
+ rectangle "03 Object-oriented\nConcepts + relationships" as O
+ rectangle "05 Data-oriented\nInformation + authority" as D
+ O -[hidden]right- D
+}
+package "Transformation" as TF {
+ rectangle "04 Function-oriented\nInputs + functions + outputs" as F
+}
+package "Behavior" as BH {
+ rectangle "06 Scenarios\nParticipant interaction" as S
+ rectangle "07 States\nLifecycle + valid transitions" as T
+ rectangle "08 Control flow\nOrder + synchronization" as A
+ rectangle "09 Rules\nConditions + decisions" as R
+ S -[hidden]right- T
+ A -[hidden]right- R
+ S -[hidden]down- A
+}
+rectangle "10 Constraints and operation contracts\nCompatible authority, effects and invariants" as C #DFF1EF
+ST .. C : structural consistency
+TF .. C : functional consistency
+BH .. C : behavioral consistency
+note bottom of C
+11: cross-view review and traceability.
+12/13: interface and quality obligations.
+14: qualified design handoff.
+end note
+legend bottom
+Dashed undirected links connect groups of complementary views.
+The views are not seven sequential phases or service calls.
+endlegend
+@enduml

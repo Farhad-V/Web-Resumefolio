@@ -1,0 +1,20 @@
+// OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+digraph SoloResponsibilities {
+  graph [rankdir=TB, bgcolor="white", pad=0.35, ranksep=0.5, nodesep=0.4,
+    fontname="Arial", fontsize=19, labelloc=t,
+    label="Resumefolio | Solo delivery responsibilities\nOne responsible person - activities are not reported as complete"];
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=12,
+    color="#CBD5E1", margin="0.2,0.15", fillcolor="#F1F5F9"];
+  edge [color="#64748B", arrowsize=0.65];
+  owner [label="Farhad\nProject owner and sole delivery / operations person", fillcolor="#17324D", fontcolor=white];
+  direction [label="DIRECTION AND PLANNING\nGoals, scope, priorities, budget\nRequirements and documented decisions", fillcolor="#DBEAFE"];
+  design [label="ANALYSIS AND DESIGN\nModels, diagrams and alternatives\nChoices justified against actual constraints", fillcolor="#EDE9FE"];
+  delivery [label="IMPLEMENTATION AND VERIFICATION\nScoped changes and actual checks\nVersioned results, defects and limitations", fillcolor="#DCFCE7"];
+  operations [label="RELEASE AND OPERATIONS\nRelease decision, deployment and maintenance\nBackup, restoration and failure response", fillcolor="#FEF3C7"];
+  note [label="No separately staffed developer, tester or operations team\nNo assumed independent review team or continuous operational coverage", fillcolor="#F1F5F9"];
+  owner -> direction; owner -> design; owner -> delivery; owner -> operations;
+  {rank=same; direction -> design [style=invis];}
+  {rank=same; delivery -> operations [style=invis];}
+  direction -> delivery [style=invis]; design -> operations [style=invis];
+  delivery -> note [style=invis]; operations -> note [style=invis];
+}

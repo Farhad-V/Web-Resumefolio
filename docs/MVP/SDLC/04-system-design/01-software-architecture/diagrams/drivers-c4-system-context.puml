@@ -1,0 +1,21 @@
+@startuml
+title C4 Level 1 — current MVP software systems
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam wrapWidth 180
+actor "Private user\nCreated/invited by owner/admin" as U
+actor "Employer viewer" as E
+actor "Native Git client user" as G
+rectangle "Resumefolio core\nDashboard / profile / resumes / portfolio\nPDF/sharing / manual applications\nPrivate same-server My Files & Media" as C #E4F0FC
+rectangle "ProjectForge — separate software system\nReal repositories / transfers / permissions\nFile-history / issues / simple Kanban\nNative Git Smart HTTP / Laravel\nSeparate MySQL 8.4 / same host, separate OS user" as P #DCF2E5
+U --> C : permitted private work
+E --> C : selected protected resume/media\nno owner login
+G --> P : real native Git transport\ncommits in client
+C <--> P : authenticated user-scoped API
+rectangle "AFTER MVP\nIndependent private communications API system\nPersonal Gmail/Calendar consent per user/account\nAdvanced Git / Sprint / execution / AI" as F #F8EBD7
+legend bottom
+ Whole software systems and people; internal core modules are intentionally omitted.
+ Admin role cannot read future private user mail. No current provider/runner dependency.
+endlegend
+@enduml

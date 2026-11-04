@@ -1,0 +1,21 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Proposed / illustrative — Conceptual to logical to physical refinement
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+rectangle "Conceptual\nMeaning and independent identities\nNo physical types / indexes\nSource, draft, publication, actual material" as C
+rectangle "Logical\nOwned records and attributes\nIdentity / relationships / candidate cardinalities\nPublication belongs to resume; live selection is exact" as L
+rectangle "Physical candidate\nSelected-engine columns and key representations\nPK / scoped FK / uniqueness / checks / indexes\nActual transaction and query mechanisms" as P
+rectangle "Verification\nExact source criteria + actual candidate\nRound-trip / concurrency / privacy / recovery\nReal DB and storage evidence where applicable" as V
+C --> L : add justified structure, not guessed source constraints
+L --> P : choose and evaluate actual implementation
+P --> V : exercise actual enforcement and limits
+V ..> L : revise inconsistencies explicitly
+note bottom of C
+ ORM class, logical entity and table need not map 1:1.
+ A valid FK does not provide current authorization or usable bytes.
+end note
+
+@enduml

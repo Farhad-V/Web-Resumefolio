@@ -1,0 +1,53 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam ArrowColor #526B7B
+skinparam activityBackgroundColor #EDF4FB
+skinparam activityBorderColor #526B7B
+skinparam activityDiamondBackgroundColor #FFF3DF
+skinparam activityDiamondBorderColor #B99557
+
+title RB-D15 — Reference-aware physical reclamation eligibility
+start
+if (RB-D15-C01\nCategory policy permits = T?) then (yes)
+if (RB-D15-C02\nRetention permits removal = T?) then (yes)
+if (RB-D15-C03\nReferences permit removal = T?) then (yes)
+:RB-D15-R07\nELIGIBLE RECLAMATION ONLY;
+stop
+else (no)
+if (RB-D15-C03 = F?) then (yes)
+:RB-D15-R05\nPROTECT REQUIRED REFERENCES;
+stop
+else (U)
+:RB-D15-R06\nUNRESOLVED REFERENCE EFFECT;
+stop
+endif
+endif
+else (no)
+if (RB-D15-C02 = F?) then (yes)
+:RB-D15-R03\nRETAIN INELIGIBLE;
+stop
+else (U)
+:RB-D15-R04\nUNRESOLVED RETENTION;
+stop
+endif
+endif
+else (no)
+if (RB-D15-C01 = F?) then (yes)
+:RB-D15-R01\nDENY RECLAMATION SCOPE;
+stop
+else (U)
+:RB-D15-R02\nUNRESOLVED LIFECYCLE POLICY;
+stop
+endif
+endif
+legend bottom
+Decision alternatives, not execution steps or evaluation timing.
+T = established true; F = established false; U = unresolved.
+Conditions and full results are defined in the rule table.
+All rows here are proposed analysis refinements; no new policy acceptance.
+endlegend
+@enduml

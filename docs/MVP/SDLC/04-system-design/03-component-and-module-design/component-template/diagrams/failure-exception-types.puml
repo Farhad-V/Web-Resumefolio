@@ -1,0 +1,25 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Reference / reusable template. Illustrative contract/model/pattern, not a product release commitment.
+title Template example — Proposed error vocabulary hierarchy
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+abstract class OperationProblem
+class InvalidInput
+class AuthorityDenied
+class VersionConflict
+class DependencyUnavailable
+class ConfirmedNoEffectFailure
+class PartialEffect
+class UnknownEffect
+OperationProblem <|-- InvalidInput
+OperationProblem <|-- AuthorityDenied
+OperationProblem <|-- VersionConflict
+OperationProblem <|-- DependencyUnavailable
+OperationProblem <|-- ConfirmedNoEffectFailure
+OperationProblem <|-- PartialEffect
+OperationProblem <|-- UnknownEffect
+
+@enduml

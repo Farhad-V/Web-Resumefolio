@@ -1,0 +1,47 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam ArrowColor #526B7B
+skinparam activityBackgroundColor #EDF4FB
+skinparam activityBorderColor #526B7B
+skinparam activityDiamondBackgroundColor #FFF3DF
+skinparam activityDiamondBorderColor #B99557
+skinparam activityStartColor #163E52
+skinparam activityEndColor #163E52
+skinparam wrapWidth 190
+skinparam maxMessageSize 180
+
+title CF-M10 — Invitation acceptance and subsequent scoped access
+start
+:CF-M10-S01\nInitiating actor\nInvited person accepts an eligible\ninvitation and requests a granted\naction; owner may later change\nmembership.;
+if (CF-M10-S02\nIntended invitation/resource\ncontext is eligible for this actor?) then (yes)
+:CF-M10-S03\nRecipient\nExplicitly accept intended\ninvitation;
+:CF-M10-S04\nSystem\nCheck invitation eligibility and\nexact proposed resource rights;
+if (CF-M10-S05\nActual scoped grant confirmed?) then (yes)
+:CF-M10-S06\nParticipant\nRequest a particular resource\naction;
+:CF-M10-S07\nSystem\nEvaluate current grant and exact\naction/resource scope;
+if (CF-M10-S08\nAction currently permitted?) then (yes)
+:CF-M10-S09\nSystem\nPerform intended operation within\ncurrent resource scope;
+:CF-M10-S10\nSystem\nUse CF-M17 to classify actual\nresult; return only evidence-\nsupported effect;
+stop
+else (no)
+:CF-M10-S11\nSystem\nDeny action; sign-in/invitation\ngrants no unrelated data or\nsecrets;
+stop
+endif
+else (no)
+:CF-M10-S12\nSystem\nNo effective membership claimed;\nreport\nexpiry/denial/failure/uncertainty;
+stop
+endif
+else (no)
+:CF-M10-S13\nSystem\nDeny before prohibited effect or\nprotected disclosure; report unmet\ngate;
+stop
+endif
+legend bottom
+A: accepted profile core only. Other policy detail: P / proposed refinement.
+Step IDs identify full descriptions in the activity view.
+Logical ordering; no atomicity, runtime, timing or execution proof.
+endlegend
+@enduml

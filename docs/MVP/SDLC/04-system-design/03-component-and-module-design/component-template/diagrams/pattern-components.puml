@@ -1,0 +1,24 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Reference / reusable template. Illustrative contract/model/pattern, not a product release commitment.
+allowmixing
+title Template example — Patterns across logical component roles
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+component "Public command entry" as E
+component "Use-case facade" as F
+component "Domain / factory" as D
+interface "Required narrow ports" as P
+component "Persistence / provider adapters" as A
+E --> F
+F --> D
+F --> P
+A ..|> P
+note bottom of A
+ Examples summarize different operations.
+ External dispatch is not an implicit publication step.
+end note
+
+@enduml

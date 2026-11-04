@@ -1,0 +1,25 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Reference / design method. Native Git/OO/data notation illustration, not a commitment to advanced product features.
+allowmixing
+title Proposed — Strangler facade: conditional future replacement
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+actor Caller
+component "Compatibility facade\nCurrent authority + exact routing" as F
+component "Old implementation\nif an actual one is established" as O
+component "New owner implementation" as N
+database "Authoritative state\nidentity / history / references" as D
+Caller --> F
+F --> O : unchanged cohorts / operations
+F --> N : explicitly migrated scope
+O --> D : designated writer only
+N --> D : designated writer only
+note bottom of D
+ One authoritative write route per operation/cohort.
+ No uncontrolled dual writes or duplicated remote effects.
+end note
+
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Reference / reusable template. Illustrative contract/model/pattern, not a product release commitment.
+title Template example — Component: provided lollipop and required socket
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+component "Example Presentation component" as C
+interface "PublicationCommand\nprovided" as P
+interface "CurrentAuthority\nrequired" as A
+interface "PublicationStore\nrequired" as S
+C -right- P
+C -left-( A
+C -down-( S
+
+@enduml

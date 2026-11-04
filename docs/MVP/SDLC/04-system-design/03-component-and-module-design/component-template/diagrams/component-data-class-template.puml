@@ -1,0 +1,43 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Reference / reusable template. Illustrative contract/model/pattern, not a product release commitment.
+title Template illustration — separate draft publication and actual-material identities
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam classBackgroundColor #EFF6FF
+skinparam classBorderColor #64748B
+top to bottom direction
+package "Presentation owner — illustrative types" {
+ class ResumeDraft {
+  -resumeId : ResumeId
+  -version : RevisionId
+  -selections : ConfirmedSelection
+ }
+ class PublishedResumeRevision <<immutable identity>> {
+  +revisionId : RevisionId
+  +sourceDraftVersion : RevisionId
+ }
+ ResumeDraft ..> PublishedResumeRevision : separate confirmed publication
+}
+package "Files owner" {
+ class ArtifactReference {
+  +artifactId : ArtifactId
+  +provenance : SourceIdentity
+  +availability : ActualAvailability
+ }
+}
+package "Applications owner" {
+ class SubmissionMaterialSet {
+  +submissionId : SubmissionId
+  +actualProvenance : MaterialManifest
+ }
+}
+PublishedResumeRevision ..> ArtifactReference : protected reference when applicable
+SubmissionMaterialSet ..> ArtifactReference : retained actual-material reference
+note bottom of ArtifactReference
+ Dashed links show reference/provenance meaning.
+ No final cardinalities or database schema are selected.
+ Actual materials are not a mutable live-view pointer.
+end note
+@enduml

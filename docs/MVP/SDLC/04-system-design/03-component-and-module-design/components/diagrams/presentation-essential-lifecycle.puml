@@ -1,0 +1,27 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Proposed — Draft, preview and immutable publication dimensions
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+state "Editable draft" as D
+state "Exact preview observation\nnot a committed live state" as P
+state "Immutable publication revision" as R
+state "Live selection / visibility\nseparate owner-controlled pointer and eligibility" as L
+state "Retired content\nonly under reviewed lifecycle policy" as T
+[*] --> D
+D --> D : explicit edit / selected apply / save
+D --> P : preview exact version, read-only
+P --> D : continue editing; old preview becomes stale
+P --> R : separate confirmation + current guards + protected references
+R --> L : guarded live selection update
+R --> R : later edits do not redefine revision identity
+L --> T : eligible retirement / withdrawal per actual policy
+note bottom of T
+ Unpublish/withdraw is not revision deletion.
+ Draft, live eligibility, artifact availability and actual submission are distinct.
+ No retention period or new unpublish endpoint is allocated here.
+end note
+
+@enduml

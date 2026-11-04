@@ -1,0 +1,34 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Proposed local admission and independent post-commit paths
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+|Web / owner|
+start
+:Validate intent / authority\nand expected versions;
+|Transactional store|
+:Guard and commit state, result\nand required pending intent;
+if (Commit confirmed?) then (yes)
+ fork
+  |Web / owner|
+  :Return local result /\npending operation reference;
+ fork again
+  |Dispatcher / worker|
+  :Discover committed intent;\natomically claim current scope;
+  :Call scoped external adapter\noutside SQL transaction;
+  :Record actual outcome / unknown effect\nand reconciliation need;
+ end fork
+ |Dispatcher / worker|
+ :Scenario observation complete;\nunknown work remains durable;
+else (failed / uncertain)
+ |Web / owner|
+ :Resolve actual command outcome;\nno dispatch from an uncommitted intent;
+endif
+stop
+legend bottom
+ Fork/join describes completion of this scenario view, not a web request waiting on a remote effect.
+ Swimlanes are responsibilities, not one thread or mandatory server per lane.
+endlegend
+@enduml

@@ -1,0 +1,44 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 5
+skinparam ArrowColor #526B7B
+skinparam sequenceMessageAlign center
+skinparam sequenceParticipantBackgroundColor #DFF1EF
+skinparam sequenceParticipantBorderColor #526B7B
+skinparam sequenceActorBorderColor #526B7B
+skinparam sequenceLifeLineBorderColor #9AAEB7
+skinparam sequenceGroupBackgroundColor #F8FAFC
+skinparam sequenceGroupBorderColor #7B919E
+skinparam sequenceDividerBackgroundColor #EDF4FB
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam maxMessageSize 220
+hide footbox
+autonumber
+title SB-M03 — Independent link disable and fresh access
+actor Owner as U
+participant "Protected employer link" as L
+actor "Fresh viewer context" as V
+U -> L : Explicitly disable this link
+L -> L : Check current owner-control authority
+alt Denied or failed / unconfirmed change
+ L --> U : Actual denial/failure; not disabled-success
+else Effective disablement confirmed
+ L --> U : Link disabled
+ V -> L : Request new protected access
+ L -> L : Evaluate current disabled state
+ L --> V : Deny new page / file / PDF access
+end
+note over U,V
+No PDF settings change is required or caused.
+Existing-session/in-flight timing is not decided here.
+end note
+legend bottom
+Logical domain interaction, not runtime execution evidence.
+Detailed proposed guards/policies retain their primary status.
+endlegend
+@enduml

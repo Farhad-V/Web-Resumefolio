@@ -1,0 +1,152 @@
+{
+  "baseline": "BL-MVP-2026-11-04.1",
+  "date": "2026-11-04",
+  "authority": "Codex under explicit Farhad delegation",
+  "status": "Selected design input; runtime gates not run",
+  "candidate_count": 157,
+  "original_criterion_count": 470,
+  "supplemental_criterion_count": 10,
+  "hash_algorithm": "SHA-256",
+  "files": [
+    {
+      "path": "docs/MVP/SDLC/01-project-planning/owner-mvp-decision-2026-11-04.md",
+      "sha256": "b7b434f7f8a3ce93b02aa5eb3f1cd676acae6b9986a72aafbfe326157ec753b8"
+    },
+    {
+      "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/README.md",
+      "sha256": "fa717b62ddb4e07a2ad31891a5807b39f31e9c88ece3bc235049fa9c5232a810"
+    },
+    {
+      "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "sha256": "b8ba666cf403985f1ceb48dcc90399b565107791bb6b9168877d09a940b1dc60"
+    },
+    {
+      "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "sha256": "f28ded25f6589c610045427f6114c2fb0d29624e24369c3ff6456f9e25c7a7a9"
+    },
+    {
+      "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/business-requirements.md",
+      "sha256": "ea9dc881629123a5507b60870955cc4329dfcec493ec224b87a73e8c542a869e"
+    },
+    {
+      "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
+      "sha256": "187058a6ee033763ef84c55a88030aff9ccb1da0acd2dceb856dc23e76ad4b7e"
+    },
+    {
+      "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/domain-requirements-and-constraints.md",
+      "sha256": "89339e7905e44d9a4d8258d434a9684a3a9c74851eb85571aaa7288865281ea3"
+    },
+    {
+      "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "sha256": "224c65b4ca36c425de95d01814bbaf2c4961185d2c65f67ee600b9936749150b"
+    },
+    {
+      "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md",
+      "sha256": "71b8931899726ae129fb0e3673e41a07b44784b7107317e6cd43b9093636b46b"
+    },
+    {
+      "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md",
+      "sha256": "783a5bcf5ea2076ae61c25ac6ce51aa0e234aa3fad3c3c7da8ce6ffa52f00229"
+    },
+    {
+      "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md",
+      "sha256": "442b2a2e8749549e208553bfcc9029e50a01c55fe3b32ef7a46b2a8e1f6a6b6e"
+    },
+    {
+      "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/mvp-release-allocation.md",
+      "sha256": "cfbd2dc3bcb3975ee63e6f40cb8449c559014333404d0a6cfeefbf10604da109"
+    },
+    {
+      "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md",
+      "sha256": "ca30aafd509e97928e00e248073e7390951534ead415ad56e6005ccbf0f1cade"
+    },
+    {
+      "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md",
+      "sha256": "353816227befbcde8ee77eb0de8ac9b2042388595551e821dfac5f853366dffb"
+    },
+    {
+      "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "sha256": "7ef02c4212fd76a5a32fdb0ce78c8366c33c93e9930740738b7dc8b4c59bdb9b"
+    },
+    {
+      "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "sha256": "10b6f371698c0563dedcea0bda280d7d33c892b923f1e3a878c818055ee33cb1"
+    },
+    {
+      "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/requirements-priority-and-readiness.md",
+      "sha256": "838e3d166094a1df5db5cd3a8a9452fcb4a8f31717fc8fa3533e3dad2091df84"
+    },
+    {
+      "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/requirements-specification.md",
+      "sha256": "28ebca9f9355060630881cbc353f04f4d0b8c2011bb3725758e2819a750e453f"
+    },
+    {
+      "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "sha256": "87fecfab0c5aa0bc780f4c9afd25efd50e10262c6e42439acbbebbd5d12b9b90"
+    },
+    {
+      "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "sha256": "98c681aee56a5a21028fb45ad7ad6a26a665dac24463e2ab7580fb6d84289861"
+    },
+    {
+      "path": "docs/MVP/SDLC/04-system-design/07-design-decisions/ADR-006-selected-mvp-implementation-baseline.md",
+      "sha256": "a4e8653bc87c9a365fbe3d1b1c9f3a076067b9707a3725221b3ecffcf88bea37"
+    },
+    {
+      "path": "docs/MVP/baseline/README.md",
+      "sha256": "a0df4bae058ed2b92dab72fabee71f48b633b81486c13094704ce2630f15c363"
+    },
+    {
+      "path": "docs/MVP/baseline/criterion-dispositions.csv",
+      "sha256": "e3a01974560f6e830f8c95ab51491ac44b2ac36d5cbfb5a07e43235b5c77c367"
+    },
+    {
+      "path": "docs/MVP/baseline/diagrams/baseline-gates.dot",
+      "sha256": "333b0dc9dcbabe5925c5fd509e76a76b84baa27d442fb4605ed51e3770c086ea"
+    },
+    {
+      "path": "docs/MVP/baseline/diagrams/baseline-gates.png",
+      "sha256": "8f3557f6925e1758fc5a8440413093185434528548307e678afbb26f0ad3e1c4"
+    },
+    {
+      "path": "docs/MVP/baseline/diagrams/baseline-gates.svg",
+      "sha256": "2501ba405470622fbc56e6cae48c2c222b60484081a30011621d72b1dd32fcc1"
+    },
+    {
+      "path": "docs/MVP/baseline/diagrams/selected-architecture.dot",
+      "sha256": "95c4d7df394e8ad250b6844acaec3e115acee9a040420b64a8fab35bde8c9533"
+    },
+    {
+      "path": "docs/MVP/baseline/diagrams/selected-architecture.png",
+      "sha256": "15e49d9ee149a77c8049841043a4f4bb7467d43d989a25dc09dced231f39ac83"
+    },
+    {
+      "path": "docs/MVP/baseline/diagrams/selected-architecture.svg",
+      "sha256": "c27c7ab82d1e4aea4e25c00e907aa21252bb50ccb2a838bc2ebe38dd4636f799"
+    },
+    {
+      "path": "docs/MVP/baseline/implementation-sequence.md",
+      "sha256": "647a4eaf989f7695691c1dd0f05c8e994e5598229b5c3eb8be28e35c091683d3"
+    },
+    {
+      "path": "docs/MVP/baseline/policy-decisions.md",
+      "sha256": "42aa0b21a2dac49cd11f483e702f4c61025237be29c62eb50dcd182eae5bc5b6"
+    },
+    {
+      "path": "docs/MVP/baseline/requirement-register.csv",
+      "sha256": "42ee73f964f1d283023cc6cff9c0ac5aa58139d2329f5e2359d559759065454f"
+    },
+    {
+      "path": "docs/MVP/baseline/sources.md",
+      "sha256": "133df8239f5c791c1b6bd9079d81ace596f820ce20fb93da34affbc389369adf"
+    },
+    {
+      "path": "docs/MVP/baseline/supplemental-acceptance.md",
+      "sha256": "1c84fa56959df0e18ae7940f675f5e81cd4f36d374e28ec078db43669a453834"
+    },
+    {
+      "path": "docs/MVP/baseline/technical-decisions.md",
+      "sha256": "ce12afdcc16ca41e74d3e8c69a69d8a4eab13579006252213863ad7fca16a3a8"
+    }
+  ]
+}

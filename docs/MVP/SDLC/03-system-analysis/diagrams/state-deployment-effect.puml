@@ -1,0 +1,45 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Future after MVP. Provider, advanced Sprint/review, or untrusted execution requirement retained as deferred.
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 8
+skinparam ArrowColor #526B7B
+skinparam ArrowFontSize 11
+skinparam stateBackgroundColor #EDF4FB
+skinparam stateBorderColor #526B7B
+skinparam stateStartColor #163E52
+skinparam stateEndColor #163E52
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam nodesep 38
+skinparam ranksep 48
+hide empty description
+top to bottom direction
+
+title AFTER MVP — SM-M15 — Separate target authority and actual deployment effect
+state "Requested exact target\neffect" as Requested
+state "Denied / blocked before\naction" as Denied
+state "Eligible target action\nunderway" as Acting
+state "Intended target effect\nconfirmed" as Succeeded
+state "Definite failed outcome" as Failed
+state "Confirmed partial effects" as Partial
+state "Target effect unknown" as Unknown
+[*] --> Requested : scoped initial context
+Requested --> Denied : SM-T095 eligibility denied\n[target conditions not met]
+Requested --> Acting : SM-T096 target action admitted\n[separate exact target\nauthority]
+Acting --> Succeeded : SM-T097 effect confirmed\n[actual required effect]
+Acting --> Failed : SM-T098 definite failure\n[definite evidence]
+Acting --> Partial : SM-T099 partial effects known\n[bounded partial evidence]
+Acting --> Unknown : SM-T100 effect unconfirmed\n[uncertain actual effect]
+Unknown --> Succeeded : SM-T101 target reconciled\n[matching effect verified]
+Unknown --> Failed : SM-T102 target reconciled\n[definite failed disposition]
+Unknown --> Partial : SM-T103 target reconciled\n[partial effects established]
+legend bottom
+A: accepted core behavior; P: existing proposal; R: proposed refinement.
+State labels are analysis abstractions, not implemented enums.
+Transition tables define full actor, guard, effect and status.
+Unconfirmed operation effects require SM-M18 reconciliation.
+endlegend
+@enduml

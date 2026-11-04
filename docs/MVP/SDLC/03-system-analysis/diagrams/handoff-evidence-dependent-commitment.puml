@@ -1,0 +1,33 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam ArrowColor #526B7B
+skinparam rectangleBackgroundColor #EDF4FB
+skinparam rectangleBorderColor #526B7B
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam nodesep 38
+skinparam ranksep 42
+title HD — evidence and dependent commitments
+top to bottom direction
+rectangle "Accepted scope / constraints / profile core\nExisting authoritative ASM / DEP / RSK / GAP records" as Sources
+rectangle "Known bounded input\n20 h/week; observed demo; OAuth/backup absence\nPopulated logical models / scenarios" as Known
+rectangle "Affected design question + actual evidence needed\nNo source association or tool demo implies feasibility" as Question
+rectangle "Scoped dependent commitment\nActual identified candidate / conditions / owner disposition" as Commit #DFF1EA
+Sources --> Known
+Known --> Question
+Question --> Commit : only supported evaluated scope
+note bottom of Question
+Independent modeling and unselected design proposals may continue.
+Missing decisive evidence limits the dependent acceptance.
+No overall feasibility finding is manufactured.
+end note
+
+legend bottom
+Qualified analysis/design input, not a selected architecture, accepted forecast or operational proof.
+No coding, provider/host operation, live tracker update, spending or baseline acceptance performed.
+endlegend
+@enduml

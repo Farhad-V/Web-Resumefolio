@@ -1,0 +1,26 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Reference / reusable template. Illustrative contract/model/pattern, not a product release commitment.
+allowmixing
+title Template example — Optional fault tree: duplicate consequential effect
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+rectangle "Top event: duplicate consequential effect" as T #FFE0CC
+rectangle "AND" as A
+rectangle "Prior effect happened or remains possible" as P
+rectangle "Another consequential dispatch occurs" as N
+rectangle "OR: candidate enabling causes" as O
+rectangle "Timeout incorrectly treated as no effect" as X
+rectangle "Lease takeover blindly redispatches" as L
+rectangle "Identity binding / provider contract inadequate" as I
+T --> A
+A --> P
+A --> N
+N --> O
+O --> X
+O --> L
+O --> I
+
+@enduml

@@ -1,0 +1,29 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Proposed — Upload with conditional resumable transport
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+actor Owner
+participant Files as F
+database "Quota / attempt ledger" as D
+participant "Private storage adapter" as S
+Owner -> F : exact upload intent / declared bounds
+F -> D : guarded current authority, policy and growth reservation
+alt actual transport supports chunked / resumable upload
+ loop each eligible bounded chunk
+  Owner -> F : same upload identity + validated chunk identity / position
+  F -> S : write private bounded candidate; verify duplicate / overlap semantics
+  S --> F : actual stored / failed / uncertain evidence
+ end
+else selected simple upload
+ Owner -> F : bounded content for same intent
+ F -> S : write private candidate
+end
+F -> S : validate actual content / completeness / usable identity
+S --> F : actual evidence
+F -> D : reconcile reservation + confirmed usage; mark usable only when supported
+F --> Owner : confirmed / pending / rejected / unknown
+
+@enduml

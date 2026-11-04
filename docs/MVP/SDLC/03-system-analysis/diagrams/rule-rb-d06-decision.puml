@@ -1,0 +1,53 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam ArrowColor #526B7B
+skinparam activityBackgroundColor #EDF4FB
+skinparam activityBorderColor #526B7B
+skinparam activityDiamondBackgroundColor #FFF3DF
+skinparam activityDiamondBorderColor #B99557
+
+title RB-D06 — Actual submitted-set completeness
+start
+if (RB-D06-C01\nActual identity established = T?) then (yes)
+if (RB-D06-C02\nRequired components present = T?) then (yes)
+if (RB-D06-C03\nPreservation confirmed = T?) then (yes)
+:RB-D06-R07\nCOMPLETE ACTUAL SET;
+stop
+else (no)
+if (RB-D06-C03 = F?) then (yes)
+:RB-D06-R05\nCAPTURE NOT COMPLETE;
+stop
+else (U)
+:RB-D06-R06\nCAPTURE UNCONFIRMED;
+stop
+endif
+endif
+else (no)
+if (RB-D06-C02 = F?) then (yes)
+:RB-D06-R03\nINCOMPLETE SET;
+stop
+else (U)
+:RB-D06-R04\nUNRESOLVED COMPLETENESS;
+stop
+endif
+endif
+else (no)
+if (RB-D06-C01 = F?) then (yes)
+:RB-D06-R01\nNOT ACTUAL SET;
+stop
+else (U)
+:RB-D06-R02\nUNRESOLVED PROVENANCE;
+stop
+endif
+endif
+legend bottom
+Decision alternatives, not execution steps or evaluation timing.
+T = established true; F = established false; U = unresolved.
+Conditions and full results are defined in the rule table.
+All rows here are proposed analysis refinements; no new policy acceptance.
+endlegend
+@enduml

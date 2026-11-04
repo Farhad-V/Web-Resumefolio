@@ -1,0 +1,27 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Reference / reusable template. Illustrative contract/model/pattern, not a product release commitment.
+allowmixing
+title Template example — Internal structure and responsibility allocation
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+package "Example owner internal structure" {
+ component "Public contract / validated intent" as C
+ component "Application handler" as H
+ component "Owned domain policy / values" as D
+ interface "Required authority port" as A
+ interface "Required persistence port" as S
+ C --> H
+ H --> D
+ H --> A
+ H --> S
+}
+note bottom of H
+ Handler coordinates; domain preserves invariants;
+ persistence mechanism supplies guarded coherent commit.
+ No hidden external effect in constructors or observers.
+end note
+
+@enduml

@@ -1,0 +1,33 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Proposed — Actual submission capture across owner contracts
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+actor Owner
+participant Applications as A
+participant "Presentation contract" as P
+participant "Files contract" as F
+database "Applications owned records" as D
+Owner -> A : explicitly record actual event + exact materials
+A -> A : validate current scope, version and bound command identity
+A -> P : permitted exact revision / provenance if applicable
+P --> A : exact permitted projection or unavailable
+A -> F : establish usable material + protected reference reservation
+F --> A : attributable protection or truthful unavailable / pending
+alt required protection established
+ A -> D : recheck current guards; commit event / manifest / command result
+ D --> A : actual committed outcome or uncertain observation
+ A -> F : finalize by same attributable capture identity
+ F --> A : finalized or reconciliation needed
+else incomplete material evidence
+ A -> A : preserve actual event knowledge and source-permitted completeness state
+end
+A --> Owner : distinct event and material-completeness result
+note over A,F
+ Unknown commit: retain protection until same-command reconciliation.
+ Do not release reservation by age alone or substitute latest live resume.
+end note
+
+@enduml

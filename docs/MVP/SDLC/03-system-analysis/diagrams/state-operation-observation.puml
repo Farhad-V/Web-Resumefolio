@@ -1,0 +1,46 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 8
+skinparam ArrowColor #526B7B
+skinparam ArrowFontSize 11
+skinparam stateBackgroundColor #EDF4FB
+skinparam stateBorderColor #526B7B
+skinparam stateStartColor #163E52
+skinparam stateEndColor #163E52
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam nodesep 38
+skinparam ranksep 48
+hide empty description
+top to bottom direction
+
+title SM-M18 — Observed operation result is separate from subject state
+state "Intended operation\nrequested" as Requested
+state "Denied before prohibited\neffect" as Denied
+state "Eligible / pending outcome" as Pending
+state "Required result confirmed" as Confirmed
+state "Definite failed result" as Failed
+state "Confirmed partial result" as Partial
+state "Actual result unknown" as Unknown
+[*] --> Requested : scoped initial context
+Requested --> Denied : SM-T119 request denied\n[not permitted]
+Requested --> Pending : SM-T120 eligible request accepted\n[eligible accepted request]
+Pending --> Confirmed : SM-T121 result confirmed\n[required actual result]
+Pending --> Failed : SM-T122 failure established\n[definite failure]
+Pending --> Partial : SM-T123 partial result established\n[partial evidence]
+Pending --> Unknown : SM-T124 confirmation lost\n[unconfirmed effect]
+Unknown --> Confirmed : SM-T125 effect reconciled\n[matching actual result]
+Unknown --> Failed : SM-T126 effect reconciled\n[definite failed disposition]
+Unknown --> Partial : SM-T127 effect reconciled\n[partial effects known]
+Unknown --> Pending : SM-T128 progress reconciled\n[same operation still pending]
+legend bottom
+A: accepted core behavior; P: existing proposal; R: proposed refinement.
+State labels are analysis abstractions, not implemented enums.
+Transition tables define full actor, guard, effect and status.
+Unconfirmed operation effects require SM-M18 reconciliation.
+endlegend
+@enduml

@@ -1,0 +1,23 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP ProjectForge. Separate basic issue/board contract from future Sprint planning and advanced projections.
+title MVP ProjectForge simple board — advanced planning is separate
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam wrapWidth 190
+package "ProjectForge — separate system" {
+ component "Issue / simple Kanban owner" as W
+ interface "Create / update issue\nMove card / permitted query" as P
+ interface "Current user / resource authority" as A
+ database "ProjectForge-owned board / issue state\nDatabase mechanism undecided" as D
+ W -- P
+ W ..> A
+ W --> D
+}
+rectangle "Core API adapter" as C
+C ..> P : authenticated user-scoped API
+rectangle "AFTER MVP\nProduct Backlog / task refinement\nSprint Goal / Sprint Backlog\nAdvanced reporting / automation" as F #F8EBD7
+note bottom of W
+ Simple board membership does not grant repository read/write authority.
+end note
+@enduml

@@ -1,0 +1,40 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Resumefolio | External interface outcomes
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #64748B
+skinparam activity {
+ BackgroundColor #DBEAFE
+ BorderColor #64748B
+ FontColor #17324D
+ DiamondBackgroundColor #FEF3C7
+ DiamondBorderColor #B45309
+ StartColor #17324D
+ EndColor #17324D
+}
+start
+:Identify interface, intended operation, actor and target;
+:Apply the relevant reviewed contract and authority checks;
+if (Required authority and input conditions satisfied?) then (yes)
+ :Perform bounded operation under interface-specific rules;
+ if (Outcome established?) then (yes)
+  :Record actual success, rejection or partial result;
+ else (unknown / pending)
+  :Retain uncertainty and defined reconciliation path; <<#FEF3C7>>
+ endif
+ :Apply only effects supported by established results;
+ :Handle retry / cancellation under operation-specific policy;
+else (no)
+ :Deny or report invalid request without protected disclosure; <<#FEF3C7>>
+endif
+:Show truthful permitted outcome and next action;
+stop
+legend bottom
+Conceptual requirements flow, not a mandatory implementation sequence.
+Read, send, Git write and deployment have different repetition risks.
+No universal retry policy or exactly-once guarantee is selected.
+endlegend
+@enduml

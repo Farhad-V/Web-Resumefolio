@@ -1,0 +1,23 @@
+// OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+digraph G { rankdir=TB; graph [bgcolor="white",pad="0.35",nodesep="0.35",ranksep="0.6",fontname="Segoe UI",fontsize=18]; node [shape=box,style="rounded,filled",fillcolor="#edf4fb",color="#547083",fontname="Segoe UI",fontsize=13,margin="0.18,0.14"]; edge [color="#547083",fontname="Segoe UI",fontsize=11,arrowsize=0.7];
+sources [label="PRIMARY REQUIREMENTS + SHARED TERMS
+Accepted decisions distinguished from proposals",fillcolor="#163e52",fontcolor="white"];
+structure [label="STRUCTURE
+03 Object-oriented: concepts and responsibility
+05 Data-oriented: information and relationships",fillcolor="#dff1ef"];
+function [label="TRANSFORMATION
+04 Function-oriented
+Inputs, outputs and domain functions"];
+behavior [label="BEHAVIOR
+06 Scenarios: interaction
+07 States: lifecycle
+08 Control flow: order and synchronization
+09 Rules: conditional decisions"];
+contract [label="10 CONTRACTS AND INVARIANTS
+Preconditions, effects and unchanged information
+All views must describe compatible outcomes",fillcolor="#fff3df"];
+review [label="11 CROSS-VIEW REVIEW
+One vocabulary; matching flows and transitions
+12 Interfaces / 13 Quality / 14 Handoff",fillcolor="#163e52",fontcolor="white"];
+sources -> structure;sources -> function;sources -> behavior;{rank=same;structure;function;behavior;}structure -> contract;function -> contract;behavior -> contract;contract -> review;
+}

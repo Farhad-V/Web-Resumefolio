@@ -1,0 +1,17 @@
+// OWNER-MVP-2026-11-04 review: Method / document navigation. Scope-independent process/navigation; provider or runner examples are not MVP prerequisites.
+digraph PlanningDocumentMap {
+  graph [rankdir=TB, bgcolor="white", pad=0.35, ranksep=0.45, nodesep=0.4,
+    fontname="Arial", fontsize=19, labelloc=t,
+    label="Resumefolio | Project planning document map\nNavigation groups - read files 01 through 10 for a full review"];
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=12,
+    color="#CBD5E1", margin="0.2,0.15", fillcolor="#DBEAFE"];
+  edge [color="#64748B", arrowsize=0.65];
+  overview [label="PROJECT PLAN OVERVIEW\nExecutive entry point\nREADME: full folder index", fillcolor="#17324D", fontcolor=white];
+  direction [label="PRODUCT DIRECTION AND PEOPLE\n01 | Purpose and objectives\l02 | Version 1 scope\l03 | Stakeholders and responsibilities\l", fillcolor="#DBEAFE"];
+  basis [label="DELIVERY BASIS AND UNCERTAINTY\n04 | Deliverables\l05 | Resources and constraints\l06 | Assumptions and dependencies\l07 | Risks\l", fillcolor="#FEF3C7"];
+  control [label="EXECUTION PLANNING AND REVIEW\n08 | Roadmap and milestones\l09 | Working method and change control\l10 | Planning completion criteria\l", fillcolor="#EDE9FE"];
+  decisions [label="PLANNING DECISION REGISTER\nStable references to source rationale\nSource documents remain authoritative", fillcolor="#DCFCE7"];
+  overview -> direction; overview -> basis; overview -> control;
+  direction -> decisions [style=dashed]; basis -> decisions [style=dashed]; control -> decisions [style=dashed];
+  {rank=same; direction -> basis -> control [style=invis];}
+}

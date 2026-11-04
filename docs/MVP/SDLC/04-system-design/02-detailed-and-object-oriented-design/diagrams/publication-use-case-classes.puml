@@ -1,0 +1,51 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Reference / design method. Native Git/OO/data notation illustration, not a commitment to advanced product features.
+title Proposed publication use-case classes — selected technical illustration
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam classBackgroundColor #EFF6FF
+skinparam classBorderColor #64748B
+top to bottom direction
+class PublishRevisionHandler {
+ +handle(command : PublishIntent) : PublicationOutcome
+}
+class PublishIntent {
+ +actorId : ActorId
+ +resumeId : ResumeId
+ +expectedDraftVersion : RevisionId
+ +commandId : CommandId
+}
+class ResumeDraft {
+ -version : RevisionId
+ -selectedContent : ConfirmedSelection
+ +snapshot(expected : RevisionId) : DraftSnapshot
+}
+class PublishedResumeRevision <<immutable>> {
+ +revisionId : RevisionId
+ +sourceDraftVersion : RevisionId
+ +artifactManifest : ManifestReference
+}
+interface PublicationStore {
+ +commitConfirmedRevision(intent, snapshot) : PublicationOutcome
+}
+interface ResourceAuthority {
+ +requirePublish(actorId, resumeId) : AuthorizedContext
+}
+class PersistenceAdapter <<infrastructure>>
+PublishRevisionHandler --> PublishIntent : validates
+PublishRevisionHandler --> ResourceAuthority : current operation scope
+PublishRevisionHandler --> ResumeDraft : confirmed version only
+PublishRevisionHandler --> PublicationStore : bounded atomic persistence contract
+PublicationStore ..> PublishedResumeRevision : records identity and live pointer
+PersistenceAdapter ..|> PublicationStore
+ResourceAuthority -[hidden]down-> ResumeDraft
+ResumeDraft -[hidden]down-> PublishIntent
+PublishIntent -[hidden]down-> PublicationStore
+note bottom of PublishedResumeRevision
+ Actual submission materials remain independent.
+ No automatic profile-edit publication.
+ Exact types/signatures are proposed, not implemented.
+end note
+@enduml

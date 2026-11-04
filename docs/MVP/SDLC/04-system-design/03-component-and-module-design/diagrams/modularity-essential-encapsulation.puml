@@ -1,0 +1,38 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+allowmixing
+title Proposed — Public contract and hidden implementation
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+class Consumer
+interface PublicationContract {
+ +resolvePermitted(context, revisionId) : PublicationProjection
+}
+package "Presentation owner internals" {
+ class PublicationService {
+  -store : OwnedStore
+  -checkCurrentScope(context, revisionId)
+  +resolvePermitted(context, revisionId) : PublicationProjection
+ }
+ class OwnedStore {
+  ~loadOwnedRevision(id)
+ }
+ class PublicationRecord {
+  -privateContent
+  -storageMapping
+ }
+ PublicationService --> OwnedStore
+ OwnedStore --> PublicationRecord
+}
+class PublicationProjection {
+ +permittedRevisionIdentity
+ +permittedContent
+}
+Consumer --> PublicationContract
+PublicationService ..|> PublicationContract
+PublicationContract ..> PublicationProjection
+
+@enduml

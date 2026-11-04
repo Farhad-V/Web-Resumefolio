@@ -1,0 +1,29 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Proposed explicit source review, draft save and separate publication
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+start
+:Open intended resume and explicit content language;
+:Review source differences against exact draft/source versions;\nshow affected selections and overrides;
+:Select intended changes;
+if (Current authority and versions valid?) then (yes)
+ :Apply only selected changes;\nshow Saved Draft and unchanged Published Revision;
+else (denied / stale)
+ :Safe refusal or conflict review;\npreserve permitted intended edits;
+ stop
+endif
+if (Owner explicitly chooses Publish?) then (yes)
+ :Review intended candidate / language / consequences;\nseparate confirmation;
+ :Resolve actual publication outcome;\nshow exact published revision or accurate conflict / pending state;
+else (no)
+ :Continue editing; publication remains unchanged;
+endif
+note right
+ Actual submitted material remains independent.
+ Publication does not prove a PDF is available.
+end note
+stop
+@enduml

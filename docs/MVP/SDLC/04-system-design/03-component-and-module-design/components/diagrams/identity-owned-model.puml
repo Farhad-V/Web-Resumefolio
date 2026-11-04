@@ -1,0 +1,35 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Proposed LC-01 account session and scoped authority identities
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam shadowing false
+
+skinparam classAttributeIconSize 0
+skinparam classBackgroundColor #EFF6FF
+top to bottom direction
+class Account {
+ +actorId : ActorId
+ +lifecycle : ActualAccountState
+ +version : RevisionId
+}
+class Invitation
+class SessionRecord
+class CredentialVerifier <<restricted>>
+class ScopedGrant {
+ +resource : ScopedResourceId
+ +permissionContext : PolicyReference
+ +version : RevisionId
+}
+class AuthorityChangeRecord
+Account -- Invitation : intended identity
+Account -- SessionRecord : bounded context
+Account -- CredentialVerifier : protected verification
+Account -- ScopedGrant : explicit subject / resource scope
+ScopedGrant -- AuthorityChangeRecord : attributable changes
+note bottom of ScopedGrant
+ Authentication is not universal authorization.
+ Resource owner retains operation/lifecycle checks.
+ Role policy and concrete schema remain to reconcile.
+end note
+@enduml

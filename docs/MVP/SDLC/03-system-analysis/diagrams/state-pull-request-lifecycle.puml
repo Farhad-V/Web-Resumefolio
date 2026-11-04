@@ -1,0 +1,35 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Future after MVP. Provider, advanced Sprint/review, or untrusted execution requirement retained as deferred.
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 8
+skinparam ArrowColor #526B7B
+skinparam ArrowFontSize 11
+skinparam stateBackgroundColor #EDF4FB
+skinparam stateBorderColor #526B7B
+skinparam stateStartColor #163E52
+skinparam stateEndColor #163E52
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam nodesep 38
+skinparam ranksep 48
+hide empty description
+top to bottom direction
+
+title AFTER MVP — SM-M13 — Request lifecycle with revision-specific eligibility
+state "Open request" as Open
+state "Actual integration\nconfirmed" as Merged
+state "Closed without merge" as Closed
+[*] --> Open : scoped initial context
+Open --> Open : SM-T077 review recorded\n[reviewed revision identified]\n\nSM-T078 source / target changed\n[evaluated context changed]
+Open --> Merged : SM-T079 merge confirmed\n[eligible / actual integration]
+Open --> Closed : SM-T080 close confirmed\n[explicit permitted close]
+legend bottom
+A: accepted core behavior; P: existing proposal; R: proposed refinement.
+State labels are analysis abstractions, not implemented enums.
+Transition tables define full actor, guard, effect and status.
+Unconfirmed operation effects require SM-M18 reconciliation.
+endlegend
+@enduml

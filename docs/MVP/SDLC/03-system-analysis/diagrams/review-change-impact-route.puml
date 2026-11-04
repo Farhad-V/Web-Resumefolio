@@ -1,0 +1,30 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam ArrowColor #526B7B
+skinparam rectangleBackgroundColor #EDF4FB
+skinparam rectangleBorderColor #526B7B
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam nodesep 35
+skinparam ranksep 42
+title SA-RV02 — review and change-impact route
+top to bottom direction
+rectangle "Identify changed authoritative source\nRetain accepted decisions and prior snapshot" as Change
+rectangle "Locate affected candidate/model/operation context\nUse matrices as associations, not automatic coverage" as Impact
+rectangle "Recheck local identities and structural consistency\nThen inspect exact semantic cases / unresolved policy" as Review
+rectangle "Identify updated candidate and scoped gates\nRecord actual reviewer/owner disposition when it occurs" as Record
+Change --> Impact
+Impact --> Review
+Review --> Record
+Review ..> Impact : affected gap / refinement
+note bottom of Record
+No automatic RF/Q-D closure or baseline acceptance.
+Future code/product results need actual evidence.
+No requirement to repeat already accepted choices.
+end note
+
+@enduml

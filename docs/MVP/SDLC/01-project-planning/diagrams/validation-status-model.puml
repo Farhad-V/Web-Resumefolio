@@ -1,0 +1,40 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Method / document navigation. Scope-independent process/navigation; provider or runner examples are not MVP prerequisites.
+ title Resumefolio - Evidence-based validation states
+left to right direction
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam state {
+  BackgroundColor #DBEAFE
+  BorderColor #94A3B8
+  FontColor #17324D
+}
+state "Assumption record" as Assumption {
+  state "Unverified" as AUnknown
+  state "Confirmed" as AConfirmed #DCFCE7
+  state "Invalidated" as AInvalidated #FEE2E2
+  [*] --> AUnknown
+  AUnknown --> AConfirmed : evidence supports expectation
+  AUnknown --> AInvalidated : evidence contradicts expectation
+  AConfirmed --> AUnknown : conditions or evidence change
+  AInvalidated --> AUnknown : revised assumption needs validation
+}
+state "Dependency record" as Dependency {
+  state "Unverified" as DUnknown
+  state "Available" as DAvailable #DCFCE7
+  state "Blocked" as DBlocked #FEE2E2
+  [*] --> DUnknown
+  DUnknown --> DAvailable : required use verified
+  DUnknown --> DBlocked : required prerequisite unavailable
+  DAvailable --> DUnknown : scope or conditions change
+  DAvailable --> DBlocked : access or required service lost
+  DBlocked --> DUnknown : new evidence needs reassessment
+}
+legend bottom
+Every status change needs evidence, an owner and a review point.
+Partial tool success does not validate the full application dependency set.
+No actual item status is changed by this diagram.
+endlegend
+@enduml

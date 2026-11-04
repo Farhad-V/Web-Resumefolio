@@ -1,0 +1,40 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Method / document navigation. Scope-independent process/navigation; provider or runner examples are not MVP prerequisites.
+ title Resumefolio - Risk review and closure
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam activity {
+  BackgroundColor #DBEAFE
+  BorderColor #94A3B8
+  FontColor #17324D
+  DiamondBackgroundColor #FEF3C7
+  DiamondBorderColor #94A3B8
+  StartColor #17324D
+  EndColor #17324D
+}
+start
+:Identify risk, potential consequences and related work;
+:Record likelihood, impact and priority separately;
+:Plan response, owner, warning signs and review gate;
+if (Has the risk materialized?) then (yes)
+  :Record an actual issue linked to the risk;
+  :Record evidence, effects and next action;
+else (not observed)
+  :Retain the risk as possible future exposure;
+endif
+:Investigate and carry out agreed responses;
+:Review actual evidence and remaining risk;
+if (Closure justified by evidence or explicit owner acceptance of residual risk?) then (yes)
+  :Record closure basis, limits and owner decision;
+else (not yet)
+  :Keep risk open with next action and review point;
+endif
+stop
+legend bottom
+A written response or planning acceptance alone does not close a risk.
+Material scope, cost or delivery changes require an owner decision.
+Reopen or reassess when conditions or evidence change.
+endlegend
+@enduml

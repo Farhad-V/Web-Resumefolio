@@ -1,0 +1,27 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Future after MVP. Provider, advanced Sprint/review, or untrusted execution requirement retained as deferred.
+title AFTER MVP — Proposed / conditional — Candidate CI/CD path with distinct execution and deployment gates
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+start
+:Observe exact authorized commit / trigger identity;
+:Safely validate supported definition and immutable inputs;
+if (Applicable execution isolation / capacity evidence established?) then (yes)
+ :Admit bounded attributable execution attempt;
+ :Build / test / scan only as selected supported definition requires;
+ :Package actual usable artifact with exact provenance;
+ :Record execution, outputs and cleanup evidence separately;
+ if (Separate target-specific approval and current capability?) then (yes)
+  :Deploy exact artifact to approved target only;
+  :Verify actual target / health / data outcome;
+ else (no)
+  :No deployment; retain truthful run/output state;
+ endif
+else (no)
+ :Execution blocked; validation is not real execution success;
+endif
+stop
+
+@enduml

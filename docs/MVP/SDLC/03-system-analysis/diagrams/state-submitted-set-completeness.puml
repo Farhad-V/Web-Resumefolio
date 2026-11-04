@@ -1,0 +1,43 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 8
+skinparam ArrowColor #526B7B
+skinparam ArrowFontSize 11
+skinparam stateBackgroundColor #EDF4FB
+skinparam stateBorderColor #526B7B
+skinparam stateStartColor #163E52
+skinparam stateEndColor #163E52
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam nodesep 38
+skinparam ranksep 48
+hide empty description
+top to bottom direction
+
+title SM-M07 — Actual submitted-set completeness
+state "Recorded event; material\nset incomplete" as Incomplete
+state "Capture under assessment" as Assessing
+state "Actual required set\nconfirmed preserved" as Complete
+state "Capture result unconfirmed" as Unknown
+state "Required actual material\nunavailable" as Unavailable
+[*] --> Incomplete : scoped initial context
+Incomplete --> Assessing : SM-T036 capture requested\n[actual / permitted material]
+Assessing --> Complete : SM-T037 complete capture confirmed\n[all required actual material]
+Assessing --> Incomplete : SM-T038 missing / failed capture\n[definite incomplete result]
+Assessing --> Unknown : SM-T039 confirmation ambiguous\n[unconfirmed result]
+Unknown --> Complete : SM-T040 capture reconciled\n[complete evidence]
+Unknown --> Incomplete : SM-T041 capture reconciled\n[incomplete evidence]
+Complete --> Complete : SM-T042 source / live edited\n[independent live change]
+Complete --> Unavailable : SM-T043 actual loss established\n[actual material missing]
+Unavailable --> Complete : SM-T044 actual material restored\n[same actual material verified]
+legend bottom
+A: accepted core behavior; P: existing proposal; R: proposed refinement.
+State labels are analysis abstractions, not implemented enums.
+Transition tables define full actor, guard, effect and status.
+Unconfirmed operation effects require SM-M18 reconciliation.
+endlegend
+@enduml

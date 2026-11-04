@@ -1,0 +1,25 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Proposed — UML use cases for the manual Applications capability
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+left to right direction
+actor "Authorized owner" as U
+rectangle "Manual Applications component" {
+ usecase "Prepare application and manual cover letter" as P
+ usecase "Record deliberate progress" as G
+ usecase "Record actual submission event / materials" as C
+ usecase "Correct with attributable provenance" as R
+ usecase "Read permitted private history" as H
+ usecase "Associate permitted correspondence / calendar" as M
+}
+U --> P
+U --> G
+U --> C
+U --> R
+U --> H
+U --> M
+
+@enduml

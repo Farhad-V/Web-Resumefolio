@@ -1,0 +1,17 @@
+// OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+digraph G {rankdir=TB;graph [bgcolor="white",pad="0.3",nodesep="0.35",ranksep="0.55",fontname="Arial"];node [shape=box,style="rounded,filled",fillcolor="#eff6ff",color="#64748b",fontname="Arial",fontsize=12,margin="0.17,0.12"];edge [fontname="Arial",fontsize=10,color="#64748b"];
+finding [label="Concrete finding or proposed improvement
+Identify source, evidence and current candidate"];
+open [label="Unresolved prescription / feasibility
+OPEN DESIGN WORK",fillcolor="#fef3c7"];
+risk [label="Possible adverse outcome
+RISK with uncertainty / mitigation",fillcolor="#ffedd5"];
+defect [label="Observed source contradiction
+DEFECT requiring proper disposition",fillcolor="#fee2e2"];
+debt [label="Evidenced deficiency / deferred improvement
+DEBT with consequence and remedy",fillcolor="#dcfce7"];
+finding->open;finding->risk;finding->defect;finding->debt;
+note [label="Debt recording is not permission to violate source rules
+Refactoring preserves behavior; changed behavior needs explicit review",shape=note,fillcolor="#f8fafc"];
+open->note [style=invis];risk->note [style=invis];defect->note [style=invis];debt->note [style=invis];
+}

@@ -1,0 +1,30 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Reference / reusable template. Illustrative contract/model/pattern, not a product release commitment.
+title Template example — Conditional saga compensation and irreversible limits
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+participant "Owner coordinator" as O
+participant "Local reservation" as L
+participant "External facility" as E
+O -> L : reserve protected reference / resource
+L --> O : attributable reservation
+O -> E : separately eligible consequential attempt
+alt confirmed operation cannot complete
+ O -> O : assess known effects + current compensation authority
+ opt safe local reservation release is actually permitted
+  O -> L : attributable release / compensation
+  L --> O : released or cleanup unresolved
+ end
+else partial / unknown external effect
+ O -> O : reconcile same attempt before compensation choice
+end
+note over O,E
+ Compensation is a new operation that can fail.
+ Releasing a reservation must not orphan a possible consumer.
+ Mail receipt, Git effects and deployment are not universally undoable.
+end note
+
+@enduml

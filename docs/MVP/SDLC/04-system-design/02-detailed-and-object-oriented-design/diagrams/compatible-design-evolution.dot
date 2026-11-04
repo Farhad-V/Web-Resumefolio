@@ -1,0 +1,17 @@
+// OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+digraph G {rankdir=TB;graph [bgcolor="white",pad="0.3",nodesep="0.35",ranksep="0.55",fontname="Arial"];node [shape=box,style="rounded,filled",fillcolor="#eff6ff",color="#64748b",fontname="Arial",fontsize=12,margin="0.17,0.12"];edge [fontname="Arial",fontsize=10,color="#64748b"];
+expand [label="Expand compatible schema / contract
+Identify old and new consumers"];
+backfill [label="Bounded attributable backfill / translation
+One explicit authoritative write policy",fillcolor="#dbeafe"];
+verify [shape=diamond,label="Identity, invariants and
+consumer compatibility verified?"];
+repair [label="Keep old path / stop promotion
+Investigate actual effects and repair",fillcolor="#ffedd5"];
+switch [label="Deliberately switch compatible reads / writes
+Observe real outcomes",fillcolor="#dcfce7"];
+contract [label="Contract old representation only when safe
+Retain historical identity and recovery evidence"];
+expand->backfill->verify;verify->repair [label="no"];repair->backfill;verify->switch [label="yes"];switch->contract;
+note [label="Code rollback does not undo irreversible data or remote effects",shape=note,fillcolor="#fef3c7"];contract->note [arrowhead=none,style=dashed];
+}

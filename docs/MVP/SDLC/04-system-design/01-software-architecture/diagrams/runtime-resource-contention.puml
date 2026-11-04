@@ -1,0 +1,25 @@
+@startuml
+title MVP resource contention — local guards, separate system stores
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam wrapWidth 180
+rectangle "Core concurrent commands\nPublish / application / private file admission" as C
+database "Core local transaction guards\nVersions / quota / protected references" as D
+folder "Core private bytes / temporary processing\nSame Resumefolio server" as F
+rectangle "Actual CPU / memory / disk workload\nMeasure capacity and limit contention" as R
+C --> D : core-local ordering
+C --> F : safe bounded storage work
+C ..> R
+package "Separate ProjectForge" {
+ rectangle "Repository / issue / board operations" as G
+ database "Independent native refs / owned data" as GD
+ G --> GD : own guards; no core transaction
+}
+C <--> G : user-scoped API; no SQL lock held over request
+G ..> R : only actual measured co-placement if later selected
+note bottom of R
+ Physical ProjectForge placement is undecided.
+ Never assume shared database atomicity across systems.
+end note
+@enduml

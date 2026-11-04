@@ -1,0 +1,31 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam ArrowColor #526B7B
+skinparam rectangleBackgroundColor #EDF4FB
+skinparam rectangleBorderColor #526B7B
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam nodesep 38
+skinparam ranksep 42
+title SQ — scoped authority across entry paths
+top to bottom direction
+rectangle "Actor context\nOwner / collaborator / viewer / operator" as Actor
+rectangle "Exact resource + action + current state\nApplicable scoped authority" as Gate
+rectangle "Only permitted intended effect / content\nActual result truthfully observed" as Result
+Actor --> Gate : UI / direct file / provider / Git / run request
+Gate --> Result : eligible intended scope only
+note bottom of Gate
+Sign-in / board membership / admin label is not universal power.
+Employer viewer requires no product account but only selected access.
+Current grant changes and in-flight policy remain explicit.
+end note
+
+legend bottom
+Logical analysis / evidence boundaries, not installed controls or selected architecture.
+No security, load, provider, backup, restore or live-change operation performed.
+endlegend
+@enduml

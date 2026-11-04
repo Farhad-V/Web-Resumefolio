@@ -1,0 +1,31 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP ProjectForge. Basic Git/issue/board behavior belongs to separate ProjectForge, with independent user/resource authority.
+title Proposed — Guarded work creation, assignment and transition
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+actor "Authorized participant" as U
+participant "Work handler" as H
+participant "Identity / current membership" as A
+participant "Work policy / current state" as P
+database "Owned work / board / command result" as D
+U -> H : explicit create/assignment or move intent + expected versions
+H -> A : current exact project/action eligibility
+A --> H : scoped context / denial
+H -> P : validate relationship, assignee eligibility or transition/criteria
+P --> H : eligible candidate / conflict / invalid
+alt actual guarded conditions satisfied
+ H -> D : revalidate relevant current guards and same-intent identity\ncommit coherent work state + placement + result
+ D --> H : actual committed / conflict / unknown result
+ H --> U : permitted truthful outcome
+else denied / stale / invalid
+ H --> U : safe refusal / conflict; protected state preserved
+end
+note over H,D
+ Early check alone cannot settle membership revocation races.
+ Lost response resolves same command identity.
+ No implicit mail, search index, workflow, acceptance or deployment effect.
+end note
+
+@enduml

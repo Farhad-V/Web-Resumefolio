@@ -1,0 +1,32 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Reference / design method. Native Git/OO/data notation illustration, not a commitment to advanced product features.
+allowmixing
+title Proposed — Before and after: separate reasons to change
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+skinparam maxMessageSize 65
+
+package "Before: hypothetical violation" {
+ class ResumeManager {
+  +applySource()
+  +publish()
+  +sendMail()
+  +saveSubmissionHistory()
+ }
+}
+package "After: proposed explicit use cases" {
+ class ApplySelectionHandler
+ class PublishRevisionHandler
+ class CaptureActualMaterialsHandler
+ class SendMailHandler
+ interface PresentationContract
+ CaptureActualMaterialsHandler --> PresentationContract : permitted exact material projection
+}
+ResumeManager ..> PublishRevisionHandler : split responsibilities
+ResumeManager ..> ApplySelectionHandler : preserve separate intent
+ResumeManager ..> SendMailHandler : explicit effect owner
+ResumeManager ..> CaptureActualMaterialsHandler : independent history
+
+@enduml

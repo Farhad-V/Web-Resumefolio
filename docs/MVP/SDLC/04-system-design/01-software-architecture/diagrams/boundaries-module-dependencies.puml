@@ -1,0 +1,32 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP systems. Correct the former single trusted product boundary and make future/API responsibilities visible.
+title Current logical owners inside distinct system boundaries
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam wrapWidth 190
+package "Resumefolio core" {
+ component "Identity / invited accounts" as I
+ component "Professional Presentation" as P
+ component "Representation / Sharing" as S
+ component "Manual Applications\nActual materials / next action / follow-up" as A
+ component "My Files & Media / Operations\nPrivate same-server uploads" as F
+ S ..> P : exact published selection
+ S ..> F : protected direct / range delivery
+ A ..> F : preserve actual submitted references
+ P ..> I : current subject authority
+}
+package "ProjectForge — separate system" {
+ component "Repository authority / native Git\nFile-history / issues / simple Kanban" as G
+}
+A <--> G : authenticated user-scoped API\nonly permitted projections
+package "AFTER MVP — independent responsibilities" #F8EBD7 {
+ component "Private communications via API\nPer-user/account Google consent\nAdmin cannot read users' mail" as C
+ component "Advanced review / merge / releases\nAdvanced backlog / Sprints\nYAML execution / deployment" as X
+}
+A ..> C : future independently authorized association
+legend bottom
+ Logical ownership does not imply common storage, process or transaction across systems.
+ ProjectForge engine / database / physical placement remain open.
+endlegend
+@enduml

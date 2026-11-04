@@ -1,0 +1,35 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #486777
+skinparam ArrowFontSize 12
+skinparam rectangleBackgroundColor #EEF5FA
+skinparam rectangleBorderColor #486777
+skinparam noteBackgroundColor #FFF3DA
+skinparam noteBorderColor #B59865
+skinparam nodesep 35
+skinparam ranksep 45
+title Contract outcomes — evidence required for a claim
+top to bottom direction
+rectangle "Identify exact operation / subject / context\nEvaluate current authority and applicable preconditions" as request
+rectangle "Denied / invalid\nNo permitted consequential operation\nDo not expose unrelated private information" as deny #FFF3DA
+rectangle "Eligible request\nEligibility alone is not completion" as eligible
+rectangle "Actual attributable evidence\nAssess only the relevant effect and context" as evidence
+rectangle "Confirmed required success\nClaim the matching postcondition\nApply frame to this operation" as success #DFF1EA
+rectangle "Definite failure / bounded partial / pending\nReport the specific known disposition\nDo not claim the success postcondition" as other #FFF3DA
+rectangle "Unknown or contradictory effect\nDC-O38: reconcile same operation\nNo blind consequential repeat or assumed rollback" as unknown #FFF3DA
+request --> deny : prerequisite not satisfied
+request --> eligible : applicable prerequisites satisfied
+eligible --> evidence : inspect outcome
+evidence --> success : required effect established
+evidence --> other : bounded evidence of another disposition
+evidence --> unknown : required evidence unavailable / inconsistent
+legend bottom
+Interpretation guide, not a new execution algorithm, stored enum or retry policy.
+Read-only operations and admission/cancellation requests have their own bounded success meaning.
+endlegend
+
+@enduml

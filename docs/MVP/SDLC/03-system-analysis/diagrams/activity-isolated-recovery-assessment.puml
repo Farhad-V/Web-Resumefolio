@@ -1,0 +1,51 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam ArrowColor #526B7B
+skinparam activityBackgroundColor #EDF4FB
+skinparam activityBorderColor #526B7B
+skinparam activityDiamondBackgroundColor #FFF3DF
+skinparam activityDiamondBorderColor #B99557
+skinparam activityStartColor #163E52
+skinparam activityEndColor #163E52
+skinparam wrapWidth 190
+skinparam maxMessageSize 180
+
+title CF-M16 — Conditional isolated restore and usability assessment
+start
+:CF-M16-S01\nInitiating actor\nOperator identifies a\nloss/recovery scenario and\nrequests an explicitly authorized\nisolated drill.;
+if (CF-M16-S02\nAuthorized isolated target,\nidentified protected source and\nrequired recovery coverage\nactually exist?) then (yes)
+:CF-M16-S03\nOperator\nDefine covered scenario, required\nmaterial, criteria and measurement\ncontext;
+:CF-M16-S04\nSystem / Operator\nPerform only explicitly authorized\nisolated restoration;
+if (CF-M16-S05\nActual restored candidate\navailable?) then (yes)
+:CF-M16-S06\nOperator / System\nCheck integrity, required data,\ncurrent access and external-state\ndisposition;
+:CF-M16-S07\nOperator\nMeasure actual recovery result\nagainst defined targets;
+if (CF-M16-S08\nRequired scoped usability/targets\ndemonstrated?) then (yes)
+:CF-M16-S09\nSystem\nRecord scoped usable recovery\nevidence; retain limits and\nmeasurements;
+stop
+else (no)
+:CF-M16-S10\nSystem\nRecord incomplete/failed\nassessment and actual gaps; no\nblanket recovery claim;
+stop
+endif
+else (no)
+if (CF-M16-S11\nDefinite restore failure\nestablished?) then (yes)
+:CF-M16-S12\nSystem\nRecord failed/incomplete recovery\nevidence;
+stop
+else (no)
+:CF-M16-S13\nSystem\nRestore result unknown; reconcile\nactual isolated candidate before\nnext action;
+stop
+endif
+endif
+else (no)
+:CF-M16-S14\nSystem\nDeny before prohibited effect or\nprotected disclosure; report unmet\ngate;
+stop
+endif
+legend bottom
+A: accepted profile core only. Other policy detail: P / proposed refinement.
+Step IDs identify full descriptions in the activity view.
+Logical ordering; no atomicity, runtime, timing or execution proof.
+endlegend
+@enduml

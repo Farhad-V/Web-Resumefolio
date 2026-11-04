@@ -1,0 +1,30 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Reference / reusable template. Illustrative contract/model/pattern, not a product release commitment.
+title Template example — Optional concurrency: guarded competing publications
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+participant "Command A (expected v12)" as A
+participant "Coordination mechanism" as G
+participant "Command B (expected v12)" as B
+database "Current draft / revision / pointer / result" as D
+A -> G : acquire chosen resource / identity guard
+G --> A : admitted
+B -> G : competing guard request
+G --> B : wait / conflict per actual mechanism
+A -> D : current authority + version + identity check
+A -> D : coherent commit A
+A -> G : release
+B -> G : establish current admission
+G --> B : admitted when actually eligible
+B -> D : reread current state and identity
+note over B,D
+ A publication need not increment the draft version.
+ Distinct explicit commands may both be valid if source policy permits.
+ Same command identity must resolve one attributable result.
+ Define actual pointer ordering; do not invent a guaranteed loser.
+end note
+
+@enduml

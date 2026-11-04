@@ -1,0 +1,1349 @@
+{
+  "revision": "2026-11-01",
+  "scope": "Document 05 full-product conceptual data view",
+  "source_sha256": {
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md": "d3f8d0b9719f0b60bd008207d362c0f78fd7d0449d755c540c52ab8481bce634",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md": "21064f4cf533b5fdc215d31e943ae9128d1e843c958647f4f0a576785afb261c",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-requirements.md": "9ab0bc50255d5bdacd1165ecbaf315c1dc6ccfed352bd18ee5dba83f6912010b",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md": "0825abe597c9e532cb634569404b61ad8ce29f31dc66e8b7f2afd653892c1570",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/domain-requirements-and-constraints.md": "7f66bc21a824aea3a5613a70843f602b6adb6f0527cd65e0142137048138d906",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md": "dafa6a97e11856c01fcc8462c349d9064c8e962c0cb8e3472abcfbea0ebae173",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md": "a23048e2e5c238c309f054e598c410481def3be7cf28eeab1b92c29bfb654dad",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md": "a3e87d9df789b0caad43c46797794dd8e5936d283966cdca6d2f172ebdde47e8",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md": "e7cc09e5e00547dbd5bf0991d817060d053981b7bd866633da29812760505169",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md": "3ce305eea7fadd531c5ed33aa83c82a92f339854a0efc54d9a65c8bb252eb0cd",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md": "20296582867db99cfb410c613fa95067c41bd3535e4f260b6b8f09a03f487fbb",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md": "671670ee2aa9e2f26bac52ecfd7824279053a1b3277f21dd14d2ee6ff6482e18",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md": "fbd72aa41df3170e19280ec13ebf3c96b73aa131c311fd4c64ea9687a4bc6412",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/README.md": "d37f402bd5d6f6339b890a9c27fe8e6ddebafad86e1086dcb6bad374a158de95",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/requirements-priority-and-readiness.md": "09432d16fb9d833024cd35339c5fda92f5ecfbd1199302aca9bd06fcdacc4ca6",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/requirements-specification.md": "f95f61114a624aae571fe62685133c7b5b4cce9ac3479d13b8237bff4a192118",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md": "87079c565ce8007f6879e79f32a2e9ca56a0ace57e9f2f1df8c17e3d7592ffcf",
+    "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md": "ae3dd6e364d53bb608fe2d1c501d02fbb40f53833c354dda36e71b3464a8b226",
+    "docs/SDLC/02-requirements-engineering/05-data-definitions/data-dictionary.md": "eab192fb32c0c81d5d0e0bc481d4d2c0e66ad6cfafbf27f4ab8f9f25913338ce",
+    "docs/SDLC/02-requirements-engineering/05-data-definitions/glossary.md": "14964bd9a89f4ec09ecafa1cf75e3e68b9facf011aec37163d8def119ef9dcea",
+    "docs/SDLC/02-requirements-engineering/07-change-and-baseline/open-questions-and-decisions.md": "dc0a8f850988cda96998ed0cd7b61e03966428b0a977ec9fb31a24a15a89853f",
+    "docs/SDLC/01-project-planning/02-scope.md": "33b218141cef0799afe61adc098b7c42e6eb3ee9b1826c1b3d03f926b332dd82",
+    "docs/SDLC/03-system-analysis/03-domain-model-and-object-oriented-view.md": "669776993c881e9e904494d9abc8316d7497ea089bb5380286bce2febec48641",
+    "docs/SDLC/03-system-analysis/evidence/domain-model-review-2026-11-01.json": "db887103f0e0173be2ec4f664d592c5c92d178029deee478c6251e79590ad8c3"
+  },
+  "dictionary_subject_count": 34,
+  "domain_concept_count": 53,
+  "subjects": [
+    {
+      "id": "DA-S01",
+      "dictionary_key": "account",
+      "domain_keys": [
+        "account"
+      ],
+      "domain_ids": [
+        "DM-C47"
+      ],
+      "information": "Identity context; access state",
+      "requirement_ids": [
+        "ACC-D01",
+        "ACC-D02",
+        "ACC-D12"
+      ]
+    },
+    {
+      "id": "DA-S02",
+      "dictionary_key": "role-permission",
+      "domain_keys": [
+        "grant"
+      ],
+      "domain_ids": [
+        "DM-C48"
+      ],
+      "information": "Subject; resource; allowed action/state",
+      "requirement_ids": [
+        "ACC-D03",
+        "ACC-D05",
+        "ACC-D09",
+        "ACC-D10"
+      ]
+    },
+    {
+      "id": "DA-S03",
+      "dictionary_key": "collaboration-grant",
+      "domain_keys": [
+        "grant"
+      ],
+      "domain_ids": [
+        "DM-C48"
+      ],
+      "information": "Subject; resource; allowed action/state",
+      "requirement_ids": [
+        "ACC-D03",
+        "ACC-D05",
+        "ACC-D09",
+        "ACC-D10"
+      ]
+    },
+    {
+      "id": "DA-S04",
+      "dictionary_key": "provider-connection",
+      "domain_keys": [
+        "connection"
+      ],
+      "domain_ids": [
+        "DM-C20"
+      ],
+      "information": "Provider identity; access state",
+      "requirement_ids": [
+        "EGC-D01",
+        "EGC-D02",
+        "EGC-D11"
+      ]
+    },
+    {
+      "id": "DA-S05",
+      "dictionary_key": "professional-profile",
+      "domain_keys": [
+        "profile",
+        "entry"
+      ],
+      "domain_ids": [
+        "DM-C01",
+        "DM-C02"
+      ],
+      "information": "Professional sections; source context; Category; professional meaning",
+      "requirement_ids": [
+        "PRP-D01",
+        "PRP-D04",
+        "PRP-D05"
+      ]
+    },
+    {
+      "id": "DA-S06",
+      "dictionary_key": "tailored-resume",
+      "domain_keys": [
+        "resume",
+        "selection",
+        "override",
+        "publication"
+      ],
+      "domain_ids": [
+        "DM-C03",
+        "DM-C04",
+        "DM-C05",
+        "DM-C09"
+      ],
+      "information": "Content selection; layout; tailoring context; Source reference; inclusion/order; Target content; independent value; Effective content/revision context",
+      "requirement_ids": [
+        "PRP-D02",
+        "PRP-D03",
+        "PRP-D04",
+        "PRP-D08",
+        "PDF-D07"
+      ]
+    },
+    {
+      "id": "DA-S07",
+      "dictionary_key": "professional-evidence",
+      "domain_keys": [
+        "evidence",
+        "evidencechoice"
+      ],
+      "domain_ids": [
+        "DM-C06",
+        "DM-C07"
+      ],
+      "information": "Category; supporting association; content reference; Selected evidence; disclosure intent",
+      "requirement_ids": [
+        "PRP-D05",
+        "PRP-D09",
+        "PRP-D06"
+      ]
+    },
+    {
+      "id": "DA-S08",
+      "dictionary_key": "content-language",
+      "domain_keys": [
+        "language"
+      ],
+      "domain_ids": [
+        "DM-C08"
+      ],
+      "information": "Language; authored text; context",
+      "requirement_ids": [
+        "PRP-D07"
+      ]
+    },
+    {
+      "id": "DA-S09",
+      "dictionary_key": "generated-pdf",
+      "domain_keys": [
+        "generated"
+      ],
+      "domain_ids": [
+        "DM-C10"
+      ],
+      "information": "Represented content; language; availability",
+      "requirement_ids": [
+        "PDF-D01",
+        "PDF-D07"
+      ]
+    },
+    {
+      "id": "DA-S10",
+      "dictionary_key": "uploaded-pdf",
+      "domain_keys": [
+        "uploaded"
+      ],
+      "domain_ids": [
+        "DM-C11"
+      ],
+      "information": "Artifact identity; language; availability",
+      "requirement_ids": [
+        "PDF-D02",
+        "PDF-D09"
+      ]
+    },
+    {
+      "id": "DA-S11",
+      "dictionary_key": "download-choice",
+      "domain_keys": [
+        "download"
+      ],
+      "domain_ids": [
+        "DM-C12"
+      ],
+      "information": "Mode; language eligibility",
+      "requirement_ids": [
+        "PDF-D03"
+      ]
+    },
+    {
+      "id": "DA-S12",
+      "dictionary_key": "employer-link",
+      "domain_keys": [
+        "link"
+      ],
+      "domain_ids": [
+        "DM-C13"
+      ],
+      "information": "Target context; access state; credential control",
+      "requirement_ids": [
+        "PDF-D04",
+        "PDF-D06"
+      ]
+    },
+    {
+      "id": "DA-S13",
+      "dictionary_key": "company-opportunity",
+      "domain_keys": [
+        "company",
+        "opportunity"
+      ],
+      "domain_ids": [
+        "DM-C14",
+        "DM-C15"
+      ],
+      "information": "Organization context; supplied details; Role context; source/deadline details",
+      "requirement_ids": [
+        "APP-D01"
+      ]
+    },
+    {
+      "id": "DA-S14",
+      "dictionary_key": "application-record",
+      "domain_keys": [
+        "application"
+      ],
+      "domain_ids": [
+        "DM-C16"
+      ],
+      "information": "Progress; intended material associations",
+      "requirement_ids": [
+        "APP-D02",
+        "APP-D04",
+        "APP-D05"
+      ]
+    },
+    {
+      "id": "DA-S15",
+      "dictionary_key": "cover-letter",
+      "domain_keys": [
+        "letter"
+      ],
+      "domain_ids": [
+        "DM-C17"
+      ],
+      "information": "Authored text; revision context",
+      "requirement_ids": [
+        "APP-D03"
+      ]
+    },
+    {
+      "id": "DA-S16",
+      "dictionary_key": "submitted-materials",
+      "domain_keys": [
+        "submission",
+        "material"
+      ],
+      "domain_ids": [
+        "DM-C18",
+        "DM-C19"
+      ],
+      "information": "Actual event context; capture completeness; Actual content/artifact; provenance",
+      "requirement_ids": [
+        "APP-D05",
+        "APP-D07",
+        "APP-D06",
+        "PDF-D08"
+      ]
+    },
+    {
+      "id": "DA-S17",
+      "dictionary_key": "application-progress",
+      "domain_keys": [
+        "application"
+      ],
+      "domain_ids": [
+        "DM-C16"
+      ],
+      "information": "Progress; intended material associations",
+      "requirement_ids": [
+        "APP-D02",
+        "APP-D04",
+        "APP-D05"
+      ]
+    },
+    {
+      "id": "DA-S18",
+      "dictionary_key": "email-message",
+      "domain_keys": [
+        "message"
+      ],
+      "domain_ids": [
+        "DM-C21"
+      ],
+      "information": "Message/thread context; content; outcome",
+      "requirement_ids": [
+        "EGC-D03",
+        "EGC-D04",
+        "EGC-D05",
+        "EGC-D06"
+      ]
+    },
+    {
+      "id": "DA-S19",
+      "dictionary_key": "calendar-activity",
+      "domain_keys": [
+        "activity"
+      ],
+      "domain_ids": [
+        "DM-C22"
+      ],
+      "information": "Time/zone; provider mapping if applicable",
+      "requirement_ids": [
+        "EGC-D07",
+        "EGC-D08"
+      ]
+    },
+    {
+      "id": "DA-S20",
+      "dictionary_key": "activity-reminder",
+      "domain_keys": [
+        "reminder"
+      ],
+      "domain_ids": [
+        "DM-C23"
+      ],
+      "information": "Activity; recipient/time; outcome",
+      "requirement_ids": [
+        "EGC-D10"
+      ]
+    },
+    {
+      "id": "DA-S21",
+      "dictionary_key": "project-board",
+      "domain_keys": [
+        "project",
+        "board",
+        "column"
+      ],
+      "domain_ids": [
+        "DM-C24",
+        "DM-C25",
+        "DM-C26"
+      ],
+      "information": "Work identity; participant context; Displayed work; column arrangement; Label/order; state mapping meaning",
+      "requirement_ids": [
+        "PKS-D01",
+        "PKS-D06",
+        "PKS-D02"
+      ]
+    },
+    {
+      "id": "DA-S22",
+      "dictionary_key": "backlog-item",
+      "domain_keys": [
+        "backlog",
+        "item"
+      ],
+      "domain_ids": [
+        "DM-C27",
+        "DM-C28"
+      ],
+      "information": "Item ordering; planning context; Outcome; priority; criteria; state",
+      "requirement_ids": [
+        "PKS-D03",
+        "PKS-D04",
+        "PKS-D09"
+      ]
+    },
+    {
+      "id": "DA-S23",
+      "dictionary_key": "task",
+      "domain_keys": [
+        "task"
+      ],
+      "domain_ids": [
+        "DM-C29"
+      ],
+      "information": "Activity; assignment; due/state context",
+      "requirement_ids": [
+        "PKS-D04",
+        "PKS-D05"
+      ]
+    },
+    {
+      "id": "DA-S24",
+      "dictionary_key": "sprint-plan",
+      "domain_keys": [
+        "sprint",
+        "sprintbacklog"
+      ],
+      "domain_ids": [
+        "DM-C30",
+        "DM-C31"
+      ],
+      "information": "Period; lifecycle; outcome; Goal + selected items + plan",
+      "requirement_ids": [
+        "PKS-D07",
+        "PKS-D09",
+        "PKS-D08"
+      ]
+    },
+    {
+      "id": "DA-S25",
+      "dictionary_key": "git-repository",
+      "domain_keys": [
+        "repo"
+      ],
+      "domain_ids": [
+        "DM-C32"
+      ],
+      "information": "Repository identity; owner context; refs",
+      "requirement_ids": [
+        "GIT-D01",
+        "GIT-D02",
+        "GIT-D03"
+      ]
+    },
+    {
+      "id": "DA-S26",
+      "dictionary_key": "git-reference",
+      "domain_keys": [
+        "ref",
+        "revision"
+      ],
+      "domain_ids": [
+        "DM-C34",
+        "DM-C33"
+      ],
+      "information": "Name/kind; target state; Revision identity; content/history",
+      "requirement_ids": [
+        "GIT-D02",
+        "GIT-D04",
+        "GIT-D09",
+        "YML-D03"
+      ]
+    },
+    {
+      "id": "DA-S27",
+      "dictionary_key": "pull-request",
+      "domain_keys": [
+        "pr",
+        "review"
+      ],
+      "domain_ids": [
+        "DM-C35",
+        "DM-C36"
+      ],
+      "information": "Source/target; evaluation context; state; Author; reviewed context; decision/content",
+      "requirement_ids": [
+        "GIT-D06",
+        "GIT-D07"
+      ]
+    },
+    {
+      "id": "DA-S28",
+      "dictionary_key": "repository-planning",
+      "domain_keys": [
+        "issue",
+        "milestone"
+      ],
+      "domain_ids": [
+        "DM-C37",
+        "DM-C38"
+      ],
+      "information": "Repository context; issue state; Checkpoint; related issue context",
+      "requirement_ids": [
+        "GIT-D08"
+      ]
+    },
+    {
+      "id": "DA-S29",
+      "dictionary_key": "release-record",
+      "domain_keys": [
+        "release"
+      ],
+      "domain_ids": [
+        "DM-C39"
+      ],
+      "information": "Revision/tag context; release assets",
+      "requirement_ids": [
+        "GIT-D09"
+      ]
+    },
+    {
+      "id": "DA-S30",
+      "dictionary_key": "workflow-definition",
+      "domain_keys": [
+        "workflow"
+      ],
+      "domain_ids": [
+        "DM-C40"
+      ],
+      "information": "Definition identity; trigger/steps",
+      "requirement_ids": [
+        "YML-D01",
+        "YML-D02"
+      ]
+    },
+    {
+      "id": "DA-S31",
+      "dictionary_key": "workflow-run",
+      "domain_keys": [
+        "run",
+        "attempt",
+        "output",
+        "secret",
+        "deployment",
+        "target"
+      ],
+      "domain_ids": [
+        "DM-C41",
+        "DM-C42",
+        "DM-C43",
+        "DM-C44",
+        "DM-C45",
+        "DM-C46"
+      ],
+      "information": "Revision/definition; initiator; result; Attempt context; state; resource use; Producing context; availability; content; Permitted use context; restriction; Target; artifact/revision; approval context; Target identity; operating constraints",
+      "requirement_ids": [
+        "YML-D02",
+        "YML-D03",
+        "YML-D07",
+        "YML-D09",
+        "YML-D08",
+        "YML-D11",
+        "YML-D05",
+        "YML-D10",
+        "YML-D12"
+      ]
+    },
+    {
+      "id": "DA-S32",
+      "dictionary_key": "file-policy",
+      "domain_keys": [
+        "policy",
+        "file"
+      ],
+      "domain_ids": [
+        "DM-C50",
+        "DM-C49"
+      ],
+      "information": "Applicability; units/limits; effective context; Content identity; availability; references",
+      "requirement_ids": [
+        "AFO-D01",
+        "AFO-D02",
+        "AFO-D04",
+        "AFO-D03",
+        "AFO-D05",
+        "AFO-D06",
+        "AFO-D07"
+      ]
+    },
+    {
+      "id": "DA-S33",
+      "dictionary_key": "audit-event",
+      "domain_keys": [
+        "audit"
+      ],
+      "domain_ids": [
+        "DM-C51"
+      ],
+      "information": "Actor/context; result; visibility",
+      "requirement_ids": [
+        "AFO-D10",
+        "QSR-D13"
+      ]
+    },
+    {
+      "id": "DA-S34",
+      "dictionary_key": "backup-record",
+      "domain_keys": [
+        "backup",
+        "restore"
+      ],
+      "domain_ids": [
+        "DM-C52",
+        "DM-C53"
+      ],
+      "information": "Recovery point; coverage; result; Recovery source; findings; outcome",
+      "requirement_ids": [
+        "QSR-D10",
+        "QSR-D11",
+        "QSR-D12"
+      ]
+    }
+  ],
+  "diagrams": [
+    {
+      "name": "data-profile-and-tailoring",
+      "title": "Data — source information and independent tailoring",
+      "nodes": [
+        [
+          "P",
+          "Professional profile",
+          "source identity;owner context"
+        ],
+        [
+          "E",
+          "Professional entry",
+          "entry identity;source content identity"
+        ],
+        [
+          "R",
+          "Tailored resume",
+          "resume identity;editable content context"
+        ],
+        [
+          "S",
+          "Source selection",
+          "resume context;selected entry identity"
+        ],
+        [
+          "O",
+          "Independent override",
+          "resume context;target field / value"
+        ]
+      ],
+      "links": [
+        [
+          "P",
+          "||--o{",
+          "E",
+          "P: source entries"
+        ],
+        [
+          "P",
+          "||--o{",
+          "R",
+          "P: reusable source context"
+        ],
+        [
+          "R",
+          "||--o{",
+          "S",
+          "P: selected source information"
+        ],
+        [
+          "E",
+          "||--o{",
+          "S",
+          "P: referenced source entry"
+        ],
+        [
+          "R",
+          "||--o{",
+          "O",
+          "P: independent tailoring"
+        ]
+      ],
+      "basis": "PRP-D01 PRP-D02 PRP-D03 PRP-D04",
+      "meaning": "The resume has independent identity and editable content. Source selection describes provenance; it is not permission to read a changed source value automatically. Override values belong to the intended resume. The diagram does not prescribe copying, normalization or event storage.",
+      "bounds": "P uses the Q-D06 single-profile/multiple-resume proposal. Zero selection/override rows allow an incomplete draft in the working model. Entry/selection identity and exact granularity remain proposed. Accepted Q-D07 rules prohibit automatic draft/live changes and protect independent content regardless of representation."
+    },
+    {
+      "name": "data-evidence-language-and-selection",
+      "title": "Data — evidence disclosure and language context",
+      "nodes": [
+        [
+          "R",
+          "Tailored resume",
+          "resume identity;intended content language"
+        ],
+        [
+          "S",
+          "Evidence selection",
+          "resume context;evidence identity / order"
+        ],
+        [
+          "E",
+          "Supporting evidence",
+          "evidence identity;content / file / link reference"
+        ],
+        [
+          "P",
+          "Skill / professional-project entry",
+          "entry identity;supporting context"
+        ],
+        [
+          "L",
+          "Language-specific content",
+          "owning content context;language + authored wording"
+        ]
+      ],
+      "links": [
+        [
+          "R",
+          "||--o{",
+          "S",
+          "P: selected disclosure"
+        ],
+        [
+          "E",
+          "||--o{",
+          "S",
+          "P: selected evidence reference"
+        ],
+        [
+          "E",
+          "}o--o{",
+          "P",
+          "P: permitted supporting associations"
+        ],
+        [
+          "P",
+          "--",
+          "L",
+          "P: source wording context"
+        ],
+        [
+          "R",
+          "--",
+          "L",
+          "P: tailored wording context"
+        ]
+      ],
+      "basis": "PRP-D05 PRP-D06 PRP-D07 PRP-D09",
+      "meaning": "Evidence existence, professional association and per-resume disclosure are separate information. Content can be text, a permitted file or a link; no file is mandatory for every evidence item. Each language value belongs to a clearly identified content context rather than a global translation record.",
+      "bounds": "P follows Q-D08/Q-D09. Several supporting associations and per-resume inclusion/order are proposed. Language-owning context is exclusive per value: the two context lines are alternatives, not a requirement to belong to both entry and resume. Their exact counts are intentionally unspecified. Missing wording/artifact is never fabricated."
+    },
+    {
+      "name": "data-publication-pdf-and-sharing",
+      "title": "Data — publication identity, PDF provenance and access",
+      "nodes": [
+        [
+          "R",
+          "Tailored resume",
+          "resume identity;editable context"
+        ],
+        [
+          "P",
+          "Published presentation",
+          "effective content identity;language / selection context"
+        ],
+        [
+          "G",
+          "Generated PDF",
+          "represented content identity;language / availability"
+        ],
+        [
+          "U",
+          "Uploaded PDF",
+          "supplied artifact identity;language / provenance"
+        ],
+        [
+          "D",
+          "Download availability",
+          "resume context;generated / uploaded / both / neither"
+        ],
+        [
+          "L",
+          "Protected employer link",
+          "link identity;resume scope / access state"
+        ]
+      ],
+      "links": [
+        [
+          "R",
+          "||--o{",
+          "P",
+          "P: publication contexts"
+        ],
+        [
+          "P",
+          "||--o{",
+          "G",
+          "P: employer-facing renditions"
+        ],
+        [
+          "R",
+          "||--o{",
+          "U",
+          "P: independent supplied renditions"
+        ],
+        [
+          "R",
+          "--",
+          "D",
+          "per-resume configuration"
+        ],
+        [
+          "L",
+          "}o--||",
+          "R",
+          "P: intended resume stream"
+        ]
+      ],
+      "basis": "PRP-D04 PRP-D08 PDF-D01 PDF-D02 PDF-D03 PDF-D04 PDF-D05 PDF-D07",
+      "meaning": "A link targets the intended resume/published presentation context; it is not hard-pinned to an actual submitted document. Effective publication and language are resolved under reviewed rules at retrieval. Employer-facing generated PDFs identify represented published content. Clearly labeled private draft previews can have separate draft provenance under Q-D10; this picture does not exclude them.",
+      "bounds": "P refines Q-D10/Q-D11. Zero published contexts allow never-published drafts; many denotes distinguishable publication events, not mandatory permanent retention. The diagram does not choose an effective-publication pointer or a universal single current language revision. Link multiplicity, expiry, configuration initialization and historical retention remain proposed. No extra grant follows a configuration or artifact association."
+    },
+    {
+      "name": "data-applications-and-actual-material",
+      "title": "Data — application preparation and actual submission records",
+      "nodes": [
+        [
+          "C",
+          "Company",
+          "organization context;user-supplied description"
+        ],
+        [
+          "J",
+          "Opportunity",
+          "position identity / context;company association"
+        ],
+        [
+          "A",
+          "Application",
+          "application identity;intended opportunity / progress"
+        ],
+        [
+          "L",
+          "Editable cover letter",
+          "content identity;application context"
+        ],
+        [
+          "S",
+          "Submission record",
+          "actual event context;material completeness / attribution"
+        ],
+        [
+          "M",
+          "Actual submitted material",
+          "material identity;captured content / provenance"
+        ]
+      ],
+      "links": [
+        [
+          "C",
+          "||-right-o{",
+          "J",
+          "P: organization context"
+        ],
+        [
+          "J",
+          "||--o{",
+          "A",
+          "P: considered applications"
+        ],
+        [
+          "A",
+          "--",
+          "L",
+          "editable preparation"
+        ],
+        [
+          "A",
+          "||--o{",
+          "S",
+          "P: recorded submissions"
+        ],
+        [
+          "S",
+          "||-right-o{",
+          "M",
+          "P: actual material set"
+        ]
+      ],
+      "basis": "APP-D01 APP-D02 APP-D03 APP-D04 APP-D05 APP-D06 APP-D07 APP-D09",
+      "meaning": "An application can refer to its intended editable resume/cover letter, but the submitted set identifies actual material. User-recorded submission, complete captured material and external receipt are different claims. Material provenance may be an actual upload or the exact generated rendition confirmed as submitted.",
+      "bounds": "P follows Q-D12–Q-D14. Multiple submission events/corrections are distinguishable; zero captured materials permits an explicitly incomplete record, never a successful preserved-copy claim. Cover-letter identity/count and optional association during drafts remain under primary policy. Captured bytes or exact preserved content cannot later resolve through a mutable current-resume link."
+    },
+    {
+      "name": "data-provider-and-calendar-context",
+      "title": "Data — provider identities and local associations",
+      "nodes": [
+        [
+          "C",
+          "Provider connection",
+          "user + provider account context;granted capability / state"
+        ],
+        [
+          "M",
+          "Message / draft",
+          "provider item / thread context;save / send outcome"
+        ],
+        [
+          "E",
+          "Calendar activity",
+          "local identity;provider mapping if applicable"
+        ],
+        [
+          "A",
+          "Application association",
+          "application identity;permitted linked item"
+        ],
+        [
+          "R",
+          "Reminder",
+          "activity context;scheduled / actual delivery outcome"
+        ]
+      ],
+      "links": [
+        [
+          "C",
+          "||--o{",
+          "M",
+          "P: account-scoped items"
+        ],
+        [
+          "C",
+          "--",
+          "E",
+          "P: selected provider mapping"
+        ],
+        [
+          "A",
+          "--",
+          "M",
+          "explicit local correspondence link"
+        ],
+        [
+          "A",
+          "--",
+          "E",
+          "explicit local activity link"
+        ],
+        [
+          "E",
+          "||--o{",
+          "R",
+          "P: notification intentions"
+        ]
+      ],
+      "basis": "EGC-D01 EGC-D02 EGC-D05 EGC-D07 EGC-D08 EGC-D09 EGC-D10 EGC-D11 EGC-D12",
+      "meaning": "Provider item identity is scoped to its intended provider/account/type. Local notes and application associations are not provider-owned fields or access grants. Local-only activities have no invented provider identity. A request outcome may remain unknown after a timeout; absence of confirmation is not proof of a failed external effect.",
+      "bounds": "P follows Q-D15–Q-D17. Selected calendar mapping, local/provider field authority, reconnect and retention rules remain proposed. No one-to-one provider mapping is asserted where not decided. OAuth is not created; no real token, message or provider access is established by this view."
+    },
+    {
+      "name": "data-work-and-sprint-planning",
+      "title": "Data — work identities and one coherent Sprint Backlog",
+      "nodes": [
+        [
+          "P",
+          "Work project",
+          "work-project identity;participant scope"
+        ],
+        [
+          "B",
+          "Board / column view",
+          "board identity;column ordering / state mapping"
+        ],
+        [
+          "K",
+          "Product Backlog",
+          "planning context;item order"
+        ],
+        [
+          "I",
+          "Backlog Item",
+          "outcome identity;criteria / priority / state"
+        ],
+        [
+          "T",
+          "Task",
+          "activity identity;assignment / completion"
+        ],
+        [
+          "S",
+          "Sprint",
+          "period identity;goal / actual outcome"
+        ],
+        [
+          "SB",
+          "Sprint Backlog",
+          "goal + selected items + plan;historical selection context"
+        ]
+      ],
+      "links": [
+        [
+          "P",
+          "||--o{",
+          "B",
+          "P: work views"
+        ],
+        [
+          "P",
+          "||--||",
+          "K",
+          "P: one Product Backlog"
+        ],
+        [
+          "K",
+          "||--o{",
+          "I",
+          "P: ordered outcomes"
+        ],
+        [
+          "I",
+          "|o--o{",
+          "T",
+          "P: optional parent / tasks"
+        ],
+        [
+          "P",
+          "||--o{",
+          "S",
+          "P: work periods"
+        ],
+        [
+          "S",
+          "||--||",
+          "SB",
+          "A: one coherent Sprint Backlog"
+        ],
+        [
+          "SB",
+          "--",
+          "I",
+          "selected item / outcome context"
+        ],
+        [
+          "SB",
+          "--",
+          "T",
+          "delivery plan context"
+        ]
+      ],
+      "basis": "PKS-D01 PKS-D02 PKS-D03 PKS-D04 PKS-D05 PKS-D07 PKS-D08 PKS-D09 PKS-D10",
+      "meaning": "Item identity and Sprint selection/history are distinct. Historical selection must not be reconstructed solely from whichever Sprint currently displays the item. A board/column is a view organization; its label does not establish item acceptance. Sprint Goal, selected outcomes and plan comprise one Sprint Backlog, not three competing backlogs.",
+      "bounds": "A preserves DEC-021. P follows Q-D18/Q-D19: one Product Backlog per work project, optional standalone tasks and a single parent item per task. Selection across repeated Sprints is modeled as contextual history, so no unsupported global item-to-Sprint cardinality is drawn. Fixed cadence and active-Sprint count are not accepted here."
+    },
+    {
+      "name": "data-git-revisions-and-collaboration",
+      "title": "Data — repository identity and evaluated Git context",
+      "nodes": [
+        [
+          "R",
+          "Repository",
+          "repository identity;owner / fork provenance"
+        ],
+        [
+          "F",
+          "Branch / tag reference",
+          "repository-scoped name;target state"
+        ],
+        [
+          "V",
+          "Git revision",
+          "repository content context;evaluated state identity"
+        ],
+        [
+          "P",
+          "Pull request",
+          "source + target context;evaluated revisions / state"
+        ],
+        [
+          "C",
+          "Review / comment",
+          "author / target context;evaluated revision"
+        ],
+        [
+          "I",
+          "Issue / milestone",
+          "repository-scoped work identity;explicit planning association"
+        ],
+        [
+          "L",
+          "Release",
+          "release context;intended tag / revision / assets"
+        ]
+      ],
+      "links": [
+        [
+          "R",
+          "||--o{",
+          "F",
+          "P: named references"
+        ],
+        [
+          "F",
+          "--",
+          "V",
+          "resolved target state"
+        ],
+        [
+          "R",
+          "--",
+          "P",
+          "source / target repository roles"
+        ],
+        [
+          "P",
+          "||--o{",
+          "C",
+          "P: attributed discussion / review"
+        ],
+        [
+          "P",
+          "--",
+          "V",
+          "evaluated source / target"
+        ],
+        [
+          "R",
+          "||--o{",
+          "I",
+          "P: repository work"
+        ],
+        [
+          "R",
+          "||--o{",
+          "L",
+          "P: releases"
+        ],
+        [
+          "L",
+          "--",
+          "V",
+          "intended revision context"
+        ]
+      ],
+      "basis": "GIT-D01 GIT-D02 GIT-D04 GIT-D05 GIT-D06 GIT-D07 GIT-D08 GIT-D09 GIT-D10",
+      "meaning": "A ref name and an evaluated content revision are different data. Source and target role names must retain repository and revision context; a name alone cannot identify a reviewed change. Issue/milestone are grouped only to keep this conceptual picture compact; their separate meanings and domain IDs remain in document 03.",
+      "bounds": "P follows Q-D21/Q-D22. Fork is an explicitly related repository, not implicit shared permission. Review validity after a source/target change and release mutation are detailed policy. No Git object schema, engine, transport, revision-string format or physical duplication strategy is selected."
+    },
+    {
+      "name": "data-execution-provenance-and-targets",
+      "title": "Data — run provenance, attempts and deployment approval",
+      "nodes": [
+        [
+          "D",
+          "Workflow definition",
+          "definition identity / revision;supported contract context"
+        ],
+        [
+          "R",
+          "Run",
+          "code + effective definition;initiator / actual result"
+        ],
+        [
+          "A",
+          "Attempt",
+          "run context / retry lineage;actual or unknown state"
+        ],
+        [
+          "O",
+          "Output",
+          "producing attempt context;availability / protected content"
+        ],
+        [
+          "P",
+          "Deployment authorization",
+          "exact revision / artifact;target + separate approval"
+        ],
+        [
+          "T",
+          "Target",
+          "environment context;operating / recovery conditions"
+        ]
+      ],
+      "links": [
+        [
+          "D",
+          "||--o{",
+          "R",
+          "P: evaluated definition"
+        ],
+        [
+          "R",
+          "||--o{",
+          "A",
+          "P: actual / retry attempts"
+        ],
+        [
+          "A",
+          "||--o{",
+          "O",
+          "P: attributable output"
+        ],
+        [
+          "R",
+          "--",
+          "P",
+          "evaluated result context"
+        ],
+        [
+          "P",
+          "--",
+          "T",
+          "target-specific authority"
+        ]
+      ],
+      "basis": "YML-D01 YML-D02 YML-D03 YML-D05 YML-D07 YML-D08 YML-D09 YML-D10 YML-D11 YML-D12",
+      "meaning": "Code revision and definition revision are identified at the evaluated execution context, not by later reading a moving branch. Request, attempt, output availability and external deployment effect remain distinct information. Secret-use scope may be recorded as protected authority metadata; no secret values belong in this document or ordinary logs.",
+      "bounds": "P follows the Q-D23 proposal; a queued request can have no started attempt and an attempt can have no usable output. Retry lineage does not erase earlier unknown outcomes. Exact attempt/job/step decomposition and approval counts remain design/policy work. Isolation and capacity are not established by these relationships."
+    },
+    {
+      "name": "data-authority-policy-and-recovery",
+      "title": "Data — contextual access, effective policy and recovery coverage",
+      "nodes": [
+        [
+          "A",
+          "Account / actor context",
+          "application identity;account state"
+        ],
+        [
+          "G",
+          "Resource authority",
+          "subject + resource + action;grant / revocation context"
+        ],
+        [
+          "F",
+          "Protected content resource",
+          "content identity / references;admission / availability"
+        ],
+        [
+          "P",
+          "Effective file policy",
+          "applicability + units / limits;effective change context"
+        ],
+        [
+          "B",
+          "Recovery record",
+          "recovery point / coverage;protected source identity"
+        ],
+        [
+          "R",
+          "Restore assessment",
+          "recovery source / scenario;integrity + access + actual outcome"
+        ]
+      ],
+      "links": [
+        [
+          "A",
+          "--",
+          "G",
+          "scoped authority, not universal role"
+        ],
+        [
+          "G",
+          "--",
+          "F",
+          "permitted resource operation"
+        ],
+        [
+          "P",
+          "--",
+          "F",
+          "applicable policy / accounting"
+        ],
+        [
+          "F",
+          "--",
+          "B",
+          "identified coverage example"
+        ],
+        [
+          "B",
+          "||--o{",
+          "R",
+          "P: recovery assessments"
+        ],
+        [
+          "R",
+          "--",
+          "G",
+          "restored-access reconciliation"
+        ]
+      ],
+      "basis": "ACC-D03 ACC-D04 ACC-D05 ACC-D09 ACC-D10 ACC-D12 AFO-D01 AFO-D02 AFO-D04 AFO-D06 AFO-D07 AFO-D08 QSR-D10 QSR-D11 QSR-D12 QSR-D13",
+      "meaning": "Authority is contextual information rather than a universal owner/admin hierarchy. Protected file/content is a logical meaning; repositories, mail attachments, job outputs and resume media need their own applicability/accounting. Recovery coverage includes related records, repositories, files and required configuration, not only the file example drawn.",
+      "bounds": "P refines Q-D24/Q-D26. No universal grant-count, quota pool, retention duration or backup topology is inferred. A recovery record is not proof of a usable restore; current access/deletion decisions and external-state effects must be reconciled. Backups are not configured."
+    }
+  ],
+  "accepted_rule": "Q-D07 bounded core remains accepted",
+  "limits": [
+    "P counts remain working proposals",
+    "No physical schema or production changes",
+    "DA-F catalog is not a balanced DFD",
+    "Integrity conditions are planned checks, not executed product tests",
+    "Provider/execution/recovery gates remain open"
+  ],
+  "actual_artifact_checks": {
+    "local_references_checked": 4909,
+    "missing_targets": 0,
+    "source_hashes_unchanged": true,
+    "dictionary_keys": 34,
+    "domain_concepts": 53,
+    "rendered_diagrams": 9,
+    "visual_review": "All nine PNGs inspected; labels, relationship ends and layout reviewed",
+    "render_dimensions": {
+      "data-profile-and-tailoring": [
+        575,
+        651
+      ],
+      "data-evidence-language-and-selection": [
+        735,
+        651
+      ],
+      "data-publication-pdf-and-sharing": [
+        682,
+        827
+      ],
+      "data-applications-and-actual-material": [
+        786,
+        651
+      ],
+      "data-provider-and-calendar-context": [
+        715,
+        651
+      ],
+      "data-work-and-sprint-planning": [
+        648,
+        1081
+      ],
+      "data-git-revisions-and-collaboration": [
+        1011,
+        651
+      ],
+      "data-execution-provenance-and-targets": [
+        484,
+        827
+      ],
+      "data-authority-policy-and-recovery": [
+        493,
+        1003
+      ]
+    },
+    "limits": "Artifact/model checks only, not product tests or policy acceptance"
+  }
+}

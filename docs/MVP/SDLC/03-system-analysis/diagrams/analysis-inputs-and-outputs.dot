@@ -1,0 +1,23 @@
+// OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+digraph G { rankdir=TB; graph [bgcolor="white",pad="0.35",nodesep="0.35",ranksep="0.6",fontname="Segoe UI",fontsize=18]; node [shape=box,style="rounded,filled",fillcolor="#edf4fb",color="#547083",fontname="Segoe UI",fontsize=13,margin="0.18,0.14"]; edge [color="#547083",fontname="Segoe UI",fontsize=11,arrowsize=0.7];
+scope [label="ACCEPTED AUTHORITY
+Scope, exclusions and owner decisions",fillcolor="#dff1ef"];
+working [label="WORKING INPUTS
+Requirements, scenarios and dictionary
+Proposals retain their status"];
+facts [label="OBSERVED CONSTRAINTS
+20 hours/week; existing host
+OAuth absent; backups not configured",fillcolor="#fff3df"];
+model [label="SYSTEM ANALYSIS
+Domain concepts, behavior and constraints
+Seven complementary views",fillcolor="#163e52",fontcolor="white"];
+review [label="CONSISTENCY REVIEW
+Source links, normal and failure paths
+Assumptions and unresolved dependencies"];
+handoff [label="DESIGN HANDOFF CANDIDATE
+Reviewed models + decisions + open gates",fillcolor="#dff1ef"];
+gap [label="REQUIREMENT GAP
+Update primary record
+Seek owner decision only where needed",fillcolor="#fff3df"];
+{rank=same;scope;working;facts;} scope -> model;working -> model;facts -> model;model -> review;review -> handoff [label="reviewed conclusions"];review -> gap [label="missing or conflicting rule"];gap -> working [label="record and trace",style=dashed];
+}

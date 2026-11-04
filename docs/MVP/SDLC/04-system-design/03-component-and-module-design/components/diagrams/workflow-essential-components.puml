@@ -1,0 +1,24 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Future after MVP. Provider, advanced Sprint/review, or untrusted execution requirement retained as deferred.
+title AFTER MVP — Proposed / conditional — Coordination, executor and target contracts
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+component "LC-08 trusted coordination\nvalidation / admission / observations" as W
+interface "Validate / admit / observe / cancel / deploy approved\nprovided" as P
+interface "Git identity + current authority\nrequired" as G
+interface "Files artifacts / headroom\nrequired" as F
+interface "Evaluated executor contract\nrequired" as E
+component "Trusted target adapter\nseparate exact approval and secret scope" as T
+W -right- P
+W -up-( G
+W -left-( F
+W -down-( E
+W --> T : independently admitted target intent
+note bottom of T
+ No independent artifact registry, secrets manager, environment service
+ or notification product selected. Responsibilities need actual mechanisms.
+end note
+
+@enduml

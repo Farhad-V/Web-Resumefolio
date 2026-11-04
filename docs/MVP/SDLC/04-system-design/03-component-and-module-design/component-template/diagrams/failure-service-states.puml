@@ -1,0 +1,25 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Reference / reusable template. Illustrative contract/model/pattern, not a product release commitment.
+title Template example — Capability degraded, recovering and failed states
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+[*] --> Assessing
+Assessing --> Ready : actual prerequisites verified
+Assessing --> Unavailable : required capability absent
+Ready --> Degraded : scoped dependency loss; safe remaining features
+Ready --> Failed : cannot safely admit affected work
+Degraded --> Recovering : controlled restoration begins
+Failed --> Recovering : permitted repair route
+Unavailable --> Recovering : prerequisite established
+Recovering --> Ready : usability / authority / unresolved work checks pass
+Recovering --> Failed : consistency or safety checks fail
+note right of Recovering
+ Process boot alone is insufficient.
+ No automatic replay of restored sends or deployments.
+ States are proposed capability observations, not product enums.
+end note
+
+@enduml

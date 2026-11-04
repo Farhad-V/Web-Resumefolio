@@ -1,0 +1,25 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Proposed lightweight scenario-based trade-off evaluation
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+start
+:Identify source status, owner goals and actual constraints;
+:Define stimulus / environment / artifact / response / measure;
+:Compare candidate mechanisms and alternatives;\nrecord assumptions and cross-attribute costs;
+if (Targets and safe evaluation prerequisites ready?) then (yes)
+ :Evaluate actual identified candidate under controlled workload;\nretain failures, raw measures and limits;
+ :Compare exact criterion and reviewed target;\nrecord risks, sensitivities and trade-off findings;
+else (no)
+ :Record missing target / mechanism / enabling evidence;\nprepare bounded next investigation;
+endif
+:Obtain scoped disposition through existing authority;
+if (Evidence supports the required outcome?) then (yes)
+ :Record actual candidate / result / accepted scope;\nretain residual risks and operating obligations;
+else (no / unknown)
+ :Revise mechanism or explicit target/resource/scope proposal;\nnever invent a Pass or silently drop capability;
+endif
+stop
+@enduml

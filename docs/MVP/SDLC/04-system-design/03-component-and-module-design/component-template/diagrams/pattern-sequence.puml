@@ -1,0 +1,24 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Reference / reusable template. Illustrative contract/model/pattern, not a product release commitment.
+title Template example — Strategy runtime collaboration
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+actor Caller
+participant "handler : Context" as H
+participant "policy : ExactSelectionPolicy" as P
+participant "resolver : ConcreteStrategy" as S
+Caller -> H : exact requested kind / language / revision
+H -> P : validate current eligibility and select
+P --> H : eligible strategy or refusal
+alt eligible
+ H -> S : resolve(exact selection)
+ S --> H : actual representation or unavailable / unknown
+ H --> Caller : permitted truthful projection
+else invalid / denied / unavailable
+ H --> Caller : safe bounded refusal; no substitution
+end
+
+@enduml

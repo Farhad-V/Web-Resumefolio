@@ -1,0 +1,35 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 8
+skinparam ArrowColor #526B7B
+skinparam ArrowFontSize 11
+skinparam stateBackgroundColor #EDF4FB
+skinparam stateBorderColor #526B7B
+skinparam stateStartColor #163E52
+skinparam stateEndColor #163E52
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam nodesep 38
+skinparam ranksep 48
+hide empty description
+top to bottom direction
+
+title SM-M04 — Enabled link is separate from current retrieval eligibility
+state "Link disabled" as Disabled
+state "Link enabled" as Enabled
+[*] --> Disabled : scoped initial context
+Disabled --> Enabled : SM-T017 explicit enable confirmed\n[explicit / eligible /\nconfirmed]
+Enabled --> Disabled : SM-T018 disable confirmed\n[authorized / confirmed]
+Enabled --> Enabled : SM-T019 password changed\n[authorized / confirmed]\n\nSM-T021 PDF mode saved\n[separate PDF operation]
+Disabled --> Disabled : SM-T020 PDF mode saved\n[separate PDF operation]
+legend bottom
+A: accepted core behavior; P: existing proposal; R: proposed refinement.
+State labels are analysis abstractions, not implemented enums.
+Transition tables define full actor, guard, effect and status.
+Unconfirmed operation effects require SM-M18 reconciliation.
+endlegend
+@enduml

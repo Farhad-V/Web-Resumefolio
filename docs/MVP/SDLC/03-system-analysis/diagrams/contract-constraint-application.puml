@@ -1,0 +1,29 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #486777
+skinparam ArrowFontSize 12
+skinparam rectangleBackgroundColor #EEF5FA
+skinparam rectangleBorderColor #486777
+skinparam noteBackgroundColor #FFF3DA
+skinparam noteBorderColor #B59865
+skinparam nodesep 35
+skinparam ranksep 45
+title Constraint application — common rules and accepted core
+top to bottom direction
+rectangle "Common contract interpretation\nCurrent scoped authority + attributable result\nFrame and operation-specific reconciliation" as common
+rectangle "DC-O01 — Edit source only\nDC-I01: scoped identity\nDC-I02: source-edit independence\nDC-I04: actual-history independence" as o1
+rectangle "DC-O02 — Apply selected changes\nDC-I02: independent tailoring\nDC-I03: separate publication\nDC-I04: actual-history independence" as o2
+rectangle "DC-O03 — Publish separately\nDC-I03: separate publication\nDC-I04: actual-history independence\nDC-I06: distinct representation facts" as o3
+common ..> o1 : constrains
+common ..> o2 : constrains
+common ..> o3 : constrains
+legend bottom
+Selected constraint-to-operation graph; arrows mean applicability, not execution order.
+The complete 18-constraint reverse index is in file 10. No logical implication or full test coverage is claimed.
+endlegend
+
+@enduml

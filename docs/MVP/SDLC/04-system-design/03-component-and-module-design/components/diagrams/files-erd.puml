@@ -1,0 +1,34 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Proposed — Logical artifact and ledger relationships
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+entity Artifact {
+ * artifact_id : identity
+ usable_state : observation
+}
+entity Reservation {
+ * reservation_id : identity
+ policy_version : reference
+}
+entity ProtectedReference {
+ * reference_id : identity
+ consumer_identity : opaque reference
+ protection_state : observation
+}
+entity StorageAttempt {
+ * attempt_id : identity
+ operation_identity : reference
+}
+entity AuditEntry {
+ * entry_id : identity
+ actor_context : permitted identity
+}
+Artifact ||--o{ ProtectedReference
+Reservation ||--o{ StorageAttempt
+Artifact ||--o{ StorageAttempt
+Artifact ||--o{ AuditEntry
+
+@enduml

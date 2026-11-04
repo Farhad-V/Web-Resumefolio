@@ -1,0 +1,28 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Proposed — Session lifecycle and separate credential scopes
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+[*] --> Establishing : required proofs + current eligibility
+Establishing --> Active : actual fresh session committed
+Establishing --> Refused : missing / invalid / unavailable required evidence
+Active --> Active : permitted activity under actual lifetime policy
+Active --> Expired : actual selected idle / absolute rule reached
+Active --> Revoked : logout / applicable reset / suspension / explicit invalidation
+Expired --> [*]
+Revoked --> [*]
+Refused --> [*]
+note right of Active
+ Rotation/renewal, if selected, creates or rebinds context
+ under the actual invalidation policy, not immortal refresh.
+ No numeric lifetime, JWT or OAuth refresh token adopted.
+end note
+note bottom of Revoked
+ Report completion only at actual server-side invalidation boundary.
+ Old restored state must not reactivate revoked sessions.
+ Provider and Git credentials have separate scope/lifecycle.
+end note
+
+@enduml

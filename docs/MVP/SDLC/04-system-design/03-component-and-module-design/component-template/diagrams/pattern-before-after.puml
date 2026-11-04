@@ -1,0 +1,28 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Reference / reusable template. Illustrative contract/model/pattern, not a product release commitment.
+allowmixing
+title Template example — Without versus with justified Strategy
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+package "Without: repeated mechanics hypothetical" {
+ class BroadResolver {
+  +resolveGenerated()
+  +resolveUploaded()
+  +checkEveryVariationInline()
+ }
+}
+package "With: candidate separation" {
+ class Handler <<Context>>
+ interface Resolver <<Strategy>>
+ class Generated <<ConcreteStrategy>>
+ class Uploaded <<ConcreteStrategy>>
+ Handler --> Resolver
+ Generated ..|> Resolver
+ Uploaded ..|> Resolver
+}
+BroadResolver ..> Handler : extract only if variation warrants
+
+@enduml

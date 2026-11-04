@@ -1,0 +1,34 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam ArrowColor #526B7B
+skinparam rectangleBackgroundColor #EDF4FB
+skinparam rectangleBorderColor #526B7B
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam nodesep 38
+skinparam ranksep 42
+title SQ — mixed workload and observed host limits
+left to right direction
+rectangle "Observed demo allocation\n2 vCPU / 4 GB RAM / 40 GB disk\nHistorical observation, not capacity proof" as Host
+rectangle "Competing logical workload\nPrivate/employer paths + files/media + real Git\nConditional processing / maintenance / recovery" as Mix
+rectangle "Defined current workload + limits + actual later measures\nAdmission / degradation / errors / retained/temp growth" as Evidence
+Host --> Evidence : actual evaluated configuration required
+Mix --> Evidence : users are not concurrency
+note bottom of Host
+Nginx / MySQL / PHP-FPM and Laravel demo were observed.
+Idle free memory/disk does not prove combined usable capacity.
+end note
+note bottom of Mix
+Conditional jobs still need independent enabling/isolation evidence.
+This model does not choose co-hosting or new purchases.
+end note
+
+legend bottom
+Logical analysis / evidence boundaries, not installed controls or selected architecture.
+No security, load, provider, backup, restore or live-change operation performed.
+endlegend
+@enduml

@@ -1,0 +1,46 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Future after MVP. Provider, advanced Sprint/review, or untrusted execution requirement retained as deferred.
+title AFTER MVP — Resumefolio | Conditional workflow run control
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #64748B
+skinparam activity {
+ BackgroundColor #DBEAFE
+ BorderColor #64748B
+ FontColor #17324D
+ DiamondBackgroundColor #FEF3C7
+ DiamondBorderColor #B45309
+ StartColor #17324D
+ EndColor #17324D
+}
+start
+if (Required feasibility / security enabling gate satisfied?) then (yes)
+ :Validate supported definition, trigger, revision and run authority;
+ if (Eligible, bounded resources and isolation available?) then (yes)
+  :Run agreed work with only permitted inputs / scoped secrets;
+  :Record actual step / run result and restricted outputs;
+  if (Deployment stage requested?) then (yes)
+   if (Target authority, result, revision and approval conditions satisfied?) then (yes)
+    :Perform only permitted controlled target operation;
+    :Record actual verification / failure / unknown target result;
+   else (no)
+    :Do not perform protected deployment; <<#FEF3C7>>
+   endif
+  endif
+  :Handle cancellation / loss / retry by operation-specific policy;
+  :Apply defined cleanup, retention and accounting;
+ else (no)
+  :Show defined rejected / pending outcome without execution; <<#FEF3C7>>
+ endif
+else (pending)
+ :Record blocker and do not enable affected execution; <<#FEF3C7>>
+endif
+stop
+legend bottom
+Conceptual flow; no runner, syntax subset, trigger or numeric limit chosen.
+Push, merge and successful checks do not inherently approve deployment.
+Unknown consequential effects require explicit reconciliation before retry.
+endlegend
+@enduml

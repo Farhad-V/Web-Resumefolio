@@ -1,0 +1,30 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Proposed — Private candidate processing pipeline
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+start
+:Current authority + bounded admission / reservation;
+:Write private candidate; restrict paths and active content;
+:Validate actual size/type/content under reviewed policy;
+if (Required malware/scan capability selected?) then (yes)
+ :Run actual bounded scan; retain failure / unavailable truth;
+else (not selected)
+ :Do not claim virus-scanned; apply actual admission contract;
+endif
+if (All actual required usability checks pass?) then (yes)
+ :Finalize identified artifact and coherent accounting;
+ fork
+  :Optional thumbnail only if sourced and admitted;
+ fork again
+  :Optional index only if sourced and admitted;
+ end fork
+ :Observe actual downstream results separately;
+else (no)
+ :Keep unavailable; reconcile reservation and leftover cleanup;
+endif
+stop
+
+@enduml

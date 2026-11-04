@@ -1,0 +1,22 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Future after MVP. Provider, advanced Sprint/review, or untrusted execution requirement retained as deferred.
+title AFTER MVP — Proposed — Conditional free-busy lookup
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+actor Owner
+participant "Calendar owner" as C
+participant "Capability / privacy policy" as A
+participant "Provider adapter" as P
+Owner -> C : selected calendars, bounded time window
+C -> A : current actual free-busy capability and permitted disclosure
+alt available and permitted
+ C -> P : bounded selected lookup
+ P --> C : actual intervals / partial / unavailable + freshness
+ C --> Owner : permitted availability observation, unknown where incomplete
+else unsupported / denied
+ C --> Owner : safe unavailable / denied; no fabricated empty calendar
+end
+
+@enduml
