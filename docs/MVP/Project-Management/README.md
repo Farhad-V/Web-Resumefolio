@@ -9,3 +9,5 @@ Milestones and Backlog are defined in Documentation first, then mirrored into ex
 [Scalable SVG](diagrams/documentation-to-github.svg) · [Editable Graphviz](diagrams/documentation-to-github.dot)
 
 [Private MVP Kanban](https://github.com/users/Farhad-V/projects/6/views/2) · [GitHub Milestones](https://github.com/Farhad-V/Web-Resumefolio/milestones)
+
+[Dated tracking reconciliation and verification](tracking-reconciliation-2026-11-04.md)
