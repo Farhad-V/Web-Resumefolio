@@ -82,10 +82,10 @@
 <!-- board -->
 <g id="node6" class="node">
 <title>board</title>
-<path fill="#103b35" stroke="#49c5ad" d="M313.34,-158.08C313.34,-158.08 88.04,-158.08 88.04,-158.08 82.04,-158.08 76.04,-152.08 76.04,-146.08 76.04,-146.08 76.04,-102.04 76.04,-102.04 76.04,-96.04 82.04,-90.04 88.04,-90.04 88.04,-90.04 313.34,-90.04 313.34,-90.04 319.34,-90.04 325.34,-96.04 325.34,-102.04 325.34,-102.04 325.34,-146.08 325.34,-146.08 325.34,-152.08 319.34,-158.08 313.34,-158.08"/>
+<path fill="#103b35" stroke="#49c5ad" d="M296.46,-158.08C296.46,-158.08 104.91,-158.08 104.91,-158.08 98.91,-158.08 92.91,-152.08 92.91,-146.08 92.91,-146.08 92.91,-102.04 92.91,-102.04 92.91,-96.04 98.91,-90.04 104.91,-90.04 104.91,-90.04 296.46,-90.04 296.46,-90.04 302.46,-90.04 308.46,-96.04 308.46,-102.04 308.46,-102.04 308.46,-146.08 308.46,-146.08 308.46,-152.08 302.46,-158.08 296.46,-158.08"/>
 <text xml:space="preserve" text-anchor="middle" x="200.69" y="-134.21" font-family="Arial" font-size="13.00" fill="#e5edf7">GitHub Kanban</text>
-<text xml:space="preserve" text-anchor="middle" x="200.69" y="-119.21" font-family="Arial" font-size="13.00" fill="#e5edf7">Backlog / Ready / In progress</text>
-<text xml:space="preserve" text-anchor="middle" x="200.69" y="-104.21" font-family="Arial" font-size="13.00" fill="#e5edf7">In review / Done / Blocked / Deferred</text>
+<text xml:space="preserve" text-anchor="middle" x="200.69" y="-119.21" font-family="Arial" font-size="13.00" fill="#e5edf7">Backlog / In Progress / Done</text>
+<text xml:space="preserve" text-anchor="middle" x="200.69" y="-104.21" font-family="Arial" font-size="13.00" fill="#e5edf7">Future scope in After MVP view</text>
 </g>
 <!-- issues&#45;&gt;board -->
 <g id="edge6" class="edge">

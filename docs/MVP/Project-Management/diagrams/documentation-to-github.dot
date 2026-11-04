@@ -7,7 +7,7 @@ milestones [label="SDLC / Project Planning\nCanonical Milestone outcomes\nand co
 backlog [label="Project Management\nBacklog definitions + dependencies"];
 githubm [label="GitHub Milestones\nGroup Issues by outcome",fillcolor="#103b35",color="#49c5ad"];
 issues [label="GitHub Issues\nActual tasks, blockers and evidence",fillcolor="#103b35",color="#49c5ad"];
-board [label="GitHub Kanban\nBacklog / Ready / In progress\nIn review / Done / Blocked / Deferred",fillcolor="#103b35",color="#49c5ad"];
+board [label="GitHub Kanban\nBacklog / In Progress / Done\nFuture scope in After MVP view",fillcolor="#103b35",color="#49c5ad"];
 baseline -> milestones;baseline -> backlog;
 milestones -> githubm [label="Same IDs + source links"];
 backlog -> issues [label="Reuse existing PBIs"];
