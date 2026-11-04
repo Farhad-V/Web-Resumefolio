@@ -99,7 +99,7 @@ not a validated forecast.
 
 - [Product Backlog index](../../Project-Management/product-backlog.md)
 - [Provisional Version 1 delivery plan](../../Project-Management/version-1-delivery-plan.md)
-- [Private GitHub project — Kanban and Sprint views](https://github.com/users/Farhad-Valizadegan/projects/6)
+- [Private GitHub project — MVP Kanban](https://github.com/users/Farhad-V/projects/7)
 
 GitHub issues and the delivery project own live work status and assignments.
 Local dated tables preserve provisional planning snapshots. This overview does
