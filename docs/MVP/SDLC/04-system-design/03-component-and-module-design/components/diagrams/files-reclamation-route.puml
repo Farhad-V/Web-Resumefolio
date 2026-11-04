@@ -1,0 +1,32 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Proposed protected-reference and reclamation guard
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam shadowing false
+
+skinparam activityBackgroundColor #EFF6FF
+start
+:Identify artifact, lifecycle policy and current authority;
+:Coordinate artifact version / reference / delete-claim guard;
+if (Active or unresolved protected reference?) then (yes)
+ :Retain bytes; reconcile exact reference identity if needed;
+ stop
+else (no)
+ :Check eligible retirement and acquire exclusive delete claim;
+endif
+if (Claim and eligibility confirmed?) then (yes)
+ :Request bounded storage deletion;
+else (no)
+ :No deletion; preserve attributable conflict / denied result;
+ stop
+endif
+if (Actual deletion established?) then (yes)
+ :Reconcile physical presence and reclaimed usage;
+ stop
+else (no)
+ :Retain failed / partial / unknown deletion evidence;
+ :No false reclaimed capacity or unsafe new reference;
+ stop
+endif
+@enduml

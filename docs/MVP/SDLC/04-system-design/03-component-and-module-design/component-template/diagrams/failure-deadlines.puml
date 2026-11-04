@@ -1,0 +1,28 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Reference / reusable template. Illustrative contract/model/pattern, not a product release commitment.
+title Template example — Deadline and remaining-budget propagation
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+actor Caller
+participant "Entry / total deadline" as E
+participant "Owner handler" as H
+participant "Adapter" as A
+participant "Dependency" as D
+Caller -> E : request
+E -> H : attributable intent + remaining budget
+H -> H : include queue / admission / local processing time
+H -> A : remaining budget after elapsed work
+A -> D : supported bounded call
+D --> A : result or observation loss
+A --> H : actual known / partial / unknown outcome
+H --> E : truthful response within actual capability
+note over E,D
+ Do not reset the full deadline at every hop.
+ Clock/deadline representation and supported transport need design.
+ Client timeout is not remote termination or proof of no effect.
+end note
+
+@enduml

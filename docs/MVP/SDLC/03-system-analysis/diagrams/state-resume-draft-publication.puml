@@ -1,0 +1,38 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 8
+skinparam ArrowColor #526B7B
+skinparam ArrowFontSize 11
+skinparam stateBackgroundColor #EDF4FB
+skinparam stateBorderColor #526B7B
+skinparam stateStartColor #163E52
+skinparam stateEndColor #163E52
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam nodesep 38
+skinparam ranksep 48
+hide empty description
+top to bottom direction
+
+title SM-M01 — Independent draft and live presentation context
+state "Draft exists; no published\npresentation" as Draft
+state "Live presentation and saved\ndraft aligned" as Aligned
+state "Live unchanged; saved draft\nhas unapplied-to-live\nchanges" as Changed
+[*] --> Draft : scoped initial context
+Draft --> Draft : SM-T001 source edited\n[source edit only]\n\nSM-T002 apply selected / save\n[selected / current / saved]
+Draft --> Aligned : SM-T003 publication confirmed\n[separate confirmed publish]
+Aligned --> Changed : SM-T004 resume change saved\n[explicit / saved]
+Changed --> Aligned : SM-T005 publication confirmed\n[separate confirmed publish]
+Aligned --> Aligned : SM-T006 source edited\n[source edit only]
+Changed --> Changed : SM-T007 source edited\n[source edit only]
+legend bottom
+A: accepted core behavior; P: existing proposal; R: proposed refinement.
+State labels are analysis abstractions, not implemented enums.
+Transition tables define full actor, guard, effect and status.
+Unconfirmed operation effects require SM-M18 reconciliation.
+endlegend
+@enduml

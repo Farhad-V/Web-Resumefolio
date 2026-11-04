@@ -1,0 +1,23 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+allowmixing
+title Proposed — Applications inbound and outbound dependencies
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+component "Authorized UI / command entry" as U
+component "Applications public contract" as A
+component "Applications owned state" as D
+component "Identity" as I
+component "Presentation contract" as P
+component "Files reference contract" as F
+component "Communication summary contract" as C
+U --> A : inbound commands / queries
+A --> D : owned mutation / read
+A --> I : outbound current scoped context
+A --> P : outbound exact projection
+A --> F : outbound protected-reference coordination
+A --> C : outbound permitted association lookup
+
+@enduml

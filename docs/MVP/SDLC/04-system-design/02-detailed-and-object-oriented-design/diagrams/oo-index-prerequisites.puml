@@ -1,0 +1,24 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Reference / design method. Native Git/OO/data notation illustration, not a commitment to advanced product features.
+title Prerequisites and reading dependencies
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+rectangle "Requirements / source decisions" as R
+rectangle "Analysis domain model\nand operation contracts" as A
+rectangle "Architecture drivers\nand module boundaries" as S
+rectangle "01: OO principles" as P
+rectangle "Component-specific realization" as C
+rectangle "05: Evolution procedure" as E
+rectangle "Data / API / security guidance" as X
+R --> A
+R --> S
+A --> P
+S --> P
+P --> C
+X --> C
+C --> E : baseline to assess
+R --> E : behavior to preserve
+
+@enduml

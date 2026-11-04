@@ -1,0 +1,18 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Future after MVP. Provider, advanced Sprint/review, or untrusted execution requirement retained as deferred.
+title AFTER MVP — Proposed — Communication and calendar interfaces
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+component "Independent private Communication / Calendar system" as C
+interface "Compose / reviewed send / local activity / mapping\nprovided contracts" as P
+interface "Current authority\nrequired" as A
+interface "Provider capability\nrequired" as E
+interface "Protected artifacts\nrequired" as F
+C -right- P
+C -up-( A
+C -left-( E
+C -down-( F
+
+@enduml

@@ -1,0 +1,22 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Proposed — Identity responsibilities and scoped contracts
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+component "LC-01 Identity / Access\nlogical module, not selected external IdP" as I
+interface "Establish / end session\nprovided" as A
+interface "Evaluate current authority / scoped grant change\nprovided" as P
+interface "Account / credential / session store\nrequired" as D
+interface "Current owner resource policy\nrequired" as R
+I -right- A
+I -down- P
+I -left-( D
+I -up-( R
+note bottom of I
+ User-directory, verification and session roles are internal responsibilities.
+ No independent identity provider, JWT issuer or token microservice selected.
+end note
+
+@enduml

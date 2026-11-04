@@ -1,0 +1,25 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Proposed — Selected actors and use-case boundaries
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+left to right direction
+actor "Authorized owner" as O
+actor "Link-scoped employer viewer" as V
+actor "Authorized operator" as A
+rectangle "Resumefolio: selected existing scenario families" {
+ usecase "UC-D01: compare/select/apply\nand separately confirm publication" as P
+ usecase "UC-D02: manage PDF / link controls" as L
+ usecase "UC-D03: retrieve exact permitted representation" as R
+ usecase "UC-D04–05: manual preparation / actual capture" as C
+ usecase "UC-D12: isolated recovery and resumption gate" as B
+}
+O --> P
+O --> L
+O --> C
+V --> R
+A --> B
+
+@enduml

@@ -1,0 +1,24 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Reference / design method. Native Git/OO/data notation illustration, not a commitment to advanced product features.
+allowmixing
+title Proposed — Optional Strategy preview: exact representation resolution
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+skinparam maxMessageSize 65
+
+class "ResolveRepresentationHandler" as H
+interface "RepresentationResolver" as S {
+ +resolve(exactSelection) : RepresentationOutcome
+}
+class "GeneratedResolver" as G
+class "UploadedResolver" as U
+class "ExplicitSelectionPolicy" as P
+H --> P : validate requested kind / language / eligibility
+P --> S : select eligible implementation
+G ..|> S
+U ..|> S
+H --> S : execute selected resolution
+
+@enduml

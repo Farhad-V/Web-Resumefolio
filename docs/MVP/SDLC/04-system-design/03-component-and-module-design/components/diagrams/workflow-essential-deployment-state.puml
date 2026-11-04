@@ -1,0 +1,26 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Future after MVP. Provider, advanced Sprint/review, or untrusted execution requirement retained as deferred.
+title AFTER MVP — Proposed / conditional — Deployment approval and actual target outcome
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+[*] --> PendingApproval : exact artifact / target / configuration intent
+PendingApproval --> ApprovedContext : actual target approval + current authority
+ApprovedContext --> PendingApproval : relevant inputs / authority change
+ApprovedContext --> Deploying : guarded eligible attributable dispatch
+Deploying --> Verifying : actual applied-state observations available
+Deploying --> Unknown : target effect uncertain
+Verifying --> ConfirmedLive : all actual required target/data/health checks pass
+Verifying --> RecoveryAssessment : failure / partial incompatible outcome
+Unknown --> RecoveryAssessment : reconcile same target attempt first
+RecoveryAssessment --> RecoveredPrior : separately authorized compatible rollback confirmed
+RecoveryAssessment --> ForwardRepaired : separately authorized forward recovery confirmed
+RecoveryAssessment --> Unknown : evidence insufficient / recovery unresolved
+note bottom of RecoveryAssessment
+ No generic automatic rollback guarantee.
+ Irreversible data effects may prohibit old-code restoration.
+ A running old version is not proof all data/effects were undone.
+end note
+
+@enduml

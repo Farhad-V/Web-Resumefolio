@@ -1,0 +1,17 @@
+// OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+digraph G {rankdir=TB;graph [bgcolor="white",pad="0.3",nodesep="0.35",ranksep="0.55",fontname="Arial"];node [shape=box,style="rounded,filled",fillcolor="#eff6ff",color="#64748b",fontname="Arial",fontsize=12,margin="0.17,0.12"];edge [fontname="Arial",fontsize=10,color="#64748b"];
+request [label="Record cancellation intent
+Exact attempt + current authority"];
+admitted [shape=diamond,label="Dispatch atomically
+prevented?"];
+cancel [label="Confirmed cancelled before dispatch",fillcolor="#dcfce7"];
+stop [label="Request stop through evaluated adapter
+Cancellation remains pending",fillcolor="#fef3c7"];
+result [shape=diamond,label="Actual termination /
+completion observed?"];
+actual [label="Record actual stopped or completed result
+Preserve known partial / target effects",fillcolor="#dcfce7"];
+unknown [label="Runner lost / stop acknowledgment absent
+Reconcile same attempt; do not blindly relaunch",fillcolor="#ffedd5"];
+request->admitted;admitted->cancel [label="yes"];admitted->stop [label="no / running"];stop->result;result->actual [label="yes"];result->unknown [label="no"];
+}

@@ -1,0 +1,19 @@
+// OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+digraph G {rankdir=TB;graph [bgcolor="white",pad="0.3",nodesep="0.35",ranksep="0.55",fontname="Arial"];node [shape=box,style="rounded,filled",fillcolor="#eff6ff",color="#64748b",fontname="Arial",fontsize=12,margin="0.17,0.12"];edge [fontname="Arial",fontsize=10,color="#64748b"];
+command [label="Validated command + stable identity
+Current authority and expected version"];
+commit [label="Short local transaction
+Mutation + durable pending intent",fillcolor="#dcfce7"];
+claim [label="Claim attempt with lease + fencing token
+Duplicate delivery is possible"];
+effect [label="Dispatch exact reviewed external intent",fillcolor="#fef3c7"];
+known [shape=diamond,label="Effect supported by
+actual evidence?"];
+record [label="Record confirmed / partial outcome
+Validate current claim token",fillcolor="#dcfce7"];
+unknown [label="Retain UNKNOWN / pending observation
+Reconcile same attempt before consequential repeat",fillcolor="#ffedd5"];
+command->commit->claim->effect->known;known->record [label="yes"];known->unknown [label="no / lost response"];
+note [label="Lease expiry does not stop an old network action
+Local fencing cannot guarantee exactly-once remote effects",shape=note,fillcolor="#f8fafc"];unknown->note [arrowhead=none,style=dashed];
+}

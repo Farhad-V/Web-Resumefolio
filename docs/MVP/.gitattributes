@@ -1,0 +1,3 @@
+# Preserve exact source/artifact bytes used by Baseline SHA-256 manifests.
+# Applies to this documentation subtree only, including historical snapshots.
+** -text

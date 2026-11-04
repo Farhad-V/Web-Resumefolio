@@ -1,0 +1,53 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam ArrowColor #526B7B
+skinparam activityBackgroundColor #EDF4FB
+skinparam activityBorderColor #526B7B
+skinparam activityDiamondBackgroundColor #FFF3DF
+skinparam activityDiamondBorderColor #B99557
+
+title RB-D16 — Scoped usable recovery assessment
+start
+if (RB-D16-C01\nSource/drill scope established = T?) then (yes)
+if (RB-D16-C02\nConsistency/access checks pass = T?) then (yes)
+if (RB-D16-C03\nMeasured criteria satisfied = T?) then (yes)
+:RB-D16-R07\nSCOPED RECOVERY DEMONSTRATED;
+stop
+else (no)
+if (RB-D16-C03 = F?) then (yes)
+:RB-D16-R05\nTARGETS NOT MET;
+stop
+else (U)
+:RB-D16-R06\nUNPROVEN TARGET RESULT;
+stop
+endif
+endif
+else (no)
+if (RB-D16-C02 = F?) then (yes)
+:RB-D16-R03\nINCOMPLETE RECOVERY;
+stop
+else (U)
+:RB-D16-R04\nUNCONFIRMED RECOVERY CHECKS;
+stop
+endif
+endif
+else (no)
+if (RB-D16-C01 = F?) then (yes)
+:RB-D16-R01\nBLOCK MISSING PREREQUISITES;
+stop
+else (U)
+:RB-D16-R02\nUNPROVEN RECOVERY SOURCE;
+stop
+endif
+endif
+legend bottom
+Decision alternatives, not execution steps or evaluation timing.
+T = established true; F = established false; U = unresolved.
+Conditions and full results are defined in the rule table.
+All rows here are proposed analysis refinements; no new policy acceptance.
+endlegend
+@enduml

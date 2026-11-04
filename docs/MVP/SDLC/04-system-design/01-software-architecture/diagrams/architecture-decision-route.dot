@@ -1,0 +1,20 @@
+// OWNER-MVP-2026-11-04 review: Method / document navigation. Scope-independent process/navigation; provider or runner examples are not MVP prerequisites.
+digraph G { rankdir=TB; graph [bgcolor="white",pad="0.3",nodesep="0.35",ranksep="0.6",fontname="Segoe UI"]; node [shape=box,style="rounded,filled",fillcolor="#eff6ff",color="#64748b",fontname="Segoe UI",fontsize=12,margin="0.16,0.12"]; edge [color="#64748b",fontname="Segoe UI",fontsize=10];
+inputs [label="Accepted scope + constraints
+Analysis behavior and unresolved criteria"];
+compare [label="Compare A / B / C
+Record rationale and strongest objection"];
+candidate [label="Propose B: modular trusted application
+Keep execution behind its own gate",fillcolor="#dbeafe"];
+work [label="Develop independent views/contracts
+Investigate Git, executor, capacity, provider, recovery"];
+check [shape=diamond,label="Evidence sufficient for
+the affected commitment?",fillcolor="#fef3c7"];
+revise [label="Keep commitment open
+Resolve evidence / revise affected option",fillcolor="#ffedd5"];
+review [label="Review identified candidate
+Exact criterion mapping + owner disposition"];
+handoff [label="Accepted scope of design handoff
+Only when actually recorded",fillcolor="#dcfce7"];
+inputs->compare->candidate->work->check;check->revise [label="no"];revise->work;check->review [label="yes"];review->handoff [label="actual acceptance"];
+}

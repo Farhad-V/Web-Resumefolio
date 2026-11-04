@@ -1,0 +1,25 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Future after MVP. Provider, advanced Sprint/review, or untrusted execution requirement retained as deferred.
+title AFTER MVP — Proposed / conditional — Candidate executor and deployment placement
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+node "Trusted application coordination\nactual placement to evaluate" {
+ artifact "LC-08 coordinator / restricted records" as C
+}
+node "Untrusted executor facility\nrequired isolated boundary; not established" {
+ artifact "Exact attempt / workspace / bounded resources" as E
+}
+node "Approved deployment target\nnode / environment identity and config version TBD" {
+ artifact "Exact eligible artifact / applied version" as T
+}
+C --> E : narrow authenticated executor contract
+C --> T : separate trusted target adapter + current approval
+note bottom of E
+ No cluster, namespace, extra host or paid service selected.
+ Same-machine logical boxes do not prove isolation.
+ Small dated server allocation is not capacity evidence.
+end note
+
+@enduml

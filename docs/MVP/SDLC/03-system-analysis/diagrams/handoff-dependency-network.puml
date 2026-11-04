@@ -1,0 +1,19 @@
+@startuml
+title MVP dependency network — provider and runner gates are future
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+rectangle "Current owner MVP scope + requirements" as R
+rectangle "Core / ProjectForge API authority\nNative Git compatibility\nSame-server private media capacity" as C
+rectangle "Backup destination / consistent coverage\nActual isolated restore evidence" as B
+rectangle "MVP design decisions / unresolved exact mechanisms" as D
+rectangle "Scoped review and delivery reconciliation\n20 TOTAL project hours/week" as V
+rectangle "Implementation-ready MVP scope\nIdentified baseline and actual owner disposition" as READY
+R --> D
+C --> D
+B --> D
+D --> V
+V --> READY
+rectangle "AFTER MVP planning\nPersonal Google account consent / OAuth\nAdvanced Sprint / review / execution isolation" as F #F8EBD7
+R ..> F : retained future requirements\nnot MVP prerequisites
+@enduml

@@ -1,0 +1,28 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Future after MVP. Provider, advanced Sprint/review, or untrusted execution requirement retained as deferred.
+title AFTER MVP — Proposed — Bounded recurrence expansion and exception identity
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+start
+:Read exact source recurrence, zone and exception identity;
+:Choose actual bounded query window / processing budget;
+:Validate recurrence semantics against supported adapter model;
+while (Next occurrence within window and budget?) is (yes)
+ :Derive source occurrence identity in recurrence zone;
+ if (Cancelled exception?) then (yes)
+  :Retain cancellation / skip visible occurrence;
+ else (no)
+  if (Explicit override?) then (yes)
+   :Apply override preserving original occurrence identity;
+  else (no)
+   :Project ordinary occurrence;
+  endif
+ endif
+ :Map display instant/zone without flattening all-day dates;
+endwhile (no)
+:Return bounded projection / truthful continuation;
+stop
+
+@enduml

@@ -1,0 +1,40 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Reference / reusable template. Illustrative contract/model/pattern, not a product release commitment.
+allowmixing
+title Template example — Physical schema example: keys and candidate indexes
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+entity "resumes (example only)" as R {
+ * resume_id : VARCHAR(64) <<PK>>
+}
+entity "resume_drafts" as D {
+ * resume_id : VARCHAR(64) <<PK, FK resumes>>
+ * version : BIGINT <<NOT NULL>>
+ * content_json : JSON <<NOT NULL>>
+ --
+ CHECK version >= 0
+}
+entity "publication_revisions" as P {
+ * revision_id : VARCHAR(64) <<PK>>
+ * resume_id : VARCHAR(64) <<FK resumes, NOT NULL>>
+ * source_draft_version : BIGINT <<NOT NULL>>
+ * content_json : JSON <<NOT NULL>>
+ --
+ UNIQUE (resume_id, revision_id)
+ INDEX (resume_id, source_draft_version)
+}
+entity "live_publications" as L {
+ * resume_id : VARCHAR(64) <<PK, FK resumes>>
+ * revision_id : VARCHAR(64) <<NOT NULL>>
+ --
+ FK (resume_id, revision_id) -> publication_revisions
+}
+R --> D
+R --> P
+L --> P : composite ownership FK
+L --> R
+
+@enduml

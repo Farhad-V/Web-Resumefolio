@@ -1,0 +1,30 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Reference / reusable template. Illustrative contract/model/pattern, not a product release commitment.
+allowmixing
+title Template example — Inbound and outbound dependencies
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+package "Inbound consumers" {
+ component "Web entry" as W
+ component "Permitted command caller" as J
+}
+package "Owner boundary" {
+ interface "PublicationCommand" as P
+ component "Handler" as H
+ interface "Required authority" as A
+ interface "Required persistence" as S
+ H ..|> P
+ H --> A
+ H --> S
+}
+component "Authority adapter/provider" as AI
+component "Persistence adapter" as SI
+W --> P
+J --> P
+AI ..|> A
+SI ..|> S
+
+@enduml

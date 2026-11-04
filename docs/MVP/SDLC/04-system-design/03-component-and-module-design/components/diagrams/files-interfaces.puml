@@ -1,0 +1,18 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Proposed — Files provided and required interfaces
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+component "LC-09 Files / Operations" as F
+interface "Artifact / quota / reference / recovery\nprovided" as P
+interface "Current scoped authority\nrequired" as A
+interface "Storage capability\nrequired" as S
+interface "Consumer commit evidence\nrequired" as C
+F -right- P
+F -up-( A
+F -left-( S
+F -down-( C
+
+@enduml

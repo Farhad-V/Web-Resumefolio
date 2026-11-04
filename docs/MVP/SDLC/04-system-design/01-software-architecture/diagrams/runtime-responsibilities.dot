@@ -1,0 +1,17 @@
+// OWNER-MVP-2026-11-04 review: Mixed MVP / future. Retained broader-product associations require explicit future node labels; MVP uses only core/basic ProjectForge.
+digraph G {
+ graph [label="MVP + EXPLICIT FUTURE PATHS | runtime responsibilities",labelloc=t];rankdir=TB;graph [bgcolor="white",pad="0.3",nodesep="0.35",ranksep="0.55",fontname="Arial"];node [shape=box,style="rounded,filled",fillcolor="#eff6ff",color="#64748b",fontname="Arial",fontsize=12,margin="0.17,0.12"];edge [fontname="Arial",fontsize=10,color="#64748b"];
+web [label="Web processes
+Current authority + short local commands"];
+db [label="Durable local state
+Domain records • pending intents • attempts",fillcolor="#dcfce7"];
+dispatch [label="Dispatcher + bounded supervised workers
+Atomic claims; current capability checks",fillcolor="#fef3c7"];
+sched [label="Scheduler / reconciliation
+Due work and expired claims"];
+remote [label="Provider / Git / storage adapters
+Attributable external observations",fillcolor="#f1f5f9"];
+exec [label="Conditional isolated executor / target
+Independent enabling and deployment authority",fillcolor="#ffedd5"];
+web->db [label="local commit"];db->dispatch [label="committed pending intent"];sched->dispatch [label="unique due work"];dispatch->remote [label="scoped operation"];dispatch->exec [style=dashed,label="only after enabling gate"];remote->db [label="record actual outcome"];exec->db [style=dashed,label="result / unknown evidence"];
+}

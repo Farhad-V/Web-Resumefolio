@@ -1,0 +1,16 @@
+{
+  "baseline": "BL-MVP-2026-11-04.1",
+  "mode": "verify",
+  "candidate_count": 157,
+  "criterion_count": 470,
+  "original_criterion_wording_preserved": true,
+  "selected_policy_dispositions": 28,
+  "supplemental_acceptance_obligations": 10,
+  "local_links_checked": 16764,
+  "missing_links": [],
+  "manifest_hash_errors": [],
+  "existing_diagram_sources_updated": 42,
+  "successful_render_invocations": 40,
+  "runtime_tests": "Not run; documentation-only task",
+  "advisor": "Unavailable: parent_runtime_unavailable; no independent consultation claimed"
+}

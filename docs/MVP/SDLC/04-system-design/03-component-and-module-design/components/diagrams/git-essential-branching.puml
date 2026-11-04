@@ -1,0 +1,23 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Mixed MVP / future. Retained broader-product associations require explicit future node labels; MVP uses only core/basic ProjectForge.
+title AFTER MVP — advanced model — Proposed / illustrative — Candidate short-lived branch and guarded integration flow
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+start
+:Start from identified current target revision;
+:Create short-lived topic branch if appropriate;
+:Commit and actually push through permitted native transport;
+:Open revision-bound pull request;
+:Evaluate required checks and review policy;
+if (Source/target/evidence still current and merge permitted?) then (yes)
+ :Guarded native integration into main;
+ :Reconcile actual ref outcome and PR metadata;
+else (no)
+ :Revise / re-evaluate / close without merge;
+endif
+stop
+
+@enduml

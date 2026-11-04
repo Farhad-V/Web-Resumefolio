@@ -1,0 +1,37 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 8
+skinparam ArrowColor #526B7B
+skinparam ArrowFontSize 11
+skinparam stateBackgroundColor #EDF4FB
+skinparam stateBorderColor #526B7B
+skinparam stateStartColor #163E52
+skinparam stateEndColor #163E52
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam nodesep 38
+skinparam ranksep 48
+hide empty description
+top to bottom direction
+
+title SM-M03 — Invitation and scoped grant instance
+state "Invitation pending" as Invited
+state "Confirmed scoped grant" as Effective
+state "Grant revoked" as Revoked
+state "Invitation expired" as Expired
+[*] --> Invited : scoped initial context
+Invited --> Effective : SM-T013 acceptance confirmed\n[eligible / confirmed]
+Invited --> Expired : SM-T014 adopted expiry reached\n[adopted expiry rule]
+Effective --> Effective : SM-T015 grant change confirmed\n[authorized / confirmed]
+Effective --> Revoked : SM-T016 revocation confirmed\n[authorized / confirmed]
+legend bottom
+A: accepted core behavior; P: existing proposal; R: proposed refinement.
+State labels are analysis abstractions, not implemented enums.
+Transition tables define full actor, guard, effect and status.
+Unconfirmed operation effects require SM-M18 reconciliation.
+endlegend
+@enduml

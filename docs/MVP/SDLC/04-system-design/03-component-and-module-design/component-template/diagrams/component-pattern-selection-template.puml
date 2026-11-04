@@ -1,0 +1,24 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Reference / reusable template. Illustrative contract/model/pattern, not a product release commitment.
+title Template illustration — pattern choice and coding constraints
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam shadowing false
+skinparam activityBackgroundColor #EFF6FF
+skinparam activityBorderColor #64748B
+start
+:Identify actual component problem and source contract;
+:Compare simplest viable implementation and alternatives;
+if (Pattern adds justified value?) then (yes)
+ :Specify actual participants and collaboration;
+ :Record consequences, status and reconsideration trigger;
+else (no)
+ :Keep explicit simple design;
+endif
+:Define public/internal dependencies and lifetimes;
+:Specify outcome, security, concurrency and lifecycle constraints;
+:Link companion contracts, types, algorithms and failure scenarios;
+:Define focused checks and actual evidence boundaries;
+:Record real candidate review and remaining decisions when performed;
+stop
+@enduml

@@ -1,0 +1,36 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP ProjectForge. Basic Git/issue/board behavior belongs to separate ProjectForge, with independent user/resource authority.
+title AFTER MVP — advanced model — Proposed LC-07 repository revision and review identities
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam shadowing false
+
+skinparam classAttributeIconSize 0
+skinparam classBackgroundColor #EFF6FF
+top to bottom direction
+class RepositoryRecord
+class NativeRepository <<evaluated backend>>
+class PullRequestContext {
+ +sourceContext : RepositoryRefRevision
+ +targetContext : RepositoryRefRevision
+}
+class ReviewEvidence
+class CheckEvidence
+class RepositoryMutationAttempt {
+ +commandId : CommandId
+ +expectedRefs : EvaluatedContext
+ +observedOutcome : ActualOutcome
+}
+class TagReleaseRecord
+RepositoryRecord ..> NativeRepository : native objects / authoritative refs
+RepositoryRecord -- PullRequestContext
+PullRequestContext -- ReviewEvidence : exact revision
+PullRequestContext -- CheckEvidence : evaluated context
+PullRequestContext -- RepositoryMutationAttempt
+RepositoryRecord -- TagReleaseRecord : exact revision / asset references
+note bottom of RepositoryMutationAttempt
+ Native ref update and SQL metadata are not one automatic transaction.
+ Unknown effects require attributable native reconciliation.
+ Schema/cardinalities and backend remain proposed.
+end note
+@enduml

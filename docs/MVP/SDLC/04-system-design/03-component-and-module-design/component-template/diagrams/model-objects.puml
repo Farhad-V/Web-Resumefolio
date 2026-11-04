@@ -1,0 +1,30 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Reference / reusable template. Illustrative contract/model/pattern, not a product release commitment.
+allowmixing
+title Template example — Object diagram: proposed sample instances
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+object "draft7 : ResumeDraft" as D {
+ id = resume7
+ version = 12
+}
+object "selection7 : ConfirmedSelection" as S {
+ content = selectedContent12
+}
+object "revision31 : PublishedResumeRevision" as P {
+ id = revision31
+ resumeId = resume7
+ sourceDraftVersion = 12
+}
+object "live7 : LivePublication" as L {
+ resumeId = resume7
+ revisionId = revision31
+}
+D -- S : current selected value
+L --> P : exact immutable publication
+D ..> P : source version provenance
+
+@enduml

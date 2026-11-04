@@ -1,0 +1,51 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 8
+skinparam ArrowColor #526B7B
+skinparam ArrowFontSize 11
+skinparam packageStyle rectangle
+skinparam classAttributeIconSize 0
+hide circle
+skinparam classBackgroundColor #EDF4FB
+skinparam classBorderColor #526B7B
+skinparam classHeaderBackgroundColor #DFF1EF
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam rectangleBackgroundColor #EDF4FB
+skinparam rectangleBorderColor #526B7B
+skinparam activityBackgroundColor #EDF4FB
+skinparam activityBorderColor #526B7B
+skinparam activityDiamondBackgroundColor #DFF1EF
+skinparam activityDiamondBorderColor #458F88
+skinparam padding 6
+skinparam nodesep 35
+skinparam ranksep 40
+hide empty members
+title System Analysis — iterative working route
+start
+:Read accepted scope, current requirements
+and decision status;
+:Maintain system context
+(roles, exchanges, exclusions);
+repeat
+:Refine domain concepts and conceptual data;
+:Develop the relevant functional
+and behavioral views;
+:State constraints and operation contracts;
+:Check sources, cross-view agreement
+and actual findings;
+repeat while (Unresolved model inconsistency?) is (yes) not (no)
+:Prepare identified design-handoff candidate
+with explicit dependent gates;
+note right
+A reviewed candidate is not automatically
+an accepted phase baseline.
+Return to the primary requirement only
+when its meaning actually needs refinement.
+end note
+stop
+@enduml

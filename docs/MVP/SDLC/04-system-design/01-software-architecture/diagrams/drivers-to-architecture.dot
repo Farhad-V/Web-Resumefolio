@@ -1,0 +1,14 @@
+// OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+digraph G { rankdir=LR; graph [bgcolor="white",pad="0.3",nodesep="0.35",ranksep="0.6",fontname="Segoe UI"]; node [shape=box,style="rounded,filled",fillcolor="#eff6ff",color="#64748b",fontname="Segoe UI",fontsize=12,margin="0.16,0.12"]; edge [color="#64748b",fontname="Segoe UI",fontsize=10];
+privacy [label="Private resource access
+One coherent product"]; history [label="Explicit publication
+Preserved actual history"]; effects [label="Real Git and provider effects
+Conditional untrusted execution"]; resources [label="20 project hours/week
+Existing budget and dated host inventory"];
+modules [label="Explicit module ownership
+Per-operation authorization",fillcolor="#dbeafe"]; revisions [label="Separate source / draft / publication
+Independent submission materials",fillcolor="#dcfce7"]; attempts [label="Attributable attempts
+Durable intent and reconciliation",fillcolor="#fef3c7"]; gates [label="Evaluate resource and isolation gates
+No unverified capacity claim",fillcolor="#ffedd5"];
+privacy->modules;history->revisions;effects->attempts;effects->gates;resources->modules;resources->gates;
+}

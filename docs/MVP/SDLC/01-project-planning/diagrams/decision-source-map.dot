@@ -1,0 +1,23 @@
+// OWNER-MVP-2026-11-04 review: Method / document navigation. Scope-independent process/navigation; provider or runner examples are not MVP prerequisites.
+digraph DecisionSources {
+  graph [rankdir=LR, bgcolor="white", pad=0.35, ranksep=0.65, nodesep=0.25,
+    fontname="Arial", fontsize=19, labelloc=t,
+    label="Resumefolio | Decision source navigation\n116 existing records - source sections remain authoritative"];
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=12,
+    color="#CBD5E1", margin="0.18,0.12", fillcolor="#DBEAFE"];
+  edge [color="#64748B", arrowsize=0.65];
+  root [label="PLANNING DECISION REGISTER\nFind ID, date and source\nRead the original rationale and limits", fillcolor="#17324D", fontcolor=white];
+  d1 [label="01 | Purpose and objectives\n8 records"];
+  d2 [label="02 | Version 1 scope\n20 records"];
+  d3 [label="03 | Stakeholders and responsibilities\n4 records"];
+  d4 [label="04 | Deliverables\n12 records"];
+  d5 [label="05 | Resources and constraints\n4 records"];
+  d6 [label="06 | Assumptions and dependencies\n13 records", fillcolor="#FEF3C7"];
+  d7 [label="07 | Risks\n13 records", fillcolor="#FEF3C7"];
+  d8 [label="08 | Roadmap and milestones\n15 records"];
+  d9 [label="09 | Working method and change control\n8 records, including DEC-115", fillcolor="#EDE9FE"];
+  d10 [label="10 | Planning completion criteria\n19 records, including DEC-116", fillcolor="#DCFCE7"];
+  root -> d1; root -> d2; root -> d3; root -> d4; root -> d5;
+  root -> d6; root -> d7; root -> d8; root -> d9; root -> d10;
+  {rank=same; d1 -> d2 -> d3 -> d4 -> d5 -> d6 -> d7 -> d8 -> d9 -> d10 [style=invis];}
+}

@@ -1,0 +1,17 @@
+// OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+digraph G {rankdir=TB;graph [bgcolor="white",pad="0.3",nodesep="0.35",ranksep="0.55",fontname="Arial"];node [shape=box,style="rounded,filled",fillcolor="#eff6ff",color="#64748b",fontname="Arial",fontsize=12,margin="0.17,0.12"];edge [fontname="Arial",fontsize=10,color="#64748b"];
+source [label="Proposed product source
+Module-oriented Laravel application",fillcolor="#dbeafe"];
+module [label="app/Modules/<Owner>
+Contracts • Application • Domain • Infrastructure",fillcolor="#dcfce7"];
+compose [label="bootstrap / routes / config
+Explicit composition; safe declarations"];
+assets [label="resources / migrations
+Versioned UI source and schema changes"];
+verify [label="tests / ops / docs
+Verification and operating/design guidance"];
+source->module;source->compose;source->assets;source->verify;
+note [label="Proposed responsibility placement, not generated production files
+Shared primitives remain narrow; operating data stays outside release outputs",shape=note,fillcolor="#fef3c7"];
+module->note [style=invis];compose->note [style=invis];assets->note [style=invis];verify->note [style=invis];
+}

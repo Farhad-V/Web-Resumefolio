@@ -1,0 +1,23 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Reference / design method. Native Git/OO/data notation illustration, not a commitment to advanced product features.
+title Design lifecycle and feedback
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+start
+:Understand current requirements and analysis contracts;
+:Choose architecture and refine component design;
+:Define focused verification and compatibility needs;
+:Implement only the authorized bounded scope;
+repeat
+:Verify actual candidate and affected behavior;
+if (Evidence insufficient?) then (yes)
+ :Inspect finding and revise design or refactor;
+endif
+repeat while (Evidence insufficient?) is (yes) not (no)
+:Record actual disposition and remaining limits;
+:Feed new evidence into subsequent design work;
+stop
+
+@enduml

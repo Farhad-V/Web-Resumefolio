@@ -1,0 +1,57 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Future after MVP. Provider, advanced Sprint/review, or untrusted execution requirement retained as deferred.
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam ArrowColor #526B7B
+skinparam activityBackgroundColor #EDF4FB
+skinparam activityBorderColor #526B7B
+skinparam activityDiamondBackgroundColor #FFF3DF
+skinparam activityDiamondBorderColor #B99557
+skinparam activityStartColor #163E52
+skinparam activityEndColor #163E52
+skinparam wrapWidth 190
+skinparam maxMessageSize 180
+
+title AFTER MVP — CF-M12 — Request, review or eligible integration
+start
+:CF-M12-S01\nInitiating actor\nParticipant separately opens a\nrequest, records review/comment or\nrequests merge.;
+if (CF-M12-S02\nCurrent\nrepository/action/source/target\nauthority valid?) then (yes)
+if (CF-M12-S03\nRequest is merge/integration?) then (yes)
+:CF-M12-S04\nSystem\nIdentify exact current\nsource/target revisions and\nrequested integration;
+:CF-M12-S05\nSystem\nRe-evaluate review/check validity,\nconflicts and merge authority;
+if (CF-M12-S06\nReviewed merge conditions\nsatisfied for current revisions?) then (yes)
+:CF-M12-S07\nSystem\nAttempt intended integration;
+if (CF-M12-S08\nActual required ref/integration\neffect confirmed?) then (yes)
+:CF-M12-S09\nSystem\nReport actual integration only; no\ndeployment authority inherited;
+stop
+else (no)
+:CF-M12-S10\nSystem\nRecord failed/partial/unknown\neffect; reconcile actual refs;
+stop
+endif
+else (no)
+:CF-M12-S11\nSystem\nNo eligible merge; report stale\nreview/checks, conflict or denied\ncondition;
+stop
+endif
+else (no)
+if (CF-M12-S12\nRequest is review/comment?) then (yes)
+:CF-M12-S13\nReviewer / System\nRecord attributable feedback for\nidentified evaluated revision;
+:CF-M12-S14\nSystem\nUse CF-M17 to classify actual\nresult; return only evidence-\nsupported effect;
+stop
+else (no)
+:CF-M12-S15\nParticipant / System\nCreate intended request with\nidentifiable source/target context;
+:CF-M12-S16\nSystem\nUse CF-M17 to classify actual\nresult; return only evidence-\nsupported effect;
+stop
+endif
+endif
+else (no)
+:CF-M12-S17\nSystem\nDeny before prohibited effect or\nprotected disclosure; report unmet\ngate;
+stop
+endif
+legend bottom
+A: accepted profile core only. Other policy detail: P / proposed refinement.
+Step IDs identify full descriptions in the activity view.
+Logical ordering; no atomicity, runtime, timing or execution proof.
+endlegend
+@enduml

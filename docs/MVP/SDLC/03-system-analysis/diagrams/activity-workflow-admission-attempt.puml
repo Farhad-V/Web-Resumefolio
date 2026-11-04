@@ -1,0 +1,81 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Future after MVP. Provider, advanced Sprint/review, or untrusted execution requirement retained as deferred.
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam ArrowColor #526B7B
+skinparam activityBackgroundColor #EDF4FB
+skinparam activityBorderColor #526B7B
+skinparam activityDiamondBackgroundColor #FFF3DF
+skinparam activityDiamondBorderColor #B99557
+skinparam activityStartColor #163E52
+skinparam activityEndColor #163E52
+skinparam wrapWidth 190
+skinparam maxMessageSize 180
+
+title AFTER MVP — CF-M13 — Gated execution attempt and cancellation race
+start
+:CF-M13-S01\nInitiating actor\nEligible actor/trigger requests\nsupported workflow work for\nidentified code/definition.;
+if (CF-M13-S02\nEnabling\nisolation/resource/security\nevidence and exact\ntrigger/revision authority valid?) then (yes)
+:CF-M13-S03\nSystem\nValidate supported definition,\nscoped secrets and evaluated code\ncontext;
+if (CF-M13-S04\nAttempt admission eligible?) then (yes)
+:CF-M13-S05\nSystem\nIdentify attributable run/attempt;\nadmit under reviewed execution\ncontract;
+if (CF-M13-S06\nStart or queue cancellation\nactually confirmed?) then (yes)
+if (CF-M13-S07\nAttempt actually started?) then (yes)
+:CF-M13-S08\nSystem\nObserve actual attempt progress\nand output context;
+if (CF-M13-S09\nCancellation requested before\nknown completion?) then (yes)
+:CF-M13-S10\nSystem\nRecord cancellation requested;\nrequest permitted stop;
+if (CF-M13-S11\nTermination actually confirmed?) then (yes)
+:CF-M13-S12\nSystem\nReport cancelled attempt; retain\nknown effects/output disposition;
+stop
+else (no)
+if (CF-M13-S13\nSame attempt actually completed?) then (yes)
+:CF-M13-S14\nSystem\nReport actual success/failure;\ncompletion won cancellation race;
+stop
+else (no)
+if (CF-M13-S15\nSame attempt confirmed still alive?) then (yes)
+:CF-M13-S16\nSystem\nKeep cancellation\nrequested/pending; no confirmed\nstop yet;
+stop
+else (no)
+:CF-M13-S17\nSystem\nKeep stop/result unknown;\nreconcile same attempt without\nrelaunch;
+stop
+endif
+endif
+endif
+else (no)
+if (CF-M13-S18\nActual terminal success/failure\nestablished?) then (yes)
+:CF-M13-S19\nSystem\nReport attributable\nsuccess/failure and separate\noutput availability;
+stop
+else (no)
+if (CF-M13-S20\nSame attempt confirmed still\nrunning?) then (yes)
+:CF-M13-S21\nSystem\nReport confirmed running; continue\nobservation without relaunch;
+stop
+else (no)
+:CF-M13-S22\nSystem\nRunner/result missing: unknown;\nreconcile same attempt;
+stop
+endif
+endif
+endif
+else (no)
+:CF-M13-S23\nSystem\nReport confirmed queue\ncancellation; do not claim running\nwork stopped;
+stop
+endif
+else (no)
+:CF-M13-S24\nSystem\nPending/unconfirmed\nadmission/start remains truthful;\ndo not invent execution;
+stop
+endif
+else (no)
+:CF-M13-S25\nSystem\nNo execution; report\nunsupported/denied definition or\nunmet gate;
+stop
+endif
+else (no)
+:CF-M13-S26\nSystem\nDeny before prohibited effect or\nprotected disclosure; report unmet\ngate;
+stop
+endif
+legend bottom
+A: accepted profile core only. Other policy detail: P / proposed refinement.
+Step IDs identify full descriptions in the activity view.
+Logical ordering; no atomicity, runtime, timing or execution proof.
+endlegend
+@enduml

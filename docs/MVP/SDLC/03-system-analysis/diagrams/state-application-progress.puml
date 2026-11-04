@@ -1,0 +1,46 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core. Manual applications stay in MVP regardless of a historical communication filename.
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 8
+skinparam ArrowColor #526B7B
+skinparam ArrowFontSize 11
+skinparam stateBackgroundColor #EDF4FB
+skinparam stateBorderColor #526B7B
+skinparam stateStartColor #163E52
+skinparam stateEndColor #163E52
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam nodesep 38
+skinparam ranksep 48
+hide empty description
+top to bottom direction
+
+title SM-M06 — Proposed manual application progress
+state "Preparing" as Preparing
+state "Ready" as Ready
+state "Submitted" as Submitted
+state "Interview" as Interview
+state "Offer" as Offer
+state "Rejected" as Rejected
+state "Withdrawn" as Withdrawn
+[*] --> Preparing : scoped initial context
+Preparing --> Ready : SM-T027 preparation reviewed\n[reviewed readiness]
+Ready --> Submitted : SM-T028 actual submission recorded\n[actual event recorded]
+Submitted --> Interview : SM-T029 interview progress recorded\n[explicit progress]
+Submitted --> Offer : SM-T030 offer progress recorded\n[explicit progress]
+Interview --> Offer : SM-T031 offer progress recorded\n[explicit progress]
+Submitted --> Rejected : SM-T032 rejection recorded\n[explicit progress]
+Interview --> Rejected : SM-T033 rejection recorded\n[explicit progress]
+Submitted --> Withdrawn : SM-T034 withdrawal recorded\n[explicit progress]
+Interview --> Withdrawn : SM-T035 withdrawal recorded\n[explicit progress]
+legend bottom
+A: accepted core behavior; P: existing proposal; R: proposed refinement.
+State labels are analysis abstractions, not implemented enums.
+Transition tables define full actor, guard, effect and status.
+Unconfirmed operation effects require SM-M18 reconciliation.
+endlegend
+note "MVP manual application: status, next action and follow-up date.\nPreserve actual submitted materials; no mail/calendar dependency." as MVPFollowUp
+@enduml

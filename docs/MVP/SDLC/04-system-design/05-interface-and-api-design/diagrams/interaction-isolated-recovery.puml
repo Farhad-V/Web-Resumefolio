@@ -1,0 +1,35 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Mixed MVP / future. Retained broader-product associations require explicit future node labels; MVP uses only core/basic ProjectForge.
+title MVP + EXPLICIT FUTURE PATHS — Proposed isolated recovery and explicit resumption gate
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+actor "Authorized operator" as O
+participant "Operations coordinator" as C
+participant "Isolated restored stores" as S
+participant "Affected resource owners" as R
+participant "External-effect adapters" as E
+O -> C : identified source / version / intended recovery scope
+C -> S : restore compatible records / bytes / Git / key context
+note over C,S
+ Outbound effects stay disabled during validation.
+ No automatic replay from restored pending records.
+end note
+C -> R : verify manifests / references / usability / current authority
+R -> S : inspect actual restored state
+S --> R : available / missing / inconsistent evidence
+R --> C : bounded findings + current authority disposition
+C -> E : reconcile actual provider / executor / target state
+E --> C : attributable observations or unresolved effects
+alt usable consistent scope and reviewed disposition
+ C --> O : measured recovery / loss evidence; eligible for resumption procedure
+else missing / unsafe / unresolved scope
+ C --> O : retain isolation; report actual blockers
+end
+note over C,E
+ Restored grant rows cannot silently resurrect access.
+ Backup completion does not establish usable recovery.
+ Promotion follows the owning operating procedure.
+end note
+@enduml

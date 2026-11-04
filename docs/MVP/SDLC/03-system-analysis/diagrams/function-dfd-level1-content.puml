@@ -1,0 +1,33 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core. Remove future provider coordination from core DFD and add private media/manual follow-up flows.
+title MVP DFD Level 1 — core content and application information
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam wrapWidth 190
+actor "Private owner" as U
+actor "Employer viewer" as V
+rectangle "Resumefolio core" {
+ rectangle "F01 establish invited identity\nEnforce scoped authority" as I
+ rectangle "F02 maintain independent profile / resumes\nPreview/select/apply; separately publish" as P
+ rectangle "F03 PDF / selected protected sharing\nDirect / byte-range admission" as S
+ rectangle "F04 manual applications\nActual materials / status / next action / follow-up" as A
+ rectangle "F09 private My Files & Media\nType / size / quota / recovery" as F
+ database "Core-owned records" as D
+ folder "Private bytes on same core server" as B
+ I --> D : account / current grants
+ P --> D : source / draft / publication identities
+ A --> D : actual submission manifests / progress
+ F --> B : admitted private bytes
+ S --> B : only currently authorized selected bytes
+ P --> S : explicit publication selection
+}
+U --> P : intended edits
+U --> A : manual application data
+U --> F : upload / external link
+V --> S : exact protected representation request
+note bottom of A
+ F05 private mail/calendar is AFTER MVP in an independent API system.
+ Manual follow-up requires no provider account.
+end note
+@enduml

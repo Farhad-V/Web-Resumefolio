@@ -1,0 +1,21 @@
+// OWNER-MVP-2026-11-04 review: Method / document navigation. Scope-independent process/navigation; provider or runner examples are not MVP prerequisites.
+digraph G {rankdir=TB;graph [bgcolor="white",pad="0.3",nodesep="0.35",ranksep="0.55",fontname="Arial"]; node [shape=box,style="rounded,filled",fillcolor="#eff6ff",color="#64748b",fontname="Arial",fontsize=12,margin="0.18,0.12"]; edge [fontname="Arial",fontsize=10,color="#64748b"];
+source [label="LC-02 Source professional information"];
+draft [label="LC-02 Independent resume draft
+Selections and overrides"];
+published [label="LC-02 Identified published revision",fillcolor="#dcfce7"];
+link [label="LC-03 Independent link controls
+Current viewer / rendition eligibility",fillcolor="#dbeafe"];
+files [label="LC-09 Confirmed usable artifact identities
+Protected references",fillcolor="#fef3c7"];
+actual [label="LC-04 Actual submission material set
+Independent provenance / history",fillcolor="#ffedd5"];
+source->draft [label="explicit preview / selected apply"];
+draft->published [label="separate confirmed publication"];
+published->link [label="resolve selected live revision"];
+published->files [label="registered publication references"];
+actual->files [label="retained actual-material references"];
+note [label="Actual capture identifies what was submitted
+No automatic propagation from source or live view",shape=note,fillcolor="#f8fafc"];
+actual->note [arrowhead=none,style=dashed];
+}

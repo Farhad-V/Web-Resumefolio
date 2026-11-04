@@ -1,0 +1,26 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Historical / alternative. Dated observation or rejected/unselected alternative is preserved without becoming a current MVP topology.
+title HISTORICAL / UNSELECTED — Candidate network topology — no subnet or route is configured here
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+cloud Internet as NET
+rectangle "Provider public routing / intended ingress" as EDGE
+rectangle "Private Network / VPC-style design concept\nProvider implementation / CIDRs not selected" {
+ rectangle "Application subnet concept\nCIDR unassigned" as A
+ rectangle "Restricted data subnet concept\nCIDR unassigned; may remain local-only" as D
+ rectangle "Execution subnet concept\nOnly if evaluated containment uses networking" as E
+ A --> D : narrowly permitted data path
+ A --> E : scoped executor control
+}
+rectangle "Restricted operator access path\nMechanism and source policy pending" as O
+NET --> EDGE
+EDGE --> A : permitted application ingress
+O --> A : approved administration
+legend bottom
+ Initial colocation can use local sockets/interfaces rather than provision three subnets.
+ Subnet/routing separation does not replace resource authorization or process/secret isolation.
+ No VPC, CIDR, gateway, NAT service or new host is selected by this view.
+endlegend
+@enduml

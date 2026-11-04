@@ -1,0 +1,80 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Mixed MVP / future. Retained broader-product associations require explicit future node labels; MVP uses only core/basic ProjectForge.
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 8
+skinparam ArrowColor #526B7B
+skinparam ArrowFontSize 11
+skinparam packageStyle rectangle
+skinparam classAttributeIconSize 0
+hide circle
+skinparam classBackgroundColor #EDF4FB
+skinparam classBorderColor #526B7B
+skinparam classHeaderBackgroundColor #DFF1EF
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam rectangleBackgroundColor #EDF4FB
+skinparam rectangleBorderColor #526B7B
+skinparam activityBackgroundColor #EDF4FB
+skinparam activityBorderColor #526B7B
+skinparam activityDiamondBackgroundColor #DFF1EF
+skinparam activityDiamondBorderColor #458F88
+skinparam padding 6
+skinparam nodesep 35
+skinparam ranksep 40
+hide empty members
+title AFTER MVP — advanced model — Work views, items, tasks and one Sprint Backlog
+top to bottom direction
+class "Work project\nDM-C24" as project {
+  Work identity
+  participant context
+}
+class "Board\nDM-C25" as board {
+  Displayed work
+  column arrangement
+}
+class "Board column\nDM-C26" as column {
+  Label/order
+  state mapping meaning
+}
+class "[AFTER MVP] Product Backlog\nDM-C27" as backlog {
+  Item ordering
+  planning context
+}
+class "Backlog Item\nDM-C28" as item {
+  Outcome
+  priority
+  criteria
+  state
+}
+class "Task\nDM-C29" as task {
+  Activity
+  assignment
+  due/state context
+}
+class "[AFTER MVP] Sprint\nDM-C30" as sprint {
+  Period
+  lifecycle
+  outcome
+}
+class "[AFTER MVP] Sprint Backlog\nDM-C31" as sprintbacklog {
+  Goal + selected items + plan
+}
+project -- board : work views
+board -- column : configured columns
+project -- backlog : planned work
+backlog -- item : ordered items
+item -- task : activity refinement
+project -- sprint : work period
+sprint "1" -- "1" sprintbacklog : one coherent backlog
+sprintbacklog -- item : selected outcomes
+sprintbacklog -- task : delivery plan activities
+legend bottom
+Solid lines: conceptual associations, not process steps.
+Relationship bounds: document 03, section 3.
+An unlabeled end is unspecified, not implicitly one.
+Properties are semantic, not mandatory database fields.
+endlegend
+@enduml

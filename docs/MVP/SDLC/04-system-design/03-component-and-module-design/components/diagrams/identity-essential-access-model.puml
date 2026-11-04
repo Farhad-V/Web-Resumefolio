@@ -1,0 +1,23 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Proposed — Scoped roles, attributes and resource ownership
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+rectangle "Verified subject\naccount / current session or scoped credential" as S
+rectangle "Scoped grant / role relationship\nactual resource namespace + operations + current version" as G
+rectangle "Current resource attributes\nowner / lifecycle / expected version" as R
+rectangle "Applicable accepted policy\nadmin powers require exact source reconciliation" as P
+rectangle "Owner operation decision\nallow exact action or safe deny" as D
+S --> D
+G --> D
+R --> D
+P --> D
+note bottom of G
+ No global role inheritance, group model or RBAC product selected.
+ Project/board membership is not repository/mailbox access.
+ Unresolved policy is not an allow or a silent replacement of older powers.
+end note
+
+@enduml

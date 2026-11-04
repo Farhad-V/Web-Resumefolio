@@ -1,0 +1,32 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Reference / reusable template. Illustrative contract/model/pattern, not a product release commitment.
+allowmixing
+title Template example — Branching decision tree with precedence
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+rectangle "Valid explicit intent?" as V
+rectangle "Current authority / lifecycle?" as A
+rectangle "Identity bound to same intent?" as I
+rectangle "Recorded outcome?" as R
+rectangle "Expected version matches?" as E
+rectangle "Safe invalid" as X
+rectangle "Safe denied" as D
+rectangle "Identity conflict" as C
+rectangle "Permitted recorded projection" as P
+rectangle "Version conflict" as F
+rectangle "Build and commit guarded snapshot" as S
+V --> X : no
+V --> A : yes
+A --> D : no
+A --> I : yes
+I --> C : no
+I --> R : yes
+R --> P : yes
+R --> E : no
+E --> F : no
+E --> S : yes
+
+@enduml

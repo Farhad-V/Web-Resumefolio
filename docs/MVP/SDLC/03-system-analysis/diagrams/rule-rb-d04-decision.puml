@@ -1,0 +1,53 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam ArrowColor #526B7B
+skinparam activityBackgroundColor #EDF4FB
+skinparam activityBorderColor #526B7B
+skinparam activityDiamondBackgroundColor #FFF3DF
+skinparam activityDiamondBorderColor #B99557
+
+title RB-D04 — Protected selected representation eligibility
+start
+if (RB-D04-C01\nProtected access permits = T?) then (yes)
+if (RB-D04-C02\nRepresentation selected = T?) then (yes)
+if (RB-D04-C03\nExact variant available = T?) then (yes)
+:RB-D04-R07\nELIGIBLE RETRIEVAL;
+stop
+else (no)
+if (RB-D04-C03 = F?) then (yes)
+:RB-D04-R05\nUNAVAILABLE VARIANT;
+stop
+else (U)
+:RB-D04-R06\nUNRESOLVED VARIANT;
+stop
+endif
+endif
+else (no)
+if (RB-D04-C02 = F?) then (yes)
+:RB-D04-R03\nDENY UNSELECTED;
+stop
+else (U)
+:RB-D04-R04\nUNRESOLVED SELECTION;
+stop
+endif
+endif
+else (no)
+if (RB-D04-C01 = F?) then (yes)
+:RB-D04-R01\nDENY PROTECTED ACCESS;
+stop
+else (U)
+:RB-D04-R02\nUNRESOLVED ACCESS;
+stop
+endif
+endif
+legend bottom
+Decision alternatives, not execution steps or evaluation timing.
+T = established true; F = established false; U = unresolved.
+Conditions and full results are defined in the rule table.
+All rows here are proposed analysis refinements; no new policy acceptance.
+endlegend
+@enduml

@@ -1,0 +1,26 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+allowmixing
+title Proposed — Owner packages and source dependency direction
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+package "Consumer application" as C
+package "Owner.Contracts\npublic validated types / projections" as P
+package "Owner.Application" as A
+package "Owner.Domain" as D
+package "Owner.Infrastructure" as I
+package "Owner.Transport" as T
+package "Composition root" as R
+C ..> P : permitted exported contract only
+T ..> A
+A ..> P
+A ..> D
+I ..> P : required-port implementation
+I ..> D : owned mapping values
+R ..> I : construct / bind
+R ..> T
+
+@enduml

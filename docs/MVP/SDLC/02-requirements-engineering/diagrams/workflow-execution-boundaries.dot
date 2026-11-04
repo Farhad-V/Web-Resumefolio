@@ -1,0 +1,31 @@
+// OWNER-MVP-2026-11-04 review: Future after MVP. Provider, advanced Sprint/review, or untrusted execution requirement retained as deferred.
+digraph model {
+ graph [label="AFTER MVP | workflow execution boundaries",labelloc=t];
+graph [bgcolor="white",pad=0.3,nodesep=0.4,ranksep=0.65,fontname="Arial",fontsize=20,labelloc=t];
+node [shape=box,style="rounded,filled",fillcolor="#DBEAFE",color="#64748B",fontcolor="#17324D",fontname="Arial",fontsize=13,margin="0.18,0.14"];
+edge [color="#64748B",fontname="Arial",fontsize=11,fontcolor="#17324D"];
+graph [rankdir=TB,label="Resumefolio | Conditional execution and authority boundaries"];
+definition [label="Eligible definition + trigger
+Supported contract / actor authority"];
+revision [label="Identified run / attempt
+Code + definition revision / non-secret context"];
+isolation [label="Reviewed execution boundary
+Untrusted code / identity / workspace
+Filesystem / process / network",fillcolor="#FEF3C7"];
+resources [label="Effective resource admission / limits
+Existing combined workload",fillcolor="#FEF3C7"];
+secrets [label="Explicit scoped secret grants
+Repository / event / target conditions",fillcolor="#FEF3C7"];
+results [label="Actual step / run outcomes
+Restricted logs + agreed artifacts",fillcolor="#DCFCE7"];
+target [label="Separate controlled deployment stage
+Target + revision + approval / authority",fillcolor="#EDE9FE"];
+cleanup [label="Explicit cleanup / retention / recovery
+No blind stale job replay"];
+definition -> revision; revision -> isolation;
+resources -> isolation [label="bounds"]; secrets -> isolation [label="only eligible inputs"];
+isolation -> results; results -> target [label="not approval by itself"];
+results -> cleanup;
+
+ graph [label="AFTER MVP | YAML execution and separate deployment boundaries",labelloc=t];
+}

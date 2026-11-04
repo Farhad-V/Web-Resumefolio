@@ -1,0 +1,19 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Illustrative wait-for graph — hypothetical conflicting guard order
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+rectangle "T1 Consumer/reference update\nHolds illustrative guard R1" as T1
+rectangle "T2 Cleanup coordination\nHolds illustrative guard R2" as T2
+T1 --> T2 : waits for R2\nheld by T2
+T2 --> T1 : waits for R1\nheld by T1
+legend bottom
+ R1 / R2 are abstract guard resources, not observed engine locks or an existing incident.
+ The cycle illustrates a possible deadlock only if these hold/wait conditions can actually arise.
+ Evaluate consistent acquisition order or revised transaction scope; test actual engine behavior.
+ Bounded local retry is safe only under preserved command identity and proven effect boundaries.
+ No Petri-net reachability or formal deadlock-freedom proof is claimed.
+endlegend
+@enduml

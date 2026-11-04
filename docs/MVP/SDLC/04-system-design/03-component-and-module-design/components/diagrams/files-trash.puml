@@ -1,0 +1,30 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Proposed — Version, trash, restore and physical reclaim flow
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+start
+:Explicit reviewed replace / retire / delete intent;
+:Preserve old protected publication / actual material identity;
+if (Logical lifecycle operation permitted?) then (yes)
+ :Record exact source-defined lifecycle / association change;
+ if (Restore requested?) then (yes)
+  :Recheck current authority, bytes, keys, references and policy;
+  :Restore only actual usable permitted state;
+ else (no)
+  if (Reclamation eligible and no active/provisional protection?) then (yes)
+   :Exclusive deletion claim compatible with reference admission;
+   :Observe actual storage deletion;
+   :Reconcile actual reclaimed capacity; retain unknown if needed;
+  else (no)
+   :Retain protected bytes / attributable pending state;
+  endif
+ endif
+else (no)
+ :Safe refusal; no silent purge;
+endif
+stop
+
+@enduml

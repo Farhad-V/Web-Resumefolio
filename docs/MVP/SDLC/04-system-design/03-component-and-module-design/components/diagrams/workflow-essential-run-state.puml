@@ -1,0 +1,26 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Future after MVP. Provider, advanced Sprint/review, or untrusted execution requirement retained as deferred.
+title AFTER MVP — Proposed / conditional — Run observation, cancellation and cleanup dimensions
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+[*] --> Queued : admitted immutable intent + durable dispatch
+Queued --> Running : attributable actual launch / running evidence
+Queued --> Blocked : capability / policy no longer permits admission
+Running --> Succeeded : actual selected completion semantics met
+Running --> Failed : evidence-supported failure
+Running --> Unknown : observation / effect uncertain
+Running --> CancelRequested : explicit authorized intent
+CancelRequested --> StoppedConfirmed : actual process-tree stop evidence
+CancelRequested --> Succeeded : completion wins race
+CancelRequested --> Unknown : stop/effect unresolved
+Unknown --> Succeeded : actual reconciliation
+Unknown --> Failed : actual failure evidence
+note right of Succeeded
+ Terminal run is not output usability or cleanup completion.
+ Deployment approval waits outside this run outcome dimension.
+ Lease expiry does not authorize relaunch or release capacity.
+end note
+
+@enduml

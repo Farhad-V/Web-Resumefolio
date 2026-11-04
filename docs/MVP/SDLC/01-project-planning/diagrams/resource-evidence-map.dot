@@ -1,0 +1,18 @@
+// OWNER-MVP-2026-11-04 review: Method / document navigation. Scope-independent process/navigation; provider or runner examples are not MVP prerequisites.
+digraph ResourceEvidence {
+  graph [rankdir=TB, bgcolor="white", pad=0.35, ranksep=0.45, nodesep=0.4,
+    fontname="Arial", fontsize=19, labelloc=t,
+    label="Resumefolio | Resources and evidence\nResource existence is not proof of application capacity"];
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=12,
+    color="#CBD5E1", margin="0.2,0.15", fillcolor="#F1F5F9"];
+  edge [color="#64748B", arrowsize=0.65];
+  root [label="PLAN WITH ACTUAL RESOURCES\nOne owner, existing infrastructure, available budget", fillcolor="#17324D", fontcolor=white];
+  people [label="CONFIRMED ARRANGEMENT\nFarhad: 20 TOTAL project hours/week\nLearning/docs/tests/operations included", fillcolor="#DBEAFE"];
+  tools [label="DEMONSTRATED TOOL WORKFLOWS\nWindows / PowerShell and Git\nGraphviz, PlantUML and Java\nApplication runtime still needs verification", fillcolor="#DCFCE7"];
+  reported [label="OWNER-REPORTED RESOURCES\nExisting Hetzner server in Germany\nResumefolio.de and reference projects\nCurrent suitability not established", fillcolor="#EDE9FE"];
+  pending [label="INVESTIGATE BEFORE DEPENDENT DECISIONS\nServer load, network and storage\nBackup separation and recovery\nMVP API/Git/media capacity and recovery\nProvider/CI/CD investigations AFTER MVP", fillcolor="#FEF3C7"];
+  root -> people; root -> tools; root -> reported; root -> pending;
+  {rank=same; people -> tools [style=invis];}
+  {rank=same; reported -> pending [style=invis];}
+  people -> reported [style=invis]; tools -> pending [style=invis];
+}

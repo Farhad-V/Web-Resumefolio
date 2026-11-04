@@ -1,0 +1,19 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+allowmixing
+title Proposed — Applications layered architecture
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+rectangle "Presentation\nApplication forms / API projection" as P
+rectangle "Application\nSavePreparation / RecordProgress\nCaptureActualSubmission / CorrectSubmissionRecord" as A
+rectangle "Domain\nApplicationRecord / ProgressEvent\nSubmissionEvent / MaterialSet / Correction" as D
+interface "Required narrow contracts" as R
+rectangle "Infrastructure\nOwned persistence / public owner adapters" as I
+P --> A
+A --> D
+A --> R
+I ..|> R
+
+@enduml

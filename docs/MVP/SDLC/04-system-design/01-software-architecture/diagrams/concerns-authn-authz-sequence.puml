@@ -1,0 +1,34 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Proposed verified identity and current operation authority
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+actor Caller
+participant "Entry / session mechanism" as E
+participant "Identity contract" as I
+participant "Resource owner" as O
+database "Current resource / grant / version state" as D
+Caller -> E : protected request + credential/session context
+E -> I : verify actual account/session eligibility
+I --> E : verified context or no valid context
+alt valid attributable context
+ E -> O : intended resource/action + validated input
+ O -> I : current scoped operation authority
+ I --> O : current policy context or denial
+ O -> D : evaluate resource lifecycle / version under guard
+ D --> O : actual current state
+ alt permitted guarded operation
+  O --> Caller : bounded result / exact controlled delivery context
+ else denied / stale / invalid
+  O --> Caller : safe refusal / conflict; no private disclosure
+ end
+else absent / invalid context
+ E --> Caller : safe authentication / eligibility response
+end
+note over I,D
+ Long-lived workers and native Git paths need equivalent owner checks, not a reused browser session.
+ Raw credentials never enter ordinary diagnostics; current revocation ordering needs concrete synchronization.
+end note
+@enduml

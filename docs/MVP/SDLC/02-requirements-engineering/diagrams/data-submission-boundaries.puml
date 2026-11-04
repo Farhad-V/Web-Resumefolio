@@ -1,0 +1,44 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Resumefolio | Live presentation and submitted materials
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #64748B
+skinparam rectangle {
+ BorderColor #64748B
+ FontColor #17324D
+ BackgroundColor #DBEAFE
+}
+top to bottom direction
+rectangle "Professional profile\nReusable professional information" as profile
+rectangle "Tailored resume\nIndependent selections, layout and overrides" as resume
+rectangle "Live employer view\nSelected content + permitted PDF/file retrieval" as live
+rectangle "Record actual submission\nCapture trigger and artifact details need definition" as capture #FEF3C7
+rectangle "Preserved submitted materials\nResume and cover letter actually submitted" as submitted #DCFCE7
+rectangle "User-identified actual artifacts\nResume + cover letter actually sent" as actual #FEF3C7
+rectangle "Application history\nRelevant opportunity and progress context" as history #DCFCE7
+profile --> resume : intended reuse / updates under explicit rules
+resume --> live : controlled sharing
+resume ..> capture : only if this is the actual submitted material
+actual --> capture : identify / validate actual set
+capture --> submitted : preserve actual submitted material
+submitted --> history : retained submission context
+note right of live
+Later saved changes may be reflected
+under explicit requirements.
+Direct retrieval remains authorized.
+end note
+note right of submitted
+Later source edits do not overwrite
+the preserved submitted copies.
+Deletion, correction and restoration
+rules still require specification.
+end note
+legend bottom
+Conceptual information boundaries; no storage design or automatic propagation selected.
+Cover letter capture is part of the submission context; it does not originate from the profile.
+The diagram does not define retention periods, access sessions or accepted detailed policies.
+endlegend
+@enduml

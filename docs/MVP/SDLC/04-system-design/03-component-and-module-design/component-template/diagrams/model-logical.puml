@@ -1,0 +1,21 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Reference / reusable template. Illustrative contract/model/pattern, not a product release commitment.
+allowmixing
+title Template example — Logical model: identity and independent history
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+rectangle "Resume identity" as R
+rectangle "Editable draft\ncurrent version / selected content / overrides" as D
+rectangle "Publication revision\nimmutable content + source version" as P
+rectangle "Live selection\nresume -> exact publication identity" as L
+rectangle "Actual submission material\nApplications-owned independent evidence" as S
+R --> D : editable state
+R --> P : confirmed publication provenance
+L --> R
+L --> P
+S ..> P : optional provenance only
+
+@enduml

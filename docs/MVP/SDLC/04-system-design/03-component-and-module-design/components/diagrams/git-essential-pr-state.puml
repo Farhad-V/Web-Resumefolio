@@ -1,0 +1,28 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Future after MVP. Provider, advanced Sprint/review, or untrusted execution requirement retained as deferred.
+title AFTER MVP — Proposed / illustrative — Pull request lifecycle and revision-bound readiness
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+[*] --> Draft : if draft capability adopted
+Draft --> Open : author marks ready
+Open --> InReview : review requested / performed
+InReview --> ApprovedContext : actual required evidence for exact candidate
+ApprovedContext --> InReview : source / target / required evidence changes
+InReview --> Open : changes requested / iteration
+Open --> Closed : close without integration
+Draft --> Closed : close without integration
+InReview --> Closed : close without integration
+ApprovedContext --> Closed : close without integration
+ApprovedContext --> Merged : guarded native ref update confirmed
+Merged --> [*]
+Closed --> Open : explicit permitted reopen if supported
+note right of ApprovedContext
+ Approval is derived revision-bound evidence,
+ not necessarily a persisted PR status enum.
+ Exact reviewer/self-review/check policy remains proposed.
+end note
+
+@enduml

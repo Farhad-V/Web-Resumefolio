@@ -1,0 +1,48 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 8
+skinparam ArrowColor #526B7B
+skinparam ArrowFontSize 11
+skinparam packageStyle rectangle
+skinparam classAttributeIconSize 0
+hide circle
+skinparam classBackgroundColor #EDF4FB
+skinparam classBorderColor #526B7B
+skinparam classHeaderBackgroundColor #DFF1EF
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam rectangleBackgroundColor #EDF4FB
+skinparam rectangleBorderColor #526B7B
+skinparam activityBackgroundColor #EDF4FB
+skinparam activityBorderColor #526B7B
+skinparam activityDiamondBackgroundColor #DFF1EF
+skinparam activityDiamondBorderColor #458F88
+skinparam padding 6
+skinparam nodesep 35
+skinparam ranksep 40
+hide empty members
+title Analysis — source authority and feedback
+top to bottom direction
+rectangle "Accepted authority\nScope + bounded owner decisions" as A #DFF1EF
+rectangle "Working specification\nRequirements + scenarios + dictionary\nDetailed proposals retain their status" as W
+rectangle "Known constraints\n20 hours/week; existing host\nOAuth absent; backups not configured" as F #FFF3DF
+rectangle "Analysis models\nStructure + transformations + behavior" as M #DFF1EF
+rectangle "Consistency review\nSources, outcomes, assumptions and gates" as R
+rectangle "Qualified design-handoff candidate\nReviewed conclusions + unresolved gates" as H #DFF1EF
+A -[hidden]right- W
+W -[hidden]right- F
+A --> M : governs
+W --> M : describes intended behavior
+F --> M : constrains
+M --> R : reviewed model package
+R --> H : justified conclusions
+R -[dashed,norank]-> W : refine a missing/conflicting rule\nwithout inventing acceptance
+legend bottom
+Arrows describe document influence and review feedback.
+They are not application data flows or automatic approvals.
+endlegend
+@enduml

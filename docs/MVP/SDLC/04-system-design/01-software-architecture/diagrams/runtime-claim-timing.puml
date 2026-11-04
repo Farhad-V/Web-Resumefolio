@@ -1,0 +1,41 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Illustrative timing — claim expiry is not remote no-effect
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+concise "Coordinator knowledge" as K
+concise "Claim ownership" as C
+concise "External observation" as E
+scale 1 as 170 pixels
+@0
+K is Pending
+C is Unclaimed
+E is None
+@1
+K is DispatchPossible
+C is Generation1
+E is NoReply
+@2
+K is UnknownEffect
+C is Expired
+E is Unresolved
+@3
+K is Reconciling
+C is Generation2
+E is Unresolved
+@4
+K is RecordedOutcome
+C is Generation2
+E is ObservedAccepted
+@5
+K is RecordedOutcome
+C is Released
+E is ObservedAccepted
+legend bottom
+ Ticks 0–5 are illustrative ordered positions, not seconds, measured duration or chosen lease/timeout values.
+ This example eventually observes acceptance; other runs can remain unknown or reveal partial/no-effect results.
+ Local Generation2 does not terminate Generation1's possible remote action.
+endlegend
+@enduml

@@ -1,0 +1,37 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Proposed — Alternate paths, duplicate commands and uncertain effects
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+actor Caller
+participant "Resource owner" as O
+participant "Current policy / version / identity guard" as G
+participant "Actual external adapter, only if operation requires it" as A
+Caller -> O : exact intent + expected context + command identity
+O -> G : current admission and same-intent outcome lookup
+alt denied / stale / changed intent under same identity
+ G --> O : safe denial / conflict
+ O --> Caller : no new admitted mutation; protected frame preserved
+else prior same-intent result
+ G --> O : recorded outcome
+ O --> Caller : currently permitted projection
+else eligible new intent
+ O -> G : coherent local state/result or durable external intent
+ opt explicitly required consequential external operation
+  O -> A : same attributable attempt after current eligibility
+  alt actual effect established
+   A --> O : evidence-supported actual result
+  else partial / unknown observation
+   A --> O : retain known effects and same-attempt uncertainty
+   loop bounded observation only if actually supported and authorized
+    O -> A : reconcile existing attempt, not new dispatch
+    A --> O : evidence or unavailable
+   end
+  end
+ end
+ O --> Caller : truthful permitted committed / pending / partial / unknown result
+end
+
+@enduml

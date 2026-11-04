@@ -1,0 +1,28 @@
+@startmindmap
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Candidate quality attribute utility tree — no priority ranking accepted
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+* Quality utility
+** Security / privacy
+*** DD-01: current resource authority
+**** Private / direct / stale-context retrieval denied as applicable
+*** DD-03: untrusted execution boundary
+**** Actual containment evidence before enabling
+** Integrity / truthful outcomes
+*** DD-02: independent drafts / publication / actual history
+**** Version conflicts preserve protected content
+*** DD-04: uncertain external effects
+**** Reconcile same attempt; no blind repeat
+** Performance / capacity
+*** DD-05: combined web / PDF / Git / jobs
+**** Measure latency, errors, queue age and resource growth
+**** Q-D25 targets remain proposed
+** Recoverability / availability
+*** DD-06: consistent records / bytes / refs / keys
+**** Isolated usable restore and current-authority reconciliation
+**** Q-D26 targets remain proposed
+** Maintainability / operability
+*** DD-05: solo delivery and operating capacity
+**** Explicit owner contracts; compatible change; bounded facilities
+@endmindmap

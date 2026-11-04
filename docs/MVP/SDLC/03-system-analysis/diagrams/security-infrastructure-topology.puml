@@ -1,0 +1,41 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Historical / alternative. Dated observation or rejected/unselected alternative is preserved without becoming a current MVP topology.
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #486777
+skinparam ArrowFontSize 12
+skinparam rectangleBackgroundColor #EEF5FA
+skinparam rectangleBorderColor #486777
+skinparam packageBackgroundColor #F7FAFC
+skinparam noteBackgroundColor #FFF3DA
+skinparam noteBorderColor #B59865
+skinparam nodesep 35
+skinparam ranksep 45
+title HISTORICAL / UNSELECTED — Infrastructure topology — observed demo and explicit gaps
+top to bottom direction
+node "Browser client" as browser
+node "Authorized operator workstation" as operator
+node "Hetzner VM\nUbuntu 24.04.4 LTS\n2 vCPU / 4 GB allocated / 40 GB local disk" as host {
+ artifact "Nginx active\nPublic /login responded" as web
+ artifact "PHP 8.3-FPM active\nLaravel application files / lockfile" as app
+ database "MySQL 8.0.46 active\nApplication connection not inspected" as db
+}
+browser --> web : HTTPS observed in dated record
+operator --> host : SSH used for historical read-only inspection
+rectangle "Recovery capability gap\nOwner reports backups not configured\nNo independent protected backup proven" as backup #FFF3DA
+rectangle "Availability capability gap\nNo standby, replication or failover evidence\nNo selected HA / DR topology" as ha #FFF3DA
+host ..> backup : evidence needed; not an existing link
+host ..> ha : single observed host; no redundancy claimed
+note bottom of ha
+Service presence does not prove application-to-database connectivity.
+Firewall rules, private network zones and backend transport were not inspected.
+No load balancer, secondary host or paid service is assumed.
+end note
+
+legend bottom
+Historical inventory: November 1, 2026, not a current live inspection or selected final architecture.
+Solid arrows: recorded access paths. Dashed arrows: identified capability gaps, not configured connections.
+endlegend
+@enduml

@@ -1,0 +1,30 @@
+@startuml
+title MVP identity and trust — two systems, distinct resource authority
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam wrapWidth 180
+actor "Private browser / API caller\nOwner/admin-created or invited account" as U
+actor "Employer viewer\nNo owner login" as E
+actor "Native Git client\nOwn evaluated transport credential" as G
+package "Resumefolio core authority boundary" {
+ component "Identity / current account / scoped policy" as I
+ component "Core resource owner\nProfile / application / sharing / private media" as C
+ database "Core records / private same-server bytes" as D
+ C --> I : current subject / action / resource
+ C --> D : owner-controlled read/write
+}
+package "ProjectForge — independent system boundary" {
+ component "Current repository / board authority" as P
+ database "Owned repository / issue / board state\nNative Git Smart HTTP / Laravel\nSeparate MySQL 8.4 / same host, separate OS user" as PD
+ P --> PD : own authorized access
+}
+U --> C : authenticated request
+E --> C : link/password-scoped selected-resume access\nincluding direct and byte-range delivery
+C <--> P : authenticated user-scoped API\nno inherited board-to-repository or admin bypass
+G --> P : real Git transport; client-created commits
+rectangle "AFTER MVP\nIndependent private communications via API\nPer-user/account consent; admin cannot read mail\nUntrusted YAML execution / target deployment" as F #F8EBD7
+cloud "Restricted independent recovery\nCurrent authority / no automatic effect replay" as B
+D --> B
+PD --> B : recover consistent system scope
+@enduml

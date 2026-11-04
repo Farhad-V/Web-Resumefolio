@@ -1,0 +1,28 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Proposed recoverable set and independent protected copy
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+rectangle "Relational owned records\nGrants / history / references / pending effects" as DB
+rectangle "Private artifact bytes\nPublished / preserved actual material" as F
+rectangle "Native Git objects / refs\nActual repository storage context" as G
+rectangle "Application / configuration provenance\nCompatible versions + tested rebuild recipe" as C
+rectangle "Coordinated recovery-point manifest\nScope, versions, consistency and verification evidence" as M
+rectangle "Independent protected copy\nEvaluated access / encryption / failure separation" as B
+rectangle "Restricted recoverable key access\nSeparate lifecycle and actual usability" as K
+rectangle "Isolated restoration evidence\nUsable workflows + current authority + external state" as R
+DB --> M
+F --> M
+G --> M
+C --> M
+M --> B : capture / transfer / verify exact set
+B --> R : restore chosen compatible point
+K --> R : authorized usable key recovery
+note bottom of R
+ Backup destination and jobs are not configured.
+ A file copy or successful exit is not proof of usable recovery.
+ No schedule, retention or RPO/RTO is accepted here.
+end note
+@enduml

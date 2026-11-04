@@ -1,0 +1,26 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+allowmixing
+title Proposed — Logical job lanes, reconciliation and intervention
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+database "Durable admitted intent / attempt" as I
+queue "Write / validation lane" as W
+queue "Reference / cleanup lane" as C
+queue "Recovery assessment lane" as R
+component "Current guarded bounded workers" as B
+component "Storage / actual facility" as S
+queue "Unresolved / intervention holding area\nDLQ-style option, not selected broker" as H
+I --> W
+I --> C
+I --> R
+W --> B
+C --> B
+R --> B
+B --> S : eligible attributable operation
+S --> H : partial / unknown / exhausted safe progress
+H --> I : reviewed same-attempt reconciliation, not blind replay
+
+@enduml

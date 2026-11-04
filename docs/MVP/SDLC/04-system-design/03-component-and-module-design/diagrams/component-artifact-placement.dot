@@ -1,0 +1,11 @@
+// OWNER-MVP-2026-11-04 review: MVP systems. Separate artifact ownership without selecting deployment.
+digraph Aligned {
+ graph [rankdir=TB,bgcolor="white",fontname="Arial",label="MVP | Component-to-artifact responsibility",labelloc=t,pad=0.3];
+ node [shape=box,style="rounded,filled",fillcolor="#E5F0FB",fontname="Arial",margin="0.18,0.12"];
+ edge [fontname="Arial",fontsize=10];
+core [label="Core owners: LC-01/02/03/04/09\nCore release / UI / core migrations"];
+ forge [label="Separate ProjectForge: basic LC-06/07\nNative Git Smart HTTP / Laravel\nSeparate MySQL 8.4 / same host, separate OS user",fillcolor="#DCF2E5"];
+ core -> forge [dir=both,label="authenticated user-scoped API"];
+ future [label="AFTER MVP\nLC-05 private communications via API\nAdvanced LC-06/07 and LC-08 execution",fillcolor="#F8EBD7"];
+ core -> future [style=dashed,label="future contracts"];
+}

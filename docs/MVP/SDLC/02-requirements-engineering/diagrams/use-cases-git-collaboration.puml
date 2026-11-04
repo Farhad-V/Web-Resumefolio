@@ -1,0 +1,49 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Mixed MVP / future. Retained broader-product associations require explicit future node labels; MVP uses only core/basic ProjectForge.
+left to right direction
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam roundcorner 12
+skinparam ArrowColor #64748B
+skinparam actorBorderColor #17324D
+skinparam actorFontColor #17324D
+skinparam usecase {
+ BackgroundColor #EFF6FF
+ BorderColor #64748B
+ FontColor #17324D
+}
+skinparam rectangle {
+ BorderColor #94A3B8
+ FontColor #17324D
+}
+title MVP + EXPLICIT FUTURE PATHS — Resumefolio | Git transfer and collaboration use cases
+actor "Authorized repository participant" as user
+actor "Supported Git client" as client
+rectangle "ProjectForge | Separate system boundary" {
+ usecase "Clone a repository\nUC-D09-CLONE" as clone [[../04-scenarios-and-models/user-stories-and-scenarios.md#uc-d09-clone]]
+ usecase "Push a change\nUC-D09-PUSH" as push [[../04-scenarios-and-models/user-stories-and-scenarios.md#uc-d09-push]]
+ usecase "Fetch / Pull repository content\nParent UC-D09; GIT-D03" as fetch [[../04-scenarios-and-models/user-stories-and-scenarios.md#uc-d09]]
+ usecase "[AFTER MVP] Open a pull request\nUC-D09-REQUEST" as request [[../04-scenarios-and-models/user-stories-and-scenarios.md#uc-d09-request]]
+ usecase "[AFTER MVP] Review a pull request\nUC-D09-REVIEW" as review [[../04-scenarios-and-models/user-stories-and-scenarios.md#uc-d09-review]]
+ usecase "[AFTER MVP] Merge an eligible pull request\nUC-D09-MERGE" as merge [[../04-scenarios-and-models/user-stories-and-scenarios.md#uc-d09-merge]]
+}
+user -- clone
+user -- push
+user -- fetch
+user -- request
+user -- review
+user -- merge
+client -- clone
+client -- push
+client -- fetch
+legend bottom
+Sources: GIT-D02/D03/D05-D07 and UC-D09.
+Participant and Git client identify human and technical external contexts.
+Fetch/Pull remain an explicit parent capability, not a newly allocated child ID.
+Review and merge use current revision context; merge is not deployment approval.
+Associations show proposed external interactions, not permission grants.
+No include/extend dependency or actor inheritance is asserted.
+endlegend
+@enduml

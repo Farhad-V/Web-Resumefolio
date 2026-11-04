@@ -1,0 +1,29 @@
+# ADR-005 — Owner MVP System Boundaries
+
+## Current implementation baseline — November 4, 2026
+
+[BL-MVP-2026-11-04.1](../../../baseline/README.md) selects the MVP technical mechanisms, numerical policies, priorities and requirement/criterion dispositions under Farhad’s explicit delegation. It supersedes earlier Proposed/pending mechanism and whole-baseline statements below for MVP design input. Future clauses and dated evidence remain separate. Runtime/actor validation, credentials, Git isolation, capacity and backup/restore still require the named implementation/Release gates; this update reports no product test Pass.
+
+### Prior source material and rationale (superseded where this Baseline selects a different MVP choice)
+
+Status: **Accepted owner product/system boundary; physical mechanisms undecided**. Recorded November 4, 2026. Authority: Farhad through [OWNER-MVP-2026-11-04](../../01-project-planning/owner-mvp-decision-2026-11-04.md).
+
+## Context and decision
+
+The owner defined Version 1 as the MVP and required a unified experience across a Resumefolio core and a **separate ProjectForge system joined by an authenticated user-scoped API**. This replaces ADR-001's proposed common trusted application for all nine owners. It does not reject explicit modular ownership within each system.
+
+Core owns dashboard, invited accounts, profile/resumes/portfolio/cover letters/manual applications, protected PDFs/sharing and private My Files & Media on the same server. ProjectForge MVP owns real Git repositories/transfers/permissions/file-history, issues/simple Kanban. Commits normally occur in clients. Advanced review/merge/releases, backlog/Sprints and YAML execution/deployment are future stages.
+
+Future communications is an independent private API system with user-consented personal Gmail/Google Calendar accounts, potentially multiple. Owner/admin has no mail-reading authority. Other providers are undecided. AI is future/Version 2 discussion.
+
+## Alternatives and provenance
+
+ADR-001 retains the November 2 alternatives and rationale as a historical proposal. A single trusted application spanning all nine owners no longer matches the owner's selected boundary. A forced microservice/database split for every logical owner was not selected either. This record implements a settled owner choice; it is not a newly benchmarked architecture recommendation.
+
+## Consequences and open engineering decisions
+
+Core/ProjectForge API contracts must enforce current subject/resource/action scope and revocation; internal references cannot grant authority. Do not assume a shared database, cross-system transaction or physical co-deployment. ProjectForge engine, database, physical deployment, Git transport and API credential mechanism remain open. Same-server core media is settled; separate media infrastructure is future only with evidence. File policy, safe range serving, backup destination and recovery targets still need specification and verification.
+
+## Verification and acceptance limits
+
+Documentation synchronization does not implement or demonstrate API interoperability, real Git transfer, private playback, capacity, least privilege or restoration. Future verification must cover allowed/denied cross-user API/Git calls, changed grants, client-created commits, selected protected media/direct/range retrieval, independent submitted history and isolated recovery. No new delivery deadline, spending, live configuration or whole-design acceptance is authorized.

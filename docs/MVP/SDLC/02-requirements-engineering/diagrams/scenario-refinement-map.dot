@@ -1,0 +1,24 @@
+// OWNER-MVP-2026-11-04 review: Method / document navigation. Scope-independent process/navigation; provider or runner examples are not MVP prerequisites.
+digraph model {
+graph [rankdir=TB,bgcolor="white",pad=0.3,nodesep=0.4,ranksep=0.65,fontname="Arial",fontsize=20,labelloc=t];
+node [shape=box,style="rounded,filled",fillcolor="#DBEAFE",color="#64748B",fontcolor="#17324D",fontname="Arial",fontsize=13,margin="0.18,0.14"];
+edge [color="#64748B",fontname="Arial",fontsize=11,fontcolor="#17324D"];
+graph [label="Resumefolio | Scenario refinement and evidence"];
+source [label="Accepted scope + actual sources
+Actor goals + primary requirement drafts"];
+goal [label="Proposed story and goal bundle
+Intent / actor / context / source",fillcolor="#EDE9FE"];
+paths [label="Five path drafts per bundle
+Normal / alternative / denied
+Failure / recovery or correction"];
+gaps [label="Resolve acceptance-blocking policies
+Inputs / grants / states / dependencies
+Measured targets where needed",fillcolor="#FEF3C7"];
+refine [label="Refine operation-specific cases
+Concrete data + final IDs + exact criteria
+Actual review and traceability"];
+evidence [label="Later authorized controlled checks
+Identified candidate / environment
+Actual outcome + evidence + limitations",fillcolor="#DCFCE7"];
+source -> goal; goal -> paths; paths -> gaps; gaps -> refine; refine -> evidence;
+}

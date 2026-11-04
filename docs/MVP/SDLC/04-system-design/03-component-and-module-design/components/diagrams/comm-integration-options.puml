@@ -1,0 +1,21 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Future after MVP. Provider, advanced Sprint/review, or untrusted execution requirement retained as deferred.
+allowmixing
+title AFTER MVP — Proposed — Selected scope versus protocol alternatives
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+component "LC-05 public contract" as C
+component "Evaluated Google mail/calendar adapter\nCandidate scoped integration" as G
+cloud "Selected account provider" as P
+rectangle "Unselected options to assess only if scope changes\nSMTP / IMAP\nCalDAV / iCalendar interchange\nMicrosoft Graph\nWebhook or push change observations" as X #EEEEEE
+C --> G : current evidence-gated capability
+G --> P : actual supported API / version / authorization TBD
+X ..> G : no assumed compatibility or enablement
+note bottom of X
+ Protocol names describe distinct integration categories.
+ No scopes, endpoints, subscription guarantees or SDK versions certified here.
+end note
+
+@enduml

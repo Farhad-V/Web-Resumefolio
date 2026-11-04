@@ -1,0 +1,38 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Future after MVP. Provider, advanced Sprint/review, or untrusted execution requirement retained as deferred.
+left to right direction
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam roundcorner 12
+skinparam ArrowColor #64748B
+skinparam actorBorderColor #17324D
+skinparam actorFontColor #17324D
+skinparam usecase {
+ BackgroundColor #EFF6FF
+ BorderColor #64748B
+ FontColor #17324D
+}
+skinparam rectangle {
+ BorderColor #94A3B8
+ FontColor #17324D
+}
+title AFTER MVP — Resumefolio | Conditional execution and separate deployment
+actor "Authorized run requester" as requester
+actor "Target-authorized deployment actor" as deployer
+rectangle "Resumefolio | System boundary" {
+ usecase "Request supported workflow execution\nUC-D10-RUN" as run [[../04-scenarios-and-models/user-stories-and-scenarios.md#uc-d10-run]]
+ usecase "Request an authorized deployment\nUC-D10-DEPLOY" as deploy [[../04-scenarios-and-models/user-stories-and-scenarios.md#uc-d10-deploy]]
+}
+requester -- run
+deployer -- deploy
+legend bottom
+Sources: YML-D01-D10 and UC-D10 refinements.
+These are access contexts, not a new accepted role hierarchy.
+A successful run does not itself approve deployment.
+Required feasibility, isolation, resource and target-approval gates remain open.
+Associations show proposed external interactions, not permission grants.
+No include/extend dependency or actor inheritance is asserted.
+endlegend
+@enduml

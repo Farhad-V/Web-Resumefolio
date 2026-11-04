@@ -1,0 +1,26 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Proposed hexagonal realization — Presentation example
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+component "Driving adapters\nWeb / command boundary" as UI
+package "Presentation owner" {
+ interface "Provided application contract\nCompare / Apply / Publish" as IN
+ component "Application handlers\nCurrent context / intent / orchestration" as H
+ component "Domain policy / values\nIndependent draft + publication invariants" as D
+ interface "Required ports\nAuthority / owned persistence / Files reference" as OUT
+ IN --> H
+ H --> D
+ H --> OUT
+}
+component "Driven adapters\nScoped authority / repositories / Files contract adapter" as A
+UI --> IN : invokes
+A ..|> OUT : realizes required capability
+legend bottom
+ Runtime calls go through ports; adapter implementation depends on contract meaning.
+ Domain rules do not depend on transport/ORM/provider classes.
+ Hexagonal structure is a candidate convention, not a mandated framework or folder explosion.
+endlegend
+@enduml

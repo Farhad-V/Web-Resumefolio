@@ -1,0 +1,20 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Reference / reusable template. Illustrative contract/model/pattern, not a product release commitment.
+allowmixing
+title Template example — Strategy participants
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+class ResolveRepresentationHandler <<Context>>
+interface RepresentationResolver <<Strategy>> {
+ +resolve(selection) : RepresentationOutcome
+}
+class GeneratedResolver <<ConcreteStrategy>>
+class UploadedResolver <<ConcreteStrategy>>
+ResolveRepresentationHandler --> RepresentationResolver
+GeneratedResolver ..|> RepresentationResolver
+UploadedResolver ..|> RepresentationResolver
+
+@enduml

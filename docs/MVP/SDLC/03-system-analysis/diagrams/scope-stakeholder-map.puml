@@ -1,0 +1,32 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP systems. Replace a combined product boundary with distinct core/ProjectForge and explicit future scope.
+title Version 1 = MVP — distinct system responsibilities (owner decision November 4)
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam wrapWidth 180
+
+left to right direction
+actor "Private user\nOwner/admin created or invited" as U
+actor "Employer viewer\nResume link authorization" as V
+rectangle "Resumefolio core" as CORE #E4F0FC {
+ rectangle "Dashboard / private profile\nTailored resumes / portfolio\nCover letters / manual applications" as C
+ rectangle "PDF / protected sharing\nExplicit publish and selection" as S
+ folder "My Files & Media\nPrivate same-server bytes\nSupported uploads / YouTube links" as F
+ C --> S : explicit preview / select / apply\nseparate publish confirmation
+ F --> S : only selected material\nauthorized direct / range retrieval
+}
+rectangle "ProjectForge — separate system\nReal repositories / permissions\nClone / fetch / pull / push\nFile-history / issues / simple Kanban\nNative Git Smart HTTP / Laravel\nSeparate MySQL 8.4 / same host, separate OS user" as PF #DCF2E5
+rectangle "Future — after MVP\nPrivate communications system via API\nPersonal Gmail / Google Calendar\nAdvanced Git review / releases\nAdvanced backlog / Sprints\nYAML execution / deployment / AI" as FUT #F6EBD9
+U --> C : own permitted resources
+V --> S : selected resume / media / PDF\nno owner login
+C <--> PF : authenticated user-scoped API\nno shared database assumed
+actor "Native Git client" as G
+G --> PF : real authorized Git transport\ncommits normally in client
+FUT -[hidden]-> PF
+legend bottom
+ Upload does not publish. Core uploads remain on the same Resumefolio server.
+ Future communications: explicit per-user/account consent; admin cannot read users' mail.
+ Selected topology: same host, independent OS / DB / storage boundaries; runtime tests not run.
+endlegend
+@enduml

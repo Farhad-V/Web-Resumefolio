@@ -1,0 +1,31 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+allowmixing
+title Proposed — Artifact, reference and operation classes
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+class ArtifactRecord <<File identity>>
+class EffectiveFilePolicy
+class Reservation
+class ProtectedReference
+class StorageAttempt <<Operation>>
+class WorkReference <<Job identity>>
+class RecoveryAssessment
+class Folder <<optional logical grouping, unselected>>
+class VersionReference <<consumer-owned association>>
+class PermissionContext <<current authority, not permanent grant>>
+class ShareLink <<Sharing-owned, external to Files>>
+ArtifactRecord --> ProtectedReference
+Reservation --> EffectiveFilePolicy
+StorageAttempt --> Reservation
+WorkReference --> StorageAttempt
+VersionReference --> ArtifactRecord
+Folder ..> ArtifactRecord : optional label/group, not canonical storage path
+ShareLink ..> ArtifactRecord : only through owner eligibility and Files contract
+PermissionContext ..> ArtifactRecord : current admission context
+RecoveryAssessment ..> ArtifactRecord
+
+note "MVP private library: supported video/audio/images/text/docs.\nOptional per-resume selection; upload does not publish.\nPrivate bytes on SAME core server; direct/range authorization." as MVPLibrary
+@enduml

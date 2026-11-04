@@ -1,0 +1,26 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP deployment. Replace combined core/Git placement and undecided media location with accepted constraints; preserve open ProjectForge placement.
+title MVP placement constraints — private core media on the existing server
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam wrapWidth 190
+actor "Private / employer browser" as U
+node "Existing Resumefolio server\nActual capacity still to verify" as HOST {
+ rectangle "Core web / scoped bounded processing" as C
+ database "Core records\nMechanism refinement pending" as DB
+ folder "Private uploads / media\nOutside public directories; SAME SERVER" as M
+ C --> DB : core-local contracts
+ C --> M : validate quotas/types\nprotected direct / byte-range serving
+}
+rectangle "ProjectForge — separate system\nNative Git Smart HTTP / Laravel\nSeparate MySQL 8.4 / same host, separate OS user" as PF #DCF2E5
+U --> C : current scoped authority
+C <--> PF : authenticated user-scoped API
+cloud "Independent recoverable backup destination\nCoverage / destination / restore evidence pending" as BK
+HOST --> BK : protected consistent backup
+rectangle "AFTER MVP\nIndependent private communications / advanced Git and Sprints\nYAML execution / target deployment" as X #F8EBD7
+legend bottom
+ Same-server primary media is accepted; no extra media platform/object-storage purchase.
+ Physical ProjectForge placement is not inferred from core topology.
+endlegend
+@enduml

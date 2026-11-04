@@ -1,0 +1,45 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+skinparam backgroundColor white
+skinparam defaultFontName Segoe UI
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 8
+skinparam ArrowColor #526B7B
+skinparam ArrowFontSize 11
+skinparam stateBackgroundColor #EDF4FB
+skinparam stateBorderColor #526B7B
+skinparam stateStartColor #163E52
+skinparam stateEndColor #163E52
+skinparam noteBackgroundColor #FFF3DF
+skinparam noteBorderColor #B99557
+skinparam nodesep 38
+skinparam ranksep 48
+hide empty description
+top to bottom direction
+
+title SM-M17 — Gated isolated restoration and demonstrated usable state
+state "Recovery prerequisites\nmissing" as Blocked
+state "Defined isolated drill\neligible" as Ready
+state "Isolated restore underway" as Restoring
+state "Integrity/access/effects\nunder assessment" as Checking
+state "Scoped usable recovery\ndemonstrated" as Demonstrated
+state "Failed / incomplete\nrecovery evidence" as Incomplete
+state "Actual restoration result\nunknown" as Unknown
+[*] --> Blocked : scoped initial context
+Blocked --> Ready : SM-T110 prerequisites verified\n[actual prerequisites present]
+Ready --> Restoring : SM-T111 drill starts\n[authorized isolated drill]
+Restoring --> Checking : SM-T112 restore result observed\n[actual restored candidate]
+Restoring --> Incomplete : SM-T113 known restore failure\n[definite failure evidence]
+Restoring --> Unknown : SM-T114 result unconfirmed\n[actual result unresolved]
+Checking --> Demonstrated : SM-T115 criteria satisfied\n[actual scoped criteria met]
+Checking --> Incomplete : SM-T116 criteria not satisfied\n[unmet / insufficient criteria]
+Unknown --> Checking : SM-T117 restore reconciled\n[restored candidate verified]
+Unknown --> Incomplete : SM-T118 failure reconciled\n[definite disposition]
+legend bottom
+A: accepted core behavior; P: existing proposal; R: proposed refinement.
+State labels are analysis abstractions, not implemented enums.
+Transition tables define full actor, guard, effect and status.
+Unconfirmed operation effects require SM-M18 reconciliation.
+endlegend
+@enduml

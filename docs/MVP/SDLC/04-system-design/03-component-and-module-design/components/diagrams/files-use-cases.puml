@@ -1,0 +1,28 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Proposed — Artifact operations and separately owned sharing
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+left to right direction
+actor "Authorized owner / consumer" as U
+actor "Permitted operator" as O
+rectangle "Files / Operations" {
+ usecase "Reserve / upload / finalize artifact" as A
+ usecase "Resolve exact permitted download" as D
+ usecase "Protect / replace version reference" as V
+ usecase "Retire / reclaim only when eligible" as X
+ usecase "Assess isolated recovery" as R
+}
+rectangle "Representation / Sharing owner" {
+ usecase "Create / revoke eligible share link" as S
+}
+U --> A
+U --> D
+U --> V
+U --> S
+O --> X
+O --> R
+
+@enduml
