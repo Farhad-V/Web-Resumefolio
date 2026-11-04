@@ -6,8 +6,8 @@ Current implementation choices and scope: [Baseline](../../../baseline/README.md
 | --- | --- |
 | Purpose | Express the business outcomes and value expected from the accepted product direction |
 | Responsible person / business decision-maker | Farhad; sole delivery and operations owner |
-| Document status | Proposed business requirements draft — pending owner review |
-| Source authority | Five accepted planning objectives, OBJ-01–OBJ-05 / DEC-005–DEC-001 |
+| Document status | Current MVP applicability follows the Baseline; future clauses remain proposals |
+| Source authority | Owner scope plus selected Baseline policies; original sources retained below |
 | Draft references | BIZ-D01–BIZ-D05 are provisional document-local references, not final BIZ identifier allocation |
 | Evidence position | Intended outcomes and proposed assessment criteria; no measured benefit or delivery success is claimed |
 | Revision | October 31, 2026 |
@@ -326,7 +326,7 @@ Inspect readable labels/arrows and verify file/section links after edits. Run fr
 the repository root:
 
 ```powershell
-$diagramFolder = 'docs\SDLC\02-requirements-engineering\diagrams'
+$diagramFolder = 'docs\MVP\SDLC\02-requirements-engineering\diagrams'
 $graphvizExe = 'C:\Program Files\Graphviz\bin\dot.exe'
 $plantUmlJar = 'C:\Users\fvali\AppData\Local\Resumefolio\DiagramTools\plantuml.jar'
 foreach ($format in 'svg', 'png') {
@@ -345,7 +345,3 @@ Retain sources and SVG/PNG outputs in version control.
 
 [Specification index](README.md) · [SRS entry point](requirements-specification.md)
 · [Requirements index](../README.md)
-
-## Course-Aligned Priority Review
-
-Actual approved priority remains unassigned. See the [per-candidate proposed priority and readiness register](requirements-priority-and-readiness.md) for a sourced proposal, its limits and the course's SMART checks. A proposed Must is not acceptance of unresolved detail. Primary obligations, candidate IDs and criterion wording are unchanged by that register.

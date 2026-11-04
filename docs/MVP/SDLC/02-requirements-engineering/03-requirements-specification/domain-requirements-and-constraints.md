@@ -284,30 +284,14 @@ arrows, render output and file/section links after changes. Save UTF-8 without B
 [Specification index](README.md) · [SRS entry point](requirements-specification.md)
 · [Requirements index](../README.md)
 
-## Course-Aligned Priority Review
+## Selected Policies and Future Proposals
 
-Actual approved priority remains unassigned. See the [per-candidate proposed priority and readiness register](requirements-priority-and-readiness.md) for a sourced proposal, its limits and the course's SMART checks. A proposed Must is not acceptance of unresolved detail. Primary obligations, candidate IDs and criterion wording are unchanged by that register.
-
-## Proposed Answers for Detailed Requirements Review — November 1, 2026
-
-The owner requested completion of the outstanding questions. The sections below supply concrete **proposed** answers rather than infer approval of previously unspecified policy. They supersede the absence of a proposal in earlier open-detail paragraphs, not accepted scope or historical decisions. Their fields, limits and behavior require review before affected requirement acceptance; no implementation or product-test Pass is reported. Existing candidate IDs and primary obligations are retained. See the [review package](../07-change-and-baseline/requirements-answer-review.md) for authority, evidence gates and cross-document navigation.
+Current MVP answers are selected in the Baseline. Only explicitly deferred details below remain proposals; product tests and operational evidence are still required.
 
 <a id="resolution-q-d27"></a>
-### Proposed answer Q-D27: Operating dependencies and maintainability
+### Q-D27: Selected policy
 
-**Affected records:** DOM-D05–DOM-D08; QSR-D06/D13/D14; GAP-D03/D07/D08. **Disposition:** Evidence-gated investigation with a complete proposal.
-
-1. Fresh read-only evidence confirms PHP CLI 8.3.6, Nginx 1.24.0, MySQL server/client 8.0.46-0ubuntu0.24.04.4, and laravel/framework v12.61.0 in the deployed composer.lock. This identifies the existing deployment; it does not select versions/engine for all new capabilities or prove installed dependency integrity.
-
-2. A GET of the login URL from the server returned HTTP 200 with successful TLS verification at the check time. This supports that request only; renewal, external client reachability, DNS/domain account control and authenticated application health remain separate checks. No package, service or certificate was changed.
-
-3. Propose staging-first updates with dependency/license/support review, backups, data-compatible recovery plan, maintenance notice and post-update core workflow checks. Security patches get prompt risk-based triage; do not silently run a major OS/framework upgrade. Keep operator inventory and recovery/runbook evidence versioned without credentials.
-
-4. Inspect actual notification-delivery account/credentials, DNS/TLS renewal configuration, queue/scheduler setup, dependency licenses and provider/privacy/data-handling applicability before dependent acceptance. A root-crontab search found no artisan schedule entry and named queue/supervisor units were absent in one enumeration; other users, timers, process managers or external schedulers were not excluded.
-
-**Assessable review cases:** [RC-Q27-01 through RC-Q27-03](../04-scenarios-and-models/user-stories-and-scenarios.md#review-q-d27). These are planned checks, not executed results.
-
-**Remaining evidence / acceptance condition:** Actual delivery configuration, renewal/scheduler/worker operation, dependency license/applicability review and maintenance/recovery demonstrations remain external or operational evidence gates.
+[Selected answer and remaining evidence](../../../baseline/policy-decisions.md#q-d27). Apply this policy to the MVP slice; the original criteria above remain subject to their [current dispositions](../../../baseline/criterion-dispositions.csv).
 
 ## November 1, 2026 — Q-D27 Operating Findings
 

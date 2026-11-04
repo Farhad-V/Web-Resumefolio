@@ -419,7 +419,7 @@ Keep text, captions, sources and renders synchronized. Follow the
 links after changes. Run from the repository root:
 
 ```powershell
-$diagramFolder = 'docs\SDLC\02-requirements-engineering\diagrams'
+$diagramFolder = 'docs\MVP\SDLC\02-requirements-engineering\diagrams'
 $graphvizExe = 'C:\Program Files\Graphviz\bin\dot.exe'
 $plantUmlJar = 'C:\Users\fvali\AppData\Local\Resumefolio\DiagramTools\plantuml.jar'
 foreach ($format in 'svg', 'png') {
@@ -435,78 +435,29 @@ Use actual installed paths on other machines; save UTF-8 without BOM.
 [Specification index](README.md) · [SRS entry point](requirements-specification.md)
 · [Requirements index](../README.md)
 
-## Course-Aligned Priority Review
+## Selected Policies and Future Proposals
 
-Actual approved priority remains unassigned. See the [per-candidate proposed priority and readiness register](requirements-priority-and-readiness.md) for a sourced proposal, its limits and the course's SMART checks. A proposed Must is not acceptance of unresolved detail. Primary obligations, candidate IDs and criterion wording are unchanged by that register.
-
-## Proposed Answers for Detailed Requirements Review — November 1, 2026
-
-The owner requested completion of the outstanding questions. The sections below supply concrete **proposed** answers rather than infer approval of previously unspecified policy. They supersede the absence of a proposal in earlier open-detail paragraphs, not accepted scope or historical decisions. Their fields, limits and behavior require review before affected requirement acceptance; no implementation or product-test Pass is reported. Existing candidate IDs and primary obligations are retained. See the [review package](../07-change-and-baseline/requirements-answer-review.md) for authority, evidence gates and cross-document navigation.
+Current MVP answers are selected in the Baseline. Only explicitly deferred details below remain proposals; product tests and operational evidence are still required.
 
 <a id="resolution-q-d06"></a>
-### Proposed answer Q-D06: Profile fields and composition
+### Q-D06: Selected policy
 
-**Affected records:** PRP-D01/D02; dictionary professional-profile/tailored-resume. **Disposition:** Answer proposed; owner acceptance pending.
-
-1. Propose one reusable professional profile per account and any number of tailored resumes within aggregate storage/resource policy; no new fixed resume-count limit. A profile has a required private display label; a resume has a required private title and chosen language. Drafts may be incomplete and must clearly show missing publication prerequisites.
-
-2. Propose reusable sections: identity/contact, summary, experience, education, skills, languages, professional projects and optional certifications/links. Contact details are owner-selected for sharing; birth date, photo, full address and phone are not mandatory. Professional projects remain distinct from work-management projects and Git repositories.
-
-3. Experience/education/project entries require a label/title when included; start/end dates use known precision, ongoing entries have no forced end date, and known end precedes start is invalid. Contacts/URLs are validated only when supplied. Do not fabricate missing months or levels. Name plus at least one selected nonempty professional section is required before publishing; a contact channel is optional.
-
-4. A resume independently selects/order sections and entries, chooses a named layout, and may override language-specific display fields. Duplicating a resume creates independent selections/layout/overrides and a new private identity; it creates no active sharing link. Shared source references remain explicit rather than copying changes back into the profile.
-
-**Assessable review cases:** [RC-Q06-01 through RC-Q06-03](../04-scenarios-and-models/user-stories-and-scenarios.md#review-q-d06). These are planned checks, not executed results.
-
-**Remaining evidence / acceptance condition:** Owner review of the proposed rule and its affected criteria is required; no product test is reported.
+[Selected answer and remaining evidence](../../../baseline/policy-decisions.md#q-d06). Apply this policy to the MVP slice; the original criteria above remain subject to their [current dispositions](../../../baseline/criterion-dispositions.csv).
 
 <a id="resolution-q-d07"></a>
-### Q-D07: Owner-accepted core update/publication policy; other details proposed
+### Q-D07: Selected policy
 
-**Affected records:** PRP-D03/D04/D08; BRL-D02; PDF-D07. **Disposition:** Owner accepted the core behavior in this conversation on November 1, 2026. Do not request this approval again. See [actual acceptance](../07-change-and-baseline/open-questions-and-decisions.md#owner-accepted-profile-update-policy).
-
-1. Changing shared profile content does not automatically change existing resumes or their published views.
-2. The owner sees the proposed source changes and explicitly selects/applies the changes intended for a resume. Resume-specific text/overrides and other resumes remain independent.
-3. Applying/saving changes and publishing are separate actions. Publication requires separate owner confirmation; preview/apply alone does not publish.
-4. Actual previously submitted documents remain preserved and are not rewritten by source, resume or publication changes.
-
-**Acceptance boundary:** These four behaviors are accepted. Earlier proposals concerning source deletion, conflict resolution details, mandatory fields, language fallback, renderer choice, numerical limits or version-retention duration are not accepted by this decision. They retain their existing questions/design gates. This does not accept the entire requirements or analysis baseline or claim implementation.
-
-**Assessment:** RC-Q07-01/02 remain planned checks for the accepted core behavior; RC-Q07-03 addresses the separate concurrent-edit proposal. Product tests have not been performed. Models and conceptual data now use the accepted four-point rule.
+[Selected answer and remaining evidence](../../../baseline/policy-decisions.md#q-d07). Apply this policy to the MVP slice; the original criteria above remain subject to their [current dispositions](../../../baseline/criterion-dispositions.csv).
 
 <a id="resolution-q-d08"></a>
-### Proposed answer Q-D08: Evidence formats, display and references
+### Q-D08: Selected policy
 
-**Affected records:** PRP-D05/D06/D09/D10; AFO-D05/D06; EIF-D04. **Disposition:** Answer proposed; owner acceptance pending.
-
-1. Retain every agreed evidence category: text, images, video, files, diagrams and relevant links. Propose safe display formats: plain text/restricted formatted text; JPEG/PNG/WebP images; MP4 video where the supported browser can play it; PDF for portable documents; diagrams supplied as raster image or PDF; HTTPS repository/other links. Unsupported media/code files may be protected downloads only after file-policy approval, never executable previews.
-
-2. Require evidence title, category and intended skill or professional-project association; description/language are optional where meaningful. An item may support several skills/projects. Per-resume inclusion and ordering are explicit; default newly added evidence to unselected. Owner confirms changed evidence before it enters a published resume revision.
-
-3. Do not execute uploaded HTML/scripts, inline untrusted SVG, automatically fetch link previews, embed third-party trackers or transcode arbitrary video in the initial contract. Externally authored video/diagrams remain supported through admitted safe files/links; this does not add in-product authoring or remove those categories.
-
-4. Validate extension, detected media/content and size before availability; reject misleading/unsafe combinations. Restrict links to permitted schemes and never use a submitted URL as authorization to fetch internal services. Removal unselects a draft reference explicitly; live/history effects follow revision/retirement rules rather than deleting referenced historical bytes.
-
-**Assessable review cases:** [RC-Q08-01 through RC-Q08-03](../04-scenarios-and-models/user-stories-and-scenarios.md#review-q-d08). These are planned checks, not executed results.
-
-**Remaining evidence / acceptance condition:** Owner review of the proposed rule and its affected criteria is required; no product test is reported.
+[Selected answer and remaining evidence](../../../baseline/policy-decisions.md#q-d08). Apply this policy to the MVP slice; the original criteria above remain subject to their [current dispositions](../../../baseline/criterion-dispositions.csv).
 
 <a id="resolution-q-d09"></a>
-### Proposed answer Q-D09: English/German variants and fallback
+### Q-D09: Selected policy
 
-**Affected records:** PRP-D07; PDF-D02/D03; BRL-D10. **Disposition:** Answer proposed; owner acceptance pending.
-
-1. Treat names, dates, contact values and external identifiers as shared semantic data; summaries, role descriptions, skill explanations and evidence descriptions may have manually maintained English/German text. No automatic translation or inference of equivalent wording.
-
-2. Each resume has a chosen language. New resume drafts may initialize from available source-language text only after showing that selection; editing one language never changes the other. Private editing previews may explicitly show missing-language placeholders, never silently invent a translation.
-
-3. An employer request for an unavailable/unpublished language returns language unavailable with only an explicit option to choose another published permitted language. No silent fallback or mixed-language substitution. Shared proper names need no duplicate translation; owner-reviewed untranslated proper names are allowed.
-
-4. Uploaded English/German PDFs are independently supplied and enabled. Do not relabel an English upload as German. Generated PDF language follows the selected published content revision; its availability is independent of whether an uploaded variant exists.
-
-**Assessable review cases:** [RC-Q09-01 through RC-Q09-03](../04-scenarios-and-models/user-stories-and-scenarios.md#review-q-d09). These are planned checks, not executed results.
-
-**Remaining evidence / acceptance condition:** Owner review of the proposed rule and its affected criteria is required; no product test is reported.
+[Selected answer and remaining evidence](../../../baseline/policy-decisions.md#q-d09). Apply this policy to the MVP slice; the original criteria above remain subject to their [current dispositions](../../../baseline/criterion-dispositions.csv).
 
 ## MVP private-media flow
 

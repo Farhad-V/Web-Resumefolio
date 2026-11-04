@@ -6,10 +6,10 @@ Current implementation choices and scope: [Baseline](../../../baseline/README.md
 | --- | --- |
 | Purpose | Specify identity, sign-in and resource-access behavior across Resumefolio |
 | Responsible person | Farhad; sole delivery and operations owner |
-| Document status | Product requirements draft — proposed for owner review |
-| Source authority | Accepted planning boundaries are referenced below; detailed requirements and policy choices remain proposed |
+| Document status | Current MVP applicability follows the Baseline; future clauses remain proposals |
+| Source authority | Owner scope plus selected Baseline policies; original sources retained below |
 | Identifier status | ACC-D01–ACC-D12 are provisional document-local draft references, not allocation of the final FR/NFR convention |
-| Baseline / implementation | M-02 acceptance pending; no implemented authentication or permission test results are reported |
+| Baseline / implementation | Documentary input selected; implementation and acceptance evidence not executed |
 | Revision | October 31, 2026 |
 
 **At a glance:** A user account identifies a private product user. Unified sign-in
@@ -19,10 +19,7 @@ access contexts. Administrative roles require explicit powers; they do not imply
 unrestricted access to private information.
 
 **Read this document for:** proposed obligations, observable criteria and role/resource
-boundaries. Authentication factors, detailed role powers, session
-timing and recovery policy are explicitly unresolved. This draft is ready for
-review of those choices; it is not an accepted security design or complete account
-lifecycle baseline.
+boundaries. Authentication, roles, session timing and recovery follow [T02/T03](../../../baseline/technical-decisions.md#t02--core-identity-and-authorization). Runtime security and delivery evidence remain pending.
 
 [Basis](#1-scope-sources-and-boundaries) · [Concepts](#2-identity-and-access-contexts)
 · [Requirements](#3-proposed-requirements-and-acceptance-criteria) · [Lifecycles](#4-account-session-and-membership-lifecycle)
@@ -32,7 +29,7 @@ lifecycle baseline.
 
 ## MVP account admission and authority
 
-Initial users are created or invited by the owner/admin. Open public self-registration is excluded. Authentication factors, session timing, recovery and the exact role matrix remain engineering details. Core/ProjectForge API requests carry authenticated user-scoped authority; board membership and administrator labels never imply access to unrelated private data. Future personal Gmail/Calendar connections require explicit per-user/per-account consent; owner/admin cannot read users' mail.
+Initial users are created or invited by the owner/admin. Open public self-registration is excluded. Selected authentication, session, recovery and role rules are defined in the Baseline; their implementation must be verified. Core/ProjectForge API requests carry authenticated user-scoped authority; board membership and administrator labels never imply access to unrelated private data. Future personal Gmail/Calendar connections require explicit per-user/per-account consent; owner/admin cannot read users' mail.
 
 Authority: [OWNER-MVP-2026-11-04](../../01-project-planning/owner-mvp-decision-2026-11-04.md). [Candidate allocation](mvp-release-allocation.md).
 
@@ -333,9 +330,7 @@ previous successful authorization as permanent authority.
 - Other still-valid contexts are affected only as explicitly specified by the selected policy.
 
 **Planned verification:** Session/context replay, membership/account transitions
-and related direct requests. **Acceptance blocker:** Sign-out scope, effective timing,
-other devices/sessions, provider tokens, Git credentials and in-flight jobs remain
-undefined. This candidate is not ready for acceptance until those conditions are resolved.
+and related direct requests. **Verification gate:** Implement the selected session/grant revocation rules in Q-D05/T02/T03, including future admissions and in-flight limitations. Provider tokens and user execution remain after MVP.
 
 ## 4. Account, Session and Membership Lifecycle
 
@@ -486,26 +481,9 @@ include denied direct/cross-user requests and current resource/account states.
 
 ## 8. Open Policy Decisions and Dependent Gates
 
-These are document-local question topics, not claimed entries in the shared
-question register. The project owner coordinates each; link actual question/decision
-IDs when recorded in [Open Questions](../07-change-and-baseline/open-questions-and-decisions.md).
+Policy choices are selected: [identity/recovery](../../../baseline/policy-decisions.md#q-d03), [resource grants](../../../baseline/policy-decisions.md#q-d04), [revocation](../../../baseline/policy-decisions.md#q-d05) and [viewer sessions](../../../baseline/policy-decisions.md#q-d11). No public signup, universal Admin content access or grant inheritance is permitted.
 
-| Topic | Decision/detail needed | Affected drafts / gate |
-| --- | --- | --- |
-| Provisioning and account identity | Public registration, invitation/admin creation, initial privileged account, identifiers/contact verification and duplicate/ineligible input | ACC-D01/D09/D10; before affected requirement/design acceptance |
-| Authentication factors | Password, email verification/OTP, Authenticator/MFA or other supported mechanism, required steps and sensitive reauthentication | ACC-D01/D02/D11; do not infer a choice from unified sign-in |
-| Session policy | Lifetime/expiry, devices/concurrency, sign-out scope, credential change and server-side context revocation | ACC-D02/D12; before session requirements/security design acceptance |
-| Account recovery | Identity proof, loss of factors/email, allowed administrator involvement, abuse prevention and observable outcomes | ACC-D01/D09/D11/D12; before recovery requirements/design acceptance |
-| Membership and administrative powers | Exact action/state matrix, invitation acceptance, allowed privilege changes, suspension/deletion/restoration and any ownership transfer | ACC-D03/D05/D09/D10/D12; before affected access/lifecycle acceptance |
-| Employer sessions and link controls | Active-session revocation timing, cache/in-flight handling, link lifecycle, password attempts/feedback and expiry if required | ACC-D06–D08; before accepting the full sharing/revocation policy |
-| Provider/Git/execution authority | Token/consent/credential scope, removal/reconnect, active runs and deployment approvals | ACC-D03/D05/D10/D12 and related domains; relevant M-03/M-08 gates |
-| Security events and sensitive operations | Required audit events, visibility, retention, reauthentication, notifications and privacy-safe feedback | Relevant records and administration/quality domain acceptance |
-| Delivery and measurable limits | Actual email access/delivery, failure/retry/recovery paths, rate/attempt/validity limits and resource evidence | ACC-D11; ASM-03/DEP-04/GAP-D03 plus affected quality gates |
-
-Use current authoritative sources and actual investigations when choosing technical
-mechanisms later. Do not turn an unresolved policy, example number or previous
-unreconciled suggestion into an accepted rule. Material changes follow the existing
-change/decision process; scope boundaries already accepted need not be re-approved.
+Remaining work is evidence: implement and test these choices, demonstrate SMTP receipt, verify cross-user/direct/range denial and prove the independent ProjectForge trust boundary. [Gate definitions](../../../baseline/implementation-sequence.md#gate-register).
 
 ## 9. Traceability, Review and Current Position
 
@@ -524,16 +502,13 @@ for actual review/recheck outcomes.
 
 - [ ] Reconcile provisional ACC-D references with the final requirement notation before allocation/baselining.
 - [ ] Review source-derived obligations separately from proposed refinements and unresolved policies.
-- [ ] Complete account/authentication/recovery/session choices and the action/state matrix where acceptance depends on them.
+- [ ] Implement and verify the selected account/authentication/recovery/session rules and resource action matrix.
 - [ ] Ensure each applicable acceptance criterion has resolved conditions and a planned verification method.
 - [ ] Check sharing, collaboration, provider/Git/CI and administration rules agree across domains.
 - [ ] Preserve original matrix links, glossary/data meaning, scenarios and open-question ownership.
 - [ ] Record actual decisions/revision and remaining blockers; do not report planned tests as passed.
 
-**Current outcome:** Draft for owner review. No candidate accepted, detailed policy
-approved, authentication mechanism selected or product test executed by this
-revision. The document is materially populated, but unresolved policies prevent
-claiming a complete accepted identity/access specification.
+**Current outcome:** MVP policy choices are selected. Implementation, delivery and authorization tests remain unexecuted.
 
 **Revision note — October 31, 2026:** Replaced the generic scaffold with twelve
 provisional draft records and observable criteria, source mapping, lifecycle/data
@@ -553,7 +528,7 @@ Inspect readable arrows/labels and verify local file/section links after changes
 Run from the repository root:
 
 ```powershell
-$diagramFolder = 'docs\SDLC\02-requirements-engineering\diagrams'
+$diagramFolder = 'docs\MVP\SDLC\02-requirements-engineering\diagrams'
 $graphvizExe = 'C:\Program Files\Graphviz\bin\dot.exe'
 $plantUmlJar = 'C:\Users\fvali\AppData\Local\Resumefolio\DiagramTools\plantuml.jar'
 foreach ($format in 'svg', 'png') {
@@ -573,61 +548,21 @@ Retain sources and SVG/PNG outputs in version control.
 [Specification index](README.md) · [SRS entry point](requirements-specification.md)
 · [Requirements index](../README.md)
 
-## Course-Aligned Priority Review
+## Selected Policies and Future Proposals
 
-Actual approved priority remains unassigned. See the [per-candidate proposed priority and readiness register](requirements-priority-and-readiness.md) for a sourced proposal, its limits and the course's SMART checks. A proposed Must is not acceptance of unresolved detail. Primary obligations, candidate IDs and criterion wording are unchanged by that register.
-
-## Proposed Answers for Detailed Requirements Review — November 1, 2026
-
-The owner requested completion of the outstanding questions. The sections below supply concrete **proposed** answers rather than infer approval of previously unspecified policy. They supersede the absence of a proposal in earlier open-detail paragraphs, not accepted scope or historical decisions. Their fields, limits and behavior require review before affected requirement acceptance; no implementation or product-test Pass is reported. Existing candidate IDs and primary obligations are retained. See the [review package](../07-change-and-baseline/requirements-answer-review.md) for authority, evidence gates and cross-document navigation.
+Current MVP answers are selected in the Baseline. Only explicitly deferred details below remain proposals; product tests and operational evidence are still required.
 
 <a id="resolution-q-d03"></a>
-### Proposed answer Q-D03: Account lifecycle and authentication
+### Q-D03: Selected policy
 
-**Affected records:** ACC-D01/D02/D11/D12; QSR-D05/D06. **Disposition:** Answer proposed; owner acceptance pending.
-
-1. Use owner/admin-created or invited onboarding for MVP; public self-registration is excluded by owner decision. The following invitation timing/details remain proposed. An invitation identifies one recipient, expires after 72 hours, is single-use and grants no resource membership by itself. Pending invitation, active, suspended and deletion-pending are distinct account states.
-
-2. Propose email plus password sign-in, verified control of the invited address before activation, and no social-login dependency. Support password-manager paste and at least 64-character input capacity; propose minimum 15 characters for account passwords, checking against known-compromised/common values without logging the supplied secret. No arbitrary periodic rotation; change after compromise or user request.
-
-3. Require a second authentication factor for platform-administration actions; offer enrollment for ordinary accounts. The factor mechanism and library are a System Design selection. Recovery must not bypass suspension or administrative authority; recovery failure leaves the account inaccessible, not silently verified.
-
-4. Propose single-use password reset links valid for 30 minutes; generic outward responses to unknown addresses; five failed sign-in attempts in 15 minutes per account plus source-based throttling, with increasing delay rather than permanent attacker-triggered lockout. Administrative recovery requires recorded identity/authority verification; no emailed plaintext passwords.
-
-**Assessable review cases:** [RC-Q03-01 through RC-Q03-03](../04-scenarios-and-models/user-stories-and-scenarios.md#review-q-d03). These are planned checks, not executed results.
-
-**Remaining evidence / acceptance condition:** Onboarding, factor and timing values are new proposals. Actual notification-delivery credentials/receipt and secure recovery mechanism remain design/operational gates; no account or secret is changed.
+[Selected answer and remaining evidence](../../../baseline/policy-decisions.md#q-d03). Apply this policy to the MVP slice; the original criteria above remain subject to their [current dispositions](../../../baseline/criterion-dispositions.csv).
 
 <a id="resolution-q-d04"></a>
-### Proposed answer Q-D04: Resource grants and administrative boundaries
+### Q-D04: Selected policy
 
-**Affected records:** ACC-D03–D05/D09/D10; PKS-D06; GIT-D02; AFO-D. **Disposition:** Answer proposed; owner acceptance pending.
-
-1. Default every private resource to its owner. Evaluate actor, resource, operation and current state for every page/API/file/Git action; identifiers or unified sign-in are not grants. A platform administrator may manage account state, effective quotas and service status, but gets no routine ability to read another user's resume, mail, files or repository.
-
-2. Propose separate project roles: owner manages project/grants, editor creates/updates work and participates in Sprints, viewer reads only the granted project. Only owners invite/remove members or transfer ownership. Assignment requires current membership. Invitation is not effective membership until accepted by the intended account.
-
-3. Propose separate repository roles: owner/admin manage repository settings/grants/protected refs, writer updates permitted branches and opens requests, reviewer reads and reviews, reader clones/views. A project grant does not automatically grant repository access or vice versa. Private profile/mail/application resources are not project-shared.
-
-4. Ownership transfer requires an active accepting recipient and must preserve an owner; no deletion or last-owner removal may orphan a resource. Operational emergency access must be separately authorized, time-bounded and recorded; the default administrator role is not an implicit emergency grant.
-
-**Assessable review cases:** [RC-Q04-01 through RC-Q04-03](../04-scenarios-and-models/user-stories-and-scenarios.md#review-q-d04). These are planned checks, not executed results.
-
-**Remaining evidence / acceptance condition:** Owner review of the proposed rule and its affected criteria is required; no product test is reported.
+[Selected answer and remaining evidence](../../../baseline/policy-decisions.md#q-d04). Apply this policy to the MVP slice; the original criteria above remain subject to their [current dispositions](../../../baseline/criterion-dispositions.csv).
 
 <a id="resolution-q-d05"></a>
-### Proposed answer Q-D05: Revocation and active access
+### Q-D05: Selected policy
 
-**Affected records:** ACC-D08/D12; PDF-D05/D06; EGC-D11; GIT-D02. **Disposition:** Answer proposed; owner acceptance pending.
-
-1. Once a revocation operation reports completion, any subsequent authorization decision must use the updated account/grant/link/credential state. Existing sharing sessions cannot obtain new protected responses merely because they authenticated before a link was disabled or its password changed.
-
-2. Sign-out ends the current account session; explicit sign-out-all and successful account password reset invalidate existing account sessions. Account suspension blocks fresh and existing account contexts on their next protected request. Membership removal affects its resource grant, not unrelated owned resources.
-
-3. A response/transfer already authorized and emitting bytes before revocation may finish; bytes already delivered or downloaded cannot be recalled. A subsequent range request or file request requires current authorization. The UI must explain this boundary rather than promise removal of already displayed material.
-
-4. Private and sharing responses must not become reusable public-cache content. Client-visible expired/revoked access has a clear re-authentication/denial outcome. Propose account-session idle timeout 30 minutes and absolute lifetime 12 hours; employer session idle timeout 15 minutes and absolute lifetime 8 hours; no persistence beyond these bounds without re-authentication. Mechanisms belong to design.
-
-**Assessable review cases:** [RC-Q05-01 through RC-Q05-03](../04-scenarios-and-models/user-stories-and-scenarios.md#review-q-d05). These are planned checks, not executed results.
-
-**Remaining evidence / acceptance condition:** Owner review of the proposed rule and its affected criteria is required; no product test is reported.
+[Selected answer and remaining evidence](../../../baseline/policy-decisions.md#q-d05). Apply this policy to the MVP slice; the original criteria above remain subject to their [current dispositions](../../../baseline/criterion-dispositions.csv).

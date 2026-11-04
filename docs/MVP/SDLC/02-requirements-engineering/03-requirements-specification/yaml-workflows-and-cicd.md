@@ -383,7 +383,7 @@ the [diagram guide](../diagrams/README.md); inspect readable arrows/labels and c
 file/section links after changes. From repository root:
 
 ```powershell
-$diagramFolder = 'docs\SDLC\02-requirements-engineering\diagrams'
+$diagramFolder = 'docs\MVP\SDLC\02-requirements-engineering\diagrams'
 $graphvizExe = 'C:\Program Files\Graphviz\bin\dot.exe'
 $plantUmlJar = 'C:\Users\fvali\AppData\Local\Resumefolio\DiagramTools\plantuml.jar'
 foreach ($format in 'svg', 'png') {
@@ -399,13 +399,9 @@ Use actual tool paths on other machines; save UTF-8 without BOM.
 [Specification index](README.md) · [SRS entry point](requirements-specification.md)
 · [Requirements index](../README.md)
 
-## Course-Aligned Priority Review
+## Selected Policies and Future Proposals
 
-Actual approved priority remains unassigned. See the [per-candidate proposed priority and readiness register](requirements-priority-and-readiness.md) for a sourced proposal, its limits and the course's SMART checks. A proposed Must is not acceptance of unresolved detail. Primary obligations, candidate IDs and criterion wording are unchanged by that register.
-
-## Proposed Answers for Detailed Requirements Review — November 1, 2026
-
-The owner requested completion of the outstanding questions. The sections below supply concrete **proposed** answers rather than infer approval of previously unspecified policy. They supersede the absence of a proposal in earlier open-detail paragraphs, not accepted scope or historical decisions. Their fields, limits and behavior require review before affected requirement acceptance; no implementation or product-test Pass is reported. Existing candidate IDs and primary obligations are retained. See the [review package](../07-change-and-baseline/requirements-answer-review.md) for authority, evidence gates and cross-document navigation.
+Current MVP answers are selected in the Baseline. Only explicitly deferred details below remain proposals; product tests and operational evidence are still required.
 
 <a id="resolution-q-d23"></a>
 ### Proposed answer Q-D23: Workflow contract and enabling gate

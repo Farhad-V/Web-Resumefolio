@@ -6,7 +6,7 @@ Current implementation choices and scope: [Baseline](../../../baseline/README.md
 | --- | --- |
 | Purpose | Specify platform configuration, file admission/access, storage accounting and operational behavior |
 | Responsible person | Farhad; sole delivery and operations owner |
-| Document status | Product requirements draft — proposed for owner review |
+| Document status | Current MVP applicability follows the Baseline; future clauses remain proposals |
 | Draft references | AFO-D01–AFO-D12 are provisional document-local references; reconcile with the final identifier convention before allocation |
 | Decisions still open | Administrative powers, formats/limits, quota scope, retention/cleanup and detailed operational targets |
 | Baseline / evidence | M-02 acceptance pending; no product execution, capacity test, cleanup or restoration result recorded here |
@@ -473,7 +473,7 @@ Inspect readable arrows/labels and verify file/section links after edits. Run fr
 the repository root:
 
 ```powershell
-$diagramFolder = 'docs\SDLC\02-requirements-engineering\diagrams'
+$diagramFolder = 'docs\MVP\SDLC\02-requirements-engineering\diagrams'
 $graphvizExe = 'C:\Program Files\Graphviz\bin\dot.exe'
 $plantUmlJar = 'C:\Users\fvali\AppData\Local\Resumefolio\DiagramTools\plantuml.jar'
 foreach ($format in 'svg', 'png') {
@@ -493,32 +493,14 @@ Retain source and SVG/PNG outputs in version control.
 [Specification index](README.md) · [SRS entry point](requirements-specification.md)
 · [Requirements index](../README.md)
 
-## Course-Aligned Priority Review
+## Selected Policies and Future Proposals
 
-Actual approved priority remains unassigned. See the [per-candidate proposed priority and readiness register](requirements-priority-and-readiness.md) for a sourced proposal, its limits and the course's SMART checks. A proposed Must is not acceptance of unresolved detail. Primary obligations, candidate IDs and criterion wording are unchanged by that register.
-
-## Proposed Answers for Detailed Requirements Review — November 1, 2026
-
-The owner requested completion of the outstanding questions. The sections below supply concrete **proposed** answers rather than infer approval of previously unspecified policy. They supersede the absence of a proposal in earlier open-detail paragraphs, not accepted scope or historical decisions. Their fields, limits and behavior require review before affected requirement acceptance; no implementation or product-test Pass is reported. Existing candidate IDs and primary obligations are retained. See the [review package](../07-change-and-baseline/requirements-answer-review.md) for authority, evidence gates and cross-document navigation.
+Current MVP answers are selected in the Baseline. Only explicitly deferred details below remain proposals; product tests and operational evidence are still required.
 
 <a id="resolution-q-d24"></a>
-### Proposed answer Q-D24: File formats, quotas and accounting
+### Q-D24: Selected policy
 
-**Affected records:** AFO-D01–AFO-D12; QSR-D02/D13; GAP-D01/D10. **Disposition:** Answer proposed; owner acceptance pending.
-
-1. Propose initial configurable per-file ceilings: PDF/document and image 10 MiB, MP4 video 50 MiB; no automatic transcode. Validate content/type/size consistently across UI/API/processing/retrieval. An administrator may lower/raise values only within a measured operating envelope; the UI does not advertise unsupported headroom.
-
-2. Propose 256 MiB live file allocation per account, including evidence, uploaded/generated PDFs and preserved submitted files, counted once per retained physical artifact but charged to every responsible quota context according to the chosen sharing model. Start with separate categories/accounting so references do not cause undercount; byte-sharing implementation cannot change the semantic allocation contract.
-
-3. Propose repository ceiling 100 MiB of stored repository data and 50 MiB per incoming push; transfers, temporary packs, retained refs and garbage-collection delay count in the operational envelope. Also propose a global admission guard retaining at least 8 GiB free on the root filesystem and a 10-GiB total initial application-managed durable-data ceiling across users/repositories/logs, whichever limits first. These are starting proposals below observed free space, not measured safe limits.
-
-4. Concurrent uploads reserve space before final availability. Count generated/temporary/failed work separately and reclaim abandoned reservations by bounded, attributable cleanup. Reject over-limit work before false completion; never delete user/history/DB data automatically to free headroom.
-
-5. At 80% of an account/global allocation warn the relevant owner/operator; at limit reject new growth while preserving permitted read/delete/recovery operations. Policy changes display effective limits and do not silently delete existing over-limit content. Log administrative policy changes and expose no credentials.
-
-**Assessable review cases:** [RC-Q24-01 through RC-Q24-03](../04-scenarios-and-models/user-stories-and-scenarios.md#review-q-d24). These are planned checks, not executed results.
-
-**Remaining evidence / acceptance condition:** All numerical ceilings are proposed. Measure representative PDF/video/Git processing, reserves and existing deployment growth before acceptance; observed free disk is not a verified safety margin.
+[Selected answer and remaining evidence](../../../baseline/policy-decisions.md#q-d24). Apply this policy to the MVP slice; the original criteria above remain subject to their [current dispositions](../../../baseline/criterion-dispositions.csv).
 
 ## MVP private-media flow
 

@@ -174,7 +174,7 @@ No transaction mechanism or database constraint implementation is selected.
 
 ### BRL-D07: Explicit Provider Synchronization Authority
 
-**Release allocation (owner decision, November 4):** MVP foundation where used by core/basic ProjectForge; future-domain clauses deferred.
+**Release allocation:** After MVP — provider synchronization.
 
 **Source / rationale:** DEC-022; connected Gmail/calendar behavior depends on
 explicit synchronization rules and authorized provider access.
@@ -374,7 +374,7 @@ operation and changes no accepted scope.
 Keep sources, captions and PNG/SVG renders synchronized. From the repository root:
 
 ```powershell
-$diagramFolder = 'docs\SDLC\02-requirements-engineering\diagrams'
+$diagramFolder = 'docs\MVP\SDLC\02-requirements-engineering\diagrams'
 $graphvizExe = 'C:\Program Files\Graphviz\bin\dot.exe'
 $plantUmlJar = 'C:\Users\fvali\AppData\Local\Resumefolio\DiagramTools\plantuml.jar'
 foreach ($format in 'svg', 'png') {
@@ -389,10 +389,6 @@ Save as UTF-8 without BOM; use the actual installed tool paths on other machines
 
 [Specification index](README.md) · [SRS entry point](requirements-specification.md)
 · [Requirements index](../README.md)
-
-## Course-Aligned Priority Review
-
-Actual approved priority remains unassigned. See the [per-candidate proposed priority and readiness register](requirements-priority-and-readiness.md) for a sourced proposal, its limits and the course's SMART checks. A proposed Must is not acceptance of unresolved detail. Primary obligations, candidate IDs and criterion wording are unchanged by that register.
 
 ## Owner-accepted Source-update Rule — November 1, 2026
 

@@ -365,7 +365,7 @@ the [diagram guide](../diagrams/README.md); inspect readable arrows/labels and c
 file/section links after changes. From repository root:
 
 ```powershell
-$diagramFolder = 'docs\SDLC\02-requirements-engineering\diagrams'
+$diagramFolder = 'docs\MVP\SDLC\02-requirements-engineering\diagrams'
 $graphvizExe = 'C:\Program Files\Graphviz\bin\dot.exe'
 $plantUmlJar = 'C:\Users\fvali\AppData\Local\Resumefolio\DiagramTools\plantuml.jar'
 foreach ($format in 'svg', 'png') {
@@ -381,25 +381,11 @@ Use actual tool paths on other machines; save UTF-8 without BOM.
 [Specification index](README.md) · [SRS entry point](requirements-specification.md)
 · [Requirements index](../README.md)
 
-## Course-Aligned Priority Review
+## Selected Policies and Future Proposals
 
-Actual approved priority remains unassigned. See the [per-candidate proposed priority and readiness register](requirements-priority-and-readiness.md) for a sourced proposal, its limits and the course's SMART checks. A proposed Must is not acceptance of unresolved detail. Primary obligations, candidate IDs and criterion wording are unchanged by that register.
-
-## Proposed Answers for Detailed Requirements Review — November 1, 2026
-
-The owner requested completion of the outstanding questions. The sections below supply concrete **proposed** answers rather than infer approval of previously unspecified policy. They supersede the absence of a proposal in earlier open-detail paragraphs, not accepted scope or historical decisions. Their fields, limits and behavior require review before affected requirement acceptance; no implementation or product-test Pass is reported. Existing candidate IDs and primary obligations are retained. See the [review package](../07-change-and-baseline/requirements-answer-review.md) for authority, evidence gates and cross-document navigation.
+Current MVP answers are selected in the Baseline. Only explicitly deferred details below remain proposals; product tests and operational evidence are still required.
 
 <a id="resolution-q-d02"></a>
-### Proposed answer Q-D02: Actor outcomes and validation
+### Q-D02: Selected policy
 
-**Affected records:** USR-D01–USR-D12; RF-D05. **Disposition:** Evidence-gated investigation with a complete proposal.
-
-1. Retain applicant/resource owner, employer viewer, invited collaborator and explicit platform-administration contexts. A person may act in more than one context, but each request uses only the authority of that context.
-
-2. Validate twelve goal bundles against the accepted scope with synthetic actors A (owner), B (unrelated user), C (invited collaborator) and V (employer viewer). For every goal record normal, denied, failure/uncertain and recovery expectations. Do not present Codex extraction as a stakeholder interview.
-
-3. Provide the owner a versioned review package containing these proposals, the scenario examples and remaining evidence gates. Record actual participant, date, version and acceptance/correction per group only after review. Employer/collaborator perspectives still require explicit confirmation or an acknowledged evidence limitation.
-
-**Assessable review cases:** [RC-Q02-01 through RC-Q02-03](../04-scenarios-and-models/user-stories-and-scenarios.md#review-q-d02). These are planned checks, not executed results.
-
-**Remaining evidence / acceptance condition:** An actual owner/actor review has not occurred in this task. Proposed outcomes are ready to review; validation evidence remains required.
+[Selected answer and remaining evidence](../../../baseline/policy-decisions.md#q-d02). Apply this policy to the MVP slice; the original criteria above remain subject to their [current dispositions](../../../baseline/criterion-dispositions.csv).
