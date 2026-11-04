@@ -170,7 +170,7 @@ Advanced general backlog/Sprints/configurable boards and advanced Git milestones
 
 Each GitHub issue has one stable PBI identity, outcome, dependencies, links to exact selected criteria and a verification checklist. Large packages may be decomposed into linked child tasks when execution begins. A broad issue title is not a completed plan or test result.
 
-Use Backlog → Ready → In progress → In review → Done; use Blocked with an explicit dependency/next action and Deferred for after-MVP work. Ready requires satisfied dependencies and an executable next action. Done requires actual outcome and relevant verification evidence, not issue creation or elapsed target date. Do not create Sprint/Iteration assignments now. No Sprint plan is part of the current Documentation.
+Use Backlog → In Progress → Done. All packages start in Backlog; move a package to In Progress only when work actually starts and its prerequisites are satisfied. Done requires verified completion criteria and linked evidence. Record blockers and review notes in the Issue without adding columns. Keep after-MVP work in the separate After MVP view using its scope label. Product Backlog is a table of the same MVP Issues shown on MVP Kanban, not a second task list. No active Sprint or completed implementation is asserted.
 
 No implementation is started by reconciling this backlog. Estimates and delivery dates remain uncommitted; available capacity is 20 total project hours/week.
 

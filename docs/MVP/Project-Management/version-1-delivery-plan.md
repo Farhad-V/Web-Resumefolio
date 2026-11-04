@@ -20,7 +20,7 @@ Finalize milestone definitions, MVP/future allocations, package criteria and dep
 
 ## Kanban and readiness
 
-Backlog → Ready → In progress → In review → Done. Blocked records a real blocker and next action; Deferred contains after-MVP work. Use the existing board where possible; preserve unrelated items, custom fields and views. Keep only actually executable items Ready. Do not create or assign a Sprint/Iteration during this setup. If the existing board uses equivalent status names, record the mapping rather than creating competing fields.
+Backlog → In Progress → Done. All packages start in Backlog. Move work to In Progress only when execution actually starts and prerequisites are satisfied. Keep blockers and review notes in the Issue. After-MVP scope is separated by labels and its own view, rather than a status column. Product Backlog shows the same MVP Issues as a table. No Sprint/Iteration is assigned.
 
 Select the next task only after prerequisites are checked. Move a task to Done only with linked outcome/criterion evidence, updated documentation and a recorded review. Record a failed check explicitly; do not drop a security or restore condition to clear a column.
 
