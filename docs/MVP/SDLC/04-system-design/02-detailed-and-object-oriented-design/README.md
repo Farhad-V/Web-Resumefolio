@@ -1,10 +1,6 @@
 # Resumefolio — Detailed and Object-Oriented Design
 
-## Current implementation baseline — November 4, 2026
-
-[BL-MVP-2026-11-04.1](../../../baseline/README.md) selects the MVP technical mechanisms, numerical policies, priorities and requirement/criterion dispositions under Farhad’s explicit delegation. It supersedes earlier Proposed/pending mechanism and whole-baseline statements below for MVP design input. Future clauses and dated evidence remain separate. Runtime/actor validation, credentials, Git isolation, capacity and backup/restore still require the named implementation/Release gates; this update reports no product test Pass.
-
-### Prior source material and rationale (superseded where this Baseline selects a different MVP choice)
+Current implementation choices and scope: [Baseline](../../../baseline/README.md). Runtime verification remains subject to its gates.
 
 **Start here to turn architecture responsibilities into understandable component designs and evolve those designs safely.** This section owns shared OO guidance and refactoring/debt procedures; actual component packages own concrete interfaces, classes, algorithms and technical scenarios.
 
@@ -13,12 +9,6 @@ Owner and decision authority: Farhad. Updated November 2, 2026.
 **Status:** proposed design guidance. This folder has **two numbered documents, 01 and 05**; 02–04 are unused numbering gaps, not missing mandatory files. The numbering preserves stable existing links. No implementation, measured debt, migration or accepted technical baseline is established by the illustrations.
 
 [Contents](#1-contents-and-reading-order) · [Maps](#2-reading-and-concept-maps) · [Example](#3-shared-publication-example) · [Glossary](#4-glossary) · [Cheat sheet](#5-design-cheat-sheet) · [Review](#6-review-and-maintenance)
-
-## MVP system allocation and design status
-
-The accepted system boundary separates the Resumefolio core from ProjectForge, joined by an authenticated user-scoped API. Logical responsibilities remain useful within each system; they do not authorize a shared core/ProjectForge process, database or transaction. Core owns dashboard, invited accounts, professional presentation, protected sharing, manual applications and same-server private My Files & Media. ProjectForge MVP owns real repositories/transfers/permissions, file/history browsing, issues and simple Kanban. Its selected engine is native Git Smart HTTP behind the independent Laravel ProjectForge service, with its own MySQL 8.4 database and OS/storage boundaries on the existing host; BL-MVP-2026-11-04.1 governs implementation and evidence gates. The future communications system is independently private and API connected. Advanced Git review/releases, backlog/Sprints and execution/deployment remain deferred. Keep source, independent resume draft, explicit publication and actual submitted material identities distinct. Profile changes require preview/select/apply and cannot mutate publication or submitted history. Manual applications include status, next action and follow-up date without mail/calendar dependencies.
-
-Authority: [OWNER-MVP-2026-11-04](../../01-project-planning/owner-mvp-decision-2026-11-04.md).
 
 ## 1. Contents and reading order
 
@@ -31,7 +21,7 @@ Authority: [OWNER-MVP-2026-11-04](../../01-project-planning/owner-mvp-decision-2
 
 Before 01, read [architecture drivers](../01-software-architecture/01-design-drivers-and-solution-options.md), [module boundaries](../01-software-architecture/02-system-decomposition-and-boundaries.md), the [analysis domain model](../../03-system-analysis/02-domain-and-information-analysis/03-domain-model-and-object-oriented-view.md) and [operation contracts](../../03-system-analysis/05-business-rules-and-operation-contracts/10-domain-constraints-and-operation-contracts.md). Requirements retain required meaning; technical design cannot silently change permissions, publication or history rules.
 
-Use the [component template](../03-component-and-module-design/component-template/README.md) to realize a component. Consult shared [data](../04-data-design/README.md), [API](../05-interface-and-api-design/README.md) and [quality/security](../06-design-quality-and-security-analysis/README.md) guidance at affected boundaries. Use 05 before changing an established candidate, then link actual findings to [review/handoff](../06-design-quality-and-security-analysis/05-design-review-traceability-and-handoff.md) and significant choices to [ADRs](../07-design-decisions/README.md).
+Use the [component template](../03-component-and-module-design/README.md) to realize a component. Consult shared [data](../04-data-design/README.md), [API](../05-interface-and-api-design/README.md) and [quality/security](../06-design-quality-and-security-analysis/README.md) guidance at affected boundaries. Use 05 before changing an established candidate, then link actual findings to [review/handoff](../06-design-quality-and-security-analysis/05-design-review-traceability-and-handoff.md) and significant choices to [ADRs](../07-design-decisions/README.md).
 
 ## 2. Reading and concept maps
 

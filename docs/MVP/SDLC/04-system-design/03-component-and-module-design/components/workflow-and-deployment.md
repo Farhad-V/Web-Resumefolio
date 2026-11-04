@@ -6,11 +6,7 @@
 
 [Scope](#1-source-authority-and-trust-boundaries) · [Operations](#2-public-operations) · [Model](#3-owned-model-and-state-dimensions) · [Execution](#4-admission-dispatch-and-reconciliation-protocol) · [Deployment](#5-separate-deployment-protocol) · [Failures](#6-technical-scenarios-and-failure-handling) · [Review](#7-verification-and-remaining-decisions) · [Workflow views](#8-workflow-executor-and-deployment-views)
 
-## MVP system allocation and design status
-
-All YAML workflow execution, runners and product deployment automation are after MVP. Retain isolation, scoped secrets, approvals, resource limits, durable effects and cleanup/recovery requirements for later planning. None is an MVP implementation commitment or a reason to run untrusted code in the core or ProjectForge MVP. Operating/deploying Resumefolio itself and demonstrating backups/recovery remain MVP obligations.
-
-Authority: [OWNER-MVP-2026-11-04](../../../01-project-planning/owner-mvp-decision-2026-11-04.md).
+Current MVP scope and selected mechanisms: [Baseline](../../../../baseline/README.md). Deferred provider, advanced collaboration and workflow-execution designs are not MVP prerequisites.
 
 ## 1. Source authority and trust boundaries
 
@@ -149,7 +145,7 @@ Use deterministic policy/state checks plus actual persistence/concurrency and au
 
 Resolve Q-D23's actual containment mechanism, budget-compatible capacity, supported schema/triggers and numerical policy candidates. Specify concrete types/schema, dispatch identity/deduplication/fencing, observation authentication, cancellation/termination evidence, secret lifecycle, output admission and cleanup accounting. Separately evaluate target adapters, approval scope, deployment ordering, data compatibility, health checks and recovery. Record exact criterion/evidence mapping before dependent implementation/enabling; these gates are not completed by a design document.
 
-Use [component templates](../component-template/README.md), [interface contracts](../../05-interface-and-api-design/README.md), [runtime design](../../01-software-architecture/03-process-view-concurrency-and-runtime-behavior.md), [security design](../../06-design-quality-and-security-analysis/02-security-threat-modeling-and-trust-boundaries.md) and [review/handoff](../../06-design-quality-and-security-analysis/05-design-review-traceability-and-handoff.md). These views adapt the FAU component-refinement approach and establish neither final physical implementation nor phase acceptance.
+Use [component templates](../README.md), [interface contracts](../../05-interface-and-api-design/README.md), [runtime design](../../01-software-architecture/03-process-view-concurrency-and-runtime-behavior.md), [security design](../../06-design-quality-and-security-analysis/02-security-threat-modeling-and-trust-boundaries.md) and [review/handoff](../../06-design-quality-and-security-analysis/05-design-review-traceability-and-handoff.md). These views adapt the FAU component-refinement approach and establish neither final physical implementation nor phase acceptance.
 
 [Component catalog](../README.md) · [Diagram catalog](diagrams/README.md)
 

@@ -28,11 +28,7 @@ replace that authoritative permission specification.
 · [Boundaries](#6-access-data-and-lifecycle-boundaries) · [Questions](#7-elicitation-coverage-and-open-questions)
 · [Review](#8-review-checklist-and-current-position) · [Diagrams](#9-diagram-maintenance)
 
-## MVP requirement applicability and remaining review
-
-Apply the current candidate release register: retain core presentation/sharing/manual applications/private files and basic ProjectForge; defer mail/calendar, advanced Git review/releases, advanced backlog/Sprints and YAML execution/deployment. Candidate IDs and planned verification stay intact. Mixed criteria must be scoped individually; allocation does not approve proposed numbers, priority or a complete baseline. Older 157-candidate/470-criterion evidence is historical larger-product coverage, not an MVP pass. Keep source, independent resume draft, explicit publication and actual submitted material identities distinct. Profile changes require preview/select/apply and cannot mutate publication or submitted history. Manual applications include status, next action and follow-up date without mail/calendar dependencies.
-
-Authority: [OWNER-MVP-2026-11-04](../../01-project-planning/owner-mvp-decision-2026-11-04.md). [Candidate allocation](../03-requirements-specification/mvp-release-allocation.md).
+Current MVP scope and selected mechanisms: [Baseline](../../../baseline/README.md). Deferred provider, advanced collaboration and workflow-execution designs are not MVP prerequisites.
 
 ## 1. Stakeholders, Actors and Delivery Responsibilities
 
@@ -57,10 +53,10 @@ DEC-029–DEC-032, and [Scope](../../01-project-planning/02-scope.md), DEC-028.
 
 ## 2. Product Boundary and System Context
 
-![Human interactions, product scope and external dependencies around Resumefolio](../diagrams/actors-system-context.png)
+![Human interactions, product scope and external dependencies around Resumefolio](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.png)
 
-[Scalable SVG](../diagrams/actors-system-context.svg) ·
-[Editable Graphviz](../diagrams/actors-system-context.dot)
+[Scalable SVG](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.svg) ·
+[Editable Graphviz](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot)
 
 Blue identifies human interaction contexts; purple identifies external services
 and clients; amber identifies operational dependencies. Labeled lines describe
@@ -230,7 +226,7 @@ architecture, product test or requirements baseline is established.
 
 | Diagram | Editable source | Scalable view | Preview |
 | --- | --- | --- | --- |
-| System context | [Graphviz](../diagrams/actors-system-context.dot) | [SVG](../diagrams/actors-system-context.svg) | [PNG](../diagrams/actors-system-context.png) |
+| System context | [Graphviz](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot) | [SVG](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.svg) | [PNG](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.png) |
 | Actor goals | [PlantUML](../diagrams/actors-goal-overview.puml) | [SVG](../diagrams/actors-goal-overview.svg) | [PNG](../diagrams/actors-goal-overview.png) |
 
 Keep text, captions, editable sources and renders synchronized. Colors supplement

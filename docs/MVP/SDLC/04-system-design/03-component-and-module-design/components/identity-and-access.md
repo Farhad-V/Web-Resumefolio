@@ -6,11 +6,7 @@
 
 [Authority](#1-source-authority-and-policy-boundaries) · [Contracts](#2-public-operations) · [Data](#3-owned-model-and-sensitive-state) · [Authorization](#4-current-authority-and-revocation-protocol) · [Failures](#5-recovery-and-failure-boundaries) · [Review](#6-verification-and-open-decisions) · [Essential views](#7-essential-identity-and-access-views)
 
-## MVP system allocation and design status
-
-Initial users are created or invited by the owner/admin. Open public self-registration is excluded. Authentication factors, session timing, recovery and the exact role matrix remain engineering details. Core/ProjectForge API requests carry authenticated user-scoped authority; board membership and administrator labels never imply access to unrelated private data. Future personal Gmail/Calendar connections require explicit per-user/per-account consent; owner/admin cannot read users' mail.
-
-Authority: [OWNER-MVP-2026-11-04](../../../01-project-planning/owner-mvp-decision-2026-11-04.md).
+Current MVP scope and selected mechanisms: [Baseline](../../../../baseline/README.md). Deferred provider, advanced collaboration and workflow-execution designs are not MVP prerequisites.
 
 ## 1. Source authority and policy boundaries
 
@@ -130,7 +126,7 @@ Use actual framework/session/persistence/cache/concurrency integration alongside
 
 Reconcile actual administrative/owner authority and source policy; choose/evaluate password/factor/recovery mechanisms, session store/lifetimes, cookie/CSRF/security controls and notification facilities; specify concrete types/schema/uniqueness, version/invalidation protocol and safe key recovery; map exact criteria and review the actual candidate. No numeric timeout or password default, public-registration policy or new recovery privilege is silently accepted.
 
-Follow [component templates](../component-template/README.md), [shared security](../../06-design-quality-and-security-analysis/02-security-threat-modeling-and-trust-boundaries.md), [runtime](../../01-software-architecture/03-process-view-concurrency-and-runtime-behavior.md), [interfaces](../../05-interface-and-api-design/README.md) and [review/handoff](../../06-design-quality-and-security-analysis/05-design-review-traceability-and-handoff.md). Class/interaction diagrams adapt FAU component refinement; they establish neither final schema nor production security assurance/baseline approval.
+Follow [component templates](../README.md), [shared security](../../06-design-quality-and-security-analysis/02-security-threat-modeling-and-trust-boundaries.md), [runtime](../../01-software-architecture/03-process-view-concurrency-and-runtime-behavior.md), [interfaces](../../05-interface-and-api-design/README.md) and [review/handoff](../../06-design-quality-and-security-analysis/05-design-review-traceability-and-handoff.md). Class/interaction diagrams adapt FAU component refinement; they establish neither final schema nor production security assurance/baseline approval.
 
 [Component catalog](../README.md) · [Component diagram catalog](diagrams/README.md)
 
@@ -180,9 +176,9 @@ Proposed session observations, not final stored enums. Revocation affects subseq
 
 ### 7.6 Clients, trusted application and external scopes
 
-![Clients, trusted application and external scopes](diagrams/identity-essential-trust-boundaries.svg)
+![Clients, trusted application and external scopes](../../06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.svg)
 
-[Editable PlantUML](diagrams/identity-essential-trust-boundaries.puml) · [PNG](diagrams/identity-essential-trust-boundaries.png)
+[Editable PlantUML](../../06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.puml) · [PNG](../../06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.png)
 
 User-supplied owner/role/token claims are not trusted merely because they cross an ingress. No external IdP or OAuth/OIDC login is selected; provider capability is a separate trust/credential scope. Actual TLS, credential verification, storage access and route coverage require implementation evidence.
 

@@ -6,11 +6,7 @@
 
 [Scope](#1-source-authority-and-boundaries) · [Operations](#2-public-operations) · [Model](#3-owned-model-and-invariants) · [Consistency](#4-mutation-and-sprint-end-protocol) · [Failures](#5-technical-scenarios-and-failure-handling) · [Review](#6-verification-and-remaining-decisions) · [Essential views](#7-essential-work-management-views)
 
-## MVP system allocation and design status
-
-Only issues and simple Kanban, with necessary resource permissions and truthful movement/lifecycle, belong to the ProjectForge MVP. ProjectForge is a separate authenticated user-scoped API system. General advanced backlog/refinement, Sprint Goal/Sprint Backlog, advanced reports and automation remain future proposals. Retained PKS identifiers describe the larger product; their existence does not commit MVP to every criterion.
-
-Authority: [OWNER-MVP-2026-11-04](../../../01-project-planning/owner-mvp-decision-2026-11-04.md).
+Current MVP scope and selected mechanisms: [Baseline](../../../../baseline/README.md). Deferred provider, advanced collaboration and workflow-execution designs are not MVP prerequisites.
 
 ## 1. Source authority and boundaries
 
@@ -156,7 +152,7 @@ Use deterministic policy/handler checks plus actual persistence/transaction/conc
 
 Review Q-D18–Q-D20 and exact criterion dispositions; specify relationships, state/column mapping, ordering strategy, completion evidence/authority, date/time semantics, active-Sprint constraints and incomplete-work/correction rules. Define concrete signatures/schema, cross-record transaction guards, membership coordination, bounded queries, history capture and recovery. Evaluate any reminder/trigger facility separately. No mandatory cadence, product WIP/count limit or generic automation engine is introduced here.
 
-Use [component templates](../component-template/README.md), [interface contracts](../../05-interface-and-api-design/README.md), [runtime design](../../01-software-architecture/03-process-view-concurrency-and-runtime-behavior.md) and [review/handoff](../../06-design-quality-and-security-analysis/05-design-review-traceability-and-handoff.md). Class and interaction views adapt the FAU component-refinement approach; they establish neither final physical design nor whole-baseline acceptance.
+Use [component templates](../README.md), [interface contracts](../../05-interface-and-api-design/README.md), [runtime design](../../01-software-architecture/03-process-view-concurrency-and-runtime-behavior.md) and [review/handoff](../../06-design-quality-and-security-analysis/05-design-review-traceability-and-handoff.md). Class and interaction views adapt the FAU component-refinement approach; they establish neither final physical design nor whole-baseline acceptance.
 
 [Component catalog](../README.md) · [Diagram catalog](diagrams/README.md)
 
@@ -166,9 +162,9 @@ This compact package adds **five complementary diagrams and two scoped reference
 
 ### 7.1 Work ownership and scoped interfaces
 
-![Work ownership and scoped interfaces](diagrams/work-essential-components.svg)
+![Work ownership and scoped interfaces](diagrams/work-essential-views.svg)
 
-[Editable PlantUML](diagrams/work-essential-components.puml) · [PNG](diagrams/work-essential-components.png)
+[Editable PlantUML](diagrams/work-essential-views.puml) · [PNG](diagrams/work-essential-views.png)
 
 Owner-side handlers coordinate board/work/Sprint invariants and current membership. Neighbor contracts expose only permitted Git/calendar/artifact associations; no inherited permissions, hidden automation or direct foreign-state writes.
 

@@ -6,11 +6,7 @@
 
 [Authority](#1-source-authority-and-ownership) · [Contracts](#2-public-operations) · [Model](#3-owned-data-and-state-dimensions) · [Admission](#4-admission-and-accounting-protocol) · [References](#5-protected-reference-replacement-and-reclamation) · [Recovery](#6-operating-recovery-and-failure-scenarios) · [Review](#7-verification-and-open-decisions) · [Storage package](#8-files-storage-and-operations-view-package)
 
-## MVP system allocation and design status
-
-My Files & Media is a core private library with optional per-resume selection. Supported uploads remain in private directories on the same Resumefolio server, with type/size/quota enforcement, safe serving and backup/recovery. Direct, preview and byte-range requests use current owner or selected-resume/viewer authority. Upload does not publish. External YouTube links use simple embedded playback; private uploads are not sent to YouTube. No extra media platform or heavyweight editor/transcoding is selected. Backup coverage and demonstrated restoration remain MVP obligations; exact backup destination and recovery targets remain open.
-
-Authority: [OWNER-MVP-2026-11-04](../../../01-project-planning/owner-mvp-decision-2026-11-04.md).
+Current MVP scope and selected mechanisms: [Baseline](../../../../baseline/README.md). Deferred provider, advanced collaboration and workflow-execution designs are not MVP prerequisites.
 
 ## 1. Source authority and ownership
 
@@ -148,7 +144,7 @@ Use actual persistence/accounting/concurrency tests and suitable storage/recover
 
 Review Q-D24 numeric limits/charging/envelope and supported formats; select/evaluate storage/backend and actual resource facilities; specify concrete quota/reference/deletion guard/transaction schemas and signatures; reconcile native Git/output/log accounting; establish independent backup/key recovery; complete exact criterion mapping and actual candidate review. The protected-reference handshake is a decisive joint Applications/Files/data-model design task, not a completed mechanism.
 
-Use [component templates](../component-template/README.md), [interface contracts](../../05-interface-and-api-design/README.md), [security](../../06-design-quality-and-security-analysis/02-security-threat-modeling-and-trust-boundaries.md) and [review/handoff](../../06-design-quality-and-security-analysis/05-design-review-traceability-and-handoff.md). These component/data/dynamic views follow the FAU refinement approach but allocate no accepted physical schema, arbitrary cleanup permission or phase approval.
+Use [component templates](../README.md), [interface contracts](../../05-interface-and-api-design/README.md), [security](../../06-design-quality-and-security-analysis/02-security-threat-modeling-and-trust-boundaries.md) and [review/handoff](../../06-design-quality-and-security-analysis/05-design-review-traceability-and-handoff.md). These component/data/dynamic views follow the FAU refinement approach but allocate no accepted physical schema, arbitrary cleanup permission or phase approval.
 
 [Component catalog](../README.md) · [Component diagram catalog](diagrams/README.md)
 
@@ -174,9 +170,9 @@ C4-style whole-system context. Internal Files/Git/Applications modules belong be
 
 ### 8.3 C4 Level 2: modular runtime and storage
 
-![C4 Level 2: modular runtime and storage](diagrams/files-containers.svg)
+![C4 Level 2: modular runtime and storage](diagrams/files-context.svg)
 
-[Editable PlantUML](diagrams/files-containers.puml) · [PNG](diagrams/files-containers.png)
+[Editable PlantUML](diagrams/files-context.puml) · [PNG](diagrams/files-context.png)
 
 C4-style application/runtime/store boundaries, not a separately deployed file microservice. Object storage is a possible backend rather than an adopted product. Worker readiness, keys and recovery facilities need actual evidence.
 
@@ -262,9 +258,9 @@ This is association/version conflict handling, not collaborative binary-file edi
 
 ### 8.14 Storage architecture options and unselected tiers
 
-![Storage architecture options and unselected tiers](diagrams/files-storage-options.svg)
+![Storage architecture options and unselected tiers](diagrams/files-context.svg)
 
-[Editable PlantUML](diagrams/files-storage-options.puml) · [PNG](diagrams/files-storage-options.png)
+[Editable PlantUML](diagrams/files-context.puml) · [PNG](diagrams/files-context.png)
 
 Options diagram, not a selected tier/replication/CDN topology. Replication is not by itself a usable independent backup. Hot/warm/cold costs, keys, protected references, privacy and retrieval behavior require an explicit decision and evidence.
 
@@ -294,17 +290,17 @@ Logical lanes are not a selected queue product, worker count or automatic dead-l
 
 ### 8.18 Storage and sync integration options
 
-![Storage and sync integration options](diagrams/files-integrations.svg)
+![Storage and sync integration options](diagrams/files-context.svg)
 
-[Editable PlantUML](diagrams/files-integrations.puml) · [PNG](diagrams/files-integrations.png)
+[Editable PlantUML](diagrams/files-context.puml) · [PNG](diagrams/files-context.png)
 
 Requested integration names are alternatives, not supported features. Do not assume an “S3-compatible” label guarantees the needed atomicity/retention semantics or that external sync preserves product ownership/reference constraints.
 
 ### 8.19 Optional deployment mapping for Files capabilities
 
-![Optional deployment mapping for Files capabilities](diagrams/files-deployment.svg)
+![Optional deployment mapping for Files capabilities](../../01-software-architecture/diagrams/drivers-uml-deployment.svg)
 
-[Editable PlantUML](diagrams/files-deployment.puml) · [PNG](diagrams/files-deployment.png)
+[Editable PlantUML](../../01-software-architecture/diagrams/drivers-uml-deployment.puml) · [PNG](../../01-software-architecture/diagrams/drivers-uml-deployment.png)
 
 Proposed placement, not installed infrastructure or proof that existing guest allocation is sufficient. The earlier backup absence remains explicit. No object-store account, CDN, extra host or replication service is purchased or configured.
 

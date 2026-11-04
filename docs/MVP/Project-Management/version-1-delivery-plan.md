@@ -30,6 +30,6 @@ Retain M-01–M-10 identities. M-08 (user workflow execution) is after MVP and i
 
 M-02/M-03 documentary choices are selected in the Baseline, while actor validation, actual host/dependency feasibility and operational evidence remain at their named gates. G1–G6 remain unexecuted unless real evidence is linked. M-09 needs the retained MVP acceptance/security/capacity/guidance and demonstrated restore; M-10 needs an actual reviewed deployment and live checks. Creating deployment work items authorizes no live deployment.
 
-## Historical planning
+## Execution scope
 
-The [previous delivery plan](history/2026-11-04-before-tracking-reconciliation/version-1-delivery-plan.md) and [Sprint 1](sprints/SPR-01.md), [Sprint 2](sprints/SPR-02.md), [Sprint 3](sprints/SPR-03.md) are retained as historical context. Do not maintain a second daily status or Sprint schedule in Documentation. No automatic monitor is configured.
+Use the current Backlog, Milestones and Kanban. Superseded Sprint plans are available only through Git history; no Sprint or delivery date is assigned. No automatic monitor is configured.

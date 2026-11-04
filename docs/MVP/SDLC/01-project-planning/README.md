@@ -1,10 +1,6 @@
 # Resumefolio — Project Planning
 
-## Current implementation baseline — November 4, 2026
-
-[BL-MVP-2026-11-04.1](../../baseline/README.md) selects the MVP technical mechanisms, numerical policies, priorities and requirement/criterion dispositions under Farhad’s explicit delegation. It supersedes earlier Proposed/pending mechanism and whole-baseline statements below for MVP design input. Future clauses and dated evidence remain separate. Runtime/actor validation, credentials, Git isolation, capacity and backup/restore still require the named implementation/Release gates; this update reports no product test Pass.
-
-### Prior source material and rationale (superseded where this Baseline selects a different MVP choice)
+Current implementation choices and scope: [Baseline](../../baseline/README.md). Runtime verification remains subject to its gates.
 
 | Item | Current position |
 | --- | --- |
@@ -83,7 +79,7 @@ implemented permissions, successful recovery or completed delivery.
 | Overview | Planning document map | [PNG](diagrams/planning-document-map.png) | [SVG](diagrams/planning-document-map.svg) | [DOT](diagrams/planning-document-map.dot) |
 | 01 — Purpose | Problem-to-objective alignment | [PNG](diagrams/purpose-objectives-alignment.png) | [SVG](diagrams/purpose-objectives-alignment.svg) | [DOT](diagrams/purpose-objectives-alignment.dot) |
 | 01 — Purpose | Example application journey | [PNG](diagrams/purpose-application-journey.png) | [SVG](diagrams/purpose-application-journey.svg) | [DOT](diagrams/purpose-application-journey.dot) |
-| 02 — Scope | Version 1 boundaries | [PNG](diagrams/scope-boundaries.png) | [SVG](diagrams/scope-boundaries.svg) | [DOT](diagrams/scope-boundaries.dot) |
+| 02 — Scope | Version 1 boundaries | [PNG](../04-system-design/01-software-architecture/diagrams/logical-component-ownership.png) | [SVG](../04-system-design/01-software-architecture/diagrams/logical-component-ownership.svg) | [DOT](../04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot) |
 | 02 — Scope | Scope-to-delivery review gates | [PNG](diagrams/scope-review-gates.png) | [SVG](diagrams/scope-review-gates.svg) | [DOT](diagrams/scope-review-gates.dot) |
 | 03 — Stakeholders | Stakeholder context | [PNG](diagrams/stakeholder-context.png) | [SVG](diagrams/stakeholder-context.svg) | [DOT](diagrams/stakeholder-context.dot) |
 | 03 — Stakeholders | Solo delivery responsibilities | [PNG](diagrams/solo-delivery-responsibilities.png) | [SVG](diagrams/solo-delivery-responsibilities.svg) | [DOT](diagrams/solo-delivery-responsibilities.dot) |
@@ -103,8 +99,8 @@ implemented permissions, successful recovery or completed delivery.
 | 10 — Completion | Planning acceptance flow | [PNG](diagrams/planning-acceptance-flow.png) | [SVG](diagrams/planning-acceptance-flow.svg) | [PlantUML](diagrams/planning-acceptance-flow.puml) |
 | Decision register | Decision source map | [PNG](diagrams/decision-source-map.png) | [SVG](diagrams/decision-source-map.svg) | [DOT](diagrams/decision-source-map.dot) |
 | Decision register | Decision status lifecycle | [PNG](diagrams/decision-status-lifecycle.png) | [SVG](diagrams/decision-status-lifecycle.svg) | [PlantUML](diagrams/decision-status-lifecycle.puml) |
-| Original planning view | Product vision | [PNG](diagrams/product-vision.png) | — | [DOT](diagrams/product-vision.dot) |
-| Original planning view | Version 1 scope mind map | [PNG](diagrams/version-1-scope.png) | — | [PlantUML](diagrams/version-1-scope.puml) |
+| Original planning view | Product vision | [PNG](../04-system-design/01-software-architecture/diagrams/logical-component-ownership.png) | — | [DOT](../04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot) |
+| Original planning view | Version 1 scope mind map | [PNG](../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.png) | — | [PlantUML](../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) |
 
 ### Original planning diagrams
 
@@ -145,9 +141,6 @@ and agree the pre-implementation baseline before product coding.
 
 - [Product Backlog index](../../Project-Management/product-backlog.md)
 - [Provisional Version 1 delivery plan](../../Project-Management/version-1-delivery-plan.md)
-- [Sprint 1 reference](../../Project-Management/sprints/SPR-01.md)
-- [Sprint 2 reference](../../Project-Management/sprints/SPR-02.md)
-- [Sprint 3 reference](../../Project-Management/sprints/SPR-03.md)
 - [Private GitHub project — Kanban and Sprint views](https://github.com/users/Farhad-Valizadegan/projects/6)
 
 GitHub issues and the delivery project hold live work status and assignments.

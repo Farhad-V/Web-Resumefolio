@@ -1,10 +1,6 @@
 # Resumefolio — Profiles, Resumes and Portfolio
 
-## Current implementation baseline — November 4, 2026
-
-[BL-MVP-2026-11-04.1](../../../baseline/README.md) selects the MVP technical mechanisms, numerical policies, priorities and requirement/criterion dispositions under Farhad’s explicit delegation. It supersedes earlier Proposed/pending mechanism and whole-baseline statements below for MVP design input. Future clauses and dated evidence remain separate. Runtime/actor validation, credentials, Git isolation, capacity and backup/restore still require the named implementation/Release gates; this update reports no product test Pass.
-
-### Prior source material and rationale (superseded where this Baseline selects a different MVP choice)
+Current implementation choices and scope: [Baseline](../../../baseline/README.md). Runtime verification remains subject to its gates.
 
 | Item | Current position |
 | --- | --- |
@@ -395,7 +391,7 @@ No missing policy silently removes an accepted capability or establishes feasibi
 | PRP-D08/D09 | DEC-027/026/025/018 plus proposed presentation/failure refinements | EIF-D02/D04/D10 interface/representation, PDF-D01 generation, AFO-D policies |
 | PRP-D10 | DEC-023/017 plus proposed lifecycle detail | APP-D06 actual submitted material, BRL-D08/D09 retirement/recovery |
 
-Use the [requirement template](../templates/requirement-template.md) when allocating
+Use the [requirement template](requirements-specification.md) when allocating
 final IDs. Link actual records/scenarios/evidence in [Traceability](../06-validation-and-traceability/requirements-traceability.md)
 and record real inspection findings in [Review Findings](../06-validation-and-traceability/review-plan-and-findings.md).
 

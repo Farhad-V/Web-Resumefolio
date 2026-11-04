@@ -6,9 +6,9 @@ Status: owner-accepted release allocation, November 4, 2026. Detailed policies, 
 
 ## 1. Scope Overview
 
-![Current MVP scope and system boundaries](diagrams/version-1-scope.svg)
+![Current MVP scope and system boundaries](../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg)
 
-[Editable source](diagrams/version-1-scope.puml) · [PNG](diagrams/version-1-scope.png)
+[Editable source](../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) · [PNG](../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.png)
 
 Resumefolio provides a unified private experience for professional presentation and manual job applications. ProjectForge is a separate API-connected system with a bounded MVP feature set. Mail/calendar and AI are future capabilities.
 

@@ -6,11 +6,7 @@ Owner: Farhad. Revision: November 1, 2026.
 
 Status: Populated logical interface working view: eight existing IF families, 27 bounded interaction cases and eight focused diagrams. Primary proposed detail and actual enabling evidence retain their recorded status.
 
-## MVP analysis boundary and evidence applicability
-
-The accepted system boundary separates the Resumefolio core from ProjectForge, joined by an authenticated user-scoped API. Logical responsibilities remain useful within each system; they do not authorize a shared core/ProjectForge process, database or transaction. Core owns dashboard, invited accounts, professional presentation, protected sharing, manual applications and same-server private My Files & Media. ProjectForge MVP owns real repositories/transfers/permissions, file/history browsing, issues and simple Kanban. Its engine, deployment and database remain open. The future communications system is independently private and API connected. Advanced Git review/releases, backlog/Sprints and execution/deployment remain deferred. My Files & Media is a core private library with optional per-resume selection. Supported uploads remain in private directories on the same Resumefolio server, with type/size/quota enforcement, safe serving and backup/recovery. Direct, preview and byte-range requests use current owner or selected-resume/viewer authority. Upload does not publish. External YouTube links use simple embedded playback; private uploads are not sent to YouTube. No extra media platform or heavyweight editor/transcoding is selected. Retained mail, advanced review/Sprint and execution models describe future behavior. Historical comparison/evidence results retain their original candidate/date and are not newly executed MVP checks.
-
-Authority: [OWNER-MVP-2026-11-04](../../01-project-planning/owner-mvp-decision-2026-11-04.md).
+Current MVP scope and selected mechanisms: [Baseline](../../../baseline/README.md). Deferred provider, advanced collaboration and workflow-execution designs are not MVP prerequisites.
 
 ## Authoritative Inputs
 
@@ -782,9 +778,9 @@ Continue [quality/operations 13](13-security-quality-and-operational-analysis.md
 
 The component view locates existing IF-01–IF-08 responsibilities. The sequence makes request/response and uncertainty explicit without inventing HTTP/gRPC decisions. These are logical contract views; concrete endpoint/schema/version and protocol choices remain design deliverables. Existing per-family sequences supply the specialized cases.
 
-![interface-logical-components](../diagrams/interface-logical-components.svg)
+![interface-logical-components](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg)
 
-[Editable source](../diagrams/interface-logical-components.puml) · [PNG](../diagrams/interface-logical-components.png)
+[Editable source](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) · [PNG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.png)
 
 ![interface-request-response-contract](../diagrams/interface-request-response-contract.svg)
 

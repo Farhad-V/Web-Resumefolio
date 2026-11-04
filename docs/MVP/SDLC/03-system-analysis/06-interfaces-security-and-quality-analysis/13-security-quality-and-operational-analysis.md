@@ -8,11 +8,7 @@ Owner: Farhad. Revision: November 1, 2026.
 
 Status: Populated analysis working view: 24 conditional authority rows, 12 trust/failure cases, 14 quality scenarios, nine recovery-coverage subjects and ten focused diagrams. No security certification, load result, recovery proof or whole-phase acceptance is claimed.
 
-## MVP analysis boundary and evidence applicability
-
-The accepted system boundary separates the Resumefolio core from ProjectForge, joined by an authenticated user-scoped API. Logical responsibilities remain useful within each system; they do not authorize a shared core/ProjectForge process, database or transaction. Core owns dashboard, invited accounts, professional presentation, protected sharing, manual applications and same-server private My Files & Media. ProjectForge MVP owns real repositories/transfers/permissions, file/history browsing, issues and simple Kanban. Its engine, deployment and database remain open. The future communications system is independently private and API connected. Advanced Git review/releases, backlog/Sprints and execution/deployment remain deferred. My Files & Media is a core private library with optional per-resume selection. Supported uploads remain in private directories on the same Resumefolio server, with type/size/quota enforcement, safe serving and backup/recovery. Direct, preview and byte-range requests use current owner or selected-resume/viewer authority. Upload does not publish. External YouTube links use simple embedded playback; private uploads are not sent to YouTube. No extra media platform or heavyweight editor/transcoding is selected. Retained mail, advanced review/Sprint and execution models describe future behavior. Historical comparison/evidence results retain their original candidate/date and are not newly executed MVP checks.
-
-Authority: [OWNER-MVP-2026-11-04](../../01-project-planning/owner-mvp-decision-2026-11-04.md).
+Current MVP scope and selected mechanisms: [Baseline](../../../baseline/README.md). Deferred provider, advanced collaboration and workflow-execution designs are not MVP prerequisites.
 
 ## Authoritative Inputs
 
@@ -1661,9 +1657,9 @@ The threat model links boundaries to the existing SQ-T01–SQ-T12 cases; the cas
 
 ### Trust Boundary and Threat Model
 
-![Trust boundaries and candidate threats](../diagrams/security-threat-boundary-model.svg)
+![Trust boundaries and candidate threats](../../04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.svg)
 
-[Editable PlantUML](../diagrams/security-threat-boundary-model.puml) · [PNG](../diagrams/security-threat-boundary-model.png)
+[Editable PlantUML](../../04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.puml) · [PNG](../../04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.png)
 
 ### Infrastructure and Deployment Topology
 

@@ -1,22 +1,12 @@
 # Resumefolio — Analysis to Logical and Physical Data Models
 
-## Current implementation baseline — November 4, 2026
-
-[BL-MVP-2026-11-04.1](../../../baseline/README.md) selects the MVP technical mechanisms, numerical policies, priorities and requirement/criterion dispositions under Farhad’s explicit delegation. It supersedes earlier Proposed/pending mechanism and whole-baseline statements below for MVP design input. Future clauses and dated evidence remain separate. Runtime/actor validation, credentials, Git isolation, capacity and backup/restore still require the named implementation/Release gates; this update reports no product test Pass.
-
-### Prior source material and rationale (superseded where this Baseline selects a different MVP choice)
+Current implementation choices and scope: [Baseline](../../../baseline/README.md). Runtime verification remains subject to its gates.
 
 **Purpose:** refine the conceptual information model into reviewable logical record families, integrity rules, access patterns and a physical-design specification for implementation.
 
 **Status:** proposed technical design, November 2, 2026. This document defines a candidate relational model and physical mapping obligations, not an accepted engine, executable migration or verified schema. The accepted profile-update/publication/history behavior is preserved; unresolved source cardinalities and policies remain unresolved.
 
 [Sources](#1-analysis-to-design-contract) · [Ownership](#2-logical-record-families-and-ownership) · [Revisions](#3-revision-and-reference-model) · [Integrity](#4-keys-relationships-and-integrity) · [Physical mapping](#5-physical-representation-and-access-paths) · [Transactions](#6-consistency-and-external-state) · [Handoff](#7-schema-evolution-verification-and-handoff)
-
-## MVP system allocation and design status
-
-MVP data ownership follows distinct core and ProjectForge systems; do not infer a common database or cross-system ACID transaction. Core retains private library metadata, protected artifacts, selected resume media, application status/next action/follow-up and immutable submitted manifests. ProjectForge owns basic repositories/issues/Kanban; its database is undecided. Mail/account/provider, advanced Sprint/review/release and runner tables below are future models. My Files & Media is a core private library with optional per-resume selection. Supported uploads remain in private directories on the same Resumefolio server, with type/size/quota enforcement, safe serving and backup/recovery. Direct, preview and byte-range requests use current owner or selected-resume/viewer authority. Upload does not publish. External YouTube links use simple embedded playback; private uploads are not sent to YouTube. No extra media platform or heavyweight editor/transcoding is selected.
-
-Authority: [OWNER-MVP-2026-11-04](../../01-project-planning/owner-mvp-decision-2026-11-04.md).
 
 ## 1. Analysis-to-design contract
 
@@ -252,6 +242,6 @@ Synthetic teaching relation, not a discovered schema defect or adopted selection
 
 ### Scope and consistency limits
 
-The existing physical mapping/access-path text and tables remain unchanged; no new indexing, type, naming, denormalization or partitioning policy is selected. A separate functional-dependency diagram is unnecessary because the normalization figure states its assumed dependencies. Component-specific ORM/classes and schema excerpts stay in the [component template](../03-component-and-module-design/component-template/02-data-model-and-class-structure.md) and actual owner designs. Data lifecycle/retention remains in the [persistence owner](03-persistence-caching-and-data-lifecycle.md).
+The existing physical mapping/access-path text and tables remain unchanged; no new indexing, type, naming, denormalization or partitioning policy is selected. A separate functional-dependency diagram is unnecessary because the normalization figure states its assumed dependencies. Component-specific ORM/classes and schema excerpts stay in the [component template](../03-component-and-module-design/README.md) and actual owner designs. Data lifecycle/retention remains in the [persistence owner](03-persistence-caching-and-data-lifecycle.md).
 
 Actual physical selection requires identified engine/version, exact source cardinality/status, types/collation, integrity/ref actions, query plans, current authority/version guards, protected-reference coordination and usable recovery evidence. A publication pointer/result commit and independent historical artifacts must remain coherent under real concurrency; a diagram or JSON column cannot establish that. No migration, data rewrite, normalization refactor, index build or database test is executed here.

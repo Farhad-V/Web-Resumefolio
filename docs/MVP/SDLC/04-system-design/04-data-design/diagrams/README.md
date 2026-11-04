@@ -2,11 +2,7 @@
 
 Keep editable sources and SVG/PNG exports synchronized. These are proposed technical views, not final physical schemas.
 
-## MVP system allocation and design status
-
-MVP data ownership follows distinct core and ProjectForge systems; do not infer a common database or cross-system ACID transaction. Core retains private library metadata, protected artifacts, selected resume media, application status/next action/follow-up and immutable submitted manifests. ProjectForge owns basic repositories/issues/Kanban; its database is undecided. Mail/account/provider, advanced Sprint/review/release and runner tables below are future models. My Files & Media is a core private library with optional per-resume selection. Supported uploads remain in private directories on the same Resumefolio server, with type/size/quota enforcement, safe serving and backup/recovery. Direct, preview and byte-range requests use current owner or selected-resume/viewer authority. Upload does not publish. External YouTube links use simple embedded playback; private uploads are not sent to YouTube. No extra media platform or heavyweight editor/transcoding is selected.
-
-Authority: [OWNER-MVP-2026-11-04](../../../01-project-planning/owner-mvp-decision-2026-11-04.md).
+Current MVP scope and selected mechanisms: [Baseline](../../../../baseline/README.md). Deferred provider, advanced collaboration and workflow-execution designs are not MVP prerequisites.
 
 ## Logical and physical data-model refinement
 
@@ -45,7 +41,7 @@ Authority: [OWNER-MVP-2026-11-04](../../../01-project-planning/owner-mvp-decisio
 
 ## Complete diagram alignment — November 4
 
-[Full project inventory and verification limits](../../../diagram-alignment-review-2026-11-04.md). This current disposition supersedes earlier partial diagram-allocation lists.
+[Full project inventory and verification limits](../../01-software-architecture/diagrams/README.md). This current disposition supersedes earlier partial diagram-allocation lists.
 
 | Editable source or visual | Current applicability | Matching exports |
 | --- | --- | --- |

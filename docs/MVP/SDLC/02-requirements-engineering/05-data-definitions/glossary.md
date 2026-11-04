@@ -16,11 +16,7 @@ open rules are in the [Data Dictionary](data-dictionary.md).
 · [Applications](#3-applications-and-communication) · [Work](#4-work-and-code-collaboration)
 · [Engineering](#5-requirements-and-evidence) · [Usage](#6-usage-and-change-rules) · [Sources](#7-primary-terminology-sources-and-review-route)
 
-## MVP requirement applicability and remaining review
-
-Current terms: Resumefolio core = private professional/application experience; ProjectForge = separate API-connected Git/issues/simple-Kanban system; job applications = integrated core functions formerly called ApplyFlow; My Files & Media = private same-server user library, optional per-resume selection; communications = future independent private API system. Version 1 means MVP. Backlog/Sprint/review/release/runner terms remain in the glossary for future requirements.
-
-Authority: [OWNER-MVP-2026-11-04](../../01-project-planning/owner-mvp-decision-2026-11-04.md). [Candidate allocation](../03-requirements-specification/mvp-release-allocation.md).
+Current MVP scope and selected mechanisms: [Baseline](../../../baseline/README.md). Deferred provider, advanced collaboration and workflow-execution designs are not MVP prerequisites.
 
 ## 1. People and Access
 

@@ -18,11 +18,7 @@ they do not establish policy approval, user research, feasibility or product Pas
 · [Bundles](#3-proposed-use-case-story-and-path-bundles) · [Models](#4-visual-models)
 · [Refinement](#5-refinement-and-later-execution-evidence) · [Review](#6-open-questions-traceability-and-review)
 
-## MVP requirement applicability and remaining review
-
-Apply the current candidate release register: retain core presentation/sharing/manual applications/private files and basic ProjectForge; defer mail/calendar, advanced Git review/releases, advanced backlog/Sprints and YAML execution/deployment. Candidate IDs and planned verification stay intact. Mixed criteria must be scoped individually; allocation does not approve proposed numbers, priority or a complete baseline. Older 157-candidate/470-criterion evidence is historical larger-product coverage, not an MVP pass. Keep source, independent resume draft, explicit publication and actual submitted material identities distinct. Profile changes require preview/select/apply and cannot mutate publication or submitted history. Manual applications include status, next action and follow-up date without mail/calendar dependencies.
-
-Authority: [OWNER-MVP-2026-11-04](../../01-project-planning/owner-mvp-decision-2026-11-04.md). [Candidate allocation](../03-requirements-specification/mvp-release-allocation.md).
+Current MVP scope and selected mechanisms: [Baseline](../../../baseline/README.md). Deferred provider, advanced collaboration and workflow-execution designs are not MVP prerequisites.
 
 ## 1. Purpose and Record Conventions
 
@@ -51,8 +47,8 @@ accounts/records. Normal paths assume decided required policies and applicable
 access. A missing decision blocks dependent execution/acceptance; it is not filled
 with an invented role, duration, transition, quota or recovery promise.
 
-Use the [story template](../templates/story-template.md) and
-[scenario template](../templates/scenario-template.md) when allocating/refining
+Use the [story template](../03-requirements-specification/requirements-specification.md) and
+[scenario template](../03-requirements-specification/requirements-specification.md) when allocating/refining
 individual records. A story does not replace business rules, denied paths or
 acceptance criteria. Complex provider, Git, Sprint and execution bundles need
 further operation-specific cases; the 60 drafts are not exhaustive coverage.

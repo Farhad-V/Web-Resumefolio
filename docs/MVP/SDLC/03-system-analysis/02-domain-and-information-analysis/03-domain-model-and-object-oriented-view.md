@@ -12,11 +12,7 @@
 
 **Reading route:** read the notation/authority rules, then the diagrams and concept tables, followed by relationship bounds, change impact and invariants. The model develops the [system context](../01-foundations-and-system-context/02-system-context-and-boundaries.md), following the [analysis approach](../01-foundations-and-system-context/01-analysis-purpose-scope-and-approach.md).
 
-## MVP analysis boundary and evidence applicability
-
-The accepted system boundary separates the Resumefolio core from ProjectForge, joined by an authenticated user-scoped API. Logical responsibilities remain useful within each system; they do not authorize a shared core/ProjectForge process, database or transaction. Core owns dashboard, invited accounts, professional presentation, protected sharing, manual applications and same-server private My Files & Media. ProjectForge MVP owns real repositories/transfers/permissions, file/history browsing, issues and simple Kanban. Its engine, deployment and database remain open. The future communications system is independently private and API connected. Advanced Git review/releases, backlog/Sprints and execution/deployment remain deferred. My Files & Media is a core private library with optional per-resume selection. Supported uploads remain in private directories on the same Resumefolio server, with type/size/quota enforcement, safe serving and backup/recovery. Direct, preview and byte-range requests use current owner or selected-resume/viewer authority. Upload does not publish. External YouTube links use simple embedded playback; private uploads are not sent to YouTube. No extra media platform or heavyweight editor/transcoding is selected. Retained mail, advanced review/Sprint and execution models describe future behavior. Historical comparison/evidence results retain their original candidate/date and are not newly executed MVP checks.
-
-Authority: [OWNER-MVP-2026-11-04](../../01-project-planning/owner-mvp-decision-2026-11-04.md).
+Current MVP scope and selected mechanisms: [Baseline](../../../baseline/README.md). Deferred provider, advanced collaboration and workflow-execution designs are not MVP prerequisites.
 
 ## 1. Sources and Interpretation
 
@@ -368,9 +364,9 @@ Maintain one primary source for each term, obligation and decision. Synchronize 
 
 Existing class diagrams carry the concept details. Their documented relationship bounds remain authoritative: unspecified ends are not implicitly one. The added detail makes existing file-05 proposed cardinalities visible in UML; do not turn proposals into accepted multiplicities. The package view groups concepts without introducing implementation components.
 
-![domain-package-responsibilities](../diagrams/domain-package-responsibilities.svg)
+![domain-package-responsibilities](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg)
 
-[Editable source](../diagrams/domain-package-responsibilities.puml) · [PNG](../diagrams/domain-package-responsibilities.png)
+[Editable source](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) · [PNG](../../04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.png)
 
 ![domain-proposed-multiplicity](../diagrams/domain-proposed-multiplicity.svg)
 

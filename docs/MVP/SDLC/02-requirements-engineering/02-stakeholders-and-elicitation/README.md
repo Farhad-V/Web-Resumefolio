@@ -1,10 +1,6 @@
 # Resumefolio — Stakeholders and Elicitation
 
-## Current implementation baseline — November 4, 2026
-
-[BL-MVP-2026-11-04.1](../../../baseline/README.md) selects the MVP technical mechanisms, numerical policies, priorities and requirement/criterion dispositions under Farhad’s explicit delegation. It supersedes earlier Proposed/pending mechanism and whole-baseline statements below for MVP design input. Future clauses and dated evidence remain separate. Runtime/actor validation, credentials, Git isolation, capacity and backup/restore still require the named implementation/Release gates; this update reports no product test Pass.
-
-### Prior source material and rationale (superseded where this Baseline selects a different MVP choice)
+Current implementation choices and scope: [Baseline](../../../baseline/README.md). Runtime verification remains subject to its gates.
 
 | Item | Current position |
 | --- | --- |
@@ -23,12 +19,6 @@ accepted source decisions, extracted interpretations and future requirements dis
 [Overview](#1-folder-overview) · [Documents](#documents) · [Reading routes](#3-find-the-right-record)
 · [Evidence status](#4-current-evidence-and-next-work) · [Handoff](#5-connections-to-the-rest-of-requirements-engineering)
 · [Diagrams](#6-diagram-catalog) · [Maintenance](#7-maintaining-this-folder)
-
-## MVP requirement applicability and remaining review
-
-Apply the current candidate release register: retain core presentation/sharing/manual applications/private files and basic ProjectForge; defer mail/calendar, advanced Git review/releases, advanced backlog/Sprints and YAML execution/deployment. Candidate IDs and planned verification stay intact. Mixed criteria must be scoped individually; allocation does not approve proposed numbers, priority or a complete baseline. Older 157-candidate/470-criterion evidence is historical larger-product coverage, not an MVP pass. Keep source, independent resume draft, explicit publication and actual submitted material identities distinct. Profile changes require preview/select/apply and cannot mutate publication or submitted history. Manual applications include status, next action and follow-up date without mail/calendar dependencies.
-
-Authority: [OWNER-MVP-2026-11-04](../../01-project-planning/owner-mvp-decision-2026-11-04.md). [Candidate allocation](../03-requirements-specification/mvp-release-allocation.md).
 
 ## 1. Folder Overview
 
@@ -136,7 +126,7 @@ live in the shared `diagrams` folder. See the wider
 | Topic / diagram | Preview | Scalable | Editable source |
 | --- | --- | --- | --- |
 | This index — folder overview | [PNG](../diagrams/stakeholders-elicitation-overview.png) | [SVG](../diagrams/stakeholders-elicitation-overview.svg) | [DOT](../diagrams/stakeholders-elicitation-overview.dot) |
-| Actors — system context | [PNG](../diagrams/actors-system-context.png) | [SVG](../diagrams/actors-system-context.svg) | [DOT](../diagrams/actors-system-context.dot) |
+| Actors — system context | [PNG](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.png) | [SVG](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.svg) | [DOT](../../04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot) |
 | Actors — goal overview | [PNG](../diagrams/actors-goal-overview.png) | [SVG](../diagrams/actors-goal-overview.svg) | [PlantUML](../diagrams/actors-goal-overview.puml) |
 | Log — provenance | [PNG](../diagrams/elicitation-log-provenance.png) | [SVG](../diagrams/elicitation-log-provenance.svg) | [DOT](../diagrams/elicitation-log-provenance.dot) |
 | Log — recording/review cycle | [PNG](../diagrams/elicitation-log-recording-cycle.png) | [SVG](../diagrams/elicitation-log-recording-cycle.svg) | [PlantUML](../diagrams/elicitation-log-recording-cycle.puml) |

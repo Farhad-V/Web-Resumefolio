@@ -26,11 +26,7 @@ records and decision rationale remain in their authoritative linked documents.
 · [Review](#9-quality-and-completion-checklist) · [Next work](#10-current-position-and-next-work)
 · [Diagrams](#11-diagram-maintenance)
 
-## MVP requirement applicability and remaining review
-
-Apply the current candidate release register: retain core presentation/sharing/manual applications/private files and basic ProjectForge; defer mail/calendar, advanced Git review/releases, advanced backlog/Sprints and YAML execution/deployment. Candidate IDs and planned verification stay intact. Mixed criteria must be scoped individually; allocation does not approve proposed numbers, priority or a complete baseline. Older 157-candidate/470-criterion evidence is historical larger-product coverage, not an MVP pass. Keep source, independent resume draft, explicit publication and actual submitted material identities distinct. Profile changes require preview/select/apply and cannot mutate publication or submitted history. Manual applications include status, next action and follow-up date without mail/calendar dependencies.
-
-Authority: [OWNER-MVP-2026-11-04](../../01-project-planning/owner-mvp-decision-2026-11-04.md). [Candidate allocation](../03-requirements-specification/mvp-release-allocation.md).
+Current MVP scope and selected mechanisms: [Baseline](../../../baseline/README.md). Deferred provider, advanced collaboration and workflow-execution designs are not MVP prerequisites.
 
 ## 1. Inputs and Working Boundaries
 
@@ -241,7 +237,7 @@ Do not create a parallel acceptance register inside this method document.
 
 | Output | Destination / required links |
 | --- | --- |
-| Clear requirement candidates and criteria | [SRS](../03-requirements-specification/requirements-specification.md), using the [requirement template](../templates/requirement-template.md); retain source, rationale and status |
+| Clear requirement candidates and criteria | [SRS](../03-requirements-specification/requirements-specification.md), using the [requirement template](../03-requirements-specification/requirements-specification.md); retain source, rationale and status |
 | Scenario, permission and lifecycle refinements | Relevant domain records and [use cases/scenarios](../04-scenarios-and-models/user-stories-and-scenarios.md); preserve exceptional and denied paths |
 | Terms and data meaning | [Glossary](../05-data-definitions/glossary.md) and [Data Dictionary](../05-data-definitions/data-dictionary.md) |
 | Unresolved conflict, question or dependency | [Open Questions and Decisions](../07-change-and-baseline/open-questions-and-decisions.md), with sources, impacts, owner, next action and gate |

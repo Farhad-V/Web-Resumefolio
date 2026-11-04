@@ -1,6 +1,6 @@
 # Criterion disposition guide
 
-Baseline BL-MVP-2026-11-04.1 · Revision 1.1 · November 4, 2026.
+Baseline BL-MVP-2026-11-04.1 · Revision 1.2 · November 4, 2026.
 
 [Open the complete CSV register](criterion-dispositions.csv). All **470 original criterion IDs and wordings** are preserved. **118** criteria retain their selected wording, **223** apply only to the stated MVP slice, and **129** are deferred. These counts describe scope, not completed tests. The [10 supplemental MVP checks](supplemental-acceptance.md) remain separate from this 470-row population.
 

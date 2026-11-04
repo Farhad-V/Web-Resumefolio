@@ -1,10 +1,6 @@
 # Resumefolio — PDF and Controlled Sharing
 
-## Current implementation baseline — November 4, 2026
-
-[BL-MVP-2026-11-04.1](../../../baseline/README.md) selects the MVP technical mechanisms, numerical policies, priorities and requirement/criterion dispositions under Farhad’s explicit delegation. It supersedes earlier Proposed/pending mechanism and whole-baseline statements below for MVP design input. Future clauses and dated evidence remain separate. Runtime/actor validation, credentials, Git isolation, capacity and backup/restore still require the named implementation/Release gates; this update reports no product test Pass.
-
-### Prior source material and rationale (superseded where this Baseline selects a different MVP choice)
+Current implementation choices and scope: [Baseline](../../../baseline/README.md). Runtime verification remains subject to its gates.
 
 | Item | Current position |
 | --- | --- |
@@ -329,7 +325,7 @@ include proposed revision, failure and lifecycle detail linked to DEC-023/017/01
 Reconcile ACC-D07/D08 direct access/owner controls, EIF-D04 file contracts, APP-D06
 actual submitted material and BRL-D access/history invariants.
 
-Use the [requirement template](../templates/requirement-template.md) when allocating
+Use the [requirement template](requirements-specification.md) when allocating
 final IDs. Link allocated records/scenarios and actual evidence in
 [Traceability](../06-validation-and-traceability/requirements-traceability.md).
 Record actual inspection outcomes in [Review Findings](../06-validation-and-traceability/review-plan-and-findings.md).

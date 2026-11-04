@@ -6,11 +6,7 @@
 
 [Authority](#1-source-authority-and-ownership) · [Operations](#2-public-operations-and-result-contracts) · [Data](#3-owned-classes-and-logical-data) · [Send](#4-reviewed-send-and-uncertain-outcome-protocol) · [Calendar](#5-calendar-authority-and-reconciliation) · [Recovery](#6-security-failure-and-recovery-boundaries) · [Review](#7-verification-and-open-decisions) · [Communication package](#8-communication-calendar-and-delivery-view-package)
 
-## MVP system allocation and design status
-
-The entire mail/calendar feature is after MVP. Retain the requirements for a future independent private communications system connected through API, with Gmail and Google Calendar provider connections. Each user may consent to connecting their own personal Google accounts, potentially multiple. Authority is explicit per user/account/operation. Owner/admin role never grants reading user mail. Other provider support remains unresolved. Provider OAuth/read/send/sync evidence is a future gate, not an MVP dependency.
-
-Authority: [OWNER-MVP-2026-11-04](../../../01-project-planning/owner-mvp-decision-2026-11-04.md).
+Current MVP scope and selected mechanisms: [Baseline](../../../../baseline/README.md). Deferred provider, advanced collaboration and workflow-execution designs are not MVP prerequisites.
 
 ## 1. Source authority and ownership
 
@@ -154,7 +150,7 @@ Use deterministic policy/adapter cases plus real persistence/claim concurrency a
 
 Actual OAuth project/audience/consent/redirect/security handling, current scopes/verification/quota/cost, concrete provider versions/paging/change tokens and correlation facilities; exact class/signature/schema/type and resource limits; credential/key recovery; actual delivery/scheduler/worker operation; Q-D16/Q-D17 detailed source acceptance; exact criterion review and candidate disposition. Known OAuth setup absence is not a request for an existing project ID.
 
-Follow [component templates](../component-template/README.md), [shared data](../../04-data-design/README.md), [API contracts](../../05-interface-and-api-design/README.md), [operations/recovery](../../06-design-quality-and-security-analysis/03-operations-backup-recovery-and-resilience.md) and [review/handoff](../../06-design-quality-and-security-analysis/05-design-review-traceability-and-handoff.md). These technical views refine FAU component/data/dynamic modeling; they are not an accepted physical schema, complete current provider integration or baseline approval.
+Follow [component templates](../README.md), [shared data](../../04-data-design/README.md), [API contracts](../../05-interface-and-api-design/README.md), [operations/recovery](../../06-design-quality-and-security-analysis/03-operations-backup-recovery-and-resilience.md) and [review/handoff](../../06-design-quality-and-security-analysis/05-design-review-traceability-and-handoff.md). These technical views refine FAU component/data/dynamic modeling; they are not an accepted physical schema, complete current provider integration or baseline approval.
 
 [Component catalog](../README.md) · [Component diagram catalog](diagrams/README.md)
 
@@ -176,17 +172,17 @@ Logical contracts with provided circle and required sockets. Mail/calendar respo
 
 ### 8.2 C4 Level 1: users and external provider
 
-![After MVP: independent communications — C4 Level 1: users and external provider](diagrams/comm-context.svg)
+![After MVP: independent communications — C4 Level 1: users and external provider](../../../02-requirements-engineering/diagrams/use-cases-mail-and-calendar.svg)
 
-[Editable PlantUML](diagrams/comm-context.puml) · [PNG](diagrams/comm-context.png)
+[Editable PlantUML](../../../02-requirements-engineering/diagrams/use-cases-mail-and-calendar.puml) · [PNG](../../../02-requirements-engineering/diagrams/use-cases-mail-and-calendar.png)
 
 Whole-system C4-style context, not LC-05 as a separate software system. External correspondent interaction belongs to the provider; the product cannot infer receipt/read from its own request outcome.
 
 ### 8.3 C4 Level 2: actual proposed runtime boundaries
 
-![After MVP: independent communications — C4 Level 2: actual proposed runtime boundaries](diagrams/comm-containers.svg)
+![After MVP: independent communications — C4 Level 2: actual proposed runtime boundaries](../../../02-requirements-engineering/diagrams/use-cases-mail-and-calendar.svg)
 
-[Editable PlantUML](diagrams/comm-containers.puml) · [PNG](diagrams/comm-containers.png)
+[Editable PlantUML](../../../02-requirements-engineering/diagrams/use-cases-mail-and-calendar.puml) · [PNG](../../../02-requirements-engineering/diagrams/use-cases-mail-and-calendar.png)
 
 C4-style containers are web/runtime/store boundaries. Chat and separate notification services are not promoted into scope. Scheduler/worker/provider access is a pending operating capability, not configured infrastructure.
 
@@ -308,9 +304,9 @@ No universal last-write-wins, full-account mirror or sync-token mechanism is ado
 
 ### 8.18 Optional trusted runtime placement
 
-![After MVP: independent communications — Optional trusted runtime placement](diagrams/comm-deployment.svg)
+![After MVP: independent communications — Optional trusted runtime placement](../../../02-requirements-engineering/diagrams/use-cases-mail-and-calendar.svg)
 
-[Editable PlantUML](diagrams/comm-deployment.puml) · [PNG](diagrams/comm-deployment.png)
+[Editable PlantUML](../../../02-requirements-engineering/diagrams/use-cases-mail-and-calendar.puml) · [PNG](../../../02-requirements-engineering/diagrams/use-cases-mail-and-calendar.png)
 
 Optional candidate mapping, not configured hosts/services or verified delivery. No dedicated notification server, SMS gateway or chat service is selected. Secrets remain restricted and ordinary logs exclude tokens/content.
 
