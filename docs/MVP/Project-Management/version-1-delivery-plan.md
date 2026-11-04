@@ -10,7 +10,7 @@ Updated November 4, 2026. Current mode: continuous Kanban; no active Sprint plan
 | Milestone outcome and acceptance criteria | [Planning — Roadmap and Milestones](../SDLC/01-project-planning/08-roadmap-and-milestones.md#2-milestone-catalog) |
 | Backlog package definition/dependencies | [Product Backlog](product-backlog.md) |
 | Actual task status, blockers, code and acceptance evidence | [GitHub Issues](https://github.com/Farhad-V/Web-Resumefolio/issues) |
-| Daily workflow visualization | Existing private GitHub Project, verified and linked by the synchronization report; do not assume old links still work |
+| Daily workflow visualization | [Private MVP Kanban](https://github.com/users/Farhad-V/projects/6/views/2) |
 | Issue grouping and progress by outcome | [GitHub Milestones](https://github.com/Farhad-V/Web-Resumefolio/milestones), with canonical documentation links |
 | Actual implementation facts | [Implementation documentation](../SDLC/05-implementation/README.md) |
 

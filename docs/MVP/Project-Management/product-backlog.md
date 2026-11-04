@@ -8,34 +8,34 @@ Existing PBI-001–029 identities are preserved; PBI-030–034 isolate Setup, id
 
 | ID | Outcome | Milestone | Dependencies | Acceptance / gate |
 | --- | --- | --- | --- | --- |
-| [PBI-001](https://github.com/Farhad-V/Web-Resumefolio/issues/1) | Record 20-hour capacity and MVP scope | M-01 | None | BIZ / DOM; G0 |
-| [PBI-002](https://github.com/Farhad-V/Web-Resumefolio/issues/2) | Verify shared-host capacity and isolation prerequisites | M-03 | None | AFO / QSR; G1; G5 |
-| [PBI-005](https://github.com/Farhad-V/Web-Resumefolio/issues/5) | Verify invitation and recovery SMTP delivery | M-03 | PBI-002 | ACC / EIF; G4 |
-| [PBI-006](https://github.com/Farhad-V/Web-Resumefolio/issues/6) | Verify independent backup destination and restore plan | M-03 | PBI-002 | QSR / AFO; G4 |
-| [PBI-007](https://github.com/Farhad-V/Web-Resumefolio/issues/7) | Review current planning allocation and tracked follow-ups | M-01 | PBI-001 | BIZ / DOM; G0 |
-| [PBI-008](https://github.com/Farhad-V/Web-Resumefolio/issues/8) | Validate MVP requirement and criterion coverage | M-02 | PBI-007 | USR / BIZ / DOM; G0 |
-| [PBI-009](https://github.com/Farhad-V/Web-Resumefolio/issues/9) | Reconcile selected Design and technical baseline | M-03 | PBI-008 | DOM / EIF / QSR; G0; G1 |
-| [PBI-010](https://github.com/Farhad-V/Web-Resumefolio/issues/10) | Implement invited identity and resource authorization | M-04 | PBI-030 | ACC; G3 |
-| [PBI-011](https://github.com/Farhad-V/Web-Resumefolio/issues/11) | Implement dashboard and responsive application shell | M-04 | PBI-010 | EIF / USR; G3; G5 |
-| [PBI-012](https://github.com/Farhad-V/Web-Resumefolio/issues/12) | Implement Profile and independent Resume drafts | M-05 | PBI-010 | PRP / BRL; G3 |
-| [PBI-013](https://github.com/Farhad-V/Web-Resumefolio/issues/13) | Implement private My Files and Media library | M-05 | PBI-010, PBI-002 | AFO / PRP; G3; G5 |
-| [PBI-014](https://github.com/Farhad-V/Web-Resumefolio/issues/14) | Implement generated and uploaded language-specific PDFs | M-05 | PBI-012, PBI-013 | PDF; G3; G5 |
-| [PBI-015](https://github.com/Farhad-V/Web-Resumefolio/issues/15) | Implement password links and protected selected-content retrieval | M-05 | PBI-012, PBI-013, PBI-014 | PDF / ACC; G3 |
-| [PBI-016](https://github.com/Farhad-V/Web-Resumefolio/issues/16) | Implement manual applications and actual submitted history | M-06 | PBI-012, PBI-014, PBI-033 | APP / BRL; G3 |
-| [PBI-019](https://github.com/Farhad-V/Web-Resumefolio/issues/19) | Implement ProjectForge fixed issue Kanban | M-07 | PBI-022 | PKS; G3 |
-| [PBI-020](https://github.com/Farhad-V/Web-Resumefolio/issues/20) | Implement native repositories and real Git transfers | M-07 | PBI-031, PBI-032, PBI-034 | GIT; G2; G3 |
-| [PBI-022](https://github.com/Farhad-V/Web-Resumefolio/issues/22) | Implement basic ProjectForge repository issues | M-07 | PBI-032, PBI-020 | GIT / PKS; G3 |
-| [PBI-024](https://github.com/Farhad-V/Web-Resumefolio/issues/24) | Implement account suspension, lifecycle and audit | M-09 | PBI-010, PBI-013, PBI-033 | ACC / AFO / BRL / QSR; G3; G4 |
-| [PBI-025](https://github.com/Farhad-V/Web-Resumefolio/issues/25) | Verify integrated MVP acceptance and authorization | M-09 | PBI-011, PBI-015, PBI-016, PBI-019, PBI-024, PBI-032 | ACC / PRP / PDF / APP / GIT / PKS; G3; G6 |
-| [PBI-026](https://github.com/Farhad-V/Web-Resumefolio/issues/26) | Measure capacity, browsers and accessibility | M-09 | PBI-025, PBI-034 | QSR / EIF; G5 |
-| [PBI-027](https://github.com/Farhad-V/Web-Resumefolio/issues/27) | Demonstrate coherent restore and deployment recovery | M-09 | PBI-006, PBI-024, PBI-020, PBI-033 | QSR / AFO; G4 |
-| [PBI-028](https://github.com/Farhad-V/Web-Resumefolio/issues/28) | Complete user, admin and operating guidance | M-09 | PBI-025, PBI-027 | EIF / QSR / USR; G4; G6 |
-| [PBI-029](https://github.com/Farhad-V/Web-Resumefolio/issues/29) | Review and deploy the initial MVP release | M-10 | PBI-025, PBI-026, PBI-027, PBI-028 | USR / QSR; G6 |
-| [PBI-030](#pbi-030) | Create isolated Laravel applications and reproducible Setup | M-04 | PBI-009, PBI-002 | DOM / EIF; G1 |
-| [PBI-031](#pbi-031) | Prove ProjectForge SSO and native Git security spike | M-07 | PBI-030, PBI-010, PBI-002 | ACC / GIT; G2 |
-| [PBI-032](#pbi-032) | Implement Core and ProjectForge scoped identity/API | M-07 | PBI-031, PBI-010 | ACC / EIF; G2; G3 |
-| [PBI-033](#pbi-033) | Implement atomic publication and protected artifact history | M-05 | PBI-012, PBI-013, PBI-014 | PRP / BRL / APP; G3 |
-| [PBI-034](#pbi-034) | Enforce storage reservations and bounded Git/media admission | M-05 | PBI-002, PBI-030 | AFO / QSR / GIT; G2; G5 |
+| <a id="pbi-001"></a>[PBI-001](https://github.com/Farhad-V/Web-Resumefolio/issues/1) | Record 20-hour capacity and MVP scope | M-01 | None | BIZ / DOM; G0 |
+| <a id="pbi-002"></a>[PBI-002](https://github.com/Farhad-V/Web-Resumefolio/issues/2) | Verify shared-host capacity and isolation prerequisites | M-03 | None | AFO / QSR; G1; G5 |
+| <a id="pbi-005"></a>[PBI-005](https://github.com/Farhad-V/Web-Resumefolio/issues/5) | Verify invitation and recovery SMTP delivery | M-03 | PBI-002 | ACC / EIF; G4 |
+| <a id="pbi-006"></a>[PBI-006](https://github.com/Farhad-V/Web-Resumefolio/issues/6) | Verify independent backup destination and restore plan | M-03 | PBI-002 | QSR / AFO; G4 |
+| <a id="pbi-007"></a>[PBI-007](https://github.com/Farhad-V/Web-Resumefolio/issues/7) | Review current planning allocation and tracked follow-ups | M-01 | PBI-001 | BIZ / DOM; G0 |
+| <a id="pbi-008"></a>[PBI-008](https://github.com/Farhad-V/Web-Resumefolio/issues/8) | Validate MVP requirement and criterion coverage | M-02 | PBI-007 | USR / BIZ / DOM; G0 |
+| <a id="pbi-009"></a>[PBI-009](https://github.com/Farhad-V/Web-Resumefolio/issues/9) | Reconcile selected Design and technical baseline | M-03 | PBI-008 | DOM / EIF / QSR; G0; G1 |
+| <a id="pbi-010"></a>[PBI-010](https://github.com/Farhad-V/Web-Resumefolio/issues/10) | Implement invited identity and resource authorization | M-04 | PBI-030 | ACC; G3 |
+| <a id="pbi-011"></a>[PBI-011](https://github.com/Farhad-V/Web-Resumefolio/issues/11) | Implement dashboard and responsive application shell | M-04 | PBI-010 | EIF / USR; G3; G5 |
+| <a id="pbi-012"></a>[PBI-012](https://github.com/Farhad-V/Web-Resumefolio/issues/12) | Implement Profile and independent Resume drafts | M-05 | PBI-010 | PRP / BRL; G3 |
+| <a id="pbi-013"></a>[PBI-013](https://github.com/Farhad-V/Web-Resumefolio/issues/13) | Implement private My Files and Media library | M-05 | PBI-010, PBI-002 | AFO / PRP; G3; G5 |
+| <a id="pbi-014"></a>[PBI-014](https://github.com/Farhad-V/Web-Resumefolio/issues/14) | Implement generated and uploaded language-specific PDFs | M-05 | PBI-012, PBI-013 | PDF; G3; G5 |
+| <a id="pbi-015"></a>[PBI-015](https://github.com/Farhad-V/Web-Resumefolio/issues/15) | Implement password links and protected selected-content retrieval | M-05 | PBI-012, PBI-013, PBI-014 | PDF / ACC; G3 |
+| <a id="pbi-016"></a>[PBI-016](https://github.com/Farhad-V/Web-Resumefolio/issues/16) | Implement manual applications and actual submitted history | M-06 | PBI-012, PBI-014, PBI-033 | APP / BRL; G3 |
+| <a id="pbi-019"></a>[PBI-019](https://github.com/Farhad-V/Web-Resumefolio/issues/19) | Implement ProjectForge fixed issue Kanban | M-07 | PBI-022 | PKS; G3 |
+| <a id="pbi-020"></a>[PBI-020](https://github.com/Farhad-V/Web-Resumefolio/issues/20) | Implement native repositories and real Git transfers | M-07 | PBI-031, PBI-032, PBI-034 | GIT; G2; G3 |
+| <a id="pbi-022"></a>[PBI-022](https://github.com/Farhad-V/Web-Resumefolio/issues/22) | Implement basic ProjectForge repository issues | M-07 | PBI-032, PBI-020 | GIT / PKS; G3 |
+| <a id="pbi-024"></a>[PBI-024](https://github.com/Farhad-V/Web-Resumefolio/issues/24) | Implement account suspension, lifecycle and audit | M-09 | PBI-010, PBI-013, PBI-033 | ACC / AFO / BRL / QSR; G3; G4 |
+| <a id="pbi-025"></a>[PBI-025](https://github.com/Farhad-V/Web-Resumefolio/issues/25) | Verify integrated MVP acceptance and authorization | M-09 | PBI-011, PBI-015, PBI-016, PBI-019, PBI-024, PBI-032 | ACC / PRP / PDF / APP / GIT / PKS; G3; G6 |
+| <a id="pbi-026"></a>[PBI-026](https://github.com/Farhad-V/Web-Resumefolio/issues/26) | Measure capacity, browsers and accessibility | M-09 | PBI-025, PBI-034 | QSR / EIF; G5 |
+| <a id="pbi-027"></a>[PBI-027](https://github.com/Farhad-V/Web-Resumefolio/issues/27) | Demonstrate coherent restore and deployment recovery | M-09 | PBI-006, PBI-024, PBI-020, PBI-033 | QSR / AFO; G4 |
+| <a id="pbi-028"></a>[PBI-028](https://github.com/Farhad-V/Web-Resumefolio/issues/28) | Complete user, admin and operating guidance | M-09 | PBI-025, PBI-027 | EIF / QSR / USR; G4; G6 |
+| <a id="pbi-029"></a>[PBI-029](https://github.com/Farhad-V/Web-Resumefolio/issues/29) | Review and deploy the initial MVP release | M-10 | PBI-025, PBI-026, PBI-027, PBI-028 | USR / QSR; G6 |
+| <a id="pbi-030"></a>[PBI-030](#pbi-030) | Create isolated Laravel applications and reproducible Setup | M-04 | PBI-009, PBI-002 | DOM / EIF; G1 |
+| <a id="pbi-031"></a>[PBI-031](#pbi-031) | Prove ProjectForge SSO and native Git security spike | M-07 | PBI-030, PBI-010, PBI-002 | ACC / GIT; G2 |
+| <a id="pbi-032"></a>[PBI-032](#pbi-032) | Implement Core and ProjectForge scoped identity/API | M-07 | PBI-031, PBI-010 | ACC / EIF; G2; G3 |
+| <a id="pbi-033"></a>[PBI-033](#pbi-033) | Implement atomic publication and protected artifact history | M-05 | PBI-012, PBI-013, PBI-014 | PRP / BRL / APP; G3 |
+| <a id="pbi-034"></a>[PBI-034](#pbi-034) | Enforce storage reservations and bounded Git/media admission | M-05 | PBI-002, PBI-030 | AFO / QSR / GIT; G2; G5 |
 
 ## Package completion conditions
 
@@ -157,12 +157,12 @@ These original work items remain open future planning, not failed or completed M
 
 | ID | Future outcome | Reference |
 | --- | --- | --- |
-| [PBI-003](https://github.com/Farhad-V/Web-Resumefolio/issues/3) | Assess future isolated workflow execution | M-08 |
-| [PBI-004](https://github.com/Farhad-V/Web-Resumefolio/issues/4) | Assess future Gmail and Calendar provider access | Future planning; no MVP milestone |
-| [PBI-017](https://github.com/Farhad-V/Web-Resumefolio/issues/17) | Implement future personal Gmail client | Future planning; no MVP milestone |
-| [PBI-018](https://github.com/Farhad-V/Web-Resumefolio/issues/18) | Implement future Calendar and provider synchronization | Future planning; no MVP milestone |
-| [PBI-021](https://github.com/Farhad-V/Web-Resumefolio/issues/21) | Implement future advanced review and merge | Future planning; no MVP milestone |
-| [PBI-023](https://github.com/Farhad-V/Web-Resumefolio/issues/23) | Implement future user YAML execution and deployment | M-08 |
+| <a id="pbi-003"></a>[PBI-003](https://github.com/Farhad-V/Web-Resumefolio/issues/3) | Assess future isolated workflow execution | M-08 |
+| <a id="pbi-004"></a>[PBI-004](https://github.com/Farhad-V/Web-Resumefolio/issues/4) | Assess future Gmail and Calendar provider access | Future planning; no MVP milestone |
+| <a id="pbi-017"></a>[PBI-017](https://github.com/Farhad-V/Web-Resumefolio/issues/17) | Implement future personal Gmail client | Future planning; no MVP milestone |
+| <a id="pbi-018"></a>[PBI-018](https://github.com/Farhad-V/Web-Resumefolio/issues/18) | Implement future Calendar and provider synchronization | Future planning; no MVP milestone |
+| <a id="pbi-021"></a>[PBI-021](https://github.com/Farhad-V/Web-Resumefolio/issues/21) | Implement future advanced review and merge | Future planning; no MVP milestone |
+| <a id="pbi-023"></a>[PBI-023](https://github.com/Farhad-V/Web-Resumefolio/issues/23) | Implement future user YAML execution and deployment | M-08 |
 
 Advanced general backlog/Sprints/configurable boards and advanced Git milestones/releases formerly bundled into PBI-019/022 remain future specifications; those existing issue identities now track only their MVP slices. The product’s future milestone feature is distinct from GitHub Milestones used to manage development.
 
