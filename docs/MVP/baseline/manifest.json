@@ -14,63 +14,63 @@
     },
     {
       "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/README.md",
-      "sha256": "8f4d9ab5e619209dde34825567c1f7cc64a7b4b16d41ffb708f40ecf6292dcb7"
+      "sha256": "f06400e953b3f1e20935109bd24658c4469dd41e951cd3d03ae683be59720646"
     },
     {
       "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
-      "sha256": "e4b3b7725e9fe869775142747dc5146047771710e85d6a6adb30f1be6b5adc26"
+      "sha256": "afcd88a267073efaa92ef303f0b4c8f25592f85cc93e4b1e2a3f06d11d585eec"
     },
     {
       "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
-      "sha256": "6bff75533dbf294136530bfc8a4018cc2aa8faa7edd7b1e1ef81ae8177b1a6bc"
+      "sha256": "734ece59c363149a3be07c079d9a831fcbae1b1476d708f907c0740f40a8f0fb"
     },
     {
       "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/business-requirements.md",
-      "sha256": "d62548d5ba9a5606bded96b9f8bd3c8312b2e5f1a1b08564b74232c79c7b3d3b"
+      "sha256": "9e13dc41602bac3211b46a994a4a458cdef553ed5a81dc2a41d76ea51ce6edb7"
     },
     {
       "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
-      "sha256": "b235eb7c2fc548e431e9bfa2266a2ce6e3a2a489518f228676b6963e9691942f"
+      "sha256": "bdf5debe5d351ee797a490dc45ea12f113dd033c12d864267808831985497cda"
     },
     {
       "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/domain-requirements-and-constraints.md",
-      "sha256": "216b42b705592a8b59eaf37c10b4afed171555ec23194d1e5a5a0be06ead1cf0"
+      "sha256": "ad072f26b2d407957e5ee7a5df2b5a610830ff947d5a978ada8934d881cddbbf"
     },
     {
       "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
-      "sha256": "a51f9738472c0cdf1af9dbd30925be50fb2258ff20e67e40dcda5d7acee7fc5b"
+      "sha256": "786ada4abce5022a2a22a1e71fdd39577cc60c497b0ce963b929e00cdc8b6e7e"
     },
     {
       "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md",
-      "sha256": "68f89591cefcbf10497e80a38b5a7021033b8a982198b4222c0d21500fa4743f"
+      "sha256": "c8a4314efebaa0a5a7e251624e0ee904d69594e171eb78b34dddf38ef01ac86b"
     },
     {
       "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md",
-      "sha256": "7449f61dcb0cd1f5b2e70c7b2e2ce2d73dd2346dcabfc53a84660e154084fe6b"
+      "sha256": "525c6e45b3f17d9849ba611ba09bf92625ccb26a784b5c596ba39b70d429088f"
     },
     {
       "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md",
-      "sha256": "a774ec13581f9256f3ccfb1605767b17a41efd2d9960f0c470c81f26664c185c"
+      "sha256": "5515465182cae47bce61ea3dd2fb72418af6ebf9a4866d4880f97e65624656ab"
     },
     {
       "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/mvp-release-allocation.md",
-      "sha256": "e8e63eb14b5cec574be23c77aac2485bdb3e6d0d19f3be12120d4156b8218536"
+      "sha256": "e1a03f5314c4b850224689ea1a0776679121d7b949adb36217ec1328af987840"
     },
     {
       "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md",
-      "sha256": "dc8e29c3f80afe01c193ea64329bab0f944e754df6c865f8ed1e4dae243c695e"
+      "sha256": "b6ac1ddb0b66287378c41d9067743768b5432a1a92da07f7d29d6d8f725c7142"
     },
     {
       "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md",
-      "sha256": "b62a5d36fb4c31fc5114b27bb39b7e1eb1a228d03d8cb38cd08fdcfda6252216"
+      "sha256": "4c94c288a9e660ec60e64407b278f23cbbc06efaddf7fe2a9e1bc8ac34eaa9f6"
     },
     {
       "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
-      "sha256": "d3b5dfb8a17086f0e38eba527aba24901c29c360cc48e415f9bf29624eca0a2e"
+      "sha256": "7117eb2d3fb9746d18b364a1ae833e110b57953903b4ad4352202eeb119a46bd"
     },
     {
       "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
-      "sha256": "a1f35fb1e4cab6c74501a4d42ee0439f0f030d079d567c558bad3c272ebe3ac5"
+      "sha256": "7a30ce28290f03110e5ed021a5522fba7d05ebeffddb0829e92cba201537bcab"
     },
     {
       "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/requirements-priority-and-readiness.md",
@@ -78,15 +78,15 @@
     },
     {
       "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/requirements-specification.md",
-      "sha256": "dc66da9d8fdf0216f2b4e9af67f80bcb9d90a39341581f72bc020bcd5a40f0c8"
+      "sha256": "c6a89a48a4fb8437a4fe8f7608f775b43684a2905d9882f16f3ec7a227f27551"
     },
     {
       "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
-      "sha256": "4b028f2974355125a8e063da9e56bd34a1d8a9925da67becf74095c0fe8160c4"
+      "sha256": "54bf3dadfc06b64dd8282ca2994e64049850176887a230cd0d26a04eeb4fc103"
     },
     {
       "path": "docs/MVP/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
-      "sha256": "dfa0feb6ac6b7a417cf88012ab943498dd05d757694d7470926b618e1cf1e920"
+      "sha256": "9f6f01ffc39163acd36bdbf9cb9d6102ba3aaa0a73d43509e2e45fd7cf425eb5"
     },
     {
       "path": "docs/MVP/SDLC/04-system-design/07-design-decisions/ADR-006-selected-mvp-implementation-baseline.md",
@@ -94,7 +94,7 @@
     },
     {
       "path": "docs/MVP/baseline/README.md",
-      "sha256": "42bbf63afbb82e6cedb778128c6320a74127d24a8571286b2c10982896651b29"
+      "sha256": "b136b1f61d6d6bfeceecb361da03c54c3e1c68955af38a9c1a96c43d5cb4ee98"
     },
     {
       "path": "docs/MVP/baseline/criterion-dispositions.csv",
@@ -102,7 +102,7 @@
     },
     {
       "path": "docs/MVP/baseline/criterion-dispositions.md",
-      "sha256": "9d92d2e43940fce08cacb5391bff06398731a3f8b2d685b711d5d643e754246b"
+      "sha256": "7595dcd09745df675fb2f7a66b1b00a88356ebf95bdce190b9cc8c2daf2d5639"
     },
     {
       "path": "docs/MVP/baseline/diagrams/baseline-gates.dot",
@@ -150,7 +150,7 @@
     },
     {
       "path": "docs/MVP/baseline/requirement-register.csv",
-      "sha256": "42ee73f964f1d283023cc6cff9c0ac5aa58139d2329f5e2359d559759065454f"
+      "sha256": "90e1a2acbe2ce594ec272cb25daeb2f0f93a173a5b04e1256a932e006858c3db"
     },
     {
       "path": "docs/MVP/baseline/sources.md",
@@ -165,7 +165,7 @@
       "sha256": "ce12afdcc16ca41e74d3e8c69a69d8a4eab13579006252213863ad7fca16a3a8"
     }
   ],
-  "documentation_revision": "1.2",
-  "revision_note": "Documentation cleanup: remove unused examples/obsolete Sprint plans and exact copies; retain selected scope, decisions, 157 requirement identities and 470 original criterion wordings.",
-  "previous_manifest_url": "https://github.com/Farhad-V/Web-Resumefolio/blob/e64d1add4ab2fedf6edbbf3d86e9b165090f50e0/docs/MVP/baseline/manifest.json"
+  "documentation_revision": "1.3",
+  "revision_note": "Reconcile selected policy status and revision references; defer provider-only BRL-D07 consistently; normalize the requirement register and remove duplicated superseded answer prose.",
+  "previous_manifest_url": "https://github.com/Farhad-V/Web-Resumefolio/blob/5b3bfd9b2d82785eca2191f65893311736828a6c/docs/MVP/baseline/manifest.json"
 }

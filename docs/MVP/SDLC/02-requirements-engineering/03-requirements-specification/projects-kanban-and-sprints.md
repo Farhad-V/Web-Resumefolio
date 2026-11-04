@@ -423,7 +423,7 @@ Keep text, captions, sources and renders synchronized. Follow the
 file/section links after changes. Run from the repository root:
 
 ```powershell
-$diagramFolder = 'docs\SDLC\02-requirements-engineering\diagrams'
+$diagramFolder = 'docs\MVP\SDLC\02-requirements-engineering\diagrams'
 $graphvizExe = 'C:\Program Files\Graphviz\bin\dot.exe'
 $plantUmlJar = 'C:\Users\fvali\AppData\Local\Resumefolio\DiagramTools\plantuml.jar'
 foreach ($format in 'svg', 'png') {
@@ -439,18 +439,14 @@ Use actual installed paths on other machines; save UTF-8 without BOM.
 [Specification index](README.md) · [SRS entry point](requirements-specification.md)
 · [Requirements index](../README.md)
 
-## Course-Aligned Priority Review
+## Selected Policies and Future Proposals
 
-Actual approved priority remains unassigned. See the [per-candidate proposed priority and readiness register](requirements-priority-and-readiness.md) for a sourced proposal, its limits and the course's SMART checks. A proposed Must is not acceptance of unresolved detail. Primary obligations, candidate IDs and criterion wording are unchanged by that register.
-
-## Proposed Answers for Detailed Requirements Review — November 1, 2026
-
-The owner requested completion of the outstanding questions. The sections below supply concrete **proposed** answers rather than infer approval of previously unspecified policy. They supersede the absence of a proposal in earlier open-detail paragraphs, not accepted scope or historical decisions. Their fields, limits and behavior require review before affected requirement acceptance; no implementation or product-test Pass is reported. Existing candidate IDs and primary obligations are retained. See the [review package](../07-change-and-baseline/requirements-answer-review.md) for authority, evidence gates and cross-document navigation.
+Current MVP answers are selected in the Baseline. Only explicitly deferred details below remain proposals; product tests and operational evidence are still required.
 
 <a id="resolution-q-d18"></a>
 ### Proposed answer Q-D18: Work structures and workflow
 
-**Affected records:** PKS-D01–PKS-D06; dictionary project-board/backlog-item/task. **Disposition:** Answer proposed; owner acceptance pending.
+**Affected records:** PKS-D01–PKS-D06; dictionary project-board/backlog-item/task. **Disposition:** MVP slice selected in [Q-D18](../../../baseline/policy-decisions.md#q-d18); advanced future details below remain proposals.
 
 1. Propose one Product Backlog per work project, any number of project boards and Sprints, and no implicit relationship to a portfolio project or Git repository. A Backlog Item belongs to one project/backlog and may contain tasks; a task has at most one parent item and may be an explicitly standalone project task.
 
@@ -484,7 +480,7 @@ The owner requested completion of the outstanding questions. The sections below 
 <a id="resolution-q-d20"></a>
 ### Proposed answer Q-D20: Cross-module associations and bounded reporting
 
-**Affected records:** PKS-D10; EGC-D09/D10; GIT-D08; EIF-D. **Disposition:** Answer proposed; owner acceptance pending.
+**Affected records:** PKS-D10; EGC-D09/D10; GIT-D08; EIF-D. **Disposition:** MVP slice selected in [Q-D20](../../../baseline/policy-decisions.md#q-d20); advanced future details below remain proposals.
 
 1. Provide explicit links between an application and permitted work items/calendar/correspondence, and between a work item and permitted repository issue/request/commit. Link meaning is association, not ownership transfer, content copying or access grant. Keep professional project, work project and Git repository identities separate.
 

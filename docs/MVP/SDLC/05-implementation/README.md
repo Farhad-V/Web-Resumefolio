@@ -3,7 +3,7 @@
 Status: Documentation structure prepared; product implementation not started.
 Prepared November 4, 2026. Accountable owner: Farhad.
 
-This section records how the selected Design becomes working software. The [current Baseline](../../baseline/README.md), documentation revision 1.1, remains the input. This section neither changes its scope nor proves any runtime gate.
+This section records how the selected Design becomes working software. The [current Baseline](../../baseline/README.md), documentation revision 1.3, remains the input. This section neither changes its scope nor proves any runtime gate.
 
 - [Setup and local execution](01-setup-and-local-execution.md)
 - [Code structure and implemented interfaces](02-code-structure-and-interfaces.md)

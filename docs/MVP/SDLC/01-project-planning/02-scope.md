@@ -37,7 +37,7 @@ Email/calendar integration, AI, advanced review/merge/releases, advanced backlog
 
 ## 4. Planning Boundaries
 
-Core and ProjectForge are distinct systems connected through an authenticated user-scoped API. A unified screen/sign-in experience does not imply shared storage, a trusted common process or a cross-system database transaction. ProjectForge's physical deployment, engine and database are open. The future communications system has independent privacy and API authority. Core files/media remain on the same server as Resumefolio.
+Core and ProjectForge are distinct systems connected through an authenticated user-scoped API. A unified screen/sign-in experience does not imply shared storage, a trusted common process or a cross-system database transaction. ProjectForge uses the selected native Git Smart HTTP engine, independent Laravel service and MySQL 8.4 database on the existing host, with separate OS/storage boundaries; runtime verification remains gated. The future communications system has independent privacy and API authority. Core files/media remain on the same server as Resumefolio.
 
 Use existing resources. Initial small-user planning assumptions require capacity evidence; future growth is not a capacity claim. Twenty total project hours/week includes all project work. November 8 and older full-scope effort ranges remain historical and unverified for MVP; no replacement deadline is set here.
 

@@ -355,7 +355,7 @@ the [diagram guide](../diagrams/README.md); inspect readable arrows/labels and c
 file/section links after changes. From repository root:
 
 ```powershell
-$diagramFolder = 'docs\SDLC\02-requirements-engineering\diagrams'
+$diagramFolder = 'docs\MVP\SDLC\02-requirements-engineering\diagrams'
 $graphvizExe = 'C:\Program Files\Graphviz\bin\dot.exe'
 $plantUmlJar = 'C:\Users\fvali\AppData\Local\Resumefolio\DiagramTools\plantuml.jar'
 foreach ($format in 'svg', 'png') {
@@ -371,47 +371,19 @@ Use actual tool paths on other machines; save UTF-8 without BOM.
 [Specification index](README.md) · [SRS entry point](requirements-specification.md)
 · [Requirements index](../README.md)
 
-## Course-Aligned Priority Review
+## Selected Policies and Future Proposals
 
-Actual approved priority remains unassigned. See the [per-candidate proposed priority and readiness register](requirements-priority-and-readiness.md) for a sourced proposal, its limits and the course's SMART checks. A proposed Must is not acceptance of unresolved detail. Primary obligations, candidate IDs and criterion wording are unchanged by that register.
-
-## Proposed Answers for Detailed Requirements Review — November 1, 2026
-
-The owner requested completion of the outstanding questions. The sections below supply concrete **proposed** answers rather than infer approval of previously unspecified policy. They supersede the absence of a proposal in earlier open-detail paragraphs, not accepted scope or historical decisions. Their fields, limits and behavior require review before affected requirement acceptance; no implementation or product-test Pass is reported. Existing candidate IDs and primary obligations are retained. See the [review package](../07-change-and-baseline/requirements-answer-review.md) for authority, evidence gates and cross-document navigation.
+Current MVP answers are selected in the Baseline. Only explicitly deferred details below remain proposals; product tests and operational evidence are still required.
 
 <a id="resolution-q-d10"></a>
-### Proposed answer Q-D10: PDF representations and downloads
+### Q-D10: Selected policy
 
-**Affected records:** PDF-D01–PDF-D03/PDF-D07/PDF-D09; PRP-D08. **Disposition:** Answer proposed; owner acceptance pending.
-
-1. Generate PDFs from an identified published resume revision/language for employer use; owner may privately preview a clearly labeled draft rendition. An available generated PDF must match that revision, not an older cached artifact silently presented as current.
-
-2. Propose A4 portrait, a selectable single-column accessible template initially, embedded/licensed fonts, readable links and pagination that does not clip content. Represent video as title/description and explicit protected link; diagrams/images as selected static representations. Do not claim playable embedded video or automatic PDF/UA conformance.
-
-3. Retain generated/uploaded/both/neither per resume and independent uploaded-language switches. Download requires current sharing authorization, enabled mode/language and an actually available matching artifact. Missing/processing/failed artifact returns that state; never substitute another language or old revision silently.
-
-4. Publish of a new revision may leave its generated PDF processing/unavailable while the new web view is live; communicate that state. Keep a previously valid artifact for owner/history purposes but do not offer it as the new revision. Replacement is successful only after validation and usable availability; failed replacement retains the prior usable association. File-policy proposals apply.
-
-**Assessable review cases:** [RC-Q10-01 through RC-Q10-03](../04-scenarios-and-models/user-stories-and-scenarios.md#review-q-d10). These are planned checks, not executed results.
-
-**Remaining evidence / acceptance condition:** Owner review of the proposed rule and its affected criteria is required; no product test is reported.
+[Selected answer and remaining evidence](../../../baseline/policy-decisions.md#q-d10). Apply this policy to the MVP slice; the original criteria above remain subject to their [current dispositions](../../../baseline/criterion-dispositions.csv).
 
 <a id="resolution-q-d11"></a>
-### Proposed answer Q-D11: Employer links and password controls
+### Q-D11: Selected policy
 
-**Affected records:** PDF-D04–PDF-D06; ACC-D06–ACC-D08. **Disposition:** Answer proposed; owner acceptance pending.
-
-1. Permit owner-created multiple independently identifiable links per resume; each scopes to the same intended published revision stream and owner-selected permitted content. A new/duplicated resume has no enabled link by default. An enabled link requires a password; no employer product account is needed.
-
-2. Propose link states disabled and enabled, with an optional owner-set expiry evaluated at each access; disabled is the initial state. Re-enable is a separate explicit owner request. Password replacement and disabling are independent from PDF-mode configuration. Password rotation revokes existing viewer authorization for new requests under Q-D05.
-
-3. Propose at least 15 characters for owner-entered sharing passwords, password-manager paste support, and optional system-generated high-entropy alternatives. Limit failed attempts by link and source with five failures per 15 minutes and progressive delay; do not reveal resource identity/private metadata to unauthenticated callers.
-
-4. Viewers receive selected published content only; PDF availability is a separate filter. A correct password is not proof of employer identity. Owner sees link label/state/last management change, not a claimed verified individual viewer identity. Downloaded or already emitted bytes are outside recall.
-
-**Assessable review cases:** [RC-Q11-01 through RC-Q11-03](../04-scenarios-and-models/user-stories-and-scenarios.md#review-q-d11). These are planned checks, not executed results.
-
-**Remaining evidence / acceptance condition:** Owner review of the proposed rule and its affected criteria is required; no product test is reported.
+[Selected answer and remaining evidence](../../../baseline/policy-decisions.md#q-d11). Apply this policy to the MVP slice; the original criteria above remain subject to their [current dispositions](../../../baseline/criterion-dispositions.csv).
 
 ## MVP private-media flow
 

@@ -260,43 +260,19 @@ The [priority/readiness register](requirements-priority-and-readiness.md) provid
 
 Keep stakeholder goals concise. Supporting audit/administration obligations remain in their appropriate detailed records rather than crowding high-level use cases with implementation detail. Existing candidate IDs are usable unique locators; preservation matters more than adopting a particular FR/NFR spelling.
 
-## Proposed Answers for Detailed Requirements Review — November 1, 2026
+## Selected Policies and Future Proposals
 
-The owner requested completion of the outstanding questions. The sections below supply concrete **proposed** answers rather than infer approval of previously unspecified policy. They supersede the absence of a proposal in earlier open-detail paragraphs, not accepted scope or historical decisions. Their fields, limits and behavior require review before affected requirement acceptance; no implementation or product-test Pass is reported. Existing candidate IDs and primary obligations are retained. See the [review package](../07-change-and-baseline/requirements-answer-review.md) for authority, evidence gates and cross-document navigation.
+Current MVP answers are selected in the Baseline. Only explicitly deferred details below remain proposals; product tests and operational evidence are still required.
 
 <a id="resolution-q-d01"></a>
-### Proposed answer Q-D01: Identifiers, priorities and traceability
+### Q-D01: Selected policy
 
-**Affected records:** All 157 existing candidates; RF-D01–RF-D04. **Disposition:** Answer proposed; owner acceptance pending.
-
-1. Keep the existing BIZ/USR/ACC/PRP/PDF/APP/EGC/PKS/GIT/YML/AFO/QSR/BRL/DOM/EIF candidate IDs as stable requirement locators; do not rename them merely to introduce FR/NFR navigation. Allocate a new candidate only through change control. A changed meaning retains revision history; a superseded requirement points to its replacement.
-
-2. Name acceptance criteria locally as <candidate>-AC01, AC02 and so on in their existing bullet order. Future insertions get a new suffix; do not renumber established criteria. Classify behavior versus quality/constraint in the SRS index; cross-cutting records can affect both views without duplicate requirements.
-
-3. Retain the 98 existing proposed Must classifications. Propose Must also for the 59 unclassified business/user/cross-cutting candidates because their stated outcomes support accepted scope, access/integrity or operational gates. This is an individual review proposal for every linked record, not an accepted priority or a proof that every refinement is necessary. No accepted capability is removed; split any unsupported refinement during owner review.
-
-4. Separate scope priority from build order. Investigate identity/access, submitted history, provider access, recovery and untrusted execution before accepting dependent design. Require criterion-to-review/test evidence, not token presence alone; preserve historical citation counts as history.
-
-**Assessable review cases:** [RC-Q01-01 through RC-Q01-03](../04-scenarios-and-models/user-stories-and-scenarios.md#review-q-d01). These are planned checks, not executed results.
-
-**Remaining evidence / acceptance condition:** Owner review of the proposed rule and its affected criteria is required; no product test is reported.
+[Selected answer and remaining evidence](../../../baseline/policy-decisions.md#q-d01). Apply this policy to the MVP slice; the original criteria above remain subject to their [current dispositions](../../../baseline/criterion-dispositions.csv).
 
 <a id="resolution-q-d28"></a>
-### Proposed answer Q-D28: Forecast, work mapping and baseline candidate
+### Q-D28: Selected policy
 
-**Affected records:** SRS; USR; traceability; GAP-D05/D11. **Disposition:** Evidence-gated investigation with a complete proposal.
-
-1. Treat the November 8, 2026 date as the historical requested target, not a validated forecast. Do not silently reduce accepted Version 1 scope or declare M-02/M-03 complete to fit it. Complete analysis/design and decisive feasibility work before a delivery commitment.
-
-2. Propose workstreams for estimation: requirements/owner review, full domain/behavior analysis, design/feasibility, identity/access, presentation/PDF/sharing, application/history, Google mail/calendar, work/Sprints, real Git collaboration, isolated execution/deployment, integrated quality/security/recovery, and operating documentation. Include learning, integration and rework in each estimate; do not count document size as engineering progress.
-
-3. Build actual backlog links from reviewed criterion groups and justified technical investigations. Require item outcome, criteria, dependencies, effort range and readiness before Sprint selection. Plan only the next Sprint in detail; later Sprints stay forecast. A candidate contains exact source hashes/commit and scope, criteria, unresolved gates and actual owner disposition.
-
-4. Use evidence-based effort ranges after decomposition and actual usable weekly time confirmation. Do not invent task hours, a new delivery date, GitHub issue IDs, completed Sprints or review approval. Record a measured throughput basis once execution exists. The present proposal package is an input to review, not that review's acceptance.
-
-**Assessable review cases:** [RC-Q28-01 through RC-Q28-03](../04-scenarios-and-models/user-stories-and-scenarios.md#review-q-d28). These are planned checks, not executed results.
-
-**Remaining evidence / acceptance condition:** Full analysis/design, decomposed estimates, confirmed usable numerical capacity, actual live-work mappings and owner baseline disposition do not yet exist. A credible completed forecast cannot be manufactured from the server inventory.
+[Selected answer and remaining evidence](../../../baseline/policy-decisions.md#q-d28). Apply this policy to the MVP slice; the original criteria above remain subject to their [current dispositions](../../../baseline/criterion-dispositions.csv).
 
 ## November 1, 2026 — Q-D28 Capacity Evidence
 

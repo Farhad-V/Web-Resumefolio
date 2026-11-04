@@ -485,7 +485,7 @@ Keep sources, captions and renders synchronized. Follow the
 file/section links after changes. Run from the repository root:
 
 ```powershell
-$diagramFolder = 'docs\SDLC\02-requirements-engineering\diagrams'
+$diagramFolder = 'docs\MVP\SDLC\02-requirements-engineering\diagrams'
 $graphvizExe = 'C:\Program Files\Graphviz\bin\dot.exe'
 $plantUmlJar = 'C:\Users\fvali\AppData\Local\Resumefolio\DiagramTools\plantuml.jar'
 foreach ($format in 'svg', 'png') {
@@ -501,11 +501,6 @@ Use actual installed paths on other machines; save UTF-8 without BOM.
 [Specification index](README.md) · [SRS entry point](requirements-specification.md)
 · [Requirements index](../README.md)
 
-## Course-Aligned Priority Review
-
-Actual approved priority remains unassigned. See the [per-candidate proposed priority and readiness register](requirements-priority-and-readiness.md) for a sourced proposal, its limits and the course's SMART checks. A proposed Must is not acceptance of unresolved detail. Primary obligations, candidate IDs and criterion wording are unchanged by that register.
-
-<a id="target-decision-contracts"></a>
 ## Target Decision Contracts — Quantitative Acceptance Blockers
 
 **Actual owner input, November 1, 2026:** In this conversation the owner confirmed that no previous numerical response/recovery targets are available. This supplies provenance for the open status; it does not authorize arbitrary values. Q-D25/Q-D26 remain open. Missing numerical targets block affected quantitative acceptance, not all conceptual analysis.
@@ -527,45 +522,19 @@ Use the [recorded server snapshot](../01-process-and-approach/02-feasibility-stu
 
 Do not convert these quantities into concurrency, request latency, upload quota, availability percentage or recovery promises. Account for existing and proposed workloads, storage growth and temporary processing demand. Backup destination and actual restoration remain unverified. Q-D24–Q-D27 retain the remaining actions; target decision contracts and owner acceptance gates above still apply.
 
-## Proposed Answers for Detailed Requirements Review — November 1, 2026
+## Selected Policies and Future Proposals
 
-The owner requested completion of the outstanding questions. The sections below supply concrete **proposed** answers rather than infer approval of previously unspecified policy. They supersede the absence of a proposal in earlier open-detail paragraphs, not accepted scope or historical decisions. Their fields, limits and behavior require review before affected requirement acceptance; no implementation or product-test Pass is reported. Existing candidate IDs and primary obligations are retained. See the [review package](../07-change-and-baseline/requirements-answer-review.md) for authority, evidence gates and cross-document navigation.
+Current MVP answers are selected in the Baseline. Only explicitly deferred details below remain proposals; product tests and operational evidence are still required.
 
 <a id="resolution-q-d25"></a>
-### Proposed answer Q-D25: Measurable quality and supported clients
+### Q-D25: Selected policy
 
-**Affected records:** QSR-D01–QSR-D04; EIF-D02; initial ten-user target. **Disposition:** Answer proposed; owner acceptance pending.
-
-1. Propose evaluation workload: ten registered accounts, five concurrently active scripted users; each account has 20 resume drafts, two published resume-language views and ten admitted evidence objects. Mix 50% published-view reads, 30% authenticated list/detail reads and 20% authorized draft saves; run 15 minutes after two minutes warm-up from a controlled same-region client. Exercise background PDF/upload/Git contention in a separately reported mixed run.
-
-2. Propose p95 request-to-last-byte <=2 seconds for the stated local web reads/saves, with application error rate <=1%; report latency and error denominator separately and fail on isolation/data-loss errors regardless of percentage. Exclude client think time; measure external-provider operations separately. Proposed generated-PDF result <=30 seconds for a ten-page, 5-MiB admitted-content fixture; queued/failed state must be explicit.
-
-3. Propose 99.0% calendar-time availability over rolling 30 days for login, owner list/detail and an enabled shared resume read, with planned maintenance included and check intervals of one minute. A successful login-page response alone does not prove this availability or authenticated workflow health.
-
-4. Propose supported client matrix: current stable and previous major Chrome/Edge/Firefox on desktop and Safari on supported Apple desktop/mobile at release validation; desktop width 1280 and mobile width 390 CSS pixels with keyboard-only and 200% zoom checks. Set WCAG 2.2 AA as a proposed web conformance target; identify applicable criteria/manual assistive checks, not an automatic certification. PDF accessibility is separately assessed.
-
-5. These values replace blank target proposals for review, not the owner's historical absence of agreed values or proof of capacity. Report cold-start and mixed-load results separately; do not hide failed operations in a percentile. Budget/resource conflicts require an explicit scope/resource/target decision.
-
-**Assessable review cases:** [RC-Q25-01 through RC-Q25-03](../04-scenarios-and-models/user-stories-and-scenarios.md#review-q-d25). These are planned checks, not executed results.
-
-**Remaining evidence / acceptance condition:** Owner target approval and representative workload/accessibility/availability evidence are pending; the low-load server snapshot cannot verify these targets.
+[Selected answer and remaining evidence](../../../baseline/policy-decisions.md#q-d25). Apply this policy to the MVP slice; the original criteria above remain subject to their [current dispositions](../../../baseline/criterion-dispositions.csv).
 
 <a id="resolution-q-d26"></a>
-### Proposed answer Q-D26: Backup, retention and recoverability
+### Q-D26: Selected policy
 
-**Affected records:** QSR-D09–QSR-D12; BRL-D08/D09; ASM-04/DEP-05/GAP-D04. **Disposition:** Evidence-gated investigation with a complete proposal.
-
-1. Require encrypted backup copies outside the primary server failure domain, with required decryption/recovery keys separately accessible to the operator. Cover DB, uploaded/generated/preserved files, Git repositories/refs and necessary configuration/provenance; explicitly reconstruct dependencies/artifacts only when a tested recipe and version exist. Exclude ephemeral workspaces/cache from durable coverage.
-
-2. Propose daily business-consistent backups, retention of seven daily and four weekly restore points, RPO <=24 hours and RTO <=8 hours for the initial core service. Retention counts apply to successful usable recovery points; failed jobs do not replace the last valid point. Values are proposed objectives, not observed backup availability or demonstrated recovery.
-
-3. A disk snapshot does not automatically prove transactional DB/file/ref consistency; coordinate recovery points and record exact components/versions. Hetzner documents that server backups/snapshots exclude attached Volumes, so any Volume data needs explicit separate coverage. Current account backup enablement is unknown.
-
-4. Before release, restore a chosen point into an isolated target, measure elapsed recovery and actual recoverable data point, verify core owner/shared/history/repository workflows and integrity, and reapply current deletion/revocation decisions. Do not replay sends, deployments or provider jobs automatically. Alert on failed/missing backups and rehearse after material schema/storage changes.
-
-**Assessable review cases:** [RC-Q26-01 through RC-Q26-03](../04-scenarios-and-models/user-stories-and-scenarios.md#review-q-d26). These are planned checks, not executed results.
-
-**Remaining evidence / acceptance condition:** No independent backup destination, credentials, retention job, recovery-point consistency or actual restoration has been verified. Only a dpkg database-backup timer was found in a limited service-timer search; it is not an application backup and does not prove other backups absent.
+[Selected answer and remaining evidence](../../../baseline/policy-decisions.md#q-d26). Apply this policy to the MVP slice; the original criteria above remain subject to their [current dispositions](../../../baseline/criterion-dispositions.csv).
 
 ## November 1, 2026 — Q-D26 Backup Setup Clarification
 

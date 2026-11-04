@@ -1,6 +1,6 @@
 # MVP — Implementation Baseline
 
-**Baseline: BL-MVP-2026-11-04.1 · Status: selected for implementation · Documentation revision: 1.2**
+**Baseline: BL-MVP-2026-11-04.1 · Status: selected for implementation · Documentation revision: 1.3**
 
 Selected on November 4, 2026 by Codex under Farhad’s explicit instruction to complete technical decisions and establish the Baseline. This is delegated design authority; no personal owner review, running implementation, deployment or product test is fabricated.
 

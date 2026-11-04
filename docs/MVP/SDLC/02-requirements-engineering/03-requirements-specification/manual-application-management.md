@@ -320,7 +320,7 @@ the [diagram guide](../diagrams/README.md); inspect readable arrows/labels and c
 file/section links after changes. From repository root:
 
 ```powershell
-$diagramFolder = 'docs\SDLC\02-requirements-engineering\diagrams'
+$diagramFolder = 'docs\MVP\SDLC\02-requirements-engineering\diagrams'
 $graphvizExe = 'C:\Program Files\Graphviz\bin\dot.exe'
 $plantUmlJar = 'C:\Users\fvali\AppData\Local\Resumefolio\DiagramTools\plantuml.jar'
 foreach ($format in 'svg', 'png') {
@@ -336,61 +336,21 @@ Use actual tool paths on other machines; save UTF-8 without BOM.
 [Specification index](README.md) · [SRS entry point](requirements-specification.md)
 · [Requirements index](../README.md)
 
-## Course-Aligned Priority Review
+## Selected Policies and Future Proposals
 
-Actual approved priority remains unassigned. See the [per-candidate proposed priority and readiness register](requirements-priority-and-readiness.md) for a sourced proposal, its limits and the course's SMART checks. A proposed Must is not acceptance of unresolved detail. Primary obligations, candidate IDs and criterion wording are unchanged by that register.
-
-## Proposed Answers for Detailed Requirements Review — November 1, 2026
-
-The owner requested completion of the outstanding questions. The sections below supply concrete **proposed** answers rather than infer approval of previously unspecified policy. They supersede the absence of a proposal in earlier open-detail paragraphs, not accepted scope or historical decisions. Their fields, limits and behavior require review before affected requirement acceptance; no implementation or product-test Pass is reported. Existing candidate IDs and primary obligations are retained. See the [review package](../07-change-and-baseline/requirements-answer-review.md) for authority, evidence gates and cross-document navigation.
+Current MVP answers are selected in the Baseline. Only explicitly deferred details below remain proposals; product tests and operational evidence are still required.
 
 <a id="resolution-q-d12"></a>
-### Proposed answer Q-D12: Application fields and progress
+### Q-D12: Selected policy
 
-**Affected records:** APP-D01–APP-D05; BRL-D06/D10. **Disposition:** Answer proposed; owner acceptance pending.
-
-1. Require private application title, company name and opportunity/role label for a usable application record; opportunity URL, contact, location, description, source, notes and deadline are optional. Support a manually authored cover letter and relevant resume association; neither implies an external send.
-
-2. Propose states Preparing, Ready, Submitted, Interview, Offer, Rejected and Withdrawn. Preparing may move to Ready after owner review of intended materials; owner records actual submission separately before Submitted. Submitted may move to Interview/Offer/Rejected/Withdrawn; Interview may move to Offer/Rejected/Withdrawn; an Offer may be accepted/declined as a recorded outcome without rewriting the original submission.
-
-3. Record actor, effective date/time and reason for progress correction; allow owner correction with history. Do not infer application status from a calendar invite or email subject automatically. A manual external portal submission may be recorded even when no send was performed by this product.
-
-4. Warn about same company/role/date duplicates but permit confirmed distinct applications; use separate identities. Deadline comparisons use stored time-zone/precision. Incomplete drafts remain private and savable with missing required publication/submission details displayed.
-
-**Assessable review cases:** [RC-Q12-01 through RC-Q12-03](../04-scenarios-and-models/user-stories-and-scenarios.md#review-q-d12). These are planned checks, not executed results.
-
-**Remaining evidence / acceptance condition:** Owner review of the proposed rule and its affected criteria is required; no product test is reported.
+[Selected answer and remaining evidence](../../../baseline/policy-decisions.md#q-d12). Apply this policy to the MVP slice; the original criteria above remain subject to their [current dispositions](../../../baseline/criterion-dispositions.csv).
 
 <a id="resolution-q-d13"></a>
-### Proposed answer Q-D13: Actual submitted materials
+### Q-D13: Selected policy
 
-**Affected records:** APP-D05/APP-D06; BRL-D05; PDF-D08. **Disposition:** Answer proposed; owner acceptance pending.
-
-1. Each recorded submission event identifies application, actual submission time with zone/precision, channel, owner assertion and material completeness. Current editable resume/cover letter is not evidence of the actual submitted bytes.
-
-2. For each claimed preserved document, capture the actual supplied/uploaded artifact or the exact identified generated rendition the owner confirms was submitted; record filename, category, language, checksum, provenance and captured time. Validate/preserve before reporting a complete captured set. Do not automatically claim the employer received/read the document.
-
-3. Permit truthful submission recording when actual files are missing, but label the event materials incomplete/unavailable; it cannot satisfy preserved-copy acceptance. A link-only portal submission records the exact link/revision/time asserted and its limitation, not a fabricated local PDF.
-
-4. Keep the captured set separate from live profile/resume/evidence changes. Conflicting/concurrent capture requires explicit reconciliation; a failed file capture retains the event's incomplete state and a retry/correction action. A sent mail association may supply exact attachments after owner confirmation, not guessed equivalents.
-
-**Assessable review cases:** [RC-Q13-01 through RC-Q13-03](../04-scenarios-and-models/user-stories-and-scenarios.md#review-q-d13). These are planned checks, not executed results.
-
-**Remaining evidence / acceptance condition:** Owner review of the proposed rule and its affected criteria is required; no product test is reported.
+[Selected answer and remaining evidence](../../../baseline/policy-decisions.md#q-d13). Apply this policy to the MVP slice; the original criteria above remain subject to their [current dispositions](../../../baseline/criterion-dispositions.csv).
 
 <a id="resolution-q-d14"></a>
-### Proposed answer Q-D14: Corrections, repeated submissions and retirement
+### Q-D14: Selected policy
 
-**Affected records:** APP-D07/APP-D09; BRL-D08/D09; QSR-D09/D12. **Disposition:** Answer proposed; owner acceptance pending.
-
-1. A new submission is a new event/set, even for the same application. Correcting metadata records previous value, new value, actor/time and reason. Replacing an erroneously captured artifact creates a correction/version relationship; do not silently rewrite what was previously recorded.
-
-2. Archive removes an application from active lists but preserves authorized history. Propose an explicit trash/restore period of 30 days after owner deletion, followed by eligible purge; referenced material is not silently purged while a retained submission needs it. Account suspension does not delete data. Hard erasure/retention conflicts require applicability review before enabling purge.
-
-3. Default to retaining submission history until owner-directed deletion under the reviewed policy; this is not a claim of lawful indefinite retention. Backup expiry is distinct from live trash; explain that a backup may retain deleted data until its agreed expiry and that restore must reapply current deletion/access decisions.
-
-4. Restore returns an authorized archived/trashed item to its defined state without reopening disabled sharing links, reactivating revoked collaborators or resending communication. Missing/expired material is reported explicitly, not reconstructed from a different current resume.
-
-**Assessable review cases:** [RC-Q14-01 through RC-Q14-03](../04-scenarios-and-models/user-stories-and-scenarios.md#review-q-d14). These are planned checks, not executed results.
-
-**Remaining evidence / acceptance condition:** Retention periods are operational proposals, not legal conclusions. Applicable privacy/retention obligations and actual backup-expiry behavior remain Q-D27/Q-D26 gates.
+[Selected answer and remaining evidence](../../../baseline/policy-decisions.md#q-d14). Apply this policy to the MVP slice; the original criteria above remain subject to their [current dispositions](../../../baseline/criterion-dispositions.csv).
