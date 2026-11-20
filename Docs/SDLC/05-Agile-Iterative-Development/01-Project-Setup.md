@@ -6,7 +6,7 @@ Status: Not started. This is a checklist for recording verified Setup, not a run
 
 ## Iteration outcome
 
-The first iteration establishes a repeatable local environment for both applications. Start from the [setup work item](https://github.com/Farhad-V/Web-Resumefolio/issues/37), confirm its acceptance checks, then build and verify a clean setup. Review the results before selecting a dependent feature. Record the outcome and any follow-up in the [iteration review](Sprints/Sprint-01/06-Sprint-Review.md#iteration-review).
+The first iteration establishes a repeatable local environment for both applications. Start from the [setup work item](https://github.com/Farhad-V/Web-Resumefolio/issues/37), confirm its acceptance checks, then build and verify a clean setup. Review the results before selecting a dependent feature. Record the outcome and any follow-up in the [iteration review](Sprints/Sprint-01/02-Sprint-Review.md#iteration-review).
 
 ## Selected targets versus verified environment
 

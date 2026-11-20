@@ -4,7 +4,7 @@ The [implementation sequence](https://github.com/Farhad-V/Web-Resumefolio/blob/1
 
 ## Test within the iteration
 
-Before building the slice, turn its acceptance criteria into concrete checks for the main user path and relevant denied or failure paths. Run the checks against the implemented slice and add regression checks for affected behavior. Bring the actual results to the [iteration review](Sprints/Sprint-01/06-Sprint-Review.md#iteration-review). Record further work against any failing or deferred check.
+Before building the slice, turn its acceptance criteria into concrete checks for the main user path and relevant denied or failure paths. Run the checks against the implemented slice and add regression checks for affected behavior. Bring the actual results to the [iteration review](Sprints/Sprint-01/02-Sprint-Review.md#iteration-review). Record further work against any failing or deferred check.
 
 ## Verification across iterations
 
@@ -15,4 +15,4 @@ Before building the slice, turn its acceptance criteria into concrete checks for
 
 For each recorded case, include the criterion, prerequisites and test data, steps or automated test reference, and expected result. For each execution, include the tested revision, environment, observed result, evidence, and any unresolved failure. Record unexecuted cases as pending.
 
-**Execution status** Product tests have yet to run. See [implementation progress](Sprints/Sprint-01/06-Sprint-Review.md) for package-level evidence.
+**Execution status** Product tests have yet to run. See [implementation progress](Sprints/Sprint-01/02-Sprint-Review.md) for package-level evidence.
