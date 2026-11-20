@@ -1,0 +1,41 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+left to right direction
+skinparam backgroundColor #101827
+skinparam defaultFontColor #F1F5F9
+skinparam hyperlinkColor #A9D0FF
+skinparam dpi 216
+skinparam defaultFontName Arial
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam roundcorner 12
+skinparam ArrowColor #9FB2CD
+skinparam actorBorderColor #F1F5F9
+skinparam actorFontColor #F1F5F9
+skinparam usecase {
+ BackgroundColor #213955
+ BorderColor #9FB2CD
+ FontColor #F1F5F9
+}
+skinparam rectangle {
+ BackgroundColor #182436
+ BorderColor #A6B8D0
+ FontColor #F1F5F9
+}
+title Resumefolio | Policy and operational evidence use cases
+actor "Policy-authorized administrator" as admin
+actor "Evidence-authorized actor" as reader
+rectangle "Resumefolio | System boundary" {
+ usecase "Change effective file policy\nUC-D11-POLICY" as policy [[../04-scenarios-and-models/user-stories-and-scenarios.md#uc-d11-policy]]
+ usecase "Inspect permitted operation evidence\nUC-D11-EVIDENCE" as evidence [[../04-scenarios-and-models/user-stories-and-scenarios.md#uc-d11-evidence]]
+}
+admin -- policy
+reader -- evidence
+legend bottom
+Sources: AFO-D01/D02/D09/D10 and UC-D11 refinements.
+Policy editing and evidence access require their own applicable grants.
+Administration does not imply unrestricted private-content access.
+Associations show proposed external interactions, not permission grants.
+No include/extend dependency or actor inheritance is asserted.
+endlegend
+@enduml

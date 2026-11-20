@@ -1,0 +1,33 @@
+// OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+digraph model {
+ graph [fontcolor="#F1F5F9"];
+ edge [fontcolor="#F1F5F9"];
+graph [bgcolor="#101827",pad=0.3,nodesep=0.4,ranksep=0.65,fontname="Arial",fontsize=21,labelloc=t];
+node [shape=box,style="rounded,filled",fillcolor="#1C3453",color="#9FB2CD",fontcolor="#F1F5F9",fontname="Arial",fontsize=14,margin="0.18,0.14"];
+edge [color="#9FB2CD",fontname="Arial",fontsize=12,fontcolor="#F1F5F9"];
+graph [rankdir=LR,label="Resumefolio | Actor goals within scoped access"];
+applicant [label="Applicant / resume owner
+USR-D01-D02 / D04-D06"];
+employer [label="Employer viewer
+USR-D03"];
+collab [label="Work / code collaborator
+USR-D07-D09"];
+admin [label="Workflow / administrative authority
+USR-D10-D11"];
+operator [label="Project owner / operator
+USR-D12"];
+professional [label="Reuse / tailor / selected sharing
+Manual applications + actual history
+Authorized correspondence / activities",fillcolor="#382951"];
+view [label="View intended protected material
+No product account required",fillcolor="#382951"];
+work [label="Plan / refine / collaborate
+Real Git + current review context",fillcolor="#382951"];
+control [label="Agreed bounded execution / policy
+Separate target and secret authority",fillcolor="#49351C"];
+recover [label="Operate and recover identified release
+Versioned guides + actual evidence",fillcolor="#173B34"];
+applicant -> professional; employer -> view; collab -> work; admin -> control; operator -> recover;
+{rank=same;applicant;employer;collab;admin;operator;}
+{rank=same;professional;view;work;control;recover;}
+}

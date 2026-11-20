@@ -1,0 +1,29 @@
+// OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+digraph domain {
+ graph [fontcolor="#F1F5F9"];
+ edge [fontcolor="#F1F5F9"];
+ graph [bgcolor="#101827", pad=0.3, ranksep=0.7, nodesep=0.4, fontname="Arial", fontsize=21, labelloc=t];
+ node [shape=box, style="rounded,filled", fillcolor="#1C3453", color="#9FB2CD", fontcolor="#F1F5F9", fontname="Arial", fontsize=14, margin="0.18,0.14"];
+ edge [color="#9FB2CD", fontname="Arial", fontsize=12, fontcolor="#F1F5F9"];
+ graph [rankdir=LR,label="Resumefolio | Domain authority and constraints"];
+ scope [label="Accepted planning sources
+Scope / resource decisions"];
+ domain [label="Domain invariants
+Independent tailoring / submitted history"];
+ policy [label="Product policies
+Selected evidence / download choices"];
+ mandate [label="Project constraints
+Laravel + OOP / existing resources"];
+ external [label="External authoritative sources
+Provider terms / licenses / applicable law",fillcolor="#49351C"];
+ assess [label="Establish actual applicability
+Source + date + operating facts",fillcolor="#49351C"];
+ req [label="Reviewed requirements
+Explicit behavior and constraints",fillcolor="#382951"];
+ design [label="Later design and verification
+Selected means + actual evidence",fillcolor="#173B34"];
+ scope -> domain; scope -> policy; scope -> mandate;
+ external -> assess [label="not automatically applicable"];
+ domain -> req; policy -> req; mandate -> req; assess -> req [label="record findings / gaps"];
+ req -> design;
+}

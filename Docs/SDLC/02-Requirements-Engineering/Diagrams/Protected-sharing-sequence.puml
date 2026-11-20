@@ -1,0 +1,42 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Resumefolio | UC-D03 protected viewer and direct retrieval
+skinparam backgroundColor #101827
+skinparam defaultFontColor #F1F5F9
+skinparam hyperlinkColor #A9D0FF
+skinparam dpi 216
+skinparam defaultFontName Arial
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam ArrowColor #9FB2CD
+skinparam participantBackgroundColor #1C3453
+skinparam participantBorderColor #9FB2CD
+skinparam actorBorderColor #F1F5F9
+actor "Employer viewer\nNo product account" as V
+participant "Shared interaction\nConceptual responsibility" as UI
+participant "Current access / selection rules\nConceptual responsibility" as A
+participant "Protected artifact delivery\nConceptual responsibility" as F
+V -> UI: Open controlled link and provide password
+UI -> A: Check eligible link / password / intended resource
+alt eligible and authorized
+ A --> UI: Scoped sharing context only
+ UI --> V: Intended selected resume / evidence
+ V -> F: Request file or PDF (including direct path)
+ F -> A: Check current request authority, selection\nand requested variant availability
+ alt authorized and permitted artifact usable
+  A --> F: Permit only intended resource
+  F --> V: Permitted content
+ else denied / unselected / unavailable
+  A --> F: Bounded denied / unavailable result
+  F --> V: No prohibited content; defined feedback
+ end
+else wrong password / disabled / ineligible
+ A --> UI: No protected sharing authorization
+ UI --> V: Defined access feedback; no protected content
+end
+note over V,F #49351C
+Lifelines are responsibilities, not selected services or check ordering.
+Active sessions, caches, in-flight changes and missing-language behavior remain open.
+Disabling access cannot remove a copy already legitimately downloaded.
+end note
+@enduml

@@ -1,0 +1,44 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Method / document navigation. Scope-independent process/navigation; provider or runner examples are not MVP prerequisites.
+title Resumefolio | Requirements working cycle
+skinparam backgroundColor #101827
+skinparam defaultFontColor #F1F5F9
+skinparam hyperlinkColor #A9D0FF
+skinparam dpi 216
+skinparam defaultFontName Arial
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam ArrowColor #9FB2CD
+skinparam activity {
+  BackgroundColor #1C3453
+  BorderColor #9FB2CD
+  FontColor #F1F5F9
+  DiamondBackgroundColor #49351C
+  DiamondBorderColor #F2BA72
+  StartColor #F1F5F9
+  EndColor #F1F5F9
+}
+start
+:Select a coherent goal from accepted scope;
+:Identify sources, actors and decisive unknowns;
+repeat
+  :Elicit needs and analyze conflicts / dependencies;
+  :Specify behavior, permissions and data lifecycle;
+  :Define acceptance criteria and verification methods;
+  :Add scenarios, models and traceability;
+  :Verify specification quality and validate user needs;
+  :Record findings, questions and dependent gates; <<#49351C>>
+repeat while (Blocking ambiguity or further refinement needed?) is (yes) not (no)
+if (Actual owner acceptance recorded for this revision?) then (yes)
+  :Record accepted content and its limits; <<#173B34>>
+else (not yet)
+  :Retain candidate status for review; <<#49351C>>
+endif
+:Maintain links and assess later changes;
+stop
+legend bottom
+Management applies throughout: sources, IDs, states, versions and change control.
+Reassess feasibility as evidence changes; unresolved gates block dependent commitments.
+This cycle does not establish M-02 acceptance, a product test result or coding authorization.
+endlegend
+@enduml

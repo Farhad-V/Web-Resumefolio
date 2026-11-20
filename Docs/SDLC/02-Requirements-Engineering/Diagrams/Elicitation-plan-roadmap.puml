@@ -1,0 +1,44 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Method / document navigation. Scope-independent process/navigation; provider or runner examples are not MVP prerequisites.
+title Resumefolio | Adaptive elicitation roadmap
+skinparam backgroundColor #101827
+skinparam defaultFontColor #F1F5F9
+skinparam hyperlinkColor #A9D0FF
+skinparam dpi 216
+skinparam defaultFontName Arial
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam ArrowColor #9FB2CD
+skinparam activity {
+ BackgroundColor #1C3453
+ BorderColor #9FB2CD
+ FontColor #F1F5F9
+ DiamondBackgroundColor #49351C
+ DiamondBorderColor #F2BA72
+ StartColor #F1F5F9
+ EndColor #F1F5F9
+}
+start
+:Review accepted scope, actors, sources and actual extracts;
+repeat
+ :Select one coherent goal and genuine information gap;
+ :Choose technique and prepare questions / evidence plan;
+ if (Required material, access and participation available?) then (yes)
+  :Conduct the bounded activity;
+  :Record actual date, sources, raw evidence and limitations;
+  :Separate interpretation and record actual feedback / pending review;
+  :Hand reviewed needs and explicit gaps to analysis; <<#173B34>>
+ else (not yet)
+  :Keep activity planned; record blocker and next action; <<#49351C>>
+  :Keep dependent commitment unresolved;
+ endif
+ :Update remaining questions, owner and dependent gates;
+repeat while (Another ready gap needs elicitation now?) is (yes) not (no)
+:Retain plan and actual activity records in their separate homes;
+stop
+legend bottom
+Undated sequence; no session duration, automatic schedule or participant commitment implied.
+Use LOG-001 / EXT-001–EXT-003 as actual starting evidence, not as completed interviews.
+Elicitation handoff does not establish requirement acceptance or technical feasibility.
+endlegend
+@enduml

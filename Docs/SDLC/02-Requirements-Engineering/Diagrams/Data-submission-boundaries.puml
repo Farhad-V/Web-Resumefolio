@@ -1,0 +1,48 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Resumefolio | Live presentation and submitted materials
+skinparam backgroundColor #101827
+skinparam defaultFontColor #F1F5F9
+skinparam hyperlinkColor #A9D0FF
+skinparam dpi 216
+skinparam defaultFontName Arial
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam ArrowColor #9FB2CD
+skinparam rectangle {
+ BackgroundColor #182436
+ BorderColor #9FB2CD
+ FontColor #F1F5F9
+ BackgroundColor #1C3453
+}
+top to bottom direction
+rectangle "Professional profile\nReusable professional information" as profile
+rectangle "Tailored resume\nIndependent selections, layout and overrides" as resume
+rectangle "Live employer view\nSelected content + permitted PDF/file retrieval" as live
+rectangle "Record actual submission\nCapture trigger and artifact details need definition" as capture #49351C
+rectangle "Preserved submitted materials\nResume and cover letter actually submitted" as submitted #173B34
+rectangle "User-identified actual artifacts\nResume + cover letter actually sent" as actual #49351C
+rectangle "Application history\nRelevant opportunity and progress context" as history #173B34
+profile --> resume : intended reuse / updates under explicit rules
+resume --> live : controlled sharing
+resume ..> capture : only if this is the actual submitted material
+actual --> capture : identify / validate actual set
+capture --> submitted : preserve actual submitted material
+submitted --> history : retained submission context
+note right of live
+Later saved changes may be reflected
+under explicit requirements.
+Direct retrieval remains authorized.
+end note
+note right of submitted
+Later source edits do not overwrite
+the preserved submitted copies.
+Deletion, correction and restoration
+rules still require specification.
+end note
+legend bottom
+Conceptual information boundaries; no storage design or automatic propagation selected.
+Cover letter capture is part of the submission context; it does not originate from the profile.
+The diagram does not define retention periods, access sessions or accepted detailed policies.
+endlegend
+@enduml

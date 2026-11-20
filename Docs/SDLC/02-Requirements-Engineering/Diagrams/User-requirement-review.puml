@@ -1,0 +1,38 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Method / document navigation. Scope-independent process/navigation; provider or runner examples are not MVP prerequisites.
+title Resumefolio | Actor-goal requirements review
+skinparam backgroundColor #101827
+skinparam defaultFontColor #F1F5F9
+skinparam hyperlinkColor #A9D0FF
+skinparam dpi 216
+skinparam defaultFontName Arial
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam ArrowColor #9FB2CD
+skinparam activity {
+ BackgroundColor #1C3453
+ BorderColor #9FB2CD
+ FontColor #F1F5F9
+ DiamondBackgroundColor #49351C
+ DiamondBorderColor #F2BA72
+ StartColor #F1F5F9
+ EndColor #F1F5F9
+}
+start
+:Identify actor perspective, context, sourced need and intended outcome;
+:Separate existing source from interpretation / unconfirmed policy;
+:Map primary domain and cross-cutting requirement owners;
+:Develop normal, alternative, denied, failed and recovery scenarios;
+if (Behavior, authority and observable criteria sufficiently defined?) then (yes)
+ :Review goal / scenarios with owner and record actual disposition; <<#173B34>>
+else (pending)
+ :Record missing input, owner and dependent decision gate; <<#49351C>>
+endif
+:Maintain actual source / requirement / scenario links;
+stop
+legend bottom
+Derived actor goals are not new interviews or universal access grants.
+Domain criteria own detail; user requirements preserve the intended outcome.
+No user validation or product Pass is claimed by this model.
+endlegend
+@enduml

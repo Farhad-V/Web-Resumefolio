@@ -1,0 +1,49 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Method / document navigation. Scope-independent process/navigation; provider or runner examples are not MVP prerequisites.
+title Resumefolio | Requirement review and recheck
+skinparam backgroundColor #101827
+skinparam defaultFontColor #F1F5F9
+skinparam hyperlinkColor #A9D0FF
+skinparam dpi 216
+skinparam defaultFontName Arial
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam ArrowColor #9FB2CD
+skinparam activity {
+ BackgroundColor #1C3453
+ BorderColor #9FB2CD
+ FontColor #F1F5F9
+ DiamondBackgroundColor #49351C
+ DiamondBorderColor #F2BA72
+ StartColor #F1F5F9
+ EndColor #F1F5F9
+}
+start
+:Identify revision, scope, criteria and actual participants / material;
+repeat
+ :Verify statement quality and set consistency;
+ :Validate intended use through suitable methods;
+ :Inspect related evidence, models and semantic coverage;
+ :Record actual findings, impacts and affected gates; <<#49351C>>
+ if (Correction or clarification needed?) then (yes)
+  :Resolve through elicitation / analysis / specification;
+  :Apply actual decisions and recheck affected records;
+ else (no identified correction)
+  :Retain evidence and review limitations;
+ endif
+repeat while (Further review / recheck required now?) is (yes) not (no)
+if (Blocking gaps remain for the next acceptance?) then (yes)
+ :Keep dependent acceptance unresolved; <<#49351C>>
+ :Record owner, next action and dependent gate;
+else (no)
+ :Prepare evidence for the next readiness / baseline assessment; <<#173B34>>
+ :Retain actual decisions and tracked legitimate follow-up;
+endif
+:Record actual outcome and identified revision;
+stop
+legend bottom
+A correction needs recheck evidence; a deferral is not resolution of the underlying issue.
+Missing evidence is not a passed review or successful product test.
+Only an actual owner decision against separate criteria establishes baseline acceptance.
+endlegend
+@enduml

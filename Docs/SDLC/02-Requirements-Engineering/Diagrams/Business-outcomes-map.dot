@@ -1,0 +1,28 @@
+// OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+digraph BusinessOutcomes {
+ graph [fontcolor="#F1F5F9"];
+ edge [fontcolor="#F1F5F9"];
+ graph [rankdir=LR,bgcolor="#101827",pad=0.35,ranksep=0.6,nodesep=0.35,fontname="Arial",fontsize=21,labelloc=t,
+ label="Resumefolio | Business outcome derivation\nAccepted planning objectives - proposed outcome records - evidence expected later"];
+ node [shape=box,style="rounded,filled",fontname="Arial",fontsize=12,color="#9FB2CD",fontcolor="#F1F5F9",margin="0.2,0.14",fillcolor="#1C3453"];
+ edge [color="#9FB2CD",arrowsize=0.7];
+ o1 [label="OBJ-01 / DEC-005\nManage professional information"];
+ o2 [label="OBJ-02 / DEC-004\nControlled sharing"];
+ o3 [label="OBJ-03 / DEC-003\nManual application tracking"];
+ o4 [label="OBJ-04 / DEC-002\nUnified working environment"];
+ o5 [label="OBJ-05 / DEC-001\nReal deployment readiness"];
+ b1 [label="BIZ-D01 | REUSE AND TAILOR\nRelevant professional presentation\nIndependent resume-specific choices",fillcolor="#382951"];
+ b2 [label="BIZ-D02 | CONTROL DISCLOSURE\nSelected protected content\nLimited employer retrieval",fillcolor="#382951"];
+ b3 [label="BIZ-D03 | PRESERVE HISTORY\nManual progress and actual submitted material\nLater source edits remain distinguishable",fillcolor="#382951"];
+ b4 [label="BIZ-D04 | COORDINATE WORK\nAgreed connected workflows\nResource-specific permissions retained",fillcolor="#382951"];
+ b5 [label="BIZ-D05 | OPERATE AND RECOVER\nUsable product within actual constraints\nMaintainable, evidence-based readiness",fillcolor="#382951"];
+ e1 [label="LATER EVIDENCE\nProfile / resume / evidence workflows\nIndependent tailoring and update cases",fillcolor="#173B34"];
+ e2 [label="LATER EVIDENCE\nAllowed and denied access\nDirect files / PDFs and owner controls",fillcolor="#173B34"];
+ e3 [label="LATER EVIDENCE\nCapture / progress workflows\nPreserved-copy comparison after edits",fillcolor="#173B34"];
+ e4 [label="LATER EVIDENCE\nCross-module and collaboration journeys\nActual Git / conditional execution checks",fillcolor="#173B34"];
+ e5 [label="LATER EVIDENCE\nTarget-environment checks and guidance\nDemonstrated restoration / integrity",fillcolor="#173B34"];
+ o1 -> b1 -> e1;o2 -> b2 -> e2;o3 -> b3 -> e3;o4 -> b4 -> e4;o5 -> b5 -> e5;
+ {rank=same;o1->o2->o3->o4->o5 [style=invis];}
+ {rank=same;b1;b2;b3;b4;b5;}
+ {rank=same;e1;e2;e3;e4;e5;}
+}

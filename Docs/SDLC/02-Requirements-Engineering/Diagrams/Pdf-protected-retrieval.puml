@@ -1,0 +1,42 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Resumefolio | Protected resume and PDF retrieval
+skinparam backgroundColor #101827
+skinparam defaultFontColor #F1F5F9
+skinparam hyperlinkColor #A9D0FF
+skinparam dpi 216
+skinparam defaultFontName Arial
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam ArrowColor #9FB2CD
+skinparam activity {
+ BackgroundColor #1C3453
+ BorderColor #9FB2CD
+ FontColor #F1F5F9
+ DiamondBackgroundColor #49351C
+ DiamondBorderColor #F2BA72
+ StartColor #F1F5F9
+ EndColor #F1F5F9
+}
+start
+:Identify requested resume / selected content / PDF variant;
+if (Sharing context eligible and request authorized?) then (yes)
+ if (Content selected; download enabled if requested?) then (yes)
+  if (Correct language / variant / rendition usable?) then (yes)
+   :Deliver only permitted content under serving policy; <<#173B34>>
+  else (missing / stale / failed)
+   :Show defined unavailable or processing outcome; <<#49351C>>
+  endif
+ else (no)
+  :Do not expose unselected or disabled material; <<#49351C>>
+ endif
+else (no)
+ :Do not disclose protected content; <<#49351C>>
+endif
+stop
+legend bottom
+Direct URLs follow the same resource and availability boundary.
+Conceptual checks; detailed session, cache and in-flight policy pending.
+Disabling access cannot remove an already downloaded copy.
+endlegend
+@enduml

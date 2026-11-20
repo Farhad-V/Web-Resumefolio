@@ -1,0 +1,22 @@
+// OWNER-MVP-2026-11-04 review: Mixed MVP / future. Retained broader-product associations require explicit future node labels; MVP uses only core/basic ProjectForge.
+digraph Feasibility {
+ graph [fontcolor="#F1F5F9"];
+ edge [fontcolor="#F1F5F9"];
+ graph [label="MVP + EXPLICIT FUTURE PATHS | feasibility assessment map",labelloc=t];
+ graph [rankdir=TB,bgcolor="#101827",pad=0.35,ranksep=0.45,nodesep=0.35,
+ fontname="Arial",fontsize=21,labelloc=t,label="Resumefolio | Feasibility assessment\nFive dimensions - conclusions require actual evidence"];
+ node [shape=box,style="rounded,filled",fontname="Arial",fontsize=14,color="#9FB2CD",fontcolor="#F1F5F9",margin="0.22,0.16"];
+ edge [color="#9FB2CD",arrowsize=0.7];
+ root [label="AGREED VERSION 1 SCOPE\nExisting resources, budget and solo delivery\nEvaluate options before dependent commitments",fillcolor="#31577D",fontcolor=white];
+ economic [label="ECONOMIC\nActual allowance and recurring costs\nCosted alternatives and owner decision",fillcolor="#1C3453"];
+ technical [label="TECHNICAL\nMVP core/API/basic Git/private media\nSecurity, storage and recovery evidence",fillcolor="#382951"];
+ operational [label="OPERATIONAL\nDeployment, maintenance and incidents\nFeasible solo procedures and workload",fillcolor="#173B34"];
+ legal [label="LEGAL / CONTRACTUAL\nIdentify applicable obligations\nDated authoritative findings and open questions",fillcolor="#4A2942"];
+ schedule [label="SCHEDULE\nFull engineering effort and dependencies\nUsable capacity and evidence-based forecast",fillcolor="#49351C"];
+ output [label="BOUNDED FINDINGS AND DECISION\nEvidence + limits + impacts + alternatives\nProceed / revise / defer / stop the evaluated option\nNo overall feasibility finding is recorded yet",fillcolor="#2C394F"];
+ root -> economic;root -> technical;root -> operational;root -> legal;root -> schedule;
+ economic -> output;technical -> output;operational -> output;legal -> output;schedule -> output;
+ {rank=same;economic;technical;operational;}
+ {rank=same;legal;schedule;}
+ technical -> legal [style=invis];operational -> schedule [style=invis];
+}

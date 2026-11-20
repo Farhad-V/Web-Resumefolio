@@ -1,0 +1,46 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Method / document navigation. Scope-independent process/navigation; provider or runner examples are not MVP prerequisites.
+title Resumefolio | Sprint planning and outcome review
+skinparam backgroundColor #101827
+skinparam defaultFontColor #F1F5F9
+skinparam hyperlinkColor #A9D0FF
+skinparam dpi 216
+skinparam defaultFontName Arial
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam ArrowColor #9FB2CD
+skinparam activity {
+ BackgroundColor #1C3453
+ BorderColor #9FB2CD
+ FontColor #F1F5F9
+ DiamondBackgroundColor #49351C
+ DiamondBorderColor #F2BA72
+ StartColor #F1F5F9
+ EndColor #F1F5F9
+}
+start
+:Identify authorized work context and reviewed Sprint rules;
+if (Authority and required planning conditions met?) then (yes)
+ :Define Sprint Goal and select eligible Backlog Items;
+ :Identify delivery plan and related tasks under explicit rules;
+ :Keep goal + selected items + plan as one Sprint Backlog;
+ :Adapt permitted work / plan changes under agreed authority;
+ :At the defined end / cancel point, assess actual work conditions;
+ if (Completion criteria met for assessed work?) then (yes)
+  :Record supported completion / acceptance outcome; <<#173B34>>
+ else (incomplete / unmet)
+  :Keep incomplete work distinguishable;
+  :Record explicit disposition / reselection under reviewed policy; <<#49351C>>
+ endif
+ :Record Sprint / goal outcome under defined rules;
+else (missing / denied)
+ :Do not claim valid planning or completion;
+ :Record permitted feedback or unresolved policy gate; <<#49351C>>
+endif
+stop
+legend bottom
+Conceptual review roadmap, not a final Sprint state machine.
+No fixed cadence, automatic carry-over or mandatory ceremony selected.
+Task completion and board position alone do not prove item acceptance.
+endlegend
+@enduml

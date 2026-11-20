@@ -1,0 +1,41 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Resumefolio | Protected-request authorization
+skinparam backgroundColor #101827
+skinparam defaultFontColor #F1F5F9
+skinparam hyperlinkColor #A9D0FF
+skinparam dpi 216
+skinparam defaultFontName Arial
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam ArrowColor #9FB2CD
+skinparam activity {
+ BackgroundColor #1C3453
+ BorderColor #9FB2CD
+ FontColor #F1F5F9
+ DiamondBackgroundColor #49351C
+ DiamondBorderColor #F2BA72
+ StartColor #F1F5F9
+ EndColor #F1F5F9
+}
+start
+:Identify requested protected resource and operation;
+if (Employer-sharing path?) then (yes)
+ :Evaluate eligible link and valid sharing context;
+ :Limit scope to selected content / permitted retrieval;
+else (account / client context)
+ :Evaluate valid identity or agreed client credential context;
+ :Identify explicit ownership, membership or administrative grants;
+endif
+if (Valid context and authority for this resource / action / state?) then (yes)
+ :Perform only the authorized requested operation; <<#173B34>>
+else (no)
+ :Deny protected operation / disclosure; <<#49351C>>
+endif
+stop
+legend bottom
+Conceptual requirements flow; authentication factors, protocols and timing remain to be defined.
+Successful sign-in or a role label alone does not grant every resource/action.
+Direct file/PDF and client requests remain within applicable authorization boundaries.
+endlegend
+@enduml

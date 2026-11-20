@@ -1,0 +1,45 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Method / document navigation. Scope-independent process/navigation; provider or runner examples are not MVP prerequisites.
+title Resumefolio | Specification working cycle
+skinparam backgroundColor #101827
+skinparam defaultFontColor #F1F5F9
+skinparam hyperlinkColor #A9D0FF
+skinparam dpi 216
+skinparam defaultFontName Arial
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam ArrowColor #9FB2CD
+skinparam activity {
+ BackgroundColor #1C3453
+ BorderColor #9FB2CD
+ FontColor #F1F5F9
+ DiamondBackgroundColor #49351C
+ DiamondBorderColor #F2BA72
+ StartColor #F1F5F9
+ EndColor #F1F5F9
+}
+start
+:Select analyzed needs, sources and accepted scope;
+:Choose authoritative domain record and shared rules;
+repeat
+ :Write obligation, context, rationale and actual status;
+ :Define criteria, verification methods and evidence needs;
+ :Link scenarios, data definitions, models and traceability;
+ :Review statement quality and cross-record consistency;
+ if (Missing evidence or material ambiguity?) then (yes)
+  :Record questions, owner and dependent gate; <<#49351C>>
+  :Return clarification to elicitation / analysis as needed;
+ else (no known blocker)
+  :Record actual review findings and dispositions;
+ endif
+repeat while (Further refinement needed before handoff?) is (yes) not (no)
+:Prepare identified candidate for requirement review; <<#173B34>>
+:Retain unresolved blockers and actual status;
+:Record acceptance only after an actual owner decision;
+stop
+legend bottom
+Candidate handoff is not M-02 acceptance or successful product verification.
+Use the separate baseline checklist and preserve the wider pre-coding agreement.
+Maintain source, requirement and future evidence links throughout change.
+endlegend
+@enduml

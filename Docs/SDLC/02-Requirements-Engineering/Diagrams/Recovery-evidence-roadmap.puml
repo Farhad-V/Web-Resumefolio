@@ -1,0 +1,45 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Resumefolio | Recovery evidence roadmap
+skinparam backgroundColor #101827
+skinparam defaultFontColor #F1F5F9
+skinparam hyperlinkColor #A9D0FF
+skinparam dpi 216
+skinparam defaultFontName Arial
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam ArrowColor #9FB2CD
+skinparam activity {
+ BackgroundColor #1C3453
+ BorderColor #9FB2CD
+ FontColor #F1F5F9
+ DiamondBackgroundColor #49351C
+ DiamondBorderColor #F2BA72
+ StartColor #F1F5F9
+ EndColor #F1F5F9
+}
+start
+:Define recovery loss scenario, usable state and RPO / RTO criteria;
+:Identify required records, artifacts, configuration and access relationships;
+if (Coverage, storage access and safe isolated drill ready?) then (yes)
+ :Select identified consistent recovery point / reconciliation procedure;
+ :Restore only in the authorized isolated environment;
+ :Measure actual timing and recovered data loss;
+ :Verify integrity, artifacts, references and core workflow outcomes;
+ :Reconcile old grants, deleted data, provider state and pending external effects;
+ if (Agreed coverage, access and recovery criteria supported?) then (yes)
+  :Record supported bounded recovery evidence; <<#173B34>>
+ else (unmet / incomplete)
+  :Record actual failures, limitations and required actions; <<#49351C>>
+ endif
+else (pending)
+ :Record missing prerequisites and dependent gate; <<#49351C>>
+endif
+:Route actual findings to the owner and readiness review;
+stop
+legend bottom
+Evidence roadmap, not a live recovery instruction or a successful drill.
+No numerical target, storage provider or automatic job replay selected.
+Backup existence does not demonstrate restored usability or safe access.
+endlegend
+@enduml

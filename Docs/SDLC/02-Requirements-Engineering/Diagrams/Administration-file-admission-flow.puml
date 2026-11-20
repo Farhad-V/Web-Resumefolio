@@ -1,0 +1,46 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Resumefolio | File admission and truthful outcomes
+skinparam backgroundColor #101827
+skinparam defaultFontColor #F1F5F9
+skinparam hyperlinkColor #A9D0FF
+skinparam dpi 216
+skinparam defaultFontName Arial
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam ArrowColor #9FB2CD
+skinparam activity {
+ BackgroundColor #1C3453
+ BorderColor #9FB2CD
+ FontColor #F1F5F9
+ DiamondBackgroundColor #49351C
+ DiamondBorderColor #F2BA72
+ StartColor #F1F5F9
+ EndColor #F1F5F9
+}
+start
+:Identify actor, target resource, operation and effective policy;
+if (Required resource/action authority present?) then (yes)
+ :Evaluate applicable content, size, quota and resource conditions;
+ if (Admission conditions satisfied?) then (yes)
+  :Perform required processing and association;
+  if (Completion conditions and applicable limits hold?) then (yes)
+   :Expose usable success and consistent accounting; <<#173B34>>
+  else (failure / interruption)
+   :Do not expose partial work as successful content; <<#49351C>>
+   :Preserve retained references; apply agreed failure / cleanup rules;
+  endif
+ else (no)
+  :Reject or report the defined admission failure; <<#49351C>>
+ endif
+else (no)
+ :Deny protected operation without unrelated disclosure; <<#49351C>>
+endif
+:Report the actual bounded outcome to the authorized context;
+stop
+legend bottom
+Conceptual behavior, not a storage design or selected transaction/validation order.
+Concurrent admissions must obey the agreed quota; a single early check is not sufficient evidence.
+Numerical limits, formats, retention, cleanup timing and feedback rules require decisions.
+endlegend
+@enduml

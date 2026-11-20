@@ -1,0 +1,40 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Method / document navigation. Scope-independent process/navigation; provider or runner examples are not MVP prerequisites.
+title Resumefolio | Specification review roadmap
+skinparam backgroundColor #101827
+skinparam defaultFontColor #F1F5F9
+skinparam hyperlinkColor #A9D0FF
+skinparam dpi 216
+skinparam defaultFontName Arial
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam ArrowColor #9FB2CD
+skinparam activity {
+ BackgroundColor #1C3453
+ BorderColor #9FB2CD
+ FontColor #F1F5F9
+ DiamondBackgroundColor #49351C
+ DiamondBorderColor #F2BA72
+ StartColor #F1F5F9
+ EndColor #F1F5F9
+}
+start
+:Use accepted scope, constraints and actual elicitation sources;
+:Review proposed user and YAML / CI-CD specification records;
+:Resolve affected behavior, permission, lifecycle and target questions;
+:Investigate decisive provider / resource / execution dependencies early;
+:Reconcile SRS, domains, dictionary, scenarios and final identifiers;
+:Record actual traceability, review findings and unresolved blockers;
+if (Baseline criteria satisfied for an identified candidate?) then (yes)
+ :Seek and record actual owner baseline disposition; <<#173B34>>
+else (pending / unmet)
+ :Record gap, owner and dependent gate;
+ :Revise affected records and review again; <<#49351C>>
+endif
+stop
+legend bottom
+Current M-02 baseline remains pending; this is a review roadmap.
+Documentation checks are not product verification or provider approval.
+The wider pre-implementation agreement still precedes product coding.
+endlegend
+@enduml

@@ -1,0 +1,47 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Method / document navigation. Scope-independent process/navigation; provider or runner examples are not MVP prerequisites.
+title Resumefolio | UC-D05 actual material and later edits
+skinparam backgroundColor #101827
+skinparam defaultFontColor #F1F5F9
+skinparam hyperlinkColor #A9D0FF
+skinparam dpi 216
+skinparam defaultFontName Arial
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam ArrowColor #9FB2CD
+skinparam activity {
+ BackgroundColor #1C3453
+ BorderColor #9FB2CD
+ FontColor #F1F5F9
+ DiamondBackgroundColor #49351C
+ DiamondBorderColor #F2BA72
+ StartColor #F1F5F9
+ EndColor #F1F5F9
+}
+start
+:Identify authorized application and user-reported actual submitted set;
+:Check actual resume / cover letter, provenance and completeness policy;
+if (Required actual material conditions satisfied?) then (yes)
+ :Capture defined set in its historical context;
+ if (Required preservation completed?) then (yes)
+  :Identify preserved material separately from current sources; <<#173B34>>
+  :Change current resume / letter / source PDF in controlled example;
+  :Inspect historical set against the original actual material;
+  if (History remains independent as required?) then (yes)
+   :Expected scenario outcome identified, not an actual Pass; <<#173B34>>
+  else (unexpected change)
+   :Later execution would record failure / investigation; <<#49351C>>
+  endif
+ else (failed / partial)
+  :Keep preservation incomplete and prior history protected by policy; <<#49351C>>
+ endif
+else (incomplete)
+ :Do not claim complete preservation; show defined next action; <<#49351C>>
+endif
+stop
+legend bottom
+Proposed scenario model; no actual capture or job submission performed.
+Current live content need not be the file actually submitted.
+Capture trigger, progress coupling, correction and retention remain decisions.
+endlegend
+@enduml

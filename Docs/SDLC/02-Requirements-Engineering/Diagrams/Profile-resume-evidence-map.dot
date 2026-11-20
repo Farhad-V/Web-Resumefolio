@@ -1,0 +1,34 @@
+// OWNER-MVP-2026-11-04 review: Method / document navigation. Scope-independent process/navigation; provider or runner examples are not MVP prerequisites.
+digraph profiles {
+ graph [fontcolor="#F1F5F9"];
+ edge [fontcolor="#F1F5F9"];
+ graph [rankdir=LR,bgcolor="#101827",pad=0.3,nodesep=0.55,ranksep=0.8,fontname="Arial",fontsize=21,label="Resumefolio | Reuse, tailoring and evidence boundaries",labelloc=t];
+ node [shape=box,style="rounded,filled",fillcolor="#1C3453",color="#9FB2CD",fontcolor="#F1F5F9",fontname="Arial",fontsize=14,margin="0.18,0.14"];
+ edge [color="#9FB2CD",fontname="Arial",fontsize=12,fontcolor="#F1F5F9"];
+ profile [label="Reusable professional profile
+Experience / education / skills
+Manually maintained EN / DE content"];
+ evidence [label="Supporting skill / project evidence
+Text / media / files / diagrams / links"];
+ a [label="Tailored resume A
+Own selections / layout / overrides",fillcolor="#382951"];
+ b [label="Tailored resume B
+Own selections / layout / overrides",fillcolor="#382951"];
+ live [label="Controlled live view / PDF
+Defined revision + selected content
+Authorization and availability rules"];
+ history [label="Actual submitted-material history
+Separately identified and preserved
+Later source edits do not overwrite",fillcolor="#173B34"];
+ policy [label="Source propagation / publication
+Explicit policies still to decide",fillcolor="#49351C"];
+ profile -> a [label="explicit preview / select / apply"];
+ profile -> b [label="explicit preview / select / apply"];
+ evidence -> a [label="independent selection"];
+ evidence -> b [label="independent selection"];
+ a -> live [label="defined rendition / sharing"];
+ a -> history [label="only actual submitted capture",style=dashed];
+ b -> policy [label="same invariants",style=dashed];
+ {rank=same;profile;evidence;}
+ {rank=same;a;b;}
+}

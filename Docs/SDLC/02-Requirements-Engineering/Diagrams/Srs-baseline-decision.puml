@@ -1,0 +1,39 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Method / document navigation. Scope-independent process/navigation; provider or runner examples are not MVP prerequisites.
+title Resumefolio | Distributed SRS baseline review
+skinparam backgroundColor #101827
+skinparam defaultFontColor #F1F5F9
+skinparam hyperlinkColor #A9D0FF
+skinparam dpi 216
+skinparam defaultFontName Arial
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam ArrowColor #9FB2CD
+skinparam activity {
+ BackgroundColor #1C3453
+ BorderColor #9FB2CD
+ FontColor #F1F5F9
+ DiamondBackgroundColor #49351C
+ DiamondBorderColor #F2BA72
+ StartColor #F1F5F9
+ EndColor #F1F5F9
+}
+start
+:Identify candidate and accepted scope / constraints;
+:Inspect source, user outcomes and primary behavior / quality records;
+:Reconcile scenarios, dictionary, identifiers, priorities and traceability;
+:Inspect actual dependency findings and unresolved acceptance blockers;
+if (Requirements baseline criteria satisfied?) then (yes)
+ :Present identifiable candidate and actual evidence to owner;
+ :Record actual owner disposition and remaining obligations; <<#173B34>>
+else (pending / unmet)
+ :Record findings, owner and dependent gates;
+ :Revise affected records and recheck; <<#49351C>>
+endif
+stop
+legend bottom
+M-02 remains pending; no automatic acceptance follows document completion.
+Requirements acceptance is separate from product and release verification.
+The wider pre-implementation agreement still precedes coding.
+endlegend
+@enduml

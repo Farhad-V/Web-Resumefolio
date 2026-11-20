@@ -1,0 +1,44 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Resumefolio | Business outcome assessment
+skinparam backgroundColor #101827
+skinparam defaultFontColor #F1F5F9
+skinparam hyperlinkColor #A9D0FF
+skinparam dpi 216
+skinparam defaultFontName Arial
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam ArrowColor #9FB2CD
+skinparam activity {
+ BackgroundColor #1C3453
+ BorderColor #9FB2CD
+ FontColor #F1F5F9
+ DiamondBackgroundColor #49351C
+ DiamondBorderColor #F2BA72
+ StartColor #F1F5F9
+ EndColor #F1F5F9
+}
+start
+:Identify sourced business outcome and intended beneficiary;
+:Define observable criterion, scenario and evidence method;
+:Identify candidate / environment and assessment limits;
+if (Suitable actual evidence available?) then (yes)
+ :Assess observations against the agreed criterion;
+ if (Criterion supported within evaluated scope?) then (yes)
+  :Record supported conclusion with evidence and limits; <<#173B34>>
+ else (not met / inconclusive)
+  :Record unmet need, uncertainty and affected commitments; <<#49351C>>
+  :Analyze options and route material choices to the owner;
+ endif
+else (not yet)
+ :Keep assessment planned and record evidence gap; <<#49351C>>
+endif
+:Preserve actual result / plan status and next action;
+:Use separate criteria and actual decisions for baseline / release;
+stop
+legend bottom
+Intended value is not a measured benefit; a planned test is not a result.
+No hiring, ATS, productivity or larger-capacity outcome is guaranteed.
+Material scope, cost and delivery changes remain explicit owner decisions.
+endlegend
+@enduml

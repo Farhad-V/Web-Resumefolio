@@ -6,6 +6,6 @@ Resumefolio is a private workspace for profiles, tailored resumes/portfolios, co
 - ProjectForge: a separate user-scoped API system with real Git transfers/permissions/file-history, issues and simple Kanban.
 - After MVP: private mail/calendar, AI, advanced review/releases, general Sprints and user workflow/deployment execution.
 
-[Documentation](docs/MVP/README.md) · [Selected Baseline](docs/MVP/baseline/README.md) · [Backlog and Milestones](docs/MVP/Project-Management/README.md) · [Private Kanban](https://github.com/users/Farhad-V/projects/7/views/1)
+[Documentation](Docs/Mvp-documentation.md) · [Stage 5: Agile Iterative Development](Docs/SDLC/Sdlc-guide.md#stage-5-agile-iterative-development) · [Selected Baseline](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/baseline/README.md) · [Private Kanban](https://github.com/users/Farhad-V/projects/7/views/1)
 
-Capacity is 20 total project hours/week. Setup, security, capacity and demonstrated restore remain implementation/Release gates; no fixed delivery deadline is committed.
+The MVP is the planned first stable release, version `1.0.0`. See [deployment and release](Docs/SDLC/06-Deployment-release/Deployment-release.md) for its verification and publication criteria.

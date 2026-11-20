@@ -1,0 +1,49 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Future after MVP. Provider, advanced Sprint/review, or untrusted execution requirement retained as deferred.
+title AFTER MVP — Resumefolio | Git review and merge
+skinparam backgroundColor #101827
+skinparam defaultFontColor #F1F5F9
+skinparam hyperlinkColor #A9D0FF
+skinparam dpi 216
+skinparam defaultFontName Arial
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam ArrowColor #9FB2CD
+skinparam activity {
+ BackgroundColor #1C3453
+ BorderColor #9FB2CD
+ FontColor #F1F5F9
+ DiamondBackgroundColor #49351C
+ DiamondBorderColor #F2BA72
+ StartColor #F1F5F9
+ EndColor #F1F5F9
+}
+start
+:Identify pull request, source / target and current revisions;
+if (Actor has required merge authority?) then (yes)
+ :Evaluate current request, review and target policies;
+ if (Current conditions eligible?) then (yes)
+  :Evaluate merge with selected strategy and current target;
+  if (Allowed result without unresolved conflict?) then (yes)
+   :Apply only the eligible merge under defined concurrent-update rules;
+   if (Completion established?) then (yes)
+    :Record resulting history and actual merged outcome; <<#173B34>>
+   else (failed / uncertain)
+    :Record bounded outcome and reconciliation needs; <<#49351C>>
+   endif
+  else (conflict / changed state)
+   :Retain unmerged outcome and show permitted resolution path; <<#49351C>>
+  endif
+ else (no)
+  :Report unmet conditions without false merged status; <<#49351C>>
+ endif
+else (no)
+ :Deny merge without protected disclosure; <<#49351C>>
+endif
+stop
+legend bottom
+Conceptual flow; no merge strategy or approval count selected.
+Updated revisions require defined review / conflict handling.
+A merge does not inherently authorize production deployment.
+endlegend
+@enduml

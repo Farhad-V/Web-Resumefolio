@@ -1,0 +1,20 @@
+// OWNER-MVP-2026-11-04 review: Method / document navigation. Scope-independent process/navigation; provider or runner examples are not MVP prerequisites.
+digraph TechniqueSelection {
+ graph [fontcolor="#F1F5F9"];
+ edge [fontcolor="#F1F5F9"];
+ graph [rankdir=LR,bgcolor="#101827",pad=0.35,ranksep=0.7,nodesep=0.3,fontname="Arial",fontsize=21,labelloc=t,
+ label="Resumefolio | Choose a technique for the information gap\nUse the lightest suitable method - participation and evidence limits remain explicit"];
+ node [shape=box,style="rounded,filled",fontname="Arial",fontsize=12,color="#9FB2CD",fontcolor="#F1F5F9",margin="0.2,0.14",fillcolor="#1C3453"];
+ edge [color="#9FB2CD",arrowsize=0.7,fontname="Arial",fontsize=10];
+ gap [label="IDENTIFY THE GAP\nActor goal + known scope\nMissing information / evidence",fillcolor="#31577D",fontcolor=white];
+ documents [label="EXISTING KNOWLEDGE\nDocument analysis\nExact source / revision and interpretation"];
+ discussion [label="GOALS AND RULES\nFocused owner discussion / interview\nActual answers and reviewed meaning"];
+ walkthrough [label="WORKFLOW OR INTERACTION\nScenario walkthrough / prototype\nActual feedback and unresolved behavior",fillcolor="#382951"];
+ observation [label="ACTUAL CURRENT PRACTICE\nObservation with suitable permission\nObserved steps, context and limitations",fillcolor="#382951"];
+ workshop [label="COMPETING PERSPECTIVES\nWorkshop / brainstorming if suitable\nReal participants, options and disagreement",fillcolor="#49351C"];
+ survey [label="BROADER USER PATTERN\nSurvey with a real relevant population\nActual responses and sampling limits",fillcolor="#49351C"];
+ output [label="ACTUAL RECORD AND HANDOFF\nMethod / rationale + source / date\nSeparate raw evidence and interpretation\nReview status + owner / next action / gate",fillcolor="#173B34"];
+ gap -> documents;gap -> discussion;gap -> walkthrough;gap -> observation;gap -> workshop;gap -> survey;
+ documents -> output;discussion -> output;walkthrough -> output;observation -> output;workshop -> output;survey -> output;
+ {rank=same;documents;discussion;walkthrough;observation;workshop;survey;}
+}

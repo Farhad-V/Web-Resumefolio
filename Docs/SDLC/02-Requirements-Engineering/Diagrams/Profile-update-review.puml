@@ -1,0 +1,46 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Resumefolio | Shared-profile update review
+skinparam backgroundColor #101827
+skinparam defaultFontColor #F1F5F9
+skinparam hyperlinkColor #A9D0FF
+skinparam dpi 216
+skinparam defaultFontName Arial
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam ArrowColor #9FB2CD
+skinparam activity {
+ BackgroundColor #1C3453
+ BorderColor #9FB2CD
+ FontColor #F1F5F9
+ DiamondBackgroundColor #49351C
+ DiamondBorderColor #F2BA72
+ StartColor #F1F5F9
+ EndColor #F1F5F9
+}
+start
+:Identify authorized source change and affected resume contexts;
+if (Propagation policy defined for this change?) then (yes)
+ :Evaluate each affected selection / field under that policy;
+ if (Content omitted from this resume?) then (yes)
+  :Preserve deliberate omission; <<#173B34>>
+ else (selected)
+  if (Resume-specific override applies?) then (yes)
+   :Preserve override under defined precedence rules; <<#173B34>>
+  else (no override)
+   :Apply only the agreed linked-content update behavior;
+  endif
+ endif
+ :Handle user review / conflicts under the explicit update policy;
+ :Apply separate save / publication / PDF revision rules;
+else (pending)
+ :Record unresolved propagation decision and affected gate; <<#49351C>>
+endif
+:Do not overwrite actual submitted copies through later source changes;
+stop
+legend bottom
+Conceptual decision flow, not an automatic propagation implementation.
+Evaluate affected fields/selections individually; no update trigger selected.
+Independent resume layouts and other resumes' overrides remain protected.
+endlegend
+@enduml

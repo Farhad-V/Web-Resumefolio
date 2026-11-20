@@ -1,0 +1,47 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Future after MVP. Provider, advanced Sprint/review, or untrusted execution requirement retained as deferred.
+title AFTER MVP — Resumefolio | Google operation outcomes
+skinparam backgroundColor #101827
+skinparam defaultFontColor #F1F5F9
+skinparam hyperlinkColor #A9D0FF
+skinparam dpi 216
+skinparam defaultFontName Arial
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam ArrowColor #9FB2CD
+skinparam activity {
+ BackgroundColor #1C3453
+ BorderColor #9FB2CD
+ FontColor #F1F5F9
+ DiamondBackgroundColor #49351C
+ DiamondBorderColor #F2BA72
+ StartColor #F1F5F9
+ EndColor #F1F5F9
+}
+start
+:Identify intended operation, user and selected account / calendar;
+if (Product authority and provider grant valid?) then (yes)
+ :Check operation-specific inputs and user intent;
+ if (Defined conditions satisfied?) then (yes)
+  :Perform bounded authorized provider work;
+  if (Result supported by provider evidence?) then (yes)
+   :Record actual accepted / rejected / partial result;
+  else (unknown)
+   :Preserve uncertainty and reconcile under agreed policy; <<#49351C>>
+  endif
+  :Apply only effects established by the reconciled outcome;
+ else (no)
+  :Report invalid or incomplete request; <<#49351C>>
+ endif
+else (no)
+ :Do not perform protected provider operation;
+ :Show permitted access / reconnect guidance; <<#49351C>>
+endif
+:Show truthful bounded outcome without secrets;
+stop
+legend bottom
+Send acceptance is not recipient delivery or read confirmation.
+Uncertain outbound sends need reconciliation before retry.
+No actual account connection or provider operation is performed here.
+endlegend
+@enduml

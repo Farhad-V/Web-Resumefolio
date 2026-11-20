@@ -1,0 +1,51 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Method / document navigation. Scope-independent process/navigation; provider or runner examples are not MVP prerequisites.
+title Resumefolio | Requirements change management
+skinparam backgroundColor #101827
+skinparam defaultFontColor #F1F5F9
+skinparam hyperlinkColor #A9D0FF
+skinparam dpi 216
+skinparam defaultFontName Arial
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam ArrowColor #9FB2CD
+skinparam activity {
+ BackgroundColor #1C3453
+ BorderColor #9FB2CD
+ FontColor #F1F5F9
+ DiamondBackgroundColor #49351C
+ DiamondBorderColor #F2BA72
+ StartColor #F1F5F9
+ EndColor #F1F5F9
+}
+start
+:Record requested change, reason, source and current revision;
+:Distinguish routine correction from changed meaning / commitment;
+:Trace affected records, dependencies, evidence and consequences;
+if (New owner decision required?) then (yes)
+ :Present options, recommendation and remaining uncertainty; <<#49351C>>
+ if (Actual decision authorizes the proposed update?) then (yes)
+  :Record decision, rationale, revision and conditions;
+ else (rejected / deferred / pending)
+  :Retain actual outcome or pending status and reasons; <<#49351C>>
+  :Keep proposal unapplied; record owner, next action and gate;
+  stop
+ endif
+else (within existing authority)
+ :Proceed within accepted meaning and existing authorization;
+endif
+:Update authoritative text, criteria, models, definitions and links; <<#173B34>>
+:Re-review affected content and evidence applicability;
+if (Relevant checks and review complete?) then (yes)
+ :Preserve focused revision and actual review outcome;
+else (not yet)
+ :Record findings and keep dependent acceptance unresolved; <<#49351C>>
+endif
+:Update baseline references only through an actual baseline decision;
+stop
+legend bottom
+Requirement state, delivery state and verification result are distinct.
+Accepted snapshots remain retrievable; a new commit alone is not acceptance.
+Material scope, spending and delivery changes require an explicit owner decision.
+endlegend
+@enduml

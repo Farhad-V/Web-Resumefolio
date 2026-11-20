@@ -1,0 +1,28 @@
+// OWNER-MVP-2026-11-04 review: Method / document navigation. Scope-independent process/navigation; provider or runner examples are not MVP prerequisites.
+digraph reading {
+ graph [fontcolor="#F1F5F9"];
+ edge [fontcolor="#F1F5F9"];
+ graph [rankdir=TB,bgcolor="#101827",pad=0.3,nodesep=0.4,ranksep=0.6,fontname="Arial",fontsize=21,label="Resumefolio | Distributed specification reading map",labelloc=t];
+ node [shape=box,style="rounded,filled",fillcolor="#1C3453",color="#9FB2CD",fontcolor="#F1F5F9",fontname="Arial",fontsize=14,margin="0.18,0.14"];
+ edge [color="#9FB2CD"];
+ entry [label="SRS entry point + accepted Scope
+Product boundary / levels / constraints",fillcolor="#382951"];
+ goals [label="Business outcomes + actor goals
+User Requirements: proposed actor goals",fillcolor="#49351C"];
+ presentation [label="Professional workflows
+Profiles / resumes / portfolio
+PDF + sharing / applications / Google"];
+ work [label="Work and collaboration
+Projects / Kanban / Sprints / real Git
+YAML + CI/CD: proposed controlled execution",fillcolor="#49351C"];
+ cross [label="Cross-cutting contracts
+Accounts / lifecycle / domain / interfaces
+Administration / quality + security + recovery"];
+ support [label="Shared meaning and actual evidence
+Dictionary / scenarios / questions
+Traceability / findings / baseline criteria",fillcolor="#173B34"];
+ entry -> goals;
+ goals -> presentation; goals -> work;
+ presentation -> cross; work -> cross;
+ cross -> support;
+}

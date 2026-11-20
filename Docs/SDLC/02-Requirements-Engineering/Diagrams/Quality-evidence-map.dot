@@ -1,0 +1,32 @@
+// OWNER-MVP-2026-11-04 review: Method / document navigation. Scope-independent process/navigation; provider or runner examples are not MVP prerequisites.
+digraph quality {
+ graph [fontcolor="#F1F5F9"];
+ edge [fontcolor="#F1F5F9"];
+ graph [rankdir=TB,bgcolor="#101827",pad=0.3,nodesep=0.45,ranksep=0.65,fontname="Arial",fontsize=21,label="Resumefolio | Quality areas and required evidence",labelloc=t];
+ node [shape=box,style="rounded,filled",fillcolor="#1C3453",color="#9FB2CD",fontcolor="#F1F5F9",fontname="Arial",fontsize=14,margin="0.18,0.14"];
+ edge [color="#9FB2CD",fontname="Arial",fontsize=12,fontcolor="#F1F5F9"];
+ contract [label="Reviewed quality scenario
+Stimulus + environment + response
+Measure / criterion + method + owner",fillcolor="#382951"];
+ service [label="QSR-D01-D04: Service quality
+Performance / capacity
+Accessibility / availability"];
+ trust [label="QSR-D05-D09: Trust and integrity
+Access / secrets / safe content
+Truthful outcomes / retention",fillcolor="#49351C"];
+ recovery [label="QSR-D10-D12: Recovery
+Coverage / consistent restoration
+Targets / restored access",fillcolor="#173B34"];
+ ops [label="QSR-D13-D14: Operation and change
+Useful restricted evidence
+Guides / compatibility / update recovery"];
+ evidence [label="Later actual evidence
+Identified candidate / data / workload / environment
+Expected vs actual + measurements + limitations"];
+ decision [label="Owner-reviewed disposition
+Supported result / blocker / explicit limitation
+No plan or backup file alone is a Pass",fillcolor="#382951"];
+ contract -> service; contract -> trust; contract -> recovery; contract -> ops;
+ service -> evidence; trust -> evidence; recovery -> evidence; ops -> evidence;
+ evidence -> decision;
+}

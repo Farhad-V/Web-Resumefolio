@@ -1,0 +1,45 @@
+@startuml
+left to right direction
+skinparam backgroundColor #101827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F1F5F9
+skinparam defaultFontSize 16
+skinparam dpi 216
+skinparam shadowing false
+skinparam ArrowColor #A6B8D0
+skinparam actorBorderColor #A6B8D0
+skinparam actorFontColor #F1F5F9
+skinparam rectangle {
+ BackgroundColor #182436
+ BorderColor #A6B8D0
+ FontColor #F1F5F9
+}
+skinparam usecase {
+ BackgroundColor #243C57
+ BorderColor #A6B8D0
+ FontColor #F1F5F9
+}
+
+title Resumefolio | Who uses the MVP?
+
+actor "Invited user" as user
+actor "Employer viewer" as employer
+actor "Administrator" as admin
+actor "Repository member" as member
+
+rectangle "Resumefolio Core" {
+ usecase "Tailor and publish\na resume" as resume
+ usecase "View selected shared\nmaterial" as share
+ usecase "Track job applications" as apply
+ usecase "Manage account access" as accounts
+}
+rectangle "ProjectForge" {
+ usecase "Use Git, repository issues\nand simple Kanban" as git
+}
+
+user --> resume
+user --> apply
+employer --> share
+admin --> accounts
+member --> git
+@enduml

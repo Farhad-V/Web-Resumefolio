@@ -1,0 +1,50 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title Resumefolio | Data retirement review
+skinparam backgroundColor #101827
+skinparam defaultFontColor #F1F5F9
+skinparam hyperlinkColor #A9D0FF
+skinparam dpi 216
+skinparam defaultFontName Arial
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam ArrowColor #9FB2CD
+skinparam activity {
+ BackgroundColor #1C3453
+ BorderColor #9FB2CD
+ FontColor #F1F5F9
+ DiamondBackgroundColor #49351C
+ DiamondBorderColor #F2BA72
+ StartColor #F1F5F9
+ EndColor #F1F5F9
+}
+start
+:Identify resource, requested action and actor;
+if (Applicable authority established?) then (yes)
+ :Identify references, submitted copies and dependent data;
+ if (Lifecycle policy and consequences decided?) then (yes)
+  :Evaluate retention, access and recovery constraints;
+  if (Action eligible under agreed policy?) then (yes)
+   :Perform only the authorized bounded operation;
+   if (Required completion conditions met?) then (yes)
+    :Record actual outcome and defined accounting effects; <<#173B34>>
+   else (partial / failed)
+    :Record incomplete outcome and recovery / retry needs; <<#49351C>>
+   endif
+  else (no)
+   :Do not perform ineligible removal; <<#49351C>>
+  endif
+ else (pending)
+  :Record policy gap for owner review; <<#49351C>>
+ endif
+else (no)
+ :Deny protected operation without disclosure; <<#49351C>>
+endif
+:Expose only the permitted truthful outcome;
+stop
+floating note right
+Conceptual decision roadmap, not an implemented deletion process.
+Unlink, archive, logical deletion and physical reclamation differ.
+No retention period, cascade, cleanup job or restore guarantee is selected.
+end note
+@enduml

@@ -1,0 +1,22 @@
+// OWNER-MVP-2026-11-04 review: Method / document navigation. Scope-independent process/navigation; provider or runner examples are not MVP prerequisites.
+digraph ManagementTraceability {
+ graph [fontcolor="#F1F5F9"];
+ edge [fontcolor="#F1F5F9"];
+ graph [rankdir=TB,bgcolor="#101827",pad=0.35,ranksep=0.5,nodesep=0.4,fontname="Arial",fontsize=21,labelloc=t,
+ label="Resumefolio | Requirements traceability\nRelationships are navigable both ways - actual artifacts may still be pending"];
+ node [shape=box,style="rounded,filled",fontname="Arial",fontsize=14,color="#9FB2CD",fontcolor="#F1F5F9",margin="0.22,0.16",fillcolor="#1C3453"];
+ edge [color="#9FB2CD",arrowsize=0.7,dir=both,fontname="Arial",fontsize=12];
+ source [label="SOURCES / OBJECTIVES / SCOPE\nExact context and accepted decisions",fillcolor="#31577D",fontcolor=white];
+ requirement [label="REQUIREMENT / RULE\nStable identity + revision + actual state\nBehavior, rationale and dependencies"];
+ views [label="SCENARIOS / CRITERIA / DEFINITIONS\nNormal, denied and failure paths\nMeaningful coverage and planned verification"];
+ delivery [label="WORK / DESIGN\nLive work tracking and actual design records\nLinked to the relevant requirement revision",fillcolor="#382951"];
+ evidence [label="LATER VERIFICATION EVIDENCE\nCandidate, environment and criterion revision\nActual results and limitations",fillcolor="#173B34"];
+ change [label="CHANGE / QUESTION / REVIEW CONTEXT\nImpact, owner, next action and gate\nActual decisions and preserved history",fillcolor="#49351C"];
+ source -> requirement;
+ requirement -> views;
+ views -> delivery;
+ delivery -> evidence;
+ requirement -> change [style=dashed];
+ change -> evidence [style=dashed,label="evidence applicability"];
+ {rank=same;requirement;change;}
+}

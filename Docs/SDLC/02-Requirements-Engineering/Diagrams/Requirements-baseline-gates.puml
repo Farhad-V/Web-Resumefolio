@@ -1,0 +1,43 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Method / document navigation. Scope-independent process/navigation; provider or runner examples are not MVP prerequisites.
+title Resumefolio | M-02 criteria and actual owner outcome
+skinparam backgroundColor #101827
+skinparam defaultFontColor #F1F5F9
+skinparam hyperlinkColor #A9D0FF
+skinparam dpi 216
+skinparam defaultFontName Arial
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam ArrowColor #9FB2CD
+skinparam activity {
+ BackgroundColor #1C3453
+ BorderColor #9FB2CD
+ FontColor #F1F5F9
+ DiamondBackgroundColor #49351C
+ DiamondBorderColor #F2BA72
+ StartColor #F1F5F9
+ EndColor #F1F5F9
+}
+start
+:Identify candidate / artifacts and authoritative source boundaries;
+:Assess proposed RBC-D01-D12 using actual stage-appropriate evidence;
+:Inspect open questions, findings and retained dependency gates;
+if (Acceptance-blocking ambiguity / prerequisite unmet?) then (yes)
+ :Record affected blocker, owner and required next action;
+ :Revise / obtain findings and recheck; <<#49351C>>
+else (no blocker established by assessment)
+ :Verify any follow-up is explicit, justified and compatible with mandatory gates;
+ :Present identified candidate, assessment and limits to owner;
+ if (Actual owner disposition recorded?) then (yes)
+  :Record exact outcome, revision, date, rationale and conditions; <<#173B34>>
+ else (not yet)
+  :Keep baseline pending; <<#49351C>>
+ endif
+endif
+stop
+legend bottom
+All RBC criteria remain proposed / pending in this revision.
+M-01 acceptance and existing GAP-D follow-up retain their original history.
+M-02 is separate from design, product tests, restoration and release acceptance.
+endlegend
+@enduml

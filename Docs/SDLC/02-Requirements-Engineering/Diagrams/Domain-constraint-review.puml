@@ -1,0 +1,42 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Method / document navigation. Scope-independent process/navigation; provider or runner examples are not MVP prerequisites.
+title Resumefolio | Constraint review
+skinparam backgroundColor #101827
+skinparam defaultFontColor #F1F5F9
+skinparam hyperlinkColor #A9D0FF
+skinparam dpi 216
+skinparam defaultFontName Arial
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam ArrowColor #9FB2CD
+skinparam activity {
+ BackgroundColor #1C3453
+ BorderColor #9FB2CD
+ FontColor #F1F5F9
+ DiamondBackgroundColor #49351C
+ DiamondBorderColor #F2BA72
+ StartColor #F1F5F9
+ EndColor #F1F5F9
+}
+start
+:Identify candidate rule / constraint and affected behavior;
+:Classify domain rule, policy, project constraint or external obligation;
+:Locate authority, source date and actual applicability facts;
+if (Authority and applicability established?) then (yes)
+ :Trace affected requirements and realistic options;
+ if (Material conflict or change?) then (yes)
+  :Record impacts, costs, risks and owner disposition; <<#49351C>>
+ else (no)
+  :Record justified compatible treatment; <<#173B34>>
+ endif
+ :Update reviewed requirements and dependent design decisions;
+ :Plan and later retain actual verification evidence;
+else (pending)
+ :Record gap, owner and dependent decision gate; <<#49351C>>
+endif
+stop
+legend bottom
+Published guidance, project interpretation and actual verification are distinct.
+No unknown applicability is treated as established compliance.
+endlegend
+@enduml

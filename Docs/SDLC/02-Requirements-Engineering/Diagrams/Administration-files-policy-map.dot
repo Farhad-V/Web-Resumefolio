@@ -1,0 +1,23 @@
+// OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+digraph FilePolicy {
+ graph [fontcolor="#F1F5F9"];
+ edge [fontcolor="#F1F5F9"];
+ graph [rankdir=TB,bgcolor="#101827",pad=0.35,ranksep=0.5,nodesep=0.4,fontname="Arial",fontsize=21,labelloc=t,
+ label="Resumefolio | Administration and file policy\nProposed requirements relationships - limits and lifecycle policies remain open"];
+ node [shape=box,style="rounded,filled",fontname="Arial",fontsize=14,color="#9FB2CD",fontcolor="#F1F5F9",margin="0.22,0.16",fillcolor="#1C3453"];
+ edge [color="#9FB2CD",arrowsize=0.7,fontname="Arial",fontsize=12];
+ authority [label="EXPLICIT ADMINISTRATIVE AUTHORITY\nPlatform-owner policy configuration\nOther powers require defined grants",fillcolor="#49351C"];
+ capacity [label="ACTUAL RESOURCE FINDINGS\nInfrastructure and processing constraints\nCapacity is not created by configuration",fillcolor="#49351C"];
+ policy [label="EFFECTIVE FILE POLICY\nFormats, size rules and storage accounting\nScopes / units / defaults still to define",fillcolor="#31577D",fontcolor=white];
+ operation [label="AUTHORIZED FILE OPERATIONS\nAdmission, processing, association and retrieval\nBoundaries apply to direct requests"];
+ lifecycle [label="CROSS-MODULE LIFECYCLE\nReplacement / references / submitted copies\nRetention, restore and cleanup rules",fillcolor="#382951"];
+ outcome [label="TRUTHFUL OUTCOME AND OPERABILITY\nNo false usable success for failed work\nDefined warnings / evidence / versioned guidance",fillcolor="#173B34"];
+ authority -> policy [label="authorized changes"];
+ capacity -> policy [label="evaluated constraints"];
+ policy -> operation [label="enforced eligibility / limits"];
+ lifecycle -> operation [label="applicable ownership / retention rules",style=dashed];
+ operation -> outcome;
+ lifecycle -> outcome [style=dashed,label="preservation / accounting"];
+ {rank=same;authority;capacity;}
+ {rank=same;operation;lifecycle;}
+}

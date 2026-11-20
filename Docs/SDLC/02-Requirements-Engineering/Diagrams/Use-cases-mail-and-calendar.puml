@@ -1,0 +1,28 @@
+@startuml
+' OWNER-MVP-2026-11-04 review: Future communications. Make communications independent from core and record per-user/multiple-account consent and no admin mail-reading authority.
+title AFTER MVP — independent private communications system
+skinparam backgroundColor #101827
+skinparam defaultFontColor #F1F5F9
+skinparam hyperlinkColor #A9D0FF
+skinparam dpi 216
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam wrapWidth 190
+actor "Consenting user\nOwn personal Google accounts; multiple possible" as U
+rectangle "Resumefolio core" as CORE
+package "Independent private communications system\nPhysical deployment / mechanisms not selected" as COM #483824 {
+ component "Private mail / calendar entry\nCurrent user/account/operation authority" as E
+ component "Scoped provider adapters / bounded processing" as W
+ database "Private consent / account / intent / mapping records" as DB
+ E --> W : explicit reviewed intent
+ E --> DB : own private state
+}
+cloud "Gmail / Google Calendar\nPer-account consent and actual provider authority" as G
+U --> E : connect own selected accounts
+CORE <--> E : authenticated user-scoped API\nassociations convey no private access
+W --> G : selected-account capability only
+note bottom of COM
+ Owner/admin role NEVER grants reading users' mail.
+ Other providers remain unresolved. No MVP integration promised.
+end note
+@enduml

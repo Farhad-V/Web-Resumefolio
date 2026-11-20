@@ -1,0 +1,27 @@
+// OWNER-MVP-2026-11-04 review: Method / document navigation. Scope-independent process/navigation; provider or runner examples are not MVP prerequisites.
+digraph model {
+ graph [fontcolor="#F1F5F9"];
+ edge [fontcolor="#F1F5F9"];
+graph [bgcolor="#101827",pad=0.3,nodesep=0.4,ranksep=0.65,fontname="Arial",fontsize=21,labelloc=t];
+node [shape=box,style="rounded,filled",fillcolor="#1C3453",color="#9FB2CD",fontcolor="#F1F5F9",fontname="Arial",fontsize=14,margin="0.18,0.14"];
+edge [color="#9FB2CD",fontname="Arial",fontsize=12,fontcolor="#F1F5F9"];
+graph [rankdir=TB,label="Resumefolio | SRS relationships to maintain"];
+source [label="Accepted intent and actual sources
+Scope / constraints / elicitation"];
+goals [label="Proposed business + user outcomes
+BIZ-D / USR-D",fillcolor="#382951"];
+req [label="Primary behavior / cross-cutting records
+Domain + interface + lifecycle + quality"];
+support [label="Scenarios + dictionary + decisions
+Consistent meaning / explicit questions",fillcolor="#49351C"];
+design [label="Later justified design / implementation
+Identified candidate and configuration"];
+evidence [label="Actual review / verification evidence
+Method + outcome + limits",fillcolor="#173B34"];
+decision [label="Separate owner dispositions
+Requirements baseline / capability / release",fillcolor="#382951"];
+source -> goals; goals -> req; support -> req [dir=both];
+req -> design; req -> evidence [label="criteria"];
+design -> evidence [label="actual candidate"];
+evidence -> decision;
+}
