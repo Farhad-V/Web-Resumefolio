@@ -1,0 +1,36 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Proposed — Visitor resolves an exact eligible publication
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+actor Visitor
+participant "Representation / Sharing" as S
+participant "Current authority / eligibility" as A
+participant "Presentation" as P
+participant "Evaluated renderer / representation resolver" as R
+participant "Files" as F
+Visitor -> S : exact page/link/language request
+S -> A : current resource / viewer / link eligibility
+alt eligible
+ S -> P : resolve permitted exact publication identity + manifest
+ P --> S : immutable intended manifest or unavailable
+ S -> R : exact manifest + selected layout/language/output contract
+ opt actual selected representation requires protected bytes
+  R -> F : guarded exact usable artifact resolution
+  F --> R : actual usable identity or safe unavailable
+ end
+ R --> S : permitted output or actual failure/unavailable
+ S --> Visitor : exact eligible result; no private fallback
+else denied / revoked / unavailable
+ S --> Visitor : safe bounded response
+end
+note over S,F
+ Cache/CDN is not selected. Any future cache must preserve exact identity,
+ current eligibility, invalidation and private serving boundaries.
+end note
+
+@enduml

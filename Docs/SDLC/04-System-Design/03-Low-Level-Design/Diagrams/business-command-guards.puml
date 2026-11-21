@@ -1,0 +1,35 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam shadowing false
+title Consequential Command Guards and Recorded Outcome
+start
+:Establish validated actor, resource and operation context;
+if (Required current authority established and permitted?) then (yes)
+else (no)
+ :Return safe denied / unavailable outcome;
+ stop
+endif
+:Resolve stable request identity when required;
+if (Existing identity?) then (yes)
+ if (Same actor / operation / payload?) then (yes)
+  :Resolve recorded outcome under current authority;
+ else (no)
+  :Return inconsistent request conflict;
+ endif
+ stop
+endif
+:Check exact version, selection and lifecycle under owning protocol;
+if (Preconditions consistent?) then (yes)
+ :Protect required artifact references / reservations;
+ :Commit owning local state and applicable durable intent;
+ :Finalize or reconcile external effects under owner contract;
+ :Report actual confirmed / pending / unknown result;
+else (no)
+ :Return invalid / stale / unavailable result without unsafe mutation;
+endif
+stop
+@enduml

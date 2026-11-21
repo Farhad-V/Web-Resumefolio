@@ -1,21 +1,22 @@
 @startuml
 ' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
-skinparam backgroundColor white
+skinparam backgroundColor #0D1525
+skinparam defaultFontColor #EDF4FF
 skinparam defaultFontName Segoe UI
 skinparam defaultFontSize 13
 skinparam shadowing false
-skinparam ArrowColor #526B7B
-skinparam rectangleBackgroundColor #EDF4FB
-skinparam rectangleBorderColor #526B7B
-skinparam noteBackgroundColor #FFF3DF
-skinparam noteBorderColor #B99557
+skinparam ArrowColor #91AED1
+skinparam rectangleBackgroundColor #1A2940
+skinparam rectangleBorderColor #91AED1
+skinparam noteBackgroundColor #4A302B
+skinparam noteBorderColor #F1AD8A
 skinparam nodesep 38
 skinparam ranksep 42
 title CP — current evidence versus target and hypothesis
 top to bottom direction
 rectangle "Accepted planning direction\nFragmentation / intended reuse / controlled sharing / history" as Intent
 rectangle "Actual documentary/technical records\nElicitation extracts; dated host record; current source models" as Records
-rectangle "Unknown current daily workflow\nActual task steps / tools / handoffs / effort not observed" as Unknown #FFF3DF
+rectangle "Unknown current daily workflow\nActual task steps / tools / handoffs / effort not observed" as Unknown #4A302B
 rectangle "Target rules and possible bottlenecks\nKeep intended response and testable hypothesis separately labeled" as Target
 Intent --> Target : motivates investigation / intended value
 Records --> Unknown : bounds what is and is not established

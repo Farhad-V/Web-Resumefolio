@@ -1,0 +1,41 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title HISTORICAL broader-product proposal — Option B — proposed UML deployment (facilities not configured here)
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam wrapWidth 190
+
+node "User device" as U {
+ artifact "Browser / native Git client" as C
+}
+node "Trusted application environment\nPlacement/resource fit pending" as H {
+ node "Web runtime" as WEB {
+  artifact "Modular application release" as A
+ }
+ node "Supervised background runtime" as WR {
+  artifact "Compatible worker artifact" as W
+ }
+ database "Transactional data" as DB
+ folder "Private artifacts / native Git storage" as F
+ A --> DB
+ W --> DB
+ A --> F
+ W --> F
+}
+node "Evaluated execution boundary\nNo safe facility established" as E
+node "Approved deployment target\nSeparate trusted authority" as T
+node "Independent recovery destination\nNot configured / selected" as B
+cloud "Google provider systems" as G
+C --> A : protected web / evaluated Git transport
+W --> G : scoped provider API
+W --> E : gated attempt
+W --> T : approved attempt
+H --> B : protected copy
+legend bottom
+ One trusted environment is a candidate, not observed spare capacity or HA.
+ Executor placement and backup destination remain evidence-gated.
+endlegend
+@enduml

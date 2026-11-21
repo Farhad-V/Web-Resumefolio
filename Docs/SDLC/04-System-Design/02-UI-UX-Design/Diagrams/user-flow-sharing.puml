@@ -1,0 +1,31 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam shadowing false
+title Protected Recipient Viewing
+start
+:Open protected share entry;
+:Establish required link-scoped viewer context;
+:Resolve current link, selected content, language and eligibility;
+if (Current access permitted?) then (yes)
+ :Show selected professional presentation;
+ if (Request eligible file / PDF?) then (yes)
+  :Recheck current policy and exact artifact availability;
+  if (Delivery allowed and material usable?) then (yes)
+   :Deliver only authorized selected bytes;
+  else (no)
+   :Show safe denied / unavailable state;
+  endif
+ else (no)
+  :Continue within permitted presentation;
+ endif
+else (no)
+ :Show safe invalid / disabled / denied feedback;
+ :Offer only the permitted next step;
+endif
+:Do not expose owner workspace or substitute unrelated content;
+stop
+@enduml

@@ -1,0 +1,63 @@
+@startuml
+!theme plain
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam shadowing false
+skinparam activity {
+ BackgroundColor #1F2937
+ BorderColor #94A3B8
+ FontColor #F3F4F6
+ DiamondBackgroundColor #164E63
+ DiamondBorderColor #67E8F9
+ DiamondFontColor #F3F4F6
+ StartColor #67E8F9
+ EndColor #67E8F9
+ BarColor #94A3B8
+}
+skinparam noteBackgroundColor #1F2937
+skinparam noteBorderColor #64748B
+skinparam noteFontColor #F3F4F6
+title Candidate Promotion and Recovery Decision Flow
+start
+:Identify source revision, locked build,
+configuration and migration set;
+:Verify isolated build/test environment;
+:Rehearse rollout, smoke checks,
+backup restore and rollback compatibility;
+if (Candidate and prerequisites approved?) then (yes)
+ :Promote the same verified candidate
+using the rehearsed runbook;
+ :Apply reviewed rollout / migrations;
+ if (Migration and data compatibility verified?) then (yes)
+  :Check intended revision, health
+and essential user journeys;
+  if (Promotion checks pass?) then (yes)
+   :Record deployed revision and evidence; 
+   stop
+  else (no)
+   :Stop promotion / contain affected activity;
+  endif
+ else (no)
+  :Stop promotion / contain affected activity;
+ endif
+ if (Code rollback safe for current data?) then (yes)
+  :Restore last known good application revision;
+  :Repeat health and essential smoke checks; 
+ else (no)
+  :Pause affected writes and preserve evidence;
+  :Follow approved data recovery procedure
+with isolated restore verification;
+  :Verify recovered records, bytes, Git state
+and compatible application revision;
+ endif
+ :Record incident, recovery outcome
+and remaining follow-up;
+ stop
+else (no)
+ :Record unmet gate and
+do not deploy;
+ stop
+endif
+@enduml

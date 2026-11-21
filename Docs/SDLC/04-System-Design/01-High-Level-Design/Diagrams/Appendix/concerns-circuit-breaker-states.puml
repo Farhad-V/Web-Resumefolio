@@ -1,0 +1,27 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+title Candidate circuit breaker — scoped dependency admission state
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+state "Closed\nEligible calls may proceed" as C
+state "Open\nNew protected calls refused/deferred safely" as O
+state "Half-open\nBounded safe probe only" as H
+[*] --> C
+C --> C : successful eligible observation
+C --> O : evaluated failure predicate reached
+O --> O : reject/defer new work; preserve pending attempt truth
+O --> H : reviewed cooldown + probe admission
+H --> C : required healthy probe evidence
+H --> O : failed / insufficient probe evidence
+note bottom of H
+ No numeric threshold/cooldown or breaker product is selected.
+ Probe must be an actually safe supported check, not a duplicate send/deploy.
+ Dependency admission state never rewrites unknown business effects as failures.
+ Multi-process state scope and coordination need an explicit implementation contract.
+end note
+@enduml

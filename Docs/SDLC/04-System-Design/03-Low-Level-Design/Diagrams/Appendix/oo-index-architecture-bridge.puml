@@ -1,0 +1,29 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Architecture-to-detailed-design bridge
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+package "01-software-architecture" {
+ rectangle "Drivers / options / quality trade-offs" as D
+ rectangle "Boundaries / owner contracts" as B
+ rectangle "Runtime / deployment / concerns" as R
+}
+package "02-detailed-and-object-oriented-design" {
+ rectangle "01: Shared OO design rules" as P
+ rectangle "05: Safe evolution and debt method" as E
+}
+package "03-component-and-module-design" {
+ rectangle "Specific interfaces / classes / algorithms\nTechnical scenarios / coding constraints" as C
+}
+D --> P : rationale
+B --> P : ownership
+R --> C : constraints
+P --> C : refine
+E --> C : assess and evolve
+C ..> B : feedback: explicit architecture decision if boundary changes
+
+@enduml

@@ -1,0 +1,22 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Levels of abstraction
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+rectangle "System\nActors, capabilities, external boundaries" as S
+rectangle "Component / module\nPresentation owner and public contracts" as C
+rectangle "Class / object\nPublishRevisionHandler, ResumeDraft, PublicationStore" as O
+rectangle "Method / algorithm\nhandle(intent): guards, snapshot, coherent commit, outcome" as M
+S --> C : decompose responsibility
+C --> O : allocate collaboration
+O --> M : define operation behavior
+note bottom of M
+ Refinement is not automatic 1:1 mapping.
+ A domain entity is not automatically a table or service.
+end note
+
+@enduml

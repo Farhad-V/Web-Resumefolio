@@ -1,0 +1,28 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+title Proposed exact criterion, design and evidence trace chain
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+rectangle "Identified source criterion\nExact locator / wording / revision / status" as S
+rectangle "Analysis refinement\nScenario / rule / state / information meaning" as A
+rectangle "Technical realization\nOwner + exact operation / model / runtime locations" as D
+rectangle "Reasoned comparison\nNormal and exception paths + unchanged protected state" as C
+rectangle "Verification plan / actual evidence\nCandidate, environment, method, observations and limits" as E
+rectangle "Finding and scoped disposition\nActual reviewer / owner decision / remaining gap" as F
+S --> A
+A --> D
+D --> C
+S --> C : compare exact obligation
+C --> E
+E --> F
+note bottom of F
+ A valid link is not semantic coverage.
+ A plan is not a product-test result.
+ Inherited inventory counts are not fresh design comparisons.
+end note
+@enduml

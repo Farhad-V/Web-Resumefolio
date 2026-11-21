@@ -1,0 +1,32 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+title Proposed explicit source review, draft save and separate publication
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+start
+:Open intended resume and explicit content language;
+:Review source differences against exact draft/source versions;\nshow affected selections and overrides;
+:Select intended changes;
+if (Current authority and versions valid?) then (yes)
+ :Apply only selected changes;\nshow Saved Draft and unchanged Published Revision;
+else (denied / stale)
+ :Safe refusal or conflict review;\npreserve permitted intended edits;
+ stop
+endif
+if (Owner explicitly chooses Publish?) then (yes)
+ :Review intended candidate / language / consequences;\nseparate confirmation;
+ :Resolve actual publication outcome;\nshow exact published revision or accurate conflict / pending state;
+else (no)
+ :Continue editing; publication remains unchanged;
+endif
+note right
+ Actual submitted material remains independent.
+ Publication does not prove a PDF is available.
+end note
+stop
+@enduml

@@ -1,0 +1,48 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #164E63
+skinparam ArrowColor #164E63
+skinparam ArrowFontColor #164E63
+skinparam shadowing false
+skinparam rectangle {
+ BackgroundColor #164E63
+ BorderColor #164E63
+ FontColor #164E63
+}
+skinparam package {
+ BackgroundColor #111827
+ BorderColor #164E63
+ FontColor #164E63
+}
+top to bottom direction
+title Selected MVP Technology Responsibilities
+rectangle "Browser UI\nReact 19 + Inertia 3 + Tailwind 4" as ui #164E63
+package "Each independent application" {
+ rectangle "PHP 8.4 / Laravel 13\nRouting, validation, sessions, policies" as app #164E63
+ rectangle "MySQL 8.4 LTS / InnoDB / utf8mb4\nOwner-local relational records" as db
+ rectangle "Private filesystem\nOwner-controlled bytes" as files
+ rectangle "Laravel jobs / scheduler\nOwner-local durable processing" as jobs
+ app --> db
+ app --> files
+ app --> jobs
+}
+rectangle "Core PDF path\nTrusted Blade templates + Dompdf" as pdf
+rectangle "ProjectForge repository path\nNative system Git + private repositories" as git #164E63
+rectangle "Build toolchain\nComposer 2 + Node 24 LTS + Vite" as build
+rectangle "Planned deployment\nLinux + Nginx + TLS" as host
+ui --> app : Application-local Inertia / session
+app ..> pdf : Core only
+app ..> git : ProjectForge only
+build ..> app : Locked dependencies / built assets
+host ..> app : Runtime hosting
+legend bottom
+  Selected targets, not a verified installation or physical topology.
+  Core and ProjectForge have separate keys, sessions, database users and storage.
+  Their scoped server-to-server API is separate from Inertia browser traffic.
+endlegend
+@enduml

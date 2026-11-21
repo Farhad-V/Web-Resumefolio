@@ -1,40 +1,110 @@
 # 3. Detailed Module Design
 
-[Low-Level Design index](03-Low-Level-Design.md)
+[Previous: Module Breakdown](02-Module-Breakdown.md) · [Low-Level Design introduction](01-Introduction.md) · [Next: Database Design](04-Database-Design.md)
 
 ## 3.1 Responsibilities
-Use the component records below for capabilities, state transitions and ownership.
+
+Detailed design defines owning operations and their invariants, not merely a list of controllers. The selected MVP has five Core modules and two ProjectForge modules. Each application retains independent keys, sessions, database credentials, private storage and writes. Actual code paths/types are recorded with implementation; illustrative signatures are design seams rather than existing production methods.
+
+| Module | Owned operation family | Invariant / public boundary |
+| --- | --- | --- |
+| Core Identity and Access | Invitation/account/session policy and current entitlement | Actor context is current; status-only service authority exposes no private content |
+| Core Professional Presentation | Profile/draft changes, selected apply and publication | Independent drafts and immutable revisions; no automatic profile propagation or implicit publication |
+| Core Representation and Sharing | Link/viewer state, selected representation and delivery eligibility | Current policy governs every protected path; recipient context is not owner membership |
+| Core Files and Operations | Artifact admission, reservations/references, private delivery and PDF processing | Exact bytes/integrity and protected retention survive partial failure and cleanup |
+| Core Applications | Mutable tracking and immutable actual-material capture | Historical material is not reconstructed from today's live resume |
+| ProjectForge Git Collaboration | Repository grants, actual native transfers and file/history reads | Current Core entitlement plus local action grant; private Git storage and distinct credentials |
+| ProjectForge Work Management | Repository issues and simple Kanban | Stable issue identity, current grant, expected version and attributable outcome |
+
+Communication/calendar and workflow/deployment coordination records below remain deferred. Advanced review/releases and general Sprints are not MVP operations even where retained examples describe them. Current selected behavior and ADR status govern interpretation.
 
 ## 3.2 Classes & Interfaces
-Keep entry controllers separate from application services, policy checks, storage ports and persistence adapters. Domain records enforce their own invariants.
+
+| Responsibility | Contract | Encapsulation |
+| --- | --- | --- |
+| Entry adapter | Establish receiving request/job context, validate transport shape, invoke owning operation and map result | Browser/API/Git/worker concerns do not become domain authority |
+| Application use case | Coordinate current actor/resource policy, expected version, local transaction and external-effect intent | Explicit operation owner; no hidden consequential effects in unrelated saves/getters |
+| Domain record / policy | Enforce owned lifecycle and meaningful invariants | Receive sufficient current context; construction alone is not permanent authorization |
+| Repository / storage port | Read/write owned state and protected bytes under the operation contract | No cross-owner table or filesystem shortcut |
+| Scoped integration adapter | Carry permitted actor/scope, timeout/result and stable request identity | Receiving owner still validates current entitlement/local grants |
+| Worker / outbox handler | Process recorded intent and reconcile observed outcomes | Owner-local access and protected references; queue admission is not completion |
+
+Keep mutable domain internals private. Return permitted projections, stable identifiers or immutable material references rather than another module's unrestricted ORM entity. Internal calls need not be HTTP; system crossings use the scoped API/status contract. Dependency injection binds technical adapters without granting a universal service object access to every user's content.
 
 ## 3.3 Methods and Error Outcomes
-These proposed signatures identify behavioral boundaries. Resolve concrete framework types with the corresponding implementation.
 
-| Operation | Input | Result | Failure |
+The operation names below identify behavioral seams. Resolve concrete types, payloads and endpoint mapping in the owning implementation and API specification.
+
+| Operation | Input / authority | Recorded result | Important alternatives |
 | --- | --- | --- | --- |
-| ApplySelectedProfileChanges | Actor, draft ID, expected version, selected fields | Updated draft version | Denied, invalid selection, stale version |
-| PublishResume | Actor, draft ID, expected version, selected artifact references | Immutable publication and updated live pointer | Denied, stale version, unavailable artifact |
-| CaptureSubmission | Actor, application ID, selected materials, idempotency key | Immutable submission event | Denied, invalid material, inconsistent retry or pending capture |
-| MoveIssue | Actor, repository and issue IDs, expected version, state | Same issue with new state and version | Hidden resource, invalid state, stale version |
+| ApplySelectedProfileChanges | Actor, draft, expected source/draft context and selected fields | Updated independent draft/version; publication unchanged | Denied, invalid selection, stale comparison/write |
+| SaveDraft | Actor, draft, validated content/language and expected version | Owning saved draft/version | Invalid, denied, stale or uncertain response |
+| PublishResume | Actor, exact candidate/language, expected version, selected artifact references and request identity as governed | Immutable revision, applicable live selection and durable effect intent | Denied, stale, unavailable exact material or unknown response |
+| ResolveSharedRepresentation | Current link/viewer context and selected resource/language | Only currently eligible representation/bytes | Invalid/changed/hidden context, missing eligible variant, unavailable material |
+| AdmitArtifact | Actor, selected file metadata/bytes and applicable reservation context | Accurate admitted/processing/usability state and owned identity | Type/size/quota denial, interrupted transfer, unavailable storage |
+| CaptureSubmission | Actor, application, exact actual-material selection and stable request identity | Immutable submission event with protected exact references/digests | Invalid/missing material, inconsistent retry, denied or pending capture |
+| UpdateApplication | Actor, application, permitted tracking fields and expected version | Updated mutable tracking/version, historical events unchanged | Invalid follow-up/context, denied or stale write |
+| ReadRepositoryFilesOrHistory | Scoped actor, repository, immutable revision and allowed path/cursor | Authorized entries/history and resolved revision | Invalid scope/path, hidden resource, revoked/unavailable authority |
+| CreateOrUpdateIssue / MoveIssue | Scoped actor, repository/issue, permitted fields, expected version where required and request identity | Stable issue identity and recorded state/version | Invalid input/assignee, hidden/denied, stale or inconsistent repeated payload |
+| AuthorizeGitOperation | Evaluated transport identity, repository/ref/action and current authority | Permission for the applicable native transport action | Revoked credential/grant, unavailable entitlement or denied action |
+
+API status codes and exact field names follow [API Specification](05-API-Specification.md). A denied request has no unauthorized business effect; bounded security metadata may still be recorded. Do not map every timeout to definitive failure or every queued effect to success.
+
+### Per-operation Specification
+
+Record owner, actor/resource/action, exact input/material identity, preconditions, version/request identity, validation, local writes/locks, external effects, result/errors and recovery. Link exact criteria and planned checks. Distinguish mutable business data from immutable history, current access policy and durable processing metadata.
 
 ## 3.4 Internal Flow
-```mermaid
-sequenceDiagram
-    actor User
-    participant Entry as Application entry point
-    participant Policy as Authorization policy
-    participant Service as Publication service
-    participant Store as Local persistence
-    User->>Entry: Confirm selected publication
-    Entry->>Policy: Check current actor and draft access
-    Entry->>Service: Publish expected draft version
-    Service->>Store: Write immutable revision and live pointer
-    Service-->>User: Return recorded outcome
-```
+
+![Dark-mode PlantUML explicit publication contract sequence](Diagrams/Detailed/module-publication-contract.svg)
+
+[PlantUML source](Diagrams/Detailed/module-publication-contract.puml) · [PNG](Diagrams/Detailed/module-publication-contract.png)
+
+The sequence illustrates the selected publication boundary: validate current authority and exact material, protect required bytes, commit the revision/live selection and applicable durable intent locally, then finalize/reconcile owner-local work. Concrete reservation/transaction ordering follows [Database Design](04-Database-Design.md) and the selected T05 contract; the diagram is not a distributed atomicity guarantee.
+
+PDF processing/availability remains separate from confirmed publication. A lost response after commit requires recorded-outcome resolution under stable identity, not blind duplication or assumed rollback. Retry authority and stored-outcome behavior remain operation-specific.
 
 ## 3.5 Design Patterns
-Apply explicit application services and adapter boundaries. Use optimistic concurrency, idempotency and a durable outbox where the documented operation needs them.
+
+| Pattern | Use when | Guardrail |
+| --- | --- | --- |
+| Explicit application service / use case | A deliberate command coordinates owned rules/effects | Avoid framework callbacks that hide publication or remote work |
+| Domain invariant / policy | An owned transition needs enforceable business meaning | Server-side current resource authority remains explicit |
+| Port and adapter | Persistence, rendering, mail, Git or scoped service needs a technical seam | An adapter does not acquire universal business ownership |
+| Optimistic concurrency | Mutable aggregate changes require current-version protection | Reject/review stale intent; do not overwrite unseen changes |
+| Stable request identity | Repeated consequential commands need a recorded outcome | Bind actor/operation/payload and preserve matching retry semantics |
+| Durable outbox / work record | Selected intent/effect must survive interruption | Local acceptance differs from completed external effect |
+| Protected artifact reference / reservation | Publication/submission needs exact bytes through failure/retention | Pending uncertainty does not authorize cleanup |
+
+Choose a pattern because an operation requires its guarantee, not to maximize class count. No additional framework, broker, cache or container platform is selected by this table.
+
+## 3.6 Failure, Consistency and Security Review
+
+Local SQL transactions do not roll back filesystem, native Git, mail or remote database effects. Preserve separately recorded outcomes, protect references and reconcile under the owner. Deterministic locking/version checks and concurrent quota reservations must follow the physical design and actual database evidence.
+
+Every entry path re-evaluates applicable actor/resource/action authority. Core's status-only service credential cannot read professional content. Git clients require real transport credentials/grants independently of browser or issue permission. Recipient delivery checks current policy even for known direct URLs or previously viewed material.
+
+Return bounded stable error/correlation information without secrets, private bytes or host paths. Use [Error Handling and Logging](07-Error-Handling-And-Logging.md), [Security Implementation](08-Security-Implementation.md) and [Configuration and Environment](09-Configuration-And-Environment.md) for refinements. Their documentation does not prove configured enforcement.
+
+## 3.7 Verification and Implementation Handoff
+
+| Boundary | Required evidence |
+| --- | --- |
+| Identity and resource policy | Wrong owner, wrong scope, revoked grant/session and authority unavailable |
+| Selected updates/publication | Independent text, partial selected apply, stale version, separate confirmation and exact revision |
+| Sharing/files | Current selection/language, direct retrieval, unusable/replaced material and concurrent quota policy |
+| Application history | Exact actual material, repeated/interrupted capture and unchanged history after later edits/withdrawal |
+| ProjectForge | Real allowed/denied native Git, resolved revision, issue/board grants and stale/repeated mutations |
+| Durable processing | Lost response, interrupted worker/finalization, protected references and truthful pending/unknown outcomes |
+| Recovery | Restored local records/private bytes/Git state and pending effects remain consistent and safely authorized |
+
+Use [Unit Test Design](10-Unit-Test-Design.md) and the [test strategy](../../05-Agile-Iterative-Development/02-Test-Strategy.md) to select meaningful checks; use real persistence/concurrency/integration where the guarantee depends on them. Mock success cannot prove native Git, private serving, mail or restore behavior.
+
+Link exact criterion, owning operation, actual code/migration revision, configuration, expected/observed result and evidence through [Traceability](11-Traceability.md) / [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md). Keep proposed, pending, failed and executed states distinct. Preserve selected ADRs and update affected consumers/screens/contracts when a consequential change occurs.
+
+## Retained Detailed Design Records
+
+The ten records below retain their explicit anchors, rationale and proposed/deferred status. They support detailed refinement without overriding selected MVP scope. All embedded views use local dark renders; UML uses editable PlantUML. Native non-UML maps retain their source format. Artifact rendering is documentation verification, not runtime acceptance.
 
 <a id="design-record-02-detailed-and-object-oriented-design-01-design-principles-and-object-oriented-approach-md"></a>
 
@@ -47,7 +117,7 @@ Apply explicit application services and adapter boundaries. Use optimistic concu
 
 **Proposed approach:** cohesive resource-owning modules, explicit use-case handlers, small invariant-preserving domain objects and adapters at external-effect boundaries. Use OO principles to make accepted behavior understandable and verifiable, not to maximize the number of classes or patterns.
 
-**Status:** proposed detailed-design guidance, November 2, 2026. Class/interface names below illustrate technical responsibilities; they are not implemented production code, final signatures or newly accepted requirements.
+**Status:** proposed detailed-design guidance. Class/interface names below illustrate technical responsibilities; they are not implemented production code, final signatures or newly accepted requirements.
 
 [Responsibilities](#design-record-02-detailed-and-object-oriented-design-01-design-principles-and-object-oriented-approach-md--heading-1-responsibilities-and-dependency-direction) · [Principles](#design-record-02-detailed-and-object-oriented-design-01-design-principles-and-object-oriented-approach-md--heading-2-design-principles-in-this-project) · [Model](#design-record-02-detailed-and-object-oriented-design-01-design-principles-and-object-oriented-approach-md--heading-3-class-and-object-modeling) · [Patterns](#design-record-02-detailed-and-object-oriented-design-01-design-principles-and-object-oriented-approach-md--heading-4-pattern-selection-and-consequences) · [Behavior](#design-record-02-detailed-and-object-oriented-design-01-design-principles-and-object-oriented-approach-md--heading-5-operation-contracts-and-object-lifetime) · [Review](#design-record-02-detailed-and-object-oriented-design-01-design-principles-and-object-oriented-approach-md--heading-6-review-and-component-handoff) · [OO visual package](#design-record-02-detailed-and-object-oriented-design-01-design-principles-and-object-oriented-approach-md--heading-8-object-oriented-visual-and-responsibility-package)
 
@@ -57,15 +127,15 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Source and design authority
 
-Follow the [accepted scope](../../01-Project-Planning/01-Project-Charter.md#mvp-scope), [source decisions](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#change-and-baseline-open-questions-and-decisions), [analysis domain model](../../03-System-Analysis/01-System-Analysis.md#analysis-domain-and-information-analysis--03-domain-model-and-object-oriented-view), [operation contracts](../../03-System-Analysis/01-System-Analysis.md#analysis-business-rules-and-operation-contracts--10-domain-constraints-and-operation-contracts) and [logical component boundaries](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md). Conceptual domain classes are inputs; technical controllers, handlers, adapters and persistence mappings are design refinements, not additional business concepts.
+Follow the [accepted scope](../../01-Project-Planning/01-Project-Charter.md#mvp-scope), [source decisions](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#change-and-baseline-open-questions-and-decisions), [analysis domain model](../../03-System-Analysis/02-Domain-And-Information-Analysis.md#analysis-domain-and-information-analysis--03-domain-model-and-object-oriented-view), [operation contracts](../../03-System-Analysis/03-Processes-Scenarios-And-Business-Rules.md#analysis-business-rules-and-operation-contracts--10-domain-constraints-and-operation-contracts) and [logical component boundaries](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md). Conceptual domain classes are inputs; technical controllers, handlers, adapters and persistence mappings are design refinements, not additional business concepts.
 
 <a id="design-record-02-detailed-and-object-oriented-design-01-design-principles-and-object-oriented-approach-md--heading-1-responsibilities-and-dependency-direction"></a>
 
 #### 1. Responsibilities and dependency direction
 
-[Proposed responsibility and dependency direction](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-responsibility-direction.svg)
+[Proposed responsibility and dependency direction](Diagrams/Detailed/oo-responsibility-direction.svg)
 
-[Editable DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-responsibility-direction.dot) · ![oo responsibility direction](../Diagrams/Archived-Png/Oo-Responsibility-Direction.png)
+[Editable DOT](Diagrams/Detailed/oo-responsibility-direction.dot) · ![oo responsibility direction](Diagrams/Detailed/oo-responsibility-direction.svg)
 
 **Transport/controller:** validate transport shape, establish request identity, invoke the appropriate use case and map permitted outcomes into responses. Controllers must not directly publish, update another module’s tables or infer external success from a queue acknowledgment.
 
@@ -127,9 +197,9 @@ Start with the smallest design that realizes accepted scenarios and exceptional 
 
 #### 3. Class and object modeling
 
-[Illustrative publication use-case class design](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/publication-use-case-classes.svg)
+[Illustrative publication use-case class design](Diagrams/Detailed/publication-use-case-classes.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/publication-use-case-classes.puml) · ![publication use case classes](../Diagrams/Archived-Png/Publication-Use-Case-Classes.png)
+[Editable PlantUML](Diagrams/Detailed/publication-use-case-classes.puml) · ![publication use case classes](Diagrams/Detailed/publication-use-case-classes.svg)
 
 This selected technical model illustrates Presentation responsibility; it is not the complete component class model. Type and operation names remain proposals pending implementation-level signature/schema refinement.
 
@@ -157,9 +227,9 @@ Expose public application contracts and permitted projections. Keep domain mutat
 
 #### 4. Pattern selection and consequences
 
-[Select a pattern for an actual design problem](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/pattern-selection-route.svg)
+[Select a pattern for an actual design problem](Diagrams/Detailed/pattern-selection-route.svg)
 
-[Editable DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/pattern-selection-route.dot) · ![pattern selection route](../Diagrams/Archived-Png/Pattern-Selection-Route.png)
+[Editable DOT](Diagrams/Detailed/pattern-selection-route.dot) · ![pattern selection route](Diagrams/Detailed/pattern-selection-route.svg)
 
 <a id="design-record-02-detailed-and-object-oriented-design-01-design-principles-and-object-oriented-approach-md--heading-adapter--external-systems-and-persistence"></a>
 
@@ -255,9 +325,9 @@ These are selected **proposed design examples**, not implemented classes, detect
 
 ##### 8.1 Before and after: separate reasons to change
 
-[Before and after: separate reasons to change](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-before-after.svg)
+[Before and after: separate reasons to change](Diagrams/Detailed/oo-before-after.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-before-after.puml) · ![oo before after](../Diagrams/Archived-Png/Oo-Before-After.png)
+[Editable PlantUML](Diagrams/Detailed/oo-before-after.puml) · ![oo before after](Diagrams/Detailed/oo-before-after.svg)
 
 The before design is a teaching counterexample, not an observed production defect. Splitting preserves explicit source application, publication, actual history and send intent; it does not make the handlers separate services.
 
@@ -265,9 +335,9 @@ The before design is a teaching counterexample, not an observed production defec
 
 ##### 8.2 Object diagram: one illustrative publication collaboration
 
-[Object diagram: one illustrative publication collaboration](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-runtime-objects.svg)
+[Object diagram: one illustrative publication collaboration](Diagrams/Detailed/oo-runtime-objects.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-runtime-objects.puml) · ![oo runtime objects](../Diagrams/Archived-Png/Oo-Runtime-Objects.png)
+[Editable PlantUML](Diagrams/Detailed/oo-runtime-objects.puml) · ![oo runtime objects](Diagrams/Detailed/oo-runtime-objects.svg)
 
 Invented identities illustrate a successful post-commit snapshot. Links represent collaboration/record relationships, not ownership of a live ORM graph or an actual runtime trace. Revision creation and pointer/result recording require the coherent guarded commit described below.
 
@@ -275,9 +345,9 @@ Invented identities illustrate a successful post-commit snapshot. Links represen
 
 ##### 8.3 Package diagram: acyclic source dependencies
 
-[Package diagram: acyclic source dependencies](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-packages.svg)
+[Package diagram: acyclic source dependencies](Diagrams/Detailed/oo-packages.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-packages.puml) · ![oo packages](../Diagrams/Archived-Png/Oo-Packages.png)
+[Editable PlantUML](Diagrams/Detailed/oo-packages.puml) · ![oo packages](Diagrams/Detailed/oo-packages.svg)
 
 Arrows mean source dependencies. This proposed graph has no cycles; wiring belongs at the composition root. These are illustrative packages inside the modular application, not proof that current imports have been audited.
 
@@ -285,9 +355,9 @@ Arrows mean source dependencies. This proposed graph has no cycles; wiring belon
 
 ##### 8.4 Dependency inversion at the persistence boundary
 
-[Dependency inversion at the persistence boundary](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-dependency-inversion.svg)
+[Dependency inversion at the persistence boundary](Diagrams/Detailed/oo-dependency-inversion.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-dependency-inversion.puml) · ![oo dependency inversion](../Diagrams/Archived-Png/Oo-Dependency-Inversion.png)
+[Editable PlantUML](Diagrams/Detailed/oo-dependency-inversion.puml) · ![oo dependency inversion](Diagrams/Detailed/oo-dependency-inversion.svg)
 
 The consumer owns the meaning of the required port. Runtime calls reach an adapter, while source dependency points toward the abstraction. The port must preserve current guards, coherent local commit and repeat-command outcomes; its name alone provides no atomicity.
 
@@ -295,9 +365,9 @@ The consumer owns the meaning of the required port. Runtime calls reach an adapt
 
 ##### 8.5 Inheritance versus composition: rendition variation
 
-[Inheritance versus composition: rendition variation](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-composition.svg)
+[Inheritance versus composition: rendition variation](Diagrams/Detailed/oo-composition.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-composition.puml) · ![oo composition](../Diagrams/Archived-Png/Oo-Composition.png)
+[Editable PlantUML](Diagrams/Detailed/oo-composition.puml) · ![oo composition](Diagrams/Detailed/oo-composition.svg)
 
 Uploaded material is not a behavioral subtype of template-generated material. Composition permits independent implementations of an exact-selection contract. Neither may silently substitute a language, rendition or unavailable file; a simple branch can be clearer when polymorphism adds no value.
 
@@ -305,9 +375,9 @@ Uploaded material is not a behavioral subtype of template-generated material. Co
 
 ##### 8.6 Interface realization and narrow consumer access
 
-[Interface realization and narrow consumer access](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-realization.svg)
+[Interface realization and narrow consumer access](Diagrams/Detailed/oo-realization.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-realization.puml) · ![oo realization](../Diagrams/Archived-Png/Oo-Realization.png)
+[Editable PlantUML](Diagrams/Detailed/oo-realization.puml) · ![oo realization](Diagrams/Detailed/oo-realization.svg)
 
 The read consumer receives only its required interface, not mutation access. Implementing both interfaces does not authorize callers; exact current resource and lifecycle checks remain required. Names are proposed design roles, not framework bindings already configured.
 
@@ -315,9 +385,9 @@ The read consumer receives only its required interface, not mutation access. Imp
 
 ##### 8.7 Coupling and cohesion: compare responsibility shapes
 
-[Coupling and cohesion: compare responsibility shapes](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-coupling-cohesion.svg)
+[Coupling and cohesion: compare responsibility shapes](Diagrams/Detailed/oo-coupling-cohesion.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-coupling-cohesion.puml) · ![oo coupling cohesion](../Diagrams/Archived-Png/Oo-Coupling-Cohesion.png)
+[Editable PlantUML](Diagrams/Detailed/oo-coupling-cohesion.puml) · ![oo coupling cohesion](Diagrams/Detailed/oo-coupling-cohesion.svg)
 
 Cohesion follows one invariant and reason to change. Necessary authority and commit dependencies are deliberate coupling. Arrow count alone is not a quality score; no coupling/cohesion metrics were measured, and splitting every method into a class would not establish good design.
 
@@ -325,9 +395,9 @@ Cohesion follows one invariant and reason to change. Necessary authority and com
 
 ##### 8.8 Sequence: explicit publication object collaboration
 
-[Sequence: explicit publication object collaboration](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-publication-sequence.svg)
+[Sequence: explicit publication object collaboration](Diagrams/Detailed/oo-publication-sequence.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-publication-sequence.puml) · ![oo publication sequence](../Diagrams/Archived-Png/Oo-Publication-Sequence.png)
+[Editable PlantUML](Diagrams/Detailed/oo-publication-sequence.puml) · ![oo publication sequence](Diagrams/Detailed/oo-publication-sequence.svg)
 
 An early authority check is insufficient under races. The persistence/authority mechanism must establish the relevant admission order and expected-version guard. A lost response after a possible commit is resolved using the same command identity. No PDF generation, mail send or deployment is implicit.
 
@@ -335,9 +405,9 @@ An early authority check is insufficient under races. The persistence/authority 
 
 ##### 8.9 Conceptual domain model: independent identities
 
-[Conceptual domain model: independent identities](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-conceptual-domain.svg)
+[Conceptual domain model: independent identities](Diagrams/Detailed/oo-conceptual-domain.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-conceptual-domain.puml) · ![oo conceptual domain](../Diagrams/Archived-Png/Oo-Conceptual-Domain.png)
+[Editable PlantUML](Diagrams/Detailed/oo-conceptual-domain.puml) · ![oo conceptual domain](Diagrams/Detailed/oo-conceptual-domain.svg)
 
 Selected conceptual excerpt, not the complete analysis model or physical schema. Multiplicities express this illustrative relationship shape and need exact scenario/schema refinement. Source provenance does not trigger propagation; submitted actual materials remain independently protected if later draft/publication/link state changes. No composition diamond implies cascade deletion.
 
@@ -345,9 +415,9 @@ Selected conceptual excerpt, not the complete analysis model or physical schema.
 
 ##### 8.10 Law of Demeter: request an intention, avoid navigation chains
 
-[Law of Demeter: request an intention, avoid navigation chains](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-demeter.svg)
+[Law of Demeter: request an intention, avoid navigation chains](Diagrams/Detailed/oo-demeter.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-demeter.puml) · ![oo demeter](../Diagrams/Archived-Png/Oo-Demeter.png)
+[Editable PlantUML](Diagrams/Detailed/oo-demeter.puml) · ![oo demeter](Diagrams/Detailed/oo-demeter.svg)
 
 The counterexample shows caller navigation, not a justified byte-access route. An intention-revealing owner contract reduces knowledge of internal structure. Law of Demeter is a collaboration guideline; shortening a call chain cannot replace authority checks or safe artifact-reference lifetime coordination.
 
@@ -355,9 +425,9 @@ The counterexample shows caller navigation, not a justified byte-access route. A
 
 ##### 8.11 Optional Strategy preview: exact representation resolution
 
-[Optional Strategy preview: exact representation resolution](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-strategy-preview.svg)
+[Optional Strategy preview: exact representation resolution](Diagrams/Detailed/oo-strategy-preview.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-strategy-preview.puml) · ![oo strategy preview](../Diagrams/Archived-Png/Oo-Strategy-Preview.png)
+[Editable PlantUML](Diagrams/Detailed/oo-strategy-preview.puml) · ![oo strategy preview](Diagrams/Detailed/oo-strategy-preview.svg)
 
 Optional design pattern preview, not a mandatory hierarchy. Strategy separates real generation/upload variation while the handler preserves exact selection and current eligibility. Unknown rendering/storage results must remain truthful; no strategy may silently publish or select a fallback.
 
@@ -422,7 +492,7 @@ Refine each selected role into the owning component's exact signatures, invarian
 
 **Responsibility:** manage private application preparation and explicitly recorded progress while preserving identifiable material actually submitted. A current resume, a live sharing link, provider acceptance and historical submitted content are different facts.
 
-**Status:** proposed LC-04 component design, November 2, 2026. The accepted manual-application scope is preserved. Detailed fields/progress/capture/retention proposals remain subject to their source disposition; technical names and schema below are proposals, not implemented code or accepted product refinements.
+**Status:** proposed LC-04 component design. The accepted manual-application scope is preserved. Detailed fields/progress/capture/retention proposals remain subject to their source disposition; technical names and schema below are proposals, not implemented code or accepted product refinements.
 
 [Sources](#design-record-03-component-and-module-design-components-applications-md--heading-1-source-authority-and-boundaries) · [Contracts](#design-record-03-component-and-module-design-components-applications-md--heading-2-public-operations) · [Model](#design-record-03-component-and-module-design-components-applications-md--heading-3-owned-classes-and-logical-data) · [Algorithms](#design-record-03-component-and-module-design-components-applications-md--heading-4-submission-capture-and-correction-algorithms) · [Failures](#design-record-03-component-and-module-design-components-applications-md--heading-5-concurrency-failure-and-lifecycle-scenarios) · [Review](#design-record-03-component-and-module-design-components-applications-md--heading-6-verification-and-open-decisions) · [Landscape package](#design-record-03-component-and-module-design-components-applications-md--heading-7-application-context-and-landscape-package)
 
@@ -434,7 +504,7 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 Use [APP-D01–APP-D09](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-manual-application-management), [Q-D12](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-manual-application-management--id-resolution-q-d12), [Q-D13](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-manual-application-management--id-resolution-q-d13) and [Q-D14](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-manual-application-management--id-resolution-q-d14). Those answer sections are proposed, not blanket accepted field/state/retention policy. Exact criteria retain their original wording/status.
 
-The [analysis interaction](../../03-System-Analysis/01-System-Analysis.md#analysis-behavioral-and-scenario-analysis--06-scenario-based-view), [data](../../03-System-Analysis/01-System-Analysis.md#analysis-domain-and-information-analysis--05-data-oriented-view) and [operation contracts](../../03-System-Analysis/01-System-Analysis.md#analysis-business-rules-and-operation-contracts--10-domain-constraints-and-operation-contracts) govern meaning. Follow [architecture boundaries](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md) and [module rules](02-Module-Breakdown.md#design-record-03-component-and-module-design-01-modularity-dependencies-and-encapsulation-md).
+The [analysis interaction](../../03-System-Analysis/03-Processes-Scenarios-And-Business-Rules.md#analysis-behavioral-and-scenario-analysis--06-scenario-based-view), [data](../../03-System-Analysis/02-Domain-And-Information-Analysis.md#analysis-domain-and-information-analysis--05-data-oriented-view) and [operation contracts](../../03-System-Analysis/03-Processes-Scenarios-And-Business-Rules.md#analysis-business-rules-and-operation-contracts--10-domain-constraints-and-operation-contracts) govern meaning. Follow [architecture boundaries](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md) and [module rules](02-Module-Breakdown.md#design-record-03-component-and-module-design-01-modularity-dependencies-and-encapsulation-md).
 
 **Own:** application/opportunity context, private preparation and cover-letter revisions, manual progress history, actual submission events/material manifests and attributable corrections.
 
@@ -488,9 +558,9 @@ Provide permitted list/detail/history projections with revision and material-com
 
 #### 3. Owned classes and logical data
 
-[Proposed Applications class and reference model](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-owned-model.svg)
+[Proposed Applications class and reference model](Diagrams/Detailed/applications-owned-model.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-owned-model.puml) · ![applications owned model](../Diagrams/Archived-Png/Applications-Owned-Model.png)
+[Editable PlantUML](Diagrams/Detailed/applications-owned-model.puml) · ![applications owned model](Diagrams/Detailed/applications-owned-model.svg)
 
 **ApplicationRecord:** stable application/owner identity, version, lifecycle, company/opportunity context and deliberate associations. Proposed optional fields include URL/contact/location/description/source/notes/deadline per Q-D12; exact types/limits remain physical refinement. Time-sensitive values preserve precision and timezone meaning rather than a misleading universal date string.
 
@@ -516,9 +586,9 @@ External artifact ownership remains with Files; store permitted stable reference
 
 #### 4. Submission capture and correction algorithms
 
-[Proposed actual-material capture collaboration](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-capture-sequence.svg)
+[Proposed actual-material capture collaboration](Diagrams/Detailed/applications-capture-sequence.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-capture-sequence.puml) · ![applications capture sequence](../Diagrams/Archived-Png/Applications-Capture-Sequence.png)
+[Editable PlantUML](Diagrams/Detailed/applications-capture-sequence.puml) · ![applications capture sequence](Diagrams/Detailed/applications-capture-sequence.svg)
 
 1. Validate explicit actual-event intent, actor/application context, expected version and command identity. Check current authority before exposing prior outcome or referenced private material.
 2. Bind command identity to the intended recording request. Same-intent repetition resolves the prior permitted result; changed intent under that identity conflicts rather than overwrites history.
@@ -604,9 +674,9 @@ Follow the [component template](02-Module-Breakdown.md#design-record-03-componen
 
 ##### 7.1 Provided and required component interfaces
 
-[Provided and required component interfaces](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-interfaces.svg)
+[Provided and required component interfaces](Diagrams/Detailed/applications-interfaces.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-interfaces.puml) · ![applications interfaces](../Diagrams/Archived-Png/Applications-Interfaces.png)
+[Editable PlantUML](Diagrams/Detailed/applications-interfaces.puml) · ![applications interfaces](Diagrams/Detailed/applications-interfaces.svg)
 
 Provided circle and required sockets denote logical contracts, not allocated network APIs. Applications owns resource-operation policy; current Identity context does not give blanket access. Command families require exact signature refinement.
 
@@ -614,9 +684,9 @@ Provided circle and required sockets denote logical contracts, not allocated net
 
 ##### 7.2 C4 Level 1: Resumefolio system context
 
-[C4 Level 1: Resumefolio system context](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-c4-system-context.svg)
+[C4 Level 1: Resumefolio system context](Diagrams/Detailed/drivers-c4-system-context.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-c4-system-context.puml) · ![drivers c4 system context](../Diagrams/Archived-Png/Drivers-C4-System-Context.png)
+[Editable PlantUML](Diagrams/Detailed/drivers-c4-system-context.puml) · ![drivers c4 system context](Diagrams/Detailed/drivers-c4-system-context.svg)
 
 C4-style Level 1 scope is the whole software system; LC-04 is not promoted to a separate system. Public viewers have no Applications access merely because they can view a published resume. No internal module boxes appear at this level.
 
@@ -624,9 +694,9 @@ C4-style Level 1 scope is the whole software system; LC-04 is not promoted to a 
 
 ##### 7.3 C4 Level 2: modular application and stores
 
-[C4 Level 2: modular application and stores](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-c4-containers.svg)
+[C4 Level 2: modular application and stores](Diagrams/Detailed/boundaries-c4-containers.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-c4-containers.puml) · ![boundaries c4 containers](../Diagrams/Archived-Png/Boundaries-C4-Containers.png)
+[Editable PlantUML](Diagrams/Detailed/boundaries-c4-containers.puml) · ![boundaries c4 containers](Diagrams/Detailed/boundaries-c4-containers.svg)
 
 C4-style containers are applications/runtimes and data stores, not Docker units or nine services. Worker and provider facilities remain subject to enabling evidence. Sharing one database does not allow another module to write Applications state.
 
@@ -634,9 +704,9 @@ C4-style containers are applications/runtimes and data stores, not Docker units 
 
 ##### 7.4 Logical capability landscape
 
-![Logical capability landscape](../../03-System-Analysis/Diagrams/Scope-Stakeholder-Map.svg)
+![Logical capability landscape](Diagrams/Detailed/scope-stakeholder-map.svg)
 
-[Editable PlantUML](../../03-System-Analysis/Diagrams/Scope-Stakeholder-Map.puml) · ![scope stakeholder map](../../03-System-Analysis/Diagrams/Scope-Stakeholder-Map.png)
+[Editable PlantUML](../../03-System-Analysis/Diagrams/Scope-Stakeholder-Map.puml) · ![scope stakeholder map](Diagrams/Detailed/scope-stakeholder-map.svg)
 
 Portfolio-style map of nine logical modules grouped for navigation, not separate deployed applications, teams or enterprise systems. Grouping does not create new integration requirements; Work/Git/Workflow have no implied Applications lifecycle authority.
 
@@ -644,9 +714,9 @@ Portfolio-style map of nine logical modules grouped for navigation, not separate
 
 ##### 7.5 Applications inbound and outbound dependencies
 
-[Applications inbound and outbound dependencies](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-dependencies.svg)
+[Applications inbound and outbound dependencies](Diagrams/Detailed/applications-dependencies.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-dependencies.puml) · ![applications dependencies](../Diagrams/Archived-Png/Applications-Dependencies.png)
+[Editable PlantUML](Diagrams/Detailed/applications-dependencies.puml) · ![applications dependencies](Diagrams/Detailed/applications-dependencies.svg)
 
 Use/dependency direction, not bidirectional state access. No consumer obtains mutable Applications ORM records. A permitted correspondence association is not automatic progress or submission capture.
 
@@ -654,9 +724,9 @@ Use/dependency direction, not bidirectional state access. No consumer obtains mu
 
 ##### 7.6 Applications layered architecture
 
-[Applications layered architecture](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-layers.svg)
+[Applications layered architecture](Diagrams/Detailed/applications-layers.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-layers.puml) · ![applications layers](../Diagrams/Archived-Png/Applications-Layers.png)
+[Editable PlantUML](Diagrams/Detailed/applications-layers.puml) · ![applications layers](Diagrams/Detailed/applications-layers.svg)
 
 Proposed role allocation, not implemented classes or selected REST routes. Domain rules must retain proposal status where Q-D12/13/14 remain unresolved. Infrastructure does not gain authority to alter another owner’s tables.
 
@@ -664,9 +734,9 @@ Proposed role allocation, not implemented classes or selected REST routes. Domai
 
 ##### 7.7 Internal responsibility areas within LC-04
 
-[Internal responsibility areas within LC-04](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-internal-structure.svg)
+[Internal responsibility areas within LC-04](Diagrams/Detailed/applications-internal-structure.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-internal-structure.puml) · ![applications internal structure](../Diagrams/Archived-Png/Applications-Internal-Structure.png)
+[Editable PlantUML](Diagrams/Detailed/applications-internal-structure.puml) · ![applications internal structure](Diagrams/Detailed/applications-internal-structure.svg)
 
 Internal design areas, not independently deployed sub-applications. Progress, event existence and material completeness are distinct facts; correcting one must not silently rewrite another or manufacture submitted status.
 
@@ -674,9 +744,9 @@ Internal design areas, not independently deployed sub-applications. Progress, ev
 
 ##### 7.8 Candidate package dependencies
 
-[Candidate package dependencies](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-packages.svg)
+[Candidate package dependencies](Diagrams/Detailed/applications-packages.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-packages.puml) · ![applications packages](../Diagrams/Archived-Png/Applications-Packages.png)
+[Editable PlantUML](Diagrams/Detailed/applications-packages.puml) · ![applications packages](Diagrams/Detailed/applications-packages.svg)
 
 Proposed namespaces; actual Laravel autoloading/folder conventions remain to inspect/select. Source dependencies must be acyclic and cross-owner access limited to exported contracts. Runtime coordination direction is not inferred from package names alone.
 
@@ -684,9 +754,9 @@ Proposed namespaces; actual Laravel autoloading/folder conventions remain to ins
 
 ##### 7.9 Integration types and evidence boundaries
 
-[Integration types and evidence boundaries](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-integration.svg)
+[Integration types and evidence boundaries](Diagrams/Detailed/applications-integration.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-integration.puml) · ![applications integration](../Diagrams/Archived-Png/Applications-Integration.png)
+[Editable PlantUML](Diagrams/Detailed/applications-integration.puml) · ![applications integration](Diagrams/Detailed/applications-integration.svg)
 
 File integration is through Files-owned usable identity/reference protection, not raw private paths. Any asynchronous reconciliation needs durable attributable work; no messaging product or provider lookup guarantee is adopted.
 
@@ -694,9 +764,9 @@ File integration is through Files-owned usable identity/reference protection, no
 
 ##### 7.10 Actual submission capture across owner contracts
 
-[Actual submission capture across owner contracts](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-cross-owner-sequence.svg)
+[Actual submission capture across owner contracts](Diagrams/Detailed/applications-cross-owner-sequence.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-cross-owner-sequence.puml) · ![applications cross owner sequence](../Diagrams/Archived-Png/Applications-Cross-Owner-Sequence.png)
+[Editable PlantUML](Diagrams/Detailed/applications-cross-owner-sequence.puml) · ![applications cross owner sequence](Diagrams/Detailed/applications-cross-owner-sequence.svg)
 
 Logical public-contract collaboration, not a proven cross-module atomic handshake. Actual reservation, consumer commit, finalization and cleanup ordering remains joint Applications/Files/data design. New real submissions differ from repeats of one recording command.
 
@@ -704,9 +774,9 @@ Logical public-contract collaboration, not a proven cross-module atomic handshak
 
 ##### 7.11 UML use cases for the manual Applications capability
 
-[UML use cases for the manual Applications capability](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-use-cases.svg)
+[UML use cases for the manual Applications capability](Diagrams/Detailed/applications-use-cases.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-use-cases.puml) · ![applications use cases](../Diagrams/Archived-Png/Applications-Use-Cases.png)
+[Editable PlantUML](Diagrams/Detailed/applications-use-cases.puml) · ![applications use cases](Diagrams/Detailed/applications-use-cases.svg)
 
 Design-level use-case summary, not allocated new use-case IDs or exact criterion coverage. No automatic job-portal submission, AI drafting, universal admin access or email-inferred progress is introduced.
 
@@ -714,9 +784,9 @@ Design-level use-case summary, not allocated new use-case IDs or exact criterion
 
 ##### 7.12 Optional deployment mapping of logical roles
 
-[Optional deployment mapping of logical roles](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.svg)
+[Optional deployment mapping of logical roles](Diagrams/Detailed/drivers-uml-deployment.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.puml) · ![drivers uml deployment](../Diagrams/Archived-Png/Drivers-Uml-Deployment.png)
+[Editable PlantUML](Diagrams/Detailed/drivers-uml-deployment.puml) · ![drivers uml deployment](Diagrams/Detailed/drivers-uml-deployment.svg)
 
 Optional candidate mapping, not an installed topology or assertion that one host meets capacity/recovery needs. Refer to the owning deployment document; dated demo allocations are not production sizing guarantees.
 
@@ -844,7 +914,7 @@ These views/tables complement the detailed class/capture algorithms above. They 
 
 **Responsibility:** coordinate private mail/calendar intent with explicitly authorized provider capabilities, preserve attributable outcomes and distinguish local records from provider truth. A message accepted by a provider is not proven delivered/read, and a local calendar association is not a provider mutation.
 
-**Status:** proposed LC-05 component design, November 2, 2026. Q-D15 access remains evidence-gated; Q-D16/Q-D17 detailed behavior remains proposed in the source specification. OAuth was reported uncreated. No provider account, token, supported API/version, scope approval or actual send/synchronization result is established here.
+**Status:** proposed LC-05 component design. Q-D15 access remains evidence-gated; Q-D16/Q-D17 detailed behavior remains proposed in the source specification. OAuth was reported uncreated. No provider account, token, supported API/version, scope approval or actual send/synchronization result is established here.
 
 [Authority](#design-record-03-component-and-module-design-components-communication-and-calendar-md--heading-1-source-authority-and-ownership) · [Operations](#design-record-03-component-and-module-design-components-communication-and-calendar-md--heading-2-public-operations-and-result-contracts) · [Data](#design-record-03-component-and-module-design-components-communication-and-calendar-md--heading-3-owned-classes-and-logical-data) · [Send](#design-record-03-component-and-module-design-components-communication-and-calendar-md--heading-4-reviewed-send-and-uncertain-outcome-protocol) · [Calendar](#design-record-03-component-and-module-design-components-communication-and-calendar-md--heading-5-calendar-authority-and-reconciliation) · [Recovery](#design-record-03-component-and-module-design-components-communication-and-calendar-md--heading-6-security-failure-and-recovery-boundaries) · [Review](#design-record-03-component-and-module-design-components-communication-and-calendar-md--heading-7-verification-and-open-decisions) · [Communication package](#design-record-03-component-and-module-design-components-communication-and-calendar-md--heading-8-communication-calendar-and-delivery-view-package)
 
@@ -856,7 +926,7 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 Use [EGC-D01–EGC-D12](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-email-calendar-and-google-integration), [Q-D15](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-email-calendar-and-google-integration--id-resolution-q-d15), [Q-D16](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-email-calendar-and-google-integration--id-resolution-q-d16) and [Q-D17](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-email-calendar-and-google-integration--id-resolution-q-d17). Provider scopes listed there are proposals whose current applicability, audience/verification, costs/quotas and actual capability need official-source assessment at configuration time; this design does not independently certify them.
 
-Follow [analysis interfaces](../../03-System-Analysis/01-System-Analysis.md#analysis-interfaces-security-and-quality-analysis--12-interfaces-and-external-interactions), [states](../../03-System-Analysis/01-System-Analysis.md#analysis-behavioral-and-scenario-analysis--07-state-based-view), [operation contracts](../../03-System-Analysis/01-System-Analysis.md#analysis-business-rules-and-operation-contracts--10-domain-constraints-and-operation-contracts), [runtime protocol](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-03-process-view-concurrency-and-runtime-behavior-md) and [security design](../01-High-Level-Design/14-Appendices.md#design-record-06-design-quality-and-security-analysis-02-security-threat-modeling-and-trust-boundaries-md).
+Follow [analysis interfaces](../../03-System-Analysis/04-Interfaces-Security-And-Quality.md#analysis-interfaces-security-and-quality-analysis--12-interfaces-and-external-interactions), [states](../../03-System-Analysis/03-Processes-Scenarios-And-Business-Rules.md#analysis-behavioral-and-scenario-analysis--07-state-based-view), [operation contracts](../../03-System-Analysis/03-Processes-Scenarios-And-Business-Rules.md#analysis-business-rules-and-operation-contracts--10-domain-constraints-and-operation-contracts), [runtime protocol](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-03-process-view-concurrency-and-runtime-behavior-md) and [security design](../01-High-Level-Design/14-Appendices.md#design-record-06-design-quality-and-security-analysis-02-security-threat-modeling-and-trust-boundaries-md).
 
 **Own:** user/provider identity and capability state; local correspondence projections and compose intent; attributable remote-draft/send operations; local activities/private notes; selected provider-event mappings and synchronization observations/conflicts.
 
@@ -908,9 +978,9 @@ The signatures below name proposed responsibilities, not final language/API synt
 
 #### 3. Owned classes and logical data
 
-[After MVP — Proposed connection intent and calendar mapping model](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/communication-owned-model.svg)
+[After MVP — Proposed connection intent and calendar mapping model](Diagrams/Detailed/communication-owned-model.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/communication-owned-model.puml) · ![communication owned model](../Diagrams/Archived-Png/Communication-Owned-Model.png)
+[Editable PlantUML](Diagrams/Detailed/communication-owned-model.puml) · ![communication owned model](Diagrams/Detailed/communication-owned-model.svg)
 
 **ProviderConnection:** stable product-owner/connection identity, verified provider-account identity, capability/consent observations, locally usable credential reference, lifecycle/version and relevant timestamps. Sensitive credentials remain restricted and recoverable through evaluated key procedures, not exposed through public projections.
 
@@ -934,9 +1004,9 @@ Timed events retain unambiguous instant and source/display timezone. All-day cal
 
 #### 4. Reviewed send and uncertain outcome protocol
 
-[After MVP — Proposed reviewed send and lost-response handling](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/communication-send-sequence.svg)
+[After MVP — Proposed reviewed send and lost-response handling](Diagrams/Detailed/communication-send-sequence.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/communication-send-sequence.puml) · ![communication send sequence](../Diagrams/Archived-Png/Communication-Send-Sequence.png)
+[Editable PlantUML](Diagrams/Detailed/communication-send-sequence.puml) · ![communication send sequence](Diagrams/Detailed/communication-send-sequence.svg)
 
 1. Resolve current owner/connection/send authority and intended draft version. Validate the final selected sender/recipient/thread/content/artifact set and bind it to an immutable reviewed intent or equivalent stable snapshot.
 2. Under the selected local guard, bind a unique command identity to that intent, record an attributable pending attempt and durable dispatch state. Same-intent repeat resolves the previous permitted result; changed intent conflicts.
@@ -953,9 +1023,9 @@ The send adapter must report capability and actual result semantics, not suppres
 
 **After MVP.** Shared operating and recovery controls still apply where relevant.
 
-[After MVP — Proposed local versus provider event decisions](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/calendar-reconciliation-route.svg)
+[After MVP — Proposed local versus provider event decisions](Diagrams/Detailed/calendar-reconciliation-route.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/calendar-reconciliation-route.puml) · ![calendar reconciliation route](../Diagrams/Archived-Png/Calendar-Reconciliation-Route.png)
+[Editable PlantUML](Diagrams/Detailed/calendar-reconciliation-route.puml) · ![calendar reconciliation route](Diagrams/Detailed/calendar-reconciliation-route.svg)
 
 **Local-only activity:** save local intent without provider effect. Explicit publish establishes a new attributable mapping only when permitted provider creation is observed. Unknown creation cannot become a fresh create on reconnect automatically.
 
@@ -1036,9 +1106,9 @@ These **proposed LC-05 views** preserve Google-oriented accepted scope and Q-D15
 
 **After MVP.** Shared operating and recovery controls still apply where relevant.
 
-[After MVP — Communication and calendar interfaces](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-interfaces.svg)
+[After MVP — Communication and calendar interfaces](Diagrams/Detailed/comm-interfaces.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-interfaces.puml) · ![comm interfaces](../Diagrams/Archived-Png/Comm-Interfaces.png)
+[Editable PlantUML](Diagrams/Detailed/comm-interfaces.puml) · ![comm interfaces](Diagrams/Detailed/comm-interfaces.svg)
 
 Logical contracts with provided circle and required sockets. Mail/calendar responsibilities are parts of LC-05, not newly selected services. Exact operations/signatures remain proposals as defined above.
 
@@ -1046,9 +1116,9 @@ Logical contracts with provided circle and required sockets. Mail/calendar respo
 
 ##### 8.2 C4 Level 1: users and external provider
 
-![After MVP: independent communications — C4 Level 1: users and external provider](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.svg)
+![After MVP: independent communications — C4 Level 1: users and external provider](Diagrams/Detailed/use-cases-mail-and-calendar.svg)
 
-[Editable PlantUML](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.puml) · ![use cases mail and calendar](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.png)
+[Editable PlantUML](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.puml) · ![use cases mail and calendar](Diagrams/Detailed/use-cases-mail-and-calendar.svg)
 
 Whole-system C4-style context, not LC-05 as a separate software system. External correspondent interaction belongs to the provider; the product cannot infer receipt/read from its own request outcome.
 
@@ -1056,9 +1126,9 @@ Whole-system C4-style context, not LC-05 as a separate software system. External
 
 ##### 8.3 C4 Level 2: actual proposed runtime boundaries
 
-![After MVP: independent communications — C4 Level 2: actual proposed runtime boundaries](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.svg)
+![After MVP: independent communications — C4 Level 2: actual proposed runtime boundaries](Diagrams/Detailed/use-cases-mail-and-calendar.svg)
 
-[Editable PlantUML](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.puml) · ![use cases mail and calendar](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.png)
+[Editable PlantUML](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.puml) · ![use cases mail and calendar](Diagrams/Detailed/use-cases-mail-and-calendar.svg)
 
 C4-style containers are web/runtime/store boundaries. Chat and separate notification services are not promoted into scope. Scheduler/worker/provider access is a pending operating capability, not configured infrastructure.
 
@@ -1068,9 +1138,9 @@ C4-style containers are web/runtime/store boundaries. Chat and separate notifica
 
 **After MVP.** Shared operating and recovery controls still apply where relevant.
 
-[After MVP — Owner communication and calendar use cases](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-use-cases.svg)
+[After MVP — Owner communication and calendar use cases](Diagrams/Detailed/comm-use-cases.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-use-cases.puml) · ![comm use cases](../Diagrams/Archived-Png/Comm-Use-Cases.png)
+[Editable PlantUML](Diagrams/Detailed/comm-use-cases.puml) · ![comm use cases](Diagrams/Detailed/comm-use-cases.svg)
 
 Scenario summary, not new allocated use cases. Scheduling a local activity is not inviting attendees. Invitation creation/response, conflict lookup and reminder delivery require actual source disposition and provider capability before implementation.
 
@@ -1078,9 +1148,9 @@ Scenario summary, not new allocated use cases. Scheduling a local activity is no
 
 ##### 8.5 Domain classes and optional requested concepts
 
-[After MVP — Domain classes and optional requested concepts](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-domain.svg)
+[After MVP — Domain classes and optional requested concepts](Diagrams/Detailed/comm-domain.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-domain.puml) · ![comm domain](../Diagrams/Archived-Png/Comm-Domain.png)
+[Editable PlantUML](Diagrams/Detailed/comm-domain.puml) · ![comm domain](Diagrams/Detailed/comm-domain.svg)
 
 Message and Thread are provider-scoped projection identities, not claims of owned provider truth. Attendee and recurrence roles are conditional refinements. Channel denotes an explicitly selected delivery kind; the diagram creates no chat feature or push/SMS entitlement.
 
@@ -1088,9 +1158,9 @@ Message and Thread are provider-scoped projection identities, not claims of owne
 
 ##### 8.6 Logical ERD: owned and observed records
 
-[After MVP — Logical ERD: owned and observed records](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-erd.svg)
+[After MVP — Logical ERD: owned and observed records](Diagrams/Detailed/comm-erd.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-erd.puml) · ![comm erd](../Diagrams/Archived-Png/Comm-Erd.png)
+[Editable PlantUML](Diagrams/Detailed/comm-erd.puml) · ![comm erd](Diagrams/Detailed/comm-erd.svg)
 
 Selected logical ERD with proposed multiplicities, not migration SQL or complete schema. Calendars/messages/threads remain provider-scoped references/projections; private local notes and mappings remain owned. Exact uniqueness, attendee retention and mapping cardinality need refinement; no cascade deletion implied.
 
@@ -1098,9 +1168,9 @@ Selected logical ERD with proposed multiplicities, not migration SQL or complete
 
 ##### 8.7 Reviewed send and delivery observations
 
-[After MVP — Reviewed send and delivery observations](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-send.svg)
+[After MVP — Reviewed send and delivery observations](Diagrams/Detailed/comm-send.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-send.puml) · ![comm send](../Diagrams/Archived-Png/Comm-Send.png)
+[Editable PlantUML](Diagrams/Detailed/comm-send.puml) · ![comm send](Diagrams/Detailed/comm-send.svg)
 
 No delivery/read guarantee or provider lookup/idempotency API is invented. Reviewed content cannot refer to a later mutable draft. Exact attachment identity and current usable capability must hold at actual dispatch.
 
@@ -1108,9 +1178,9 @@ No delivery/read guarantee or provider lookup/idempotency API is invented. Revie
 
 ##### 8.8 Conditional event creation and attendee response
 
-[After MVP — Conditional event creation and attendee response](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-invitation.svg)
+[After MVP — Conditional event creation and attendee response](Diagrams/Detailed/comm-invitation.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-invitation.puml) · ![comm invitation](../Diagrams/Archived-Png/Comm-Invitation.png)
+[Editable PlantUML](Diagrams/Detailed/comm-invitation.puml) · ![comm invitation](Diagrams/Detailed/comm-invitation.svg)
 
 Conditional interaction, not newly accepted attendee workflow. Event mutation, invitation dispatch and attendee response are separate effects/facts. Unknown create/update must reconcile the same intent; no recreate-on-reconnect.
 
@@ -1118,9 +1188,9 @@ Conditional interaction, not newly accepted attendee workflow. Event mutation, i
 
 ##### 8.9 Reminder trigger and actual notification outcome
 
-[After MVP — Reminder trigger and actual notification outcome](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-reminder.svg)
+[After MVP — Reminder trigger and actual notification outcome](Diagrams/Detailed/comm-reminder.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-reminder.puml) · ![comm reminder](../Diagrams/Archived-Png/Comm-Reminder.png)
+[Editable PlantUML](Diagrams/Detailed/comm-reminder.puml) · ![comm reminder](Diagrams/Detailed/comm-reminder.svg)
 
 Scheduler/delivery facilities are not established by this drawing. Due detection does not prove notification. Edits/cancellation and duplicate triggers need current guard/identity handling; no implicit second mail sender or unsupported fallback channel.
 
@@ -1128,9 +1198,9 @@ Scheduler/delivery facilities are not established by this drawing. Due detection
 
 ##### 8.10 Message and send knowledge: distinct dimensions
 
-[After MVP — Message and send knowledge: distinct dimensions](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-message-state.svg)
+[After MVP — Message and send knowledge: distinct dimensions](Diagrams/Detailed/comm-message-state.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-message-state.puml) · ![comm message state](../Diagrams/Archived-Png/Comm-Message-State.png)
+[Editable PlantUML](Diagrams/Detailed/comm-message-state.puml) · ![comm message state](Diagrams/Detailed/comm-message-state.svg)
 
 Avoid a misleading draft→sent→delivered→read chain. Product admission, provider acceptance, receipt and read are different facts. No actual enum or unsupported delivery-tracking feature is adopted.
 
@@ -1138,9 +1208,9 @@ Avoid a misleading draft→sent→delivered→read chain. Product admission, pro
 
 ##### 8.11 Event status and attendee response dimensions
 
-[After MVP — Event status and attendee response dimensions](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-event-state.svg)
+[After MVP — Event status and attendee response dimensions](Diagrams/Detailed/comm-event-state.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-event-state.puml) · ![comm event state](../Diagrams/Archived-Png/Comm-Event-State.png)
+[Editable PlantUML](Diagrams/Detailed/comm-event-state.puml) · ![comm event state](Diagrams/Detailed/comm-event-state.svg)
 
 Orthogonal subjects shown separately. Actual supported states/transitions and field authority must be mapped from current provider evidence; no automatic authoritative transition from local notes or associations.
 
@@ -1148,9 +1218,9 @@ Orthogonal subjects shown separately. Actual supported states/transitions and fi
 
 ##### 8.12 Conditional scheduling and conflict detection
 
-[After MVP — Conditional scheduling and conflict detection](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-scheduling.svg)
+[After MVP — Conditional scheduling and conflict detection](Diagrams/Detailed/comm-scheduling.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-scheduling.puml) · ![comm scheduling](../Diagrams/Archived-Png/Comm-Scheduling.png)
+[Editable PlantUML](Diagrams/Detailed/comm-scheduling.puml) · ![comm scheduling](Diagrams/Detailed/comm-scheduling.svg)
 
 Conflict detection/free-busy is conditional, not an established requirement or adapter feature. Lookup results are time-bounded observations and cannot reserve a slot; avoid silently moving meetings or inviting attendees.
 
@@ -1158,9 +1228,9 @@ Conflict detection/free-busy is conditional, not an established requirement or a
 
 ##### 8.13 Bounded recurrence expansion and exception identity
 
-[After MVP — Bounded recurrence expansion and exception identity](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-recurrence.svg)
+[After MVP — Bounded recurrence expansion and exception identity](Diagrams/Detailed/comm-recurrence.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-recurrence.puml) · ![comm recurrence](../Diagrams/Archived-Png/Comm-Recurrence.png)
+[Editable PlantUML](Diagrams/Detailed/comm-recurrence.puml) · ![comm recurrence](Diagrams/Detailed/comm-recurrence.svg)
 
 Proposed projection algorithm, not an adopted recurrence library or new provider behavior. Do not infinitely expand an unbounded rule, erase original occurrence identity or convert a series wall-clock rule into a fixed UTC offset. Exact DST/exception semantics need actual source/provider evaluation.
 
@@ -1168,9 +1238,9 @@ Proposed projection algorithm, not an adopted recurrence library or new provider
 
 ##### 8.14 Logical work flow and channel eligibility
 
-[After MVP — Logical work flow and channel eligibility](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-notification-flow.svg)
+[After MVP — Logical work flow and channel eligibility](Diagrams/Detailed/comm-notification-flow.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-notification-flow.puml) · ![comm notification flow](../Diagrams/Archived-Png/Comm-Notification-Flow.png)
+[Editable PlantUML](Diagrams/Detailed/comm-notification-flow.puml) · ![comm notification flow](Diagrams/Detailed/comm-notification-flow.svg)
 
 Queues denote logical durable work, not a messaging product. Retry requires operation-specific repetition evidence and a selected budget; unknown effects reconcile first. No automatic fallback from email to push/SMS/chat is selected.
 
@@ -1178,9 +1248,9 @@ Queues denote logical durable work, not a messaging product. Retry requires oper
 
 ##### 8.15 Selected scope versus protocol alternatives
 
-[After MVP — Selected scope versus protocol alternatives](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-integration-options.svg)
+[After MVP — Selected scope versus protocol alternatives](Diagrams/Detailed/comm-integration-options.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-integration-options.puml) · ![comm integration options](../Diagrams/Archived-Png/Comm-Integration-Options.png)
+[Editable PlantUML](Diagrams/Detailed/comm-integration-options.puml) · ![comm integration options](Diagrams/Detailed/comm-integration-options.svg)
 
 Requested integration vocabulary is inventoried as unselected alternatives. This document does not assert that Google uses CalDAV/SMTP for the proposed design or that Microsoft access exists. Current official capability/security/quotas must be verified at selection/configuration time.
 
@@ -1188,9 +1258,9 @@ Requested integration vocabulary is inventoried as unselected alternatives. This
 
 ##### 8.16 Conditional free-busy lookup
 
-[After MVP — Conditional free-busy lookup](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-free-busy.svg)
+[After MVP — Conditional free-busy lookup](Diagrams/Detailed/comm-free-busy.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-free-busy.puml) · ![comm free busy](../Diagrams/Archived-Png/Comm-Free-Busy.png)
+[Editable PlantUML](Diagrams/Detailed/comm-free-busy.puml) · ![comm free busy](Diagrams/Detailed/comm-free-busy.svg)
 
 No free-busy API or scope is certified. Disclosure of detailed titles/attendees is not justified by availability access. “No observed conflict” under partial results must not be represented as guaranteed free.
 
@@ -1200,9 +1270,9 @@ No free-busy API or scope is certified. Disclosure of detailed titles/attendees 
 
 **After MVP.** Shared operating and recovery controls still apply where relevant.
 
-[After MVP — Conditional calendar reconciliation and conflict resolution](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-sync.svg)
+[After MVP — Conditional calendar reconciliation and conflict resolution](Diagrams/Detailed/comm-sync.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-sync.puml) · ![comm sync](../Diagrams/Archived-Png/Comm-Sync.png)
+[Editable PlantUML](Diagrams/Detailed/comm-sync.puml) · ![comm sync](Diagrams/Detailed/comm-sync.svg)
 
 No universal last-write-wins, full-account mirror or sync-token mechanism is adopted. Source field authority remains Q-D17 proposed; actual provider version/change facilities require evaluation. Reconnect cannot automatically create duplicate events or replay sends.
 
@@ -1210,9 +1280,9 @@ No universal last-write-wins, full-account mirror or sync-token mechanism is ado
 
 ##### 8.18 Optional trusted runtime placement
 
-![After MVP: independent communications — Optional trusted runtime placement](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.svg)
+![After MVP: independent communications — Optional trusted runtime placement](Diagrams/Detailed/use-cases-mail-and-calendar.svg)
 
-[Editable PlantUML](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.puml) · ![use cases mail and calendar](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.png)
+[Editable PlantUML](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.puml) · ![use cases mail and calendar](Diagrams/Detailed/use-cases-mail-and-calendar.svg)
 
 Optional candidate mapping, not configured hosts/services or verified delivery. No dedicated notification server, SMS gateway or chat service is selected. Secrets remain restricted and ordinary logs exclude tokens/content.
 
@@ -1329,7 +1399,7 @@ All views and tables are documentation proposals, not actual provider capability
 
 **Responsibility:** admit and identify usable private artifacts, account for concurrent growth, preserve protected references, replace/reclaim safely and assess recoverable operating state. Metadata creation, stored bytes, permitted retrieval and actual reclaimed capacity are different facts.
 
-**Status:** proposed LC-09 component design, November 2, 2026. No storage backend, quota number, backup destination, recovery target or accepted physical schema is selected here. Farhad retains policy/operations decision authority within source permissions and actual resource limits.
+**Status:** proposed LC-09 component design. No storage backend, quota number, backup destination, recovery target or accepted physical schema is selected here. Farhad retains policy/operations decision authority within source permissions and actual resource limits.
 
 [Authority](#design-record-03-component-and-module-design-components-files-and-operations-md--heading-1-source-authority-and-ownership) · [Contracts](#design-record-03-component-and-module-design-components-files-and-operations-md--heading-2-public-operations) · [Model](#design-record-03-component-and-module-design-components-files-and-operations-md--heading-3-owned-data-and-state-dimensions) · [Admission](#design-record-03-component-and-module-design-components-files-and-operations-md--heading-4-admission-and-accounting-protocol) · [References](#design-record-03-component-and-module-design-components-files-and-operations-md--heading-5-protected-reference-replacement-and-reclamation) · [Recovery](#design-record-03-component-and-module-design-components-files-and-operations-md--heading-6-operating-recovery-and-failure-scenarios) · [Review](#design-record-03-component-and-module-design-components-files-and-operations-md--heading-7-verification-and-open-decisions) · [Storage package](#design-record-03-component-and-module-design-components-files-and-operations-md--heading-8-files-storage-and-operations-view-package)
 
@@ -1339,7 +1409,7 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### 1. Source authority and ownership
 
-Use [AFO-D01–AFO-D12](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-administration-files-and-operational-behavior), [Q-D24 proposed accounting/limits](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-administration-files-and-operational-behavior--id-resolution-q-d24), [quality/recovery requirements](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-quality-security-and-recovery-requirements), [source decisions](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#change-and-baseline-open-questions-and-decisions) and [analysis data/contracts](../../03-System-Analysis/01-System-Analysis.md#analysis-business-rules-and-operation-contracts--10-domain-constraints-and-operation-contracts).
+Use [AFO-D01–AFO-D12](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-administration-files-and-operational-behavior), [Q-D24 proposed accounting/limits](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-administration-files-and-operational-behavior--id-resolution-q-d24), [quality/recovery requirements](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-quality-security-and-recovery-requirements), [source decisions](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#change-and-baseline-open-questions-and-decisions) and [analysis data/contracts](../../03-System-Analysis/03-Processes-Scenarios-And-Business-Rules.md#analysis-business-rules-and-operation-contracts--10-domain-constraints-and-operation-contracts).
 
 Q-D24 contains numeric starting proposals, not measured safe allocations or accepted defaults. Preserve their source status rather than implementing those values automatically. Actual workload, temporary/Git/log growth, policy ownership and operating capacity still require evaluation. Backups were reported unconfigured.
 
@@ -1407,9 +1477,9 @@ Evaluate an identified consistent recovery set, actual storage/keys/configuratio
 
 #### 3. Owned data and state dimensions
 
-[Proposed artifact reference and accounting identities](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-owned-model.svg)
+[Proposed artifact reference and accounting identities](Diagrams/Detailed/files-owned-model.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-owned-model.puml) · ![files owned model](../Diagrams/Archived-Png/Files-Owned-Model.png)
+[Editable PlantUML](Diagrams/Detailed/files-owned-model.puml) · ![files owned model](Diagrams/Detailed/files-owned-model.svg)
 
 **EffectiveFilePolicy:** versioned scope/category, units and actual proposed/accepted limits/envelope rationale. **QuotaLedger/Reservation:** responsible context, category, attributable intended growth, outstanding/finalized/released/reconciliation status and actual accounting evidence. Physical deduplication does not erase semantic charging for responsible contexts.
 
@@ -1425,9 +1495,9 @@ Logical persistence needs scoped unique command/reservation/reference identities
 
 #### 4. Admission and accounting protocol
 
-[Proposed file admission and finalization](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-admission-sequence.svg)
+[Proposed file admission and finalization](Diagrams/Detailed/files-admission-sequence.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-admission-sequence.puml) · ![files admission sequence](../Diagrams/Archived-Png/Files-Admission-Sequence.png)
+[Editable PlantUML](Diagrams/Detailed/files-admission-sequence.puml) · ![files admission sequence](Diagrams/Detailed/files-admission-sequence.svg)
 
 1. Validate explicit upload/generated-output intent, resource authority, declared category/type and applicable policy version. Check real content/size through the evaluated processing path, not the filename alone.
 2. Under the chosen local accounting guard, calculate applicable committed usage plus outstanding reservations and reserve attributable growth only if all relevant limits/headroom conditions permit. Record command/result identity atomically. Avoid double charging same-intent retries or undercounting shared artifacts across quota contexts.
@@ -1442,9 +1512,9 @@ Generated PDFs, uploads, workflow artifacts, native Git packs and diagnostics ha
 
 #### 5. Protected reference replacement and reclamation
 
-[Reference protection and physical reclamation](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-reclamation-route.svg)
+[Reference protection and physical reclamation](Diagrams/Detailed/files-reclamation-route.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-reclamation-route.puml) · ![files reclamation route](../Diagrams/Archived-Png/Files-Reclamation-Route.png)
+[Editable PlantUML](Diagrams/Detailed/files-reclamation-route.puml) · ![files reclamation route](Diagrams/Detailed/files-reclamation-route.svg)
 
 The joint Applications/Presentation/Files protocol must serialize reference admission against physical deletion. One proposed approach is an artifact-version/state guard plus attributable provisional protection: reference registration refuses an artifact already exclusively claimed for deletion; cleanup cannot claim an artifact with unresolved or active protection. Finalize consumer identity after its commit through a durable handshake or equivalent evaluated local transaction design.
 
@@ -1519,9 +1589,9 @@ These **proposed LC-09 views** refine private artifact/accounting/reference resp
 
 ##### 8.1 Files provided and required interfaces
 
-[Files provided and required interfaces](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-interfaces.svg)
+[Files provided and required interfaces](Diagrams/Detailed/files-interfaces.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-interfaces.puml) · ![files interfaces](../Diagrams/Archived-Png/Files-Interfaces.png)
+[Editable PlantUML](Diagrams/Detailed/files-interfaces.puml) · ![files interfaces](Diagrams/Detailed/files-interfaces.svg)
 
 Logical provided circle and required sockets; exact signatures remain proposals. Files cannot grant sharing access merely because bytes exist, nor claim a consumer committed merely from a queued notification.
 
@@ -1529,9 +1599,9 @@ Logical provided circle and required sockets; exact signatures remain proposals.
 
 ##### 8.2 C4 Level 1: artifact-related system context
 
-[C4 Level 1: artifact-related system context](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-context.svg)
+[C4 Level 1: artifact-related system context](Diagrams/Detailed/files-context.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-context.puml) · ![files context](../Diagrams/Archived-Png/Files-Context.png)
+[Editable PlantUML](Diagrams/Detailed/files-context.puml) · ![files context](Diagrams/Detailed/files-context.svg)
 
 C4-style whole-system context. Internal Files/Git/Applications modules belong below Level 1. Local storage may remain inside the system boundary; external facility placement is conditional, not a selected S3/backup architecture.
 
@@ -1539,9 +1609,9 @@ C4-style whole-system context. Internal Files/Git/Applications modules belong be
 
 ##### 8.3 C4 Level 2: modular runtime and storage
 
-[C4 Level 2: modular runtime and storage](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-context.svg)
+[C4 Level 2: modular runtime and storage](Diagrams/Detailed/files-context.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-context.puml) · ![files context](../Diagrams/Archived-Png/Files-Context.png)
+[Editable PlantUML](Diagrams/Detailed/files-context.puml) · ![files context](Diagrams/Detailed/files-context.svg)
 
 C4-style application/runtime/store boundaries, not a separately deployed file microservice. Object storage is a possible backend rather than an adopted product. Worker readiness, keys and recovery facilities need actual evidence.
 
@@ -1549,9 +1619,9 @@ C4-style application/runtime/store boundaries, not a separately deployed file mi
 
 ##### 8.4 Artifact operations and separately owned sharing
 
-[Artifact operations and separately owned sharing](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-use-cases.svg)
+[Artifact operations and separately owned sharing](Diagrams/Detailed/files-use-cases.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-use-cases.puml) · ![files use cases](../Diagrams/Archived-Png/Files-Use-Cases.png)
+[Editable PlantUML](Diagrams/Detailed/files-use-cases.puml) · ![files use cases](Diagrams/Detailed/files-use-cases.svg)
 
 Use-case summary, not allocated IDs or a new generic folder/version browser. Share creation is owned elsewhere; Files supplies exact usable artifacts and guarded delivery. Restore/purge requires actual scoped authority and policy, not a universal operator role.
 
@@ -1559,9 +1629,9 @@ Use-case summary, not allocated IDs or a new generic folder/version browser. Sha
 
 ##### 8.5 Artifact, reference and operation classes
 
-[Artifact, reference and operation classes](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-domain.svg)
+[Artifact, reference and operation classes](Diagrams/Detailed/files-domain.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-domain.puml) · ![files domain](../Diagrams/Archived-Png/Files-Domain.png)
+[Editable PlantUML](Diagrams/Detailed/files-domain.puml) · ![files domain](Diagrams/Detailed/files-domain.svg)
 
 Selected roles are proposals, not final types/cardinalities. VersionReference belongs to the relevant consumer; ShareLink is not Files-owned. Folder is notation for a conditional future grouping, not an accepted general file-manager feature.
 
@@ -1569,9 +1639,9 @@ Selected roles are proposals, not final types/cardinalities. VersionReference be
 
 ##### 8.6 Logical artifact and ledger relationships
 
-[Logical artifact and ledger relationships](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-erd.svg)
+[Logical artifact and ledger relationships](Diagrams/Detailed/files-erd.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-erd.puml) · ![files erd](../Diagrams/Archived-Png/Files-Erd.png)
+[Editable PlantUML](Diagrams/Detailed/files-erd.puml) · ![files erd](Diagrams/Detailed/files-erd.svg)
 
 Selected logical ERD, not a full schema or accepted cardinality allocation. Actual folder/version/permission persistence is not invented; those may be labels, consumer-owned references and current policy contracts. Command uniqueness, quota accounting and reclamation guards still need concrete design.
 
@@ -1579,9 +1649,9 @@ Selected logical ERD, not a full schema or accepted cardinality allocation. Actu
 
 ##### 8.7 Upload with conditional resumable transport
 
-[Upload with conditional resumable transport](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-upload.svg)
+[Upload with conditional resumable transport](Diagrams/Detailed/files-upload.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-upload.puml) · ![files upload](../Diagrams/Archived-Png/Files-Upload.png)
+[Editable PlantUML](Diagrams/Detailed/files-upload.puml) · ![files upload](Diagrams/Detailed/files-upload.svg)
 
 Resumable chunks are an unselected option, not a chosen endpoint/part-size policy. Define ownership, ranges, integrity, expiration and restart semantics before use. Transport completion or metadata row alone does not make an artifact usable; leftover bytes still consume actual space.
 
@@ -1589,9 +1659,9 @@ Resumable chunks are an unselected option, not a chosen endpoint/part-size polic
 
 ##### 8.8 Exact download and current access admission
 
-[Exact download and current access admission](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-download.svg)
+[Exact download and current access admission](Diagrams/Detailed/files-download.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-download.puml) · ![files download](../Diagrams/Archived-Png/Files-Download.png)
+[Editable PlantUML](Diagrams/Detailed/files-download.puml) · ![files download](Diagrams/Detailed/files-download.svg)
 
 The concrete delivery route and revocation/admission ordering remain to select. A controlled delivery capability must not become an indefinitely reusable raw public path. Do not substitute another language, private file or newer live revision.
 
@@ -1599,9 +1669,9 @@ The concrete delivery route and revocation/admission ordering remain to select. 
 
 ##### 8.9 Share link creation and access through its owner
 
-[Share link creation and access through its owner](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-share.svg)
+[Share link creation and access through its owner](Diagrams/Detailed/files-share.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-share.puml) · ![files share](../Diagrams/Archived-Png/Files-Share.png)
+[Editable PlantUML](Diagrams/Detailed/files-share.puml) · ![files share](Diagrams/Detailed/files-share.svg)
 
 Logical collaboration, not an allocated bearer-token format, expiration policy or raw storage URL. Sharing owns link lifecycle; Files owns usability/reference/delivery guards. Link creation does not automatically publish or change submitted evidence.
 
@@ -1609,9 +1679,9 @@ Logical collaboration, not an allocated bearer-token format, expiration policy o
 
 ##### 8.10 Artifact usability, lifecycle and presence dimensions
 
-[Artifact usability, lifecycle and presence dimensions](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-artifact-state.svg)
+[Artifact usability, lifecycle and presence dimensions](Diagrams/Detailed/files-artifact-state.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-artifact-state.puml) · ![files artifact state](../Diagrams/Archived-Png/Files-Artifact-State.png)
+[Editable PlantUML](Diagrams/Detailed/files-artifact-state.puml) · ![files artifact state](Diagrams/Detailed/files-artifact-state.svg)
 
 Illustrative dimensions, not accepted enums or a new trash period. Physical presence/accounting and reference protection are separate; do not flatten them into a single file status. Actual deletion requires an exclusive guard and storage evidence.
 
@@ -1619,9 +1689,9 @@ Illustrative dimensions, not accepted enums or a new trash period. Physical pres
 
 ##### 8.11 Operation and job knowledge states
 
-[Operation and job knowledge states](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-job-state.svg)
+[Operation and job knowledge states](Diagrams/Detailed/files-job-state.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-job-state.puml) · ![files job state](../Diagrams/Archived-Png/Files-Job-State.png)
+[Editable PlantUML](Diagrams/Detailed/files-job-state.puml) · ![files job state](Diagrams/Detailed/files-job-state.svg)
 
 Proposed operation/coordinator knowledge, not a selected queue enum. Queue acknowledgment and worker exit do not prove content usability or byte deletion. A cancellation request is not a confirmed stopped or cleaned job.
 
@@ -1629,9 +1699,9 @@ Proposed operation/coordinator knowledge, not a selected queue enum. Queue ackno
 
 ##### 8.12 Private candidate processing pipeline
 
-[Private candidate processing pipeline](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-pipeline.svg)
+[Private candidate processing pipeline](Diagrams/Detailed/files-pipeline.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-pipeline.puml) · ![files pipeline](../Diagrams/Archived-Png/Files-Pipeline.png)
+[Editable PlantUML](Diagrams/Detailed/files-pipeline.puml) · ![files pipeline](Diagrams/Detailed/files-pipeline.svg)
 
 Scanning, thumbnailing and indexing are conditional, not installed features or proof of safety. If a required scanner is unavailable, do not bypass it. Fork/join is a logical view; optional derivative failure must not silently alter original usability/accounting semantics.
 
@@ -1639,9 +1709,9 @@ Scanning, thumbnailing and indexing are conditional, not installed features or p
 
 ##### 8.13 Concurrent reference replacement conflict resolution
 
-[Concurrent reference replacement conflict resolution](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-concurrent-edits.svg)
+[Concurrent reference replacement conflict resolution](Diagrams/Detailed/files-concurrent-edits.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-concurrent-edits.puml) · ![files concurrent edits](../Diagrams/Archived-Png/Files-Concurrent-Edits.png)
+[Editable PlantUML](Diagrams/Detailed/files-concurrent-edits.puml) · ![files concurrent edits](Diagrams/Detailed/files-concurrent-edits.svg)
 
 This is association/version conflict handling, not collaborative binary-file editing or automatic content merge. Unknown switch outcome retains protection until same-command reconciliation; neither age nor conflict alone proves a reference safe to release.
 
@@ -1649,9 +1719,9 @@ This is association/version conflict handling, not collaborative binary-file edi
 
 ##### 8.14 Storage architecture options and unselected tiers
 
-[Storage architecture options and unselected tiers](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-context.svg)
+[Storage architecture options and unselected tiers](Diagrams/Detailed/files-context.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-context.puml) · ![files context](../Diagrams/Archived-Png/Files-Context.png)
+[Editable PlantUML](Diagrams/Detailed/files-context.puml) · ![files context](Diagrams/Detailed/files-context.svg)
 
 Options diagram, not a selected tier/replication/CDN topology. Replication is not by itself a usable independent backup. Hot/warm/cold costs, keys, protected references, privacy and retrieval behavior require an explicit decision and evidence.
 
@@ -1659,9 +1729,9 @@ Options diagram, not a selected tier/replication/CDN topology. Replication is no
 
 ##### 8.15 Logical hierarchy versus canonical storage identity
 
-[Logical hierarchy versus canonical storage identity](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-paths.svg)
+[Logical hierarchy versus canonical storage identity](Diagrams/Detailed/files-paths.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-paths.puml) · ![files paths](../Diagrams/Archived-Png/Files-Paths.png)
+[Editable PlantUML](Diagrams/Detailed/files-paths.puml) · ![files paths](Diagrams/Detailed/files-paths.svg)
 
 Conditional folder notation, not an accepted file-manager scope. Stable identity must survive display labels where selected. Canonicalization, traversal protection, copy charging and permission propagation need actual contracts; physical paths stay internal.
 
@@ -1669,9 +1739,9 @@ Conditional folder notation, not an accepted file-manager scope. Stable identity
 
 ##### 8.16 Version, trash, restore and physical reclaim flow
 
-[Version, trash, restore and physical reclaim flow](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-trash.svg)
+[Version, trash, restore and physical reclaim flow](Diagrams/Detailed/files-trash.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-trash.puml) · ![files trash](../Diagrams/Archived-Png/Files-Trash.png)
+[Editable PlantUML](Diagrams/Detailed/files-trash.puml) · ![files trash](Diagrams/Detailed/files-trash.svg)
 
 No version count, retention duration or 30-day default allocated. Trash does not prove reclaimed bytes. Restoring metadata cannot create missing bytes or reactivate old permissions/links; a restore of a whole backup is a separate controlled procedure.
 
@@ -1679,9 +1749,9 @@ No version count, retention duration or 30-day default allocated. Trash does not
 
 ##### 8.17 Logical job lanes, reconciliation and intervention
 
-[Logical job lanes, reconciliation and intervention](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-queues.svg)
+[Logical job lanes, reconciliation and intervention](Diagrams/Detailed/files-queues.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-queues.puml) · ![files queues](../Diagrams/Archived-Png/Files-Queues.png)
+[Editable PlantUML](Diagrams/Detailed/files-queues.puml) · ![files queues](Diagrams/Detailed/files-queues.svg)
 
 Logical lanes are not a selected queue product, worker count or automatic dead-letter retry policy. Retry only when the actual effect contract supports it; local lease expiry cannot prove a storage write/delete never occurred. Bounded resources and cleanup remain separately observed.
 
@@ -1689,9 +1759,9 @@ Logical lanes are not a selected queue product, worker count or automatic dead-l
 
 ##### 8.18 Storage and sync integration options
 
-[Storage and sync integration options](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-context.svg)
+[Storage and sync integration options](Diagrams/Detailed/files-context.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-context.puml) · ![files context](../Diagrams/Archived-Png/Files-Context.png)
+[Editable PlantUML](Diagrams/Detailed/files-context.puml) · ![files context](Diagrams/Detailed/files-context.svg)
 
 Requested integration names are alternatives, not supported features. Do not assume an “S3-compatible” label guarantees the needed atomicity/retention semantics or that external sync preserves product ownership/reference constraints.
 
@@ -1699,9 +1769,9 @@ Requested integration names are alternatives, not supported features. Do not ass
 
 ##### 8.19 Optional deployment mapping for Files capabilities
 
-[Optional deployment mapping for Files capabilities](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.svg)
+[Optional deployment mapping for Files capabilities](Diagrams/Detailed/drivers-uml-deployment.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.puml) · ![drivers uml deployment](../Diagrams/Archived-Png/Drivers-Uml-Deployment.png)
+[Editable PlantUML](Diagrams/Detailed/drivers-uml-deployment.puml) · ![drivers uml deployment](Diagrams/Detailed/drivers-uml-deployment.svg)
 
 Proposed placement, not installed infrastructure or proof that existing guest allocation is sufficient. The earlier backup absence remains explicit. No object-store account, CDN, extra host or replication service is purchased or configured.
 
@@ -1814,9 +1884,9 @@ These records do not establish a general document-management product, backend ca
 
 #### MVP private-media flow
 
-![Private library and selected protected delivery](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-diagrams-mvp-private-media-svg)
+![Private library and selected protected delivery](Diagrams/Detailed/mvp-private-media.svg)
 
-[Editable source](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-diagrams-mvp-private-media-puml) · ![mvp private media](../Diagrams/Mvp-Private-Media.png).
+[Editable source](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-diagrams-mvp-private-media-puml) · ![mvp private media](Diagrams/Detailed/mvp-private-media.svg).
 
 
 <a id="design-record-03-component-and-module-design-components-files-and-operations-md--heading-mvp-library-admission-and-selected-playback-contract"></a>
@@ -1844,7 +1914,7 @@ Exact allowed MIME/extension/signature rules, numerical quotas, range/session ad
 
 **Responsibility:** host actual Git repositories and coordinate repository-scoped collaboration against exact object/ref/review identities. A database row, GitHub development tool or repository web page is not evidence that product clone/fetch/push works.
 
-**Status:** proposed LC-07 component design, November 2, 2026. Git engine, transport configuration and detailed Q-D21/Q-D22 rules remain pending evaluation/disposition. No repository, credential, live transfer, merge, workflow or deployment is created here.
+**Status:** proposed LC-07 component design. Git engine, transport configuration and detailed Q-D21/Q-D22 rules remain pending evaluation/disposition. No repository, credential, live transfer, merge, workflow or deployment is created here.
 
 [Authority](#design-record-03-component-and-module-design-components-git-collaboration-md--heading-1-source-authority-and-boundaries) · [Contracts](#design-record-03-component-and-module-design-components-git-collaboration-md--heading-2-public-operations) · [Data](#design-record-03-component-and-module-design-components-git-collaboration-md--heading-3-owned-model-and-storage-boundaries) · [Merge](#design-record-03-component-and-module-design-components-git-collaboration-md--heading-4-revision-bound-review-and-merge-protocol) · [Failure](#design-record-03-component-and-module-design-components-git-collaboration-md--heading-5-security-concurrency-and-recovery) · [Review](#design-record-03-component-and-module-design-components-git-collaboration-md--heading-6-verification-and-open-decisions) · [Essential views](#design-record-03-component-and-module-design-components-git-collaboration-md--heading-7-essential-git-and-collaboration-views)
 
@@ -1854,7 +1924,7 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### 1. Source authority and boundaries
 
-Use [GIT-D01–GIT-D10](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-git-hosting-and-collaboration), [Q-D21](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-git-hosting-and-collaboration--id-resolution-q-d21), [Q-D22](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-git-hosting-and-collaboration--id-resolution-q-d22), [analysis operation contracts](../../03-System-Analysis/01-System-Analysis.md#analysis-business-rules-and-operation-contracts--10-domain-constraints-and-operation-contracts) and [architecture boundaries](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md).
+Use [GIT-D01–GIT-D10](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-git-hosting-and-collaboration), [Q-D21](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-git-hosting-and-collaboration--id-resolution-q-d21), [Q-D22](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-git-hosting-and-collaboration--id-resolution-q-d22), [analysis operation contracts](../../03-System-Analysis/03-Processes-Scenarios-And-Business-Rules.md#analysis-business-rules-and-operation-contracts--10-domain-constraints-and-operation-contracts) and [architecture boundaries](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md).
 
 Q-D21 SSH/HTTPS support, repository naming/private defaults and token lifetimes are proposals, not accepted operating settings. Q-D22 reviewer/self-review rules and initial merge strategy likewise remain proposed. Preserve real Git/collaboration scope without implementing every proposal as a settled requirement.
 
@@ -1914,9 +1984,9 @@ Reconcile an attributable repository/ref/fork/release operation against actual n
 
 #### 3. Owned model and storage boundaries
 
-[After MVP — Proposed Git identity and review model](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-owned-model.svg)
+[After MVP — Proposed Git identity and review model](Diagrams/Detailed/git-owned-model.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-owned-model.puml) · ![git owned model](../Diagrams/Archived-Png/Git-Owned-Model.png)
+[Editable PlantUML](Diagrams/Detailed/git-owned-model.puml) · ![git owned model](Diagrams/Detailed/git-owned-model.svg)
 
 **RepositoryRecord:** stable owner/namespace/repository identity, native-store locator, lifecycle/version and source-derived access policy. Canonical paths stay internal. **RefObservation:** repository/ref name plus exact object identity and actual observation context; it is not a second authoritative ref database.
 
@@ -1932,9 +2002,9 @@ Native object/ref state belongs to the evaluated Git backend; relational metadat
 
 **After MVP.** Shared operating and recovery controls still apply where relevant.
 
-[After MVP — Proposed guarded merge and metadata reconciliation](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-merge-sequence.svg)
+[After MVP — Proposed guarded merge and metadata reconciliation](Diagrams/Detailed/git-merge-sequence.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-merge-sequence.puml) · ![git merge sequence](../Diagrams/Archived-Png/Git-Merge-Sequence.png)
+[Editable PlantUML](Diagrams/Detailed/git-merge-sequence.puml) · ![git merge sequence](Diagrams/Detailed/git-merge-sequence.svg)
 
 1. Validate exact current repository/source/target identity, intended strategy and stable command identity. Authorize the actual merge action/ref and disclosure under current account/grant/lifecycle policy.
 2. Resolve actual native ref/object context and required review/check evidence for that context. If source/target/evidence changed, reject or explicitly reevaluate; do not silently merge a different revision. Native fetch/object discovery is not permission to update a ref.
@@ -1949,7 +2019,7 @@ Native object/ref state belongs to the evaluated Git backend; relational metadat
 
 The official [git-update-ref documentation](https://git-scm.com/docs/git-update-ref.html) supports expected-old-object comparison and grouped ref update preparation/commit. It also warns that concurrent readers may observe a subset of grouped modifications. This supports a proposed native guard; it does not make SQL metadata, authorization, source-review evidence or all readers globally atomic.
 
-The official [git-receive-pack documentation](https://git-scm.com/docs/git-receive-pack) describes quarantining incoming objects until pre-receive validation and forbids pre-receive refs pointing at quarantined objects. An evaluated integration should respect that lifecycle. Quarantine is not a complete isolation, quota or backup design. Actual backend/version behavior and hooks/transport policy still need controlled validation. Sources inspected November 2, 2026; installed-runtime compatibility was not verified.
+The official [git-receive-pack documentation](https://git-scm.com/docs/git-receive-pack) describes quarantining incoming objects until pre-receive validation and forbids pre-receive refs pointing at quarantined objects. An evaluated integration should respect that lifecycle. Quarantine is not a complete isolation, quota or backup design. Actual backend/version behavior and hooks/transport policy still need controlled validation. Sources inspected ; installed-runtime compatibility was not verified.
 
 <a id="design-record-03-component-and-module-design-components-git-collaboration-md--heading-5-security-concurrency-and-recovery"></a>
 
@@ -2017,9 +2087,9 @@ This compact package covers the seven requested diagram topics and one permissio
 
 ##### 7.1 Native Git objects and references
 
-[Native Git objects and references](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-objects.svg)
+[Native Git objects and references](Diagrams/Detailed/git-essential-objects.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-objects.puml) · ![git essential objects](../Diagrams/Archived-Png/Git-Essential-Objects.png)
+[Editable PlantUML](Diagrams/Detailed/git-essential-objects.puml) · ![git essential objects](Diagrams/Detailed/git-essential-objects.svg)
 
 Native object relationships, not relational ownership. Branch refs are mutable names; refs are not a fifth object type. A lightweight tag points directly to its target without a tag object; annotated tag targets are not limited to commits. HEAD can also be detached. Object-format handling must not assume one hash length; this selected view omits gitlinks and pack layout.
 
@@ -2027,9 +2097,9 @@ Native object relationships, not relational ownership. Branch refs are mutable n
 
 ##### 7.2 Commit graph: branches, merge and tag
 
-[Commit graph: branches, merge and tag](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-graph.svg)
+[Commit graph: branches, merge and tag](Diagrams/Detailed/git-essential-graph.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-graph.puml) · ![git essential graph](../Diagrams/Archived-Png/Git-Essential-Graph.png)
+[Editable PlantUML](Diagrams/Detailed/git-essential-graph.puml) · ![git essential graph](Diagrams/Detailed/git-essential-graph.svg)
 
 Synthetic topology with arrows from commit to parent, not chronological message flow. M has two parents in this example; names are illustrative, not real object IDs or an adopted merge strategy. Tag mutation/branch retirement still requires actual policy.
 
@@ -2037,9 +2107,9 @@ Synthetic topology with arrows from commit to parent, not chronological message 
 
 ##### 7.3 Candidate short-lived branch and guarded integration flow
 
-[After MVP — Candidate short-lived branch and guarded integration flow](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-branching.svg)
+[After MVP — Candidate short-lived branch and guarded integration flow](Diagrams/Detailed/git-essential-branching.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-branching.puml) · ![git essential branching](../Diagrams/Archived-Png/Git-Essential-Branching.png)
+[Editable PlantUML](Diagrams/Detailed/git-essential-branching.puml) · ![git essential branching](Diagrams/Detailed/git-essential-branching.svg)
 
 A minimal GitHub-Flow-like candidate for this design, not a mandated repository policy or a change to this project’s development process. No Git Flow release/develop branches, required second reviewer, merge strategy or CI execution is selected. Q-D22 disposition controls actual rules.
 
@@ -2049,9 +2119,9 @@ A minimal GitHub-Flow-like candidate for this design, not a mandated repository 
 
 **After MVP.** Shared operating and recovery controls still apply where relevant.
 
-[After MVP — Pull request lifecycle and revision-bound readiness](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-pr-state.svg)
+[After MVP — Pull request lifecycle and revision-bound readiness](Diagrams/Detailed/git-essential-pr-state.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-pr-state.puml) · ![git essential pr state](../Diagrams/Archived-Png/Git-Essential-Pr-State.png)
+[Editable PlantUML](Diagrams/Detailed/git-essential-pr-state.puml) · ![git essential pr state](Diagrams/Detailed/git-essential-pr-state.svg)
 
 Review/readiness is distinct from open/closed/merged lifecycle. Draft/reopen are conditional UI refinements, not newly accepted features. Unknown native mutation does not mark Merged until actual reconciliation; closing a PR cannot undo a merge.
 
@@ -2059,9 +2129,9 @@ Review/readiness is distinct from open/closed/merged lifecycle. Draft/reopen are
 
 ##### 7.5 Push, checks, review and guarded merge
 
-[After MVP — Push, checks, review and guarded merge](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-pr-sequence.svg)
+[After MVP — Push, checks, review and guarded merge](Diagrams/Detailed/git-essential-pr-sequence.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-pr-sequence.puml) · ![git essential pr sequence](../Diagrams/Archived-Png/Git-Essential-Pr-Sequence.png)
+[Editable PlantUML](Diagrams/Detailed/git-essential-pr-sequence.puml) · ![git essential pr sequence](Diagrams/Detailed/git-essential-pr-sequence.svg)
 
 No installed CI or webhook service is assumed. Checks must concern the actual merge candidate/context under the selected policy; source/target movement requires reevaluation. Native/SQL outcomes are not one atomic transaction; unknown ref mutation reconciles before repeat.
 
@@ -2069,9 +2139,9 @@ No installed CI or webhook service is assumed. Checks must concern the actual me
 
 ##### 7.6 Repository and collaboration identity model
 
-[After MVP — Repository and collaboration identity model](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-domain.svg)
+[After MVP — Repository and collaboration identity model](Diagrams/Detailed/git-essential-domain.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-domain.puml) · ![git essential domain](../Diagrams/Archived-Png/Git-Essential-Domain.png)
+[Editable PlantUML](Diagrams/Detailed/git-essential-domain.puml) · ![git essential domain](Diagrams/Detailed/git-essential-domain.svg)
 
 Selected class roles, not a final schema or copy of native objects into SQL. Branch names are ref observations rather than authoritative SQL branch records. Team is conditional; membership does not grant repository rights without accepted policy. No multiplicities or actual class signatures are newly allocated.
 
@@ -2079,13 +2149,13 @@ Selected class roles, not a final schema or copy of native objects into SQL. Bra
 
 ##### 7.7 Git and collaboration capability boundaries
 
-[Git and collaboration capability boundaries](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-components.svg)
+[Git and collaboration capability boundaries](Diagrams/Detailed/git-essential-components.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-components.puml) · ![git essential components](../Diagrams/Archived-Png/Git-Essential-Components.png)
+[Editable PlantUML](Diagrams/Detailed/git-essential-components.puml) · ![git essential components](Diagrams/Detailed/git-essential-components.svg)
 
 Logical component boundaries, not a new deployed Git/review/CI/notification service portfolio. Native backend/transport are still to evaluate. Product hosting remains distinct from GitHub tools used to develop Resumefolio.
 
-Native object/ref explanations follow the official [Git data model](https://git-scm.com/docs/gitdatamodel) (inspected November 2, 2026). This source explains object relationships; it does not establish installed backend compatibility, product permissions or adopted collaboration policy.
+Native object/ref explanations follow the official [Git data model](https://git-scm.com/docs/gitdatamodel) (inspected ). This source explains object relationships; it does not establish installed backend compatibility, product permissions or adopted collaboration policy.
 
 <a id="design-record-03-component-and-module-design-components-git-collaboration-md--heading-78-permission-and-branch-protection-matrix"></a>
 
@@ -2119,7 +2189,7 @@ The existing detailed merge protocol remains authoritative for mutation order an
 
 **Responsibility:** establish attributable account/session context, manage explicitly scoped grants and credential lifecycle, and support current owner-side operation authorization. Unified sign-in never grants access to unrelated private resources.
 
-**Status:** proposed LC-01 technical design, November 2, 2026. Q-D03–Q-D05 details remain subject to source disposition. No account, grant, factor, credential, timing value or accepted security baseline is created by this update.
+**Status:** proposed LC-01 technical design. Q-D03–Q-D05 details remain subject to source disposition. No account, grant, factor, credential, timing value or accepted security baseline is created by this update.
 
 [Authority](#design-record-03-component-and-module-design-components-identity-and-access-md--heading-1-source-authority-and-policy-boundaries) · [Contracts](#design-record-03-component-and-module-design-components-identity-and-access-md--heading-2-public-operations) · [Data](#design-record-03-component-and-module-design-components-identity-and-access-md--heading-3-owned-model-and-sensitive-state) · [Authorization](#design-record-03-component-and-module-design-components-identity-and-access-md--heading-4-current-authority-and-revocation-protocol) · [Failures](#design-record-03-component-and-module-design-components-identity-and-access-md--heading-5-recovery-and-failure-boundaries) · [Review](#design-record-03-component-and-module-design-components-identity-and-access-md--heading-6-verification-and-open-decisions) · [Essential views](#design-record-03-component-and-module-design-components-identity-and-access-md--heading-7-essential-identity-and-access-views)
 
@@ -2187,9 +2257,9 @@ Use explicit identity/authority checks and evaluated verification/recovery mecha
 
 #### 3. Owned model and sensitive state
 
-[Proposed account session and scoped-grant identities](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-owned-model.svg)
+[Proposed account session and scoped-grant identities](Diagrams/Detailed/identity-owned-model.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-owned-model.puml) · ![identity owned model](../Diagrams/Archived-Png/Identity-Owned-Model.png)
+[Editable PlantUML](Diagrams/Detailed/identity-owned-model.puml) · ![identity owned model](Diagrams/Detailed/identity-owned-model.svg)
 
 **Account:** stable actor identity, actual lifecycle/version and source-defined platform role context. **Invitation:** intended recipient/account purpose, actual lifecycle and protected verifier reference. **SessionRecord:** account/context identity, actual creation/last-use/expiry/revocation state and relevant version; no unbounded privileged snapshot.
 
@@ -2203,9 +2273,9 @@ Persistence must isolate account/resource lookup, enforce scoped uniqueness and 
 
 #### 4. Current authority and revocation protocol
 
-[Proposed protected-operation and revocation boundary](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-authorization-sequence.svg)
+[Proposed protected-operation and revocation boundary](Diagrams/Detailed/identity-authorization-sequence.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-authorization-sequence.puml) · ![identity authorization sequence](../Diagrams/Archived-Png/Identity-Authorization-Sequence.png)
+[Editable PlantUML](Diagrams/Detailed/identity-authorization-sequence.puml) · ![identity authorization sequence](Diagrams/Detailed/identity-authorization-sequence.svg)
 
 1. A protected owner operation resolves the actor/session/credential context and intended resource/action without trusting a client-supplied owner/role claim.
 2. Evaluate current account eligibility, exact scoped policy/grant and required factor/operation conditions. The resource owner validates its current lifecycle and invariant. Use policy/version context under the chosen synchronization protocol where a mutation races a grant/account change.
@@ -2219,7 +2289,7 @@ Use request/job-scoped authority context; persistent workers reconstruct it for 
 
 ##### Supporting security references
 
-The official [OWASP Authorization guidance](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html) supports default-deny policy and permission validation on every request. The [OWASP Session Management guidance](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html) informs session lifecycle/invalidation and bounded lifecycle diagnostics. These inform mechanism evaluation; they do not choose Resumefolio’s administrative policy or certify implementation. Sources reviewed November 2, 2026; actual library/configuration compatibility remains unverified.
+The official [OWASP Authorization guidance](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html) supports default-deny policy and permission validation on every request. The [OWASP Session Management guidance](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html) informs session lifecycle/invalidation and bounded lifecycle diagnostics. These inform mechanism evaluation; they do not choose Resumefolio’s administrative policy or certify implementation. Sources consulted; actual library/configuration compatibility remains unverified.
 
 <a id="design-record-03-component-and-module-design-components-identity-and-access-md--heading-5-recovery-and-failure-boundaries"></a>
 
@@ -2287,9 +2357,9 @@ This compact package adds **six essential diagrams** and reuses the [existing do
 
 ##### 7.1 Identity responsibilities and scoped contracts
 
-[Identity responsibilities and scoped contracts](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-components.svg)
+[Identity responsibilities and scoped contracts](Diagrams/Detailed/identity-essential-components.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-components.puml) · ![identity essential components](../Diagrams/Archived-Png/Identity-Essential-Components.png)
+[Editable PlantUML](Diagrams/Detailed/identity-essential-components.puml) · ![identity essential components](Diagrams/Detailed/identity-essential-components.svg)
 
 Provided circles and required sockets describe logical contracts. Resource owners keep lifecycle/action invariants. Session establishment is not a blanket resource grant; exact bindings, backend and signatures remain proposed.
 
@@ -2297,9 +2367,9 @@ Provided circles and required sockets describe logical contracts. Resource owner
 
 ##### 7.2 Authentication and conditional second factor
 
-[Authentication and conditional second factor](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-authentication.svg)
+[Authentication and conditional second factor](Diagrams/Detailed/identity-essential-authentication.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-authentication.puml) · ![identity essential authentication](../Diagrams/Archived-Png/Identity-Essential-Authentication.png)
+[Editable PlantUML](Diagrams/Detailed/identity-essential-authentication.puml) · ![identity essential authentication](Diagrams/Detailed/identity-essential-authentication.svg)
 
 Conditional factor branch cannot be skipped when policy requires it. Diagram does not select a factor product, password algorithm, timeout or token format. A source-required delivery/recovery proof cannot be replaced by a log entry or unavailable-facility fallback.
 
@@ -2307,9 +2377,9 @@ Conditional factor branch cannot be skipped when policy requires it. Diagram doe
 
 ##### 7.3 Authorization decision and enforcement flow
 
-[Authorization decision and enforcement flow](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-authorization.svg)
+[Authorization decision and enforcement flow](Diagrams/Detailed/identity-essential-authorization.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-authorization.puml) · ![identity essential authorization](../Diagrams/Archived-Png/Identity-Essential-Authorization.png)
+[Editable PlantUML](Diagrams/Detailed/identity-essential-authorization.puml) · ![identity essential authorization](Diagrams/Detailed/identity-essential-authorization.svg)
 
 PEP means policy enforcement point; PDP means policy decision point. These are responsibilities, not selected standalone products. Every protected web/API/file/Git/job boundary needs its applicable check. Actual synchronization must order revocation and admission; an early allow is not permanent authority.
 
@@ -2317,9 +2387,9 @@ PEP means policy enforcement point; PDP means policy decision point. These are r
 
 ##### 7.4 Scoped roles, attributes and resource ownership
 
-[Scoped roles, attributes and resource ownership](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-access-model.svg)
+[Scoped roles, attributes and resource ownership](Diagrams/Detailed/identity-essential-access-model.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-access-model.puml) · ![identity essential access model](../Diagrams/Archived-Png/Identity-Essential-Access-Model.png)
+[Editable PlantUML](Diagrams/Detailed/identity-essential-access-model.puml) · ![identity essential access model](Diagrams/Detailed/identity-essential-access-model.svg)
 
 Candidate scoped role-plus-resource-context evaluation, not adoption of a pure RBAC/ABAC engine or a new role hierarchy. Group/Team and Permission types need not be separate tables/classes unless actual sourced requirements justify them. Exact role/action matrices remain in authoritative source disposition.
 
@@ -2327,9 +2397,9 @@ Candidate scoped role-plus-resource-context evaluation, not adoption of a pure R
 
 ##### 7.5 Session lifecycle and separate credential scopes
 
-[Session lifecycle and separate credential scopes](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-session-state.svg)
+[Session lifecycle and separate credential scopes](Diagrams/Detailed/identity-essential-session-state.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-session-state.puml) · ![identity essential session state](../Diagrams/Archived-Png/Identity-Essential-Session-State.png)
+[Editable PlantUML](Diagrams/Detailed/identity-essential-session-state.puml) · ![identity essential session state](Diagrams/Detailed/identity-essential-session-state.svg)
 
 Proposed session observations, not final stored enums. Revocation affects subsequent protected admission under the actual synchronization promise; it cannot recall previously emitted bytes or stop every already admitted external effect. Provider-token refresh belongs to the evaluated Communication integration, not implicit product-session refresh.
 
@@ -2337,9 +2407,9 @@ Proposed session observations, not final stored enums. Revocation affects subseq
 
 ##### 7.6 Clients, trusted application and external scopes
 
-[Clients, trusted application and external scopes](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.svg)
+[Clients, trusted application and external scopes](Diagrams/Detailed/security-trust-boundaries.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.puml) · ![security trust boundaries](../Diagrams/Archived-Png/Security-Trust-Boundaries.png)
+[Editable PlantUML](Diagrams/Detailed/security-trust-boundaries.puml) · ![security trust boundaries](Diagrams/Detailed/security-trust-boundaries.svg)
 
 User-supplied owner/role/token claims are not trusted merely because they cross an ingress. No external IdP or OAuth/OIDC login is selected; provider capability is a separate trust/credential scope. Actual TLS, credential verification, storage access and route coverage require implementation evidence.
 
@@ -2351,7 +2421,7 @@ Shared product sign-in does not establish federated OAuth/OIDC login. Therefore 
 
 The existing class model already covers Account (user identity), SessionRecord, CredentialVerifier, FactorRecoveryState and ScopedGrant. Roles/permissions/policy are described by the actual scoped-grant and owner-evaluation contracts; inventing separate Group/Token entities or an unsupported role hierarchy would add no essential clarity at this stage. A final permission matrix must follow exact source disposition, including unresolved administrative powers, rather than make pending policy appear accepted in a diagram.
 
-Mechanism guidance follows the official [OWASP Authentication](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html) and [OWASP Authorization](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html) guidance, inspected November 2, 2026. These support evaluating authentication controls, default-deny decisions and per-request permission checks; they do not choose Resumefolio's owner/admin policy or certify actual security.
+Mechanism guidance follows the official [OWASP Authentication](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html) and [OWASP Authorization](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html) guidance, inspected . These support evaluating authentication controls, default-deny decisions and per-request permission checks; they do not choose Resumefolio's owner/admin policy or certify actual security.
 
 No account, session, factor, grant, token, configuration or live security test is created. Actual framework/session/credential selection, all-route enforcement, revocation ordering and recovery evidence remain required before acceptance.
 
@@ -2368,7 +2438,7 @@ No account, session, factor, grant, token, configuration or live security test i
 
 **Responsibility:** maintain reusable professional information and independently tailored resumes, review selected source changes, and create explicit publication revisions without rewriting previous submissions.
 
-**Status:** proposed LC-02 technical design, November 2, 2026. The four-point source-update/publication policy is owner-accepted; concrete schemas, field rules, rendering mechanisms and remaining policy details are not accepted by this document.
+**Status:** proposed LC-02 technical design. The four-point source-update/publication policy is owner-accepted; concrete schemas, field rules, rendering mechanisms and remaining policy details are not accepted by this document.
 
 [Scope](#design-record-03-component-and-module-design-components-professional-presentation-md--heading-1-source-authority-and-component-boundaries) · [Operations](#design-record-03-component-and-module-design-components-professional-presentation-md--heading-2-public-operations) · [Model](#design-record-03-component-and-module-design-components-professional-presentation-md--heading-3-owned-model-and-invariants) · [Consistency](#design-record-03-component-and-module-design-components-professional-presentation-md--heading-4-update-and-publication-protocol) · [Failures](#design-record-03-component-and-module-design-components-professional-presentation-md--heading-5-technical-scenarios-and-failure-handling) · [Review](#design-record-03-component-and-module-design-components-professional-presentation-md--heading-6-verification-and-remaining-decisions) · [Essential views](#design-record-03-component-and-module-design-components-professional-presentation-md--heading-7-essential-presentation-views)
 
@@ -2378,7 +2448,7 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### 1. Source authority and component boundaries
 
-Use [PRP-D01–PRP-D10](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-profiles-resumes-and-portfolio), the [owner-accepted update policy](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#change-and-baseline-open-questions-and-decisions--id-owner-accepted-profile-update-policy), [Q-D07](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-profiles-resumes-and-portfolio--id-resolution-q-d07) and [analysis operation contracts](../../03-System-Analysis/01-System-Analysis.md#analysis-business-rules-and-operation-contracts--10-domain-constraints-and-operation-contracts). The accepted core is:
+Use [PRP-D01–PRP-D10](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-profiles-resumes-and-portfolio), the [owner-accepted update policy](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#change-and-baseline-open-questions-and-decisions--id-owner-accepted-profile-update-policy), [Q-D07](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-profiles-resumes-and-portfolio--id-resolution-q-d07) and [analysis operation contracts](../../03-System-Analysis/03-Processes-Scenarios-And-Business-Rules.md#analysis-business-rules-and-operation-contracts--10-domain-constraints-and-operation-contracts). The accepted core is:
 
 1. Source changes do not automatically alter existing resumes or their published views.
 2. The owner previews differences and selects/applies intended changes; resume-specific overrides and other resumes remain independent.
@@ -2439,9 +2509,9 @@ Resolve an exact permitted publication revision and its manifest for the request
 
 #### 3. Owned model and invariants
 
-[Professional source, independent draft and publication model](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-owned-model.svg)
+[Professional source, independent draft and publication model](Diagrams/Detailed/presentation-owned-model.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-owned-model.puml) · ![presentation owned model](../Diagrams/Archived-Png/Presentation-Owned-Model.png)
+[Editable PlantUML](Diagrams/Detailed/presentation-owned-model.puml) · ![presentation owned model](Diagrams/Detailed/presentation-owned-model.svg)
 
 **ProfileRevision:** reusable semantic content with stable entry identities and explicit language context. Exact shared versus language-specific fields follow reviewed policy. **EvidenceAssociation:** intended skill/professional-project meaning and exact artifact/link reference, not storage ownership or permission to fetch arbitrary remote URLs.
 
@@ -2463,9 +2533,9 @@ Final types, aggregate boundaries, schema/constraints and snapshot-versus-versio
 
 #### 4. Update and publication protocol
 
-[Selected apply and separate publication interaction](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-update-publication.svg)
+[Selected apply and separate publication interaction](Diagrams/Detailed/presentation-update-publication.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-update-publication.puml) · ![presentation update publication](../Diagrams/Archived-Png/Presentation-Update-Publication.png)
+[Editable PlantUML](Diagrams/Detailed/presentation-update-publication.puml) · ![presentation update publication](Diagrams/Detailed/presentation-update-publication.svg)
 
 1. Resolve current actor/resource authority and a consistent source/draft pair. Produce a preview with exact versions and no mutation.
 2. Receive explicit selected changes. Revalidate authority, selection intent and source/draft versions; execute the guarded draft transaction and record its result. An empty/invalid selection must not broaden into “apply all.”
@@ -2543,9 +2613,9 @@ This compact package adds **five complementary diagrams**, reusing the [existing
 
 ##### 7.1 Presentation ownership and provided/required contracts
 
-[Presentation ownership and provided/required contracts](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-components.svg)
+[Presentation ownership and provided/required contracts](Diagrams/Detailed/presentation-essential-components.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-components.puml) · ![presentation essential components](../Diagrams/Archived-Png/Presentation-Essential-Components.png)
+[Editable PlantUML](Diagrams/Detailed/presentation-essential-components.puml) · ![presentation essential components](Diagrams/Detailed/presentation-essential-components.svg)
 
 Circle marks a provided contract; sockets mark required capabilities. Consumers obtain bounded permitted projections, not write access to Presentation internals. Rendering inputs/layout identity belong in the publication reproducibility contract; actual renderer is unselected.
 
@@ -2553,9 +2623,9 @@ Circle marks a provided contract; sockets mark required capabilities. Consumers 
 
 ##### 7.2 Essential owner and viewer intentions
 
-[Essential owner and viewer intentions](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-use-cases.svg)
+[Essential owner and viewer intentions](Diagrams/Detailed/presentation-essential-use-cases.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-use-cases.puml) · ![presentation essential use cases](../Diagrams/Archived-Png/Presentation-Essential-Use-Cases.png)
+[Editable PlantUML](Diagrams/Detailed/presentation-essential-use-cases.puml) · ![presentation essential use cases](Diagrams/Detailed/presentation-essential-use-cases.svg)
 
 Preserves the accepted four-point update/publication policy. Template/layout selection is part of sourced composition, not a newly selected theme marketplace. Shared links and download/export eligibility remain owned by Representation/Sharing.
 
@@ -2563,9 +2633,9 @@ Preserves the accepted four-point update/publication policy. Template/layout sel
 
 ##### 7.3 Draft, preview and immutable publication dimensions
 
-[Draft, preview and immutable publication dimensions](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-lifecycle.svg)
+[Draft, preview and immutable publication dimensions](Diagrams/Detailed/presentation-essential-lifecycle.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-lifecycle.puml) · ![presentation essential lifecycle](../Diagrams/Archived-Png/Presentation-Essential-Lifecycle.png)
+[Editable PlantUML](Diagrams/Detailed/presentation-essential-lifecycle.puml) · ![presentation essential lifecycle](Diagrams/Detailed/presentation-essential-lifecycle.svg)
 
 Conceptual lifecycle dimensions rather than one persisted status enum. Preview never mutates live state. Publication success does not establish PDF existence or link availability; submitted material remains independent after live selection/visibility changes. Concrete withdrawal/archival behavior requires source disposition.
 
@@ -2573,9 +2643,9 @@ Conceptual lifecycle dimensions rather than one persisted status enum. Preview n
 
 ##### 7.4 Visitor resolves an exact eligible publication
 
-[Visitor resolves an exact eligible publication](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-visitor.svg)
+[Visitor resolves an exact eligible publication](Diagrams/Detailed/presentation-essential-visitor.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-visitor.puml) · ![presentation essential visitor](../Diagrams/Archived-Png/Presentation-Essential-Visitor.png)
+[Editable PlantUML](Diagrams/Detailed/presentation-essential-visitor.puml) · ![presentation essential visitor](Diagrams/Detailed/presentation-essential-visitor.svg)
 
 No static/CDN bypass is introduced. A cached representation can never substitute for current authorization or an unavailable requested language/revision. Actual serving, rendering and revocation ordering require evaluated mechanisms; arrows do not certify them.
 
@@ -2583,9 +2653,9 @@ No static/CDN bypass is introduced. A cached representation can never substitute
 
 ##### 7.5 Version-bound rendering inputs and separate outputs
 
-[Version-bound rendering inputs and separate outputs](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-rendering.svg)
+[Version-bound rendering inputs and separate outputs](Diagrams/Detailed/presentation-essential-rendering.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-rendering.puml) · ![presentation essential rendering](../Diagrams/Archived-Png/Presentation-Essential-Rendering.png)
+[Editable PlantUML](Diagrams/Detailed/presentation-essential-rendering.puml) · ![presentation essential rendering](Diagrams/Detailed/presentation-essential-rendering.svg)
 
 Minimal rendering pipeline includes the essential template/section/style relationship without inventing a theme engine, token schema or marketplace. PDF delivery/access belongs to Representation/Sharing and Files. HTML sanitization, media handling, long content, languages and renderer compatibility need actual evaluation.
 
@@ -2603,9 +2673,9 @@ Before implementation, select actual content/layout/renderer versioning, safe in
 
 #### MVP private-media flow
 
-![Private library and selected protected delivery](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-diagrams-mvp-private-media-svg)
+![Private library and selected protected delivery](Diagrams/Detailed/mvp-private-media.svg)
 
-[Editable source](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-diagrams-mvp-private-media-puml) · ![mvp private media](../Diagrams/Mvp-Private-Media.png).
+[Editable source](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-diagrams-mvp-private-media-puml) · ![mvp private media](Diagrams/Detailed/mvp-private-media.svg).
 
 </details>
 
@@ -2620,7 +2690,7 @@ Before implementation, select actual content/layout/renderer versioning, safe in
 
 **Responsibility:** resolve permitted published content and PDF variants, manage independent employer links and viewer contexts, and authorize protected retrieval against current policy and actual artifact availability.
 
-**Status:** proposed LC-03 technical design, November 2, 2026. No live link, password, renderer, session mechanism or physical schema is created here. Detailed Q-D10/Q-D11 policies remain proposed; the accepted separation of source updates, draft saves, publication and submitted history remains binding.
+**Status:** proposed LC-03 technical design. No live link, password, renderer, session mechanism or physical schema is created here. Detailed Q-D10/Q-D11 policies remain proposed; the accepted separation of source updates, draft saves, publication and submitted history remains binding.
 
 [Boundaries](#design-record-03-component-and-module-design-components-representation-and-sharing-md--heading-1-source-authority-and-ownership) · [Operations](#design-record-03-component-and-module-design-components-representation-and-sharing-md--heading-2-public-operations) · [Model](#design-record-03-component-and-module-design-components-representation-and-sharing-md--heading-3-owned-model-and-state-dimensions) · [Retrieval](#design-record-03-component-and-module-design-components-representation-and-sharing-md--heading-4-protected-retrieval-and-revocation-protocol) · [Failures](#design-record-03-component-and-module-design-components-representation-and-sharing-md--heading-5-technical-scenarios-and-failure-handling) · [Review](#design-record-03-component-and-module-design-components-representation-and-sharing-md--heading-6-verification-and-remaining-decisions) · [Essential views](#design-record-03-component-and-module-design-components-representation-and-sharing-md--heading-7-essential-representation-and-sharing-views)
 
@@ -2682,9 +2752,9 @@ Owner preview and Applications history access use their own current authority an
 
 #### 3. Owned model and state dimensions
 
-[Link, viewer context and exact rendition model](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-owned-model.svg)
+[Link, viewer context and exact rendition model](Diagrams/Detailed/sharing-owned-model.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-owned-model.puml) · ![sharing owned model](../Diagrams/Archived-Png/Sharing-Owned-Model.png)
+[Editable PlantUML](Diagrams/Detailed/sharing-owned-model.puml) · ![sharing owned model](Diagrams/Detailed/sharing-owned-model.svg)
 
 **DownloadConfiguration:** resume scope, mode, uploaded-language switches and version. **UploadedVariant:** exact artifact association, actual language, admission/availability and association version. **GeneratedRendition:** exact publication/language/render-input identity, attempt and actual output state. Artifact bytes and physical cleanup remain Files responsibilities.
 
@@ -2705,9 +2775,9 @@ Final types/schema, indexing, uniqueness, verifier/session storage and atomic ve
 
 #### 4. Protected retrieval and revocation protocol
 
-[Protected retrieval checks before controlled delivery](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-protected-retrieval.svg)
+[Protected retrieval checks before controlled delivery](Diagrams/Detailed/sharing-protected-retrieval.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-protected-retrieval.puml) · ![sharing protected retrieval](../Diagrams/Archived-Png/Sharing-Protected-Retrieval.png)
+[Editable PlantUML](Diagrams/Detailed/sharing-protected-retrieval.puml) · ![sharing protected retrieval](Diagrams/Detailed/sharing-protected-retrieval.svg)
 
 1. Identify the intended link, viewer context, representation and language. Resolve current link eligibility and applicable authorization generation without trusting client-supplied role/scope claims.
 2. Resolve the permitted current publication under the reviewed stream policy and selected content. A viewer cannot resolve owner drafts or unrelated artifacts through identifier manipulation.
@@ -2718,7 +2788,7 @@ Final types/schema, indexing, uniqueness, verifier/session storage and atomic ve
 
 Any signed delivery capability, proxy/internal redirect, browser/server cache or CDN facility needs an explicit scope, expiry, invalidation and in-flight evaluation before selection. The design does not claim immediate revocation merely because a token expires later. Cache keys and response handling must preserve viewer/link/publication/language separation and avoid private cross-context disclosure.
 
-The official [OWASP Authorization guidance](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html), reviewed November 2, 2026, supports permission checks on every request and protected static resources. It informs enforcement evaluation without selecting the serving mechanism or certifying this design.
+The official [OWASP Authorization guidance](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html), consulted, supports permission checks on every request and protected static resources. It informs enforcement evaluation without selecting the serving mechanism or certifying this design.
 
 Generation uses request/job-scoped authority and exact input identities, not a serialized privileged session or mutable “latest resume.” Protect artifact references before consumer commit, finalize against actual committed association evidence, and reconcile uncertain outcomes before release. A local database rollback does not undo stored bytes or renderer side effects. Follow the joint [Files reference protocol](#design-record-03-component-and-module-design-components-files-and-operations-md--heading-5-protected-reference-replacement-and-reclamation).
 
@@ -2791,9 +2861,9 @@ This focused package adds **four complementary diagrams and two essential contro
 
 ##### 7.1 Representation and sharing contracts
 
-[Representation and sharing contracts](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-essential-components.svg)
+[Representation and sharing contracts](Diagrams/Detailed/sharing-essential-components.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-essential-components.puml) · ![sharing essential components](../Diagrams/Archived-Png/Sharing-Essential-Components.png)
+[Editable PlantUML](Diagrams/Detailed/sharing-essential-components.puml) · ![sharing essential components](Diagrams/Detailed/sharing-essential-components.svg)
 
 Provided circle and required sockets show logical capabilities. Presentation owns content/publication; Files owns actual bytes/protection. Exact rendering and current access eligibility must agree; link possession is not proof of employer identity.
 
@@ -2801,9 +2871,9 @@ Provided circle and required sockets show logical capabilities. Presentation own
 
 ##### 7.2 Essential representation routes
 
-[Essential representation routes](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-essential-formats.svg)
+[Essential representation routes](Diagrams/Detailed/sharing-essential-formats.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-essential-formats.puml) · ![sharing essential formats](../Diagrams/Archived-Png/Sharing-Essential-Formats.png)
+[Editable PlantUML](Diagrams/Detailed/sharing-essential-formats.puml) · ![sharing essential formats](Diagrams/Detailed/sharing-essential-formats.svg)
 
 Generated and uploaded PDFs are different sources, not interchangeable conversion stages. New publication may exist while generation is pending; availability and current download configuration stay separate. No arbitrary-format export system or automatic translation is introduced.
 
@@ -2811,9 +2881,9 @@ Generated and uploaded PDFs are different sources, not interchangeable conversio
 
 ##### 7.3 Link eligibility and viewer generation
 
-[Link eligibility and viewer generation](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-essential-link-state.svg)
+[Link eligibility and viewer generation](Diagrams/Detailed/sharing-essential-link-state.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-essential-link-state.puml) · ![sharing essential link state](../Diagrams/Archived-Png/Sharing-Essential-Link-State.png)
+[Editable PlantUML](Diagrams/Detailed/sharing-essential-link-state.puml) · ![sharing essential link state](Diagrams/Detailed/sharing-essential-link-state.svg)
 
 Proposed eligibility observations, not final persisted enum, default enablement or selected expiry period. Created/configured does not necessarily mean active. Password rotation and disabling have distinct intent but both require actual viewer-context invalidation semantics.
 
@@ -2821,9 +2891,9 @@ Proposed eligibility observations, not final persisted enum, default enablement 
 
 ##### 7.4 Create link, verify viewer and admit exact retrieval
 
-[Create link, verify viewer and admit exact retrieval](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-essential-link-sequence.svg)
+[Create link, verify viewer and admit exact retrieval](Diagrams/Detailed/sharing-essential-link-sequence.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-essential-link-sequence.puml) · ![sharing essential link sequence](../Diagrams/Archived-Png/Sharing-Essential-Link-Sequence.png)
+[Editable PlantUML](Diagrams/Detailed/sharing-essential-link-sequence.puml) · ![sharing essential link sequence](Diagrams/Detailed/sharing-essential-link-sequence.svg)
 
 Logical collaboration, not a selected session/token implementation, secret-generation policy or raw storage URL. Actual revocation and delivery ordering remains an implementation gate. Sharing does not send email or record actual submission automatically.
 
@@ -2869,9 +2939,9 @@ No link/password change, PDF generation, download, revocation, cache change or e
 
 #### MVP private-media flow
 
-![Private library and selected protected delivery](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-diagrams-mvp-private-media-svg)
+![Private library and selected protected delivery](Diagrams/Detailed/mvp-private-media.svg)
 
-[Editable source](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-diagrams-mvp-private-media-puml) · ![mvp private media](../Diagrams/Mvp-Private-Media.png).
+[Editable source](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-diagrams-mvp-private-media-puml) · ![mvp private media](Diagrams/Detailed/mvp-private-media.svg).
 
 </details>
 
@@ -2886,7 +2956,7 @@ No link/password change, PDF generation, download, revocation, cache change or e
 
 **Responsibility:** manage work projects, boards, backlog items/tasks and coherent Sprint plans, with explicit completion decisions, scoped collaboration and truthful change history.
 
-**Status:** proposed LC-06 technical design, November 2, 2026. Detailed Q-D18–Q-D20 workflow, cardinality, role and Sprint policies remain proposed. No live board, membership, task or Sprint is changed here; logical ownership does not mandate separate deployment.
+**Status:** proposed LC-06 technical design. Detailed Q-D18–Q-D20 workflow, cardinality, role and Sprint policies remain proposed. No live board, membership, task or Sprint is changed here; logical ownership does not mandate separate deployment.
 
 [Scope](#design-record-03-component-and-module-design-components-work-management-md--heading-1-source-authority-and-boundaries) · [Operations](#design-record-03-component-and-module-design-components-work-management-md--heading-2-public-operations) · [Model](#design-record-03-component-and-module-design-components-work-management-md--heading-3-owned-model-and-invariants) · [Consistency](#design-record-03-component-and-module-design-components-work-management-md--heading-4-mutation-and-sprint-end-protocol) · [Failures](#design-record-03-component-and-module-design-components-work-management-md--heading-5-technical-scenarios-and-failure-handling) · [Review](#design-record-03-component-and-module-design-components-work-management-md--heading-6-verification-and-remaining-decisions) · [Essential views](#design-record-03-component-and-module-design-components-work-management-md--heading-7-essential-work-management-views)
 
@@ -2896,7 +2966,7 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### 1. Source authority and boundaries
 
-Use [PKS-D01–PKS-D11](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-projects-kanban-and-sprints), [Q-D18](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-projects-kanban-and-sprints--id-resolution-q-d18), [Q-D19](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-projects-kanban-and-sprints--id-resolution-q-d19), [Q-D20](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-projects-kanban-and-sprints--id-resolution-q-d20) and [analysis operation contracts](../../03-System-Analysis/01-System-Analysis.md#analysis-business-rules-and-operation-contracts--10-domain-constraints-and-operation-contracts). Preserve the agreed project/Kanban/backlog/task/Sprint capability while distinguishing source-derived meanings from proposed refinements.
+Use [PKS-D01–PKS-D11](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-projects-kanban-and-sprints), [Q-D18](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-projects-kanban-and-sprints--id-resolution-q-d18), [Q-D19](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-projects-kanban-and-sprints--id-resolution-q-d19), [Q-D20](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-projects-kanban-and-sprints--id-resolution-q-d20) and [analysis operation contracts](../../03-System-Analysis/03-Processes-Scenarios-And-Business-Rules.md#analysis-business-rules-and-operation-contracts--10-domain-constraints-and-operation-contracts). Preserve the agreed project/Kanban/backlog/task/Sprint capability while distinguishing source-derived meanings from proposed refinements.
 
 Canonical state names, Ready criteria, item types, priority vocabulary, one-backlog/one-active-Sprint limits, owner/editor powers, incomplete-work handling and optional cadence retain their proposal status. They are not implementation defaults established by this document. The delivery project's current GitHub board and its working cadence are not product configuration or product-test evidence.
 
@@ -2970,9 +3040,9 @@ Associations store explicit resource identity and meaning; follow-through checks
 
 #### 3. Owned model and invariants
 
-[After MVP — Work project, board and coherent Sprint Backlog model](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-owned-model.svg)
+[After MVP — Work project, board and coherent Sprint Backlog model](Diagrams/Detailed/work-owned-model.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-owned-model.puml) · ![work owned model](../Diagrams/Archived-Png/Work-Owned-Model.png)
+[Editable PlantUML](Diagrams/Detailed/work-owned-model.puml) · ![work owned model](Diagrams/Detailed/work-owned-model.svg)
 
 **WorkProject:** stable work identity and lifecycle/version. **Board / ColumnMapping / CardPlacement:** configured view, explicit target identity, state mapping and ordering; no independent acceptance truth. **BacklogItem:** work meaning, criteria, state/version and acceptance provenance. **Task:** explicit parent or reviewed standalone relationship, work state and assignment context.
 
@@ -2997,9 +3067,9 @@ Final aggregate/transaction boundaries, schema/cardinalities, ordering represent
 
 **After MVP.** Shared operating and recovery controls still apply where relevant.
 
-[After MVP — Guarded work mutation and explicit Sprint-period close](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-mutation-sprint-close.svg)
+[After MVP — Guarded work mutation and explicit Sprint-period close](Diagrams/Detailed/work-mutation-sprint-close.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-mutation-sprint-close.puml) · ![work mutation sprint close](../Diagrams/Archived-Png/Work-Mutation-Sprint-Close.png)
+[Editable PlantUML](Diagrams/Detailed/work-mutation-sprint-close.puml) · ![work mutation sprint close](Diagrams/Detailed/work-mutation-sprint-close.svg)
 
 1. Resolve current actor/project authority and intended operation. Read the relevant project/board/item/plan state and exact expected versions; reject invalid relationships before mutation.
 2. Check the same command identity against its recorded intent/outcome. Return a permitted prior result for a true duplicate; changed intent under the same identity is a conflict. An unresolved response is not proof that the first operation failed.
@@ -3080,9 +3150,9 @@ This compact package adds **five complementary diagrams and two scoped reference
 
 ##### 7.1 Work ownership and scoped interfaces
 
-[Work ownership and scoped interfaces](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-views.svg)
+[Work ownership and scoped interfaces](Diagrams/Detailed/work-essential-views.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-views.puml) · ![work essential views](../Diagrams/Archived-Png/Work-Essential-Views.png)
+[Editable PlantUML](Diagrams/Detailed/work-essential-views.puml) · ![work essential views](Diagrams/Detailed/work-essential-views.svg)
 
 Owner-side handlers coordinate board/work/Sprint invariants and current membership. Neighbor contracts expose only permitted Git/calendar/artifact associations; no inherited permissions, hidden automation or direct foreign-state writes.
 
@@ -3090,9 +3160,9 @@ Owner-side handlers coordinate board/work/Sprint invariants and current membersh
 
 ##### 7.2 Candidate task lifecycle versus acceptance
 
-[After MVP — Candidate task lifecycle versus acceptance](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-task-state.svg)
+[After MVP — Candidate task lifecycle versus acceptance](Diagrams/Detailed/work-essential-task-state.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-task-state.puml) · ![work essential task state](../Diagrams/Archived-Png/Work-Essential-Task-State.png)
+[Editable PlantUML](Diagrams/Detailed/work-essential-task-state.puml) · ![work essential task state](Diagrams/Detailed/work-essential-task-state.svg)
 
 No fixed implementation enums or mandatory Review column are adopted. Actual status/column mapping and transition permissions must be refined from Q-D18–20. Work transition rules are distinct from execution workflows in LC-08.
 
@@ -3100,9 +3170,9 @@ No fixed implementation enums or mandatory Review column are adopted. Actual sta
 
 ##### 7.3 Guarded work creation, assignment and transition
 
-[Guarded work creation, assignment and transition](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-transition.svg)
+[Guarded work creation, assignment and transition](Diagrams/Detailed/work-essential-transition.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-transition.puml) · ![work essential transition](../Diagrams/Archived-Png/Work-Essential-Transition.png)
+[Editable PlantUML](Diagrams/Detailed/work-essential-transition.puml) · ![work essential transition](Diagrams/Detailed/work-essential-transition.svg)
 
 One compact sequence covers the essential mutation collaboration; the detailed existing Sprint-close protocol remains authoritative. Actual synchronization must protect cross-record invariants and current admission. Optional downstream facilities need separate explicit intent and evidence.
 
@@ -3110,9 +3180,9 @@ One compact sequence covers the essential mutation collaboration; the detailed e
 
 ##### 7.4 One authoritative work model, multiple permitted projections
 
-[One authoritative work model, multiple permitted projections](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-views.svg)
+[One authoritative work model, multiple permitted projections](Diagrams/Detailed/work-essential-views.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-views.puml) · ![work essential views](../Diagrams/Archived-Png/Work-Essential-Views.png)
+[Editable PlantUML](Diagrams/Detailed/work-essential-views.puml) · ![work essential views](Diagrams/Detailed/work-essential-views.svg)
 
 Kanban/list/summary responsibilities share canonical work state; timeline/calendar is an unselected view option rather than provider synchronization. Query freshness, filters, pagination and unavailable-neighbor handling need concrete design.
 
@@ -3122,9 +3192,9 @@ Kanban/list/summary responsibilities share canonical work state; timeline/calend
 
 **After MVP.** Shared operating and recovery controls still apply where relevant.
 
-[After MVP — Coherent Sprint planning, execution and review](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-sprint-planning.svg)
+[After MVP — Coherent Sprint planning, execution and review](Diagrams/Detailed/work-essential-sprint-planning.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-sprint-planning.puml) · ![work essential sprint planning](../Diagrams/Archived-Png/Work-Essential-Sprint-Planning.png)
+[Editable PlantUML](Diagrams/Detailed/work-essential-sprint-planning.puml) · ![work essential sprint planning](Diagrams/Detailed/work-essential-sprint-planning.svg)
 
 Period end is not successful goal achievement. Return-to-backlog/no-auto-carry-over and Sprint cardinality/cadence remain Q-D19 proposals, not defaults. Actual cross-item/plan version guards and historical capture need persistence verification; no reminder/provider event is implicit.
 
@@ -3176,7 +3246,7 @@ Concrete current membership/transition checks, cross-record transaction ordering
 
 **Responsibility:** validate supported workflow definitions, coordinate explicitly admitted execution attempts, preserve evidence-supported outcomes, and coordinate separately authorized deployment attempts against exact artifacts and targets.
 
-**Status:** proposed LC-08 technical design, November 2, 2026. Real execution remains subject to unresolved isolation, capacity, cleanup and operating evidence gates. No runner, workflow, secret, target or deployment is enabled by this document.
+**Status:** proposed LC-08 technical design. Real execution remains subject to unresolved isolation, capacity, cleanup and operating evidence gates. No runner, workflow, secret, target or deployment is enabled by this document.
 
 [Scope](#design-record-03-component-and-module-design-components-workflow-and-deployment-md--heading-1-source-authority-and-trust-boundaries) · [Operations](#design-record-03-component-and-module-design-components-workflow-and-deployment-md--heading-2-public-operations) · [Model](#design-record-03-component-and-module-design-components-workflow-and-deployment-md--heading-3-owned-model-and-state-dimensions) · [Execution](#design-record-03-component-and-module-design-components-workflow-and-deployment-md--heading-4-admission-dispatch-and-reconciliation-protocol) · [Deployment](#design-record-03-component-and-module-design-components-workflow-and-deployment-md--heading-5-separate-deployment-protocol) · [Failures](#design-record-03-component-and-module-design-components-workflow-and-deployment-md--heading-6-technical-scenarios-and-failure-handling) · [Review](#design-record-03-component-and-module-design-components-workflow-and-deployment-md--heading-7-verification-and-remaining-decisions) · [Workflow views](#design-record-03-component-and-module-design-components-workflow-and-deployment-md--heading-8-workflow-executor-and-deployment-views)
 
@@ -3186,7 +3256,7 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### 1. Source authority and trust boundaries
 
-Use [YML-D01–YML-D12](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-yaml-workflows-and-cicd), [Q-D23](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-yaml-workflows-and-cicd--id-resolution-q-d23), [analysis operation contracts](../../03-System-Analysis/01-System-Analysis.md#analysis-business-rules-and-operation-contracts--10-domain-constraints-and-operation-contracts) and [architecture execution boundaries](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md). Agreed real YAML execution is conditional on demonstrated safe feasibility. Definition validation alone does not satisfy that capability; a blocker neither removes scope silently nor authorizes new infrastructure spending.
+Use [YML-D01–YML-D12](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-yaml-workflows-and-cicd), [Q-D23](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-yaml-workflows-and-cicd--id-resolution-q-d23), [analysis operation contracts](../../03-System-Analysis/03-Processes-Scenarios-And-Business-Rules.md#analysis-business-rules-and-operation-contracts--10-domain-constraints-and-operation-contracts) and [architecture execution boundaries](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md). Agreed real YAML execution is conditional on demonstrated safe feasibility. Definition validation alone does not satisfy that capability; a blocker neither removes scope silently nor authorizes new infrastructure spending.
 
 Q-D23's schema keys, trigger set, run-state vocabulary and numerical resource limits are evaluation proposals. No GitHub Actions compatibility, runner product, container engine or paid service is selected here. The dated small-server observation is not execution capacity or isolation evidence.
 
@@ -3196,7 +3266,7 @@ Q-D23's schema keys, trigger set, run-state vocabulary and numerical resource li
 
 Keep three trust boundaries explicit: trusted application coordination; untrusted workflow/code execution; privileged deployment-target operations. Untrusted code must not receive production/admin credentials, application data, other-job state or authority to approve itself. Logical module separation inside Laravel does not itself isolate executed code. Actual process/filesystem/network/resource/credential containment needs an evaluated mechanism and denial/escape evidence before enabling.
 
-The official [OWASP CI/CD Security guidance](https://cheatsheetseries.owasp.org/cheatsheets/CI_CD_Security_Cheat_Sheet.html), reviewed November 2, 2026, informs least-privilege evaluation for pipeline secrets, resource access and executor OS identity. It does not select a runner or establish Resumefolio's isolation evidence.
+The official [OWASP CI/CD Security guidance](https://cheatsheetseries.owasp.org/cheatsheets/CI_CD_Security_Cheat_Sheet.html), consulted, informs least-privilege evaluation for pipeline secrets, resource access and executor OS identity. It does not select a runner or establish Resumefolio's isolation evidence.
 
 <a id="design-record-03-component-and-module-design-components-workflow-and-deployment-md--heading-2-public-operations"></a>
 
@@ -3250,9 +3320,9 @@ Require a separate current target-specific authorization and reviewed approval b
 
 #### 3. Owned model and state dimensions
 
-[After MVP — Workflow coordination, executor and target boundaries](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-trust-model.svg)
+[After MVP — Workflow coordination, executor and target boundaries](Diagrams/Detailed/workflow-trust-model.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-trust-model.puml) · ![workflow trust model](../Diagrams/Archived-Png/Workflow-Trust-Model.png)
+[Editable PlantUML](Diagrams/Detailed/workflow-trust-model.puml) · ![workflow trust model](Diagrams/Detailed/workflow-trust-model.svg)
 
 **SupportedContract / DefinitionValidation:** schema version, exact inputs, diagnostics and validation evidence. **RunIntent:** attributable trigger and requested immutable context. **ExecutionAttempt:** distinct identity, bound code/definition/policy/environment context, admitted resource scope and actual observed outcome. **DispatchRecord / ExecutorObservation:** stable launch identity and attributable evidence; a callback is untrusted until authenticated and scoped.
 
@@ -3279,9 +3349,9 @@ Use application handlers and state policies for orchestration, durable repositor
 
 #### 5. Separate deployment protocol
 
-[After MVP — Exact approval, target attempt and unknown-effect reconciliation](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-deployment-sequence.svg)
+[After MVP — Exact approval, target attempt and unknown-effect reconciliation](Diagrams/Detailed/workflow-deployment-sequence.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-deployment-sequence.puml) · ![workflow deployment sequence](../Diagrams/Archived-Png/Workflow-Deployment-Sequence.png)
+[Editable PlantUML](Diagrams/Detailed/workflow-deployment-sequence.puml) · ![workflow deployment sequence](Diagrams/Detailed/workflow-deployment-sequence.svg)
 
 1. Resolve an exact usable artifact and trustworthy provenance under reviewed eligibility; do not deploy a mutable artifact name or branch alias as though it identifies fixed bytes.
 2. Obtain separate attributable target approval and current target authority. Validate actual configuration, data migration compatibility, maintenance/availability impact, health checks and recovery procedure. Approval must not silently transfer to changed inputs.
@@ -3367,9 +3437,9 @@ This package adds **nine complementary diagrams and one permission/approval matr
 
 **After MVP.** Shared operating and recovery controls still apply where relevant.
 
-[After MVP — Coordination, executor and target contracts](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-components.svg)
+[After MVP — Coordination, executor and target contracts](Diagrams/Detailed/workflow-essential-components.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-components.puml) · ![workflow essential components](../Diagrams/Archived-Png/Workflow-Essential-Components.png)
+[Editable PlantUML](Diagrams/Detailed/workflow-essential-components.puml) · ![workflow essential components](Diagrams/Detailed/workflow-essential-components.svg)
 
 Logical provided/required contracts, not independently deployed services. Untrusted executor code cannot access privileged target credentials or authorize deployment; secrets and artifacts are scoped references, not public API payloads.
 
@@ -3379,9 +3449,9 @@ Logical provided/required contracts, not independently deployed services. Untrus
 
 **After MVP.** Shared operating and recovery controls still apply where relevant.
 
-[After MVP — Candidate CI/CD path with distinct execution and deployment gates](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-pipeline.svg)
+[After MVP — Candidate CI/CD path with distinct execution and deployment gates](Diagrams/Detailed/workflow-essential-pipeline.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-pipeline.puml) · ![workflow essential pipeline](../Diagrams/Archived-Png/Workflow-Essential-Pipeline.png)
+[Editable PlantUML](Diagrams/Detailed/workflow-essential-pipeline.puml) · ![workflow essential pipeline](Diagrams/Detailed/workflow-essential-pipeline.svg)
 
 Build/test/scan/package are candidate pipeline responsibilities, not mandatory schema keys or installed scanners. No default dev→staging→prod automation, registry or GitHub Actions compatibility is selected. Every actual execution and target operation remains evidence-gated.
 
@@ -3389,9 +3459,9 @@ Build/test/scan/package are candidate pipeline responsibilities, not mandatory s
 
 ##### 8.3 Run observation, cancellation and cleanup dimensions
 
-[After MVP — Run observation, cancellation and cleanup dimensions](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-run-state.svg)
+[After MVP — Run observation, cancellation and cleanup dimensions](Diagrams/Detailed/workflow-essential-run-state.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-run-state.puml) · ![workflow essential run state](../Diagrams/Archived-Png/Workflow-Essential-Run-State.png)
+[Editable PlantUML](Diagrams/Detailed/workflow-essential-run-state.puml) · ![workflow essential run state](Diagrams/Detailed/workflow-essential-run-state.svg)
 
 Proposed observation vocabulary, not final Q-D23 enums. Waiting-for-approval belongs to the separate deployment intent, not a claim that all pipelines contain an approval stage. Stop requested, stop confirmed, terminal effect and reclaimed resources stay distinct.
 
@@ -3399,9 +3469,9 @@ Proposed observation vocabulary, not final Q-D23 enums. Waiting-for-approval bel
 
 ##### 8.4 Deployment approval and actual target outcome
 
-[After MVP — Deployment approval and actual target outcome](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-deployment-state.svg)
+[After MVP — Deployment approval and actual target outcome](Diagrams/Detailed/workflow-essential-deployment-state.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-deployment-state.puml) · ![workflow essential deployment state](../Diagrams/Archived-Png/Workflow-Essential-Deployment-State.png)
+[Editable PlantUML](Diagrams/Detailed/workflow-essential-deployment-state.puml) · ![workflow essential deployment state](Diagrams/Detailed/workflow-essential-deployment-state.svg)
 
 Separate approval/readiness/target knowledge dimensions summarized in one view, not persisted enums. “Live” requires the actual defined checks; rollback/forward repair is a new authorized operation with its own failure/unknown state. Health success alone may be insufficient.
 
@@ -3409,9 +3479,9 @@ Separate approval/readiness/target knowledge dimensions summarized in one view, 
 
 ##### 8.5 Deployment strategy alternatives, not a selection
 
-[After MVP — Deployment strategy alternatives, not a selection](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-strategies.svg)
+[After MVP — Deployment strategy alternatives, not a selection](Diagrams/Detailed/workflow-essential-strategies.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-strategies.puml) · ![workflow essential strategies](../Diagrams/Archived-Png/Workflow-Essential-Strategies.png)
+[Editable PlantUML](Diagrams/Detailed/workflow-essential-strategies.puml) · ![workflow essential strategies](Diagrams/Detailed/workflow-essential-strategies.svg)
 
 Comparison only. Existing small-host inventory does not establish multi-instance capacity, load balancers or data compatibility. No strategy, traffic-shifting mechanism, automatic expansion or paid facility is adopted; a simpler guarded replacement may be evaluated for the actual target.
 
@@ -3419,9 +3489,9 @@ Comparison only. Existing small-host inventory does not establish multi-instance
 
 ##### 8.6 Failed verification and safe recovery decision
 
-[After MVP — Failed verification and safe recovery decision](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-recovery.svg)
+[After MVP — Failed verification and safe recovery decision](Diagrams/Detailed/workflow-essential-recovery.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-recovery.puml) · ![workflow essential recovery](../Diagrams/Archived-Png/Workflow-Essential-Recovery.png)
+[Editable PlantUML](Diagrams/Detailed/workflow-essential-recovery.puml) · ![workflow essential recovery](Diagrams/Detailed/workflow-essential-recovery.svg)
 
 No automatic rollback/notification is selected. Reverting application files cannot unsend messages, reverse all target side effects or undo an irreversible migration. A failed health probe is evidence to assess, not universal permission to restore older code.
 
@@ -3429,9 +3499,9 @@ No automatic rollback/notification is selected. Reverting application files cann
 
 ##### 8.7 Conditional environment promotion and exact approval gates
 
-[After MVP — Conditional environment promotion and exact approval gates](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-promotion.svg)
+[After MVP — Conditional environment promotion and exact approval gates](Diagrams/Detailed/workflow-essential-promotion.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-promotion.puml) · ![workflow essential promotion](../Diagrams/Archived-Png/Workflow-Essential-Promotion.png)
+[Editable PlantUML](Diagrams/Detailed/workflow-essential-promotion.puml) · ![workflow essential promotion](Diagrams/Detailed/workflow-essential-promotion.svg)
 
 Promotion is conditional and target-scoped, not an automatic deployment chain. Successful dev/staging checks do not approve production or establish recovery readiness. Changed target/configuration/artifact invalidates approval according to actual policy.
 
@@ -3439,9 +3509,9 @@ Promotion is conditional and target-scoped, not an automatic deployment chain. S
 
 ##### 8.8 Runner architecture and trust isolation
 
-[After MVP — Runner architecture and trust isolation](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-executor.svg)
+[After MVP — Runner architecture and trust isolation](Diagrams/Detailed/workflow-essential-executor.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-executor.puml) · ![workflow essential executor](../Diagrams/Archived-Png/Workflow-Essential-Executor.png)
+[Editable PlantUML](Diagrams/Detailed/workflow-essential-executor.puml) · ![workflow essential executor](Diagrams/Detailed/workflow-essential-executor.svg)
 
 Logical queues/workers do not select a runner product, container engine or cache. Actual process/filesystem/network/secret/resource containment and cleanup must be demonstrated before real YAML execution. Untrusted code has no connector to privileged target operations.
 
@@ -3451,9 +3521,9 @@ Logical queues/workers do not select a runner product, container engine or cache
 
 **After MVP.** Shared operating and recovery controls still apply where relevant.
 
-[After MVP — Candidate executor and deployment placement](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-topology.svg)
+[After MVP — Candidate executor and deployment placement](Diagrams/Detailed/workflow-essential-topology.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-topology.puml) · ![workflow essential topology](../Diagrams/Archived-Png/Workflow-Essential-Topology.png)
+[Editable PlantUML](Diagrams/Detailed/workflow-essential-topology.puml) · ![workflow essential topology](Diagrams/Detailed/workflow-essential-topology.svg)
 
 Optional node mapping, not an installed topology. Dev/staging/prod may be logical scopes; exact target identities, secrets, compatibility, resource headroom and recovery facilities require actual selection/evidence. Executor code cannot obtain target approval credentials.
 
@@ -3479,3 +3549,7 @@ Rows describe operation scopes, not adopted global roles or a settled separation
 These diagrams do not enable validation-only work as a substitute for agreed conditional real execution. Actual feasibility blockers remain visible and require scope/budget disposition without silent feature removal or infrastructure purchase. No pipeline, scan, cache, runner, secret, environment, deployment, traffic shift, rollback or notification is executed/configured by this documentation update.
 
 </details>
+
+## Implementation contract record
+
+For an implemented operation capture the owning service, input and output types, authorization decision, persistence boundary, retry behavior and relevant checks. Confirm the planned signatures against actual framework and persistence choices.

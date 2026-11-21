@@ -1,0 +1,34 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam shadowing false
+left to right direction
+title Configuration Ownership and Environment Isolation
+rectangle "Reviewed non-secret configuration contract\nNames, types, required values and verification" as contract
+package "One identified environment" {
+ rectangle "Core configuration\nIndependent key / session / DB user / private paths" as core
+ rectangle "ProjectForge configuration\nIndependent key / session / DB user / Git storage" as forge
+ rectangle "Restricted operational configuration\nSMTP, workers, backup and recovery access" as operations
+ core --> forge : Scoped service endpoint / credential
+ forge --> core : Narrow entitlement endpoint / credential
+}
+rectangle "Restricted secret provisioning\nNo secrets in source, frontend or shared evidence" as secrets
+rectangle "Setup / readiness evidence\nActual revision, versions and isolated checks" as evidence
+contract --> core
+contract --> forge
+contract --> operations
+secrets --> core
+secrets --> forge
+secrets --> operations
+core --> evidence
+forge --> evidence
+operations --> evidence
+legend bottom
+  Repeat isolation for development, test, rehearsal and production.
+  A feature flag never bypasses current resource authorization.
+  Diagram boxes provision no environment or secret-management product.
+endlegend
+@enduml

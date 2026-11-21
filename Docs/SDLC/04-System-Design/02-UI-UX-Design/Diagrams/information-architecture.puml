@@ -1,0 +1,54 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam shadowing false
+left to right direction
+title MVP Navigation and Experience Boundaries
+rectangle "Invited account entry" as entry
+package "Core private workspace" {
+ rectangle "Dashboard" as dashboard
+ rectangle "Profile" as profile
+ rectangle "Resumes / Portfolio" as resumes
+ rectangle "Draft / comparison / preview" as draft
+ rectangle "Publication / sharing settings" as share
+ rectangle "Cover Letters" as letters
+ rectangle "Job Applications" as apps
+ rectangle "Application detail / follow-up" as detail
+ rectangle "Exact submitted materials" as history
+ rectangle "My Files & Media" as files
+ rectangle "Authorized Administration" as admin
+ dashboard --> profile
+ dashboard --> resumes
+ resumes --> draft
+ resumes --> share
+ dashboard --> letters
+ dashboard --> apps
+ apps --> detail
+ detail --> history
+ dashboard --> files
+ dashboard --> admin : Only permitted duties
+}
+package "ProjectForge - separate application" {
+ rectangle "Authorized repository list" as repos
+ rectangle "Repository files / history" as browse
+ rectangle "Issues / simple Kanban" as work
+ repos --> browse
+ repos --> work
+}
+package "Protected recipient experience" {
+ rectangle "Share entry / required access context" as recipient
+ rectangle "Selected presentation / eligible downloads" as view
+ recipient --> view : Current policy
+}
+entry --> dashboard : Valid receiving session
+ dashboard ..> repos : Authorized connection\nSeparate session / grants
+share ..> recipient : Configures access\nNot automatic publication
+legend bottom
+  Navigation map, not URL allocation, UML inheritance or automatic permission.
+  Recipient entry is independent of owner login and exposes no workspace navigation.
+  Profile edits, draft apply, publication and submission history remain distinct.
+endlegend
+@enduml

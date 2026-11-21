@@ -1,0 +1,26 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam shadowing false
+title Accessibility Review and Evidence
+start
+:Identify complete journey, actor and candidate;
+:Select applicable criteria and recorded client / input matrix;
+:Review semantics, labels and component states;
+:Run automated checks plus manual keyboard, focus,
+assistive technology, contrast and reflow checks;
+:Exercise validation, dialogs, dynamic feedback
+and protected / denied / pending states;
+if (Defect or incomplete coverage?) then (yes)
+ :Record criterion, reproduction and user impact;
+ :Fix owning component / screen and retest affected journeys;
+else (no)
+ :Record supported result with scope and limitations;
+endif
+:Link actual evidence and remaining gaps to RTM;
+:Assess PDF / media separately where applicable;
+stop
+@enduml

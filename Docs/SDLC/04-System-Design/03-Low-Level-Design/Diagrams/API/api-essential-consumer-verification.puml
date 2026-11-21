@@ -1,0 +1,29 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+allowmixing
+title Proposed — Consumer expectations and provider verification
+!pragma useVerticalIf on
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+rectangle "Consumer candidate\nactual used fields / outcomes / version assumptions" as C
+artifact "Reviewable shared contract\nshape + semantic invariants + protected frame" as K
+rectangle "Provider candidate\nreal owner implementation / actual adapters" as P
+rectangle "Verification evidence\nnormal / denied / stale / duplicate / pending / unknown" as V
+rectangle "Affected real integrations\nframework, persistence, serving, provider, native client" as I
+C --> K : record actual expectations
+P --> K : realize actual obligations
+K --> V : verify same identified contract/candidates
+I --> V : actual boundary evidence where applicable
+V --> C : compatibility result / explicit limitations
+V --> P : findings and actual disposition
+note bottom of K
+ Consumer-driven expectations cannot weaken source rules or privacy.
+ No Pact/registry/tool or CI installation selected.
+ Mock success and payload shape alone cannot establish semantic compatibility.
+end note
+
+@enduml

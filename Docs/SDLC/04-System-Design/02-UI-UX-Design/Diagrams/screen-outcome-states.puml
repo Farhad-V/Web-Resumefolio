@@ -1,0 +1,46 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam shadowing false
+title Screen Outcome and Safe Recovery - Conceptual Model
+state "Ready / permitted task context" as ready
+state "Request pending" as pending
+state "Invalid input" as invalid
+state "Denied / expired / hidden" as denied
+state "Conflict - current version review" as conflict
+state "Known incomplete work" as incomplete
+state "Unknown consequential outcome" as unknown
+state "Confirmed recorded outcome" as confirmed
+state "Safe unavailable / failed outcome" as unavailable
+[*] --> ready
+ready --> pending : Explicit action
+pending --> invalid : Validation rejection
+pending --> denied : Authority not accepted
+pending --> conflict : Stale version / inconsistent request identity
+pending --> incomplete : Accepted but effect incomplete
+pending --> unknown : Completion cannot be established
+pending --> confirmed : Owning result confirmed
+pending --> unavailable : Definitive unavailable / failure
+invalid --> ready : Correct permitted input
+conflict --> ready : Review current state before new intent
+denied --> ready : Re-establish permitted context if allowed
+unavailable --> ready : Contract-defined safe recovery
+incomplete --> confirmed : Existing operation completion observed
+incomplete --> unavailable : Definitive failure observed
+incomplete --> unknown : Evidence lost / unresolved
+unknown --> confirmed : Same operation result resolved
+unknown --> unavailable : Definitive outcome resolved
+confirmed --> ready : Continue from recorded result
+note bottom of unknown
+No blind repeat or fabricated rollback.
+Refresh/status lookup resolves the existing operation.
+end note
+legend bottom
+  Conceptual UI outcomes, not a universal backend status enum.
+  Loading/empty list states are separate from command completion.
+  Every protected action rechecks current authority under its contract.
+endlegend
+@enduml

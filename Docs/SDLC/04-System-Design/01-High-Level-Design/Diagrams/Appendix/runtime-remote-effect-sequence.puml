@@ -1,0 +1,32 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+title Proposed external attempt, stale worker and unknown-effect reconciliation
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+participant Dispatcher as D
+database "Durable intent / claim / observation" as DB
+participant "Scoped worker" as W
+participant "External facility" as E
+participant Reconciler as R
+D -> DB : discover committed pending intent
+D -> W : eligible identified work (delivery may duplicate)
+W -> DB : atomic claim + generation; verify current scope
+DB --> W : exact admitted attempt / current claim
+W -> E : intended external operation / actual supported identity
+E ->x W : response lost after possible effect
+W -> DB : record unknown evidence under current generation if valid
+R -> DB : resolve expired / uncertain attempt; claim reconciliation
+R -> E : query same attributable effect where actually supported
+E --> R : confirmed / no-effect / partial / still unknown evidence
+R -> DB : guarded observation; preserve unresolved scope
+note over W,R
+ Lease expiry does not stop an old worker or prove no external effect.
+ Local fencing rejects stale writes; it cannot undo remote action.
+ No blind resend, relaunch or redeploy; unsupported lookup retains uncertainty.
+end note
+@enduml

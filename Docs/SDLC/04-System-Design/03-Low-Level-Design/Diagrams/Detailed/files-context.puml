@@ -1,0 +1,20 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Proposed — C4 Level 1: artifact-related system context
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+actor "Authorized owner / operator" as U
+actor "Permitted representation viewer" as V
+rectangle "Resumefolio\nSoftware system" as R
+cloud "External effect facilities\nProvider / target where applicable" as E
+cloud "External storage / recovery facility\nonly if selected" as S
+U --> R : deliberate private artifact / policy / recovery intent
+V --> R : separately eligible representation retrieval
+R --> E : separate owner operations using protected material
+R ..> S : conditional evaluated storage capability
+
+@enduml

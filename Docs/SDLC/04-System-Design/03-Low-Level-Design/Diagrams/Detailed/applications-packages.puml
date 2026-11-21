@@ -1,0 +1,24 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+allowmixing
+title Proposed — Candidate package dependencies
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+package "Applications.Contracts" as C
+package "Applications.Application" as A
+package "Applications.Domain" as D
+package "Applications.Infrastructure" as I
+package "Applications.Transport" as T
+package "Neighbor public contracts only" as N
+T ..> A
+A ..> C
+A ..> D
+A ..> N
+I ..> C
+I ..> D : owned mapping
+
+@enduml

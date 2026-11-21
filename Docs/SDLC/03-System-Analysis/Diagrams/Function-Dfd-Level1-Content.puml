@@ -1,7 +1,8 @@
 @startuml
 ' OWNER-MVP-2026-11-04 review: MVP core. Remove future provider coordination from core DFD and add private media/manual follow-up flows.
 title MVP DFD Level 1 — core content and application information
-skinparam backgroundColor white
+skinparam backgroundColor #0D1525
+skinparam defaultFontColor #EDF4FF
 skinparam shadowing false
 skinparam defaultFontName Arial
 skinparam wrapWidth 190

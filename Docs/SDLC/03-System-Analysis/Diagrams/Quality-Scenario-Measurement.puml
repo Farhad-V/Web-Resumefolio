@@ -1,14 +1,15 @@
 @startuml
 ' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
-skinparam backgroundColor white
+skinparam backgroundColor #0D1525
+skinparam defaultFontColor #EDF4FF
 skinparam defaultFontName Segoe UI
 skinparam defaultFontSize 13
 skinparam shadowing false
-skinparam ArrowColor #526B7B
-skinparam rectangleBackgroundColor #EDF4FB
-skinparam rectangleBorderColor #526B7B
-skinparam noteBackgroundColor #FFF3DF
-skinparam noteBorderColor #B99557
+skinparam ArrowColor #91AED1
+skinparam rectangleBackgroundColor #1A2940
+skinparam rectangleBorderColor #91AED1
+skinparam noteBackgroundColor #4A302B
+skinparam noteBorderColor #F1AD8A
 skinparam nodesep 38
 skinparam ranksep 42
 title SQ — measurable quality scenario contract
@@ -16,7 +17,7 @@ top to bottom direction
 rectangle "Source + stimulus\nExact intended operation / quality question" as Stimulus
 rectangle "Defined environment + artifact\nCandidate / workload / dataset / client / dependencies" as Environment
 rectangle "Expected response + measurement\nActual usable result / start-end / units / method" as Measure
-rectangle "Agreed criterion + actual later evidence\nCompare result and record limits; unavailable is not Pass" as Evidence #DFF1EA
+rectangle "Agreed criterion + actual later evidence\nCompare result and record limits; unavailable is not Pass" as Evidence #17405A
 Stimulus --> Environment
 Environment --> Measure
 Measure --> Evidence

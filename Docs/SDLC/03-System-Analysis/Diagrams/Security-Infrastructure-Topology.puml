@@ -1,16 +1,17 @@
 @startuml
 ' OWNER-MVP-2026-11-04 review: Historical / alternative. Dated observation or rejected/unselected alternative is preserved without becoming a current MVP topology.
-skinparam backgroundColor white
+skinparam backgroundColor #0D1525
+skinparam defaultFontColor #EDF4FF
 skinparam defaultFontName Segoe UI
 skinparam defaultFontSize 14
 skinparam shadowing false
-skinparam ArrowColor #486777
+skinparam ArrowColor #91AED1
 skinparam ArrowFontSize 12
-skinparam rectangleBackgroundColor #EEF5FA
-skinparam rectangleBorderColor #486777
-skinparam packageBackgroundColor #F7FAFC
-skinparam noteBackgroundColor #FFF3DA
-skinparam noteBorderColor #B59865
+skinparam rectangleBackgroundColor #1A2940
+skinparam rectangleBorderColor #91AED1
+skinparam packageBackgroundColor #1A2940
+skinparam noteBackgroundColor #4A302B
+skinparam noteBorderColor #F1AD8A
 skinparam nodesep 35
 skinparam ranksep 45
 title HISTORICAL / UNSELECTED — Infrastructure topology — observed demo and explicit gaps
@@ -24,8 +25,8 @@ node "Hetzner VM\nUbuntu 24.04.4 LTS\n2 vCPU / 4 GB allocated / 40 GB local disk
 }
 browser --> web : HTTPS observed in dated record
 operator --> host : SSH used for historical read-only inspection
-rectangle "Recovery capability gap\nOwner reports backups not configured\nNo independent protected backup proven" as backup #FFF3DA
-rectangle "Availability capability gap\nNo standby, replication or failover evidence\nNo selected HA / DR topology" as ha #FFF3DA
+rectangle "Recovery capability gap\nOwner reports backups not configured\nNo independent protected backup proven" as backup #4A302B
+rectangle "Availability capability gap\nNo standby, replication or failover evidence\nNo selected HA / DR topology" as ha #4A302B
 host ..> backup : evidence needed; not an existing link
 host ..> ha : single observed host; no redundancy claimed
 note bottom of ha

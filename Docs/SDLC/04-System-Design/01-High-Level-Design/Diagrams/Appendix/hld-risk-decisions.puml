@@ -1,0 +1,34 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #164E63
+skinparam ArrowColor #164E63
+skinparam ArrowFontColor #164E63
+skinparam shadowing false
+skinparam rectangle {
+ BackgroundColor #164E63
+ BorderColor #164E63
+ FontColor #164E63
+}
+top to bottom direction
+title Architecture Risk and Decision Follow-up
+rectangle "Identify assumption / risk\nAffected capability and owner" as risk
+rectangle "Link governing scope / ADR\nDefine evidence and hold condition" as plan
+rectangle "Verify candidate and environment\nRecord observed result" as evidence
+rectangle "Unmet / unresolved\nKeep affected gate open" as hold #164E63
+rectangle "Choice must change\nReview alternatives and revise ADR" as revise #164E63
+rectangle "Mitigation demonstrated or\nremaining exposure explicitly accepted" as resolved #164E63
+rectangle "Update HLD / LLD / RTM / work item\nReopen if evidence is invalidated" as update
+risk --> plan
+plan --> evidence
+evidence --> hold : Insufficient evidence
+evidence --> revise : Selected choice no longer fits
+evidence --> resolved : Supported disposition
+hold --> plan : Follow-up
+revise --> plan : Revised decision / checks
+resolved --> update
+@enduml

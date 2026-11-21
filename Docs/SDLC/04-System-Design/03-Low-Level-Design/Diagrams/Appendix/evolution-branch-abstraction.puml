@@ -1,0 +1,27 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+allowmixing
+title Proposed — Branch by abstraction inside one application
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+component "Unchanged caller" as C
+interface "Stable bounded contract" as P
+component "Old adapter" as O
+component "New adapter" as N
+component "Composition-root selection\nreviewed version / operation scope" as S
+C --> P
+O ..|> P
+N ..|> P
+S ..> O : first retain
+S ..> N : switch after evidence gate
+note bottom of S
+ Selection is not permission. Resolve current authority
+ and preserve command/attempt identity across coexistence.
+end note
+
+@enduml

@@ -1,25 +1,69 @@
-# ADR 003 Durable External Attempts
+# ADR-003 — Durable External Attempts
+
+[Decision index](Decision-Index.md) · [ADR-005 boundaries](ADR-005-Owner-Mvp-System-Boundaries.md) · [ADR-006 baseline](ADR-006-Selected-Mvp-Implementation-Baseline.md)
+
+## Current Status
+
+**Selected MVP durable/outcome-truthful effects, idempotency and outbox rules through ADR-006/T05; provider/runner-specific details remain deferred.** Decision authority remains Farhad. No new approval or runtime evidence is recorded here.
+
+## Decision and Invariants
+
+Record required local intent/outcome durably and keep attributable operation/attempt identity when an effect crosses database, filesystem, Git, mail or service boundaries. A local commit or queue acknowledgment does not prove external completion. Distinguish definitive rejection, known partial work and unknown completion.
+
+| Situation | Required response |
+| --- | --- |
+| Same actor/operation/key/payload | Resolve the recorded outcome under current authority; do not duplicate the effect |
+| Same key with changed payload/scope | Conflict rather than reinterpret the original command |
+| Response lost after possible effect | Preserve uncertainty and resolve the same operation before unsafe repeat |
+| Worker interrupted | Resume/reconcile owner-local recorded work under the contract |
+| Pending artifact finalization | Preserve still-required references/reservations until owner evidence permits release |
+| Revoked/unavailable authority | Recheck current policy; no bypass through stale admission or broad worker credentials |
+
+Each application commits locally. SQL rollback cannot undo an already changed Git ref, delivered bytes or a remote commit. Compensation must be an explicitly reviewed owning operation, not a generic erase-history strategy. This decision does not promise exactly-once delivery or select a universal queue/state enum.
+
+## Alternatives and Consequences
+
+Calling every external facility inside a SQL transaction does not make remote effects atomic. Fire-and-forget without durable attributable state loses recoverability. Selected owner-local durable intent/outcomes improve truthful recovery but add worker supervision, state handling, reference protection and reconciliation work.
+
+Retry bounds, identity retention and late-retry behavior follow the actual selected contract; no arbitrary durations or unlimited retries are introduced here. Personal provider sends/calendar, workflow runners and target deployment remain deferred even where the retained record explains their possible future failure modes.
+
+## Verification and Revisit
+
+Exercise concurrent matching keys, inconsistent reuse, stale writes, unavailable/revoked authority, lost acknowledgment after commit, interrupted processing and restored pending work. Verify actual database/storage/Git/service behavior where fakes cannot establish the guarantee. Revisit a mechanism only with evidence of contract/resource limitations and a compatibility/recovery plan preserving attributable outcomes.
+
+## Supporting Dark Diagram
+
+![Durable External Attempts](../01-High-Level-Design/Diagrams/Appendix/runtime-attempt-state-machine.svg)
+
+[PlantUML source](../01-High-Level-Design/Diagrams/Appendix/runtime-attempt-state-machine.puml) · [PNG](../01-High-Level-Design/Diagrams/Appendix/runtime-attempt-state-machine.png)
+
+This canonical view illustrates the applicable current contracts; it does not convert retained proposal details or deferred features into MVP obligations.
+
+## Sources, Evidence and Retained Rationale
+
+Use [LLD contracts](../03-Low-Level-Design/03-Detailed-Module-Design.md), [Database Design](../03-Low-Level-Design/04-Database-Design.md), [API Specification](../03-Low-Level-Design/05-API-Specification.md) and the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md) for exact implementation/criterion evidence. Preserve immutable baseline provenance links.
+
+The record below retains original anchors, alternatives and context. Current status above and ADR-006/ADR-007 govern any older proposed/pending wording. Runtime setup, security, compatibility and recovery still require fresh evidence; documentation does not close those gates.
 
 <a id="design-record-07-design-decisions-adr-003-durable-external-attempts-md"></a>
 
 <details>
-<summary>ADR-003 â€” Durable External Attempts and Reconciliation</summary>
+<summary>ADR-003 — Durable External Attempts and Reconciliation</summary>
 
 <a id="design-record-07-design-decisions-adr-003-durable-external-attempts-md--heading-adr-003-â-durable-external-attempts-and-reconciliation"></a>
 
-### ADR-003 â€” Durable External Attempts and Reconciliation
+### ADR-003 — Durable External Attempts and Reconciliation
 
 Current implementation choices and scope: [Baseline](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/baseline/README.md). Runtime verification remains subject to its gates.
 
 | Item | Position |
 | --- | --- |
-| Status | **Proposed â€” owner disposition pending** |
-| Prepared / updated | November 2, 2026 |
+| Status | **Selected MVP durable/outcome-truthful effects, idempotency and outbox rules through ADR-006/T05; provider/runner-specific details remain deferred.** |
 | Decision authority | Farhad |
 | Scope | Durable intent, attributable attempts, dispatch coordination and evidence-supported external outcomes |
 | Implementation evidence | No queue, worker, provider idempotency facility, executor or target protocol is verified here |
 
-[Context](#design-record-07-design-decisions-adr-003-durable-external-attempts-md--heading-1-context-and-source-authority) Â· [Options](#design-record-07-design-decisions-adr-003-durable-external-attempts-md--heading-2-options-considered) Â· [Proposal](#design-record-07-design-decisions-adr-003-durable-external-attempts-md--heading-3-proposed-decision) Â· [Application](#design-record-07-design-decisions-adr-003-durable-external-attempts-md--heading-4-operation-specific-application) Â· [Consequences](#design-record-07-design-decisions-adr-003-durable-external-attempts-md--heading-5-consequences-and-limits) Â· [Validation](#design-record-07-design-decisions-adr-003-durable-external-attempts-md--heading-6-validation-and-disposition) Â· [Evolution](#design-record-07-design-decisions-adr-003-durable-external-attempts-md--heading-7-revisit-and-evolution)
+[Context](#design-record-07-design-decisions-adr-003-durable-external-attempts-md--heading-1-context-and-source-authority) · [Options](#design-record-07-design-decisions-adr-003-durable-external-attempts-md--heading-2-options-considered) · [Proposal](#design-record-07-design-decisions-adr-003-durable-external-attempts-md--heading-3-proposed-decision) · [Application](#design-record-07-design-decisions-adr-003-durable-external-attempts-md--heading-4-operation-specific-application) · [Consequences](#design-record-07-design-decisions-adr-003-durable-external-attempts-md--heading-5-consequences-and-limits) · [Validation](#design-record-07-design-decisions-adr-003-durable-external-attempts-md--heading-6-validation-and-disposition) · [Evolution](#design-record-07-design-decisions-adr-003-durable-external-attempts-md--heading-7-revisit-and-evolution)
 
 <a id="design-record-07-design-decisions-adr-003-durable-external-attempts-md--heading-1-context-and-source-authority"></a>
 
@@ -37,19 +81,19 @@ The [modular-boundary proposal](ADR-001-Modular-Application-Boundaries.md#design
 
 <a id="design-record-07-design-decisions-adr-003-durable-external-attempts-md--heading-a-â-call-an-external-facility-inside-the-local-transaction"></a>
 
-##### A â€” Call an external facility inside the local transaction
+##### A — Call an external facility inside the local transaction
 
 Straightforward code can make the call appear coordinated with local state, but remote effects cannot generally be rolled back with SQL. Long transactions also retain local resources while waiting on the dependency. A crash after remote acceptance can still leave ambiguous local state. This is not a sufficient general correctness strategy.
 
 <a id="design-record-07-design-decisions-adr-003-durable-external-attempts-md--heading-b-â-commit-local-state-then-issue-an-unrecorded-external-call"></a>
 
-##### B â€” Commit local state, then issue an unrecorded external call
+##### B — Commit local state, then issue an unrecorded external call
 
 Shortens local transaction duration but risks losing required work if the process dies after commit and before dispatch. Adding a generic automatic retry can duplicate already accepted effects when the result is lost. Suitable only where the specific contract does not require durable effect coordination and its risks are explicit.
 
 <a id="design-record-07-design-decisions-adr-003-durable-external-attempts-md--heading-c-â-durable-local-intent-and-identified-attempts-with-reconciliation"></a>
 
-##### C â€” Durable local intent and identified attempts with reconciliation
+##### C — Durable local intent and identified attempts with reconciliation
 
 Commit required local state and pending intent coherently; dispatch through scoped adapters with stable identities; retain attributable observations and reconcile ambiguity before consequential repeat. Adds operating and state-model complexity while making lost intent and unknown effects explicit. **This is the proposed shared direction.**
 
@@ -61,9 +105,9 @@ These are qualitative assessments. Actual transactional, queue and external capa
 
 Persist reviewed consequential intent and distinguish the business operation, local command, dispatch ownership and external attempt identities. Store immutable intended inputs/revisions or sufficient protected references, current eligibility requirements and actual observed outcomes. Avoid copying raw secrets/private payloads into ordinary diagnostic records.
 
-[Proposed durable attempt and reconciliation protocol](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/durable-attempt-protocol.svg)
+[Proposed durable attempt and reconciliation protocol](../01-High-Level-Design/Diagrams/Appendix/durable-attempt-protocol.svg)
 
-[Owning runtime protocol](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-03-process-view-concurrency-and-runtime-behavior-md--heading-4-durable-work-dispatch-and-reconciliation) Â· [Editable Graphviz](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/durable-attempt-protocol.dot) Â· ![durable attempt protocol](../Diagrams/Archived-Png/Durable-Attempt-Protocol.png)
+[Owning runtime protocol](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-03-process-view-concurrency-and-runtime-behavior-md--heading-4-durable-work-dispatch-and-reconciliation) · [Editable Graphviz](../01-High-Level-Design/Diagrams/Appendix/durable-attempt-protocol.dot) · ![durable attempt protocol](../01-High-Level-Design/Diagrams/Appendix/durable-attempt-protocol.png)
 
 <a id="design-record-07-design-decisions-adr-003-durable-external-attempts-md--heading-local-commit-and-dispatch"></a>
 
@@ -144,6 +188,6 @@ Reassess per-operation coordination when measured workload, external capabilitie
 
 Schema/worker/adapter changes must preserve old pending intent and observation meaning, claim-generation safety and current authority. Define compatible migration/resumption before retiring an old format. If an accepted decision changes, add a superseding ADR and retain original rationale and actual disposition history.
 
-[Decision index](Decision-Index.md#design-record-07-design-decisions-design-decisions-md) Â· [ADR-001: Boundaries](ADR-001-Modular-Application-Boundaries.md#design-record-07-design-decisions-adr-001-modular-application-boundaries-md) Â· [ADR-002: Publication/history](ADR-002-Explicit-Publication-And-History.md#design-record-07-design-decisions-adr-002-explicit-publication-and-history-md) Â· [ADR template](Decision-Index.md#design-record-07-design-decisions-design-decisions-md)
+[Decision index](Decision-Index.md#design-record-07-design-decisions-design-decisions-md) · [ADR-001: Boundaries](ADR-001-Modular-Application-Boundaries.md#design-record-07-design-decisions-adr-001-modular-application-boundaries-md) · [ADR-002: Publication/history](ADR-002-Explicit-Publication-And-History.md#design-record-07-design-decisions-adr-002-explicit-publication-and-history-md) · [ADR template](Decision-Index.md#design-record-07-design-decisions-design-decisions-md)
 
 </details>

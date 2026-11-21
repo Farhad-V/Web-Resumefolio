@@ -1,0 +1,27 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam shadowing false
+top to bottom direction
+title Low-Level Design Contract and Verification Chain
+rectangle "Accepted scope / exact requirement criteria\nSelected ADRs and HLD boundaries" as source
+rectangle "Owning module / use case\nActor, resource, preconditions and invariants" as owner
+rectangle "Detailed contracts\nInputs, versions, request identity, results and errors" as contract
+rectangle "Persistence / adapters\nLocal transaction, protected references and remote effects" as persistence
+rectangle "Implementation slice\nActual code, migrations and configuration" as implementation
+rectangle "Verification evidence\nNormal, denied, stale, concurrent and interrupted cases" as evidence
+source --> owner
+owner --> contract
+contract --> persistence
+persistence --> implementation
+implementation --> evidence
+evidence ..> contract : Diagnose gaps / refine affected design
+legend bottom
+  Core and ProjectForge retain independent ownership and scoped integration.
+  Proposed signatures are design seams, not implemented production interfaces.
+  Documentation completion does not establish runtime acceptance or authorize deployment.
+endlegend
+@enduml

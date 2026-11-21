@@ -1,14 +1,15 @@
 @startuml
 ' OWNER-MVP-2026-11-04 review: Mixed MVP / future. Retained broader-product associations require explicit future node labels; MVP uses only core/basic ProjectForge.
-skinparam backgroundColor white
+skinparam backgroundColor #0D1525
+skinparam defaultFontColor #EDF4FF
 skinparam defaultFontName Segoe UI
 skinparam defaultFontSize 13
 skinparam shadowing false
-skinparam ArrowColor #526B7B
-skinparam rectangleBackgroundColor #EDF4FB
-skinparam rectangleBorderColor #526B7B
-skinparam noteBackgroundColor #FFF3DF
-skinparam noteBorderColor #B99557
+skinparam ArrowColor #91AED1
+skinparam rectangleBackgroundColor #1A2940
+skinparam rectangleBorderColor #91AED1
+skinparam noteBackgroundColor #4A302B
+skinparam noteBorderColor #F1AD8A
 skinparam nodesep 38
 skinparam ranksep 42
 title HD — delivery reconciliation before coding
@@ -17,7 +18,7 @@ rectangle "Current requirements + analysis/design + remaining gates" as Inputs
 rectangle "Reviewable work outcomes + dependencies + full effort ranges\nInclude learning/docs/testing/recovery/operations/rework" as Work
 rectangle "Compare to 20 total project hours/week\nActual availability/progress and dependency delays\nRequested date remains a request" as Forecast
 rectangle "Inspect/reconcile actual live issues/board\nSelect first ready Sprint Goal / items / plan" as Tracking
-rectangle "Complete agreed initial SDLC documentation/design\nActual pre-implementation baseline decision before coding" as Baseline #DFF1EA
+rectangle "Complete agreed initial SDLC documentation/design\nActual pre-implementation baseline decision before coding" as Baseline #17405A
 Inputs --> Work
 Work --> Forecast
 Forecast --> Tracking

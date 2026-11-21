@@ -1,16 +1,17 @@
 @startuml
 ' OWNER-MVP-2026-11-04 review: Mixed MVP / future. Retained broader-product associations require explicit future node labels; MVP uses only core/basic ProjectForge.
-skinparam backgroundColor white
+skinparam backgroundColor #0D1525
+skinparam defaultFontColor #EDF4FF
 skinparam defaultFontName Segoe UI
 skinparam defaultFontSize 13
 skinparam shadowing false
-skinparam ArrowColor #526B7B
-skinparam activityBackgroundColor #EDF4FB
-skinparam activityBorderColor #526B7B
-skinparam activityDiamondBackgroundColor #FFF3DF
-skinparam activityDiamondBorderColor #B99557
-skinparam activityStartColor #163E52
-skinparam activityEndColor #163E52
+skinparam ArrowColor #91AED1
+skinparam activityBackgroundColor #1A2940
+skinparam activityBorderColor #91AED1
+skinparam activityDiamondBackgroundColor #4A302B
+skinparam activityDiamondBorderColor #F1AD8A
+skinparam activityStartColor #60C7E5
+skinparam activityEndColor #60C7E5
 skinparam wrapWidth 190
 skinparam maxMessageSize 180
 

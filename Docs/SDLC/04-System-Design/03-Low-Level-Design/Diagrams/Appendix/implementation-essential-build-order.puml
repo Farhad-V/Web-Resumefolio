@@ -1,0 +1,31 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Proposed — Build dependency order and candidate evidence
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+start
+:Identify exact source revision / dirty-state disposition;
+:Identify actual toolchain + declarations / resolved lock identities;
+:Resolve compatible dependencies in controlled build environment;
+fork
+ :Run selected syntax / type / boundary checks;
+fork again
+ :Produce selected UI / generated outputs from authoritative sources;
+end fork
+:Run affected domain / persistence / contract checks\nagainst the identified candidate;
+if (Actual required checks and inputs satisfied?) then (yes)
+ :Assemble application + compatible outputs / migrations / safe templates;
+ :Exclude actual secrets, private operating data and untrusted workspaces;
+ :Record actual output identities, evidence and compatibility manifest;
+ :Inspect assembled candidate and rehearse on appropriate isolated facilities;
+ :Submit exact candidate to separate deployment approval / gates;
+else (no)
+ :Stop candidate promotion; retain actual findings and limits;
+endif
+stop
+
+@enduml

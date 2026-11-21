@@ -1,0 +1,32 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+allowmixing
+title Proposed — Tangled versus owner-controlled dependencies
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+package "Before: hypothetical poor boundaries" {
+ component "Consumer A internals" as A
+ component "Consumer B internals" as B
+ component "Universal mutable manager" as H
+ A -[#red]-> B
+ B -[#red]-> A
+ A --> H
+ B --> H
+}
+package "After: candidate cohesive owner contract" {
+ component "Consumer use case" as C
+ interface "Owner public contract" as P
+ component "Owner implementation\nlocal invariant and state" as O
+ C --> P
+ O ..|> P
+}
+note bottom of H
+ Counterexample only: no measured cycle or hotspot finding.
+ Fan-in alone is not bad coupling; Identity/Files may legitimately support many owners.
+end note
+
+@enduml

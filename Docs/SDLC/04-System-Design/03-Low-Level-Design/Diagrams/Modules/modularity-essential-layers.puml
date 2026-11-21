@@ -1,0 +1,29 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+allowmixing
+title Proposed — Allowed layers and forbidden bypasses
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+rectangle "Transport / current request context" as T
+rectangle "Owner application / public use case" as A
+rectangle "Owner domain invariants" as D
+interface "Required capability abstraction" as P
+rectangle "Infrastructure adapter" as I
+database "Other owner's private tables" as X
+T --> A : allowed
+A --> D : allowed
+A --> P : allowed
+I ..|> P : realizes abstraction
+D -[#red,dashed]-> T : forbidden transport dependence
+A -[#red,dashed]-> X : forbidden direct mutation
+note bottom of I
+ Solid arrows: source dependency / use.
+ Hollow triangle: realization.
+ Red dashed: prohibited example, not observed code.
+end note
+
+@enduml

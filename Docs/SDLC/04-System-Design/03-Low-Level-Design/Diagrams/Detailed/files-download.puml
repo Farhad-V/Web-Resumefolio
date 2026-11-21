@@ -1,0 +1,26 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Proposed — Exact download and current access admission
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+actor Caller
+participant "Owning feature / Sharing" as O
+participant Files as F
+participant "Current authority / reference guard" as G
+participant Storage as S
+Caller -> O : exact requested representation
+O -> O : current link/resource eligibility
+O -> F : exact artifact + admitted context
+F -> G : current byte-delivery authority / protection / usable state
+alt eligible and actually available
+ F -> S : controlled exact byte delivery
+ S --> Caller : permitted bytes through guarded serving route
+else denied / missing / uncertain
+ F --> Caller : safe denied / unavailable; no fallback
+end
+
+@enduml

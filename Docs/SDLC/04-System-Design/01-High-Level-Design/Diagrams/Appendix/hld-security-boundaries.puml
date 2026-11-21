@@ -1,0 +1,65 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #164E63
+skinparam ArrowColor #164E63
+skinparam ArrowFontColor #164E63
+skinparam shadowing false
+skinparam componentStyle uml2
+skinparam component {
+ BackgroundColor #164E63
+ BorderColor #164E63
+ FontColor #164E63
+}
+skinparam actor {
+ BorderColor #164E63
+ FontColor #164E63
+}
+skinparam package {
+ BackgroundColor #111827
+ BorderColor #164E63
+ FontColor #164E63
+}
+skinparam database {
+ BackgroundColor #164E63
+ BorderColor #164E63
+ FontColor #164E63
+}
+left to right direction
+title MVP Security and Trust Boundaries
+actor "Invited browser user" as user
+actor "Share recipient" as recipient
+actor "Authorized Git client" as git
+package "Core authority boundary" {
+ component "Workspace entry\nSession + resource policy" as workspace #164E63
+ component "Protected delivery\nCurrent sharing / selection policy" as delivery #164E63
+ component "Scoped integration adapter" as adapter
+ component "Entitlement endpoint\nStatus-only service authority" as status
+ database "Core-owned records / private bytes" as cstore
+ workspace --> cstore : Authorized owner operations
+ delivery --> cstore : Authorized selected retrieval
+ workspace --> adapter : Permitted actor context
+}
+package "ProjectForge authority boundary" {
+ component "Scoped API / Git entry\nCaller + current entitlement + local grant" as forge #164E63
+ database "Forge records / private repositories" as fstore
+ forge --> fstore : Authorized resource / action
+}
+user --> workspace : HTTPS / application session
+recipient --> delivery : HTTPS / link-scoped context
+adapter --> forge : Authenticated scoped actor request
+git --> forge : HTTPS Git credentials
+forge --> status : Narrow current status check
+component "Protected backup / isolated restore\nExplicit operational access" as recovery
+cstore ..> recovery : Protected recovery copies
+fstore ..> recovery : Protected recovery copies
+legend bottom
+  Boundaries express authority and ownership, not separate physical hosts.
+  No shared database credentials, sessions or unrestricted filesystem access.
+  Required authority unavailable: no protected operation proceeds on assumed permission.
+endlegend
+@enduml

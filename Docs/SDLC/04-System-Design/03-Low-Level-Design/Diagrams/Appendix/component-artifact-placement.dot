@@ -1,0 +1,18 @@
+digraph G {
+ graph [bgcolor="#111827",fontcolor="#F3F4F6"];node [fontcolor="#F3F4F6"];edge [fontcolor="#CBD5E1"];
+
+ graph [label="HISTORICAL proposal — current core / separate ProjectForge boundary supersedes common topology",labelloc=t];rankdir=TB;graph [bgcolor="#111827",pad="0.3",nodesep="0.35",ranksep="0.55",fontname="Arial"];node [shape=box,style="rounded,filled",fillcolor="#1F2937",color="#94A3B8",fontname="Arial",fontsize=12,margin="0.17,0.12"];edge [fontname="Arial",fontsize=10,color="#94A3B8"];
+modules [label="Nine logical component owners
+Private product and coordination responsibilities"];
+app [label="IA-01 Trusted application release
+Shared web / worker-compatible artifact",fillcolor="#1F2937"];
+ui [label="IA-02 UI / static outputs
+IA-03 migration artifacts",fillcolor="#1F2937"];
+external [label="IA-04 native Git / IA-05 executor integration
+Evaluated versions and control contracts",fillcolor="#1F2937"];
+ops [label="IA-06 operating templates / manifest
+No real secret values",fillcolor="#1F2937"];
+facility [label="Actual deployment facilities
+Placement, compatibility and capacity require evidence"];
+modules->app;app->ui [label="coordinated release set"];modules->external [label="explicit adapter boundary"];app->ops;app->facility;ui->facility;external->facility [style=dashed,label="placement pending"];ops->facility;
+}

@@ -1,0 +1,56 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #164E63
+skinparam ArrowColor #164E63
+skinparam ArrowFontColor #164E63
+skinparam shadowing false
+skinparam roundcorner 12
+skinparam componentStyle rectangle
+skinparam rectangle {
+ BackgroundColor #164E63
+ BorderColor #164E63
+ FontColor #164E63
+}
+skinparam database {
+ BackgroundColor #164E63
+ BorderColor #164E63
+ FontColor #164E63
+}
+skinparam actor {
+ BackgroundColor #164E63
+ BorderColor #164E63
+ FontColor #164E63
+}
+skinparam package {
+ BackgroundColor #111827
+ BorderColor #164E63
+ FontColor #164E63
+}
+skinparam node {
+ BackgroundColor #111827
+ BorderColor #164E63
+ FontColor #164E63
+}
+left to right direction
+title Presentation and Submission Lifecycle - Conceptual Flow
+rectangle "Mutable private profile" as profile
+rectangle "Independent resume / portfolio draft" as draft
+rectangle "Immutable published revision" as revision #164E63
+rectangle "Protected sharing\nCurrent access checked" as share
+rectangle "Immutable submission event\nExact selected materials" as submission #164E63
+rectangle "Retained private artifacts\nHashes and owned references" as artifacts
+rectangle "Publication withdrawn\nFuture shared access denied" as withdrawn
+profile --> draft : Explicit selection / update
+draft --> revision : Explicit publish
+revision --> share : Authorize selected content
+revision --> submission : Select exact revision
+artifacts --> submission : Select exact files
+submission --> artifacts : Retain referenced bytes
+share --> withdrawn : Withdraw / revoke
+withdrawn ..> submission : Preserve existing history
+@enduml

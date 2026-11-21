@@ -1,0 +1,47 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
+title My Files & Media — private storage and selected employer delivery
+skinparam backgroundColor #111827
+skinparam defaultFontColor #164E63
+skinparam defaultFontSize 15
+skinparam dpi 216
+skinparam ArrowColor #164E63
+skinparam ActorBorderColor #164E63
+skinparam ActorBackgroundColor #164E63
+skinparam RectangleBackgroundColor #164E63
+skinparam RectangleBorderColor #164E63
+skinparam FolderBackgroundColor #164E63
+skinparam FolderBorderColor #164E63
+skinparam CloudBackgroundColor #164E63
+skinparam CloudBorderColor #164E63
+skinparam NoteBackgroundColor #164E63
+skinparam NoteBorderColor #164E63
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam wrapWidth 180
+
+actor "Private owner" as U
+actor "Employer viewer" as V
+rectangle "Core private library\nType / size / quota validation" as L #164E63
+folder "Private bytes\nSame Resumefolio server" as F
+rectangle "Independent resume draft\nExplicit media selection" as R
+rectangle "Separate publication confirmation\nPassword / link-scoped authority" as P #164E63
+rectangle "Protected delivery admission\nFile / PDF / preview / byte range" as D
+cloud "YouTube externally hosted video" as Y
+U --> L : upload or add external link
+L --> F : private upload; no publication
+L --> R : optional explicit selection
+R --> P : publish separately
+V --> D : request exact selected material
+D --> P : check current link / selection / authority
+D --> F : serve only authorized bytes
+P --> Y : simple external embedded playback
+note bottom of F
+ Private uploaded videos are not sent to YouTube.
+ Backups cover bytes and protected references.
+ No heavyweight transcoding or in-product editor.
+end note
+@enduml

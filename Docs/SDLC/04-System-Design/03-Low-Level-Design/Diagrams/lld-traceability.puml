@@ -1,0 +1,32 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam shadowing false
+top to bottom direction
+title LLD Requirement-to-Implementation Evidence
+rectangle "Exact SRS criterion / scope disposition" as criterion
+rectangle "HLD owner / selected ADR" as hld
+rectangle "LLD operation contract\nActor, input, invariant, state and outcomes" as operation
+rectangle "Data / API / security / configuration seam" as seam
+rectangle "Actual class / route / migration / adapter\nWork item and source revision" as code
+rectangle "Planned unit / real integration / journey check" as test
+rectangle "Actual candidate / environment / observed result" as evidence
+rectangle "RTM and remaining gaps\nPending is not passed" as rtm
+criterion --> operation
+hld --> operation
+operation --> seam
+seam --> code
+operation --> test
+code --> evidence
+test --> evidence
+evidence --> rtm
+rtm ..> operation : Change impact / missing coverage
+legend bottom
+  Design operation names and proposed routes are not implemented identities.
+  Unit fakes do not prove database races, native Git, private delivery or restore.
+  Preserve immutable material, current authority and truthful remote outcomes.
+endlegend
+@enduml

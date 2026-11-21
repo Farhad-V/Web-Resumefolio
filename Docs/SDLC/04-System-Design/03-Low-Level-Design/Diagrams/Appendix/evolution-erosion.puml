@@ -1,0 +1,31 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+allowmixing
+title Proposed — Intended versus eroded architecture
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+package "Intended: owner boundary" {
+ component "Consumer" as C
+ interface "Public owner contract" as P
+ component "Owner implementation" as O
+ database "Owner state" as D
+ C --> P
+ O ..|> P
+ O --> D
+}
+package "Hypothetical erosion, not observed actual state" {
+ component "Consumer shortcut" as X
+ database "Other owner's tables" as Y
+ component "Hidden save observer" as H
+ cloud "External effect" as E
+ X -[#red]-> Y : bypass owner invariant
+ Y -[#red]-> H
+ H -[#red]-> E : implicit send / publish
+}
+
+@enduml

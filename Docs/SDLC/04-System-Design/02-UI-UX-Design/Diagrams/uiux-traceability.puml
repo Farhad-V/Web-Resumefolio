@@ -1,0 +1,32 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam shadowing false
+top to bottom direction
+title UI/UX Requirement-to-Evidence Trace
+rectangle "SRS / user scenario / exact criterion\nScope and disposition preserved" as source
+rectangle "Actor, resource authority and task" as task
+rectangle "Flow + screen / dialog state\nWireframe + reusable component contract" as design
+rectangle "Owning server operation / data invariant\nValidation, versions and result semantics" as contract
+rectangle "Implemented page / component\nActual revision and work item" as implementation
+rectangle "Planned normal / denied / failure checks\nAccessibility and usability questions" as checks
+rectangle "Executed evidence\nCandidate, environment, observed outcome and limitations" as evidence
+rectangle "RTM / work item\nActual result and remaining gaps" as rtm
+source --> task
+task --> design
+contract --> design : Constrains behavior
+design --> implementation
+design --> checks
+implementation --> evidence
+checks --> evidence
+evidence --> rtm
+rtm ..> design : Change impact / missing coverage
+legend bottom
+  A design link or planned check is not an executed pass.
+  UI visibility never replaces current server resource authorization.
+  Shared component changes require review of affected journeys.
+endlegend
+@enduml

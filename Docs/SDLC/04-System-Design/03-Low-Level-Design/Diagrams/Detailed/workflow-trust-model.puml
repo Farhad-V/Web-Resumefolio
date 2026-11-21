@@ -1,0 +1,48 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title AFTER MVP — Proposed LC-08 coordination and separate execution / target trust boundaries
+allowmixing
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+package "Trusted application coordination" {
+ class DefinitionValidation {
+  exact schema / code / definition identity
+ }
+ class ExecutionAttempt {
+  trigger / authority / admitted resource scope
+  dispatch identity / observed outcome
+ }
+ class OutputAndCleanup {
+  protected outputs / capture state
+  actual workspace / reservation disposition
+ }
+ class DeploymentApproval {
+  exact artifact / target / configuration
+  current authority / recovery plan
+ }
+ class DeploymentAttempt {
+  durable intent / target generation
+  actual effect / health evidence
+ }
+}
+rectangle "Untrusted execution environment\nEvaluated containment required" as E #164E63
+rectangle "Privileged target adapter\nSeparate narrow authority" as T #164E63
+DefinitionValidation --> ExecutionAttempt : enabling + admission gates
+ExecutionAttempt --> E : scoped attributable dispatch
+E --> OutputAndCleanup : untrusted output / observed evidence
+ExecutionAttempt --> DeploymentApproval : provenance alone is not approval
+DeploymentApproval --> DeploymentAttempt : separately approved exact intent
+DeploymentAttempt --> T : controlled target operation
+note bottom of E
+ No production/admin secrets or host interfaces.
+ Isolation, capacity and cleanup need actual evidence.
+end note
+note bottom of T
+ Unknown effects require reconciliation.
+ Untrusted code cannot approve deployment.
+end note
+@enduml

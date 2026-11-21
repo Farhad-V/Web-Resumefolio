@@ -1,0 +1,28 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam shadowing false
+title Usability Session, Findings and Retest
+start
+:Select in-scope journey, criteria and review questions;
+:Identify prototype / candidate and limitations;
+:Prepare synthetic actor/grants, content and resettable state;
+:Explain voluntary session and evidence handling;
+:Give a task goal without prescribing clicks;
+:Observe choices, understanding, outcome and help needed;
+:Ask neutral follow-up and record limitations;
+:Separate usability friction, accessibility defect
+and functional / authority failure;
+if (Finding requires change?) then (yes)
+ :Record reproduction, impact, evidence and owner;
+ :Refine affected design / implementation;
+ :Retest affected journey on identified revision;
+else (no)
+ :Record bounded observations without broad pass claim;
+endif
+:Link evidence, unresolved work and criterion coverage;
+stop
+@enduml

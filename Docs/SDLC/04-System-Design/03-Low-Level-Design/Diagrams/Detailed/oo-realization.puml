@@ -1,0 +1,25 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+allowmixing
+title Proposed — Interface realization and narrow consumer access
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+skinparam maxMessageSize 65
+
+class "ResolvePublishedProjectionHandler" as H
+interface "PublishedProjectionReader" as R {
+ +readPermitted(context, revisionId) : ProjectionOutcome
+}
+interface "PublicationStore" as W {
+ +commitConfirmedRevision(intent, snapshot) : PublicationOutcome
+}
+class "PersistenceAdapter" as A
+H --> R : read contract only
+A ..|> R
+A ..|> W
+
+@enduml

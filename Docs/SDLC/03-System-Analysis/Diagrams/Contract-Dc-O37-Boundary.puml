@@ -1,14 +1,15 @@
 @startuml
 ' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
-skinparam backgroundColor white
+skinparam backgroundColor #0D1525
+skinparam defaultFontColor #EDF4FF
 skinparam defaultFontName Segoe UI
 skinparam defaultFontSize 13
 skinparam shadowing false
-skinparam ArrowColor #526B7B
-skinparam rectangleBackgroundColor #EDF4FB
-skinparam rectangleBorderColor #526B7B
-skinparam noteBackgroundColor #FFF3DF
-skinparam noteBorderColor #B99557
+skinparam ArrowColor #91AED1
+skinparam rectangleBackgroundColor #1A2940
+skinparam rectangleBorderColor #91AED1
+skinparam noteBackgroundColor #4A302B
+skinparam noteBorderColor #F1AD8A
 skinparam nodesep 38
 skinparam ranksep 42
 top to bottom direction
@@ -16,7 +17,7 @@ top to bottom direction
 title DC-O37 — Perform and assess an authorized isolated recovery drill
 rectangle "BEFORE / ELIGIBILITY\nActual protected recovery source and\nauthorized isolated scenario required" as Before
 rectangle "CONFIRMED SUCCESS ONLY\nUsable scoped recovery only after actual\ndefined checks/measurements pass" as After
-rectangle "FRAME / PROTECTED MEANING\nNo live overwrite, old-right resurrection\nor provider replay implied" as Frame #DFF1EA
+rectangle "FRAME / PROTECTED MEANING\nNo live overwrite, old-right resurrection\nor provider replay implied" as Frame #17405A
 Before --> After : DC-O37\npermitted effect actually confirmed
 After -[hidden]down-> Frame
 note bottom of Before

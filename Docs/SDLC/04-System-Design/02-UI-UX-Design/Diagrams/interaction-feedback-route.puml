@@ -1,0 +1,36 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam shadowing false
+title Interaction Feedback and Safe Next Action
+start
+:User reviews task, target and permitted action;
+if (Consequential confirmation required?) then (yes)
+ :Show exact scope, consequence and recovery limit;
+ if (User confirms?) then (yes)
+ else (no)
+  :Return focus and preserve permitted context;
+  stop
+ endif
+endif
+:Submit explicit intent and show pending context;
+:Prevent accidental repeated activation;
+:Resolve owning operation outcome;
+if (Confirmed?) then (yes)
+ :Name exactly what completed and affected material;
+ :Announce relevant status without disruptive focus change;
+else (no)
+ if (Validation / denial / conflict established?) then (yes)
+  :Show bounded correction, allowed access route or current-state review;
+  :Preserve safe input and accessible recovery;
+ else (pending / unavailable / unknown)
+  :Show actual known stage and permitted status / recovery action;
+  :Resolve same recorded operation before unsafe repeat;
+ endif
+endif
+:Keep consequential unresolved feedback in context;
+stop
+@enduml

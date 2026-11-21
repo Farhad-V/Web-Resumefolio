@@ -1,0 +1,27 @@
+@startsalt
+!theme cyborg
+skinparam backgroundColor #EEEEEE
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam shadowing false
+skinparam monochrome reverse
+{+
+ Applications > Selected application
+ <b>Manual application record
+ ==
+ { Status | ^Current status^ }
+ { Next action | "Next permitted action          " }
+ { Follow-up | "Local value + time-zone context" }
+ [Save tracking details]
+ ==
+ <b>Actual Submitted Materials
+ Submission event / recorded context
+ Exact selected revision / authored material / files
+ Capture state: confirmed or pending / incomplete
+ [View exact submitted copy]
+ [Review and record actual submission]
+ ==
+ Historical material is separate from current live content
+ Persistent validation / conflict / capture feedback
+}
+@endsalt

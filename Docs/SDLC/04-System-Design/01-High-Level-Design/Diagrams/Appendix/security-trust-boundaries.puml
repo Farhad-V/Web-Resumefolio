@@ -1,0 +1,36 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+title Proposed logical trust boundaries — controls require actual evidence
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+rectangle "Untrusted callers / clients\nBrowser, employer, native Git" as C #164E63
+package "Trusted application coordination\nLogical module ownership is not OS isolation" {
+ rectangle "Boundary validation + verified context" as V
+ rectangle "Resource-owner authorization / invariants\nScoped adapters and durable attempts" as A
+ V --> A
+}
+database "Private records / artifacts / Git\nExact identities + protected references" as S
+rectangle "External providers\nUntrusted content + actual remote effects" as P
+rectangle "Untrusted execution domain\nActual containment / resources / network gates" as E #164E63
+rectangle "Privileged target domain\nSeparate trusted adapter and approval" as T #164E63
+rectangle "Restricted recovery domain\nConsistent backup + usable key access" as B
+C --> V : TB-01 requests / context
+A --> S : TB-02 scoped state / protected serving
+A <--> P : TB-03 capability / observation
+A <--> E : TB-04 gated attempt / scoped evidence
+A --> T : TB-05 exact approved target intent
+S --> B : TB-06 protected consistent recovery set
+note bottom of E
+ No production secrets or host/admin interfaces.
+ Job code cannot approve target deployment.
+end note
+note bottom of B
+ Restore in isolation; reconcile current authority.
+ No automatic external-action replay.
+end note
+@enduml

@@ -1,0 +1,26 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam shadowing false
+title Iteration Delivery and Evidence Cycle
+start
+:Refine applicable backlog outcome and exact criteria;
+:Check dependencies, current capacity and evidence gates;
+:Record proposed goal and selected work;
+:Refine only the design needed for the selected slice;
+:Implement within authorized scope and owning boundaries;
+:Run appropriate checks and record actual results;
+if (Required evidence supports the selected outcome?) then (yes)
+ :Demonstrate verified scope in Sprint Review;
+else (no)
+ :Record failed / blocked / unexecuted work
+and truthful incomplete outcome;
+endif
+:Capture feedback, design changes and backlog follow-up;
+:Record one actionable retrospective improvement;
+:Select next demonstrable outcome using current evidence;
+stop
+@enduml

@@ -1,0 +1,52 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Candidate logical revision and protected-reference model
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+class ProfileRevision {
+ exact reusable content identity
+}
+class ResumeDraft {
+ independent selection / order / overrides
+ expected version / source provenance
+}
+class PublicationManifest <<immutable>> {
+ exact content / language / layout
+}
+class PublicationPointer {
+ reviewed live scope / version
+}
+class SubmissionEvent {
+ actual occurrence / capture completeness
+}
+class ActualMaterialManifest {
+ exact submitted material provenance
+}
+class ProtectedArtifactReference {
+ consumer namespace / resource / revision
+ purpose / protection state
+}
+class Artifact {
+ canonical identity / actual usability
+}
+ResumeDraft --> ProfileRevision : compared source provenance
+ResumeDraft --> PublicationManifest : separate confirmed publication
+PublicationPointer --> PublicationManifest : current revision
+SubmissionEvent --> ActualMaterialManifest : actual captured set
+PublicationManifest --> ProtectedArtifactReference : published evidence
+ActualMaterialManifest --> ProtectedArtifactReference : historical material
+ProtectedArtifactReference --> Artifact : guards reclamation
+note bottom of ResumeDraft
+ Source edits never auto-apply.
+ Mutable source links cannot reconstruct history.
+end note
+note bottom of Artifact
+ Exact bytes may be shared safely by identity.
+ Existence grants no retrieval authority.
+ Reference/deletion race needs concrete coordination.
+end note
+@enduml

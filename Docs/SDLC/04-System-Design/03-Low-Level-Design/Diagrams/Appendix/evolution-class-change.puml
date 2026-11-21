@@ -1,0 +1,30 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+allowmixing
+title Proposed — Before/after class responsibilities
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+package "Before: hypothetical broad class" {
+ class ResumeManager {
+  +editSource()
+  +publish()
+  +captureActualMaterials()
+ }
+}
+package "After: candidate cohesive roles" {
+ class ApplySelectionHandler
+ class PublishRevisionHandler
+ class CaptureActualMaterialsHandler
+ interface PublicationStore
+ PublishRevisionHandler --> PublicationStore
+}
+ResumeManager ..> ApplySelectionHandler : extract explicit source application
+ResumeManager ..> PublishRevisionHandler : retain explicit confirmation
+ResumeManager ..> CaptureActualMaterialsHandler : independent history owner
+
+@enduml

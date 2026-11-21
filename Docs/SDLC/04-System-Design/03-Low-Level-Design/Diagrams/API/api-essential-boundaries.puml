@@ -1,0 +1,31 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+allowmixing
+title Proposed — Consumers, owner contracts and external adapters
+!pragma useVerticalIf on
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+actor "Private browser / scoped employer viewer" as B
+component "Selected HTTP entry / transport mapping\nnot a separately selected API gateway" as H
+component "Resource owner\ncurrent scope / lifecycle / invariants" as O
+interface "Explicit owner operation\nprovided" as P
+interface "Required scoped capability" as R
+component "Evaluated provider / storage / executor adapter" as A
+component "Other in-process module" as C
+B --> H : candidate same-origin HTTPS
+H --> P
+C --> P : language-level contract, no invented HTTP hop
+O - P
+O --> R
+A ..|> R
+note bottom of O
+ Public module contract is not automatically public internet API.
+ Git clients use actual native Git transport, not a generic JSON envelope.
+ No GraphQL/gRPC/broker/gateway service adopted here.
+end note
+
+@enduml

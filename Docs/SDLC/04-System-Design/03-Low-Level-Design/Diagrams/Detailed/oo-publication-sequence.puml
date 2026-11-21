@@ -1,0 +1,43 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Proposed — Sequence: explicit publication object collaboration
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+skinparam maxMessageSize 65
+
+actor Owner
+participant "entry : Controller" as C
+participant "handler : PublishRevisionHandler" as H
+participant "authority : ResourceAuthority" as A
+participant "draft : ResumeDraft" as D
+participant "store : PublicationStore" as S
+Owner -> C : confirm publication of expected draft
+C -> H : handle(intent with command identity)
+H -> A : requirePublish(actor, resume)
+A --> H : eligible context or denial
+alt denied
+ H --> C : denied; protected state unchanged
+else eligible for guarded commit
+ H -> D : snapshot(expectedDraftVersion)
+ D --> H : snapshot or version conflict
+ alt conflict
+  H --> C : conflict; no new publication
+ else snapshot available
+  H -> S : commitConfirmedRevision(intent, snapshot)
+  note right of S
+   Revalidate relevant current guards at commit;
+   coordinate authority revocation ordering.
+   Resolve same command identity; atomically record
+   revision, live pointer and attributable result.
+  end note
+  S --> H : committed / conflict / denied / actual failure
+  H --> C : truthful bounded outcome
+ end
+end
+C --> Owner : outcome or recover same command after lost response
+
+@enduml

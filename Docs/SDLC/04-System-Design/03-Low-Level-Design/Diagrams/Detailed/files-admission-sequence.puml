@@ -1,0 +1,30 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Proposed file admission and actual accounting
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam shadowing false
+
+participant "Authorized producer" as P
+participant "Files handler" as F
+database "Policy / quota / artifact records" as DB
+participant "Private storage / processing adapter" as S
+P -> F : intended growth + category + command identity
+F -> F : current resource authority / input checks
+F -> DB : atomic policy/usage guard + reservation
+DB --> F : attributable admission result
+alt admitted
+ F -> S : bounded private candidate write / processing
+ S --> F : actual size / validation / storage evidence
+ F -> DB : finalize usable state + reconcile reserved/actual usage
+ note over F,DB
+ No false usable artifact or transient free-capacity gap.
+ Interrupted effects remain attributable for reconciliation.
+ end note
+ F --> P : permitted confirmed / pending / failed outcome
+else rejected or conflict
+ F --> P : safe admission result; no usable artifact claim
+end
+@enduml

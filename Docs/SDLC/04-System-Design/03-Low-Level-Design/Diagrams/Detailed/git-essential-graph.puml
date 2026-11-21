@@ -1,0 +1,29 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Proposed / illustrative — Commit graph: branches, merge and tag
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+left to right direction
+rectangle "A\ninitial commit" as A
+rectangle "B" as B
+rectangle "C\nmain continued" as C
+rectangle "F1\nfeature work" as F
+rectangle "M\nmerge commit" as M
+rectangle "refs/heads/main" as R
+rectangle "refs/heads/feature" as Q
+rectangle "refs/tags/v1 (lightweight example)" as T
+B --> A : parent
+C --> B : parent
+F --> B : parent
+M --> C : first parent
+M --> F : second parent
+R --> M : current tip
+Q --> F : branch tip before optional retirement
+T --> M : tag target
+
+@enduml

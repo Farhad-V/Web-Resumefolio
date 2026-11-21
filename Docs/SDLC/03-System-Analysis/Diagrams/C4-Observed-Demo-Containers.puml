@@ -1,23 +1,25 @@
 @startuml
 ' OWNER-MVP-2026-11-04 review: Historical / alternative. Dated observation or rejected/unselected alternative is preserved without becoming a current MVP topology.
-skinparam backgroundColor white
+skinparam backgroundColor #0D1525
+skinparam defaultFontColor #EDF4FF
 skinparam defaultFontName Segoe UI
 skinparam defaultFontSize 14
 skinparam shadowing false
-skinparam ArrowColor #486777
+skinparam ArrowColor #91AED1
 skinparam ArrowFontSize 12
-skinparam rectangleBackgroundColor #EEF5FA
-skinparam rectangleBorderColor #486777
-skinparam packageBackgroundColor #F7FAFC
-skinparam packageBorderColor #486777
-skinparam componentBackgroundColor #EEF5FA
-skinparam noteBackgroundColor #FFF3DA
-skinparam noteBorderColor #B59865
+skinparam rectangleBackgroundColor #1A2940
+skinparam rectangleBorderColor #91AED1
+skinparam packageBackgroundColor #1A2940
+skinparam packageBorderColor #91AED1
+skinparam componentBackgroundColor #1A2940
+skinparam noteBackgroundColor #4A302B
+skinparam noteBorderColor #F1AD8A
 skinparam nodesep 35
 skinparam ranksep 45
-skinparam padding 8
 title HISTORICAL / UNSELECTED — C4 Level 2 — historical demo evidence only
 !include <C4/C4_Container>
+UpdateRelStyle(user,web,$textColor="#CDDCF0",$lineColor="#91AED1")
+UpdateElementStyle("system_boundary",$fontColor="#EDF4FF",$borderColor="#91AED1")
 LAYOUT_TOP_DOWN()
 Person(user,"Browser user","Requests demo login page")
 System_Boundary(demo,"Existing Resumefolio demo — not the selected Version 1 architecture") {

@@ -1,0 +1,43 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title AFTER MVP — Proposed independent Git, execution and deployment admission
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+actor "Authorized actor" as A
+participant Git
+participant "Workflow coordinator" as W
+participant "Evaluated executor" as E
+participant "Trusted target adapter" as T
+A -> Git : native transfer / exact revision-bound merge intent
+Git -> Git : current credential / ref / review checks
+Git --> A : actual native ref result or conflict
+opt supported authorized trigger only
+ Git -> W : attributable exact code / definition event context
+ W -> W : current run authority + isolation / resource / secret gates
+ alt execution admitted
+  W -> E : durable scoped attempt identity
+  E --> W : attributable outcome / output / cleanup evidence
+ else blocked / denied
+  W --> A : no admitted execution; actual gate finding
+ end
+end
+== Separate exact-artifact target approval ==
+A -> W : target approval / artifact / configuration / recovery context
+W -> W : current target authority + guarded approval inputs
+alt deployment admitted
+ W -> T : separate stable target attempt
+ T --> W : confirmed / partial / unknown effect evidence
+ W --> A : actual deployment outcome; reconcile uncertainty
+else denied / stale / unavailable
+ W --> A : no admitted deployment
+end
+note over Git,T
+ Associations and events convey no inherited permissions.
+ No automatic deploy from merge or run success.
+ Concrete coordination follows owning component contracts.
+end note
+@enduml

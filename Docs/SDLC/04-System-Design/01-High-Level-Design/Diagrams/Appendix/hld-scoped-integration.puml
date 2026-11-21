@@ -1,0 +1,67 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #164E63
+skinparam ArrowColor #164E63
+skinparam sequence {
+ ParticipantBackgroundColor #164E63
+ ParticipantBorderColor #164E63
+ ParticipantFontColor #164E63
+ ActorBorderColor #164E63
+ ActorFontColor #164E63
+ LifeLineBorderColor #164E63
+ LifeLineBackgroundColor #111827
+ GroupBackgroundColor #164E63
+ GroupBodyBackgroundColor #111827
+ GroupBorderColor #164E63
+ GroupHeaderFontColor #164E63
+ GroupFontColor #164E63
+ ArrowColor #164E63
+ ArrowFontColor #164E63
+ DividerBackgroundColor #164E63
+ DividerBorderColor #164E63
+ DividerFontColor #164E63
+}
+skinparam noteBackgroundColor #164E63
+skinparam noteBorderColor #164E63
+skinparam noteFontColor #164E63
+skinparam shadowing false
+title Scoped Core / ProjectForge Interaction
+actor "Invited user" as user
+participant "Core application" as core #164E63
+participant "ProjectForge API" as forge #164E63
+participant "Core entitlement endpoint" as status #164E63
+database "ProjectForge owned records" as store
+user -> core : Request permitted repository operation
+core -> core : Validate local session and input
+core -> forge : Authenticated scoped actor request\nWrite identity/version where applicable
+forge -> forge : Validate caller, token and scope
+alt Invalid identity / scope
+ forge --> core : Contract-defined denial; no business effect
+else Caller context valid
+ forge -> status : Narrow status-only entitlement request
+ alt Required authority unavailable
+  status --> forge : No usable authority result
+  forge --> core : 503 unavailable; no protected operation
+ else Current status resolved
+  status --> forge : Current account / entitlement status
+  forge -> forge : Check entitlement and local resource/action grant
+  alt Actor or action not authorized
+   forge --> core : Contract-defined denial; no business effect
+  else Authorized
+   forge -> store : Validate version / request identity\nRead or perform owning local transaction
+   store --> forge : Recorded result or conflict
+   forge --> core : Permitted result / stable error + correlation ID
+  end
+ end
+end
+core --> user : Accurate success, denial, conflict or unavailable outcome
+note over core, forge
+A lost response does not establish remote rollback.
+Resolve recorded request identity before an unsafe repeat.
+end note
+@enduml

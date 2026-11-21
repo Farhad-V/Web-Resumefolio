@@ -1,0 +1,48 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Proposed LC-03 independent access and rendition state
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+class SharingLink {
+ publication / selected-content scope
+ state / version / authorization generation
+ protected verifier reference
+}
+class ViewerContext {
+ link identity / generation
+ bounded lifecycle scope
+}
+class DownloadConfiguration {
+ generated / uploaded / both / neither
+ uploaded-language switches / version
+}
+class GeneratedRendition {
+ exact publication / language / renderer
+ attempt / actual output state
+}
+class UploadedVariant {
+ actual language / artifact association
+ availability / version
+}
+class PublicationManifest <<Presentation-owned>>
+class PrivateArtifact <<Files-owned>>
+ViewerContext --> SharingLink : scoped authorization
+SharingLink --> PublicationManifest : permitted content resolution
+DownloadConfiguration --> GeneratedRendition : configuration filters availability
+DownloadConfiguration --> UploadedVariant : independent language filter
+GeneratedRendition --> PublicationManifest : exact input revision
+GeneratedRendition --> PrivateArtifact : actual output identity
+UploadedVariant --> PrivateArtifact : admitted association
+note bottom of SharingLink
+ Correct password does not verify employer identity.
+ Link controls and PDF modes are independent.
+end note
+note bottom of PrivateArtifact
+ Existence alone grants no access.
+ Downloaded copies cannot be recalled.
+end note
+@enduml

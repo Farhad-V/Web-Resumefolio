@@ -1,0 +1,35 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+title Proposed shared-resource contention subjects
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+rectangle "Concurrent owned commands\nDraft publish / work mutation" as C
+rectangle "Concurrent growth / replacement" as G
+rectangle "Reference registration / cleanup" as F
+rectangle "Conditional version / row guards" as V
+rectangle "Quota / reservation guard" as Q
+rectangle "Protected-reference / deletion exclusion" as R
+database "Shared relational transactions" as DB
+folder "Actual disk / artifacts / Git / temporary bytes" as DISK
+rectangle "CPU / memory / process capacity" as CPU
+C --> V
+G --> Q
+F --> R
+V --> DB
+Q --> DB
+R --> DB
+G --> DISK
+F --> DISK
+C ..> CPU
+G ..> CPU
+legend bottom
+ Boxes name invariant/guard subjects, not selected engine locks or one global mutex.
+ Bound transaction lifetime and evaluate consistent guard ordering; do not hold SQL locks across remote waits.
+ Optimistic checks and native Git compare/update protect different state from resource admission.
+endlegend
+@enduml

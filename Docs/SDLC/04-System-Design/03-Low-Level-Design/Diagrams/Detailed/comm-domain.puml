@@ -1,0 +1,35 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+allowmixing
+title AFTER MVP — Proposed — Domain classes and optional requested concepts
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+class ProviderConnection
+class CorrespondenceProjection <<Message / Thread references>>
+class ComposeDraft
+class ReviewedSendIntent
+class SendAttempt
+class LocalActivity <<local event>>
+class ProviderEventMapping
+class ReminderIntent
+class RecurrenceRule <<validated value if applicable>>
+class AttendeeObservation <<conditional provider projection>>
+class Channel <<delivery kind value, not chat room>>
+ProviderConnection --> CorrespondenceProjection
+ComposeDraft --> ReviewedSendIntent : exact reviewed version
+ReviewedSendIntent --> SendAttempt
+LocalActivity --> ProviderEventMapping
+LocalActivity --> ReminderIntent
+LocalActivity --> RecurrenceRule
+ProviderEventMapping --> AttendeeObservation
+ReminderIntent --> Channel
+note bottom of Channel
+ Chat rooms / team channels are not allocated by this model.
+ Cardinalities and exact types require actual source refinement.
+end note
+
+@enduml

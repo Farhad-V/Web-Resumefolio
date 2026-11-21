@@ -1,0 +1,21 @@
+digraph G {
+ graph [bgcolor="#111827",fontcolor="#F3F4F6"]; node [fontcolor="#F3F4F6"]; edge [fontcolor="#CBD5E1"];
+ rankdir=TB; graph [bgcolor="#111827",pad="0.3",nodesep="0.35",ranksep="0.6",fontname="Segoe UI"]; node [shape=box,style="rounded,filled",fillcolor="#1F2937",color="#94A3B8",fontname="Segoe UI",fontsize=12,margin="0.16,0.12"]; edge [color="#94A3B8",fontname="Segoe UI",fontsize=10];
+inputs [label="Accepted scope + constraints
+Analysis behavior and unresolved criteria"];
+compare [label="Compare A / B / C
+Record rationale and strongest objection"];
+candidate [label="Propose B: modular trusted application
+Keep execution behind its own gate",fillcolor="#1F2937"];
+work [label="Develop independent views/contracts
+Investigate Git, executor, capacity, provider, recovery"];
+check [shape=diamond,label="Evidence sufficient for
+the affected commitment?",fillcolor="#1F2937"];
+revise [label="Keep commitment open
+Resolve evidence / revise affected option",fillcolor="#1F2937"];
+review [label="Review identified candidate
+Exact criterion mapping + owner disposition"];
+handoff [label="Accepted scope of design handoff
+Only when actually recorded",fillcolor="#1F2937"];
+inputs->compare->candidate->work->check;check->revise [label="no"];revise->work;check->review [label="yes"];review->handoff [label="actual acceptance"];
+}

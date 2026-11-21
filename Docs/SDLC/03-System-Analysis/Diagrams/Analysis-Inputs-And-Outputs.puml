@@ -1,38 +1,38 @@
 @startuml
 ' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
-skinparam backgroundColor white
+skinparam backgroundColor #0D1525
+skinparam defaultFontColor #EDF4FF
 skinparam defaultFontName Segoe UI
 skinparam defaultFontSize 13
 skinparam shadowing false
 skinparam roundcorner 8
-skinparam ArrowColor #526B7B
+skinparam ArrowColor #91AED1
 skinparam ArrowFontSize 11
 skinparam packageStyle rectangle
 skinparam classAttributeIconSize 0
 hide circle
-skinparam classBackgroundColor #EDF4FB
-skinparam classBorderColor #526B7B
-skinparam classHeaderBackgroundColor #DFF1EF
-skinparam noteBackgroundColor #FFF3DF
-skinparam noteBorderColor #B99557
-skinparam rectangleBackgroundColor #EDF4FB
-skinparam rectangleBorderColor #526B7B
-skinparam activityBackgroundColor #EDF4FB
-skinparam activityBorderColor #526B7B
-skinparam activityDiamondBackgroundColor #DFF1EF
-skinparam activityDiamondBorderColor #458F88
-skinparam padding 6
+skinparam classBackgroundColor #1A2940
+skinparam classBorderColor #91AED1
+skinparam classHeaderBackgroundColor #17405A
+skinparam noteBackgroundColor #4A302B
+skinparam noteBorderColor #F1AD8A
+skinparam rectangleBackgroundColor #1A2940
+skinparam rectangleBorderColor #91AED1
+skinparam activityBackgroundColor #1A2940
+skinparam activityBorderColor #91AED1
+skinparam activityDiamondBackgroundColor #17405A
+skinparam activityDiamondBorderColor #91AED1
 skinparam nodesep 35
 skinparam ranksep 40
 hide empty members
 title Analysis — source authority and feedback
 top to bottom direction
-rectangle "Accepted authority\nScope + bounded owner decisions" as A #DFF1EF
+rectangle "Accepted authority\nScope + bounded owner decisions" as A #17405A
 rectangle "Working specification\nRequirements + scenarios + dictionary\nDetailed proposals retain their status" as W
-rectangle "Known constraints\n20 hours/week; existing host\nOAuth absent; backups not configured" as F #FFF3DF
-rectangle "Analysis models\nStructure + transformations + behavior" as M #DFF1EF
+rectangle "Known constraints\n20 hours/week; existing host\nOAuth absent; backups not configured" as F #4A302B
+rectangle "Analysis models\nStructure + transformations + behavior" as M #17405A
 rectangle "Consistency review\nSources, outcomes, assumptions and gates" as R
-rectangle "Qualified design-handoff candidate\nReviewed conclusions + unresolved gates" as H #DFF1EF
+rectangle "Qualified design-handoff candidate\nReviewed conclusions + unresolved gates" as H #17405A
 A -[hidden]right- W
 W -[hidden]right- F
 A --> M : governs

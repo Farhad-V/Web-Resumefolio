@@ -1,0 +1,26 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+allowmixing
+title AFTER MVP — Proposed — Logical work flow and channel eligibility
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+component "Explicit reviewed send / reminder intent" as I
+database "Durable attributable work" as D
+queue "Logical pending lane\nnot selected broker" as Q
+component "Current guarded worker admission" as W
+component "Selected evaluated email capability" as E
+component "Unselected alternatives\npush / SMS / chat" as U #164E63
+component "Actual accepted / rejected / partial / unknown observation" as O
+I --> D
+D --> Q
+Q --> W
+W --> E : only actual eligible intent
+E --> O
+O --> D : current claim / evidence
+U ..> W : no dispatch until separately sourced and enabled
+
+@enduml

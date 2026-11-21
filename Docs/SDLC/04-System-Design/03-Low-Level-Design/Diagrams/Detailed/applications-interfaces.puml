@@ -1,0 +1,22 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Proposed — Provided and required component interfaces
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+component "LC-04 Manual Applications" as A
+interface "Applications commands / queries\nprovided" as P
+interface "Authority\nrequired" as I
+interface "Exact presentation\nrequired" as R
+interface "Protected material\nrequired" as F
+interface "Correspondence summary\nrequired" as C
+A -right- P
+A -up-( I
+A -left-( R
+A -down-( F
+A -down-( C
+
+@enduml

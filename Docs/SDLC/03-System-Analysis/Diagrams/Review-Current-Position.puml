@@ -1,22 +1,23 @@
 @startuml
 ' OWNER-MVP-2026-11-04 review: Historical / alternative. Dated observation or rejected/unselected alternative is preserved without becoming a current MVP topology.
-skinparam backgroundColor white
+skinparam backgroundColor #0D1525
+skinparam defaultFontColor #EDF4FF
 skinparam defaultFontName Segoe UI
 skinparam defaultFontSize 13
 skinparam shadowing false
-skinparam ArrowColor #526B7B
-skinparam rectangleBackgroundColor #EDF4FB
-skinparam rectangleBorderColor #526B7B
-skinparam noteBackgroundColor #FFF3DF
-skinparam noteBorderColor #B99557
+skinparam ArrowColor #91AED1
+skinparam rectangleBackgroundColor #1A2940
+skinparam rectangleBorderColor #91AED1
+skinparam noteBackgroundColor #4A302B
+skinparam noteBorderColor #F1AD8A
 skinparam nodesep 35
 skinparam ranksep 42
 title HISTORICAL / UNSELECTED — SA-RV03 — current analysis position
 top to bottom direction
 rectangle "Current documented candidate\nAccepted scope/core + proposed detail\nIdentified by fresh source hashes" as Candidate
 rectangle "Populated working models\n03–10 and 12–14\nClass/data/interaction/state/activity/rule/contracts" as Done
-rectangle "Remaining exact review\nCriterion/path/policy residuals\nActual dependent evidence and scoped acceptance" as Work #FFF3DF
-rectangle "Continuation verdict\nContinue scoped analysis\nWhole-phase acceptance not established" as Verdict #DFF1EA
+rectangle "Remaining exact review\nCriterion/path/policy residuals\nActual dependent evidence and scoped acceptance" as Work #4A302B
+rectangle "Continuation verdict\nContinue scoped analysis\nWhole-phase acceptance not established" as Verdict #17405A
 Candidate --> Done : inspect actual artifacts
 Candidate --> Work : retain concrete gaps
 Done --> Verdict : supports continuation

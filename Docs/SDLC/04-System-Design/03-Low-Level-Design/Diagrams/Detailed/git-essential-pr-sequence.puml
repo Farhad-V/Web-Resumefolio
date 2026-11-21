@@ -1,0 +1,37 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title AFTER MVP — Proposed / illustrative — Push, checks, review and guarded merge
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+actor Author
+participant "Git Collaboration" as G
+participant "Native Git backend" as N
+participant "Workflow / check owner" as W
+actor "Eligible reviewer\nper actual source policy" as R
+Author -> G : actual client push, current repository/ref credential
+G -> N : admitted native transfer / validated ref intent
+N --> G : actual per-ref outcome
+Author -> G : open PR for exact source / target context
+G -> W : attributable revision event, if eligible
+W --> G : actual check evidence or unavailable / unknown
+R -> G : review exact evaluated revision/context
+Author -> G : request merge of expected refs
+G -> G : current authority, review/check context and conflict evaluation
+alt all actual required gates satisfied
+ G -> N : guarded expected-old target update + actual coordination
+ N --> G : native success / conflict / unknown
+ G -> G : reconcile metadata with attributable native evidence
+else missing / stale / failed / unknown required gate
+ G --> Author : safe refusal / explicit re-evaluation
+end
+note over G,W
+ Revision event does not authorize executing untrusted code.
+ Workflow isolation/enabling and deployment approval remain separate.
+end note
+
+@enduml

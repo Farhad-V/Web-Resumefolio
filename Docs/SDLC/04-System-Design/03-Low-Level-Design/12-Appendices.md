@@ -1,8 +1,271 @@
 # 12. Appendices
 
-[Low-Level Design index](03-Low-Level-Design.md)
+[Previous: Traceability](11-Traceability.md) · [Low-Level Design introduction](01-Introduction.md)
 
-The records below retain supporting design rationale, implementation-view material, diagram catalogs and references.
+This appendix organizes supporting rationale, implementation-view records and canonical local diagram sources. Current LLD contracts and selected ADRs govern the MVP. Retained alternatives, conceptual metrics and deferred-domain examples do not establish accepted policy, actual repository measurements or implemented capabilities.
+
+## Reference Guide
+
+| Subject | Owning source |
+| --- | --- |
+| Scope and required behavior | [Project charter](../../01-Project-Planning/01-Project-Charter.md#mvp-scope) and [SRS](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md) |
+| Architecture and decisions | [HLD](../01-High-Level-Design/01-Introduction.md) and [ADR index](../ADR/Decision-Index.md) |
+| Ownership and operations | [Module Breakdown](02-Module-Breakdown.md) and [Detailed Module Design](03-Detailed-Module-Design.md) |
+| Persistence and interfaces | [Database Design](04-Database-Design.md) and [API Specification](05-API-Specification.md) |
+| Guards and outcomes | [Algorithms and Business Rules](06-Algorithms-And-Business-Rules.md), [Error Handling and Logging](07-Error-Handling-And-Logging.md) |
+| Enforcement/configuration | [Security Implementation](08-Security-Implementation.md) and [Configuration and Environment](09-Configuration-And-Environment.md) |
+| Planned checks and evidence | [Unit Test Design](10-Unit-Test-Design.md), [LLD Traceability](11-Traceability.md) and [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md) |
+| User-facing contract | [UI/UX handoff](../02-UI-UX-Design/13-Handoff-To-Development.md) and screen/interaction records |
+| Executed setup/testing | [Project Setup](../../05-Agile-Iterative-Development/01-Project-Setup.md) and [Test Strategy](../../05-Agile-Iterative-Development/02-Test-Strategy.md) |
+| Release and recovery | [Deployment Plan](../../06-Deployment-Release/01-Deployment-Plan.md) and [Runbook](../../06-Deployment-Release/02-Runbook.md) |
+
+The exact criterion/disposition remains in the RTM and linked register. A design-area link or diagram is not an actual code path, test pass or release approval.
+
+## Current LLD Support Views
+
+- [lld contract handoff](Diagrams/lld-contract-handoff.svg) · [PlantUML](Diagrams/lld-contract-handoff.puml) · [PNG](Diagrams/lld-contract-handoff.png)
+- [business command guards](Diagrams/business-command-guards.svg) · [PlantUML](Diagrams/business-command-guards.puml) · [PNG](Diagrams/business-command-guards.png)
+- [protected delivery rules](Diagrams/protected-delivery-rules.svg) · [PlantUML](Diagrams/protected-delivery-rules.puml) · [PNG](Diagrams/protected-delivery-rules.png)
+- [error handling route](Diagrams/error-handling-route.svg) · [PlantUML](Diagrams/error-handling-route.puml) · [PNG](Diagrams/error-handling-route.png)
+- [security enforcement](Diagrams/security-enforcement.svg) · [PlantUML](Diagrams/security-enforcement.puml) · [PNG](Diagrams/security-enforcement.png)
+- [configuration boundaries](Diagrams/configuration-boundaries.svg) · [PlantUML](Diagrams/configuration-boundaries.puml) · [PNG](Diagrams/configuration-boundaries.png)
+- [test boundary selection](Diagrams/test-boundary-selection.svg) · [PlantUML](Diagrams/test-boundary-selection.puml) · [PNG](Diagrams/test-boundary-selection.png)
+- [lld traceability](Diagrams/lld-traceability.svg) · [PlantUML](Diagrams/lld-traceability.puml) · [PNG](Diagrams/lld-traceability.png)
+
+These views supplement operation/data/API diagrams in the catalog below. Reuse canonical assets instead of maintaining competing copies.
+
+## Retained Record Navigation
+
+- [Resumefolio — Design Evolution Refactoring and Technical Debt](#design-record-02-detailed-and-object-oriented-design-05-design-evolution-refactoring-and-technical-debt-md)
+- [Resumefolio — Detailed and Object-Oriented Design](#design-record-02-detailed-and-object-oriented-design-detailed-and-object-oriented-design-md)
+- [Resumefolio — Detailed and OO Design Diagrams](#design-record-02-detailed-and-object-oriented-design-diagrams-diagram-catalog-md)
+- [Resumefolio — Implementation View and Artifacts](#design-record-03-component-and-module-design-02-implementation-view-and-artifacts-md)
+- [Resumefolio — Component-Specific Diagrams](#design-record-03-component-and-module-design-components-diagrams-diagram-catalog-md)
+- [Resumefolio — Component and Module Design Diagrams](#design-record-03-component-and-module-design-diagrams-diagram-catalog-md)
+
+Interpret retained communication/calendar, advanced collaboration/planning and workflow/deployment examples as deferred where indicated. Historical status language does not supersede selected Core/independent ProjectForge/private-media scope. Source-provenance references are context, not freshly verified external claims.
+
+## Diagram and Chart Catalog
+
+Every embedded view is linked to a local dark SVG with a PNG alternative. UML sources use PlantUML; non-UML dependency maps retain Graphviz; illustrative charts retain their plotting source/data. Dark rendering does not alter the diagram's proposal status or select a product theme.
+
+| View | Source | SVG | PNG |
+| --- | --- | --- | --- |
+| api command outcome sequence | [Source](Diagrams/API/api-command-outcome-sequence.puml) | [SVG](Diagrams/API/api-command-outcome-sequence.svg) | [PNG](Diagrams/API/api-command-outcome-sequence.png) |
+| api contract evolution | [Source](Diagrams/API/api-contract-evolution.puml) | [SVG](Diagrams/API/api-contract-evolution.svg) | [PNG](Diagrams/API/api-contract-evolution.png) |
+| api essential boundaries | [Source](Diagrams/API/api-essential-boundaries.puml) | [SVG](Diagrams/API/api-essential-boundaries.svg) | [PNG](Diagrams/API/api-essential-boundaries.png) |
+| api essential consumer verification | [Source](Diagrams/API/api-essential-consumer-verification.puml) | [SVG](Diagrams/API/api-essential-consumer-verification.svg) | [PNG](Diagrams/API/api-essential-consumer-verification.png) |
+| api essential contract workflow | [Source](Diagrams/API/api-essential-contract-workflow.puml) | [SVG](Diagrams/API/api-essential-contract-workflow.svg) | [PNG](Diagrams/API/api-essential-contract-workflow.png) |
+| api essential selection | [Source](Diagrams/API/api-essential-selection.puml) | [SVG](Diagrams/API/api-essential-selection.svg) | [PNG](Diagrams/API/api-essential-selection.png) |
+| applications capture sequence | [Source](Diagrams/Detailed/applications-capture-sequence.puml) | [SVG](Diagrams/Detailed/applications-capture-sequence.svg) | [PNG](Diagrams/Detailed/applications-capture-sequence.png) |
+| applications cross owner sequence | [Source](Diagrams/Detailed/applications-cross-owner-sequence.puml) | [SVG](Diagrams/Detailed/applications-cross-owner-sequence.svg) | [PNG](Diagrams/Detailed/applications-cross-owner-sequence.png) |
+| applications dependencies | [Source](Diagrams/Detailed/applications-dependencies.puml) | [SVG](Diagrams/Detailed/applications-dependencies.svg) | [PNG](Diagrams/Detailed/applications-dependencies.png) |
+| applications integration | [Source](Diagrams/Detailed/applications-integration.puml) | [SVG](Diagrams/Detailed/applications-integration.svg) | [PNG](Diagrams/Detailed/applications-integration.png) |
+| applications interfaces | [Source](Diagrams/Detailed/applications-interfaces.puml) | [SVG](Diagrams/Detailed/applications-interfaces.svg) | [PNG](Diagrams/Detailed/applications-interfaces.png) |
+| applications internal structure | [Source](Diagrams/Detailed/applications-internal-structure.puml) | [SVG](Diagrams/Detailed/applications-internal-structure.svg) | [PNG](Diagrams/Detailed/applications-internal-structure.png) |
+| applications layers | [Source](Diagrams/Detailed/applications-layers.puml) | [SVG](Diagrams/Detailed/applications-layers.svg) | [PNG](Diagrams/Detailed/applications-layers.png) |
+| applications owned model | [Source](Diagrams/Detailed/applications-owned-model.puml) | [SVG](Diagrams/Detailed/applications-owned-model.svg) | [PNG](Diagrams/Detailed/applications-owned-model.png) |
+| applications packages | [Source](Diagrams/Detailed/applications-packages.puml) | [SVG](Diagrams/Detailed/applications-packages.svg) | [PNG](Diagrams/Detailed/applications-packages.png) |
+| applications use cases | [Source](Diagrams/Detailed/applications-use-cases.puml) | [SVG](Diagrams/Detailed/applications-use-cases.svg) | [PNG](Diagrams/Detailed/applications-use-cases.png) |
+| boundaries c4 containers | [Source](Diagrams/Detailed/boundaries-c4-containers.puml) | [SVG](Diagrams/Detailed/boundaries-c4-containers.svg) | [PNG](Diagrams/Detailed/boundaries-c4-containers.png) |
+| calendar reconciliation route | [Source](Diagrams/Detailed/calendar-reconciliation-route.puml) | [SVG](Diagrams/Detailed/calendar-reconciliation-route.svg) | [PNG](Diagrams/Detailed/calendar-reconciliation-route.png) |
+| comm domain | [Source](Diagrams/Detailed/comm-domain.puml) | [SVG](Diagrams/Detailed/comm-domain.svg) | [PNG](Diagrams/Detailed/comm-domain.png) |
+| comm erd | [Source](Diagrams/Detailed/comm-erd.puml) | [SVG](Diagrams/Detailed/comm-erd.svg) | [PNG](Diagrams/Detailed/comm-erd.png) |
+| comm event state | [Source](Diagrams/Detailed/comm-event-state.puml) | [SVG](Diagrams/Detailed/comm-event-state.svg) | [PNG](Diagrams/Detailed/comm-event-state.png) |
+| comm free busy | [Source](Diagrams/Detailed/comm-free-busy.puml) | [SVG](Diagrams/Detailed/comm-free-busy.svg) | [PNG](Diagrams/Detailed/comm-free-busy.png) |
+| comm integration options | [Source](Diagrams/Detailed/comm-integration-options.puml) | [SVG](Diagrams/Detailed/comm-integration-options.svg) | [PNG](Diagrams/Detailed/comm-integration-options.png) |
+| comm interfaces | [Source](Diagrams/Detailed/comm-interfaces.puml) | [SVG](Diagrams/Detailed/comm-interfaces.svg) | [PNG](Diagrams/Detailed/comm-interfaces.png) |
+| comm invitation | [Source](Diagrams/Detailed/comm-invitation.puml) | [SVG](Diagrams/Detailed/comm-invitation.svg) | [PNG](Diagrams/Detailed/comm-invitation.png) |
+| comm message state | [Source](Diagrams/Detailed/comm-message-state.puml) | [SVG](Diagrams/Detailed/comm-message-state.svg) | [PNG](Diagrams/Detailed/comm-message-state.png) |
+| comm notification flow | [Source](Diagrams/Detailed/comm-notification-flow.puml) | [SVG](Diagrams/Detailed/comm-notification-flow.svg) | [PNG](Diagrams/Detailed/comm-notification-flow.png) |
+| comm recurrence | [Source](Diagrams/Detailed/comm-recurrence.puml) | [SVG](Diagrams/Detailed/comm-recurrence.svg) | [PNG](Diagrams/Detailed/comm-recurrence.png) |
+| comm reminder | [Source](Diagrams/Detailed/comm-reminder.puml) | [SVG](Diagrams/Detailed/comm-reminder.svg) | [PNG](Diagrams/Detailed/comm-reminder.png) |
+| comm scheduling | [Source](Diagrams/Detailed/comm-scheduling.puml) | [SVG](Diagrams/Detailed/comm-scheduling.svg) | [PNG](Diagrams/Detailed/comm-scheduling.png) |
+| comm send | [Source](Diagrams/Detailed/comm-send.puml) | [SVG](Diagrams/Detailed/comm-send.svg) | [PNG](Diagrams/Detailed/comm-send.png) |
+| comm sync | [Source](Diagrams/Detailed/comm-sync.puml) | [SVG](Diagrams/Detailed/comm-sync.svg) | [PNG](Diagrams/Detailed/comm-sync.png) |
+| comm use cases | [Source](Diagrams/Detailed/comm-use-cases.puml) | [SVG](Diagrams/Detailed/comm-use-cases.svg) | [PNG](Diagrams/Detailed/comm-use-cases.png) |
+| communication owned model | [Source](Diagrams/Detailed/communication-owned-model.puml) | [SVG](Diagrams/Detailed/communication-owned-model.svg) | [PNG](Diagrams/Detailed/communication-owned-model.png) |
+| communication send sequence | [Source](Diagrams/Detailed/communication-send-sequence.puml) | [SVG](Diagrams/Detailed/communication-send-sequence.svg) | [PNG](Diagrams/Detailed/communication-send-sequence.png) |
+| compatible design evolution | [Source](Diagrams/Appendix/compatible-design-evolution.dot) | [SVG](Diagrams/Appendix/compatible-design-evolution.svg) | [PNG](Diagrams/Appendix/compatible-design-evolution.png) |
+| component artifact placement | [Source](Diagrams/Appendix/component-artifact-placement.dot) | [SVG](Diagrams/Appendix/component-artifact-placement.svg) | [PNG](Diagrams/Appendix/component-artifact-placement.png) |
+| data essential conceptual | [Source](Diagrams/Data/data-essential-conceptual.puml) | [SVG](Diagrams/Data/data-essential-conceptual.svg) | [PNG](Diagrams/Data/data-essential-conceptual.png) |
+| data essential levels | [Source](Diagrams/Data/data-essential-levels.puml) | [SVG](Diagrams/Data/data-essential-levels.svg) | [PNG](Diagrams/Data/data-essential-levels.png) |
+| data essential logical | [Source](Diagrams/Data/data-essential-logical.puml) | [SVG](Diagrams/Data/data-essential-logical.svg) | [PNG](Diagrams/Data/data-essential-logical.png) |
+| data essential normalization | [Source](Diagrams/Data/data-essential-normalization.puml) | [SVG](Diagrams/Data/data-essential-normalization.svg) | [PNG](Diagrams/Data/data-essential-normalization.png) |
+| data essential physical | [Source](Diagrams/Data/data-essential-physical.puml) | [SVG](Diagrams/Data/data-essential-physical.svg) | [PNG](Diagrams/Data/data-essential-physical.png) |
+| data logical revisions and references | [Source](Diagrams/Data/data-logical-revisions-and-references.puml) | [SVG](Diagrams/Data/data-logical-revisions-and-references.svg) | [PNG](Diagrams/Data/data-logical-revisions-and-references.png) |
+| data physical enforcement map | [Source](Diagrams/Data/data-physical-enforcement-map.puml) | [SVG](Diagrams/Data/data-physical-enforcement-map.svg) | [PNG](Diagrams/Data/data-physical-enforcement-map.png) |
+| design change impact route | [Source](Diagrams/Appendix/design-change-impact-route.dot) | [SVG](Diagrams/Appendix/design-change-impact-route.svg) | [PNG](Diagrams/Appendix/design-change-impact-route.png) |
+| design finding classification | [Source](Diagrams/Appendix/design-finding-classification.dot) | [SVG](Diagrams/Appendix/design-finding-classification.svg) | [PNG](Diagrams/Appendix/design-finding-classification.png) |
+| drivers c4 system context | [Source](Diagrams/Detailed/drivers-c4-system-context.puml) | [SVG](Diagrams/Detailed/drivers-c4-system-context.svg) | [PNG](Diagrams/Detailed/drivers-c4-system-context.png) |
+| drivers uml deployment | [Source](Diagrams/Detailed/drivers-uml-deployment.puml) | [SVG](Diagrams/Detailed/drivers-uml-deployment.svg) | [PNG](Diagrams/Detailed/drivers-uml-deployment.png) |
+| evolution branch abstraction | [Source](Diagrams/Appendix/evolution-branch-abstraction.puml) | [SVG](Diagrams/Appendix/evolution-branch-abstraction.svg) | [PNG](Diagrams/Appendix/evolution-branch-abstraction.png) |
+| evolution churn complexity | [Source](Diagrams/Appendix/evolution-dark-charts.py) | [SVG](Diagrams/Appendix/evolution-churn-complexity.svg) | [PNG](Diagrams/Appendix/evolution-churn-complexity.png) |
+| evolution class change | [Source](Diagrams/Appendix/evolution-class-change.puml) | [SVG](Diagrams/Appendix/evolution-class-change.svg) | [PNG](Diagrams/Appendix/evolution-class-change.png) |
+| evolution component target | [Source](Diagrams/Appendix/evolution-component-target.puml) | [SVG](Diagrams/Appendix/evolution-component-target.svg) | [PNG](Diagrams/Appendix/evolution-component-target.png) |
+| evolution debt quadrant | [Source](Diagrams/Appendix/evolution-dark-charts.py) | [SVG](Diagrams/Appendix/evolution-debt-quadrant.svg) | [PNG](Diagrams/Appendix/evolution-debt-quadrant.png) |
+| evolution dependency hotspots | [Source](Diagrams/Appendix/evolution-dependency-hotspots.puml) | [SVG](Diagrams/Appendix/evolution-dependency-hotspots.svg) | [PNG](Diagrams/Appendix/evolution-dependency-hotspots.png) |
+| evolution erosion | [Source](Diagrams/Appendix/evolution-erosion.puml) | [SVG](Diagrams/Appendix/evolution-erosion.svg) | [PNG](Diagrams/Appendix/evolution-erosion.png) |
+| evolution history | [Source](Diagrams/Appendix/evolution-history.puml) | [SVG](Diagrams/Appendix/evolution-history.svg) | [PNG](Diagrams/Appendix/evolution-history.png) |
+| evolution impact effort | [Source](Diagrams/Appendix/evolution-dark-charts.py) | [SVG](Diagrams/Appendix/evolution-impact-effort.svg) | [PNG](Diagrams/Appendix/evolution-impact-effort.png) |
+| evolution interest curve | [Source](Diagrams/Appendix/evolution-dark-charts.py) | [SVG](Diagrams/Appendix/evolution-interest-curve.svg) | [PNG](Diagrams/Appendix/evolution-interest-curve.png) |
+| evolution lifecycle | [Source](Diagrams/Appendix/evolution-lifecycle.puml) | [SVG](Diagrams/Appendix/evolution-lifecycle.svg) | [PNG](Diagrams/Appendix/evolution-lifecycle.png) |
+| evolution package direction | [Source](Diagrams/Appendix/evolution-package-direction.puml) | [SVG](Diagrams/Appendix/evolution-package-direction.svg) | [PNG](Diagrams/Appendix/evolution-package-direction.png) |
+| evolution refactoring sequence | [Source](Diagrams/Appendix/evolution-refactoring-sequence.puml) | [SVG](Diagrams/Appendix/evolution-refactoring-sequence.svg) | [PNG](Diagrams/Appendix/evolution-refactoring-sequence.png) |
+| evolution safety net | [Source](Diagrams/Appendix/evolution-safety-net.puml) | [SVG](Diagrams/Appendix/evolution-safety-net.svg) | [PNG](Diagrams/Appendix/evolution-safety-net.png) |
+| evolution strangler | [Source](Diagrams/Appendix/evolution-strangler.puml) | [SVG](Diagrams/Appendix/evolution-strangler.svg) | [PNG](Diagrams/Appendix/evolution-strangler.png) |
+| files admission sequence | [Source](Diagrams/Detailed/files-admission-sequence.puml) | [SVG](Diagrams/Detailed/files-admission-sequence.svg) | [PNG](Diagrams/Detailed/files-admission-sequence.png) |
+| files artifact state | [Source](Diagrams/Detailed/files-artifact-state.puml) | [SVG](Diagrams/Detailed/files-artifact-state.svg) | [PNG](Diagrams/Detailed/files-artifact-state.png) |
+| files concurrent edits | [Source](Diagrams/Detailed/files-concurrent-edits.puml) | [SVG](Diagrams/Detailed/files-concurrent-edits.svg) | [PNG](Diagrams/Detailed/files-concurrent-edits.png) |
+| files context | [Source](Diagrams/Detailed/files-context.puml) | [SVG](Diagrams/Detailed/files-context.svg) | [PNG](Diagrams/Detailed/files-context.png) |
+| files domain | [Source](Diagrams/Detailed/files-domain.puml) | [SVG](Diagrams/Detailed/files-domain.svg) | [PNG](Diagrams/Detailed/files-domain.png) |
+| files download | [Source](Diagrams/Detailed/files-download.puml) | [SVG](Diagrams/Detailed/files-download.svg) | [PNG](Diagrams/Detailed/files-download.png) |
+| files erd | [Source](Diagrams/Detailed/files-erd.puml) | [SVG](Diagrams/Detailed/files-erd.svg) | [PNG](Diagrams/Detailed/files-erd.png) |
+| files interfaces | [Source](Diagrams/Detailed/files-interfaces.puml) | [SVG](Diagrams/Detailed/files-interfaces.svg) | [PNG](Diagrams/Detailed/files-interfaces.png) |
+| files job state | [Source](Diagrams/Detailed/files-job-state.puml) | [SVG](Diagrams/Detailed/files-job-state.svg) | [PNG](Diagrams/Detailed/files-job-state.png) |
+| files owned model | [Source](Diagrams/Detailed/files-owned-model.puml) | [SVG](Diagrams/Detailed/files-owned-model.svg) | [PNG](Diagrams/Detailed/files-owned-model.png) |
+| files paths | [Source](Diagrams/Detailed/files-paths.puml) | [SVG](Diagrams/Detailed/files-paths.svg) | [PNG](Diagrams/Detailed/files-paths.png) |
+| files pipeline | [Source](Diagrams/Detailed/files-pipeline.puml) | [SVG](Diagrams/Detailed/files-pipeline.svg) | [PNG](Diagrams/Detailed/files-pipeline.png) |
+| files queues | [Source](Diagrams/Detailed/files-queues.puml) | [SVG](Diagrams/Detailed/files-queues.svg) | [PNG](Diagrams/Detailed/files-queues.png) |
+| files reclamation route | [Source](Diagrams/Detailed/files-reclamation-route.puml) | [SVG](Diagrams/Detailed/files-reclamation-route.svg) | [PNG](Diagrams/Detailed/files-reclamation-route.png) |
+| files share | [Source](Diagrams/Detailed/files-share.puml) | [SVG](Diagrams/Detailed/files-share.svg) | [PNG](Diagrams/Detailed/files-share.png) |
+| files trash | [Source](Diagrams/Detailed/files-trash.puml) | [SVG](Diagrams/Detailed/files-trash.svg) | [PNG](Diagrams/Detailed/files-trash.png) |
+| files upload | [Source](Diagrams/Detailed/files-upload.puml) | [SVG](Diagrams/Detailed/files-upload.svg) | [PNG](Diagrams/Detailed/files-upload.png) |
+| files use cases | [Source](Diagrams/Detailed/files-use-cases.puml) | [SVG](Diagrams/Detailed/files-use-cases.svg) | [PNG](Diagrams/Detailed/files-use-cases.png) |
+| git essential branching | [Source](Diagrams/Detailed/git-essential-branching.puml) | [SVG](Diagrams/Detailed/git-essential-branching.svg) | [PNG](Diagrams/Detailed/git-essential-branching.png) |
+| git essential components | [Source](Diagrams/Detailed/git-essential-components.puml) | [SVG](Diagrams/Detailed/git-essential-components.svg) | [PNG](Diagrams/Detailed/git-essential-components.png) |
+| git essential domain | [Source](Diagrams/Detailed/git-essential-domain.puml) | [SVG](Diagrams/Detailed/git-essential-domain.svg) | [PNG](Diagrams/Detailed/git-essential-domain.png) |
+| git essential graph | [Source](Diagrams/Detailed/git-essential-graph.puml) | [SVG](Diagrams/Detailed/git-essential-graph.svg) | [PNG](Diagrams/Detailed/git-essential-graph.png) |
+| git essential objects | [Source](Diagrams/Detailed/git-essential-objects.puml) | [SVG](Diagrams/Detailed/git-essential-objects.svg) | [PNG](Diagrams/Detailed/git-essential-objects.png) |
+| git essential pr sequence | [Source](Diagrams/Detailed/git-essential-pr-sequence.puml) | [SVG](Diagrams/Detailed/git-essential-pr-sequence.svg) | [PNG](Diagrams/Detailed/git-essential-pr-sequence.png) |
+| git essential pr state | [Source](Diagrams/Detailed/git-essential-pr-state.puml) | [SVG](Diagrams/Detailed/git-essential-pr-state.svg) | [PNG](Diagrams/Detailed/git-essential-pr-state.png) |
+| git merge sequence | [Source](Diagrams/Detailed/git-merge-sequence.puml) | [SVG](Diagrams/Detailed/git-merge-sequence.svg) | [PNG](Diagrams/Detailed/git-merge-sequence.png) |
+| git owned model | [Source](Diagrams/Detailed/git-owned-model.puml) | [SVG](Diagrams/Detailed/git-owned-model.svg) | [PNG](Diagrams/Detailed/git-owned-model.png) |
+| identity authorization sequence | [Source](Diagrams/Detailed/identity-authorization-sequence.puml) | [SVG](Diagrams/Detailed/identity-authorization-sequence.svg) | [PNG](Diagrams/Detailed/identity-authorization-sequence.png) |
+| identity essential access model | [Source](Diagrams/Detailed/identity-essential-access-model.puml) | [SVG](Diagrams/Detailed/identity-essential-access-model.svg) | [PNG](Diagrams/Detailed/identity-essential-access-model.png) |
+| identity essential authentication | [Source](Diagrams/Detailed/identity-essential-authentication.puml) | [SVG](Diagrams/Detailed/identity-essential-authentication.svg) | [PNG](Diagrams/Detailed/identity-essential-authentication.png) |
+| identity essential authorization | [Source](Diagrams/Detailed/identity-essential-authorization.puml) | [SVG](Diagrams/Detailed/identity-essential-authorization.svg) | [PNG](Diagrams/Detailed/identity-essential-authorization.png) |
+| identity essential components | [Source](Diagrams/Detailed/identity-essential-components.puml) | [SVG](Diagrams/Detailed/identity-essential-components.svg) | [PNG](Diagrams/Detailed/identity-essential-components.png) |
+| identity essential session state | [Source](Diagrams/Detailed/identity-essential-session-state.puml) | [SVG](Diagrams/Detailed/identity-essential-session-state.svg) | [PNG](Diagrams/Detailed/identity-essential-session-state.png) |
+| identity owned model | [Source](Diagrams/Detailed/identity-owned-model.puml) | [SVG](Diagrams/Detailed/identity-owned-model.svg) | [PNG](Diagrams/Detailed/identity-owned-model.png) |
+| implementation essential build order | [Source](Diagrams/Appendix/implementation-essential-build-order.puml) | [SVG](Diagrams/Appendix/implementation-essential-build-order.svg) | [PNG](Diagrams/Appendix/implementation-essential-build-order.png) |
+| implementation essential overview | [Source](Diagrams/Appendix/implementation-essential-overview.puml) | [SVG](Diagrams/Appendix/implementation-essential-overview.svg) | [PNG](Diagrams/Appendix/implementation-essential-overview.png) |
+| implementation release route | [Source](Diagrams/Appendix/implementation-release-route.dot) | [SVG](Diagrams/Appendix/implementation-release-route.svg) | [PNG](Diagrams/Appendix/implementation-release-route.png) |
+| implementation source structure | [Source](Diagrams/Appendix/implementation-source-structure.dot) | [SVG](Diagrams/Appendix/implementation-source-structure.svg) | [PNG](Diagrams/Appendix/implementation-source-structure.png) |
+| interaction essential alternates | [Source](Diagrams/API/interaction-essential-alternates.puml) | [SVG](Diagrams/API/interaction-essential-alternates.svg) | [PNG](Diagrams/API/interaction-essential-alternates.png) |
+| interaction essential end to end | [Source](Diagrams/API/interaction-essential-end-to-end.puml) | [SVG](Diagrams/API/interaction-essential-end-to-end.svg) | [PNG](Diagrams/API/interaction-essential-end-to-end.png) |
+| interaction essential realization | [Source](Diagrams/API/interaction-essential-realization.puml) | [SVG](Diagrams/API/interaction-essential-realization.svg) | [PNG](Diagrams/API/interaction-essential-realization.png) |
+| interaction essential use cases | [Source](Diagrams/API/interaction-essential-use-cases.puml) | [SVG](Diagrams/API/interaction-essential-use-cases.svg) | [PNG](Diagrams/API/interaction-essential-use-cases.png) |
+| interaction git execution deployment | [Source](Diagrams/API/interaction-git-execution-deployment.puml) | [SVG](Diagrams/API/interaction-git-execution-deployment.svg) | [PNG](Diagrams/API/interaction-git-execution-deployment.png) |
+| interaction isolated recovery | [Source](Diagrams/API/interaction-isolated-recovery.puml) | [SVG](Diagrams/API/interaction-isolated-recovery.svg) | [PNG](Diagrams/API/interaction-isolated-recovery.png) |
+| modularity essential before after | [Source](Diagrams/Modules/modularity-essential-before-after.puml) | [SVG](Diagrams/Modules/modularity-essential-before-after.svg) | [PNG](Diagrams/Modules/modularity-essential-before-after.png) |
+| modularity essential encapsulation | [Source](Diagrams/Modules/modularity-essential-encapsulation.puml) | [SVG](Diagrams/Modules/modularity-essential-encapsulation.svg) | [PNG](Diagrams/Modules/modularity-essential-encapsulation.png) |
+| modularity essential layers | [Source](Diagrams/Modules/modularity-essential-layers.puml) | [SVG](Diagrams/Modules/modularity-essential-layers.svg) | [PNG](Diagrams/Modules/modularity-essential-layers.png) |
+| modularity essential packages | [Source](Diagrams/Modules/modularity-essential-packages.puml) | [SVG](Diagrams/Modules/modularity-essential-packages.svg) | [PNG](Diagrams/Modules/modularity-essential-packages.png) |
+| module composition and lifetimes | [Source](Diagrams/Modules/module-composition-and-lifetimes.dot) | [SVG](Diagrams/Modules/module-composition-and-lifetimes.svg) | [PNG](Diagrams/Modules/module-composition-and-lifetimes.png) |
+| module dependency direction | [Source](Diagrams/Modules/module-dependency-direction.dot) | [SVG](Diagrams/Modules/module-dependency-direction.svg) | [PNG](Diagrams/Modules/module-dependency-direction.png) |
+| module public and private boundary | [Source](Diagrams/Modules/module-public-and-private-boundary.dot) | [SVG](Diagrams/Modules/module-public-and-private-boundary.svg) | [PNG](Diagrams/Modules/module-public-and-private-boundary.png) |
+| oo before after | [Source](Diagrams/Detailed/oo-before-after.puml) | [SVG](Diagrams/Detailed/oo-before-after.svg) | [PNG](Diagrams/Detailed/oo-before-after.png) |
+| oo composition | [Source](Diagrams/Detailed/oo-composition.puml) | [SVG](Diagrams/Detailed/oo-composition.svg) | [PNG](Diagrams/Detailed/oo-composition.png) |
+| oo conceptual domain | [Source](Diagrams/Detailed/oo-conceptual-domain.puml) | [SVG](Diagrams/Detailed/oo-conceptual-domain.svg) | [PNG](Diagrams/Detailed/oo-conceptual-domain.png) |
+| oo coupling cohesion | [Source](Diagrams/Detailed/oo-coupling-cohesion.puml) | [SVG](Diagrams/Detailed/oo-coupling-cohesion.svg) | [PNG](Diagrams/Detailed/oo-coupling-cohesion.png) |
+| oo demeter | [Source](Diagrams/Detailed/oo-demeter.puml) | [SVG](Diagrams/Detailed/oo-demeter.svg) | [PNG](Diagrams/Detailed/oo-demeter.png) |
+| oo dependency inversion | [Source](Diagrams/Detailed/oo-dependency-inversion.puml) | [SVG](Diagrams/Detailed/oo-dependency-inversion.svg) | [PNG](Diagrams/Detailed/oo-dependency-inversion.png) |
+| oo index abstraction levels | [Source](Diagrams/Appendix/oo-index-abstraction-levels.puml) | [SVG](Diagrams/Appendix/oo-index-abstraction-levels.svg) | [PNG](Diagrams/Appendix/oo-index-abstraction-levels.png) |
+| oo index architecture bridge | [Source](Diagrams/Appendix/oo-index-architecture-bridge.puml) | [SVG](Diagrams/Appendix/oo-index-architecture-bridge.svg) | [PNG](Diagrams/Appendix/oo-index-architecture-bridge.png) |
+| oo index concept map | [Source](Diagrams/Appendix/oo-index-concept-map.puml) | [SVG](Diagrams/Appendix/oo-index-concept-map.svg) | [PNG](Diagrams/Appendix/oo-index-concept-map.png) |
+| oo index design lifecycle | [Source](Diagrams/Appendix/oo-index-design-lifecycle.puml) | [SVG](Diagrams/Appendix/oo-index-design-lifecycle.svg) | [PNG](Diagrams/Appendix/oo-index-design-lifecycle.png) |
+| oo index prerequisites | [Source](Diagrams/Appendix/oo-index-prerequisites.puml) | [SVG](Diagrams/Appendix/oo-index-prerequisites.svg) | [PNG](Diagrams/Appendix/oo-index-prerequisites.png) |
+| oo index reading path | [Source](Diagrams/Appendix/oo-index-reading-path.puml) | [SVG](Diagrams/Appendix/oo-index-reading-path.svg) | [PNG](Diagrams/Appendix/oo-index-reading-path.png) |
+| oo index topic mindmap | [Source](Diagrams/Appendix/oo-index-topic-mindmap.puml) | [SVG](Diagrams/Appendix/oo-index-topic-mindmap.svg) | [PNG](Diagrams/Appendix/oo-index-topic-mindmap.png) |
+| oo packages | [Source](Diagrams/Detailed/oo-packages.puml) | [SVG](Diagrams/Detailed/oo-packages.svg) | [PNG](Diagrams/Detailed/oo-packages.png) |
+| oo publication sequence | [Source](Diagrams/Detailed/oo-publication-sequence.puml) | [SVG](Diagrams/Detailed/oo-publication-sequence.svg) | [PNG](Diagrams/Detailed/oo-publication-sequence.png) |
+| oo realization | [Source](Diagrams/Detailed/oo-realization.puml) | [SVG](Diagrams/Detailed/oo-realization.svg) | [PNG](Diagrams/Detailed/oo-realization.png) |
+| oo responsibility direction | [Source](Diagrams/Detailed/oo-responsibility-direction.dot) | [SVG](Diagrams/Detailed/oo-responsibility-direction.svg) | [PNG](Diagrams/Detailed/oo-responsibility-direction.png) |
+| oo runtime objects | [Source](Diagrams/Detailed/oo-runtime-objects.puml) | [SVG](Diagrams/Detailed/oo-runtime-objects.svg) | [PNG](Diagrams/Detailed/oo-runtime-objects.png) |
+| oo strategy preview | [Source](Diagrams/Detailed/oo-strategy-preview.puml) | [SVG](Diagrams/Detailed/oo-strategy-preview.svg) | [PNG](Diagrams/Detailed/oo-strategy-preview.png) |
+| pattern selection route | [Source](Diagrams/Detailed/pattern-selection-route.dot) | [SVG](Diagrams/Detailed/pattern-selection-route.svg) | [PNG](Diagrams/Detailed/pattern-selection-route.png) |
+| persistence artifact lifecycle | [Source](Diagrams/Data/persistence-artifact-lifecycle.puml) | [SVG](Diagrams/Data/persistence-artifact-lifecycle.svg) | [PNG](Diagrams/Data/persistence-artifact-lifecycle.png) |
+| persistence essential architecture | [Source](Diagrams/Data/persistence-essential-architecture.puml) | [SVG](Diagrams/Data/persistence-essential-architecture.svg) | [PNG](Diagrams/Data/persistence-essential-architecture.png) |
+| persistence essential deletion | [Source](Diagrams/Data/persistence-essential-deletion.puml) | [SVG](Diagrams/Data/persistence-essential-deletion.svg) | [PNG](Diagrams/Data/persistence-essential-deletion.png) |
+| persistence essential invalidation | [Source](Diagrams/Data/persistence-essential-invalidation.puml) | [SVG](Diagrams/Data/persistence-essential-invalidation.svg) | [PNG](Diagrams/Data/persistence-essential-invalidation.png) |
+| persistence essential read | [Source](Diagrams/Data/persistence-essential-read.puml) | [SVG](Diagrams/Data/persistence-essential-read.svg) | [PNG](Diagrams/Data/persistence-essential-read.png) |
+| persistence essential recovery | [Source](Diagrams/Data/persistence-essential-recovery.puml) | [SVG](Diagrams/Data/persistence-essential-recovery.svg) | [PNG](Diagrams/Data/persistence-essential-recovery.png) |
+| persistence essential write | [Source](Diagrams/Data/persistence-essential-write.puml) | [SVG](Diagrams/Data/persistence-essential-write.svg) | [PNG](Diagrams/Data/persistence-essential-write.png) |
+| persistence protected cache flow | [Source](Diagrams/Data/persistence-protected-cache-flow.puml) | [SVG](Diagrams/Data/persistence-protected-cache-flow.svg) | [PNG](Diagrams/Data/persistence-protected-cache-flow.png) |
+| presentation essential components | [Source](Diagrams/Detailed/presentation-essential-components.puml) | [SVG](Diagrams/Detailed/presentation-essential-components.svg) | [PNG](Diagrams/Detailed/presentation-essential-components.png) |
+| presentation essential lifecycle | [Source](Diagrams/Detailed/presentation-essential-lifecycle.puml) | [SVG](Diagrams/Detailed/presentation-essential-lifecycle.svg) | [PNG](Diagrams/Detailed/presentation-essential-lifecycle.png) |
+| presentation essential rendering | [Source](Diagrams/Detailed/presentation-essential-rendering.puml) | [SVG](Diagrams/Detailed/presentation-essential-rendering.svg) | [PNG](Diagrams/Detailed/presentation-essential-rendering.png) |
+| presentation essential use cases | [Source](Diagrams/Detailed/presentation-essential-use-cases.puml) | [SVG](Diagrams/Detailed/presentation-essential-use-cases.svg) | [PNG](Diagrams/Detailed/presentation-essential-use-cases.png) |
+| presentation essential visitor | [Source](Diagrams/Detailed/presentation-essential-visitor.puml) | [SVG](Diagrams/Detailed/presentation-essential-visitor.svg) | [PNG](Diagrams/Detailed/presentation-essential-visitor.png) |
+| presentation owned model | [Source](Diagrams/Detailed/presentation-owned-model.puml) | [SVG](Diagrams/Detailed/presentation-owned-model.svg) | [PNG](Diagrams/Detailed/presentation-owned-model.png) |
+| presentation update publication | [Source](Diagrams/Detailed/presentation-update-publication.puml) | [SVG](Diagrams/Detailed/presentation-update-publication.svg) | [PNG](Diagrams/Detailed/presentation-update-publication.png) |
+| publication use case classes | [Source](Diagrams/Detailed/publication-use-case-classes.puml) | [SVG](Diagrams/Detailed/publication-use-case-classes.svg) | [PNG](Diagrams/Detailed/publication-use-case-classes.png) |
+| scope stakeholder map | [Source](Diagrams/Detailed/scope-stakeholder-map.puml) | [SVG](Diagrams/Detailed/scope-stakeholder-map.svg) | [PNG](Diagrams/Detailed/scope-stakeholder-map.png) |
+| security trust boundaries | [Source](Diagrams/Detailed/security-trust-boundaries.puml) | [SVG](Diagrams/Detailed/security-trust-boundaries.svg) | [PNG](Diagrams/Detailed/security-trust-boundaries.png) |
+| sharing essential components | [Source](Diagrams/Detailed/sharing-essential-components.puml) | [SVG](Diagrams/Detailed/sharing-essential-components.svg) | [PNG](Diagrams/Detailed/sharing-essential-components.png) |
+| sharing essential formats | [Source](Diagrams/Detailed/sharing-essential-formats.puml) | [SVG](Diagrams/Detailed/sharing-essential-formats.svg) | [PNG](Diagrams/Detailed/sharing-essential-formats.png) |
+| sharing essential link sequence | [Source](Diagrams/Detailed/sharing-essential-link-sequence.puml) | [SVG](Diagrams/Detailed/sharing-essential-link-sequence.svg) | [PNG](Diagrams/Detailed/sharing-essential-link-sequence.png) |
+| sharing essential link state | [Source](Diagrams/Detailed/sharing-essential-link-state.puml) | [SVG](Diagrams/Detailed/sharing-essential-link-state.svg) | [PNG](Diagrams/Detailed/sharing-essential-link-state.png) |
+| sharing owned model | [Source](Diagrams/Detailed/sharing-owned-model.puml) | [SVG](Diagrams/Detailed/sharing-owned-model.svg) | [PNG](Diagrams/Detailed/sharing-owned-model.png) |
+| sharing protected retrieval | [Source](Diagrams/Detailed/sharing-protected-retrieval.puml) | [SVG](Diagrams/Detailed/sharing-protected-retrieval.svg) | [PNG](Diagrams/Detailed/sharing-protected-retrieval.png) |
+| use cases mail and calendar | [Source](Diagrams/Detailed/use-cases-mail-and-calendar.puml) | [SVG](Diagrams/Detailed/use-cases-mail-and-calendar.svg) | [PNG](Diagrams/Detailed/use-cases-mail-and-calendar.png) |
+| work essential sprint planning | [Source](Diagrams/Detailed/work-essential-sprint-planning.puml) | [SVG](Diagrams/Detailed/work-essential-sprint-planning.svg) | [PNG](Diagrams/Detailed/work-essential-sprint-planning.png) |
+| work essential task state | [Source](Diagrams/Detailed/work-essential-task-state.puml) | [SVG](Diagrams/Detailed/work-essential-task-state.svg) | [PNG](Diagrams/Detailed/work-essential-task-state.png) |
+| work essential transition | [Source](Diagrams/Detailed/work-essential-transition.puml) | [SVG](Diagrams/Detailed/work-essential-transition.svg) | [PNG](Diagrams/Detailed/work-essential-transition.png) |
+| work essential views | [Source](Diagrams/Detailed/work-essential-views.puml) | [SVG](Diagrams/Detailed/work-essential-views.svg) | [PNG](Diagrams/Detailed/work-essential-views.png) |
+| work mutation sprint close | [Source](Diagrams/Detailed/work-mutation-sprint-close.puml) | [SVG](Diagrams/Detailed/work-mutation-sprint-close.svg) | [PNG](Diagrams/Detailed/work-mutation-sprint-close.png) |
+| work owned model | [Source](Diagrams/Detailed/work-owned-model.puml) | [SVG](Diagrams/Detailed/work-owned-model.svg) | [PNG](Diagrams/Detailed/work-owned-model.png) |
+| workflow deployment sequence | [Source](Diagrams/Detailed/workflow-deployment-sequence.puml) | [SVG](Diagrams/Detailed/workflow-deployment-sequence.svg) | [PNG](Diagrams/Detailed/workflow-deployment-sequence.png) |
+| workflow essential components | [Source](Diagrams/Detailed/workflow-essential-components.puml) | [SVG](Diagrams/Detailed/workflow-essential-components.svg) | [PNG](Diagrams/Detailed/workflow-essential-components.png) |
+| workflow essential deployment state | [Source](Diagrams/Detailed/workflow-essential-deployment-state.puml) | [SVG](Diagrams/Detailed/workflow-essential-deployment-state.svg) | [PNG](Diagrams/Detailed/workflow-essential-deployment-state.png) |
+| workflow essential executor | [Source](Diagrams/Detailed/workflow-essential-executor.puml) | [SVG](Diagrams/Detailed/workflow-essential-executor.svg) | [PNG](Diagrams/Detailed/workflow-essential-executor.png) |
+| workflow essential pipeline | [Source](Diagrams/Detailed/workflow-essential-pipeline.puml) | [SVG](Diagrams/Detailed/workflow-essential-pipeline.svg) | [PNG](Diagrams/Detailed/workflow-essential-pipeline.png) |
+| workflow essential promotion | [Source](Diagrams/Detailed/workflow-essential-promotion.puml) | [SVG](Diagrams/Detailed/workflow-essential-promotion.svg) | [PNG](Diagrams/Detailed/workflow-essential-promotion.png) |
+| workflow essential recovery | [Source](Diagrams/Detailed/workflow-essential-recovery.puml) | [SVG](Diagrams/Detailed/workflow-essential-recovery.svg) | [PNG](Diagrams/Detailed/workflow-essential-recovery.png) |
+| workflow essential run state | [Source](Diagrams/Detailed/workflow-essential-run-state.puml) | [SVG](Diagrams/Detailed/workflow-essential-run-state.svg) | [PNG](Diagrams/Detailed/workflow-essential-run-state.png) |
+| workflow essential strategies | [Source](Diagrams/Detailed/workflow-essential-strategies.puml) | [SVG](Diagrams/Detailed/workflow-essential-strategies.svg) | [PNG](Diagrams/Detailed/workflow-essential-strategies.png) |
+| workflow essential topology | [Source](Diagrams/Detailed/workflow-essential-topology.puml) | [SVG](Diagrams/Detailed/workflow-essential-topology.svg) | [PNG](Diagrams/Detailed/workflow-essential-topology.png) |
+| workflow trust model | [Source](Diagrams/Detailed/workflow-trust-model.puml) | [SVG](Diagrams/Detailed/workflow-trust-model.svg) | [PNG](Diagrams/Detailed/workflow-trust-model.png) |
+
+
+## Rendering and Maintenance
+
+Render a selected PlantUML source with Java and a compatible local renderer, adjusting the JAR path:
+
+```powershell
+java -jar path/to/plantuml.jar -tsvg Diagrams/lld-traceability.puml
+java -jar path/to/plantuml.jar -tpng Diagrams/lld-traceability.puml
+```
+
+For native non-UML maps, use the matching local DOT source with the installed Graphviz renderer. The four synthetic evolution charts can be regenerated with the local [dark chart generator](Diagrams/Appendix/evolution-dark-charts.py) and its [illustrative data](Diagrams/Appendix/evolution-chart-data.json). It produces conceptual examples, not measured project debt.
+
+Update editable source and both exports together. Check actual background, text contrast, clipped labels, view meaning and links, including retained embeds. A theme declaration alone is insufficient evidence that an image is dark/readable. Diagram compilation and image checks verify documentation artifacts, not runtime invariants.
+
+The retained original generator listing is historical implementation-view material, not the current publishing procedure or a runnable setup guide. Do not execute its package/publication side effects merely to regenerate a chart; use the isolated local sources referenced here.
+
+## Evidence and Interpretation Rules
+
+| Material | Supports | Does not establish |
+| --- | --- | --- |
+| Class/component/package view | Review of responsibilities and contract dependencies | Actual source imports, enforced policy or deployed service count |
+| Sequence/state/activity view | Intended decisions, ordering and result meaning | Atomicity across SQL/files/Git/mail or completed effects |
+| Schema/ERD view | Review of selected relationships/constraints | Executed MySQL migrations, lock behavior or concurrent integrity |
+| Counterexample/debt chart | Explanation of a technique or illustrative trade-off | Observed defects, actual churn/complexity, forecast cost or accepted prioritization |
+| Source/code listing | Supporting implementation idea or provenance | Installed dependency, reviewed production code or safe operating command |
+| Test/evidence reference | Location of planned or actual verification | A pass unless the exact executed result is attached |
+
+Keep required business identity and authority explicit: independent drafts, immutable publication/submission material, current resource grants and owner-local durable outcomes. Do not let a retained broad model introduce unrestricted shared data or deferred product scope.
+
+## Handoff Checklist
+
+For an implementation slice, identify exact requirement/criterion, selected decision, module/operation, inputs, current authority, version/request identity, local/remote effects and normal/failure outcomes. Link the actual schema/API/configuration provision and planned verification level.
+
+For executed evidence, record candidate/build, environment, fixtures/data versions, actual checks and observed results with limitations. Use real database/concurrency, native Git, private delivery and isolated restore where their guarantees depend on the actual facility. Unit fakes and diagram renders cannot establish those boundaries.
+
+Preserve stable record anchors and update inbound links when moving/consolidating content. Update HLD/LLD, UI/UX, source/renders and exact RTM traces together for consequential changes. Record unresolved inputs/gates explicitly; add no documentary update dates or fabricated implementation/test findings.
+
+## Retained Supporting Design Records
 
 <a id="design-record-02-detailed-and-object-oriented-design-05-design-evolution-refactoring-and-technical-debt-md"></a>
 
@@ -15,7 +278,7 @@ The records below retain supporting design rationale, implementation-view materi
 
 **Approach:** evolve the design through explicit source impact, small compatible changes and fresh verification. Preserve accepted product behavior, private authority, publication/submission identity and attributable external effects across every revision.
 
-**Status:** proposed engineering procedure, November 2, 2026. Product implementation has not been established by this document. No code smell, accepted shortcut, measured debt cost or completed refactoring is invented here. Farhad remains the decision and delivery owner.
+**Status:** proposed engineering procedure. Product implementation has not been established by this document. No code smell, accepted shortcut, measured debt cost or completed refactoring is invented here. Farhad remains the decision and delivery owner.
 
 [Classification](#design-record-02-detailed-and-object-oriented-design-05-design-evolution-refactoring-and-technical-debt-md--heading-1-change-risk-defect-and-debt) · [Impact](#design-record-02-detailed-and-object-oriented-design-05-design-evolution-refactoring-and-technical-debt-md--heading-2-change-impact-and-decision-route) · [Refactoring](#design-record-02-detailed-and-object-oriented-design-05-design-evolution-refactoring-and-technical-debt-md--heading-3-incremental-refactoring-procedure) · [Compatibility](#design-record-02-detailed-and-object-oriented-design-05-design-evolution-refactoring-and-technical-debt-md--heading-4-data-interface-and-runtime-evolution) · [Debt records](#design-record-02-detailed-and-object-oriented-design-05-design-evolution-refactoring-and-technical-debt-md--heading-5-debt-records-prioritization-and-review) · [Evidence](#design-record-02-detailed-and-object-oriented-design-05-design-evolution-refactoring-and-technical-debt-md--heading-6-verification-and-completion) · [Visual package](#design-record-02-detailed-and-object-oriented-design-05-design-evolution-refactoring-and-technical-debt-md--heading-8-evolution-and-debt-visual-package)
 
@@ -31,9 +294,9 @@ Follow the [working method and change control](../../01-Project-Planning/02-Proj
 
 #### 1. Change risk defect and debt
 
-[Classifying findings before recording debt](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/design-finding-classification.svg)
+[Classifying findings before recording debt](Diagrams/Appendix/design-finding-classification.svg)
 
-[Editable DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/design-finding-classification.dot) · ![design finding classification](../Diagrams/Archived-Png/Design-Finding-Classification.png)
+[Editable DOT](Diagrams/Appendix/design-finding-classification.dot) · ![design finding classification](Diagrams/Appendix/design-finding-classification.svg)
 
 **Open design work:** a prescription, comparison or evidence task remains unresolved. Examples are executor isolation, Git engine integration, combined capacity, independent recovery facilities and exact criterion reconciliation. These are not automatically technical debt or approved omissions.
 
@@ -49,9 +312,9 @@ Follow the [working method and change control](../../01-Project-Planning/02-Proj
 
 #### 2. Change impact and decision route
 
-[Impact assessment through design and implementation](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/design-change-impact-route.svg)
+[Impact assessment through design and implementation](Diagrams/Appendix/design-change-impact-route.svg)
 
-[Editable DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/design-change-impact-route.dot) · ![design change impact route](../Diagrams/Archived-Png/Design-Change-Impact-Route.png)
+[Editable DOT](Diagrams/Appendix/design-change-impact-route.dot) · ![design change impact route](Diagrams/Appendix/design-change-impact-route.svg)
 
 1. Identify the triggering requirement, observed defect, environment/dependency change or concrete smell. Record the current source/design revision and affected operation; avoid an unspecific “improve architecture” task.
 2. Trace required behavior and protected state through analysis contracts, component responsibilities, interfaces, schemas/artifacts, jobs and deployment/recovery procedures. Determine whether the proposal is structural, behavioral, operating or a mixture.
@@ -103,9 +366,9 @@ Run checks proportional to the changed contract and risk: domain/handler behavio
 
 #### 4. Data interface and runtime evolution
 
-[Compatible evolution and limited reversal](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/compatible-design-evolution.svg)
+[Compatible evolution and limited reversal](Diagrams/Appendix/compatible-design-evolution.svg)
 
-[Editable DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/compatible-design-evolution.dot) · ![compatible design evolution](../Diagrams/Archived-Png/Compatible-Design-Evolution.png)
+[Editable DOT](Diagrams/Appendix/compatible-design-evolution.dot) · ![compatible design evolution](Diagrams/Appendix/compatible-design-evolution.svg)
 
 <a id="design-record-02-detailed-and-object-oriented-design-05-design-evolution-refactoring-and-technical-debt-md--heading-expand-validate-and-contract"></a>
 
@@ -215,9 +478,9 @@ All comparisons below are **hypothetical design examples** unless an exact inspe
 
 ##### 8.1 Before/after class responsibilities
 
-[Before/after class responsibilities](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-class-change.svg)
+[Before/after class responsibilities](Diagrams/Appendix/evolution-class-change.svg)
 
-[PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-class-change.puml) · ![evolution class change](../Diagrams/Archived-Png/Evolution-Class-Change.png)
+[PlantUML](Diagrams/Appendix/evolution-class-change.puml) · ![evolution class change](Diagrams/Appendix/evolution-class-change.svg)
 
 A hypothetical original, not a detected code smell. Extracting roles must preserve observable contracts; changing publication or history behavior is a separate behavioral decision.
 
@@ -225,9 +488,9 @@ A hypothetical original, not a detected code smell. Extracting roles must preser
 
 ##### 8.2 Step-by-step transformation and verification
 
-[Step-by-step transformation and verification](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-refactoring-sequence.svg)
+[Step-by-step transformation and verification](Diagrams/Appendix/evolution-refactoring-sequence.svg)
 
-[PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-refactoring-sequence.puml) · ![evolution refactoring sequence](../Diagrams/Archived-Png/Evolution-Refactoring-Sequence.png)
+[PlantUML](Diagrams/Appendix/evolution-refactoring-sequence.puml) · ![evolution refactoring sequence](Diagrams/Appendix/evolution-refactoring-sequence.svg)
 
 Each step has a reviewable candidate and a stop/correct route. Characterization does not legitimize known requirement violations; code reversal remains conditional on data and effect compatibility.
 
@@ -235,9 +498,9 @@ Each step has a reviewable candidate and a stop/correct route. Characterization 
 
 ##### 8.3 Hypothetical dependency cycle and hotspot
 
-[Hypothetical dependency cycle and hotspot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-dependency-hotspots.svg)
+[Hypothetical dependency cycle and hotspot](Diagrams/Appendix/evolution-dependency-hotspots.svg)
 
-[PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-dependency-hotspots.puml) · ![evolution dependency hotspots](../Diagrams/Archived-Png/Evolution-Dependency-Hotspots.png)
+[PlantUML](Diagrams/Appendix/evolution-dependency-hotspots.puml) · ![evolution dependency hotspots](Diagrams/Appendix/evolution-dependency-hotspots.svg)
 
 Red edges depict an invented cycle to investigate, not actual repository dependencies. A central technical utility is not automatically debt; shared mutable business authority and change propagation require concrete evidence.
 
@@ -245,9 +508,9 @@ Red edges depict an invented cycle to investigate, not actual repository depende
 
 ##### 8.4 Before/after package dependency direction
 
-[Before/after package dependency direction](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-package-direction.svg)
+[Before/after package dependency direction](Diagrams/Appendix/evolution-package-direction.svg)
 
-[PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-package-direction.puml) · ![evolution package direction](../Diagrams/Archived-Png/Evolution-Package-Direction.png)
+[PlantUML](Diagrams/Appendix/evolution-package-direction.puml) · ![evolution package direction](Diagrams/Appendix/evolution-package-direction.svg)
 
 The target removes this selected source cycle through an owner-controlled public contract. It does not permit cross-module writes or prove that the entire application is acyclic. Runtime requests and source dependency arrows must be reviewed separately.
 
@@ -255,9 +518,9 @@ The target removes this selected source cycle through an owner-controlled public
 
 ##### 8.5 Intended versus eroded architecture
 
-[Intended versus eroded architecture](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-erosion.svg)
+[Intended versus eroded architecture](Diagrams/Appendix/evolution-erosion.svg)
 
-[PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-erosion.puml) · ![evolution erosion](../Diagrams/Archived-Png/Evolution-Erosion.png)
+[PlantUML](Diagrams/Appendix/evolution-erosion.puml) · ![evolution erosion](Diagrams/Appendix/evolution-erosion.svg)
 
 An actual-versus-intended comparison requires an identified source candidate and inspected imports/effects. No actual architecture audit is asserted here; the erosion half shows the kinds of divergence to look for.
 
@@ -265,9 +528,9 @@ An actual-versus-intended comparison requires an identified source candidate and
 
 ##### 8.6 Design evolution timeline and ADR history
 
-[Historical or unselected alternative — Design evolution timeline and ADR history](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-history.svg)
+[Historical or unselected alternative — Design evolution timeline and ADR history](Diagrams/Appendix/evolution-history.svg)
 
-[PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-history.puml) · ![evolution history](../Diagrams/Archived-Png/Evolution-History.png)
+[PlantUML](Diagrams/Appendix/evolution-history.puml) · ![evolution history](Diagrams/Appendix/evolution-history.svg)
 
 This is a documentation/proposal sequence, not a fabricated release/version history. Existing ADRs remain Proposed. Future implementation and acceptance have no invented date.
 
@@ -275,9 +538,9 @@ This is a documentation/proposal sequence, not a fabricated release/version hist
 
 ##### 8.7 Strangler facade: conditional future replacement
 
-[Strangler facade: conditional future replacement](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-strangler.svg)
+[Strangler facade: conditional future replacement](Diagrams/Appendix/evolution-strangler.svg)
 
-[PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-strangler.puml) · ![evolution strangler](../Diagrams/Archived-Png/Evolution-Strangler.png)
+[PlantUML](Diagrams/Appendix/evolution-strangler.puml) · ![evolution strangler](Diagrams/Appendix/evolution-strangler.svg)
 
 A conditional pattern, not a new legacy-migration feature or authorized migration. Define routing, compatible contracts, pending work, reference protection, reconciliation and cutover evidence before any real use. Do not shadow consequential sends or deployments.
 
@@ -285,9 +548,9 @@ A conditional pattern, not a new legacy-migration feature or authorized migratio
 
 ##### 8.8 Branch by abstraction inside one application
 
-[Branch by abstraction inside one application](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-branch-abstraction.svg)
+[Branch by abstraction inside one application](Diagrams/Appendix/evolution-branch-abstraction.svg)
 
-[PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-branch-abstraction.puml) · ![evolution branch abstraction](../Diagrams/Archived-Png/Evolution-Branch-Abstraction.png)
+[PlantUML](Diagrams/Appendix/evolution-branch-abstraction.puml) · ![evolution branch abstraction](Diagrams/Appendix/evolution-branch-abstraction.svg)
 
 Introduce abstraction, retain behavior through the old adapter, verify the new adapter, switch the designated route, then retire only when old consumers/pending work permit. This is independent of creating a long-lived source-control branch.
 
@@ -295,9 +558,9 @@ Introduce abstraction, retain behavior through the old adapter, verify the new a
 
 ##### 8.9 Legacy-shaped versus target component state
 
-[Legacy-shaped versus target component state](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-component-target.svg)
+[Legacy-shaped versus target component state](Diagrams/Appendix/evolution-component-target.svg)
 
-[PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-component-target.puml) · ![evolution component target](../Diagrams/Archived-Png/Evolution-Component-Target.png)
+[PlantUML](Diagrams/Appendix/evolution-component-target.puml) · ![evolution component target](Diagrams/Appendix/evolution-component-target.svg)
 
 Legacy-shaped is a hypothetical structural comparison, not an established running legacy system. The target remains a modular application; this view neither selects microservices nor authorizes moving private data.
 
@@ -305,9 +568,9 @@ Legacy-shaped is a hypothetical structural comparison, not an established runnin
 
 ##### 8.10 Refactoring/migration work lifecycle
 
-[Refactoring/migration work lifecycle](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-lifecycle.svg)
+[Refactoring/migration work lifecycle](Diagrams/Appendix/evolution-lifecycle.svg)
 
-[PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-lifecycle.puml) · ![evolution lifecycle](../Diagrams/Archived-Png/Evolution-Lifecycle.png)
+[PlantUML](Diagrams/Appendix/evolution-lifecycle.puml) · ![evolution lifecycle](Diagrams/Appendix/evolution-lifecycle.svg)
 
 Proposed engineering-work states, not implementation enums. Stopping work cannot undo irreversible data or remote effects; reassess before compatible rollback, forward repair or recovery.
 
@@ -315,9 +578,9 @@ Proposed engineering-work states, not implementation enums. Stopping work cannot
 
 ##### 8.11 Contract-oriented verification safety net
 
-[Contract-oriented verification safety net](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-safety-net.svg)
+[Contract-oriented verification safety net](Diagrams/Appendix/evolution-safety-net.svg)
 
-[PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-safety-net.puml) · ![evolution safety net](../Diagrams/Archived-Png/Evolution-Safety-Net.png)
+[PlantUML](Diagrams/Appendix/evolution-safety-net.puml) · ![evolution safety net](Diagrams/Appendix/evolution-safety-net.svg)
 
 A coverage plan rather than a measured coverage percentage. Choose checks for affected risks; unit mocks alone do not establish persistence races, actual external idempotency, executor isolation or usable recovery.
 
@@ -350,21 +613,21 @@ This is a register **template**, not a second live backlog. No evidenced impleme
 
 ##### 8.14 Classification, prioritization and measurement aids
 
-[Technical debt quadrant](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-debt-quadrant.svg)
+[Technical debt quadrant](Diagrams/Appendix/evolution-debt-quadrant.svg)
 
-[SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-debt-quadrant.svg) · ![evolution debt quadrant](../Diagrams/Archived-Png/Evolution-Debt-Quadrant.png)
+[SVG](Diagrams/Appendix/evolution-debt-quadrant.svg) · ![evolution debt quadrant](Diagrams/Appendix/evolution-debt-quadrant.svg)
 
-[Impact versus effort matrix](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-impact-effort.svg)
+[Impact versus effort matrix](Diagrams/Appendix/evolution-impact-effort.svg)
 
-[SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-impact-effort.svg) · ![evolution impact effort](../Diagrams/Archived-Png/Evolution-Impact-Effort.png)
+[SVG](Diagrams/Appendix/evolution-impact-effort.svg) · ![evolution impact effort](Diagrams/Appendix/evolution-impact-effort.svg)
 
-[Conceptual debt interest curve](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-interest-curve.svg)
+[Conceptual debt interest curve](Diagrams/Appendix/evolution-interest-curve.svg)
 
-[SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-interest-curve.svg) · ![evolution interest curve](../Diagrams/Archived-Png/Evolution-Interest-Curve.png)
+[SVG](Diagrams/Appendix/evolution-interest-curve.svg) · ![evolution interest curve](Diagrams/Appendix/evolution-interest-curve.svg)
 
-[Illustrative churn versus complexity hotspot chart](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-churn-complexity.svg)
+[Illustrative churn versus complexity hotspot chart](Diagrams/Appendix/evolution-churn-complexity.svg)
 
-[SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-churn-complexity.svg) · ![evolution churn complexity](../Diagrams/Archived-Png/Evolution-Churn-Complexity.png)
+[SVG](Diagrams/Appendix/evolution-churn-complexity.svg) · ![evolution churn complexity](Diagrams/Appendix/evolution-churn-complexity.svg)
 
 Quadrant labels classify how a deficiency arose, not whether it is acceptable. Impact/effort is qualitative: source violations and commitment-blocking security, privacy, history or recovery gates take precedence over convenience. Neither chart allocates work or authorizes deferral.
 
@@ -393,9 +656,7 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 **Start here to turn architecture responsibilities into understandable component designs and evolve those designs safely.** This section owns shared OO guidance and refactoring/debt procedures; actual component packages own concrete interfaces, classes, algorithms and technical scenarios.
 
-Owner and decision authority: Farhad. Updated November 2, 2026.
-
-**Status:** proposed design guidance. This folder has **two numbered documents, 01 and 05**; 02–04 are unused numbering gaps, not missing mandatory files. The numbering preserves stable existing links. No implementation, measured debt, migration or accepted technical baseline is established by the illustrations.
+Owner and decision authority: Farhad. **Status:** proposed design guidance. This folder has **two numbered documents, 01 and 05**; 02–04 are unused numbering gaps, not missing mandatory files. The numbering preserves stable existing links. No implementation, measured debt, migration or accepted technical baseline is established by the illustrations.
 
 [Contents](#design-record-02-detailed-and-object-oriented-design-detailed-and-object-oriented-design-md--heading-1-contents-and-reading-order) · [Maps](#design-record-02-detailed-and-object-oriented-design-detailed-and-object-oriented-design-md--heading-2-reading-and-concept-maps) · [Example](#design-record-02-detailed-and-object-oriented-design-detailed-and-object-oriented-design-md--heading-3-shared-publication-example) · [Glossary](#design-record-02-detailed-and-object-oriented-design-detailed-and-object-oriented-design-md--heading-4-glossary) · [Cheat sheet](#design-record-02-detailed-and-object-oriented-design-detailed-and-object-oriented-design-md--heading-5-design-cheat-sheet) · [Review](#design-record-02-detailed-and-object-oriented-design-detailed-and-object-oriented-design-md--heading-6-review-and-maintenance)
 
@@ -410,7 +671,7 @@ Owner and decision authority: Farhad. Updated November 2, 2026.
 | [Component packages](02-Module-Breakdown.md#design-record-03-component-and-module-design-component-and-module-design-md) | Concrete realization | Keep each component's signatures, classes, algorithms, scenarios and constraints together. |
 | [Diagram catalog](#design-record-02-detailed-and-object-oriented-design-diagrams-diagram-catalog-md) | Editable visual sources and exports | Find each figure with its owner, source and readable SVG/PNG. |
 
-Before 01, read [architecture drivers](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-01-design-drivers-and-solution-options-md), [module boundaries](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md), the [analysis domain model](../../03-System-Analysis/01-System-Analysis.md#analysis-domain-and-information-analysis--03-domain-model-and-object-oriented-view) and [operation contracts](../../03-System-Analysis/01-System-Analysis.md#analysis-business-rules-and-operation-contracts--10-domain-constraints-and-operation-contracts). Requirements retain required meaning; technical design cannot silently change permissions, publication or history rules.
+Before 01, read [architecture drivers](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-01-design-drivers-and-solution-options-md), [module boundaries](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md), the [analysis domain model](../../03-System-Analysis/02-Domain-And-Information-Analysis.md#analysis-domain-and-information-analysis--03-domain-model-and-object-oriented-view) and [operation contracts](../../03-System-Analysis/03-Processes-Scenarios-And-Business-Rules.md#analysis-business-rules-and-operation-contracts--10-domain-constraints-and-operation-contracts). Requirements retain required meaning; technical design cannot silently change permissions, publication or history rules.
 
 Use the [component template](02-Module-Breakdown.md#design-record-03-component-and-module-design-component-and-module-design-md) to realize a component. Consult shared [data](04-Database-Design.md#design-record-04-data-design-data-design-md), [API](05-API-Specification.md#design-record-05-interface-and-api-design-interface-and-api-design-md) and [quality/security](../01-High-Level-Design/14-Appendices.md#design-record-06-design-quality-and-security-analysis-design-quality-and-security-analysis-md) guidance at affected boundaries. Use 05 before changing an established candidate, then link actual findings to [review/handoff](../01-High-Level-Design/14-Appendices.md#design-record-06-design-quality-and-security-analysis-05-design-review-traceability-and-handoff-md) and significant choices to [ADRs](../ADR/Decision-Index.md#design-record-07-design-decisions-design-decisions-md).
 
@@ -422,9 +683,9 @@ Use the [component template](02-Module-Breakdown.md#design-record-03-component-a
 
 ##### 2.1 Section learning path
 
-[Section learning path](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-reading-path.svg)
+[Section learning path](Diagrams/Appendix/oo-index-reading-path.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-reading-path.puml) · ![oo index reading path](../Diagrams/Archived-Png/Oo-Index-Reading-Path.png)
+[Editable PlantUML](Diagrams/Appendix/oo-index-reading-path.puml) · ![oo index reading path](Diagrams/Appendix/oo-index-reading-path.svg)
 
 Read 01 for shared guidance; use the component package for concrete realization; use 05 when assessing or changing a design. The loop represents iterative work, not a source dependency cycle.
 
@@ -432,9 +693,9 @@ Read 01 for shared guidance; use the component package for concrete realization;
 
 ##### 2.2 Principles, patterns and refactoring
 
-[Principles, patterns and refactoring](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-concept-map.svg)
+[Principles, patterns and refactoring](Diagrams/Appendix/oo-index-concept-map.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-concept-map.puml) · ![oo index concept map](../Diagrams/Archived-Png/Oo-Index-Concept-Map.png)
+[Editable PlantUML](Diagrams/Appendix/oo-index-concept-map.puml) · ![oo index concept map](Diagrams/Appendix/oo-index-concept-map.svg)
 
 Principles guide judgment, patterns solve specific recurring problems, and refactoring changes structure. None replaces source obligations or verification; an observed defect may require a separately reviewed behavior correction.
 
@@ -442,9 +703,9 @@ Principles guide judgment, patterns solve specific recurring problems, and refac
 
 ##### 2.3 Prerequisites and reading dependencies
 
-[Prerequisites and reading dependencies](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-prerequisites.svg)
+[Prerequisites and reading dependencies](Diagrams/Appendix/oo-index-prerequisites.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-prerequisites.puml) · ![oo index prerequisites](../Diagrams/Archived-Png/Oo-Index-Prerequisites.png)
+[Editable PlantUML](Diagrams/Appendix/oo-index-prerequisites.puml) · ![oo index prerequisites](Diagrams/Appendix/oo-index-prerequisites.svg)
 
 Arrows mean reading inputs, not runtime calls or code imports. Review shared data/API/security decisions alongside the affected component; an evolution proposal requires an identified baseline rather than an invented implementation.
 
@@ -452,9 +713,9 @@ Arrows mean reading inputs, not runtime calls or code imports. Review shared dat
 
 ##### 2.4 Architecture-to-detailed-design bridge
 
-[Architecture-to-detailed-design bridge](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-architecture-bridge.svg)
+[Architecture-to-detailed-design bridge](Diagrams/Appendix/oo-index-architecture-bridge.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-architecture-bridge.puml) · ![oo index architecture bridge](../Diagrams/Archived-Png/Oo-Index-Architecture-Bridge.png)
+[Editable PlantUML](Diagrams/Appendix/oo-index-architecture-bridge.puml) · ![oo index architecture bridge](Diagrams/Appendix/oo-index-architecture-bridge.svg)
 
 Architecture assigns system responsibilities and operating constraints. Detailed component design refines their realization. If refinement changes boundaries or quality trade-offs, update the architecture/ADR explicitly instead of silently diverging.
 
@@ -462,9 +723,9 @@ Architecture assigns system responsibilities and operating constraints. Detailed
 
 ##### 2.5 Levels of abstraction
 
-[Levels of abstraction](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-abstraction-levels.svg)
+[Levels of abstraction](Diagrams/Appendix/oo-index-abstraction-levels.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-abstraction-levels.puml) · ![oo index abstraction levels](../Diagrams/Archived-Png/Oo-Index-Abstraction-Levels.png)
+[Editable PlantUML](Diagrams/Appendix/oo-index-abstraction-levels.puml) · ![oo index abstraction levels](Diagrams/Appendix/oo-index-abstraction-levels.svg)
 
 Use the level needed by the question. System/module views do not specify method algorithms, while a class diagram cannot establish deployment isolation or actual transaction correctness.
 
@@ -472,9 +733,9 @@ Use the level needed by the question. System/module views do not specify method 
 
 ##### 2.6 Design lifecycle and feedback
 
-[Design lifecycle and feedback](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-design-lifecycle.svg)
+[Design lifecycle and feedback](Diagrams/Appendix/oo-index-design-lifecycle.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-design-lifecycle.puml) · ![oo index design lifecycle](../Diagrams/Archived-Png/Oo-Index-Design-Lifecycle.png)
+[Editable PlantUML](Diagrams/Appendix/oo-index-design-lifecycle.puml) · ![oo index design lifecycle](Diagrams/Appendix/oo-index-design-lifecycle.svg)
 
 A proposed workflow, not evidence of completed implementation. Refactoring preserves applicable behavior; changed source policy or externally visible contracts need their own disposition. Failed reverification does not close the work.
 
@@ -482,9 +743,9 @@ A proposed workflow, not evidence of completed implementation. Refactoring prese
 
 ##### 2.7 Topic mind map
 
-[Topic mind map](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-topic-mindmap.svg)
+[Topic mind map](Diagrams/Appendix/oo-index-topic-mindmap.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-topic-mindmap.puml) · ![oo index topic mindmap](../Diagrams/Archived-Png/Oo-Index-Topic-Mindmap.png)
+[Editable PlantUML](Diagrams/Appendix/oo-index-topic-mindmap.puml) · ![oo index topic mindmap](Diagrams/Appendix/oo-index-topic-mindmap.svg)
 
 This map groups topics rather than prescribing dependencies. Component-specific details remain in the owning component package; ADRs and review evidence retain their own owners.
 
@@ -492,9 +753,9 @@ This map groups topics rather than prescribing dependencies. Component-specific 
 
 #### 3. Shared publication example
 
-[Selected proposed publication classes](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/publication-use-case-classes.svg)
+[Selected proposed publication classes](Diagrams/Detailed/publication-use-case-classes.svg)
 
-[PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/publication-use-case-classes.puml) · ![publication use case classes](../Diagrams/Archived-Png/Publication-Use-Case-Classes.png)
+[PlantUML](Diagrams/Detailed/publication-use-case-classes.puml) · ![publication use case classes](Diagrams/Detailed/publication-use-case-classes.svg)
 
 Use this existing small model as the running example: PublishRevisionHandler coordinates current authority, an exact draft version and PublicationStore; PublishedResumeRevision preserves the separately confirmed identity. [01](03-Detailed-Module-Design.md#design-record-02-detailed-and-object-oriented-design-01-design-principles-and-object-oriented-approach-md--heading-8-object-oriented-visual-and-responsibility-package) develops its objects, dependencies and collaboration. [05](#design-record-02-detailed-and-object-oriented-design-05-design-evolution-refactoring-and-technical-debt-md--heading-8-evolution-and-debt-visual-package) uses the same publication responsibility to illustrate bounded extraction and compatibility. These are related teaching views, not snapshots of implemented classes or a measured before/after refactoring.
 
@@ -563,9 +824,9 @@ FAU V08 motivates computational data/classes, detailed dynamics, technical scena
 
 These are proposed technical illustrations, not implemented classes or complete component models. Read each with the owning document and refine exact signatures/types in the actual component package.
 
-- [Responsibilities and dependency direction](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-responsibility-direction.svg) · [Editable source](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-responsibility-direction.dot) · ![oo responsibility direction](../Diagrams/Archived-Png/Oo-Responsibility-Direction.png)
-- [Selected publication class design](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/publication-use-case-classes.svg) · [Editable source](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/publication-use-case-classes.puml) · ![publication use case classes](../Diagrams/Archived-Png/Publication-Use-Case-Classes.png)
-- [Pattern selection and review](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/pattern-selection-route.svg) · [Editable source](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/pattern-selection-route.dot) · ![pattern selection route](../Diagrams/Archived-Png/Pattern-Selection-Route.png)
+- [Responsibilities and dependency direction](Diagrams/Detailed/oo-responsibility-direction.svg) · [Editable source](Diagrams/Detailed/oo-responsibility-direction.dot) · ![oo responsibility direction](Diagrams/Detailed/oo-responsibility-direction.svg)
+- [Selected publication class design](Diagrams/Detailed/publication-use-case-classes.svg) · [Editable source](Diagrams/Detailed/publication-use-case-classes.puml) · ![publication use case classes](Diagrams/Detailed/publication-use-case-classes.svg)
+- [Pattern selection and review](Diagrams/Detailed/pattern-selection-route.svg) · [Editable source](Diagrams/Detailed/pattern-selection-route.dot) · ![pattern selection route](Diagrams/Detailed/pattern-selection-route.svg)
 
 [Owning principles document](03-Detailed-Module-Design.md#design-record-02-detailed-and-object-oriented-design-01-design-principles-and-object-oriented-approach-md) · [Detailed Design index](#design-record-02-detailed-and-object-oriented-design-detailed-and-object-oriented-design-md)
 
@@ -575,9 +836,9 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Design evolution and debt
 
-- [Finding classification](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/design-finding-classification.svg) · [DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/design-finding-classification.dot) · ![design finding classification](../Diagrams/Archived-Png/Design-Finding-Classification.png)
-- [Change impact and verification](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/design-change-impact-route.svg) · [DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/design-change-impact-route.dot) · ![design change impact route](../Diagrams/Archived-Png/Design-Change-Impact-Route.png)
-- [Compatible data and contract evolution](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/compatible-design-evolution.svg) · [DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/compatible-design-evolution.dot) · ![compatible design evolution](../Diagrams/Archived-Png/Compatible-Design-Evolution.png)
+- [Finding classification](Diagrams/Appendix/design-finding-classification.svg) · [DOT](Diagrams/Appendix/design-finding-classification.dot) · ![design finding classification](Diagrams/Appendix/design-finding-classification.svg)
+- [Change impact and verification](Diagrams/Appendix/design-change-impact-route.svg) · [DOT](Diagrams/Appendix/design-change-impact-route.dot) · ![design change impact route](Diagrams/Appendix/design-change-impact-route.svg)
+- [Compatible data and contract evolution](Diagrams/Appendix/compatible-design-evolution.svg) · [DOT](Diagrams/Appendix/compatible-design-evolution.dot) · ![compatible design evolution](Diagrams/Appendix/compatible-design-evolution.svg)
 
 [Owning evolution procedure](#design-record-02-detailed-and-object-oriented-design-05-design-evolution-refactoring-and-technical-debt-md). Proposed procedures; no actual code debt finding or performed migration/refactoring is implied.
 
@@ -585,17 +846,17 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Expanded OO principles package
 
-- [Before and after: separate reasons to change](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-before-after.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-before-after.puml) · ![oo before after](../Diagrams/Archived-Png/Oo-Before-After.png)
-- [Object diagram: one illustrative publication collaboration](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-runtime-objects.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-runtime-objects.puml) · ![oo runtime objects](../Diagrams/Archived-Png/Oo-Runtime-Objects.png)
-- [Package diagram: acyclic source dependencies](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-packages.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-packages.puml) · ![oo packages](../Diagrams/Archived-Png/Oo-Packages.png)
-- [Dependency inversion at the persistence boundary](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-dependency-inversion.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-dependency-inversion.puml) · ![oo dependency inversion](../Diagrams/Archived-Png/Oo-Dependency-Inversion.png)
-- [Inheritance versus composition: rendition variation](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-composition.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-composition.puml) · ![oo composition](../Diagrams/Archived-Png/Oo-Composition.png)
-- [Interface realization and narrow consumer access](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-realization.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-realization.puml) · ![oo realization](../Diagrams/Archived-Png/Oo-Realization.png)
-- [Coupling and cohesion: compare responsibility shapes](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-coupling-cohesion.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-coupling-cohesion.puml) · ![oo coupling cohesion](../Diagrams/Archived-Png/Oo-Coupling-Cohesion.png)
-- [Sequence: explicit publication object collaboration](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-publication-sequence.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-publication-sequence.puml) · ![oo publication sequence](../Diagrams/Archived-Png/Oo-Publication-Sequence.png)
-- [Conceptual domain model: independent identities](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-conceptual-domain.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-conceptual-domain.puml) · ![oo conceptual domain](../Diagrams/Archived-Png/Oo-Conceptual-Domain.png)
-- [Law of Demeter: request an intention, avoid navigation chains](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-demeter.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-demeter.puml) · ![oo demeter](../Diagrams/Archived-Png/Oo-Demeter.png)
-- [Optional Strategy preview: exact representation resolution](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-strategy-preview.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-strategy-preview.puml) · ![oo strategy preview](../Diagrams/Archived-Png/Oo-Strategy-Preview.png)
+- [Before and after: separate reasons to change](Diagrams/Detailed/oo-before-after.svg) · [PlantUML](Diagrams/Detailed/oo-before-after.puml) · ![oo before after](Diagrams/Detailed/oo-before-after.svg)
+- [Object diagram: one illustrative publication collaboration](Diagrams/Detailed/oo-runtime-objects.svg) · [PlantUML](Diagrams/Detailed/oo-runtime-objects.puml) · ![oo runtime objects](Diagrams/Detailed/oo-runtime-objects.svg)
+- [Package diagram: acyclic source dependencies](Diagrams/Detailed/oo-packages.svg) · [PlantUML](Diagrams/Detailed/oo-packages.puml) · ![oo packages](Diagrams/Detailed/oo-packages.svg)
+- [Dependency inversion at the persistence boundary](Diagrams/Detailed/oo-dependency-inversion.svg) · [PlantUML](Diagrams/Detailed/oo-dependency-inversion.puml) · ![oo dependency inversion](Diagrams/Detailed/oo-dependency-inversion.svg)
+- [Inheritance versus composition: rendition variation](Diagrams/Detailed/oo-composition.svg) · [PlantUML](Diagrams/Detailed/oo-composition.puml) · ![oo composition](Diagrams/Detailed/oo-composition.svg)
+- [Interface realization and narrow consumer access](Diagrams/Detailed/oo-realization.svg) · [PlantUML](Diagrams/Detailed/oo-realization.puml) · ![oo realization](Diagrams/Detailed/oo-realization.svg)
+- [Coupling and cohesion: compare responsibility shapes](Diagrams/Detailed/oo-coupling-cohesion.svg) · [PlantUML](Diagrams/Detailed/oo-coupling-cohesion.puml) · ![oo coupling cohesion](Diagrams/Detailed/oo-coupling-cohesion.svg)
+- [Sequence: explicit publication object collaboration](Diagrams/Detailed/oo-publication-sequence.svg) · [PlantUML](Diagrams/Detailed/oo-publication-sequence.puml) · ![oo publication sequence](Diagrams/Detailed/oo-publication-sequence.svg)
+- [Conceptual domain model: independent identities](Diagrams/Detailed/oo-conceptual-domain.svg) · [PlantUML](Diagrams/Detailed/oo-conceptual-domain.puml) · ![oo conceptual domain](Diagrams/Detailed/oo-conceptual-domain.svg)
+- [Law of Demeter: request an intention, avoid navigation chains](Diagrams/Detailed/oo-demeter.svg) · [PlantUML](Diagrams/Detailed/oo-demeter.puml) · ![oo demeter](Diagrams/Detailed/oo-demeter.svg)
+- [Optional Strategy preview: exact representation resolution](Diagrams/Detailed/oo-strategy-preview.svg) · [PlantUML](Diagrams/Detailed/oo-strategy-preview.puml) · ![oo strategy preview](Diagrams/Detailed/oo-strategy-preview.svg)
 
 [Owning principles document, CRC/SOLID/scenario tables](03-Detailed-Module-Design.md#design-record-02-detailed-and-object-oriented-design-01-design-principles-and-object-oriented-approach-md--heading-8-object-oriented-visual-and-responsibility-package). Proposed illustrations; counterexamples are not observed defects.
 
@@ -603,21 +864,21 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Expanded evolution and debt package
 
-- [Before/after class responsibilities](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-class-change.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-class-change.puml) · ![evolution class change](../Diagrams/Archived-Png/Evolution-Class-Change.png)
-- [Step-by-step transformation and verification](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-refactoring-sequence.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-refactoring-sequence.puml) · ![evolution refactoring sequence](../Diagrams/Archived-Png/Evolution-Refactoring-Sequence.png)
-- [Hypothetical dependency cycle and hotspot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-dependency-hotspots.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-dependency-hotspots.puml) · ![evolution dependency hotspots](../Diagrams/Archived-Png/Evolution-Dependency-Hotspots.png)
-- [Before/after package dependency direction](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-package-direction.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-package-direction.puml) · ![evolution package direction](../Diagrams/Archived-Png/Evolution-Package-Direction.png)
-- [Intended versus eroded architecture](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-erosion.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-erosion.puml) · ![evolution erosion](../Diagrams/Archived-Png/Evolution-Erosion.png)
-- [Design evolution timeline and ADR history](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-history.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-history.puml) · ![evolution history](../Diagrams/Archived-Png/Evolution-History.png)
-- [Strangler facade: conditional future replacement](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-strangler.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-strangler.puml) · ![evolution strangler](../Diagrams/Archived-Png/Evolution-Strangler.png)
-- [Branch by abstraction inside one application](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-branch-abstraction.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-branch-abstraction.puml) · ![evolution branch abstraction](../Diagrams/Archived-Png/Evolution-Branch-Abstraction.png)
-- [Legacy-shaped versus target component state](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-component-target.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-component-target.puml) · ![evolution component target](../Diagrams/Archived-Png/Evolution-Component-Target.png)
-- [Refactoring/migration work lifecycle](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-lifecycle.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-lifecycle.puml) · ![evolution lifecycle](../Diagrams/Archived-Png/Evolution-Lifecycle.png)
-- [Contract-oriented verification safety net](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-safety-net.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-safety-net.puml) · ![evolution safety net](../Diagrams/Archived-Png/Evolution-Safety-Net.png)
-- [Technical debt quadrant](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-debt-quadrant.svg) · ![evolution debt quadrant](../Diagrams/Archived-Png/Evolution-Debt-Quadrant.png)
-- [Impact versus effort matrix](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-impact-effort.svg) · ![evolution impact effort](../Diagrams/Archived-Png/Evolution-Impact-Effort.png)
-- [Conceptual debt interest curve](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-interest-curve.svg) · ![evolution interest curve](../Diagrams/Archived-Png/Evolution-Interest-Curve.png)
-- [Illustrative churn versus complexity hotspot chart](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-churn-complexity.svg) · ![evolution churn complexity](../Diagrams/Archived-Png/Evolution-Churn-Complexity.png)
+- [Before/after class responsibilities](Diagrams/Appendix/evolution-class-change.svg) · [PlantUML](Diagrams/Appendix/evolution-class-change.puml) · ![evolution class change](Diagrams/Appendix/evolution-class-change.svg)
+- [Step-by-step transformation and verification](Diagrams/Appendix/evolution-refactoring-sequence.svg) · [PlantUML](Diagrams/Appendix/evolution-refactoring-sequence.puml) · ![evolution refactoring sequence](Diagrams/Appendix/evolution-refactoring-sequence.svg)
+- [Hypothetical dependency cycle and hotspot](Diagrams/Appendix/evolution-dependency-hotspots.svg) · [PlantUML](Diagrams/Appendix/evolution-dependency-hotspots.puml) · ![evolution dependency hotspots](Diagrams/Appendix/evolution-dependency-hotspots.svg)
+- [Before/after package dependency direction](Diagrams/Appendix/evolution-package-direction.svg) · [PlantUML](Diagrams/Appendix/evolution-package-direction.puml) · ![evolution package direction](Diagrams/Appendix/evolution-package-direction.svg)
+- [Intended versus eroded architecture](Diagrams/Appendix/evolution-erosion.svg) · [PlantUML](Diagrams/Appendix/evolution-erosion.puml) · ![evolution erosion](Diagrams/Appendix/evolution-erosion.svg)
+- [Design evolution timeline and ADR history](Diagrams/Appendix/evolution-history.svg) · [PlantUML](Diagrams/Appendix/evolution-history.puml) · ![evolution history](Diagrams/Appendix/evolution-history.svg)
+- [Strangler facade: conditional future replacement](Diagrams/Appendix/evolution-strangler.svg) · [PlantUML](Diagrams/Appendix/evolution-strangler.puml) · ![evolution strangler](Diagrams/Appendix/evolution-strangler.svg)
+- [Branch by abstraction inside one application](Diagrams/Appendix/evolution-branch-abstraction.svg) · [PlantUML](Diagrams/Appendix/evolution-branch-abstraction.puml) · ![evolution branch abstraction](Diagrams/Appendix/evolution-branch-abstraction.svg)
+- [Legacy-shaped versus target component state](Diagrams/Appendix/evolution-component-target.svg) · [PlantUML](Diagrams/Appendix/evolution-component-target.puml) · ![evolution component target](Diagrams/Appendix/evolution-component-target.svg)
+- [Refactoring/migration work lifecycle](Diagrams/Appendix/evolution-lifecycle.svg) · [PlantUML](Diagrams/Appendix/evolution-lifecycle.puml) · ![evolution lifecycle](Diagrams/Appendix/evolution-lifecycle.svg)
+- [Contract-oriented verification safety net](Diagrams/Appendix/evolution-safety-net.svg) · [PlantUML](Diagrams/Appendix/evolution-safety-net.puml) · ![evolution safety net](Diagrams/Appendix/evolution-safety-net.svg)
+- [Technical debt quadrant](Diagrams/Appendix/evolution-debt-quadrant.svg) · ![evolution debt quadrant](Diagrams/Appendix/evolution-debt-quadrant.svg)
+- [Impact versus effort matrix](Diagrams/Appendix/evolution-impact-effort.svg) · ![evolution impact effort](Diagrams/Appendix/evolution-impact-effort.svg)
+- [Conceptual debt interest curve](Diagrams/Appendix/evolution-interest-curve.svg) · ![evolution interest curve](Diagrams/Appendix/evolution-interest-curve.svg)
+- [Illustrative churn versus complexity hotspot chart](Diagrams/Appendix/evolution-churn-complexity.svg) · ![evolution churn complexity](Diagrams/Appendix/evolution-churn-complexity.svg)
 
 [Generator](#design-record-02-detailed-and-object-oriented-design-diagrams-evolution-visuals-generator-py) · [Synthetic chart data](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-chart-data.json) · [Owning procedure and tables](#design-record-02-detailed-and-object-oriented-design-05-design-evolution-refactoring-and-technical-debt-md--heading-8-evolution-and-debt-visual-package). All counterexamples/measurements are illustrative, not observed findings.
 
@@ -625,13 +886,13 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Section orientation and learning maps
 
-- [Section learning path](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-reading-path.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-reading-path.puml) · ![oo index reading path](../Diagrams/Archived-Png/Oo-Index-Reading-Path.png)
-- [Principles, patterns and refactoring](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-concept-map.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-concept-map.puml) · ![oo index concept map](../Diagrams/Archived-Png/Oo-Index-Concept-Map.png)
-- [Prerequisites and reading dependencies](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-prerequisites.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-prerequisites.puml) · ![oo index prerequisites](../Diagrams/Archived-Png/Oo-Index-Prerequisites.png)
-- [Architecture-to-detailed-design bridge](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-architecture-bridge.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-architecture-bridge.puml) · ![oo index architecture bridge](../Diagrams/Archived-Png/Oo-Index-Architecture-Bridge.png)
-- [Levels of abstraction](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-abstraction-levels.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-abstraction-levels.puml) · ![oo index abstraction levels](../Diagrams/Archived-Png/Oo-Index-Abstraction-Levels.png)
-- [Design lifecycle and feedback](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-design-lifecycle.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-design-lifecycle.puml) · ![oo index design lifecycle](../Diagrams/Archived-Png/Oo-Index-Design-Lifecycle.png)
-- [Topic mind map](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-topic-mindmap.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-topic-mindmap.puml) · ![oo index topic mindmap](../Diagrams/Archived-Png/Oo-Index-Topic-Mindmap.png)
+- [Section learning path](Diagrams/Appendix/oo-index-reading-path.svg) · [PlantUML](Diagrams/Appendix/oo-index-reading-path.puml) · ![oo index reading path](Diagrams/Appendix/oo-index-reading-path.svg)
+- [Principles, patterns and refactoring](Diagrams/Appendix/oo-index-concept-map.svg) · [PlantUML](Diagrams/Appendix/oo-index-concept-map.puml) · ![oo index concept map](Diagrams/Appendix/oo-index-concept-map.svg)
+- [Prerequisites and reading dependencies](Diagrams/Appendix/oo-index-prerequisites.svg) · [PlantUML](Diagrams/Appendix/oo-index-prerequisites.puml) · ![oo index prerequisites](Diagrams/Appendix/oo-index-prerequisites.svg)
+- [Architecture-to-detailed-design bridge](Diagrams/Appendix/oo-index-architecture-bridge.svg) · [PlantUML](Diagrams/Appendix/oo-index-architecture-bridge.puml) · ![oo index architecture bridge](Diagrams/Appendix/oo-index-architecture-bridge.svg)
+- [Levels of abstraction](Diagrams/Appendix/oo-index-abstraction-levels.svg) · [PlantUML](Diagrams/Appendix/oo-index-abstraction-levels.puml) · ![oo index abstraction levels](Diagrams/Appendix/oo-index-abstraction-levels.svg)
+- [Design lifecycle and feedback](Diagrams/Appendix/oo-index-design-lifecycle.svg) · [PlantUML](Diagrams/Appendix/oo-index-design-lifecycle.puml) · ![oo index design lifecycle](Diagrams/Appendix/oo-index-design-lifecycle.svg)
+- [Topic mind map](Diagrams/Appendix/oo-index-topic-mindmap.svg) · [PlantUML](Diagrams/Appendix/oo-index-topic-mindmap.puml) · ![oo index topic mindmap](Diagrams/Appendix/oo-index-topic-mindmap.svg)
 
 [Owning section index, glossary and cheat sheet](#design-record-02-detailed-and-object-oriented-design-detailed-and-object-oriented-design-md). Reading paths are guidance, not runtime dependencies or evidence of implemented design.
 
@@ -643,45 +904,45 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 | Editable source or visual | Current applicability | Matching exports |
 | --- | --- | --- |
-| [compatible-design-evolution.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/compatible-design-evolution.dot) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/compatible-design-evolution.svg) · ![compatible design evolution](../Diagrams/Archived-Png/Compatible-Design-Evolution.png) |
-| [design-change-impact-route.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/design-change-impact-route.dot) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/design-change-impact-route.svg) · ![design change impact route](../Diagrams/Archived-Png/Design-Change-Impact-Route.png) |
-| [design-finding-classification.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/design-finding-classification.dot) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/design-finding-classification.svg) · ![design finding classification](../Diagrams/Archived-Png/Design-Finding-Classification.png) |
-| [evolution-branch-abstraction.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-branch-abstraction.puml) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-branch-abstraction.svg) · ![evolution branch abstraction](../Diagrams/Archived-Png/Evolution-Branch-Abstraction.png) |
-| [evolution-churn-complexity.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-churn-complexity.svg) | Reference / illustrative chart | [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-churn-complexity.svg) · ![evolution churn complexity](../Diagrams/Archived-Png/Evolution-Churn-Complexity.png) |
-| [evolution-class-change.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-class-change.puml) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-class-change.svg) · ![evolution class change](../Diagrams/Archived-Png/Evolution-Class-Change.png) |
-| [evolution-component-target.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-component-target.puml) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-component-target.svg) · ![evolution component target](../Diagrams/Archived-Png/Evolution-Component-Target.png) |
-| [evolution-debt-quadrant.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-debt-quadrant.svg) | Reference / illustrative chart | [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-debt-quadrant.svg) · ![evolution debt quadrant](../Diagrams/Archived-Png/Evolution-Debt-Quadrant.png) |
-| [evolution-dependency-hotspots.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-dependency-hotspots.puml) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-dependency-hotspots.svg) · ![evolution dependency hotspots](../Diagrams/Archived-Png/Evolution-Dependency-Hotspots.png) |
-| [evolution-erosion.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-erosion.puml) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-erosion.svg) · ![evolution erosion](../Diagrams/Archived-Png/Evolution-Erosion.png) |
-| [evolution-history.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-history.puml) | Historical / alternative| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-history.svg) · ![evolution history](../Diagrams/Archived-Png/Evolution-History.png) |
-| [evolution-impact-effort.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-impact-effort.svg) | Reference / illustrative chart | [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-impact-effort.svg) · ![evolution impact effort](../Diagrams/Archived-Png/Evolution-Impact-Effort.png) |
-| [evolution-interest-curve.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-interest-curve.svg) | Reference / illustrative chart | [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-interest-curve.svg) · ![evolution interest curve](../Diagrams/Archived-Png/Evolution-Interest-Curve.png) |
-| [evolution-lifecycle.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-lifecycle.puml) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-lifecycle.svg) · ![evolution lifecycle](../Diagrams/Archived-Png/Evolution-Lifecycle.png) |
-| [evolution-package-direction.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-package-direction.puml) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-package-direction.svg) · ![evolution package direction](../Diagrams/Archived-Png/Evolution-Package-Direction.png) |
-| [evolution-refactoring-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-refactoring-sequence.puml) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-refactoring-sequence.svg) · ![evolution refactoring sequence](../Diagrams/Archived-Png/Evolution-Refactoring-Sequence.png) |
-| [evolution-safety-net.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-safety-net.puml) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-safety-net.svg) · ![evolution safety net](../Diagrams/Archived-Png/Evolution-Safety-Net.png) |
-| [evolution-strangler.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-strangler.puml) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-strangler.svg) · ![evolution strangler](../Diagrams/Archived-Png/Evolution-Strangler.png) |
-| [oo-before-after.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-before-after.puml) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-before-after.svg) · ![oo before after](../Diagrams/Archived-Png/Oo-Before-After.png) |
-| [oo-composition.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-composition.puml) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-composition.svg) · ![oo composition](../Diagrams/Archived-Png/Oo-Composition.png) |
-| [oo-conceptual-domain.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-conceptual-domain.puml) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-conceptual-domain.svg) · ![oo conceptual domain](../Diagrams/Archived-Png/Oo-Conceptual-Domain.png) |
-| [oo-coupling-cohesion.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-coupling-cohesion.puml) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-coupling-cohesion.svg) · ![oo coupling cohesion](../Diagrams/Archived-Png/Oo-Coupling-Cohesion.png) |
-| [oo-demeter.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-demeter.puml) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-demeter.svg) · ![oo demeter](../Diagrams/Archived-Png/Oo-Demeter.png) |
-| [oo-dependency-inversion.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-dependency-inversion.puml) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-dependency-inversion.svg) · ![oo dependency inversion](../Diagrams/Archived-Png/Oo-Dependency-Inversion.png) |
-| [oo-index-abstraction-levels.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-abstraction-levels.puml) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-abstraction-levels.svg) · ![oo index abstraction levels](../Diagrams/Archived-Png/Oo-Index-Abstraction-Levels.png) |
-| [oo-index-architecture-bridge.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-architecture-bridge.puml) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-architecture-bridge.svg) · ![oo index architecture bridge](../Diagrams/Archived-Png/Oo-Index-Architecture-Bridge.png) |
-| [oo-index-concept-map.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-concept-map.puml) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-concept-map.svg) · ![oo index concept map](../Diagrams/Archived-Png/Oo-Index-Concept-Map.png) |
-| [oo-index-design-lifecycle.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-design-lifecycle.puml) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-design-lifecycle.svg) · ![oo index design lifecycle](../Diagrams/Archived-Png/Oo-Index-Design-Lifecycle.png) |
-| [oo-index-prerequisites.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-prerequisites.puml) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-prerequisites.svg) · ![oo index prerequisites](../Diagrams/Archived-Png/Oo-Index-Prerequisites.png) |
-| [oo-index-reading-path.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-reading-path.puml) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-reading-path.svg) · ![oo index reading path](../Diagrams/Archived-Png/Oo-Index-Reading-Path.png) |
-| [oo-index-topic-mindmap.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-topic-mindmap.puml) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-topic-mindmap.svg) · ![oo index topic mindmap](../Diagrams/Archived-Png/Oo-Index-Topic-Mindmap.png) |
-| [oo-packages.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-packages.puml) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-packages.svg) · ![oo packages](../Diagrams/Archived-Png/Oo-Packages.png) |
-| [oo-publication-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-publication-sequence.puml) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-publication-sequence.svg) · ![oo publication sequence](../Diagrams/Archived-Png/Oo-Publication-Sequence.png) |
-| [oo-realization.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-realization.puml) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-realization.svg) · ![oo realization](../Diagrams/Archived-Png/Oo-Realization.png) |
-| [oo-responsibility-direction.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-responsibility-direction.dot) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-responsibility-direction.svg) · ![oo responsibility direction](../Diagrams/Archived-Png/Oo-Responsibility-Direction.png) |
-| [oo-runtime-objects.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-runtime-objects.puml) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-runtime-objects.svg) · ![oo runtime objects](../Diagrams/Archived-Png/Oo-Runtime-Objects.png) |
-| [oo-strategy-preview.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-strategy-preview.puml) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-strategy-preview.svg) · ![oo strategy preview](../Diagrams/Archived-Png/Oo-Strategy-Preview.png) |
-| [pattern-selection-route.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/pattern-selection-route.dot) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/pattern-selection-route.svg) · ![pattern selection route](../Diagrams/Archived-Png/Pattern-Selection-Route.png) |
-| [publication-use-case-classes.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/publication-use-case-classes.puml) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/publication-use-case-classes.svg) · ![publication use case classes](../Diagrams/Archived-Png/Publication-Use-Case-Classes.png) |
+| [compatible-design-evolution.dot](Diagrams/Appendix/compatible-design-evolution.dot) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/compatible-design-evolution.svg) · ![compatible design evolution](Diagrams/Appendix/compatible-design-evolution.svg) |
+| [design-change-impact-route.dot](Diagrams/Appendix/design-change-impact-route.dot) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/design-change-impact-route.svg) · ![design change impact route](Diagrams/Appendix/design-change-impact-route.svg) |
+| [design-finding-classification.dot](Diagrams/Appendix/design-finding-classification.dot) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/design-finding-classification.svg) · ![design finding classification](Diagrams/Appendix/design-finding-classification.svg) |
+| [evolution-branch-abstraction.puml](Diagrams/Appendix/evolution-branch-abstraction.puml) | Reference / design method| [SVG](Diagrams/Appendix/evolution-branch-abstraction.svg) · ![evolution branch abstraction](Diagrams/Appendix/evolution-branch-abstraction.svg) |
+| [evolution-churn-complexity.svg](Diagrams/Appendix/evolution-churn-complexity.svg) | Reference / illustrative chart | [SVG](Diagrams/Appendix/evolution-churn-complexity.svg) · ![evolution churn complexity](Diagrams/Appendix/evolution-churn-complexity.svg) |
+| [evolution-class-change.puml](Diagrams/Appendix/evolution-class-change.puml) | Reference / design method| [SVG](Diagrams/Appendix/evolution-class-change.svg) · ![evolution class change](Diagrams/Appendix/evolution-class-change.svg) |
+| [evolution-component-target.puml](Diagrams/Appendix/evolution-component-target.puml) | Reference / design method| [SVG](Diagrams/Appendix/evolution-component-target.svg) · ![evolution component target](Diagrams/Appendix/evolution-component-target.svg) |
+| [evolution-debt-quadrant.svg](Diagrams/Appendix/evolution-debt-quadrant.svg) | Reference / illustrative chart | [SVG](Diagrams/Appendix/evolution-debt-quadrant.svg) · ![evolution debt quadrant](Diagrams/Appendix/evolution-debt-quadrant.svg) |
+| [evolution-dependency-hotspots.puml](Diagrams/Appendix/evolution-dependency-hotspots.puml) | Reference / design method| [SVG](Diagrams/Appendix/evolution-dependency-hotspots.svg) · ![evolution dependency hotspots](Diagrams/Appendix/evolution-dependency-hotspots.svg) |
+| [evolution-erosion.puml](Diagrams/Appendix/evolution-erosion.puml) | Reference / design method| [SVG](Diagrams/Appendix/evolution-erosion.svg) · ![evolution erosion](Diagrams/Appendix/evolution-erosion.svg) |
+| [evolution-history.puml](Diagrams/Appendix/evolution-history.puml) | Historical / alternative| [SVG](Diagrams/Appendix/evolution-history.svg) · ![evolution history](Diagrams/Appendix/evolution-history.svg) |
+| [evolution-impact-effort.svg](Diagrams/Appendix/evolution-impact-effort.svg) | Reference / illustrative chart | [SVG](Diagrams/Appendix/evolution-impact-effort.svg) · ![evolution impact effort](Diagrams/Appendix/evolution-impact-effort.svg) |
+| [evolution-interest-curve.svg](Diagrams/Appendix/evolution-interest-curve.svg) | Reference / illustrative chart | [SVG](Diagrams/Appendix/evolution-interest-curve.svg) · ![evolution interest curve](Diagrams/Appendix/evolution-interest-curve.svg) |
+| [evolution-lifecycle.puml](Diagrams/Appendix/evolution-lifecycle.puml) | Reference / design method| [SVG](Diagrams/Appendix/evolution-lifecycle.svg) · ![evolution lifecycle](Diagrams/Appendix/evolution-lifecycle.svg) |
+| [evolution-package-direction.puml](Diagrams/Appendix/evolution-package-direction.puml) | Reference / design method| [SVG](Diagrams/Appendix/evolution-package-direction.svg) · ![evolution package direction](Diagrams/Appendix/evolution-package-direction.svg) |
+| [evolution-refactoring-sequence.puml](Diagrams/Appendix/evolution-refactoring-sequence.puml) | Reference / design method| [SVG](Diagrams/Appendix/evolution-refactoring-sequence.svg) · ![evolution refactoring sequence](Diagrams/Appendix/evolution-refactoring-sequence.svg) |
+| [evolution-safety-net.puml](Diagrams/Appendix/evolution-safety-net.puml) | Reference / design method| [SVG](Diagrams/Appendix/evolution-safety-net.svg) · ![evolution safety net](Diagrams/Appendix/evolution-safety-net.svg) |
+| [evolution-strangler.puml](Diagrams/Appendix/evolution-strangler.puml) | Reference / design method| [SVG](Diagrams/Appendix/evolution-strangler.svg) · ![evolution strangler](Diagrams/Appendix/evolution-strangler.svg) |
+| [oo-before-after.puml](Diagrams/Detailed/oo-before-after.puml) | Reference / design method| [SVG](Diagrams/Detailed/oo-before-after.svg) · ![oo before after](Diagrams/Detailed/oo-before-after.svg) |
+| [oo-composition.puml](Diagrams/Detailed/oo-composition.puml) | Reference / design method| [SVG](Diagrams/Detailed/oo-composition.svg) · ![oo composition](Diagrams/Detailed/oo-composition.svg) |
+| [oo-conceptual-domain.puml](Diagrams/Detailed/oo-conceptual-domain.puml) | Reference / design method| [SVG](Diagrams/Detailed/oo-conceptual-domain.svg) · ![oo conceptual domain](Diagrams/Detailed/oo-conceptual-domain.svg) |
+| [oo-coupling-cohesion.puml](Diagrams/Detailed/oo-coupling-cohesion.puml) | Reference / design method| [SVG](Diagrams/Detailed/oo-coupling-cohesion.svg) · ![oo coupling cohesion](Diagrams/Detailed/oo-coupling-cohesion.svg) |
+| [oo-demeter.puml](Diagrams/Detailed/oo-demeter.puml) | Reference / design method| [SVG](Diagrams/Detailed/oo-demeter.svg) · ![oo demeter](Diagrams/Detailed/oo-demeter.svg) |
+| [oo-dependency-inversion.puml](Diagrams/Detailed/oo-dependency-inversion.puml) | Reference / design method| [SVG](Diagrams/Detailed/oo-dependency-inversion.svg) · ![oo dependency inversion](Diagrams/Detailed/oo-dependency-inversion.svg) |
+| [oo-index-abstraction-levels.puml](Diagrams/Appendix/oo-index-abstraction-levels.puml) | Reference / design method| [SVG](Diagrams/Appendix/oo-index-abstraction-levels.svg) · ![oo index abstraction levels](Diagrams/Appendix/oo-index-abstraction-levels.svg) |
+| [oo-index-architecture-bridge.puml](Diagrams/Appendix/oo-index-architecture-bridge.puml) | Reference / design method| [SVG](Diagrams/Appendix/oo-index-architecture-bridge.svg) · ![oo index architecture bridge](Diagrams/Appendix/oo-index-architecture-bridge.svg) |
+| [oo-index-concept-map.puml](Diagrams/Appendix/oo-index-concept-map.puml) | Reference / design method| [SVG](Diagrams/Appendix/oo-index-concept-map.svg) · ![oo index concept map](Diagrams/Appendix/oo-index-concept-map.svg) |
+| [oo-index-design-lifecycle.puml](Diagrams/Appendix/oo-index-design-lifecycle.puml) | Reference / design method| [SVG](Diagrams/Appendix/oo-index-design-lifecycle.svg) · ![oo index design lifecycle](Diagrams/Appendix/oo-index-design-lifecycle.svg) |
+| [oo-index-prerequisites.puml](Diagrams/Appendix/oo-index-prerequisites.puml) | Reference / design method| [SVG](Diagrams/Appendix/oo-index-prerequisites.svg) · ![oo index prerequisites](Diagrams/Appendix/oo-index-prerequisites.svg) |
+| [oo-index-reading-path.puml](Diagrams/Appendix/oo-index-reading-path.puml) | Reference / design method| [SVG](Diagrams/Appendix/oo-index-reading-path.svg) · ![oo index reading path](Diagrams/Appendix/oo-index-reading-path.svg) |
+| [oo-index-topic-mindmap.puml](Diagrams/Appendix/oo-index-topic-mindmap.puml) | Reference / design method| [SVG](Diagrams/Appendix/oo-index-topic-mindmap.svg) · ![oo index topic mindmap](Diagrams/Appendix/oo-index-topic-mindmap.svg) |
+| [oo-packages.puml](Diagrams/Detailed/oo-packages.puml) | Reference / design method| [SVG](Diagrams/Detailed/oo-packages.svg) · ![oo packages](Diagrams/Detailed/oo-packages.svg) |
+| [oo-publication-sequence.puml](Diagrams/Detailed/oo-publication-sequence.puml) | Reference / design method| [SVG](Diagrams/Detailed/oo-publication-sequence.svg) · ![oo publication sequence](Diagrams/Detailed/oo-publication-sequence.svg) |
+| [oo-realization.puml](Diagrams/Detailed/oo-realization.puml) | Reference / design method| [SVG](Diagrams/Detailed/oo-realization.svg) · ![oo realization](Diagrams/Detailed/oo-realization.svg) |
+| [oo-responsibility-direction.dot](Diagrams/Detailed/oo-responsibility-direction.dot) | Reference / design method| [SVG](Diagrams/Detailed/oo-responsibility-direction.svg) · ![oo responsibility direction](Diagrams/Detailed/oo-responsibility-direction.svg) |
+| [oo-runtime-objects.puml](Diagrams/Detailed/oo-runtime-objects.puml) | Reference / design method| [SVG](Diagrams/Detailed/oo-runtime-objects.svg) · ![oo runtime objects](Diagrams/Detailed/oo-runtime-objects.svg) |
+| [oo-strategy-preview.puml](Diagrams/Detailed/oo-strategy-preview.puml) | Reference / design method| [SVG](Diagrams/Detailed/oo-strategy-preview.svg) · ![oo strategy preview](Diagrams/Detailed/oo-strategy-preview.svg) |
+| [pattern-selection-route.dot](Diagrams/Detailed/pattern-selection-route.dot) | Reference / design method| [SVG](Diagrams/Detailed/pattern-selection-route.svg) · ![pattern selection route](Diagrams/Detailed/pattern-selection-route.svg) |
+| [publication-use-case-classes.puml](Diagrams/Detailed/publication-use-case-classes.puml) | Reference / design method| [SVG](Diagrams/Detailed/publication-use-case-classes.svg) · ![publication use case classes](Diagrams/Detailed/publication-use-case-classes.svg) |
 
 </details>
 
@@ -1043,7 +1304,7 @@ print(('Published' if '--publish' in sys.argv else 'Prepared'),len(manifest),'fi
 
 **Proposed organization:** module-oriented Laravel source, explicit exported contracts and internal implementation, a coordinated trusted application release, separately controlled operating data and evaluated external facilities.
 
-**Status:** proposed implementation view, November 2, 2026. The source tree and artifact names below are design conventions, not files claimed to exist or a generated product implementation. Final toolchain, versions, dependency licenses, Git engine, queue and executor remain subject to evaluation and applicable acceptance gates.
+**Status:** proposed implementation view. The source tree and artifact names below are design conventions, not files claimed to exist or a generated product implementation. Final toolchain, versions, dependency licenses, Git engine, queue and executor remain subject to evaluation and applicable acceptance gates.
 
 [Source layout](#design-record-03-component-and-module-design-02-implementation-view-and-artifacts-md--heading-1-proposed-source-organization) · [Mappings](#design-record-03-component-and-module-design-02-implementation-view-and-artifacts-md--heading-2-component-to-artifact-mapping) · [Build](#design-record-03-component-and-module-design-02-implementation-view-and-artifacts-md--heading-3-dependency-and-build-organization) · [Configuration](#design-record-03-component-and-module-design-02-implementation-view-and-artifacts-md--heading-4-configuration-operating-data-and-generated-content) · [Release](#design-record-03-component-and-module-design-02-implementation-view-and-artifacts-md--heading-5-release-manifest-and-promotion) · [Review](#design-record-03-component-and-module-design-02-implementation-view-and-artifacts-md--heading-6-verification-and-completion) · [Essential views](#design-record-03-component-and-module-design-02-implementation-view-and-artifacts-md--heading-8-essential-implementation-and-artifact-views)
 
@@ -1059,9 +1320,9 @@ Follow [logical component boundaries](../01-High-Level-Design/14-Appendices.md#d
 
 #### 1. Proposed source organization
 
-[Proposed source responsibility structure](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-source-structure.svg)
+[Proposed source responsibility structure](Diagrams/Appendix/implementation-source-structure.svg)
 
-[Editable DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-source-structure.dot) · ![implementation source structure](../Diagrams/Archived-Png/Implementation-Source-Structure.png)
+[Editable DOT](Diagrams/Appendix/implementation-source-structure.dot) · ![implementation source structure](Diagrams/Appendix/implementation-source-structure.svg)
 
 The following illustrates responsibility placement. Adapt concrete names to the evaluated framework conventions and actual component complexity before implementation. Do not create empty architectural layers merely to mirror the tree.
 
@@ -1109,9 +1370,9 @@ Keep framework composition registrations explicit. Route composition delegates t
 
 #### 2. Component-to-artifact mapping
 
-[Components application artifacts and runtime placement](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/component-artifact-placement.svg)
+[Components application artifacts and runtime placement](Diagrams/Appendix/component-artifact-placement.svg)
 
-[Editable DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/component-artifact-placement.dot) · ![component artifact placement](../Diagrams/Archived-Png/Component-Artifact-Placement.png)
+[Editable DOT](Diagrams/Appendix/component-artifact-placement.dot) · ![component artifact placement](Diagrams/Appendix/component-artifact-placement.svg)
 
 <a id="design-record-03-component-and-module-design-02-implementation-view-and-artifacts-md--heading-ia-01--trusted-application-release"></a>
 
@@ -1212,9 +1473,9 @@ Documentation diagrams are generated from editable DOT/PlantUML sources and reta
 
 #### 5. Release manifest and promotion
 
-[Build candidate manifest and promotion route](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-release-route.svg)
+[Build candidate manifest and promotion route](Diagrams/Appendix/implementation-release-route.svg)
 
-[Editable DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-release-route.dot) · ![implementation release route](../Diagrams/Archived-Png/Implementation-Release-Route.png)
+[Editable DOT](Diagrams/Appendix/implementation-release-route.dot) · ![implementation release route](Diagrams/Appendix/implementation-release-route.svg)
 
 For an actual release record: source revision and dirty-state disposition; relevant dependency/toolchain identities; built artifact identities/integrity; component-to-artifact mapping; schema migration set and compatible app/worker/data versions; configuration key requirements; external engine/executor compatibility; actual verification/evidence; operating prerequisites; known risks; and rollback/forward-repair/recovery limits.
 
@@ -1263,9 +1524,9 @@ Only **three complementary diagrams** are added here; no new tables. Reuse the e
 
 ##### 8.1 Implementation view: logical owners to physical outputs
 
-[Implementation view: logical owners to physical outputs](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-essential-overview.svg)
+[Implementation view: logical owners to physical outputs](Diagrams/Appendix/implementation-essential-overview.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-essential-overview.puml) · ![implementation essential overview](../Diagrams/Archived-Png/Implementation-Essential-Overview.png)
+[Editable PlantUML](Diagrams/Appendix/implementation-essential-overview.puml) · ![implementation essential overview](Diagrams/Appendix/implementation-essential-overview.svg)
 
 4+1 implementation-view refinement: logical responsibilities map to source elements and physical outputs, not one service or binary per owner. IA locators reuse section 2; actual source/package names, toolchain and compatibility remain proposed.
 
@@ -1273,9 +1534,9 @@ Only **three complementary diagrams** are added here; no new tables. Reuse the e
 
 ##### 8.2 UML-style artifacts and manifestation boundaries
 
-[UML-style artifacts and manifestation boundaries](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-essential-overview.svg)
+[UML-style artifacts and manifestation boundaries](Diagrams/Appendix/implementation-essential-overview.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-essential-overview.puml) · ![implementation essential overview](../Diagrams/Archived-Png/Implementation-Essential-Overview.png)
+[Editable PlantUML](Diagrams/Appendix/implementation-essential-overview.puml) · ![implementation essential overview](Diagrams/Appendix/implementation-essential-overview.svg)
 
 The «manifest» dependency denotes UML artifact manifestation, distinct from the release-manifest document identifying output/provenance. Git/executor artifacts are conditional evaluated prerequisites, not installed products. A checksum alone is not authorization or origin assurance.
 
@@ -1283,9 +1544,9 @@ The «manifest» dependency denotes UML artifact manifestation, distinct from th
 
 ##### 8.3 Build dependency order and candidate evidence
 
-[Build dependency order and candidate evidence](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-essential-build-order.svg)
+[Build dependency order and candidate evidence](Diagrams/Appendix/implementation-essential-build-order.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-essential-build-order.puml) · ![implementation essential build order](../Diagrams/Archived-Png/Implementation-Essential-Build-Order.png)
+[Editable PlantUML](Diagrams/Appendix/implementation-essential-build-order.puml) · ![implementation essential build order](Diagrams/Appendix/implementation-essential-build-order.svg)
 
 Essential build-input/order flow, not installed CI or actual commands. PHP modules are not automatically separately compiled build targets; no fabricated inter-module compilation order is imposed. Parallel branches show independent candidate tasks only where actual tooling permits; affected checks must use the intended outputs. Packaging does not publish to a selected registry or authorize deployment.
 
@@ -1312,8 +1573,8 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Manual Applications LC-04
 
-- [Applications owned classes and references](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-owned-model.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-owned-model.puml) · ![applications owned model](../Diagrams/Archived-Png/Applications-Owned-Model.png)
-- [Actual-material capture coordination](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-capture-sequence.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-capture-sequence.puml) · ![applications capture sequence](../Diagrams/Archived-Png/Applications-Capture-Sequence.png)
+- [Applications owned classes and references](Diagrams/Detailed/applications-owned-model.svg) · [PlantUML](Diagrams/Detailed/applications-owned-model.puml) · ![applications owned model](Diagrams/Detailed/applications-owned-model.svg)
+- [Actual-material capture coordination](Diagrams/Detailed/applications-capture-sequence.svg) · [PlantUML](Diagrams/Detailed/applications-capture-sequence.puml) · ![applications capture sequence](Diagrams/Detailed/applications-capture-sequence.svg)
 
 [Owning component](03-Detailed-Module-Design.md#design-record-03-component-and-module-design-components-applications-md). Source policy, physical mapping and reference coordination retain their explicit pending decisions.
 
@@ -1323,9 +1584,9 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 **After MVP.** Shared operating and recovery controls still apply where relevant.
 
-- [Connection intent and calendar identities](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/communication-owned-model.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/communication-owned-model.puml) · ![communication owned model](../Diagrams/Archived-Png/Communication-Owned-Model.png)
-- [Reviewed send and uncertain result](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/communication-send-sequence.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/communication-send-sequence.puml) · ![communication send sequence](../Diagrams/Archived-Png/Communication-Send-Sequence.png)
-- [Local/provider calendar reconciliation](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/calendar-reconciliation-route.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/calendar-reconciliation-route.puml) · ![calendar reconciliation route](../Diagrams/Archived-Png/Calendar-Reconciliation-Route.png)
+- [Connection intent and calendar identities](Diagrams/Detailed/communication-owned-model.svg) · [PlantUML](Diagrams/Detailed/communication-owned-model.puml) · ![communication owned model](Diagrams/Detailed/communication-owned-model.svg)
+- [Reviewed send and uncertain result](Diagrams/Detailed/communication-send-sequence.svg) · [PlantUML](Diagrams/Detailed/communication-send-sequence.puml) · ![communication send sequence](Diagrams/Detailed/communication-send-sequence.svg)
+- [Local/provider calendar reconciliation](Diagrams/Detailed/calendar-reconciliation-route.svg) · [PlantUML](Diagrams/Detailed/calendar-reconciliation-route.puml) · ![calendar reconciliation route](Diagrams/Detailed/calendar-reconciliation-route.svg)
 
 [Owning component](03-Detailed-Module-Design.md#design-record-03-component-and-module-design-components-communication-and-calendar-md). Proposed contracts; actual provider capability/source-policy acceptance and concrete schema remain explicit gates.
 
@@ -1333,9 +1594,9 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Files and Operations LC-09
 
-- [Artifact accounting and protected references](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-owned-model.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-owned-model.puml) · ![files owned model](../Diagrams/Archived-Png/Files-Owned-Model.png)
-- [Admission finalization and actual usage](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-admission-sequence.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-admission-sequence.puml) · ![files admission sequence](../Diagrams/Archived-Png/Files-Admission-Sequence.png)
-- [Reference-aware reclamation guard](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-reclamation-route.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-reclamation-route.puml) · ![files reclamation route](../Diagrams/Archived-Png/Files-Reclamation-Route.png)
+- [Artifact accounting and protected references](Diagrams/Detailed/files-owned-model.svg) · [PlantUML](Diagrams/Detailed/files-owned-model.puml) · ![files owned model](Diagrams/Detailed/files-owned-model.svg)
+- [Admission finalization and actual usage](Diagrams/Detailed/files-admission-sequence.svg) · [PlantUML](Diagrams/Detailed/files-admission-sequence.puml) · ![files admission sequence](Diagrams/Detailed/files-admission-sequence.svg)
+- [Reference-aware reclamation guard](Diagrams/Detailed/files-reclamation-route.svg) · [PlantUML](Diagrams/Detailed/files-reclamation-route.puml) · ![files reclamation route](Diagrams/Detailed/files-reclamation-route.svg)
 
 [Owning component](03-Detailed-Module-Design.md#design-record-03-component-and-module-design-components-files-and-operations-md). Proposed protocols; actual quota values, schema/locking, backend and usable recovery remain pending evidence/decisions.
 
@@ -1343,8 +1604,8 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Git Collaboration LC-07
 
-- [Repository revision and review identities](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-owned-model.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-owned-model.puml) · ![git owned model](../Diagrams/Archived-Png/Git-Owned-Model.png)
-- [Guarded merge and native/metadata reconciliation](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-merge-sequence.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-merge-sequence.puml) · ![git merge sequence](../Diagrams/Archived-Png/Git-Merge-Sequence.png)
+- [Repository revision and review identities](Diagrams/Detailed/git-owned-model.svg) · [PlantUML](Diagrams/Detailed/git-owned-model.puml) · ![git owned model](Diagrams/Detailed/git-owned-model.svg)
+- [Guarded merge and native/metadata reconciliation](Diagrams/Detailed/git-merge-sequence.svg) · [PlantUML](Diagrams/Detailed/git-merge-sequence.puml) · ![git merge sequence](Diagrams/Detailed/git-merge-sequence.svg)
 
 [Owning component](03-Detailed-Module-Design.md#design-record-03-component-and-module-design-components-git-collaboration-md). Proposed contracts; engine/transport and concrete cross-store/ref/policy coordination remain evaluated decisions.
 
@@ -1352,8 +1613,8 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Identity and Access LC-01
 
-- [Account session and scoped authority model](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-owned-model.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-owned-model.puml) · ![identity owned model](../Diagrams/Archived-Png/Identity-Owned-Model.png)
-- [Current authority and revocation boundary](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-authorization-sequence.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-authorization-sequence.puml) · ![identity authorization sequence](../Diagrams/Archived-Png/Identity-Authorization-Sequence.png)
+- [Account session and scoped authority model](Diagrams/Detailed/identity-owned-model.svg) · [PlantUML](Diagrams/Detailed/identity-owned-model.puml) · ![identity owned model](Diagrams/Detailed/identity-owned-model.svg)
+- [Current authority and revocation boundary](Diagrams/Detailed/identity-authorization-sequence.svg) · [PlantUML](Diagrams/Detailed/identity-authorization-sequence.puml) · ![identity authorization sequence](Diagrams/Detailed/identity-authorization-sequence.svg)
 
 [Owning component](03-Detailed-Module-Design.md#design-record-03-component-and-module-design-components-identity-and-access-md). Proposed enforcement structure; actual administrative policy, credential/session mechanisms and concrete synchronization remain unresolved choices.
 
@@ -1361,8 +1622,8 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Professional Presentation LC-02
 
-- [Source, independent draft and publication model](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-owned-model.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-owned-model.puml) · ![presentation owned model](../Diagrams/Archived-Png/Presentation-Owned-Model.png)
-- [Selected apply and separate publication](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-update-publication.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-update-publication.puml) · ![presentation update publication](../Diagrams/Archived-Png/Presentation-Update-Publication.png)
+- [Source, independent draft and publication model](Diagrams/Detailed/presentation-owned-model.svg) · [PlantUML](Diagrams/Detailed/presentation-owned-model.puml) · ![presentation owned model](Diagrams/Detailed/presentation-owned-model.svg)
+- [Selected apply and separate publication](Diagrams/Detailed/presentation-update-publication.svg) · [PlantUML](Diagrams/Detailed/presentation-update-publication.puml) · ![presentation update publication](Diagrams/Detailed/presentation-update-publication.svg)
 
 [Owning component](03-Detailed-Module-Design.md#design-record-03-component-and-module-design-components-professional-presentation-md). Proposed technical realization of the accepted update/publication core; detailed source policies and concrete persistence/reference mechanisms retain review status.
 
@@ -1370,8 +1631,8 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Representation and Sharing LC-03
 
-- [Independent access and rendition state](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-owned-model.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-owned-model.puml) · ![sharing owned model](../Diagrams/Archived-Png/Sharing-Owned-Model.png)
-- [Current-authority protected retrieval](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-protected-retrieval.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-protected-retrieval.puml) · ![sharing protected retrieval](../Diagrams/Archived-Png/Sharing-Protected-Retrieval.png)
+- [Independent access and rendition state](Diagrams/Detailed/sharing-owned-model.svg) · [PlantUML](Diagrams/Detailed/sharing-owned-model.puml) · ![sharing owned model](Diagrams/Detailed/sharing-owned-model.svg)
+- [Current-authority protected retrieval](Diagrams/Detailed/sharing-protected-retrieval.svg) · [PlantUML](Diagrams/Detailed/sharing-protected-retrieval.puml) · ![sharing protected retrieval](Diagrams/Detailed/sharing-protected-retrieval.svg)
 
 [Owning component](03-Detailed-Module-Design.md#design-record-03-component-and-module-design-components-representation-and-sharing-md). Proposed representation and protected retrieval mechanisms; detailed link/session/rendition policies and serving synchronization retain review status.
 
@@ -1379,8 +1640,8 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Work Management LC-06
 
-- [Work views and coherent Sprint Backlog](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-owned-model.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-owned-model.puml) · ![work owned model](../Diagrams/Archived-Png/Work-Owned-Model.png)
-- [Guarded mutation and explicit Sprint-period close](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-mutation-sprint-close.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-mutation-sprint-close.puml) · ![work mutation sprint close](../Diagrams/Archived-Png/Work-Mutation-Sprint-Close.png)
+- [Work views and coherent Sprint Backlog](Diagrams/Detailed/work-owned-model.svg) · [PlantUML](Diagrams/Detailed/work-owned-model.puml) · ![work owned model](Diagrams/Detailed/work-owned-model.svg)
+- [Guarded mutation and explicit Sprint-period close](Diagrams/Detailed/work-mutation-sprint-close.svg) · [PlantUML](Diagrams/Detailed/work-mutation-sprint-close.puml) · ![work mutation sprint close](Diagrams/Detailed/work-mutation-sprint-close.svg)
 
 [Owning component](03-Detailed-Module-Design.md#design-record-03-component-and-module-design-components-work-management-md). Proposed work and Sprint mechanisms; detailed workflow, role, cardinality and disposition policies retain review status.
 
@@ -1390,8 +1651,8 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 **After MVP.** Shared operating and recovery controls still apply where relevant.
 
-- [Coordination and execution trust boundaries](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-trust-model.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-trust-model.puml) · ![workflow trust model](../Diagrams/Archived-Png/Workflow-Trust-Model.png)
-- [Separate deployment and effect reconciliation](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-deployment-sequence.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-deployment-sequence.puml) · ![workflow deployment sequence](../Diagrams/Archived-Png/Workflow-Deployment-Sequence.png)
+- [Coordination and execution trust boundaries](Diagrams/Detailed/workflow-trust-model.svg) · [PlantUML](Diagrams/Detailed/workflow-trust-model.puml) · ![workflow trust model](Diagrams/Detailed/workflow-trust-model.svg)
+- [Separate deployment and effect reconciliation](Diagrams/Detailed/workflow-deployment-sequence.svg) · [PlantUML](Diagrams/Detailed/workflow-deployment-sequence.puml) · ![workflow deployment sequence](Diagrams/Detailed/workflow-deployment-sequence.svg)
 
 [Owning component](03-Detailed-Module-Design.md#design-record-03-component-and-module-design-components-workflow-and-deployment-md). Proposed gated execution and separately authorized deployment; actual isolation, capacity, cleanup and recovery evidence remain enabling gates.
 
@@ -1399,18 +1660,18 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Applications context and logical landscape package
 
-- [Provided and required component interfaces](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-interfaces.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-interfaces.puml) · ![applications interfaces](../Diagrams/Archived-Png/Applications-Interfaces.png)
-- [C4 Level 1: Resumefolio system context](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-c4-system-context.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-c4-system-context.puml) · ![drivers c4 system context](../Diagrams/Archived-Png/Drivers-C4-System-Context.png)
-- [C4 Level 2: modular application and stores](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-c4-containers.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-c4-containers.puml) · ![boundaries c4 containers](../Diagrams/Archived-Png/Boundaries-C4-Containers.png)
-- [Logical capability landscape](../../03-System-Analysis/Diagrams/Scope-Stakeholder-Map.svg) · [PlantUML](../../03-System-Analysis/Diagrams/Scope-Stakeholder-Map.puml) · ![scope stakeholder map](../../03-System-Analysis/Diagrams/Scope-Stakeholder-Map.png)
-- [Applications inbound and outbound dependencies](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-dependencies.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-dependencies.puml) · ![applications dependencies](../Diagrams/Archived-Png/Applications-Dependencies.png)
-- [Applications layered architecture](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-layers.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-layers.puml) · ![applications layers](../Diagrams/Archived-Png/Applications-Layers.png)
-- [Internal responsibility areas within LC-04](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-internal-structure.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-internal-structure.puml) · ![applications internal structure](../Diagrams/Archived-Png/Applications-Internal-Structure.png)
-- [Candidate package dependencies](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-packages.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-packages.puml) · ![applications packages](../Diagrams/Archived-Png/Applications-Packages.png)
-- [Integration types and evidence boundaries](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-integration.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-integration.puml) · ![applications integration](../Diagrams/Archived-Png/Applications-Integration.png)
-- [Actual submission capture across owner contracts](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-cross-owner-sequence.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-cross-owner-sequence.puml) · ![applications cross owner sequence](../Diagrams/Archived-Png/Applications-Cross-Owner-Sequence.png)
-- [UML use cases for the manual Applications capability](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-use-cases.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-use-cases.puml) · ![applications use cases](../Diagrams/Archived-Png/Applications-Use-Cases.png)
-- [Optional deployment mapping of logical roles](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.puml) · ![drivers uml deployment](../Diagrams/Archived-Png/Drivers-Uml-Deployment.png)
+- [Provided and required component interfaces](Diagrams/Detailed/applications-interfaces.svg) · [PlantUML](Diagrams/Detailed/applications-interfaces.puml) · ![applications interfaces](Diagrams/Detailed/applications-interfaces.svg)
+- [C4 Level 1: Resumefolio system context](Diagrams/Detailed/drivers-c4-system-context.svg) · [PlantUML](Diagrams/Detailed/drivers-c4-system-context.puml) · ![drivers c4 system context](Diagrams/Detailed/drivers-c4-system-context.svg)
+- [C4 Level 2: modular application and stores](Diagrams/Detailed/boundaries-c4-containers.svg) · [PlantUML](Diagrams/Detailed/boundaries-c4-containers.puml) · ![boundaries c4 containers](Diagrams/Detailed/boundaries-c4-containers.svg)
+- [Logical capability landscape](../../03-System-Analysis/Diagrams/Scope-Stakeholder-Map.svg) · [PlantUML](../../03-System-Analysis/Diagrams/Scope-Stakeholder-Map.puml) · ![scope stakeholder map](Diagrams/Detailed/scope-stakeholder-map.svg)
+- [Applications inbound and outbound dependencies](Diagrams/Detailed/applications-dependencies.svg) · [PlantUML](Diagrams/Detailed/applications-dependencies.puml) · ![applications dependencies](Diagrams/Detailed/applications-dependencies.svg)
+- [Applications layered architecture](Diagrams/Detailed/applications-layers.svg) · [PlantUML](Diagrams/Detailed/applications-layers.puml) · ![applications layers](Diagrams/Detailed/applications-layers.svg)
+- [Internal responsibility areas within LC-04](Diagrams/Detailed/applications-internal-structure.svg) · [PlantUML](Diagrams/Detailed/applications-internal-structure.puml) · ![applications internal structure](Diagrams/Detailed/applications-internal-structure.svg)
+- [Candidate package dependencies](Diagrams/Detailed/applications-packages.svg) · [PlantUML](Diagrams/Detailed/applications-packages.puml) · ![applications packages](Diagrams/Detailed/applications-packages.svg)
+- [Integration types and evidence boundaries](Diagrams/Detailed/applications-integration.svg) · [PlantUML](Diagrams/Detailed/applications-integration.puml) · ![applications integration](Diagrams/Detailed/applications-integration.svg)
+- [Actual submission capture across owner contracts](Diagrams/Detailed/applications-cross-owner-sequence.svg) · [PlantUML](Diagrams/Detailed/applications-cross-owner-sequence.puml) · ![applications cross owner sequence](Diagrams/Detailed/applications-cross-owner-sequence.svg)
+- [UML use cases for the manual Applications capability](Diagrams/Detailed/applications-use-cases.svg) · [PlantUML](Diagrams/Detailed/applications-use-cases.puml) · ![applications use cases](Diagrams/Detailed/applications-use-cases.svg)
+- [Optional deployment mapping of logical roles](Diagrams/Detailed/drivers-uml-deployment.svg) · [PlantUML](Diagrams/Detailed/drivers-uml-deployment.puml) · ![drivers uml deployment](Diagrams/Detailed/drivers-uml-deployment.svg)
 
 [Owning LC-04 document, inventory/capability/interface/stack/data/quality/lifecycle tables and decision note](03-Detailed-Module-Design.md#design-record-03-component-and-module-design-components-applications-md--heading-7-application-context-and-landscape-package). Applications means manual job applications; logical neighbors are not separate deployed software applications.
 
@@ -1420,24 +1681,24 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 **After MVP.** Shared operating and recovery controls still apply where relevant.
 
-- [Communication and calendar interfaces](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-interfaces.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-interfaces.puml) · ![comm interfaces](../Diagrams/Archived-Png/Comm-Interfaces.png)
-- [C4 Level 1: users and external provider](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.svg) · [PlantUML](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.puml) · ![use cases mail and calendar](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.png)
-- [C4 Level 2: actual proposed runtime boundaries](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.svg) · [PlantUML](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.puml) · ![use cases mail and calendar](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.png)
-- [Owner communication and calendar use cases](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-use-cases.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-use-cases.puml) · ![comm use cases](../Diagrams/Archived-Png/Comm-Use-Cases.png)
-- [Domain classes and optional requested concepts](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-domain.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-domain.puml) · ![comm domain](../Diagrams/Archived-Png/Comm-Domain.png)
-- [Logical ERD: owned and observed records](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-erd.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-erd.puml) · ![comm erd](../Diagrams/Archived-Png/Comm-Erd.png)
-- [Reviewed send and delivery observations](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-send.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-send.puml) · ![comm send](../Diagrams/Archived-Png/Comm-Send.png)
-- [Conditional event creation and attendee response](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-invitation.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-invitation.puml) · ![comm invitation](../Diagrams/Archived-Png/Comm-Invitation.png)
-- [Reminder trigger and actual notification outcome](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-reminder.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-reminder.puml) · ![comm reminder](../Diagrams/Archived-Png/Comm-Reminder.png)
-- [Message and send knowledge: distinct dimensions](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-message-state.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-message-state.puml) · ![comm message state](../Diagrams/Archived-Png/Comm-Message-State.png)
-- [Event status and attendee response dimensions](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-event-state.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-event-state.puml) · ![comm event state](../Diagrams/Archived-Png/Comm-Event-State.png)
-- [Conditional scheduling and conflict detection](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-scheduling.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-scheduling.puml) · ![comm scheduling](../Diagrams/Archived-Png/Comm-Scheduling.png)
-- [Bounded recurrence expansion and exception identity](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-recurrence.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-recurrence.puml) · ![comm recurrence](../Diagrams/Archived-Png/Comm-Recurrence.png)
-- [Logical work flow and channel eligibility](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-notification-flow.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-notification-flow.puml) · ![comm notification flow](../Diagrams/Archived-Png/Comm-Notification-Flow.png)
-- [Selected scope versus protocol alternatives](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-integration-options.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-integration-options.puml) · ![comm integration options](../Diagrams/Archived-Png/Comm-Integration-Options.png)
-- [Conditional free-busy lookup](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-free-busy.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-free-busy.puml) · ![comm free busy](../Diagrams/Archived-Png/Comm-Free-Busy.png)
-- [Conditional calendar reconciliation and conflict resolution](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-sync.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-sync.puml) · ![comm sync](../Diagrams/Archived-Png/Comm-Sync.png)
-- [Optional trusted runtime placement](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.svg) · [PlantUML](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.puml) · ![use cases mail and calendar](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.png)
+- [Communication and calendar interfaces](Diagrams/Detailed/comm-interfaces.svg) · [PlantUML](Diagrams/Detailed/comm-interfaces.puml) · ![comm interfaces](Diagrams/Detailed/comm-interfaces.svg)
+- [C4 Level 1: users and external provider](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.svg) · [PlantUML](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.puml) · ![use cases mail and calendar](Diagrams/Detailed/use-cases-mail-and-calendar.svg)
+- [C4 Level 2: actual proposed runtime boundaries](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.svg) · [PlantUML](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.puml) · ![use cases mail and calendar](Diagrams/Detailed/use-cases-mail-and-calendar.svg)
+- [Owner communication and calendar use cases](Diagrams/Detailed/comm-use-cases.svg) · [PlantUML](Diagrams/Detailed/comm-use-cases.puml) · ![comm use cases](Diagrams/Detailed/comm-use-cases.svg)
+- [Domain classes and optional requested concepts](Diagrams/Detailed/comm-domain.svg) · [PlantUML](Diagrams/Detailed/comm-domain.puml) · ![comm domain](Diagrams/Detailed/comm-domain.svg)
+- [Logical ERD: owned and observed records](Diagrams/Detailed/comm-erd.svg) · [PlantUML](Diagrams/Detailed/comm-erd.puml) · ![comm erd](Diagrams/Detailed/comm-erd.svg)
+- [Reviewed send and delivery observations](Diagrams/Detailed/comm-send.svg) · [PlantUML](Diagrams/Detailed/comm-send.puml) · ![comm send](Diagrams/Detailed/comm-send.svg)
+- [Conditional event creation and attendee response](Diagrams/Detailed/comm-invitation.svg) · [PlantUML](Diagrams/Detailed/comm-invitation.puml) · ![comm invitation](Diagrams/Detailed/comm-invitation.svg)
+- [Reminder trigger and actual notification outcome](Diagrams/Detailed/comm-reminder.svg) · [PlantUML](Diagrams/Detailed/comm-reminder.puml) · ![comm reminder](Diagrams/Detailed/comm-reminder.svg)
+- [Message and send knowledge: distinct dimensions](Diagrams/Detailed/comm-message-state.svg) · [PlantUML](Diagrams/Detailed/comm-message-state.puml) · ![comm message state](Diagrams/Detailed/comm-message-state.svg)
+- [Event status and attendee response dimensions](Diagrams/Detailed/comm-event-state.svg) · [PlantUML](Diagrams/Detailed/comm-event-state.puml) · ![comm event state](Diagrams/Detailed/comm-event-state.svg)
+- [Conditional scheduling and conflict detection](Diagrams/Detailed/comm-scheduling.svg) · [PlantUML](Diagrams/Detailed/comm-scheduling.puml) · ![comm scheduling](Diagrams/Detailed/comm-scheduling.svg)
+- [Bounded recurrence expansion and exception identity](Diagrams/Detailed/comm-recurrence.svg) · [PlantUML](Diagrams/Detailed/comm-recurrence.puml) · ![comm recurrence](Diagrams/Detailed/comm-recurrence.svg)
+- [Logical work flow and channel eligibility](Diagrams/Detailed/comm-notification-flow.svg) · [PlantUML](Diagrams/Detailed/comm-notification-flow.puml) · ![comm notification flow](Diagrams/Detailed/comm-notification-flow.svg)
+- [Selected scope versus protocol alternatives](Diagrams/Detailed/comm-integration-options.svg) · [PlantUML](Diagrams/Detailed/comm-integration-options.puml) · ![comm integration options](Diagrams/Detailed/comm-integration-options.svg)
+- [Conditional free-busy lookup](Diagrams/Detailed/comm-free-busy.svg) · [PlantUML](Diagrams/Detailed/comm-free-busy.puml) · ![comm free busy](Diagrams/Detailed/comm-free-busy.svg)
+- [Conditional calendar reconciliation and conflict resolution](Diagrams/Detailed/comm-sync.svg) · [PlantUML](Diagrams/Detailed/comm-sync.puml) · ![comm sync](Diagrams/Detailed/comm-sync.svg)
+- [Optional trusted runtime placement](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.svg) · [PlantUML](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.puml) · ![use cases mail and calendar](Diagrams/Detailed/use-cases-mail-and-calendar.svg)
 
 [Owning LC-05 document and seven time/interface/channel/ownership/privacy/failure/quality tables](03-Detailed-Module-Design.md#design-record-03-component-and-module-design-components-communication-and-calendar-md--heading-8-communication-calendar-and-delivery-view-package). Unselected protocols/channels and conditional invitation/free-busy behavior are not new accepted capabilities.
 
@@ -1445,25 +1706,25 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Files and Operations expanded package
 
-- [Files provided and required interfaces](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-interfaces.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-interfaces.puml) · ![files interfaces](../Diagrams/Archived-Png/Files-Interfaces.png)
-- [C4 Level 1: artifact-related system context](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-context.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-context.puml) · ![files context](../Diagrams/Archived-Png/Files-Context.png)
-- [C4 Level 2: modular runtime and storage](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-context.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-context.puml) · ![files context](../Diagrams/Archived-Png/Files-Context.png)
-- [Artifact operations and separately owned sharing](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-use-cases.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-use-cases.puml) · ![files use cases](../Diagrams/Archived-Png/Files-Use-Cases.png)
-- [Artifact, reference and operation classes](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-domain.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-domain.puml) · ![files domain](../Diagrams/Archived-Png/Files-Domain.png)
-- [Logical artifact and ledger relationships](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-erd.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-erd.puml) · ![files erd](../Diagrams/Archived-Png/Files-Erd.png)
-- [Upload with conditional resumable transport](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-upload.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-upload.puml) · ![files upload](../Diagrams/Archived-Png/Files-Upload.png)
-- [Exact download and current access admission](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-download.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-download.puml) · ![files download](../Diagrams/Archived-Png/Files-Download.png)
-- [Share link creation and access through its owner](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-share.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-share.puml) · ![files share](../Diagrams/Archived-Png/Files-Share.png)
-- [Artifact usability, lifecycle and presence dimensions](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-artifact-state.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-artifact-state.puml) · ![files artifact state](../Diagrams/Archived-Png/Files-Artifact-State.png)
-- [Operation and job knowledge states](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-job-state.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-job-state.puml) · ![files job state](../Diagrams/Archived-Png/Files-Job-State.png)
-- [Private candidate processing pipeline](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-pipeline.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-pipeline.puml) · ![files pipeline](../Diagrams/Archived-Png/Files-Pipeline.png)
-- [Concurrent reference replacement conflict resolution](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-concurrent-edits.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-concurrent-edits.puml) · ![files concurrent edits](../Diagrams/Archived-Png/Files-Concurrent-Edits.png)
-- [Storage architecture options and unselected tiers](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-context.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-context.puml) · ![files context](../Diagrams/Archived-Png/Files-Context.png)
-- [Logical hierarchy versus canonical storage identity](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-paths.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-paths.puml) · ![files paths](../Diagrams/Archived-Png/Files-Paths.png)
-- [Version, trash, restore and physical reclaim flow](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-trash.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-trash.puml) · ![files trash](../Diagrams/Archived-Png/Files-Trash.png)
-- [Logical job lanes, reconciliation and intervention](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-queues.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-queues.puml) · ![files queues](../Diagrams/Archived-Png/Files-Queues.png)
-- [Storage and sync integration options](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-context.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-context.puml) · ![files context](../Diagrams/Archived-Png/Files-Context.png)
-- [Optional deployment mapping for Files capabilities](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.puml) · ![drivers uml deployment](../Diagrams/Archived-Png/Drivers-Uml-Deployment.png)
+- [Files provided and required interfaces](Diagrams/Detailed/files-interfaces.svg) · [PlantUML](Diagrams/Detailed/files-interfaces.puml) · ![files interfaces](Diagrams/Detailed/files-interfaces.svg)
+- [C4 Level 1: artifact-related system context](Diagrams/Detailed/files-context.svg) · [PlantUML](Diagrams/Detailed/files-context.puml) · ![files context](Diagrams/Detailed/files-context.svg)
+- [C4 Level 2: modular runtime and storage](Diagrams/Detailed/files-context.svg) · [PlantUML](Diagrams/Detailed/files-context.puml) · ![files context](Diagrams/Detailed/files-context.svg)
+- [Artifact operations and separately owned sharing](Diagrams/Detailed/files-use-cases.svg) · [PlantUML](Diagrams/Detailed/files-use-cases.puml) · ![files use cases](Diagrams/Detailed/files-use-cases.svg)
+- [Artifact, reference and operation classes](Diagrams/Detailed/files-domain.svg) · [PlantUML](Diagrams/Detailed/files-domain.puml) · ![files domain](Diagrams/Detailed/files-domain.svg)
+- [Logical artifact and ledger relationships](Diagrams/Detailed/files-erd.svg) · [PlantUML](Diagrams/Detailed/files-erd.puml) · ![files erd](Diagrams/Detailed/files-erd.svg)
+- [Upload with conditional resumable transport](Diagrams/Detailed/files-upload.svg) · [PlantUML](Diagrams/Detailed/files-upload.puml) · ![files upload](Diagrams/Detailed/files-upload.svg)
+- [Exact download and current access admission](Diagrams/Detailed/files-download.svg) · [PlantUML](Diagrams/Detailed/files-download.puml) · ![files download](Diagrams/Detailed/files-download.svg)
+- [Share link creation and access through its owner](Diagrams/Detailed/files-share.svg) · [PlantUML](Diagrams/Detailed/files-share.puml) · ![files share](Diagrams/Detailed/files-share.svg)
+- [Artifact usability, lifecycle and presence dimensions](Diagrams/Detailed/files-artifact-state.svg) · [PlantUML](Diagrams/Detailed/files-artifact-state.puml) · ![files artifact state](Diagrams/Detailed/files-artifact-state.svg)
+- [Operation and job knowledge states](Diagrams/Detailed/files-job-state.svg) · [PlantUML](Diagrams/Detailed/files-job-state.puml) · ![files job state](Diagrams/Detailed/files-job-state.svg)
+- [Private candidate processing pipeline](Diagrams/Detailed/files-pipeline.svg) · [PlantUML](Diagrams/Detailed/files-pipeline.puml) · ![files pipeline](Diagrams/Detailed/files-pipeline.svg)
+- [Concurrent reference replacement conflict resolution](Diagrams/Detailed/files-concurrent-edits.svg) · [PlantUML](Diagrams/Detailed/files-concurrent-edits.puml) · ![files concurrent edits](Diagrams/Detailed/files-concurrent-edits.svg)
+- [Storage architecture options and unselected tiers](Diagrams/Detailed/files-context.svg) · [PlantUML](Diagrams/Detailed/files-context.puml) · ![files context](Diagrams/Detailed/files-context.svg)
+- [Logical hierarchy versus canonical storage identity](Diagrams/Detailed/files-paths.svg) · [PlantUML](Diagrams/Detailed/files-paths.puml) · ![files paths](Diagrams/Detailed/files-paths.svg)
+- [Version, trash, restore and physical reclaim flow](Diagrams/Detailed/files-trash.svg) · [PlantUML](Diagrams/Detailed/files-trash.puml) · ![files trash](Diagrams/Detailed/files-trash.svg)
+- [Logical job lanes, reconciliation and intervention](Diagrams/Detailed/files-queues.svg) · [PlantUML](Diagrams/Detailed/files-queues.puml) · ![files queues](Diagrams/Detailed/files-queues.svg)
+- [Storage and sync integration options](Diagrams/Detailed/files-context.svg) · [PlantUML](Diagrams/Detailed/files-context.puml) · ![files context](Diagrams/Detailed/files-context.svg)
+- [Optional deployment mapping for Files capabilities](Diagrams/Detailed/drivers-uml-deployment.svg) · [PlantUML](Diagrams/Detailed/drivers-uml-deployment.puml) · ![drivers uml deployment](Diagrams/Detailed/drivers-uml-deployment.svg)
 
 [Owning LC-09 document and seven interface/permission/audit/policy/failure/ownership/quality tables](03-Detailed-Module-Design.md#design-record-03-component-and-module-design-components-files-and-operations-md--heading-8-files-storage-and-operations-view-package). Conditional folder/transport/backend/processing views are not new scope or installed facilities.
 
@@ -1471,13 +1732,13 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Essential Git collaboration views
 
-- [Native Git objects and references](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-objects.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-objects.puml) · ![git essential objects](../Diagrams/Archived-Png/Git-Essential-Objects.png)
-- [Commit graph: branches, merge and tag](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-graph.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-graph.puml) · ![git essential graph](../Diagrams/Archived-Png/Git-Essential-Graph.png)
-- [Candidate short-lived branch and guarded integration flow](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-branching.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-branching.puml) · ![git essential branching](../Diagrams/Archived-Png/Git-Essential-Branching.png)
-- [Pull request lifecycle and revision-bound readiness](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-pr-state.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-pr-state.puml) · ![git essential pr state](../Diagrams/Archived-Png/Git-Essential-Pr-State.png)
-- [Push, checks, review and guarded merge](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-pr-sequence.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-pr-sequence.puml) · ![git essential pr sequence](../Diagrams/Archived-Png/Git-Essential-Pr-Sequence.png)
-- [Repository and collaboration identity model](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-domain.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-domain.puml) · ![git essential domain](../Diagrams/Archived-Png/Git-Essential-Domain.png)
-- [Git and collaboration capability boundaries](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-components.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-components.puml) · ![git essential components](../Diagrams/Archived-Png/Git-Essential-Components.png)
+- [Native Git objects and references](Diagrams/Detailed/git-essential-objects.svg) · [PlantUML](Diagrams/Detailed/git-essential-objects.puml) · ![git essential objects](Diagrams/Detailed/git-essential-objects.svg)
+- [Commit graph: branches, merge and tag](Diagrams/Detailed/git-essential-graph.svg) · [PlantUML](Diagrams/Detailed/git-essential-graph.puml) · ![git essential graph](Diagrams/Detailed/git-essential-graph.svg)
+- [Candidate short-lived branch and guarded integration flow](Diagrams/Detailed/git-essential-branching.svg) · [PlantUML](Diagrams/Detailed/git-essential-branching.puml) · ![git essential branching](Diagrams/Detailed/git-essential-branching.svg)
+- [Pull request lifecycle and revision-bound readiness](Diagrams/Detailed/git-essential-pr-state.svg) · [PlantUML](Diagrams/Detailed/git-essential-pr-state.puml) · ![git essential pr state](Diagrams/Detailed/git-essential-pr-state.svg)
+- [Push, checks, review and guarded merge](Diagrams/Detailed/git-essential-pr-sequence.svg) · [PlantUML](Diagrams/Detailed/git-essential-pr-sequence.puml) · ![git essential pr sequence](Diagrams/Detailed/git-essential-pr-sequence.svg)
+- [Repository and collaboration identity model](Diagrams/Detailed/git-essential-domain.svg) · [PlantUML](Diagrams/Detailed/git-essential-domain.puml) · ![git essential domain](Diagrams/Detailed/git-essential-domain.svg)
+- [Git and collaboration capability boundaries](Diagrams/Detailed/git-essential-components.svg) · [PlantUML](Diagrams/Detailed/git-essential-components.puml) · ![git essential components](Diagrams/Detailed/git-essential-components.svg)
 
 [Owning LC-07 essential package and permission matrix](03-Detailed-Module-Design.md#design-record-03-component-and-module-design-components-git-collaboration-md--heading-7-essential-git-and-collaboration-views). Seven selected views only; native facts do not select engine, branching, review or transport policies.
 
@@ -1485,12 +1746,12 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Essential Identity and Access views
 
-- [Identity responsibilities and scoped contracts](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-components.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-components.puml) · ![identity essential components](../Diagrams/Archived-Png/Identity-Essential-Components.png)
-- [Authentication and conditional second factor](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-authentication.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-authentication.puml) · ![identity essential authentication](../Diagrams/Archived-Png/Identity-Essential-Authentication.png)
-- [Authorization decision and enforcement flow](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-authorization.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-authorization.puml) · ![identity essential authorization](../Diagrams/Archived-Png/Identity-Essential-Authorization.png)
-- [Scoped roles, attributes and resource ownership](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-access-model.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-access-model.puml) · ![identity essential access model](../Diagrams/Archived-Png/Identity-Essential-Access-Model.png)
-- [Session lifecycle and separate credential scopes](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-session-state.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-session-state.puml) · ![identity essential session state](../Diagrams/Archived-Png/Identity-Essential-Session-State.png)
-- [Clients, trusted application and external scopes](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.puml) · ![security trust boundaries](../Diagrams/Archived-Png/Security-Trust-Boundaries.png)
+- [Identity responsibilities and scoped contracts](Diagrams/Detailed/identity-essential-components.svg) · [PlantUML](Diagrams/Detailed/identity-essential-components.puml) · ![identity essential components](Diagrams/Detailed/identity-essential-components.svg)
+- [Authentication and conditional second factor](Diagrams/Detailed/identity-essential-authentication.svg) · [PlantUML](Diagrams/Detailed/identity-essential-authentication.puml) · ![identity essential authentication](Diagrams/Detailed/identity-essential-authentication.svg)
+- [Authorization decision and enforcement flow](Diagrams/Detailed/identity-essential-authorization.svg) · [PlantUML](Diagrams/Detailed/identity-essential-authorization.puml) · ![identity essential authorization](Diagrams/Detailed/identity-essential-authorization.svg)
+- [Scoped roles, attributes and resource ownership](Diagrams/Detailed/identity-essential-access-model.svg) · [PlantUML](Diagrams/Detailed/identity-essential-access-model.puml) · ![identity essential access model](Diagrams/Detailed/identity-essential-access-model.svg)
+- [Session lifecycle and separate credential scopes](Diagrams/Detailed/identity-essential-session-state.svg) · [PlantUML](Diagrams/Detailed/identity-essential-session-state.puml) · ![identity essential session state](Diagrams/Detailed/identity-essential-session-state.svg)
+- [Clients, trusted application and external scopes](Diagrams/Detailed/security-trust-boundaries.svg) · [PlantUML](Diagrams/Detailed/security-trust-boundaries.puml) · ![security trust boundaries](Diagrams/Detailed/security-trust-boundaries.svg)
 
 [Owning LC-01 essential package and scope rationale](03-Detailed-Module-Design.md#design-record-03-component-and-module-design-components-identity-and-access-md--heading-7-essential-identity-and-access-views). Reuses the existing domain model; federation and role hierarchy are not selected.
 
@@ -1498,11 +1759,11 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Essential Professional Presentation views
 
-- [Presentation ownership and provided/required contracts](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-components.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-components.puml) · ![presentation essential components](../Diagrams/Archived-Png/Presentation-Essential-Components.png)
-- [Essential owner and viewer intentions](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-use-cases.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-use-cases.puml) · ![presentation essential use cases](../Diagrams/Archived-Png/Presentation-Essential-Use-Cases.png)
-- [Draft, preview and immutable publication dimensions](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-lifecycle.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-lifecycle.puml) · ![presentation essential lifecycle](../Diagrams/Archived-Png/Presentation-Essential-Lifecycle.png)
-- [Visitor resolves an exact eligible publication](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-visitor.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-visitor.puml) · ![presentation essential visitor](../Diagrams/Archived-Png/Presentation-Essential-Visitor.png)
-- [Version-bound rendering inputs and separate outputs](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-rendering.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-rendering.puml) · ![presentation essential rendering](../Diagrams/Archived-Png/Presentation-Essential-Rendering.png)
+- [Presentation ownership and provided/required contracts](Diagrams/Detailed/presentation-essential-components.svg) · [PlantUML](Diagrams/Detailed/presentation-essential-components.puml) · ![presentation essential components](Diagrams/Detailed/presentation-essential-components.svg)
+- [Essential owner and viewer intentions](Diagrams/Detailed/presentation-essential-use-cases.svg) · [PlantUML](Diagrams/Detailed/presentation-essential-use-cases.puml) · ![presentation essential use cases](Diagrams/Detailed/presentation-essential-use-cases.svg)
+- [Draft, preview and immutable publication dimensions](Diagrams/Detailed/presentation-essential-lifecycle.svg) · [PlantUML](Diagrams/Detailed/presentation-essential-lifecycle.puml) · ![presentation essential lifecycle](Diagrams/Detailed/presentation-essential-lifecycle.svg)
+- [Visitor resolves an exact eligible publication](Diagrams/Detailed/presentation-essential-visitor.svg) · [PlantUML](Diagrams/Detailed/presentation-essential-visitor.puml) · ![presentation essential visitor](Diagrams/Detailed/presentation-essential-visitor.svg)
+- [Version-bound rendering inputs and separate outputs](Diagrams/Detailed/presentation-essential-rendering.svg) · [PlantUML](Diagrams/Detailed/presentation-essential-rendering.puml) · ![presentation essential rendering](Diagrams/Detailed/presentation-essential-rendering.svg)
 
 [Owning LC-02 essential package](03-Detailed-Module-Design.md#design-record-03-component-and-module-design-components-professional-presentation-md--heading-7-essential-presentation-views). Reuses existing domain and update/publication diagrams; no speculative CDN, analytics or social sync selection.
 
@@ -1510,10 +1771,10 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Essential Representation and Sharing views
 
-- [Representation and sharing contracts](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-essential-components.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-essential-components.puml) · ![sharing essential components](../Diagrams/Archived-Png/Sharing-Essential-Components.png)
-- [Essential representation routes](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-essential-formats.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-essential-formats.puml) · ![sharing essential formats](../Diagrams/Archived-Png/Sharing-Essential-Formats.png)
-- [Link eligibility and viewer generation](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-essential-link-state.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-essential-link-state.puml) · ![sharing essential link state](../Diagrams/Archived-Png/Sharing-Essential-Link-State.png)
-- [Create link, verify viewer and admit exact retrieval](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-essential-link-sequence.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-essential-link-sequence.puml) · ![sharing essential link sequence](../Diagrams/Archived-Png/Sharing-Essential-Link-Sequence.png)
+- [Representation and sharing contracts](Diagrams/Detailed/sharing-essential-components.svg) · [PlantUML](Diagrams/Detailed/sharing-essential-components.puml) · ![sharing essential components](Diagrams/Detailed/sharing-essential-components.svg)
+- [Essential representation routes](Diagrams/Detailed/sharing-essential-formats.svg) · [PlantUML](Diagrams/Detailed/sharing-essential-formats.puml) · ![sharing essential formats](Diagrams/Detailed/sharing-essential-formats.svg)
+- [Link eligibility and viewer generation](Diagrams/Detailed/sharing-essential-link-state.svg) · [PlantUML](Diagrams/Detailed/sharing-essential-link-state.puml) · ![sharing essential link state](Diagrams/Detailed/sharing-essential-link-state.svg)
+- [Create link, verify viewer and admit exact retrieval](Diagrams/Detailed/sharing-essential-link-sequence.svg) · [PlantUML](Diagrams/Detailed/sharing-essential-link-sequence.puml) · ![sharing essential link sequence](Diagrams/Detailed/sharing-essential-link-sequence.svg)
 
 [Owning LC-03 essential package and two control tables](03-Detailed-Module-Design.md#design-record-03-component-and-module-design-components-representation-and-sharing-md--heading-7-essential-representation-and-sharing-views). Existing domain/retrieval views reused; no speculative channel, audience, CDN or export integration selected.
 
@@ -1521,11 +1782,11 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Essential Work Management views
 
-- [Work ownership and scoped interfaces](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-views.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-views.puml) · ![work essential views](../Diagrams/Archived-Png/Work-Essential-Views.png)
-- [Candidate task lifecycle versus acceptance](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-task-state.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-task-state.puml) · ![work essential task state](../Diagrams/Archived-Png/Work-Essential-Task-State.png)
-- [Guarded work creation, assignment and transition](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-transition.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-transition.puml) · ![work essential transition](../Diagrams/Archived-Png/Work-Essential-Transition.png)
-- [One authoritative work model, multiple permitted projections](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-views.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-views.puml) · ![work essential views](../Diagrams/Archived-Png/Work-Essential-Views.png)
-- [Coherent Sprint planning, execution and review](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-sprint-planning.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-sprint-planning.puml) · ![work essential sprint planning](../Diagrams/Archived-Png/Work-Essential-Sprint-Planning.png)
+- [Work ownership and scoped interfaces](Diagrams/Detailed/work-essential-views.svg) · [PlantUML](Diagrams/Detailed/work-essential-views.puml) · ![work essential views](Diagrams/Detailed/work-essential-views.svg)
+- [Candidate task lifecycle versus acceptance](Diagrams/Detailed/work-essential-task-state.svg) · [PlantUML](Diagrams/Detailed/work-essential-task-state.puml) · ![work essential task state](Diagrams/Detailed/work-essential-task-state.svg)
+- [Guarded work creation, assignment and transition](Diagrams/Detailed/work-essential-transition.svg) · [PlantUML](Diagrams/Detailed/work-essential-transition.puml) · ![work essential transition](Diagrams/Detailed/work-essential-transition.svg)
+- [One authoritative work model, multiple permitted projections](Diagrams/Detailed/work-essential-views.svg) · [PlantUML](Diagrams/Detailed/work-essential-views.puml) · ![work essential views](Diagrams/Detailed/work-essential-views.svg)
+- [Coherent Sprint planning, execution and review](Diagrams/Detailed/work-essential-sprint-planning.svg) · [PlantUML](Diagrams/Detailed/work-essential-sprint-planning.puml) · ![work essential sprint planning](Diagrams/Detailed/work-essential-sprint-planning.svg)
 
 [Owning LC-06 essential package and scoped permission/integration tables](03-Detailed-Module-Design.md#design-record-03-component-and-module-design-components-work-management-md--heading-7-essential-work-management-views). Existing domain/mutation views reused; no extra generic workflow or automation scope selected.
 
@@ -1535,15 +1796,15 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 **After MVP.** Shared operating and recovery controls still apply where relevant.
 
-- [Coordination, executor and target contracts](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-components.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-components.puml) · ![workflow essential components](../Diagrams/Archived-Png/Workflow-Essential-Components.png)
-- [Candidate CI/CD path with distinct execution and deployment gates](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-pipeline.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-pipeline.puml) · ![workflow essential pipeline](../Diagrams/Archived-Png/Workflow-Essential-Pipeline.png)
-- [Run observation, cancellation and cleanup dimensions](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-run-state.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-run-state.puml) · ![workflow essential run state](../Diagrams/Archived-Png/Workflow-Essential-Run-State.png)
-- [Deployment approval and actual target outcome](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-deployment-state.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-deployment-state.puml) · ![workflow essential deployment state](../Diagrams/Archived-Png/Workflow-Essential-Deployment-State.png)
-- [Deployment strategy alternatives, not a selection](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-strategies.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-strategies.puml) · ![workflow essential strategies](../Diagrams/Archived-Png/Workflow-Essential-Strategies.png)
-- [Failed verification and safe recovery decision](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-recovery.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-recovery.puml) · ![workflow essential recovery](../Diagrams/Archived-Png/Workflow-Essential-Recovery.png)
-- [Conditional environment promotion and exact approval gates](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-promotion.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-promotion.puml) · ![workflow essential promotion](../Diagrams/Archived-Png/Workflow-Essential-Promotion.png)
-- [Runner architecture and trust isolation](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-executor.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-executor.puml) · ![workflow essential executor](../Diagrams/Archived-Png/Workflow-Essential-Executor.png)
-- [Candidate executor and deployment placement](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-topology.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-topology.puml) · ![workflow essential topology](../Diagrams/Archived-Png/Workflow-Essential-Topology.png)
+- [Coordination, executor and target contracts](Diagrams/Detailed/workflow-essential-components.svg) · [PlantUML](Diagrams/Detailed/workflow-essential-components.puml) · ![workflow essential components](Diagrams/Detailed/workflow-essential-components.svg)
+- [Candidate CI/CD path with distinct execution and deployment gates](Diagrams/Detailed/workflow-essential-pipeline.svg) · [PlantUML](Diagrams/Detailed/workflow-essential-pipeline.puml) · ![workflow essential pipeline](Diagrams/Detailed/workflow-essential-pipeline.svg)
+- [Run observation, cancellation and cleanup dimensions](Diagrams/Detailed/workflow-essential-run-state.svg) · [PlantUML](Diagrams/Detailed/workflow-essential-run-state.puml) · ![workflow essential run state](Diagrams/Detailed/workflow-essential-run-state.svg)
+- [Deployment approval and actual target outcome](Diagrams/Detailed/workflow-essential-deployment-state.svg) · [PlantUML](Diagrams/Detailed/workflow-essential-deployment-state.puml) · ![workflow essential deployment state](Diagrams/Detailed/workflow-essential-deployment-state.svg)
+- [Deployment strategy alternatives, not a selection](Diagrams/Detailed/workflow-essential-strategies.svg) · [PlantUML](Diagrams/Detailed/workflow-essential-strategies.puml) · ![workflow essential strategies](Diagrams/Detailed/workflow-essential-strategies.svg)
+- [Failed verification and safe recovery decision](Diagrams/Detailed/workflow-essential-recovery.svg) · [PlantUML](Diagrams/Detailed/workflow-essential-recovery.puml) · ![workflow essential recovery](Diagrams/Detailed/workflow-essential-recovery.svg)
+- [Conditional environment promotion and exact approval gates](Diagrams/Detailed/workflow-essential-promotion.svg) · [PlantUML](Diagrams/Detailed/workflow-essential-promotion.puml) · ![workflow essential promotion](Diagrams/Detailed/workflow-essential-promotion.svg)
+- [Runner architecture and trust isolation](Diagrams/Detailed/workflow-essential-executor.svg) · [PlantUML](Diagrams/Detailed/workflow-essential-executor.puml) · ![workflow essential executor](Diagrams/Detailed/workflow-essential-executor.svg)
+- [Candidate executor and deployment placement](Diagrams/Detailed/workflow-essential-topology.svg) · [PlantUML](Diagrams/Detailed/workflow-essential-topology.puml) · ![workflow essential topology](Diagrams/Detailed/workflow-essential-topology.svg)
 
 [Owning LC-08 package and scoped target-approval matrix](03-Detailed-Module-Design.md#design-record-03-component-and-module-design-components-workflow-and-deployment-md--heading-8-workflow-executor-and-deployment-views). Existing domain/deployment sequence reused; isolation, strategy, topology and approval gates are not completed by diagrams.
 
@@ -1555,57 +1816,57 @@ Current MVP figures replace the former common-product boundary. Future and histo
 
 | Editable source | Current applicability |
 | --- | --- |
-| [applications-containers.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-c4-containers.puml) | MVP systems|
-| [applications-deployment.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.puml) | MVP deployment|
-| [applications-integration.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-integration.puml) | MVP core / cross-cutting|
-| [calendar-reconciliation-route.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/calendar-reconciliation-route.puml) | Future after MVP|
+| [applications-containers.puml](Diagrams/Detailed/boundaries-c4-containers.puml) | MVP systems|
+| [applications-deployment.puml](Diagrams/Detailed/drivers-uml-deployment.puml) | MVP deployment|
+| [applications-integration.puml](Diagrams/Detailed/applications-integration.puml) | MVP core / cross-cutting|
+| [calendar-reconciliation-route.puml](Diagrams/Detailed/calendar-reconciliation-route.puml) | Future after MVP|
 | [comm-deployment.puml](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.puml) | Future communications|
-| [communication-owned-model.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/communication-owned-model.puml) | Future after MVP|
-| [communication-send-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/communication-send-sequence.puml) | Future after MVP|
-| [files-deployment.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.puml) | MVP deployment|
-| [identity-essential-trust-boundaries.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.puml) | MVP systems|
-| [work-essential-sprint-planning.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-sprint-planning.puml) | Future after MVP|
-| [work-mutation-sprint-close.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-mutation-sprint-close.puml) | Future after MVP|
-| [workflow-deployment-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-deployment-sequence.puml) | Future after MVP|
-| [workflow-essential-components.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-components.puml) | Future after MVP|
-| [workflow-essential-deployment-state.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-deployment-state.puml) | Future after MVP|
-| [workflow-essential-executor.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-executor.puml) | Future after MVP|
-| [workflow-essential-pipeline.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-pipeline.puml) | Future after MVP|
-| [workflow-essential-promotion.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-promotion.puml) | Future after MVP|
-| [workflow-essential-recovery.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-recovery.puml) | Future after MVP|
-| [workflow-essential-run-state.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-run-state.puml) | Future after MVP|
-| [workflow-essential-strategies.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-strategies.puml) | Future after MVP|
-| [workflow-essential-topology.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-topology.puml) | Future after MVP|
-| [workflow-trust-model.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-trust-model.puml) | Future after MVP|
+| [communication-owned-model.puml](Diagrams/Detailed/communication-owned-model.puml) | Future after MVP|
+| [communication-send-sequence.puml](Diagrams/Detailed/communication-send-sequence.puml) | Future after MVP|
+| [files-deployment.puml](Diagrams/Detailed/drivers-uml-deployment.puml) | MVP deployment|
+| [identity-essential-trust-boundaries.puml](Diagrams/Detailed/security-trust-boundaries.puml) | MVP systems|
+| [work-essential-sprint-planning.puml](Diagrams/Detailed/work-essential-sprint-planning.puml) | Future after MVP|
+| [work-mutation-sprint-close.puml](Diagrams/Detailed/work-mutation-sprint-close.puml) | Future after MVP|
+| [workflow-deployment-sequence.puml](Diagrams/Detailed/workflow-deployment-sequence.puml) | Future after MVP|
+| [workflow-essential-components.puml](Diagrams/Detailed/workflow-essential-components.puml) | Future after MVP|
+| [workflow-essential-deployment-state.puml](Diagrams/Detailed/workflow-essential-deployment-state.puml) | Future after MVP|
+| [workflow-essential-executor.puml](Diagrams/Detailed/workflow-essential-executor.puml) | Future after MVP|
+| [workflow-essential-pipeline.puml](Diagrams/Detailed/workflow-essential-pipeline.puml) | Future after MVP|
+| [workflow-essential-promotion.puml](Diagrams/Detailed/workflow-essential-promotion.puml) | Future after MVP|
+| [workflow-essential-recovery.puml](Diagrams/Detailed/workflow-essential-recovery.puml) | Future after MVP|
+| [workflow-essential-run-state.puml](Diagrams/Detailed/workflow-essential-run-state.puml) | Future after MVP|
+| [workflow-essential-strategies.puml](Diagrams/Detailed/workflow-essential-strategies.puml) | Future after MVP|
+| [workflow-essential-topology.puml](Diagrams/Detailed/workflow-essential-topology.puml) | Future after MVP|
+| [workflow-trust-model.puml](Diagrams/Detailed/workflow-trust-model.puml) | Future after MVP|
 
 | [applications-portfolio.puml](../../03-System-Analysis/Diagrams/Scope-Stakeholder-Map.puml) | MVP systems|
 | [comm-containers.puml](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.puml) | Future communications|
 | [comm-context.puml](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.puml) | Future communications|
-| [comm-domain.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-domain.puml) | Future after MVP|
-| [comm-erd.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-erd.puml) | Future after MVP|
-| [comm-event-state.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-event-state.puml) | Future after MVP|
-| [comm-free-busy.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-free-busy.puml) | Future after MVP|
-| [comm-integration-options.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-integration-options.puml) | Future after MVP|
-| [comm-interfaces.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-interfaces.puml) | Future after MVP|
-| [comm-invitation.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-invitation.puml) | Future after MVP|
-| [comm-message-state.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-message-state.puml) | Future after MVP|
-| [comm-notification-flow.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-notification-flow.puml) | Future after MVP|
-| [comm-recurrence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-recurrence.puml) | Future after MVP|
-| [comm-reminder.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-reminder.puml) | Future after MVP|
-| [comm-scheduling.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-scheduling.puml) | Future after MVP|
-| [comm-send.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-send.puml) | Future after MVP|
-| [comm-sync.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-sync.puml) | Future after MVP|
-| [comm-use-cases.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-use-cases.puml) | Future after MVP|
-| [git-essential-components.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-components.puml) | MVP ProjectForge|
-| [git-essential-domain.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-domain.puml) | Future after MVP|
-| [git-essential-pr-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-pr-sequence.puml) | Future after MVP|
-| [git-essential-pr-state.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-pr-state.puml) | Future after MVP|
-| [git-merge-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-merge-sequence.puml) | Future after MVP|
-| [git-owned-model.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-owned-model.puml) | Future after MVP|
-| [work-essential-components.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-views.puml) | MVP ProjectForge|
-| [work-essential-task-state.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-task-state.puml) | Future after MVP|
-| [work-essential-views.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-views.puml) | MVP ProjectForge|
-| [work-owned-model.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-owned-model.puml) | Future after MVP|
+| [comm-domain.puml](Diagrams/Detailed/comm-domain.puml) | Future after MVP|
+| [comm-erd.puml](Diagrams/Detailed/comm-erd.puml) | Future after MVP|
+| [comm-event-state.puml](Diagrams/Detailed/comm-event-state.puml) | Future after MVP|
+| [comm-free-busy.puml](Diagrams/Detailed/comm-free-busy.puml) | Future after MVP|
+| [comm-integration-options.puml](Diagrams/Detailed/comm-integration-options.puml) | Future after MVP|
+| [comm-interfaces.puml](Diagrams/Detailed/comm-interfaces.puml) | Future after MVP|
+| [comm-invitation.puml](Diagrams/Detailed/comm-invitation.puml) | Future after MVP|
+| [comm-message-state.puml](Diagrams/Detailed/comm-message-state.puml) | Future after MVP|
+| [comm-notification-flow.puml](Diagrams/Detailed/comm-notification-flow.puml) | Future after MVP|
+| [comm-recurrence.puml](Diagrams/Detailed/comm-recurrence.puml) | Future after MVP|
+| [comm-reminder.puml](Diagrams/Detailed/comm-reminder.puml) | Future after MVP|
+| [comm-scheduling.puml](Diagrams/Detailed/comm-scheduling.puml) | Future after MVP|
+| [comm-send.puml](Diagrams/Detailed/comm-send.puml) | Future after MVP|
+| [comm-sync.puml](Diagrams/Detailed/comm-sync.puml) | Future after MVP|
+| [comm-use-cases.puml](Diagrams/Detailed/comm-use-cases.puml) | Future after MVP|
+| [git-essential-components.puml](Diagrams/Detailed/git-essential-components.puml) | MVP ProjectForge|
+| [git-essential-domain.puml](Diagrams/Detailed/git-essential-domain.puml) | Future after MVP|
+| [git-essential-pr-sequence.puml](Diagrams/Detailed/git-essential-pr-sequence.puml) | Future after MVP|
+| [git-essential-pr-state.puml](Diagrams/Detailed/git-essential-pr-state.puml) | Future after MVP|
+| [git-merge-sequence.puml](Diagrams/Detailed/git-merge-sequence.puml) | Future after MVP|
+| [git-owned-model.puml](Diagrams/Detailed/git-owned-model.puml) | Future after MVP|
+| [work-essential-components.puml](Diagrams/Detailed/work-essential-views.puml) | MVP ProjectForge|
+| [work-essential-task-state.puml](Diagrams/Detailed/work-essential-task-state.puml) | Future after MVP|
+| [work-essential-views.puml](Diagrams/Detailed/work-essential-views.puml) | MVP ProjectForge|
+| [work-owned-model.puml](Diagrams/Detailed/work-owned-model.puml) | Future after MVP|
 
 <a id="design-record-03-component-and-module-design-components-diagrams-diagram-catalog-md--heading-complete-diagram-alignment--november-4"></a>
 
@@ -1615,111 +1876,111 @@ Current MVP figures replace the former common-product boundary. Future and histo
 
 | Editable source or visual | Current applicability | Matching exports |
 | --- | --- | --- |
-| [applications-capture-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-capture-sequence.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-capture-sequence.svg) · ![applications capture sequence](../Diagrams/Archived-Png/Applications-Capture-Sequence.png) |
-| [applications-containers.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-c4-containers.puml) | MVP systems| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-c4-containers.svg) · ![boundaries c4 containers](../Diagrams/Archived-Png/Boundaries-C4-Containers.png) |
-| [applications-cross-owner-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-cross-owner-sequence.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-cross-owner-sequence.svg) · ![applications cross owner sequence](../Diagrams/Archived-Png/Applications-Cross-Owner-Sequence.png) |
-| [applications-dependencies.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-dependencies.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-dependencies.svg) · ![applications dependencies](../Diagrams/Archived-Png/Applications-Dependencies.png) |
-| [applications-deployment.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.puml) | MVP deployment| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.svg) · ![drivers uml deployment](../Diagrams/Archived-Png/Drivers-Uml-Deployment.png) |
-| [applications-integration.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-integration.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-integration.svg) · ![applications integration](../Diagrams/Archived-Png/Applications-Integration.png) |
-| [applications-interfaces.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-interfaces.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-interfaces.svg) · ![applications interfaces](../Diagrams/Archived-Png/Applications-Interfaces.png) |
-| [applications-internal-structure.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-internal-structure.puml) | MVP core| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-internal-structure.svg) · ![applications internal structure](../Diagrams/Archived-Png/Applications-Internal-Structure.png) |
-| [applications-layers.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-layers.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-layers.svg) · ![applications layers](../Diagrams/Archived-Png/Applications-Layers.png) |
-| [applications-owned-model.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-owned-model.puml) | MVP core| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-owned-model.svg) · ![applications owned model](../Diagrams/Archived-Png/Applications-Owned-Model.png) |
-| [applications-packages.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-packages.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-packages.svg) · ![applications packages](../Diagrams/Archived-Png/Applications-Packages.png) |
-| [applications-portfolio.puml](../../03-System-Analysis/Diagrams/Scope-Stakeholder-Map.puml) | MVP systems| [SVG](../../03-System-Analysis/Diagrams/Scope-Stakeholder-Map.svg) · ![scope stakeholder map](../../03-System-Analysis/Diagrams/Scope-Stakeholder-Map.png) |
-| [applications-system-context.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-c4-system-context.puml) | MVP systems| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-c4-system-context.svg) · ![drivers c4 system context](../Diagrams/Archived-Png/Drivers-C4-System-Context.png) |
-| [applications-use-cases.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-use-cases.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-use-cases.svg) · ![applications use cases](../Diagrams/Archived-Png/Applications-Use-Cases.png) |
-| [calendar-reconciliation-route.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/calendar-reconciliation-route.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/calendar-reconciliation-route.svg) · ![calendar reconciliation route](../Diagrams/Archived-Png/Calendar-Reconciliation-Route.png) |
-| [comm-containers.puml](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.puml) | Future communications| [SVG](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.svg) · ![use cases mail and calendar](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.png) |
-| [comm-context.puml](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.puml) | Future communications| [SVG](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.svg) · ![use cases mail and calendar](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.png) |
-| [comm-deployment.puml](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.puml) | Future communications| [SVG](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.svg) · ![use cases mail and calendar](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.png) |
-| [comm-domain.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-domain.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-domain.svg) · ![comm domain](../Diagrams/Archived-Png/Comm-Domain.png) |
-| [comm-erd.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-erd.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-erd.svg) · ![comm erd](../Diagrams/Archived-Png/Comm-Erd.png) |
-| [comm-event-state.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-event-state.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-event-state.svg) · ![comm event state](../Diagrams/Archived-Png/Comm-Event-State.png) |
-| [comm-free-busy.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-free-busy.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-free-busy.svg) · ![comm free busy](../Diagrams/Archived-Png/Comm-Free-Busy.png) |
-| [comm-integration-options.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-integration-options.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-integration-options.svg) · ![comm integration options](../Diagrams/Archived-Png/Comm-Integration-Options.png) |
-| [comm-interfaces.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-interfaces.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-interfaces.svg) · ![comm interfaces](../Diagrams/Archived-Png/Comm-Interfaces.png) |
-| [comm-invitation.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-invitation.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-invitation.svg) · ![comm invitation](../Diagrams/Archived-Png/Comm-Invitation.png) |
-| [comm-message-state.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-message-state.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-message-state.svg) · ![comm message state](../Diagrams/Archived-Png/Comm-Message-State.png) |
-| [comm-notification-flow.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-notification-flow.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-notification-flow.svg) · ![comm notification flow](../Diagrams/Archived-Png/Comm-Notification-Flow.png) |
-| [comm-recurrence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-recurrence.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-recurrence.svg) · ![comm recurrence](../Diagrams/Archived-Png/Comm-Recurrence.png) |
-| [comm-reminder.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-reminder.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-reminder.svg) · ![comm reminder](../Diagrams/Archived-Png/Comm-Reminder.png) |
-| [comm-scheduling.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-scheduling.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-scheduling.svg) · ![comm scheduling](../Diagrams/Archived-Png/Comm-Scheduling.png) |
-| [comm-send.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-send.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-send.svg) · ![comm send](../Diagrams/Archived-Png/Comm-Send.png) |
-| [comm-sync.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-sync.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-sync.svg) · ![comm sync](../Diagrams/Archived-Png/Comm-Sync.png) |
-| [comm-use-cases.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-use-cases.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-use-cases.svg) · ![comm use cases](../Diagrams/Archived-Png/Comm-Use-Cases.png) |
-| [communication-owned-model.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/communication-owned-model.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/communication-owned-model.svg) · ![communication owned model](../Diagrams/Archived-Png/Communication-Owned-Model.png) |
-| [communication-send-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/communication-send-sequence.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/communication-send-sequence.svg) · ![communication send sequence](../Diagrams/Archived-Png/Communication-Send-Sequence.png) |
-| [files-admission-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-admission-sequence.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-admission-sequence.svg) · ![files admission sequence](../Diagrams/Archived-Png/Files-Admission-Sequence.png) |
-| [files-artifact-state.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-artifact-state.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-artifact-state.svg) · ![files artifact state](../Diagrams/Archived-Png/Files-Artifact-State.png) |
-| [files-concurrent-edits.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-concurrent-edits.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-concurrent-edits.svg) · ![files concurrent edits](../Diagrams/Archived-Png/Files-Concurrent-Edits.png) |
-| [files-containers.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-context.puml) | MVP core media| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-context.svg) · ![files context](../Diagrams/Archived-Png/Files-Context.png) |
-| [files-context.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-context.puml) | MVP core media| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-context.svg) · ![files context](../Diagrams/Archived-Png/Files-Context.png) |
-| [files-deployment.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.puml) | MVP deployment| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.svg) · ![drivers uml deployment](../Diagrams/Archived-Png/Drivers-Uml-Deployment.png) |
-| [files-domain.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-domain.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-domain.svg) · ![files domain](../Diagrams/Archived-Png/Files-Domain.png) |
-| [files-download.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-download.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-download.svg) · ![files download](../Diagrams/Archived-Png/Files-Download.png) |
-| [files-erd.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-erd.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-erd.svg) · ![files erd](../Diagrams/Archived-Png/Files-Erd.png) |
-| [files-integrations.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-context.puml) | MVP core media| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-context.svg) · ![files context](../Diagrams/Archived-Png/Files-Context.png) |
-| [files-interfaces.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-interfaces.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-interfaces.svg) · ![files interfaces](../Diagrams/Archived-Png/Files-Interfaces.png) |
-| [files-job-state.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-job-state.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-job-state.svg) · ![files job state](../Diagrams/Archived-Png/Files-Job-State.png) |
-| [files-owned-model.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-owned-model.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-owned-model.svg) · ![files owned model](../Diagrams/Archived-Png/Files-Owned-Model.png) |
-| [files-paths.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-paths.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-paths.svg) · ![files paths](../Diagrams/Archived-Png/Files-Paths.png) |
-| [files-pipeline.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-pipeline.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-pipeline.svg) · ![files pipeline](../Diagrams/Archived-Png/Files-Pipeline.png) |
-| [files-queues.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-queues.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-queues.svg) · ![files queues](../Diagrams/Archived-Png/Files-Queues.png) |
-| [files-reclamation-route.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-reclamation-route.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-reclamation-route.svg) · ![files reclamation route](../Diagrams/Archived-Png/Files-Reclamation-Route.png) |
-| [files-share.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-share.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-share.svg) · ![files share](../Diagrams/Archived-Png/Files-Share.png) |
-| [files-storage-options.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-context.puml) | MVP core media| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-context.svg) · ![files context](../Diagrams/Archived-Png/Files-Context.png) |
-| [files-trash.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-trash.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-trash.svg) · ![files trash](../Diagrams/Archived-Png/Files-Trash.png) |
-| [files-upload.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-upload.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-upload.svg) · ![files upload](../Diagrams/Archived-Png/Files-Upload.png) |
-| [files-use-cases.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-use-cases.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-use-cases.svg) · ![files use cases](../Diagrams/Archived-Png/Files-Use-Cases.png) |
-| [git-essential-branching.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-branching.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-branching.svg) · ![git essential branching](../Diagrams/Archived-Png/Git-Essential-Branching.png) |
-| [git-essential-components.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-components.puml) | MVP ProjectForge| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-components.svg) · ![git essential components](../Diagrams/Archived-Png/Git-Essential-Components.png) |
-| [git-essential-domain.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-domain.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-domain.svg) · ![git essential domain](../Diagrams/Archived-Png/Git-Essential-Domain.png) |
-| [git-essential-graph.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-graph.puml) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-graph.svg) · ![git essential graph](../Diagrams/Archived-Png/Git-Essential-Graph.png) |
-| [git-essential-objects.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-objects.puml) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-objects.svg) · ![git essential objects](../Diagrams/Archived-Png/Git-Essential-Objects.png) |
-| [git-essential-pr-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-pr-sequence.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-pr-sequence.svg) · ![git essential pr sequence](../Diagrams/Archived-Png/Git-Essential-Pr-Sequence.png) |
-| [git-essential-pr-state.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-pr-state.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-pr-state.svg) · ![git essential pr state](../Diagrams/Archived-Png/Git-Essential-Pr-State.png) |
-| [git-merge-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-merge-sequence.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-merge-sequence.svg) · ![git merge sequence](../Diagrams/Archived-Png/Git-Merge-Sequence.png) |
-| [git-owned-model.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-owned-model.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-owned-model.svg) · ![git owned model](../Diagrams/Archived-Png/Git-Owned-Model.png) |
-| [identity-authorization-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-authorization-sequence.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-authorization-sequence.svg) · ![identity authorization sequence](../Diagrams/Archived-Png/Identity-Authorization-Sequence.png) |
-| [identity-essential-access-model.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-access-model.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-access-model.svg) · ![identity essential access model](../Diagrams/Archived-Png/Identity-Essential-Access-Model.png) |
-| [identity-essential-authentication.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-authentication.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-authentication.svg) · ![identity essential authentication](../Diagrams/Archived-Png/Identity-Essential-Authentication.png) |
-| [identity-essential-authorization.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-authorization.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-authorization.svg) · ![identity essential authorization](../Diagrams/Archived-Png/Identity-Essential-Authorization.png) |
-| [identity-essential-components.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-components.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-components.svg) · ![identity essential components](../Diagrams/Archived-Png/Identity-Essential-Components.png) |
-| [identity-essential-session-state.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-session-state.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-session-state.svg) · ![identity essential session state](../Diagrams/Archived-Png/Identity-Essential-Session-State.png) |
-| [identity-essential-trust-boundaries.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.puml) | MVP systems| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.svg) · ![security trust boundaries](../Diagrams/Archived-Png/Security-Trust-Boundaries.png) |
-| [identity-owned-model.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-owned-model.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-owned-model.svg) · ![identity owned model](../Diagrams/Archived-Png/Identity-Owned-Model.png) |
-| [presentation-essential-components.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-components.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-components.svg) · ![presentation essential components](../Diagrams/Archived-Png/Presentation-Essential-Components.png) |
-| [presentation-essential-lifecycle.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-lifecycle.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-lifecycle.svg) · ![presentation essential lifecycle](../Diagrams/Archived-Png/Presentation-Essential-Lifecycle.png) |
-| [presentation-essential-rendering.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-rendering.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-rendering.svg) · ![presentation essential rendering](../Diagrams/Archived-Png/Presentation-Essential-Rendering.png) |
-| [presentation-essential-use-cases.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-use-cases.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-use-cases.svg) · ![presentation essential use cases](../Diagrams/Archived-Png/Presentation-Essential-Use-Cases.png) |
-| [presentation-essential-visitor.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-visitor.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-visitor.svg) · ![presentation essential visitor](../Diagrams/Archived-Png/Presentation-Essential-Visitor.png) |
-| [presentation-owned-model.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-owned-model.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-owned-model.svg) · ![presentation owned model](../Diagrams/Archived-Png/Presentation-Owned-Model.png) |
-| [presentation-update-publication.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-update-publication.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-update-publication.svg) · ![presentation update publication](../Diagrams/Archived-Png/Presentation-Update-Publication.png) |
-| [sharing-essential-components.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-essential-components.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-essential-components.svg) · ![sharing essential components](../Diagrams/Archived-Png/Sharing-Essential-Components.png) |
-| [sharing-essential-formats.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-essential-formats.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-essential-formats.svg) · ![sharing essential formats](../Diagrams/Archived-Png/Sharing-Essential-Formats.png) |
-| [sharing-essential-link-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-essential-link-sequence.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-essential-link-sequence.svg) · ![sharing essential link sequence](../Diagrams/Archived-Png/Sharing-Essential-Link-Sequence.png) |
-| [sharing-essential-link-state.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-essential-link-state.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-essential-link-state.svg) · ![sharing essential link state](../Diagrams/Archived-Png/Sharing-Essential-Link-State.png) |
-| [sharing-owned-model.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-owned-model.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-owned-model.svg) · ![sharing owned model](../Diagrams/Archived-Png/Sharing-Owned-Model.png) |
-| [sharing-protected-retrieval.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-protected-retrieval.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-protected-retrieval.svg) · ![sharing protected retrieval](../Diagrams/Archived-Png/Sharing-Protected-Retrieval.png) |
-| [work-essential-components.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-views.puml) | MVP ProjectForge| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-views.svg) · ![work essential views](../Diagrams/Archived-Png/Work-Essential-Views.png) |
-| [work-essential-sprint-planning.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-sprint-planning.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-sprint-planning.svg) · ![work essential sprint planning](../Diagrams/Archived-Png/Work-Essential-Sprint-Planning.png) |
-| [work-essential-task-state.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-task-state.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-task-state.svg) · ![work essential task state](../Diagrams/Archived-Png/Work-Essential-Task-State.png) |
-| [work-essential-transition.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-transition.puml) | MVP ProjectForge| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-transition.svg) · ![work essential transition](../Diagrams/Archived-Png/Work-Essential-Transition.png) |
-| [work-essential-views.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-views.puml) | MVP ProjectForge| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-views.svg) · ![work essential views](../Diagrams/Archived-Png/Work-Essential-Views.png) |
-| [work-mutation-sprint-close.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-mutation-sprint-close.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-mutation-sprint-close.svg) · ![work mutation sprint close](../Diagrams/Archived-Png/Work-Mutation-Sprint-Close.png) |
-| [work-owned-model.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-owned-model.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-owned-model.svg) · ![work owned model](../Diagrams/Archived-Png/Work-Owned-Model.png) |
-| [workflow-deployment-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-deployment-sequence.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-deployment-sequence.svg) · ![workflow deployment sequence](../Diagrams/Archived-Png/Workflow-Deployment-Sequence.png) |
-| [workflow-essential-components.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-components.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-components.svg) · ![workflow essential components](../Diagrams/Archived-Png/Workflow-Essential-Components.png) |
-| [workflow-essential-deployment-state.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-deployment-state.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-deployment-state.svg) · ![workflow essential deployment state](../Diagrams/Archived-Png/Workflow-Essential-Deployment-State.png) |
-| [workflow-essential-executor.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-executor.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-executor.svg) · ![workflow essential executor](../Diagrams/Archived-Png/Workflow-Essential-Executor.png) |
-| [workflow-essential-pipeline.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-pipeline.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-pipeline.svg) · ![workflow essential pipeline](../Diagrams/Archived-Png/Workflow-Essential-Pipeline.png) |
-| [workflow-essential-promotion.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-promotion.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-promotion.svg) · ![workflow essential promotion](../Diagrams/Archived-Png/Workflow-Essential-Promotion.png) |
-| [workflow-essential-recovery.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-recovery.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-recovery.svg) · ![workflow essential recovery](../Diagrams/Archived-Png/Workflow-Essential-Recovery.png) |
-| [workflow-essential-run-state.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-run-state.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-run-state.svg) · ![workflow essential run state](../Diagrams/Archived-Png/Workflow-Essential-Run-State.png) |
-| [workflow-essential-strategies.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-strategies.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-strategies.svg) · ![workflow essential strategies](../Diagrams/Archived-Png/Workflow-Essential-Strategies.png) |
-| [workflow-essential-topology.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-topology.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-topology.svg) · ![workflow essential topology](../Diagrams/Archived-Png/Workflow-Essential-Topology.png) |
-| [workflow-trust-model.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-trust-model.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-trust-model.svg) · ![workflow trust model](../Diagrams/Archived-Png/Workflow-Trust-Model.png) |
+| [applications-capture-sequence.puml](Diagrams/Detailed/applications-capture-sequence.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/applications-capture-sequence.svg) · ![applications capture sequence](Diagrams/Detailed/applications-capture-sequence.svg) |
+| [applications-containers.puml](Diagrams/Detailed/boundaries-c4-containers.puml) | MVP systems| [SVG](Diagrams/Detailed/boundaries-c4-containers.svg) · ![boundaries c4 containers](Diagrams/Detailed/boundaries-c4-containers.svg) |
+| [applications-cross-owner-sequence.puml](Diagrams/Detailed/applications-cross-owner-sequence.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/applications-cross-owner-sequence.svg) · ![applications cross owner sequence](Diagrams/Detailed/applications-cross-owner-sequence.svg) |
+| [applications-dependencies.puml](Diagrams/Detailed/applications-dependencies.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/applications-dependencies.svg) · ![applications dependencies](Diagrams/Detailed/applications-dependencies.svg) |
+| [applications-deployment.puml](Diagrams/Detailed/drivers-uml-deployment.puml) | MVP deployment| [SVG](Diagrams/Detailed/drivers-uml-deployment.svg) · ![drivers uml deployment](Diagrams/Detailed/drivers-uml-deployment.svg) |
+| [applications-integration.puml](Diagrams/Detailed/applications-integration.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/applications-integration.svg) · ![applications integration](Diagrams/Detailed/applications-integration.svg) |
+| [applications-interfaces.puml](Diagrams/Detailed/applications-interfaces.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/applications-interfaces.svg) · ![applications interfaces](Diagrams/Detailed/applications-interfaces.svg) |
+| [applications-internal-structure.puml](Diagrams/Detailed/applications-internal-structure.puml) | MVP core| [SVG](Diagrams/Detailed/applications-internal-structure.svg) · ![applications internal structure](Diagrams/Detailed/applications-internal-structure.svg) |
+| [applications-layers.puml](Diagrams/Detailed/applications-layers.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/applications-layers.svg) · ![applications layers](Diagrams/Detailed/applications-layers.svg) |
+| [applications-owned-model.puml](Diagrams/Detailed/applications-owned-model.puml) | MVP core| [SVG](Diagrams/Detailed/applications-owned-model.svg) · ![applications owned model](Diagrams/Detailed/applications-owned-model.svg) |
+| [applications-packages.puml](Diagrams/Detailed/applications-packages.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/applications-packages.svg) · ![applications packages](Diagrams/Detailed/applications-packages.svg) |
+| [applications-portfolio.puml](../../03-System-Analysis/Diagrams/Scope-Stakeholder-Map.puml) | MVP systems| [SVG](../../03-System-Analysis/Diagrams/Scope-Stakeholder-Map.svg) · ![scope stakeholder map](Diagrams/Detailed/scope-stakeholder-map.svg) |
+| [applications-system-context.puml](Diagrams/Detailed/drivers-c4-system-context.puml) | MVP systems| [SVG](Diagrams/Detailed/drivers-c4-system-context.svg) · ![drivers c4 system context](Diagrams/Detailed/drivers-c4-system-context.svg) |
+| [applications-use-cases.puml](Diagrams/Detailed/applications-use-cases.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/applications-use-cases.svg) · ![applications use cases](Diagrams/Detailed/applications-use-cases.svg) |
+| [calendar-reconciliation-route.puml](Diagrams/Detailed/calendar-reconciliation-route.puml) | Future after MVP| [SVG](Diagrams/Detailed/calendar-reconciliation-route.svg) · ![calendar reconciliation route](Diagrams/Detailed/calendar-reconciliation-route.svg) |
+| [comm-containers.puml](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.puml) | Future communications| [SVG](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.svg) · ![use cases mail and calendar](Diagrams/Detailed/use-cases-mail-and-calendar.svg) |
+| [comm-context.puml](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.puml) | Future communications| [SVG](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.svg) · ![use cases mail and calendar](Diagrams/Detailed/use-cases-mail-and-calendar.svg) |
+| [comm-deployment.puml](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.puml) | Future communications| [SVG](../../02-Requirements-Engineering/Diagrams/Use-Cases-Mail-And-Calendar.svg) · ![use cases mail and calendar](Diagrams/Detailed/use-cases-mail-and-calendar.svg) |
+| [comm-domain.puml](Diagrams/Detailed/comm-domain.puml) | Future after MVP| [SVG](Diagrams/Detailed/comm-domain.svg) · ![comm domain](Diagrams/Detailed/comm-domain.svg) |
+| [comm-erd.puml](Diagrams/Detailed/comm-erd.puml) | Future after MVP| [SVG](Diagrams/Detailed/comm-erd.svg) · ![comm erd](Diagrams/Detailed/comm-erd.svg) |
+| [comm-event-state.puml](Diagrams/Detailed/comm-event-state.puml) | Future after MVP| [SVG](Diagrams/Detailed/comm-event-state.svg) · ![comm event state](Diagrams/Detailed/comm-event-state.svg) |
+| [comm-free-busy.puml](Diagrams/Detailed/comm-free-busy.puml) | Future after MVP| [SVG](Diagrams/Detailed/comm-free-busy.svg) · ![comm free busy](Diagrams/Detailed/comm-free-busy.svg) |
+| [comm-integration-options.puml](Diagrams/Detailed/comm-integration-options.puml) | Future after MVP| [SVG](Diagrams/Detailed/comm-integration-options.svg) · ![comm integration options](Diagrams/Detailed/comm-integration-options.svg) |
+| [comm-interfaces.puml](Diagrams/Detailed/comm-interfaces.puml) | Future after MVP| [SVG](Diagrams/Detailed/comm-interfaces.svg) · ![comm interfaces](Diagrams/Detailed/comm-interfaces.svg) |
+| [comm-invitation.puml](Diagrams/Detailed/comm-invitation.puml) | Future after MVP| [SVG](Diagrams/Detailed/comm-invitation.svg) · ![comm invitation](Diagrams/Detailed/comm-invitation.svg) |
+| [comm-message-state.puml](Diagrams/Detailed/comm-message-state.puml) | Future after MVP| [SVG](Diagrams/Detailed/comm-message-state.svg) · ![comm message state](Diagrams/Detailed/comm-message-state.svg) |
+| [comm-notification-flow.puml](Diagrams/Detailed/comm-notification-flow.puml) | Future after MVP| [SVG](Diagrams/Detailed/comm-notification-flow.svg) · ![comm notification flow](Diagrams/Detailed/comm-notification-flow.svg) |
+| [comm-recurrence.puml](Diagrams/Detailed/comm-recurrence.puml) | Future after MVP| [SVG](Diagrams/Detailed/comm-recurrence.svg) · ![comm recurrence](Diagrams/Detailed/comm-recurrence.svg) |
+| [comm-reminder.puml](Diagrams/Detailed/comm-reminder.puml) | Future after MVP| [SVG](Diagrams/Detailed/comm-reminder.svg) · ![comm reminder](Diagrams/Detailed/comm-reminder.svg) |
+| [comm-scheduling.puml](Diagrams/Detailed/comm-scheduling.puml) | Future after MVP| [SVG](Diagrams/Detailed/comm-scheduling.svg) · ![comm scheduling](Diagrams/Detailed/comm-scheduling.svg) |
+| [comm-send.puml](Diagrams/Detailed/comm-send.puml) | Future after MVP| [SVG](Diagrams/Detailed/comm-send.svg) · ![comm send](Diagrams/Detailed/comm-send.svg) |
+| [comm-sync.puml](Diagrams/Detailed/comm-sync.puml) | Future after MVP| [SVG](Diagrams/Detailed/comm-sync.svg) · ![comm sync](Diagrams/Detailed/comm-sync.svg) |
+| [comm-use-cases.puml](Diagrams/Detailed/comm-use-cases.puml) | Future after MVP| [SVG](Diagrams/Detailed/comm-use-cases.svg) · ![comm use cases](Diagrams/Detailed/comm-use-cases.svg) |
+| [communication-owned-model.puml](Diagrams/Detailed/communication-owned-model.puml) | Future after MVP| [SVG](Diagrams/Detailed/communication-owned-model.svg) · ![communication owned model](Diagrams/Detailed/communication-owned-model.svg) |
+| [communication-send-sequence.puml](Diagrams/Detailed/communication-send-sequence.puml) | Future after MVP| [SVG](Diagrams/Detailed/communication-send-sequence.svg) · ![communication send sequence](Diagrams/Detailed/communication-send-sequence.svg) |
+| [files-admission-sequence.puml](Diagrams/Detailed/files-admission-sequence.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/files-admission-sequence.svg) · ![files admission sequence](Diagrams/Detailed/files-admission-sequence.svg) |
+| [files-artifact-state.puml](Diagrams/Detailed/files-artifact-state.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/files-artifact-state.svg) · ![files artifact state](Diagrams/Detailed/files-artifact-state.svg) |
+| [files-concurrent-edits.puml](Diagrams/Detailed/files-concurrent-edits.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/files-concurrent-edits.svg) · ![files concurrent edits](Diagrams/Detailed/files-concurrent-edits.svg) |
+| [files-containers.puml](Diagrams/Detailed/files-context.puml) | MVP core media| [SVG](Diagrams/Detailed/files-context.svg) · ![files context](Diagrams/Detailed/files-context.svg) |
+| [files-context.puml](Diagrams/Detailed/files-context.puml) | MVP core media| [SVG](Diagrams/Detailed/files-context.svg) · ![files context](Diagrams/Detailed/files-context.svg) |
+| [files-deployment.puml](Diagrams/Detailed/drivers-uml-deployment.puml) | MVP deployment| [SVG](Diagrams/Detailed/drivers-uml-deployment.svg) · ![drivers uml deployment](Diagrams/Detailed/drivers-uml-deployment.svg) |
+| [files-domain.puml](Diagrams/Detailed/files-domain.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/files-domain.svg) · ![files domain](Diagrams/Detailed/files-domain.svg) |
+| [files-download.puml](Diagrams/Detailed/files-download.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/files-download.svg) · ![files download](Diagrams/Detailed/files-download.svg) |
+| [files-erd.puml](Diagrams/Detailed/files-erd.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/files-erd.svg) · ![files erd](Diagrams/Detailed/files-erd.svg) |
+| [files-integrations.puml](Diagrams/Detailed/files-context.puml) | MVP core media| [SVG](Diagrams/Detailed/files-context.svg) · ![files context](Diagrams/Detailed/files-context.svg) |
+| [files-interfaces.puml](Diagrams/Detailed/files-interfaces.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/files-interfaces.svg) · ![files interfaces](Diagrams/Detailed/files-interfaces.svg) |
+| [files-job-state.puml](Diagrams/Detailed/files-job-state.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/files-job-state.svg) · ![files job state](Diagrams/Detailed/files-job-state.svg) |
+| [files-owned-model.puml](Diagrams/Detailed/files-owned-model.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/files-owned-model.svg) · ![files owned model](Diagrams/Detailed/files-owned-model.svg) |
+| [files-paths.puml](Diagrams/Detailed/files-paths.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/files-paths.svg) · ![files paths](Diagrams/Detailed/files-paths.svg) |
+| [files-pipeline.puml](Diagrams/Detailed/files-pipeline.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/files-pipeline.svg) · ![files pipeline](Diagrams/Detailed/files-pipeline.svg) |
+| [files-queues.puml](Diagrams/Detailed/files-queues.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/files-queues.svg) · ![files queues](Diagrams/Detailed/files-queues.svg) |
+| [files-reclamation-route.puml](Diagrams/Detailed/files-reclamation-route.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/files-reclamation-route.svg) · ![files reclamation route](Diagrams/Detailed/files-reclamation-route.svg) |
+| [files-share.puml](Diagrams/Detailed/files-share.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/files-share.svg) · ![files share](Diagrams/Detailed/files-share.svg) |
+| [files-storage-options.puml](Diagrams/Detailed/files-context.puml) | MVP core media| [SVG](Diagrams/Detailed/files-context.svg) · ![files context](Diagrams/Detailed/files-context.svg) |
+| [files-trash.puml](Diagrams/Detailed/files-trash.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/files-trash.svg) · ![files trash](Diagrams/Detailed/files-trash.svg) |
+| [files-upload.puml](Diagrams/Detailed/files-upload.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/files-upload.svg) · ![files upload](Diagrams/Detailed/files-upload.svg) |
+| [files-use-cases.puml](Diagrams/Detailed/files-use-cases.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/files-use-cases.svg) · ![files use cases](Diagrams/Detailed/files-use-cases.svg) |
+| [git-essential-branching.puml](Diagrams/Detailed/git-essential-branching.puml) | Future after MVP| [SVG](Diagrams/Detailed/git-essential-branching.svg) · ![git essential branching](Diagrams/Detailed/git-essential-branching.svg) |
+| [git-essential-components.puml](Diagrams/Detailed/git-essential-components.puml) | MVP ProjectForge| [SVG](Diagrams/Detailed/git-essential-components.svg) · ![git essential components](Diagrams/Detailed/git-essential-components.svg) |
+| [git-essential-domain.puml](Diagrams/Detailed/git-essential-domain.puml) | Future after MVP| [SVG](Diagrams/Detailed/git-essential-domain.svg) · ![git essential domain](Diagrams/Detailed/git-essential-domain.svg) |
+| [git-essential-graph.puml](Diagrams/Detailed/git-essential-graph.puml) | Reference / design method| [SVG](Diagrams/Detailed/git-essential-graph.svg) · ![git essential graph](Diagrams/Detailed/git-essential-graph.svg) |
+| [git-essential-objects.puml](Diagrams/Detailed/git-essential-objects.puml) | Reference / design method| [SVG](Diagrams/Detailed/git-essential-objects.svg) · ![git essential objects](Diagrams/Detailed/git-essential-objects.svg) |
+| [git-essential-pr-sequence.puml](Diagrams/Detailed/git-essential-pr-sequence.puml) | Future after MVP| [SVG](Diagrams/Detailed/git-essential-pr-sequence.svg) · ![git essential pr sequence](Diagrams/Detailed/git-essential-pr-sequence.svg) |
+| [git-essential-pr-state.puml](Diagrams/Detailed/git-essential-pr-state.puml) | Future after MVP| [SVG](Diagrams/Detailed/git-essential-pr-state.svg) · ![git essential pr state](Diagrams/Detailed/git-essential-pr-state.svg) |
+| [git-merge-sequence.puml](Diagrams/Detailed/git-merge-sequence.puml) | Future after MVP| [SVG](Diagrams/Detailed/git-merge-sequence.svg) · ![git merge sequence](Diagrams/Detailed/git-merge-sequence.svg) |
+| [git-owned-model.puml](Diagrams/Detailed/git-owned-model.puml) | Future after MVP| [SVG](Diagrams/Detailed/git-owned-model.svg) · ![git owned model](Diagrams/Detailed/git-owned-model.svg) |
+| [identity-authorization-sequence.puml](Diagrams/Detailed/identity-authorization-sequence.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/identity-authorization-sequence.svg) · ![identity authorization sequence](Diagrams/Detailed/identity-authorization-sequence.svg) |
+| [identity-essential-access-model.puml](Diagrams/Detailed/identity-essential-access-model.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/identity-essential-access-model.svg) · ![identity essential access model](Diagrams/Detailed/identity-essential-access-model.svg) |
+| [identity-essential-authentication.puml](Diagrams/Detailed/identity-essential-authentication.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/identity-essential-authentication.svg) · ![identity essential authentication](Diagrams/Detailed/identity-essential-authentication.svg) |
+| [identity-essential-authorization.puml](Diagrams/Detailed/identity-essential-authorization.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/identity-essential-authorization.svg) · ![identity essential authorization](Diagrams/Detailed/identity-essential-authorization.svg) |
+| [identity-essential-components.puml](Diagrams/Detailed/identity-essential-components.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/identity-essential-components.svg) · ![identity essential components](Diagrams/Detailed/identity-essential-components.svg) |
+| [identity-essential-session-state.puml](Diagrams/Detailed/identity-essential-session-state.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/identity-essential-session-state.svg) · ![identity essential session state](Diagrams/Detailed/identity-essential-session-state.svg) |
+| [identity-essential-trust-boundaries.puml](Diagrams/Detailed/security-trust-boundaries.puml) | MVP systems| [SVG](Diagrams/Detailed/security-trust-boundaries.svg) · ![security trust boundaries](Diagrams/Detailed/security-trust-boundaries.svg) |
+| [identity-owned-model.puml](Diagrams/Detailed/identity-owned-model.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/identity-owned-model.svg) · ![identity owned model](Diagrams/Detailed/identity-owned-model.svg) |
+| [presentation-essential-components.puml](Diagrams/Detailed/presentation-essential-components.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/presentation-essential-components.svg) · ![presentation essential components](Diagrams/Detailed/presentation-essential-components.svg) |
+| [presentation-essential-lifecycle.puml](Diagrams/Detailed/presentation-essential-lifecycle.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/presentation-essential-lifecycle.svg) · ![presentation essential lifecycle](Diagrams/Detailed/presentation-essential-lifecycle.svg) |
+| [presentation-essential-rendering.puml](Diagrams/Detailed/presentation-essential-rendering.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/presentation-essential-rendering.svg) · ![presentation essential rendering](Diagrams/Detailed/presentation-essential-rendering.svg) |
+| [presentation-essential-use-cases.puml](Diagrams/Detailed/presentation-essential-use-cases.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/presentation-essential-use-cases.svg) · ![presentation essential use cases](Diagrams/Detailed/presentation-essential-use-cases.svg) |
+| [presentation-essential-visitor.puml](Diagrams/Detailed/presentation-essential-visitor.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/presentation-essential-visitor.svg) · ![presentation essential visitor](Diagrams/Detailed/presentation-essential-visitor.svg) |
+| [presentation-owned-model.puml](Diagrams/Detailed/presentation-owned-model.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/presentation-owned-model.svg) · ![presentation owned model](Diagrams/Detailed/presentation-owned-model.svg) |
+| [presentation-update-publication.puml](Diagrams/Detailed/presentation-update-publication.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/presentation-update-publication.svg) · ![presentation update publication](Diagrams/Detailed/presentation-update-publication.svg) |
+| [sharing-essential-components.puml](Diagrams/Detailed/sharing-essential-components.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/sharing-essential-components.svg) · ![sharing essential components](Diagrams/Detailed/sharing-essential-components.svg) |
+| [sharing-essential-formats.puml](Diagrams/Detailed/sharing-essential-formats.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/sharing-essential-formats.svg) · ![sharing essential formats](Diagrams/Detailed/sharing-essential-formats.svg) |
+| [sharing-essential-link-sequence.puml](Diagrams/Detailed/sharing-essential-link-sequence.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/sharing-essential-link-sequence.svg) · ![sharing essential link sequence](Diagrams/Detailed/sharing-essential-link-sequence.svg) |
+| [sharing-essential-link-state.puml](Diagrams/Detailed/sharing-essential-link-state.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/sharing-essential-link-state.svg) · ![sharing essential link state](Diagrams/Detailed/sharing-essential-link-state.svg) |
+| [sharing-owned-model.puml](Diagrams/Detailed/sharing-owned-model.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/sharing-owned-model.svg) · ![sharing owned model](Diagrams/Detailed/sharing-owned-model.svg) |
+| [sharing-protected-retrieval.puml](Diagrams/Detailed/sharing-protected-retrieval.puml) | MVP core / cross-cutting| [SVG](Diagrams/Detailed/sharing-protected-retrieval.svg) · ![sharing protected retrieval](Diagrams/Detailed/sharing-protected-retrieval.svg) |
+| [work-essential-components.puml](Diagrams/Detailed/work-essential-views.puml) | MVP ProjectForge| [SVG](Diagrams/Detailed/work-essential-views.svg) · ![work essential views](Diagrams/Detailed/work-essential-views.svg) |
+| [work-essential-sprint-planning.puml](Diagrams/Detailed/work-essential-sprint-planning.puml) | Future after MVP| [SVG](Diagrams/Detailed/work-essential-sprint-planning.svg) · ![work essential sprint planning](Diagrams/Detailed/work-essential-sprint-planning.svg) |
+| [work-essential-task-state.puml](Diagrams/Detailed/work-essential-task-state.puml) | Future after MVP| [SVG](Diagrams/Detailed/work-essential-task-state.svg) · ![work essential task state](Diagrams/Detailed/work-essential-task-state.svg) |
+| [work-essential-transition.puml](Diagrams/Detailed/work-essential-transition.puml) | MVP ProjectForge| [SVG](Diagrams/Detailed/work-essential-transition.svg) · ![work essential transition](Diagrams/Detailed/work-essential-transition.svg) |
+| [work-essential-views.puml](Diagrams/Detailed/work-essential-views.puml) | MVP ProjectForge| [SVG](Diagrams/Detailed/work-essential-views.svg) · ![work essential views](Diagrams/Detailed/work-essential-views.svg) |
+| [work-mutation-sprint-close.puml](Diagrams/Detailed/work-mutation-sprint-close.puml) | Future after MVP| [SVG](Diagrams/Detailed/work-mutation-sprint-close.svg) · ![work mutation sprint close](Diagrams/Detailed/work-mutation-sprint-close.svg) |
+| [work-owned-model.puml](Diagrams/Detailed/work-owned-model.puml) | Future after MVP| [SVG](Diagrams/Detailed/work-owned-model.svg) · ![work owned model](Diagrams/Detailed/work-owned-model.svg) |
+| [workflow-deployment-sequence.puml](Diagrams/Detailed/workflow-deployment-sequence.puml) | Future after MVP| [SVG](Diagrams/Detailed/workflow-deployment-sequence.svg) · ![workflow deployment sequence](Diagrams/Detailed/workflow-deployment-sequence.svg) |
+| [workflow-essential-components.puml](Diagrams/Detailed/workflow-essential-components.puml) | Future after MVP| [SVG](Diagrams/Detailed/workflow-essential-components.svg) · ![workflow essential components](Diagrams/Detailed/workflow-essential-components.svg) |
+| [workflow-essential-deployment-state.puml](Diagrams/Detailed/workflow-essential-deployment-state.puml) | Future after MVP| [SVG](Diagrams/Detailed/workflow-essential-deployment-state.svg) · ![workflow essential deployment state](Diagrams/Detailed/workflow-essential-deployment-state.svg) |
+| [workflow-essential-executor.puml](Diagrams/Detailed/workflow-essential-executor.puml) | Future after MVP| [SVG](Diagrams/Detailed/workflow-essential-executor.svg) · ![workflow essential executor](Diagrams/Detailed/workflow-essential-executor.svg) |
+| [workflow-essential-pipeline.puml](Diagrams/Detailed/workflow-essential-pipeline.puml) | Future after MVP| [SVG](Diagrams/Detailed/workflow-essential-pipeline.svg) · ![workflow essential pipeline](Diagrams/Detailed/workflow-essential-pipeline.svg) |
+| [workflow-essential-promotion.puml](Diagrams/Detailed/workflow-essential-promotion.puml) | Future after MVP| [SVG](Diagrams/Detailed/workflow-essential-promotion.svg) · ![workflow essential promotion](Diagrams/Detailed/workflow-essential-promotion.svg) |
+| [workflow-essential-recovery.puml](Diagrams/Detailed/workflow-essential-recovery.puml) | Future after MVP| [SVG](Diagrams/Detailed/workflow-essential-recovery.svg) · ![workflow essential recovery](Diagrams/Detailed/workflow-essential-recovery.svg) |
+| [workflow-essential-run-state.puml](Diagrams/Detailed/workflow-essential-run-state.puml) | Future after MVP| [SVG](Diagrams/Detailed/workflow-essential-run-state.svg) · ![workflow essential run state](Diagrams/Detailed/workflow-essential-run-state.svg) |
+| [workflow-essential-strategies.puml](Diagrams/Detailed/workflow-essential-strategies.puml) | Future after MVP| [SVG](Diagrams/Detailed/workflow-essential-strategies.svg) · ![workflow essential strategies](Diagrams/Detailed/workflow-essential-strategies.svg) |
+| [workflow-essential-topology.puml](Diagrams/Detailed/workflow-essential-topology.puml) | Future after MVP| [SVG](Diagrams/Detailed/workflow-essential-topology.svg) · ![workflow essential topology](Diagrams/Detailed/workflow-essential-topology.svg) |
+| [workflow-trust-model.puml](Diagrams/Detailed/workflow-trust-model.puml) | Future after MVP| [SVG](Diagrams/Detailed/workflow-trust-model.svg) · ![workflow trust model](Diagrams/Detailed/workflow-trust-model.svg) |
 
 </details>
 
@@ -1740,9 +2001,9 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Modularity dependencies and encapsulation
 
-- [Public and private module boundary](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/module-public-and-private-boundary.svg) · [DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/module-public-and-private-boundary.dot) · ![module public and private boundary](../Diagrams/Archived-Png/Module-Public-And-Private-Boundary.png)
-- [Dependency and adapter direction](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/module-dependency-direction.svg) · [DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/module-dependency-direction.dot) · ![module dependency direction](../Diagrams/Archived-Png/Module-Dependency-Direction.png)
-- [Composition and operation lifetimes](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/module-composition-and-lifetimes.svg) · [DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/module-composition-and-lifetimes.dot) · ![module composition and lifetimes](../Diagrams/Archived-Png/Module-Composition-And-Lifetimes.png)
+- [Public and private module boundary](Diagrams/Modules/module-public-and-private-boundary.svg) · [DOT](Diagrams/Modules/module-public-and-private-boundary.dot) · ![module public and private boundary](Diagrams/Modules/module-public-and-private-boundary.svg)
+- [Dependency and adapter direction](Diagrams/Modules/module-dependency-direction.svg) · [DOT](Diagrams/Modules/module-dependency-direction.dot) · ![module dependency direction](Diagrams/Modules/module-dependency-direction.svg)
+- [Composition and operation lifetimes](Diagrams/Modules/module-composition-and-lifetimes.svg) · [DOT](Diagrams/Modules/module-composition-and-lifetimes.dot) · ![module composition and lifetimes](Diagrams/Modules/module-composition-and-lifetimes.svg)
 
 [Owning module guide](02-Module-Breakdown.md#design-record-03-component-and-module-design-01-modularity-dependencies-and-encapsulation-md) · [Component index](02-Module-Breakdown.md#design-record-03-component-and-module-design-component-and-module-design-md). Diagrams show relationships rather than execution order.
 
@@ -1750,9 +2011,9 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Implementation view and artifacts
 
-- [Proposed source responsibility layout](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-source-structure.svg) · [DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-source-structure.dot) · ![implementation source structure](../Diagrams/Archived-Png/Implementation-Source-Structure.png)
-- [Component artifact and placement mapping](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/component-artifact-placement.svg) · [DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/component-artifact-placement.dot) · ![component artifact placement](../Diagrams/Archived-Png/Component-Artifact-Placement.png)
-- [Build and release evidence route](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-release-route.svg) · [DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-release-route.dot) · ![implementation release route](../Diagrams/Archived-Png/Implementation-Release-Route.png)
+- [Proposed source responsibility layout](Diagrams/Appendix/implementation-source-structure.svg) · [DOT](Diagrams/Appendix/implementation-source-structure.dot) · ![implementation source structure](Diagrams/Appendix/implementation-source-structure.svg)
+- [Component artifact and placement mapping](Diagrams/Appendix/component-artifact-placement.svg) · [DOT](Diagrams/Appendix/component-artifact-placement.dot) · ![component artifact placement](Diagrams/Appendix/component-artifact-placement.svg)
+- [Build and release evidence route](Diagrams/Appendix/implementation-release-route.svg) · [DOT](Diagrams/Appendix/implementation-release-route.dot) · ![implementation release route](Diagrams/Appendix/implementation-release-route.svg)
 
 [Owning implementation view](#design-record-03-component-and-module-design-02-implementation-view-and-artifacts-md). Proposed organization and evidence route, not existing built software.
 
@@ -1760,10 +2021,10 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Essential modularity and encapsulation views
 
-- [Owner packages and source dependency direction](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/modularity-essential-packages.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/modularity-essential-packages.puml) · ![modularity essential packages](../Diagrams/Archived-Png/Modularity-Essential-Packages.png)
-- [Allowed layers and forbidden bypasses](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/modularity-essential-layers.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/modularity-essential-layers.puml) · ![modularity essential layers](../Diagrams/Archived-Png/Modularity-Essential-Layers.png)
-- [Public contract and hidden implementation](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/modularity-essential-encapsulation.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/modularity-essential-encapsulation.puml) · ![modularity essential encapsulation](../Diagrams/Archived-Png/Modularity-Essential-Encapsulation.png)
-- [Tangled versus owner-controlled dependencies](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/modularity-essential-before-after.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/modularity-essential-before-after.puml) · ![modularity essential before after](../Diagrams/Archived-Png/Modularity-Essential-Before-After.png)
+- [Owner packages and source dependency direction](Diagrams/Modules/modularity-essential-packages.svg) · [PlantUML](Diagrams/Modules/modularity-essential-packages.puml) · ![modularity essential packages](Diagrams/Modules/modularity-essential-packages.svg)
+- [Allowed layers and forbidden bypasses](Diagrams/Modules/modularity-essential-layers.svg) · [PlantUML](Diagrams/Modules/modularity-essential-layers.puml) · ![modularity essential layers](Diagrams/Modules/modularity-essential-layers.svg)
+- [Public contract and hidden implementation](Diagrams/Modules/modularity-essential-encapsulation.svg) · [PlantUML](Diagrams/Modules/modularity-essential-encapsulation.puml) · ![modularity essential encapsulation](Diagrams/Modules/modularity-essential-encapsulation.svg)
+- [Tangled versus owner-controlled dependencies](Diagrams/Modules/modularity-essential-before-after.svg) · [PlantUML](Diagrams/Modules/modularity-essential-before-after.puml) · ![modularity essential before after](Diagrams/Modules/modularity-essential-before-after.svg)
 
 [Owning modularity guide and four boundary/dependency/fitness tables](02-Module-Breakdown.md#design-record-03-component-and-module-design-01-modularity-dependencies-and-encapsulation-md--heading-8-essential-modularity-and-encapsulation-views). Intended edges/counterexamples are not measured imports or actual hotspot findings.
 
@@ -1771,9 +2032,9 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Essential implementation and artifact views
 
-- [Implementation view: logical owners to physical outputs](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-essential-overview.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-essential-overview.puml) · ![implementation essential overview](../Diagrams/Archived-Png/Implementation-Essential-Overview.png)
-- [UML-style artifacts and manifestation boundaries](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-essential-overview.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-essential-overview.puml) · ![implementation essential overview](../Diagrams/Archived-Png/Implementation-Essential-Overview.png)
-- [Build dependency order and candidate evidence](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-essential-build-order.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-essential-build-order.puml) · ![implementation essential build order](../Diagrams/Archived-Png/Implementation-Essential-Build-Order.png)
+- [Implementation view: logical owners to physical outputs](Diagrams/Appendix/implementation-essential-overview.svg) · [PlantUML](Diagrams/Appendix/implementation-essential-overview.puml) · ![implementation essential overview](Diagrams/Appendix/implementation-essential-overview.svg)
+- [UML-style artifacts and manifestation boundaries](Diagrams/Appendix/implementation-essential-overview.svg) · [PlantUML](Diagrams/Appendix/implementation-essential-overview.puml) · ![implementation essential overview](Diagrams/Appendix/implementation-essential-overview.svg)
+- [Build dependency order and candidate evidence](Diagrams/Appendix/implementation-essential-build-order.svg) · [PlantUML](Diagrams/Appendix/implementation-essential-build-order.puml) · ![implementation essential build order](Diagrams/Appendix/implementation-essential-build-order.svg)
 
 [Owning implementation view](#design-record-03-component-and-module-design-02-implementation-view-and-artifacts-md--heading-8-essential-implementation-and-artifact-views). Three complementary views only; existing source/artifact/deployment diagrams reused.
 
@@ -1785,8 +2046,8 @@ Current MVP figures replace the former common-product boundary. Future and histo
 
 | Editable source | Current applicability |
 | --- | --- |
-| [component-artifact-placement.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/component-artifact-placement.dot) | MVP systems|
-| [module-dependency-direction.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/module-dependency-direction.dot) | Method / document navigation|
+| [component-artifact-placement.dot](Diagrams/Appendix/component-artifact-placement.dot) | MVP systems|
+| [module-dependency-direction.dot](Diagrams/Modules/module-dependency-direction.dot) | Method / document navigation|
 
 <a id="design-record-03-component-and-module-design-diagrams-diagram-catalog-md--heading-complete-diagram-alignment--november-4"></a>
 
@@ -1796,528 +2057,528 @@ Current MVP figures replace the former common-product boundary. Future and histo
 
 | Editable source or visual | Current applicability | Matching exports |
 | --- | --- | --- |
-| [component-artifact-placement.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/component-artifact-placement.dot) | MVP systems| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/component-artifact-placement.svg) · ![component artifact placement](../Diagrams/Archived-Png/Component-Artifact-Placement.png) |
-| [implementation-essential-artifacts.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-essential-overview.puml) | MVP systems| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-essential-overview.svg) · ![implementation essential overview](../Diagrams/Archived-Png/Implementation-Essential-Overview.png) |
-| [implementation-essential-build-order.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-essential-build-order.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-essential-build-order.svg) · ![implementation essential build order](../Diagrams/Archived-Png/Implementation-Essential-Build-Order.png) |
-| [implementation-essential-overview.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-essential-overview.puml) | MVP systems| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-essential-overview.svg) · ![implementation essential overview](../Diagrams/Archived-Png/Implementation-Essential-Overview.png) |
-| [implementation-release-route.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-release-route.dot) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-release-route.svg) · ![implementation release route](../Diagrams/Archived-Png/Implementation-Release-Route.png) |
-| [implementation-source-structure.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-source-structure.dot) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-source-structure.svg) · ![implementation source structure](../Diagrams/Archived-Png/Implementation-Source-Structure.png) |
-| [modularity-essential-before-after.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/modularity-essential-before-after.puml) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/modularity-essential-before-after.svg) · ![modularity essential before after](../Diagrams/Archived-Png/Modularity-Essential-Before-After.png) |
-| [modularity-essential-encapsulation.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/modularity-essential-encapsulation.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/modularity-essential-encapsulation.svg) · ![modularity essential encapsulation](../Diagrams/Archived-Png/Modularity-Essential-Encapsulation.png) |
-| [modularity-essential-layers.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/modularity-essential-layers.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/modularity-essential-layers.svg) · ![modularity essential layers](../Diagrams/Archived-Png/Modularity-Essential-Layers.png) |
-| [modularity-essential-packages.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/modularity-essential-packages.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/modularity-essential-packages.svg) · ![modularity essential packages](../Diagrams/Archived-Png/Modularity-Essential-Packages.png) |
-| [module-composition-and-lifetimes.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/module-composition-and-lifetimes.dot) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/module-composition-and-lifetimes.svg) · ![module composition and lifetimes](../Diagrams/Archived-Png/Module-Composition-And-Lifetimes.png) |
-| [module-dependency-direction.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/module-dependency-direction.dot) | Method / document navigation| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/module-dependency-direction.svg) · ![module dependency direction](../Diagrams/Archived-Png/Module-Dependency-Direction.png) |
-| [module-public-and-private-boundary.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/module-public-and-private-boundary.dot) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/module-public-and-private-boundary.svg) · ![module public and private boundary](../Diagrams/Archived-Png/Module-Public-And-Private-Boundary.png) |
+| [component-artifact-placement.dot](Diagrams/Appendix/component-artifact-placement.dot) | MVP systems| [SVG](Diagrams/Appendix/component-artifact-placement.svg) · ![component artifact placement](Diagrams/Appendix/component-artifact-placement.svg) |
+| [implementation-essential-artifacts.puml](Diagrams/Appendix/implementation-essential-overview.puml) | MVP systems| [SVG](Diagrams/Appendix/implementation-essential-overview.svg) · ![implementation essential overview](Diagrams/Appendix/implementation-essential-overview.svg) |
+| [implementation-essential-build-order.puml](Diagrams/Appendix/implementation-essential-build-order.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/implementation-essential-build-order.svg) · ![implementation essential build order](Diagrams/Appendix/implementation-essential-build-order.svg) |
+| [implementation-essential-overview.puml](Diagrams/Appendix/implementation-essential-overview.puml) | MVP systems| [SVG](Diagrams/Appendix/implementation-essential-overview.svg) · ![implementation essential overview](Diagrams/Appendix/implementation-essential-overview.svg) |
+| [implementation-release-route.dot](Diagrams/Appendix/implementation-release-route.dot) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/implementation-release-route.svg) · ![implementation release route](Diagrams/Appendix/implementation-release-route.svg) |
+| [implementation-source-structure.dot](Diagrams/Appendix/implementation-source-structure.dot) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/implementation-source-structure.svg) · ![implementation source structure](Diagrams/Appendix/implementation-source-structure.svg) |
+| [modularity-essential-before-after.puml](Diagrams/Modules/modularity-essential-before-after.puml) | Reference / design method| [SVG](Diagrams/Modules/modularity-essential-before-after.svg) · ![modularity essential before after](Diagrams/Modules/modularity-essential-before-after.svg) |
+| [modularity-essential-encapsulation.puml](Diagrams/Modules/modularity-essential-encapsulation.puml) | MVP core / cross-cutting| [SVG](Diagrams/Modules/modularity-essential-encapsulation.svg) · ![modularity essential encapsulation](Diagrams/Modules/modularity-essential-encapsulation.svg) |
+| [modularity-essential-layers.puml](Diagrams/Modules/modularity-essential-layers.puml) | MVP core / cross-cutting| [SVG](Diagrams/Modules/modularity-essential-layers.svg) · ![modularity essential layers](Diagrams/Modules/modularity-essential-layers.svg) |
+| [modularity-essential-packages.puml](Diagrams/Modules/modularity-essential-packages.puml) | MVP core / cross-cutting| [SVG](Diagrams/Modules/modularity-essential-packages.svg) · ![modularity essential packages](Diagrams/Modules/modularity-essential-packages.svg) |
+| [module-composition-and-lifetimes.dot](Diagrams/Modules/module-composition-and-lifetimes.dot) | MVP core / cross-cutting| [SVG](Diagrams/Modules/module-composition-and-lifetimes.svg) · ![module composition and lifetimes](Diagrams/Modules/module-composition-and-lifetimes.svg) |
+| [module-dependency-direction.dot](Diagrams/Modules/module-dependency-direction.dot) | Method / document navigation| [SVG](Diagrams/Modules/module-dependency-direction.svg) · ![module dependency direction](Diagrams/Modules/module-dependency-direction.svg) |
+| [module-public-and-private-boundary.dot](Diagrams/Modules/module-public-and-private-boundary.dot) | MVP core / cross-cutting| [SVG](Diagrams/Modules/module-public-and-private-boundary.svg) · ![module public and private boundary](Diagrams/Modules/module-public-and-private-boundary.svg) |
 
 </details>
 
 ## Design assets
 
-- [compatible-design-evolution.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/compatible-design-evolution.dot)
-- ![compatible-design-evolution.png](../Diagrams/Archived-Png/Compatible-Design-Evolution.png)
-- [compatible-design-evolution.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/compatible-design-evolution.svg)
-- [design-change-impact-route.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/design-change-impact-route.dot)
-- ![design-change-impact-route.png](../Diagrams/Archived-Png/Design-Change-Impact-Route.png)
-- [design-change-impact-route.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/design-change-impact-route.svg)
-- [design-finding-classification.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/design-finding-classification.dot)
-- ![design-finding-classification.png](../Diagrams/Archived-Png/Design-Finding-Classification.png)
-- [design-finding-classification.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/design-finding-classification.svg)
-- ![evolution-branch-abstraction.png](../Diagrams/Archived-Png/Evolution-Branch-Abstraction.png)
-- [evolution-branch-abstraction.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-branch-abstraction.puml)
-- [evolution-branch-abstraction.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-branch-abstraction.svg)
+- [compatible-design-evolution.dot](Diagrams/Appendix/compatible-design-evolution.dot)
+- ![compatible-design-evolution.png](Diagrams/Appendix/compatible-design-evolution.svg)
+- [compatible-design-evolution.svg](Diagrams/Appendix/compatible-design-evolution.svg)
+- [design-change-impact-route.dot](Diagrams/Appendix/design-change-impact-route.dot)
+- ![design-change-impact-route.png](Diagrams/Appendix/design-change-impact-route.svg)
+- [design-change-impact-route.svg](Diagrams/Appendix/design-change-impact-route.svg)
+- [design-finding-classification.dot](Diagrams/Appendix/design-finding-classification.dot)
+- ![design-finding-classification.png](Diagrams/Appendix/design-finding-classification.svg)
+- [design-finding-classification.svg](Diagrams/Appendix/design-finding-classification.svg)
+- ![evolution-branch-abstraction.png](Diagrams/Appendix/evolution-branch-abstraction.svg)
+- [evolution-branch-abstraction.puml](Diagrams/Appendix/evolution-branch-abstraction.puml)
+- [evolution-branch-abstraction.svg](Diagrams/Appendix/evolution-branch-abstraction.svg)
 - [evolution-chart-data.json](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-chart-data.json)
-- ![evolution-churn-complexity.png](../Diagrams/Archived-Png/Evolution-Churn-Complexity.png)
-- [evolution-churn-complexity.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-churn-complexity.svg)
-- ![evolution-class-change.png](../Diagrams/Archived-Png/Evolution-Class-Change.png)
-- [evolution-class-change.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-class-change.puml)
-- [evolution-class-change.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-class-change.svg)
-- ![evolution-component-target.png](../Diagrams/Archived-Png/Evolution-Component-Target.png)
-- [evolution-component-target.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-component-target.puml)
-- [evolution-component-target.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-component-target.svg)
-- ![evolution-debt-quadrant.png](../Diagrams/Archived-Png/Evolution-Debt-Quadrant.png)
-- [evolution-debt-quadrant.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-debt-quadrant.svg)
-- ![evolution-dependency-hotspots.png](../Diagrams/Archived-Png/Evolution-Dependency-Hotspots.png)
-- [evolution-dependency-hotspots.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-dependency-hotspots.puml)
-- [evolution-dependency-hotspots.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-dependency-hotspots.svg)
-- ![evolution-erosion.png](../Diagrams/Archived-Png/Evolution-Erosion.png)
-- [evolution-erosion.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-erosion.puml)
-- [evolution-erosion.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-erosion.svg)
-- ![evolution-history.png](../Diagrams/Archived-Png/Evolution-History.png)
-- [evolution-history.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-history.puml)
-- [evolution-history.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-history.svg)
-- ![evolution-impact-effort.png](../Diagrams/Archived-Png/Evolution-Impact-Effort.png)
-- [evolution-impact-effort.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-impact-effort.svg)
-- ![evolution-interest-curve.png](../Diagrams/Archived-Png/Evolution-Interest-Curve.png)
-- [evolution-interest-curve.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-interest-curve.svg)
-- ![evolution-lifecycle.png](../Diagrams/Archived-Png/Evolution-Lifecycle.png)
-- [evolution-lifecycle.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-lifecycle.puml)
-- [evolution-lifecycle.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-lifecycle.svg)
-- ![evolution-package-direction.png](../Diagrams/Archived-Png/Evolution-Package-Direction.png)
-- [evolution-package-direction.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-package-direction.puml)
-- [evolution-package-direction.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-package-direction.svg)
-- ![evolution-refactoring-sequence.png](../Diagrams/Archived-Png/Evolution-Refactoring-Sequence.png)
-- [evolution-refactoring-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-refactoring-sequence.puml)
-- [evolution-refactoring-sequence.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-refactoring-sequence.svg)
-- ![evolution-safety-net.png](../Diagrams/Archived-Png/Evolution-Safety-Net.png)
-- [evolution-safety-net.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-safety-net.puml)
-- [evolution-safety-net.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-safety-net.svg)
-- ![evolution-strangler.png](../Diagrams/Archived-Png/Evolution-Strangler.png)
-- [evolution-strangler.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-strangler.puml)
-- [evolution-strangler.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/evolution-strangler.svg)
-- ![oo-before-after.png](../Diagrams/Archived-Png/Oo-Before-After.png)
-- [oo-before-after.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-before-after.puml)
-- [oo-before-after.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-before-after.svg)
-- ![oo-composition.png](../Diagrams/Archived-Png/Oo-Composition.png)
-- [oo-composition.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-composition.puml)
-- [oo-composition.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-composition.svg)
-- ![oo-conceptual-domain.png](../Diagrams/Archived-Png/Oo-Conceptual-Domain.png)
-- [oo-conceptual-domain.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-conceptual-domain.puml)
-- [oo-conceptual-domain.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-conceptual-domain.svg)
-- ![oo-coupling-cohesion.png](../Diagrams/Archived-Png/Oo-Coupling-Cohesion.png)
-- [oo-coupling-cohesion.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-coupling-cohesion.puml)
-- [oo-coupling-cohesion.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-coupling-cohesion.svg)
-- ![oo-demeter.png](../Diagrams/Archived-Png/Oo-Demeter.png)
-- [oo-demeter.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-demeter.puml)
-- [oo-demeter.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-demeter.svg)
-- ![oo-dependency-inversion.png](../Diagrams/Archived-Png/Oo-Dependency-Inversion.png)
-- [oo-dependency-inversion.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-dependency-inversion.puml)
-- [oo-dependency-inversion.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-dependency-inversion.svg)
-- ![oo-index-abstraction-levels.png](../Diagrams/Archived-Png/Oo-Index-Abstraction-Levels.png)
-- [oo-index-abstraction-levels.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-abstraction-levels.puml)
-- [oo-index-abstraction-levels.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-abstraction-levels.svg)
-- ![oo-index-architecture-bridge.png](../Diagrams/Archived-Png/Oo-Index-Architecture-Bridge.png)
-- [oo-index-architecture-bridge.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-architecture-bridge.puml)
-- [oo-index-architecture-bridge.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-architecture-bridge.svg)
-- ![oo-index-concept-map.png](../Diagrams/Archived-Png/Oo-Index-Concept-Map.png)
-- [oo-index-concept-map.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-concept-map.puml)
-- [oo-index-concept-map.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-concept-map.svg)
-- ![oo-index-design-lifecycle.png](../Diagrams/Archived-Png/Oo-Index-Design-Lifecycle.png)
-- [oo-index-design-lifecycle.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-design-lifecycle.puml)
-- [oo-index-design-lifecycle.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-design-lifecycle.svg)
-- ![oo-index-prerequisites.png](../Diagrams/Archived-Png/Oo-Index-Prerequisites.png)
-- [oo-index-prerequisites.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-prerequisites.puml)
-- [oo-index-prerequisites.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-prerequisites.svg)
-- ![oo-index-reading-path.png](../Diagrams/Archived-Png/Oo-Index-Reading-Path.png)
-- [oo-index-reading-path.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-reading-path.puml)
-- [oo-index-reading-path.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-reading-path.svg)
-- ![oo-index-topic-mindmap.png](../Diagrams/Archived-Png/Oo-Index-Topic-Mindmap.png)
-- [oo-index-topic-mindmap.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-topic-mindmap.puml)
-- [oo-index-topic-mindmap.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-index-topic-mindmap.svg)
-- ![oo-packages.png](../Diagrams/Archived-Png/Oo-Packages.png)
-- [oo-packages.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-packages.puml)
-- [oo-packages.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-packages.svg)
-- ![oo-publication-sequence.png](../Diagrams/Archived-Png/Oo-Publication-Sequence.png)
-- [oo-publication-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-publication-sequence.puml)
-- [oo-publication-sequence.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-publication-sequence.svg)
-- ![oo-realization.png](../Diagrams/Archived-Png/Oo-Realization.png)
-- [oo-realization.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-realization.puml)
-- [oo-realization.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-realization.svg)
-- [oo-responsibility-direction.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-responsibility-direction.dot)
-- ![oo-responsibility-direction.png](../Diagrams/Archived-Png/Oo-Responsibility-Direction.png)
-- [oo-responsibility-direction.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-responsibility-direction.svg)
-- ![oo-runtime-objects.png](../Diagrams/Archived-Png/Oo-Runtime-Objects.png)
-- [oo-runtime-objects.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-runtime-objects.puml)
-- [oo-runtime-objects.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-runtime-objects.svg)
-- ![oo-strategy-preview.png](../Diagrams/Archived-Png/Oo-Strategy-Preview.png)
-- [oo-strategy-preview.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-strategy-preview.puml)
-- [oo-strategy-preview.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/oo-strategy-preview.svg)
-- [pattern-selection-route.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/pattern-selection-route.dot)
-- ![pattern-selection-route.png](../Diagrams/Archived-Png/Pattern-Selection-Route.png)
-- [pattern-selection-route.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/pattern-selection-route.svg)
-- ![publication-use-case-classes.png](../Diagrams/Archived-Png/Publication-Use-Case-Classes.png)
-- [publication-use-case-classes.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/publication-use-case-classes.puml)
-- [publication-use-case-classes.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/02-detailed-and-object-oriented-design/diagrams/publication-use-case-classes.svg)
-- ![applications-capture-sequence.png](../Diagrams/Archived-Png/Applications-Capture-Sequence.png)
-- [applications-capture-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-capture-sequence.puml)
-- [applications-capture-sequence.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-capture-sequence.svg)
-- ![applications-cross-owner-sequence.png](../Diagrams/Archived-Png/Applications-Cross-Owner-Sequence.png)
-- [applications-cross-owner-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-cross-owner-sequence.puml)
-- [applications-cross-owner-sequence.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-cross-owner-sequence.svg)
-- ![applications-dependencies.png](../Diagrams/Archived-Png/Applications-Dependencies.png)
-- [applications-dependencies.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-dependencies.puml)
-- [applications-dependencies.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-dependencies.svg)
-- ![applications-integration.png](../Diagrams/Archived-Png/Applications-Integration.png)
-- [applications-integration.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-integration.puml)
-- [applications-integration.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-integration.svg)
-- ![applications-interfaces.png](../Diagrams/Archived-Png/Applications-Interfaces.png)
-- [applications-interfaces.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-interfaces.puml)
-- [applications-interfaces.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-interfaces.svg)
-- ![applications-internal-structure.png](../Diagrams/Archived-Png/Applications-Internal-Structure.png)
-- [applications-internal-structure.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-internal-structure.puml)
-- [applications-internal-structure.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-internal-structure.svg)
-- ![applications-layers.png](../Diagrams/Archived-Png/Applications-Layers.png)
-- [applications-layers.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-layers.puml)
-- [applications-layers.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-layers.svg)
-- ![applications-owned-model.png](../Diagrams/Archived-Png/Applications-Owned-Model.png)
-- [applications-owned-model.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-owned-model.puml)
-- [applications-owned-model.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-owned-model.svg)
-- ![applications-packages.png](../Diagrams/Archived-Png/Applications-Packages.png)
-- [applications-packages.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-packages.puml)
-- [applications-packages.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-packages.svg)
-- ![applications-use-cases.png](../Diagrams/Archived-Png/Applications-Use-Cases.png)
-- [applications-use-cases.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-use-cases.puml)
-- [applications-use-cases.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/applications-use-cases.svg)
-- ![calendar-reconciliation-route.png](../Diagrams/Archived-Png/Calendar-Reconciliation-Route.png)
-- [calendar-reconciliation-route.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/calendar-reconciliation-route.puml)
-- [calendar-reconciliation-route.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/calendar-reconciliation-route.svg)
-- ![comm-domain.png](../Diagrams/Archived-Png/Comm-Domain.png)
-- [comm-domain.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-domain.puml)
-- [comm-domain.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-domain.svg)
-- ![comm-erd.png](../Diagrams/Archived-Png/Comm-Erd.png)
-- [comm-erd.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-erd.puml)
-- [comm-erd.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-erd.svg)
-- ![comm-event-state.png](../Diagrams/Archived-Png/Comm-Event-State.png)
-- [comm-event-state.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-event-state.puml)
-- [comm-event-state.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-event-state.svg)
-- ![comm-free-busy.png](../Diagrams/Archived-Png/Comm-Free-Busy.png)
-- [comm-free-busy.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-free-busy.puml)
-- [comm-free-busy.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-free-busy.svg)
-- ![comm-integration-options.png](../Diagrams/Archived-Png/Comm-Integration-Options.png)
-- [comm-integration-options.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-integration-options.puml)
-- [comm-integration-options.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-integration-options.svg)
-- ![comm-interfaces.png](../Diagrams/Archived-Png/Comm-Interfaces.png)
-- [comm-interfaces.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-interfaces.puml)
-- [comm-interfaces.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-interfaces.svg)
-- ![comm-invitation.png](../Diagrams/Archived-Png/Comm-Invitation.png)
-- [comm-invitation.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-invitation.puml)
-- [comm-invitation.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-invitation.svg)
-- ![comm-message-state.png](../Diagrams/Archived-Png/Comm-Message-State.png)
-- [comm-message-state.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-message-state.puml)
-- [comm-message-state.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-message-state.svg)
-- ![comm-notification-flow.png](../Diagrams/Archived-Png/Comm-Notification-Flow.png)
-- [comm-notification-flow.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-notification-flow.puml)
-- [comm-notification-flow.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-notification-flow.svg)
-- ![comm-recurrence.png](../Diagrams/Archived-Png/Comm-Recurrence.png)
-- [comm-recurrence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-recurrence.puml)
-- [comm-recurrence.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-recurrence.svg)
-- ![comm-reminder.png](../Diagrams/Archived-Png/Comm-Reminder.png)
-- [comm-reminder.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-reminder.puml)
-- [comm-reminder.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-reminder.svg)
-- ![comm-scheduling.png](../Diagrams/Archived-Png/Comm-Scheduling.png)
-- [comm-scheduling.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-scheduling.puml)
-- [comm-scheduling.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-scheduling.svg)
-- ![comm-send.png](../Diagrams/Archived-Png/Comm-Send.png)
-- [comm-send.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-send.puml)
-- [comm-send.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-send.svg)
-- ![comm-sync.png](../Diagrams/Archived-Png/Comm-Sync.png)
-- [comm-sync.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-sync.puml)
-- [comm-sync.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-sync.svg)
-- ![comm-use-cases.png](../Diagrams/Archived-Png/Comm-Use-Cases.png)
-- [comm-use-cases.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-use-cases.puml)
-- [comm-use-cases.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/comm-use-cases.svg)
-- ![communication-owned-model.png](../Diagrams/Archived-Png/Communication-Owned-Model.png)
-- [communication-owned-model.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/communication-owned-model.puml)
-- [communication-owned-model.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/communication-owned-model.svg)
-- ![communication-send-sequence.png](../Diagrams/Archived-Png/Communication-Send-Sequence.png)
-- [communication-send-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/communication-send-sequence.puml)
-- [communication-send-sequence.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/communication-send-sequence.svg)
-- ![files-admission-sequence.png](../Diagrams/Archived-Png/Files-Admission-Sequence.png)
-- [files-admission-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-admission-sequence.puml)
-- [files-admission-sequence.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-admission-sequence.svg)
-- ![files-artifact-state.png](../Diagrams/Archived-Png/Files-Artifact-State.png)
-- [files-artifact-state.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-artifact-state.puml)
-- [files-artifact-state.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-artifact-state.svg)
-- ![files-concurrent-edits.png](../Diagrams/Archived-Png/Files-Concurrent-Edits.png)
-- [files-concurrent-edits.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-concurrent-edits.puml)
-- [files-concurrent-edits.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-concurrent-edits.svg)
-- ![files-context.png](../Diagrams/Archived-Png/Files-Context.png)
-- [files-context.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-context.puml)
-- [files-context.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-context.svg)
-- ![files-domain.png](../Diagrams/Archived-Png/Files-Domain.png)
-- [files-domain.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-domain.puml)
-- [files-domain.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-domain.svg)
-- ![files-download.png](../Diagrams/Archived-Png/Files-Download.png)
-- [files-download.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-download.puml)
-- [files-download.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-download.svg)
-- ![files-erd.png](../Diagrams/Archived-Png/Files-Erd.png)
-- [files-erd.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-erd.puml)
-- [files-erd.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-erd.svg)
-- ![files-interfaces.png](../Diagrams/Archived-Png/Files-Interfaces.png)
-- [files-interfaces.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-interfaces.puml)
-- [files-interfaces.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-interfaces.svg)
-- ![files-job-state.png](../Diagrams/Archived-Png/Files-Job-State.png)
-- [files-job-state.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-job-state.puml)
-- [files-job-state.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-job-state.svg)
-- ![files-owned-model.png](../Diagrams/Archived-Png/Files-Owned-Model.png)
-- [files-owned-model.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-owned-model.puml)
-- [files-owned-model.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-owned-model.svg)
-- ![files-paths.png](../Diagrams/Archived-Png/Files-Paths.png)
-- [files-paths.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-paths.puml)
-- [files-paths.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-paths.svg)
-- ![files-pipeline.png](../Diagrams/Archived-Png/Files-Pipeline.png)
-- [files-pipeline.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-pipeline.puml)
-- [files-pipeline.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-pipeline.svg)
-- ![files-queues.png](../Diagrams/Archived-Png/Files-Queues.png)
-- [files-queues.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-queues.puml)
-- [files-queues.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-queues.svg)
-- ![files-reclamation-route.png](../Diagrams/Archived-Png/Files-Reclamation-Route.png)
-- [files-reclamation-route.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-reclamation-route.puml)
-- [files-reclamation-route.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-reclamation-route.svg)
-- ![files-share.png](../Diagrams/Archived-Png/Files-Share.png)
-- [files-share.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-share.puml)
-- [files-share.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-share.svg)
-- ![files-trash.png](../Diagrams/Archived-Png/Files-Trash.png)
-- [files-trash.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-trash.puml)
-- [files-trash.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-trash.svg)
-- ![files-upload.png](../Diagrams/Archived-Png/Files-Upload.png)
-- [files-upload.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-upload.puml)
-- [files-upload.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-upload.svg)
-- ![files-use-cases.png](../Diagrams/Archived-Png/Files-Use-Cases.png)
-- [files-use-cases.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-use-cases.puml)
-- [files-use-cases.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-use-cases.svg)
-- ![git-essential-branching.png](../Diagrams/Archived-Png/Git-Essential-Branching.png)
-- [git-essential-branching.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-branching.puml)
-- [git-essential-branching.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-branching.svg)
-- ![git-essential-components.png](../Diagrams/Archived-Png/Git-Essential-Components.png)
-- [git-essential-components.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-components.puml)
-- [git-essential-components.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-components.svg)
-- ![git-essential-domain.png](../Diagrams/Archived-Png/Git-Essential-Domain.png)
-- [git-essential-domain.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-domain.puml)
-- [git-essential-domain.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-domain.svg)
-- ![git-essential-graph.png](../Diagrams/Archived-Png/Git-Essential-Graph.png)
-- [git-essential-graph.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-graph.puml)
-- [git-essential-graph.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-graph.svg)
-- ![git-essential-objects.png](../Diagrams/Archived-Png/Git-Essential-Objects.png)
-- [git-essential-objects.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-objects.puml)
-- [git-essential-objects.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-objects.svg)
-- ![git-essential-pr-sequence.png](../Diagrams/Archived-Png/Git-Essential-Pr-Sequence.png)
-- [git-essential-pr-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-pr-sequence.puml)
-- [git-essential-pr-sequence.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-pr-sequence.svg)
-- ![git-essential-pr-state.png](../Diagrams/Archived-Png/Git-Essential-Pr-State.png)
-- [git-essential-pr-state.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-pr-state.puml)
-- [git-essential-pr-state.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-essential-pr-state.svg)
-- ![git-merge-sequence.png](../Diagrams/Archived-Png/Git-Merge-Sequence.png)
-- [git-merge-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-merge-sequence.puml)
-- [git-merge-sequence.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-merge-sequence.svg)
-- ![git-owned-model.png](../Diagrams/Archived-Png/Git-Owned-Model.png)
-- [git-owned-model.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-owned-model.puml)
-- [git-owned-model.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/git-owned-model.svg)
-- ![identity-authorization-sequence.png](../Diagrams/Archived-Png/Identity-Authorization-Sequence.png)
-- [identity-authorization-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-authorization-sequence.puml)
-- [identity-authorization-sequence.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-authorization-sequence.svg)
-- ![identity-essential-access-model.png](../Diagrams/Archived-Png/Identity-Essential-Access-Model.png)
-- [identity-essential-access-model.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-access-model.puml)
-- [identity-essential-access-model.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-access-model.svg)
-- ![identity-essential-authentication.png](../Diagrams/Archived-Png/Identity-Essential-Authentication.png)
-- [identity-essential-authentication.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-authentication.puml)
-- [identity-essential-authentication.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-authentication.svg)
-- ![identity-essential-authorization.png](../Diagrams/Archived-Png/Identity-Essential-Authorization.png)
-- [identity-essential-authorization.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-authorization.puml)
-- [identity-essential-authorization.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-authorization.svg)
-- ![identity-essential-components.png](../Diagrams/Archived-Png/Identity-Essential-Components.png)
-- [identity-essential-components.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-components.puml)
-- [identity-essential-components.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-components.svg)
-- ![identity-essential-session-state.png](../Diagrams/Archived-Png/Identity-Essential-Session-State.png)
-- [identity-essential-session-state.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-session-state.puml)
-- [identity-essential-session-state.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-essential-session-state.svg)
-- ![identity-owned-model.png](../Diagrams/Archived-Png/Identity-Owned-Model.png)
-- [identity-owned-model.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-owned-model.puml)
-- [identity-owned-model.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/identity-owned-model.svg)
-- ![presentation-essential-components.png](../Diagrams/Archived-Png/Presentation-Essential-Components.png)
-- [presentation-essential-components.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-components.puml)
-- [presentation-essential-components.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-components.svg)
-- ![presentation-essential-lifecycle.png](../Diagrams/Archived-Png/Presentation-Essential-Lifecycle.png)
-- [presentation-essential-lifecycle.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-lifecycle.puml)
-- [presentation-essential-lifecycle.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-lifecycle.svg)
-- ![presentation-essential-rendering.png](../Diagrams/Archived-Png/Presentation-Essential-Rendering.png)
-- [presentation-essential-rendering.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-rendering.puml)
-- [presentation-essential-rendering.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-rendering.svg)
-- ![presentation-essential-use-cases.png](../Diagrams/Archived-Png/Presentation-Essential-Use-Cases.png)
-- [presentation-essential-use-cases.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-use-cases.puml)
-- [presentation-essential-use-cases.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-use-cases.svg)
-- ![presentation-essential-visitor.png](../Diagrams/Archived-Png/Presentation-Essential-Visitor.png)
-- [presentation-essential-visitor.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-visitor.puml)
-- [presentation-essential-visitor.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-essential-visitor.svg)
-- ![presentation-owned-model.png](../Diagrams/Archived-Png/Presentation-Owned-Model.png)
-- [presentation-owned-model.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-owned-model.puml)
-- [presentation-owned-model.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-owned-model.svg)
-- ![presentation-update-publication.png](../Diagrams/Archived-Png/Presentation-Update-Publication.png)
-- [presentation-update-publication.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-update-publication.puml)
-- [presentation-update-publication.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/presentation-update-publication.svg)
-- ![sharing-essential-components.png](../Diagrams/Archived-Png/Sharing-Essential-Components.png)
-- [sharing-essential-components.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-essential-components.puml)
-- [sharing-essential-components.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-essential-components.svg)
-- ![sharing-essential-formats.png](../Diagrams/Archived-Png/Sharing-Essential-Formats.png)
-- [sharing-essential-formats.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-essential-formats.puml)
-- [sharing-essential-formats.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-essential-formats.svg)
-- ![sharing-essential-link-sequence.png](../Diagrams/Archived-Png/Sharing-Essential-Link-Sequence.png)
-- [sharing-essential-link-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-essential-link-sequence.puml)
-- [sharing-essential-link-sequence.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-essential-link-sequence.svg)
-- ![sharing-essential-link-state.png](../Diagrams/Archived-Png/Sharing-Essential-Link-State.png)
-- [sharing-essential-link-state.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-essential-link-state.puml)
-- [sharing-essential-link-state.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-essential-link-state.svg)
-- ![sharing-owned-model.png](../Diagrams/Archived-Png/Sharing-Owned-Model.png)
-- [sharing-owned-model.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-owned-model.puml)
-- [sharing-owned-model.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-owned-model.svg)
-- ![sharing-protected-retrieval.png](../Diagrams/Archived-Png/Sharing-Protected-Retrieval.png)
-- [sharing-protected-retrieval.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-protected-retrieval.puml)
-- [sharing-protected-retrieval.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/sharing-protected-retrieval.svg)
-- ![work-essential-sprint-planning.png](../Diagrams/Archived-Png/Work-Essential-Sprint-Planning.png)
-- [work-essential-sprint-planning.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-sprint-planning.puml)
-- [work-essential-sprint-planning.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-sprint-planning.svg)
-- ![work-essential-task-state.png](../Diagrams/Archived-Png/Work-Essential-Task-State.png)
-- [work-essential-task-state.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-task-state.puml)
-- [work-essential-task-state.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-task-state.svg)
-- ![work-essential-transition.png](../Diagrams/Archived-Png/Work-Essential-Transition.png)
-- [work-essential-transition.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-transition.puml)
-- [work-essential-transition.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-transition.svg)
-- ![work-essential-views.png](../Diagrams/Archived-Png/Work-Essential-Views.png)
-- [work-essential-views.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-views.puml)
-- [work-essential-views.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-essential-views.svg)
-- ![work-mutation-sprint-close.png](../Diagrams/Archived-Png/Work-Mutation-Sprint-Close.png)
-- [work-mutation-sprint-close.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-mutation-sprint-close.puml)
-- [work-mutation-sprint-close.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-mutation-sprint-close.svg)
-- ![work-owned-model.png](../Diagrams/Archived-Png/Work-Owned-Model.png)
-- [work-owned-model.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-owned-model.puml)
-- [work-owned-model.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/work-owned-model.svg)
-- ![workflow-deployment-sequence.png](../Diagrams/Archived-Png/Workflow-Deployment-Sequence.png)
-- [workflow-deployment-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-deployment-sequence.puml)
-- [workflow-deployment-sequence.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-deployment-sequence.svg)
-- ![workflow-essential-components.png](../Diagrams/Archived-Png/Workflow-Essential-Components.png)
-- [workflow-essential-components.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-components.puml)
-- [workflow-essential-components.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-components.svg)
-- ![workflow-essential-deployment-state.png](../Diagrams/Archived-Png/Workflow-Essential-Deployment-State.png)
-- [workflow-essential-deployment-state.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-deployment-state.puml)
-- [workflow-essential-deployment-state.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-deployment-state.svg)
-- ![workflow-essential-executor.png](../Diagrams/Archived-Png/Workflow-Essential-Executor.png)
-- [workflow-essential-executor.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-executor.puml)
-- [workflow-essential-executor.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-executor.svg)
-- ![workflow-essential-pipeline.png](../Diagrams/Archived-Png/Workflow-Essential-Pipeline.png)
-- [workflow-essential-pipeline.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-pipeline.puml)
-- [workflow-essential-pipeline.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-pipeline.svg)
-- ![workflow-essential-promotion.png](../Diagrams/Archived-Png/Workflow-Essential-Promotion.png)
-- [workflow-essential-promotion.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-promotion.puml)
-- [workflow-essential-promotion.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-promotion.svg)
-- ![workflow-essential-recovery.png](../Diagrams/Archived-Png/Workflow-Essential-Recovery.png)
-- [workflow-essential-recovery.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-recovery.puml)
-- [workflow-essential-recovery.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-recovery.svg)
-- ![workflow-essential-run-state.png](../Diagrams/Archived-Png/Workflow-Essential-Run-State.png)
-- [workflow-essential-run-state.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-run-state.puml)
-- [workflow-essential-run-state.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-run-state.svg)
-- ![workflow-essential-strategies.png](../Diagrams/Archived-Png/Workflow-Essential-Strategies.png)
-- [workflow-essential-strategies.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-strategies.puml)
-- [workflow-essential-strategies.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-strategies.svg)
-- ![workflow-essential-topology.png](../Diagrams/Archived-Png/Workflow-Essential-Topology.png)
-- [workflow-essential-topology.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-topology.puml)
-- [workflow-essential-topology.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-essential-topology.svg)
-- ![workflow-trust-model.png](../Diagrams/Archived-Png/Workflow-Trust-Model.png)
-- [workflow-trust-model.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-trust-model.puml)
-- [workflow-trust-model.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/workflow-trust-model.svg)
-- [component-artifact-placement.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/component-artifact-placement.dot)
-- ![component-artifact-placement.png](../Diagrams/Archived-Png/Component-Artifact-Placement.png)
-- [component-artifact-placement.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/component-artifact-placement.svg)
-- ![implementation-essential-build-order.png](../Diagrams/Archived-Png/Implementation-Essential-Build-Order.png)
-- [implementation-essential-build-order.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-essential-build-order.puml)
-- [implementation-essential-build-order.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-essential-build-order.svg)
-- ![implementation-essential-overview.png](../Diagrams/Archived-Png/Implementation-Essential-Overview.png)
-- [implementation-essential-overview.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-essential-overview.puml)
-- [implementation-essential-overview.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-essential-overview.svg)
-- [implementation-release-route.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-release-route.dot)
-- ![implementation-release-route.png](../Diagrams/Archived-Png/Implementation-Release-Route.png)
-- [implementation-release-route.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-release-route.svg)
-- [implementation-source-structure.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-source-structure.dot)
-- ![implementation-source-structure.png](../Diagrams/Archived-Png/Implementation-Source-Structure.png)
-- [implementation-source-structure.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/implementation-source-structure.svg)
-- ![modularity-essential-before-after.png](../Diagrams/Archived-Png/Modularity-Essential-Before-After.png)
-- [modularity-essential-before-after.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/modularity-essential-before-after.puml)
-- [modularity-essential-before-after.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/modularity-essential-before-after.svg)
-- ![modularity-essential-encapsulation.png](../Diagrams/Archived-Png/Modularity-Essential-Encapsulation.png)
-- [modularity-essential-encapsulation.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/modularity-essential-encapsulation.puml)
-- [modularity-essential-encapsulation.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/modularity-essential-encapsulation.svg)
-- ![modularity-essential-layers.png](../Diagrams/Archived-Png/Modularity-Essential-Layers.png)
-- [modularity-essential-layers.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/modularity-essential-layers.puml)
-- [modularity-essential-layers.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/modularity-essential-layers.svg)
-- ![modularity-essential-packages.png](../Diagrams/Archived-Png/Modularity-Essential-Packages.png)
-- [modularity-essential-packages.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/modularity-essential-packages.puml)
-- [modularity-essential-packages.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/modularity-essential-packages.svg)
-- [module-composition-and-lifetimes.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/module-composition-and-lifetimes.dot)
-- ![module-composition-and-lifetimes.png](../Diagrams/Archived-Png/Module-Composition-And-Lifetimes.png)
-- [module-composition-and-lifetimes.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/module-composition-and-lifetimes.svg)
-- [module-dependency-direction.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/module-dependency-direction.dot)
-- ![module-dependency-direction.png](../Diagrams/Archived-Png/Module-Dependency-Direction.png)
-- [module-dependency-direction.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/module-dependency-direction.svg)
-- [module-public-and-private-boundary.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/module-public-and-private-boundary.dot)
-- ![module-public-and-private-boundary.png](../Diagrams/Archived-Png/Module-Public-And-Private-Boundary.png)
-- [module-public-and-private-boundary.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/module-public-and-private-boundary.svg)
-- ![data-essential-conceptual.png](../Diagrams/Archived-Png/Data-Essential-Conceptual.png)
-- [data-essential-conceptual.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-conceptual.puml)
-- [data-essential-conceptual.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-conceptual.svg)
-- ![data-essential-levels.png](../Diagrams/Archived-Png/Data-Essential-Levels.png)
-- [data-essential-levels.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-levels.puml)
-- [data-essential-levels.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-levels.svg)
-- ![data-essential-logical.png](../Diagrams/Archived-Png/Data-Essential-Logical.png)
-- [data-essential-logical.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-logical.puml)
-- [data-essential-logical.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-logical.svg)
-- ![data-essential-normalization.png](../Diagrams/Archived-Png/Data-Essential-Normalization.png)
-- [data-essential-normalization.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-normalization.puml)
-- [data-essential-normalization.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-normalization.svg)
-- ![data-essential-physical.png](../Diagrams/Archived-Png/Data-Essential-Physical.png)
-- [data-essential-physical.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-physical.puml)
-- [data-essential-physical.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-physical.svg)
-- ![data-logical-revisions-and-references.png](../Diagrams/Archived-Png/Data-Logical-Revisions-And-References.png)
-- [data-logical-revisions-and-references.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-logical-revisions-and-references.puml)
-- [data-logical-revisions-and-references.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-logical-revisions-and-references.svg)
-- ![data-physical-enforcement-map.png](../Diagrams/Archived-Png/Data-Physical-Enforcement-Map.png)
-- [data-physical-enforcement-map.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-physical-enforcement-map.puml)
-- [data-physical-enforcement-map.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-physical-enforcement-map.svg)
-- ![persistence-artifact-lifecycle.png](../Diagrams/Archived-Png/Persistence-Artifact-Lifecycle.png)
-- [persistence-artifact-lifecycle.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-artifact-lifecycle.puml)
-- [persistence-artifact-lifecycle.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-artifact-lifecycle.svg)
-- ![persistence-essential-architecture.png](../Diagrams/Archived-Png/Persistence-Essential-Architecture.png)
-- [persistence-essential-architecture.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-architecture.puml)
-- [persistence-essential-architecture.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-architecture.svg)
-- ![persistence-essential-deletion.png](../Diagrams/Archived-Png/Persistence-Essential-Deletion.png)
-- [persistence-essential-deletion.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-deletion.puml)
-- [persistence-essential-deletion.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-deletion.svg)
-- ![persistence-essential-invalidation.png](../Diagrams/Archived-Png/Persistence-Essential-Invalidation.png)
-- [persistence-essential-invalidation.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-invalidation.puml)
-- [persistence-essential-invalidation.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-invalidation.svg)
-- ![persistence-essential-read.png](../Diagrams/Archived-Png/Persistence-Essential-Read.png)
-- [persistence-essential-read.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-read.puml)
-- [persistence-essential-read.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-read.svg)
-- ![persistence-essential-recovery.png](../Diagrams/Archived-Png/Persistence-Essential-Recovery.png)
-- [persistence-essential-recovery.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-recovery.puml)
-- [persistence-essential-recovery.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-recovery.svg)
-- ![persistence-essential-write.png](../Diagrams/Archived-Png/Persistence-Essential-Write.png)
-- [persistence-essential-write.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-write.puml)
-- [persistence-essential-write.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-write.svg)
-- ![persistence-protected-cache-flow.png](../Diagrams/Archived-Png/Persistence-Protected-Cache-Flow.png)
-- [persistence-protected-cache-flow.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-protected-cache-flow.puml)
-- [persistence-protected-cache-flow.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-protected-cache-flow.svg)
-- ![api-command-outcome-sequence.png](../Diagrams/Archived-Png/Api-Command-Outcome-Sequence.png)
-- [api-command-outcome-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-command-outcome-sequence.puml)
-- [api-command-outcome-sequence.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-command-outcome-sequence.svg)
-- ![api-contract-evolution.png](../Diagrams/Archived-Png/Api-Contract-Evolution.png)
-- [api-contract-evolution.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-contract-evolution.puml)
-- [api-contract-evolution.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-contract-evolution.svg)
-- ![api-essential-boundaries.png](../Diagrams/Archived-Png/Api-Essential-Boundaries.png)
-- [api-essential-boundaries.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-boundaries.puml)
-- [api-essential-boundaries.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-boundaries.svg)
-- ![api-essential-consumer-verification.png](../Diagrams/Archived-Png/Api-Essential-Consumer-Verification.png)
-- [api-essential-consumer-verification.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-consumer-verification.puml)
-- [api-essential-consumer-verification.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-consumer-verification.svg)
-- ![api-essential-contract-workflow.png](../Diagrams/Archived-Png/Api-Essential-Contract-Workflow.png)
-- [api-essential-contract-workflow.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-contract-workflow.puml)
-- [api-essential-contract-workflow.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-contract-workflow.svg)
-- ![api-essential-selection.png](../Diagrams/Archived-Png/Api-Essential-Selection.png)
-- [api-essential-selection.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-selection.puml)
-- [api-essential-selection.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-selection.svg)
-- ![interaction-essential-alternates.png](../Diagrams/Archived-Png/Interaction-Essential-Alternates.png)
-- [interaction-essential-alternates.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-alternates.puml)
-- [interaction-essential-alternates.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-alternates.svg)
-- ![interaction-essential-end-to-end.png](../Diagrams/Archived-Png/Interaction-Essential-End-To-End.png)
-- [interaction-essential-end-to-end.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-end-to-end.puml)
-- [interaction-essential-end-to-end.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-end-to-end.svg)
-- ![interaction-essential-realization.png](../Diagrams/Archived-Png/Interaction-Essential-Realization.png)
-- [interaction-essential-realization.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-realization.puml)
-- [interaction-essential-realization.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-realization.svg)
-- ![interaction-essential-use-cases.png](../Diagrams/Archived-Png/Interaction-Essential-Use-Cases.png)
-- [interaction-essential-use-cases.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-use-cases.puml)
-- [interaction-essential-use-cases.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-use-cases.svg)
-- ![interaction-git-execution-deployment.png](../Diagrams/Archived-Png/Interaction-Git-Execution-Deployment.png)
-- [interaction-git-execution-deployment.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-git-execution-deployment.puml)
-- [interaction-git-execution-deployment.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-git-execution-deployment.svg)
-- ![interaction-isolated-recovery.png](../Diagrams/Archived-Png/Interaction-Isolated-Recovery.png)
-- [interaction-isolated-recovery.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-isolated-recovery.puml)
-- [interaction-isolated-recovery.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-isolated-recovery.svg)
+- ![evolution-churn-complexity.png](Diagrams/Appendix/evolution-churn-complexity.svg)
+- [evolution-churn-complexity.svg](Diagrams/Appendix/evolution-churn-complexity.svg)
+- ![evolution-class-change.png](Diagrams/Appendix/evolution-class-change.svg)
+- [evolution-class-change.puml](Diagrams/Appendix/evolution-class-change.puml)
+- [evolution-class-change.svg](Diagrams/Appendix/evolution-class-change.svg)
+- ![evolution-component-target.png](Diagrams/Appendix/evolution-component-target.svg)
+- [evolution-component-target.puml](Diagrams/Appendix/evolution-component-target.puml)
+- [evolution-component-target.svg](Diagrams/Appendix/evolution-component-target.svg)
+- ![evolution-debt-quadrant.png](Diagrams/Appendix/evolution-debt-quadrant.svg)
+- [evolution-debt-quadrant.svg](Diagrams/Appendix/evolution-debt-quadrant.svg)
+- ![evolution-dependency-hotspots.png](Diagrams/Appendix/evolution-dependency-hotspots.svg)
+- [evolution-dependency-hotspots.puml](Diagrams/Appendix/evolution-dependency-hotspots.puml)
+- [evolution-dependency-hotspots.svg](Diagrams/Appendix/evolution-dependency-hotspots.svg)
+- ![evolution-erosion.png](Diagrams/Appendix/evolution-erosion.svg)
+- [evolution-erosion.puml](Diagrams/Appendix/evolution-erosion.puml)
+- [evolution-erosion.svg](Diagrams/Appendix/evolution-erosion.svg)
+- ![evolution-history.png](Diagrams/Appendix/evolution-history.svg)
+- [evolution-history.puml](Diagrams/Appendix/evolution-history.puml)
+- [evolution-history.svg](Diagrams/Appendix/evolution-history.svg)
+- ![evolution-impact-effort.png](Diagrams/Appendix/evolution-impact-effort.svg)
+- [evolution-impact-effort.svg](Diagrams/Appendix/evolution-impact-effort.svg)
+- ![evolution-interest-curve.png](Diagrams/Appendix/evolution-interest-curve.svg)
+- [evolution-interest-curve.svg](Diagrams/Appendix/evolution-interest-curve.svg)
+- ![evolution-lifecycle.png](Diagrams/Appendix/evolution-lifecycle.svg)
+- [evolution-lifecycle.puml](Diagrams/Appendix/evolution-lifecycle.puml)
+- [evolution-lifecycle.svg](Diagrams/Appendix/evolution-lifecycle.svg)
+- ![evolution-package-direction.png](Diagrams/Appendix/evolution-package-direction.svg)
+- [evolution-package-direction.puml](Diagrams/Appendix/evolution-package-direction.puml)
+- [evolution-package-direction.svg](Diagrams/Appendix/evolution-package-direction.svg)
+- ![evolution-refactoring-sequence.png](Diagrams/Appendix/evolution-refactoring-sequence.svg)
+- [evolution-refactoring-sequence.puml](Diagrams/Appendix/evolution-refactoring-sequence.puml)
+- [evolution-refactoring-sequence.svg](Diagrams/Appendix/evolution-refactoring-sequence.svg)
+- ![evolution-safety-net.png](Diagrams/Appendix/evolution-safety-net.svg)
+- [evolution-safety-net.puml](Diagrams/Appendix/evolution-safety-net.puml)
+- [evolution-safety-net.svg](Diagrams/Appendix/evolution-safety-net.svg)
+- ![evolution-strangler.png](Diagrams/Appendix/evolution-strangler.svg)
+- [evolution-strangler.puml](Diagrams/Appendix/evolution-strangler.puml)
+- [evolution-strangler.svg](Diagrams/Appendix/evolution-strangler.svg)
+- ![oo-before-after.png](Diagrams/Detailed/oo-before-after.svg)
+- [oo-before-after.puml](Diagrams/Detailed/oo-before-after.puml)
+- [oo-before-after.svg](Diagrams/Detailed/oo-before-after.svg)
+- ![oo-composition.png](Diagrams/Detailed/oo-composition.svg)
+- [oo-composition.puml](Diagrams/Detailed/oo-composition.puml)
+- [oo-composition.svg](Diagrams/Detailed/oo-composition.svg)
+- ![oo-conceptual-domain.png](Diagrams/Detailed/oo-conceptual-domain.svg)
+- [oo-conceptual-domain.puml](Diagrams/Detailed/oo-conceptual-domain.puml)
+- [oo-conceptual-domain.svg](Diagrams/Detailed/oo-conceptual-domain.svg)
+- ![oo-coupling-cohesion.png](Diagrams/Detailed/oo-coupling-cohesion.svg)
+- [oo-coupling-cohesion.puml](Diagrams/Detailed/oo-coupling-cohesion.puml)
+- [oo-coupling-cohesion.svg](Diagrams/Detailed/oo-coupling-cohesion.svg)
+- ![oo-demeter.png](Diagrams/Detailed/oo-demeter.svg)
+- [oo-demeter.puml](Diagrams/Detailed/oo-demeter.puml)
+- [oo-demeter.svg](Diagrams/Detailed/oo-demeter.svg)
+- ![oo-dependency-inversion.png](Diagrams/Detailed/oo-dependency-inversion.svg)
+- [oo-dependency-inversion.puml](Diagrams/Detailed/oo-dependency-inversion.puml)
+- [oo-dependency-inversion.svg](Diagrams/Detailed/oo-dependency-inversion.svg)
+- ![oo-index-abstraction-levels.png](Diagrams/Appendix/oo-index-abstraction-levels.svg)
+- [oo-index-abstraction-levels.puml](Diagrams/Appendix/oo-index-abstraction-levels.puml)
+- [oo-index-abstraction-levels.svg](Diagrams/Appendix/oo-index-abstraction-levels.svg)
+- ![oo-index-architecture-bridge.png](Diagrams/Appendix/oo-index-architecture-bridge.svg)
+- [oo-index-architecture-bridge.puml](Diagrams/Appendix/oo-index-architecture-bridge.puml)
+- [oo-index-architecture-bridge.svg](Diagrams/Appendix/oo-index-architecture-bridge.svg)
+- ![oo-index-concept-map.png](Diagrams/Appendix/oo-index-concept-map.svg)
+- [oo-index-concept-map.puml](Diagrams/Appendix/oo-index-concept-map.puml)
+- [oo-index-concept-map.svg](Diagrams/Appendix/oo-index-concept-map.svg)
+- ![oo-index-design-lifecycle.png](Diagrams/Appendix/oo-index-design-lifecycle.svg)
+- [oo-index-design-lifecycle.puml](Diagrams/Appendix/oo-index-design-lifecycle.puml)
+- [oo-index-design-lifecycle.svg](Diagrams/Appendix/oo-index-design-lifecycle.svg)
+- ![oo-index-prerequisites.png](Diagrams/Appendix/oo-index-prerequisites.svg)
+- [oo-index-prerequisites.puml](Diagrams/Appendix/oo-index-prerequisites.puml)
+- [oo-index-prerequisites.svg](Diagrams/Appendix/oo-index-prerequisites.svg)
+- ![oo-index-reading-path.png](Diagrams/Appendix/oo-index-reading-path.svg)
+- [oo-index-reading-path.puml](Diagrams/Appendix/oo-index-reading-path.puml)
+- [oo-index-reading-path.svg](Diagrams/Appendix/oo-index-reading-path.svg)
+- ![oo-index-topic-mindmap.png](Diagrams/Appendix/oo-index-topic-mindmap.svg)
+- [oo-index-topic-mindmap.puml](Diagrams/Appendix/oo-index-topic-mindmap.puml)
+- [oo-index-topic-mindmap.svg](Diagrams/Appendix/oo-index-topic-mindmap.svg)
+- ![oo-packages.png](Diagrams/Detailed/oo-packages.svg)
+- [oo-packages.puml](Diagrams/Detailed/oo-packages.puml)
+- [oo-packages.svg](Diagrams/Detailed/oo-packages.svg)
+- ![oo-publication-sequence.png](Diagrams/Detailed/oo-publication-sequence.svg)
+- [oo-publication-sequence.puml](Diagrams/Detailed/oo-publication-sequence.puml)
+- [oo-publication-sequence.svg](Diagrams/Detailed/oo-publication-sequence.svg)
+- ![oo-realization.png](Diagrams/Detailed/oo-realization.svg)
+- [oo-realization.puml](Diagrams/Detailed/oo-realization.puml)
+- [oo-realization.svg](Diagrams/Detailed/oo-realization.svg)
+- [oo-responsibility-direction.dot](Diagrams/Detailed/oo-responsibility-direction.dot)
+- ![oo-responsibility-direction.png](Diagrams/Detailed/oo-responsibility-direction.svg)
+- [oo-responsibility-direction.svg](Diagrams/Detailed/oo-responsibility-direction.svg)
+- ![oo-runtime-objects.png](Diagrams/Detailed/oo-runtime-objects.svg)
+- [oo-runtime-objects.puml](Diagrams/Detailed/oo-runtime-objects.puml)
+- [oo-runtime-objects.svg](Diagrams/Detailed/oo-runtime-objects.svg)
+- ![oo-strategy-preview.png](Diagrams/Detailed/oo-strategy-preview.svg)
+- [oo-strategy-preview.puml](Diagrams/Detailed/oo-strategy-preview.puml)
+- [oo-strategy-preview.svg](Diagrams/Detailed/oo-strategy-preview.svg)
+- [pattern-selection-route.dot](Diagrams/Detailed/pattern-selection-route.dot)
+- ![pattern-selection-route.png](Diagrams/Detailed/pattern-selection-route.svg)
+- [pattern-selection-route.svg](Diagrams/Detailed/pattern-selection-route.svg)
+- ![publication-use-case-classes.png](Diagrams/Detailed/publication-use-case-classes.svg)
+- [publication-use-case-classes.puml](Diagrams/Detailed/publication-use-case-classes.puml)
+- [publication-use-case-classes.svg](Diagrams/Detailed/publication-use-case-classes.svg)
+- ![applications-capture-sequence.png](Diagrams/Detailed/applications-capture-sequence.svg)
+- [applications-capture-sequence.puml](Diagrams/Detailed/applications-capture-sequence.puml)
+- [applications-capture-sequence.svg](Diagrams/Detailed/applications-capture-sequence.svg)
+- ![applications-cross-owner-sequence.png](Diagrams/Detailed/applications-cross-owner-sequence.svg)
+- [applications-cross-owner-sequence.puml](Diagrams/Detailed/applications-cross-owner-sequence.puml)
+- [applications-cross-owner-sequence.svg](Diagrams/Detailed/applications-cross-owner-sequence.svg)
+- ![applications-dependencies.png](Diagrams/Detailed/applications-dependencies.svg)
+- [applications-dependencies.puml](Diagrams/Detailed/applications-dependencies.puml)
+- [applications-dependencies.svg](Diagrams/Detailed/applications-dependencies.svg)
+- ![applications-integration.png](Diagrams/Detailed/applications-integration.svg)
+- [applications-integration.puml](Diagrams/Detailed/applications-integration.puml)
+- [applications-integration.svg](Diagrams/Detailed/applications-integration.svg)
+- ![applications-interfaces.png](Diagrams/Detailed/applications-interfaces.svg)
+- [applications-interfaces.puml](Diagrams/Detailed/applications-interfaces.puml)
+- [applications-interfaces.svg](Diagrams/Detailed/applications-interfaces.svg)
+- ![applications-internal-structure.png](Diagrams/Detailed/applications-internal-structure.svg)
+- [applications-internal-structure.puml](Diagrams/Detailed/applications-internal-structure.puml)
+- [applications-internal-structure.svg](Diagrams/Detailed/applications-internal-structure.svg)
+- ![applications-layers.png](Diagrams/Detailed/applications-layers.svg)
+- [applications-layers.puml](Diagrams/Detailed/applications-layers.puml)
+- [applications-layers.svg](Diagrams/Detailed/applications-layers.svg)
+- ![applications-owned-model.png](Diagrams/Detailed/applications-owned-model.svg)
+- [applications-owned-model.puml](Diagrams/Detailed/applications-owned-model.puml)
+- [applications-owned-model.svg](Diagrams/Detailed/applications-owned-model.svg)
+- ![applications-packages.png](Diagrams/Detailed/applications-packages.svg)
+- [applications-packages.puml](Diagrams/Detailed/applications-packages.puml)
+- [applications-packages.svg](Diagrams/Detailed/applications-packages.svg)
+- ![applications-use-cases.png](Diagrams/Detailed/applications-use-cases.svg)
+- [applications-use-cases.puml](Diagrams/Detailed/applications-use-cases.puml)
+- [applications-use-cases.svg](Diagrams/Detailed/applications-use-cases.svg)
+- ![calendar-reconciliation-route.png](Diagrams/Detailed/calendar-reconciliation-route.svg)
+- [calendar-reconciliation-route.puml](Diagrams/Detailed/calendar-reconciliation-route.puml)
+- [calendar-reconciliation-route.svg](Diagrams/Detailed/calendar-reconciliation-route.svg)
+- ![comm-domain.png](Diagrams/Detailed/comm-domain.svg)
+- [comm-domain.puml](Diagrams/Detailed/comm-domain.puml)
+- [comm-domain.svg](Diagrams/Detailed/comm-domain.svg)
+- ![comm-erd.png](Diagrams/Detailed/comm-erd.svg)
+- [comm-erd.puml](Diagrams/Detailed/comm-erd.puml)
+- [comm-erd.svg](Diagrams/Detailed/comm-erd.svg)
+- ![comm-event-state.png](Diagrams/Detailed/comm-event-state.svg)
+- [comm-event-state.puml](Diagrams/Detailed/comm-event-state.puml)
+- [comm-event-state.svg](Diagrams/Detailed/comm-event-state.svg)
+- ![comm-free-busy.png](Diagrams/Detailed/comm-free-busy.svg)
+- [comm-free-busy.puml](Diagrams/Detailed/comm-free-busy.puml)
+- [comm-free-busy.svg](Diagrams/Detailed/comm-free-busy.svg)
+- ![comm-integration-options.png](Diagrams/Detailed/comm-integration-options.svg)
+- [comm-integration-options.puml](Diagrams/Detailed/comm-integration-options.puml)
+- [comm-integration-options.svg](Diagrams/Detailed/comm-integration-options.svg)
+- ![comm-interfaces.png](Diagrams/Detailed/comm-interfaces.svg)
+- [comm-interfaces.puml](Diagrams/Detailed/comm-interfaces.puml)
+- [comm-interfaces.svg](Diagrams/Detailed/comm-interfaces.svg)
+- ![comm-invitation.png](Diagrams/Detailed/comm-invitation.svg)
+- [comm-invitation.puml](Diagrams/Detailed/comm-invitation.puml)
+- [comm-invitation.svg](Diagrams/Detailed/comm-invitation.svg)
+- ![comm-message-state.png](Diagrams/Detailed/comm-message-state.svg)
+- [comm-message-state.puml](Diagrams/Detailed/comm-message-state.puml)
+- [comm-message-state.svg](Diagrams/Detailed/comm-message-state.svg)
+- ![comm-notification-flow.png](Diagrams/Detailed/comm-notification-flow.svg)
+- [comm-notification-flow.puml](Diagrams/Detailed/comm-notification-flow.puml)
+- [comm-notification-flow.svg](Diagrams/Detailed/comm-notification-flow.svg)
+- ![comm-recurrence.png](Diagrams/Detailed/comm-recurrence.svg)
+- [comm-recurrence.puml](Diagrams/Detailed/comm-recurrence.puml)
+- [comm-recurrence.svg](Diagrams/Detailed/comm-recurrence.svg)
+- ![comm-reminder.png](Diagrams/Detailed/comm-reminder.svg)
+- [comm-reminder.puml](Diagrams/Detailed/comm-reminder.puml)
+- [comm-reminder.svg](Diagrams/Detailed/comm-reminder.svg)
+- ![comm-scheduling.png](Diagrams/Detailed/comm-scheduling.svg)
+- [comm-scheduling.puml](Diagrams/Detailed/comm-scheduling.puml)
+- [comm-scheduling.svg](Diagrams/Detailed/comm-scheduling.svg)
+- ![comm-send.png](Diagrams/Detailed/comm-send.svg)
+- [comm-send.puml](Diagrams/Detailed/comm-send.puml)
+- [comm-send.svg](Diagrams/Detailed/comm-send.svg)
+- ![comm-sync.png](Diagrams/Detailed/comm-sync.svg)
+- [comm-sync.puml](Diagrams/Detailed/comm-sync.puml)
+- [comm-sync.svg](Diagrams/Detailed/comm-sync.svg)
+- ![comm-use-cases.png](Diagrams/Detailed/comm-use-cases.svg)
+- [comm-use-cases.puml](Diagrams/Detailed/comm-use-cases.puml)
+- [comm-use-cases.svg](Diagrams/Detailed/comm-use-cases.svg)
+- ![communication-owned-model.png](Diagrams/Detailed/communication-owned-model.svg)
+- [communication-owned-model.puml](Diagrams/Detailed/communication-owned-model.puml)
+- [communication-owned-model.svg](Diagrams/Detailed/communication-owned-model.svg)
+- ![communication-send-sequence.png](Diagrams/Detailed/communication-send-sequence.svg)
+- [communication-send-sequence.puml](Diagrams/Detailed/communication-send-sequence.puml)
+- [communication-send-sequence.svg](Diagrams/Detailed/communication-send-sequence.svg)
+- ![files-admission-sequence.png](Diagrams/Detailed/files-admission-sequence.svg)
+- [files-admission-sequence.puml](Diagrams/Detailed/files-admission-sequence.puml)
+- [files-admission-sequence.svg](Diagrams/Detailed/files-admission-sequence.svg)
+- ![files-artifact-state.png](Diagrams/Detailed/files-artifact-state.svg)
+- [files-artifact-state.puml](Diagrams/Detailed/files-artifact-state.puml)
+- [files-artifact-state.svg](Diagrams/Detailed/files-artifact-state.svg)
+- ![files-concurrent-edits.png](Diagrams/Detailed/files-concurrent-edits.svg)
+- [files-concurrent-edits.puml](Diagrams/Detailed/files-concurrent-edits.puml)
+- [files-concurrent-edits.svg](Diagrams/Detailed/files-concurrent-edits.svg)
+- ![files-context.png](Diagrams/Detailed/files-context.svg)
+- [files-context.puml](Diagrams/Detailed/files-context.puml)
+- [files-context.svg](Diagrams/Detailed/files-context.svg)
+- ![files-domain.png](Diagrams/Detailed/files-domain.svg)
+- [files-domain.puml](Diagrams/Detailed/files-domain.puml)
+- [files-domain.svg](Diagrams/Detailed/files-domain.svg)
+- ![files-download.png](Diagrams/Detailed/files-download.svg)
+- [files-download.puml](Diagrams/Detailed/files-download.puml)
+- [files-download.svg](Diagrams/Detailed/files-download.svg)
+- ![files-erd.png](Diagrams/Detailed/files-erd.svg)
+- [files-erd.puml](Diagrams/Detailed/files-erd.puml)
+- [files-erd.svg](Diagrams/Detailed/files-erd.svg)
+- ![files-interfaces.png](Diagrams/Detailed/files-interfaces.svg)
+- [files-interfaces.puml](Diagrams/Detailed/files-interfaces.puml)
+- [files-interfaces.svg](Diagrams/Detailed/files-interfaces.svg)
+- ![files-job-state.png](Diagrams/Detailed/files-job-state.svg)
+- [files-job-state.puml](Diagrams/Detailed/files-job-state.puml)
+- [files-job-state.svg](Diagrams/Detailed/files-job-state.svg)
+- ![files-owned-model.png](Diagrams/Detailed/files-owned-model.svg)
+- [files-owned-model.puml](Diagrams/Detailed/files-owned-model.puml)
+- [files-owned-model.svg](Diagrams/Detailed/files-owned-model.svg)
+- ![files-paths.png](Diagrams/Detailed/files-paths.svg)
+- [files-paths.puml](Diagrams/Detailed/files-paths.puml)
+- [files-paths.svg](Diagrams/Detailed/files-paths.svg)
+- ![files-pipeline.png](Diagrams/Detailed/files-pipeline.svg)
+- [files-pipeline.puml](Diagrams/Detailed/files-pipeline.puml)
+- [files-pipeline.svg](Diagrams/Detailed/files-pipeline.svg)
+- ![files-queues.png](Diagrams/Detailed/files-queues.svg)
+- [files-queues.puml](Diagrams/Detailed/files-queues.puml)
+- [files-queues.svg](Diagrams/Detailed/files-queues.svg)
+- ![files-reclamation-route.png](Diagrams/Detailed/files-reclamation-route.svg)
+- [files-reclamation-route.puml](Diagrams/Detailed/files-reclamation-route.puml)
+- [files-reclamation-route.svg](Diagrams/Detailed/files-reclamation-route.svg)
+- ![files-share.png](Diagrams/Detailed/files-share.svg)
+- [files-share.puml](Diagrams/Detailed/files-share.puml)
+- [files-share.svg](Diagrams/Detailed/files-share.svg)
+- ![files-trash.png](Diagrams/Detailed/files-trash.svg)
+- [files-trash.puml](Diagrams/Detailed/files-trash.puml)
+- [files-trash.svg](Diagrams/Detailed/files-trash.svg)
+- ![files-upload.png](Diagrams/Detailed/files-upload.svg)
+- [files-upload.puml](Diagrams/Detailed/files-upload.puml)
+- [files-upload.svg](Diagrams/Detailed/files-upload.svg)
+- ![files-use-cases.png](Diagrams/Detailed/files-use-cases.svg)
+- [files-use-cases.puml](Diagrams/Detailed/files-use-cases.puml)
+- [files-use-cases.svg](Diagrams/Detailed/files-use-cases.svg)
+- ![git-essential-branching.png](Diagrams/Detailed/git-essential-branching.svg)
+- [git-essential-branching.puml](Diagrams/Detailed/git-essential-branching.puml)
+- [git-essential-branching.svg](Diagrams/Detailed/git-essential-branching.svg)
+- ![git-essential-components.png](Diagrams/Detailed/git-essential-components.svg)
+- [git-essential-components.puml](Diagrams/Detailed/git-essential-components.puml)
+- [git-essential-components.svg](Diagrams/Detailed/git-essential-components.svg)
+- ![git-essential-domain.png](Diagrams/Detailed/git-essential-domain.svg)
+- [git-essential-domain.puml](Diagrams/Detailed/git-essential-domain.puml)
+- [git-essential-domain.svg](Diagrams/Detailed/git-essential-domain.svg)
+- ![git-essential-graph.png](Diagrams/Detailed/git-essential-graph.svg)
+- [git-essential-graph.puml](Diagrams/Detailed/git-essential-graph.puml)
+- [git-essential-graph.svg](Diagrams/Detailed/git-essential-graph.svg)
+- ![git-essential-objects.png](Diagrams/Detailed/git-essential-objects.svg)
+- [git-essential-objects.puml](Diagrams/Detailed/git-essential-objects.puml)
+- [git-essential-objects.svg](Diagrams/Detailed/git-essential-objects.svg)
+- ![git-essential-pr-sequence.png](Diagrams/Detailed/git-essential-pr-sequence.svg)
+- [git-essential-pr-sequence.puml](Diagrams/Detailed/git-essential-pr-sequence.puml)
+- [git-essential-pr-sequence.svg](Diagrams/Detailed/git-essential-pr-sequence.svg)
+- ![git-essential-pr-state.png](Diagrams/Detailed/git-essential-pr-state.svg)
+- [git-essential-pr-state.puml](Diagrams/Detailed/git-essential-pr-state.puml)
+- [git-essential-pr-state.svg](Diagrams/Detailed/git-essential-pr-state.svg)
+- ![git-merge-sequence.png](Diagrams/Detailed/git-merge-sequence.svg)
+- [git-merge-sequence.puml](Diagrams/Detailed/git-merge-sequence.puml)
+- [git-merge-sequence.svg](Diagrams/Detailed/git-merge-sequence.svg)
+- ![git-owned-model.png](Diagrams/Detailed/git-owned-model.svg)
+- [git-owned-model.puml](Diagrams/Detailed/git-owned-model.puml)
+- [git-owned-model.svg](Diagrams/Detailed/git-owned-model.svg)
+- ![identity-authorization-sequence.png](Diagrams/Detailed/identity-authorization-sequence.svg)
+- [identity-authorization-sequence.puml](Diagrams/Detailed/identity-authorization-sequence.puml)
+- [identity-authorization-sequence.svg](Diagrams/Detailed/identity-authorization-sequence.svg)
+- ![identity-essential-access-model.png](Diagrams/Detailed/identity-essential-access-model.svg)
+- [identity-essential-access-model.puml](Diagrams/Detailed/identity-essential-access-model.puml)
+- [identity-essential-access-model.svg](Diagrams/Detailed/identity-essential-access-model.svg)
+- ![identity-essential-authentication.png](Diagrams/Detailed/identity-essential-authentication.svg)
+- [identity-essential-authentication.puml](Diagrams/Detailed/identity-essential-authentication.puml)
+- [identity-essential-authentication.svg](Diagrams/Detailed/identity-essential-authentication.svg)
+- ![identity-essential-authorization.png](Diagrams/Detailed/identity-essential-authorization.svg)
+- [identity-essential-authorization.puml](Diagrams/Detailed/identity-essential-authorization.puml)
+- [identity-essential-authorization.svg](Diagrams/Detailed/identity-essential-authorization.svg)
+- ![identity-essential-components.png](Diagrams/Detailed/identity-essential-components.svg)
+- [identity-essential-components.puml](Diagrams/Detailed/identity-essential-components.puml)
+- [identity-essential-components.svg](Diagrams/Detailed/identity-essential-components.svg)
+- ![identity-essential-session-state.png](Diagrams/Detailed/identity-essential-session-state.svg)
+- [identity-essential-session-state.puml](Diagrams/Detailed/identity-essential-session-state.puml)
+- [identity-essential-session-state.svg](Diagrams/Detailed/identity-essential-session-state.svg)
+- ![identity-owned-model.png](Diagrams/Detailed/identity-owned-model.svg)
+- [identity-owned-model.puml](Diagrams/Detailed/identity-owned-model.puml)
+- [identity-owned-model.svg](Diagrams/Detailed/identity-owned-model.svg)
+- ![presentation-essential-components.png](Diagrams/Detailed/presentation-essential-components.svg)
+- [presentation-essential-components.puml](Diagrams/Detailed/presentation-essential-components.puml)
+- [presentation-essential-components.svg](Diagrams/Detailed/presentation-essential-components.svg)
+- ![presentation-essential-lifecycle.png](Diagrams/Detailed/presentation-essential-lifecycle.svg)
+- [presentation-essential-lifecycle.puml](Diagrams/Detailed/presentation-essential-lifecycle.puml)
+- [presentation-essential-lifecycle.svg](Diagrams/Detailed/presentation-essential-lifecycle.svg)
+- ![presentation-essential-rendering.png](Diagrams/Detailed/presentation-essential-rendering.svg)
+- [presentation-essential-rendering.puml](Diagrams/Detailed/presentation-essential-rendering.puml)
+- [presentation-essential-rendering.svg](Diagrams/Detailed/presentation-essential-rendering.svg)
+- ![presentation-essential-use-cases.png](Diagrams/Detailed/presentation-essential-use-cases.svg)
+- [presentation-essential-use-cases.puml](Diagrams/Detailed/presentation-essential-use-cases.puml)
+- [presentation-essential-use-cases.svg](Diagrams/Detailed/presentation-essential-use-cases.svg)
+- ![presentation-essential-visitor.png](Diagrams/Detailed/presentation-essential-visitor.svg)
+- [presentation-essential-visitor.puml](Diagrams/Detailed/presentation-essential-visitor.puml)
+- [presentation-essential-visitor.svg](Diagrams/Detailed/presentation-essential-visitor.svg)
+- ![presentation-owned-model.png](Diagrams/Detailed/presentation-owned-model.svg)
+- [presentation-owned-model.puml](Diagrams/Detailed/presentation-owned-model.puml)
+- [presentation-owned-model.svg](Diagrams/Detailed/presentation-owned-model.svg)
+- ![presentation-update-publication.png](Diagrams/Detailed/presentation-update-publication.svg)
+- [presentation-update-publication.puml](Diagrams/Detailed/presentation-update-publication.puml)
+- [presentation-update-publication.svg](Diagrams/Detailed/presentation-update-publication.svg)
+- ![sharing-essential-components.png](Diagrams/Detailed/sharing-essential-components.svg)
+- [sharing-essential-components.puml](Diagrams/Detailed/sharing-essential-components.puml)
+- [sharing-essential-components.svg](Diagrams/Detailed/sharing-essential-components.svg)
+- ![sharing-essential-formats.png](Diagrams/Detailed/sharing-essential-formats.svg)
+- [sharing-essential-formats.puml](Diagrams/Detailed/sharing-essential-formats.puml)
+- [sharing-essential-formats.svg](Diagrams/Detailed/sharing-essential-formats.svg)
+- ![sharing-essential-link-sequence.png](Diagrams/Detailed/sharing-essential-link-sequence.svg)
+- [sharing-essential-link-sequence.puml](Diagrams/Detailed/sharing-essential-link-sequence.puml)
+- [sharing-essential-link-sequence.svg](Diagrams/Detailed/sharing-essential-link-sequence.svg)
+- ![sharing-essential-link-state.png](Diagrams/Detailed/sharing-essential-link-state.svg)
+- [sharing-essential-link-state.puml](Diagrams/Detailed/sharing-essential-link-state.puml)
+- [sharing-essential-link-state.svg](Diagrams/Detailed/sharing-essential-link-state.svg)
+- ![sharing-owned-model.png](Diagrams/Detailed/sharing-owned-model.svg)
+- [sharing-owned-model.puml](Diagrams/Detailed/sharing-owned-model.puml)
+- [sharing-owned-model.svg](Diagrams/Detailed/sharing-owned-model.svg)
+- ![sharing-protected-retrieval.png](Diagrams/Detailed/sharing-protected-retrieval.svg)
+- [sharing-protected-retrieval.puml](Diagrams/Detailed/sharing-protected-retrieval.puml)
+- [sharing-protected-retrieval.svg](Diagrams/Detailed/sharing-protected-retrieval.svg)
+- ![work-essential-sprint-planning.png](Diagrams/Detailed/work-essential-sprint-planning.svg)
+- [work-essential-sprint-planning.puml](Diagrams/Detailed/work-essential-sprint-planning.puml)
+- [work-essential-sprint-planning.svg](Diagrams/Detailed/work-essential-sprint-planning.svg)
+- ![work-essential-task-state.png](Diagrams/Detailed/work-essential-task-state.svg)
+- [work-essential-task-state.puml](Diagrams/Detailed/work-essential-task-state.puml)
+- [work-essential-task-state.svg](Diagrams/Detailed/work-essential-task-state.svg)
+- ![work-essential-transition.png](Diagrams/Detailed/work-essential-transition.svg)
+- [work-essential-transition.puml](Diagrams/Detailed/work-essential-transition.puml)
+- [work-essential-transition.svg](Diagrams/Detailed/work-essential-transition.svg)
+- ![work-essential-views.png](Diagrams/Detailed/work-essential-views.svg)
+- [work-essential-views.puml](Diagrams/Detailed/work-essential-views.puml)
+- [work-essential-views.svg](Diagrams/Detailed/work-essential-views.svg)
+- ![work-mutation-sprint-close.png](Diagrams/Detailed/work-mutation-sprint-close.svg)
+- [work-mutation-sprint-close.puml](Diagrams/Detailed/work-mutation-sprint-close.puml)
+- [work-mutation-sprint-close.svg](Diagrams/Detailed/work-mutation-sprint-close.svg)
+- ![work-owned-model.png](Diagrams/Detailed/work-owned-model.svg)
+- [work-owned-model.puml](Diagrams/Detailed/work-owned-model.puml)
+- [work-owned-model.svg](Diagrams/Detailed/work-owned-model.svg)
+- ![workflow-deployment-sequence.png](Diagrams/Detailed/workflow-deployment-sequence.svg)
+- [workflow-deployment-sequence.puml](Diagrams/Detailed/workflow-deployment-sequence.puml)
+- [workflow-deployment-sequence.svg](Diagrams/Detailed/workflow-deployment-sequence.svg)
+- ![workflow-essential-components.png](Diagrams/Detailed/workflow-essential-components.svg)
+- [workflow-essential-components.puml](Diagrams/Detailed/workflow-essential-components.puml)
+- [workflow-essential-components.svg](Diagrams/Detailed/workflow-essential-components.svg)
+- ![workflow-essential-deployment-state.png](Diagrams/Detailed/workflow-essential-deployment-state.svg)
+- [workflow-essential-deployment-state.puml](Diagrams/Detailed/workflow-essential-deployment-state.puml)
+- [workflow-essential-deployment-state.svg](Diagrams/Detailed/workflow-essential-deployment-state.svg)
+- ![workflow-essential-executor.png](Diagrams/Detailed/workflow-essential-executor.svg)
+- [workflow-essential-executor.puml](Diagrams/Detailed/workflow-essential-executor.puml)
+- [workflow-essential-executor.svg](Diagrams/Detailed/workflow-essential-executor.svg)
+- ![workflow-essential-pipeline.png](Diagrams/Detailed/workflow-essential-pipeline.svg)
+- [workflow-essential-pipeline.puml](Diagrams/Detailed/workflow-essential-pipeline.puml)
+- [workflow-essential-pipeline.svg](Diagrams/Detailed/workflow-essential-pipeline.svg)
+- ![workflow-essential-promotion.png](Diagrams/Detailed/workflow-essential-promotion.svg)
+- [workflow-essential-promotion.puml](Diagrams/Detailed/workflow-essential-promotion.puml)
+- [workflow-essential-promotion.svg](Diagrams/Detailed/workflow-essential-promotion.svg)
+- ![workflow-essential-recovery.png](Diagrams/Detailed/workflow-essential-recovery.svg)
+- [workflow-essential-recovery.puml](Diagrams/Detailed/workflow-essential-recovery.puml)
+- [workflow-essential-recovery.svg](Diagrams/Detailed/workflow-essential-recovery.svg)
+- ![workflow-essential-run-state.png](Diagrams/Detailed/workflow-essential-run-state.svg)
+- [workflow-essential-run-state.puml](Diagrams/Detailed/workflow-essential-run-state.puml)
+- [workflow-essential-run-state.svg](Diagrams/Detailed/workflow-essential-run-state.svg)
+- ![workflow-essential-strategies.png](Diagrams/Detailed/workflow-essential-strategies.svg)
+- [workflow-essential-strategies.puml](Diagrams/Detailed/workflow-essential-strategies.puml)
+- [workflow-essential-strategies.svg](Diagrams/Detailed/workflow-essential-strategies.svg)
+- ![workflow-essential-topology.png](Diagrams/Detailed/workflow-essential-topology.svg)
+- [workflow-essential-topology.puml](Diagrams/Detailed/workflow-essential-topology.puml)
+- [workflow-essential-topology.svg](Diagrams/Detailed/workflow-essential-topology.svg)
+- ![workflow-trust-model.png](Diagrams/Detailed/workflow-trust-model.svg)
+- [workflow-trust-model.puml](Diagrams/Detailed/workflow-trust-model.puml)
+- [workflow-trust-model.svg](Diagrams/Detailed/workflow-trust-model.svg)
+- [component-artifact-placement.dot](Diagrams/Appendix/component-artifact-placement.dot)
+- ![component-artifact-placement.png](Diagrams/Appendix/component-artifact-placement.svg)
+- [component-artifact-placement.svg](Diagrams/Appendix/component-artifact-placement.svg)
+- ![implementation-essential-build-order.png](Diagrams/Appendix/implementation-essential-build-order.svg)
+- [implementation-essential-build-order.puml](Diagrams/Appendix/implementation-essential-build-order.puml)
+- [implementation-essential-build-order.svg](Diagrams/Appendix/implementation-essential-build-order.svg)
+- ![implementation-essential-overview.png](Diagrams/Appendix/implementation-essential-overview.svg)
+- [implementation-essential-overview.puml](Diagrams/Appendix/implementation-essential-overview.puml)
+- [implementation-essential-overview.svg](Diagrams/Appendix/implementation-essential-overview.svg)
+- [implementation-release-route.dot](Diagrams/Appendix/implementation-release-route.dot)
+- ![implementation-release-route.png](Diagrams/Appendix/implementation-release-route.svg)
+- [implementation-release-route.svg](Diagrams/Appendix/implementation-release-route.svg)
+- [implementation-source-structure.dot](Diagrams/Appendix/implementation-source-structure.dot)
+- ![implementation-source-structure.png](Diagrams/Appendix/implementation-source-structure.svg)
+- [implementation-source-structure.svg](Diagrams/Appendix/implementation-source-structure.svg)
+- ![modularity-essential-before-after.png](Diagrams/Modules/modularity-essential-before-after.svg)
+- [modularity-essential-before-after.puml](Diagrams/Modules/modularity-essential-before-after.puml)
+- [modularity-essential-before-after.svg](Diagrams/Modules/modularity-essential-before-after.svg)
+- ![modularity-essential-encapsulation.png](Diagrams/Modules/modularity-essential-encapsulation.svg)
+- [modularity-essential-encapsulation.puml](Diagrams/Modules/modularity-essential-encapsulation.puml)
+- [modularity-essential-encapsulation.svg](Diagrams/Modules/modularity-essential-encapsulation.svg)
+- ![modularity-essential-layers.png](Diagrams/Modules/modularity-essential-layers.svg)
+- [modularity-essential-layers.puml](Diagrams/Modules/modularity-essential-layers.puml)
+- [modularity-essential-layers.svg](Diagrams/Modules/modularity-essential-layers.svg)
+- ![modularity-essential-packages.png](Diagrams/Modules/modularity-essential-packages.svg)
+- [modularity-essential-packages.puml](Diagrams/Modules/modularity-essential-packages.puml)
+- [modularity-essential-packages.svg](Diagrams/Modules/modularity-essential-packages.svg)
+- [module-composition-and-lifetimes.dot](Diagrams/Modules/module-composition-and-lifetimes.dot)
+- ![module-composition-and-lifetimes.png](Diagrams/Modules/module-composition-and-lifetimes.svg)
+- [module-composition-and-lifetimes.svg](Diagrams/Modules/module-composition-and-lifetimes.svg)
+- [module-dependency-direction.dot](Diagrams/Modules/module-dependency-direction.dot)
+- ![module-dependency-direction.png](Diagrams/Modules/module-dependency-direction.svg)
+- [module-dependency-direction.svg](Diagrams/Modules/module-dependency-direction.svg)
+- [module-public-and-private-boundary.dot](Diagrams/Modules/module-public-and-private-boundary.dot)
+- ![module-public-and-private-boundary.png](Diagrams/Modules/module-public-and-private-boundary.svg)
+- [module-public-and-private-boundary.svg](Diagrams/Modules/module-public-and-private-boundary.svg)
+- ![data-essential-conceptual.png](Diagrams/Data/data-essential-conceptual.svg)
+- [data-essential-conceptual.puml](Diagrams/Data/data-essential-conceptual.puml)
+- [data-essential-conceptual.svg](Diagrams/Data/data-essential-conceptual.svg)
+- ![data-essential-levels.png](Diagrams/Data/data-essential-levels.svg)
+- [data-essential-levels.puml](Diagrams/Data/data-essential-levels.puml)
+- [data-essential-levels.svg](Diagrams/Data/data-essential-levels.svg)
+- ![data-essential-logical.png](Diagrams/Data/data-essential-logical.svg)
+- [data-essential-logical.puml](Diagrams/Data/data-essential-logical.puml)
+- [data-essential-logical.svg](Diagrams/Data/data-essential-logical.svg)
+- ![data-essential-normalization.png](Diagrams/Data/data-essential-normalization.svg)
+- [data-essential-normalization.puml](Diagrams/Data/data-essential-normalization.puml)
+- [data-essential-normalization.svg](Diagrams/Data/data-essential-normalization.svg)
+- ![data-essential-physical.png](Diagrams/Data/data-essential-physical.svg)
+- [data-essential-physical.puml](Diagrams/Data/data-essential-physical.puml)
+- [data-essential-physical.svg](Diagrams/Data/data-essential-physical.svg)
+- ![data-logical-revisions-and-references.png](Diagrams/Data/data-logical-revisions-and-references.svg)
+- [data-logical-revisions-and-references.puml](Diagrams/Data/data-logical-revisions-and-references.puml)
+- [data-logical-revisions-and-references.svg](Diagrams/Data/data-logical-revisions-and-references.svg)
+- ![data-physical-enforcement-map.png](Diagrams/Data/data-physical-enforcement-map.svg)
+- [data-physical-enforcement-map.puml](Diagrams/Data/data-physical-enforcement-map.puml)
+- [data-physical-enforcement-map.svg](Diagrams/Data/data-physical-enforcement-map.svg)
+- ![persistence-artifact-lifecycle.png](Diagrams/Data/persistence-artifact-lifecycle.svg)
+- [persistence-artifact-lifecycle.puml](Diagrams/Data/persistence-artifact-lifecycle.puml)
+- [persistence-artifact-lifecycle.svg](Diagrams/Data/persistence-artifact-lifecycle.svg)
+- ![persistence-essential-architecture.png](Diagrams/Data/persistence-essential-architecture.svg)
+- [persistence-essential-architecture.puml](Diagrams/Data/persistence-essential-architecture.puml)
+- [persistence-essential-architecture.svg](Diagrams/Data/persistence-essential-architecture.svg)
+- ![persistence-essential-deletion.png](Diagrams/Data/persistence-essential-deletion.svg)
+- [persistence-essential-deletion.puml](Diagrams/Data/persistence-essential-deletion.puml)
+- [persistence-essential-deletion.svg](Diagrams/Data/persistence-essential-deletion.svg)
+- ![persistence-essential-invalidation.png](Diagrams/Data/persistence-essential-invalidation.svg)
+- [persistence-essential-invalidation.puml](Diagrams/Data/persistence-essential-invalidation.puml)
+- [persistence-essential-invalidation.svg](Diagrams/Data/persistence-essential-invalidation.svg)
+- ![persistence-essential-read.png](Diagrams/Data/persistence-essential-read.svg)
+- [persistence-essential-read.puml](Diagrams/Data/persistence-essential-read.puml)
+- [persistence-essential-read.svg](Diagrams/Data/persistence-essential-read.svg)
+- ![persistence-essential-recovery.png](Diagrams/Data/persistence-essential-recovery.svg)
+- [persistence-essential-recovery.puml](Diagrams/Data/persistence-essential-recovery.puml)
+- [persistence-essential-recovery.svg](Diagrams/Data/persistence-essential-recovery.svg)
+- ![persistence-essential-write.png](Diagrams/Data/persistence-essential-write.svg)
+- [persistence-essential-write.puml](Diagrams/Data/persistence-essential-write.puml)
+- [persistence-essential-write.svg](Diagrams/Data/persistence-essential-write.svg)
+- ![persistence-protected-cache-flow.png](Diagrams/Data/persistence-protected-cache-flow.svg)
+- [persistence-protected-cache-flow.puml](Diagrams/Data/persistence-protected-cache-flow.puml)
+- [persistence-protected-cache-flow.svg](Diagrams/Data/persistence-protected-cache-flow.svg)
+- ![api-command-outcome-sequence.png](Diagrams/API/api-command-outcome-sequence.svg)
+- [api-command-outcome-sequence.puml](Diagrams/API/api-command-outcome-sequence.puml)
+- [api-command-outcome-sequence.svg](Diagrams/API/api-command-outcome-sequence.svg)
+- ![api-contract-evolution.png](Diagrams/API/api-contract-evolution.svg)
+- [api-contract-evolution.puml](Diagrams/API/api-contract-evolution.puml)
+- [api-contract-evolution.svg](Diagrams/API/api-contract-evolution.svg)
+- ![api-essential-boundaries.png](Diagrams/API/api-essential-boundaries.svg)
+- [api-essential-boundaries.puml](Diagrams/API/api-essential-boundaries.puml)
+- [api-essential-boundaries.svg](Diagrams/API/api-essential-boundaries.svg)
+- ![api-essential-consumer-verification.png](Diagrams/API/api-essential-consumer-verification.svg)
+- [api-essential-consumer-verification.puml](Diagrams/API/api-essential-consumer-verification.puml)
+- [api-essential-consumer-verification.svg](Diagrams/API/api-essential-consumer-verification.svg)
+- ![api-essential-contract-workflow.png](Diagrams/API/api-essential-contract-workflow.svg)
+- [api-essential-contract-workflow.puml](Diagrams/API/api-essential-contract-workflow.puml)
+- [api-essential-contract-workflow.svg](Diagrams/API/api-essential-contract-workflow.svg)
+- ![api-essential-selection.png](Diagrams/API/api-essential-selection.svg)
+- [api-essential-selection.puml](Diagrams/API/api-essential-selection.puml)
+- [api-essential-selection.svg](Diagrams/API/api-essential-selection.svg)
+- ![interaction-essential-alternates.png](Diagrams/API/interaction-essential-alternates.svg)
+- [interaction-essential-alternates.puml](Diagrams/API/interaction-essential-alternates.puml)
+- [interaction-essential-alternates.svg](Diagrams/API/interaction-essential-alternates.svg)
+- ![interaction-essential-end-to-end.png](Diagrams/API/interaction-essential-end-to-end.svg)
+- [interaction-essential-end-to-end.puml](Diagrams/API/interaction-essential-end-to-end.puml)
+- [interaction-essential-end-to-end.svg](Diagrams/API/interaction-essential-end-to-end.svg)
+- ![interaction-essential-realization.png](Diagrams/API/interaction-essential-realization.svg)
+- [interaction-essential-realization.puml](Diagrams/API/interaction-essential-realization.puml)
+- [interaction-essential-realization.svg](Diagrams/API/interaction-essential-realization.svg)
+- ![interaction-essential-use-cases.png](Diagrams/API/interaction-essential-use-cases.svg)
+- [interaction-essential-use-cases.puml](Diagrams/API/interaction-essential-use-cases.puml)
+- [interaction-essential-use-cases.svg](Diagrams/API/interaction-essential-use-cases.svg)
+- ![interaction-git-execution-deployment.png](Diagrams/API/interaction-git-execution-deployment.svg)
+- [interaction-git-execution-deployment.puml](Diagrams/API/interaction-git-execution-deployment.puml)
+- [interaction-git-execution-deployment.svg](Diagrams/API/interaction-git-execution-deployment.svg)
+- ![interaction-isolated-recovery.png](Diagrams/API/interaction-isolated-recovery.svg)
+- [interaction-isolated-recovery.puml](Diagrams/API/interaction-isolated-recovery.puml)
+- [interaction-isolated-recovery.svg](Diagrams/API/interaction-isolated-recovery.svg)

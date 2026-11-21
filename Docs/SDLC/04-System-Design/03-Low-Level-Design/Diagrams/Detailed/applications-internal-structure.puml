@@ -1,0 +1,25 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+allowmixing
+title Proposed — Internal responsibility areas within LC-04
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+component "Applications boundary" {
+ component "Private preparation" as P
+ component "Manual progress history" as G
+ component "Actual event / material capture" as C
+ component "Attributable correction" as R
+ component "Permitted queries / lifecycle" as Q
+ interface "Owned store / version / command identity" as S
+ P --> S
+ G --> S
+ C --> S
+ R --> S
+ Q --> S
+}
+
+@enduml

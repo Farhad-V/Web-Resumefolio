@@ -1,0 +1,19 @@
+digraph G {
+ graph [bgcolor="#111827",fontcolor="#F3F4F6"]; node [fontcolor="#F3F4F6"]; edge [fontcolor="#CBD5E1"];
+rankdir=TB;graph [bgcolor="#111827",pad="0.3",nodesep="0.35",ranksep="0.55",fontname="Arial"];node [shape=box,style="rounded,filled",fillcolor="#1F2937",color="#94A3B8",fontname="Arial",fontsize=12,margin="0.17,0.12"];edge [fontname="Arial",fontsize=10,color="#94A3B8"];
+change [label="Identify exact rule / proposed change
+Preserve authority and source revision"];
+impact [label="Identify shared owner + affected consumers
+Data / contracts / runtime / UI / operating artifacts"];
+options [label="Assess alternatives and consequences
+Record significant choices in ADRs",fillcolor="#1F2937"];
+update [label="Update owning record once
+Update affected component realizations",fillcolor="#1F2937"];
+check [label="Review cross-view agreement
+Specify focused effect / protected-state checks"];
+decision [label="Record actual candidate and evidence
+Scoped disposition; unresolved dependent gates",fillcolor="#1F2937"];
+change->impact->options->update->check->decision;
+note [label="No duplicate policy in this overview
+No diagram / link check equals product acceptance",shape=note,fillcolor="#1F2937"];decision->note [style=dashed,arrowhead=none];
+}

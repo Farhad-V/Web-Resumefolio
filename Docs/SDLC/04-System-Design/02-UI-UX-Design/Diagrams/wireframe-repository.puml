@@ -1,0 +1,25 @@
+@startsalt
+!theme cyborg
+skinparam backgroundColor #EEEEEE
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam shadowing false
+skinparam monochrome reverse
+{+
+ ProjectForge > Permitted repository > Issues
+ Repository context / current authority
+ ==
+ { [Files] | [History] | [Issues] | [Board] }
+ { Todo | In progress | Done }
+ { Issue identity | Issue identity | Issue identity }
+ ==
+ <b>Selected issue
+ Title / description / version / permitted assignee
+ { Move to | ^Permitted state^ | [Move issue] }
+ [Save issue]
+ Persistent stale / denied / unavailable / confirmed feedback
+ ==
+ Keyboard move is available without dragging
+ Issue permission does not grant native Git write
+}
+@endsalt

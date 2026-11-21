@@ -1,0 +1,53 @@
+@startuml
+!theme plain
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam ArrowFontColor #CBD5E1
+skinparam shadowing false
+skinparam roundcorner 12
+skinparam componentStyle rectangle
+skinparam rectangle {
+ BackgroundColor #1F2937
+ BorderColor #64748B
+ FontColor #F3F4F6
+}
+skinparam database {
+ BackgroundColor #1F2937
+ BorderColor #64748B
+ FontColor #F3F4F6
+}
+skinparam actor {
+ BackgroundColor #1F2937
+ BorderColor #CBD5E1
+ FontColor #F3F4F6
+}
+skinparam package {
+ BackgroundColor #111827
+ BorderColor #67E8F9
+ FontColor #67E8F9
+}
+skinparam node {
+ BackgroundColor #111827
+ BorderColor #64748B
+ FontColor #F3F4F6
+}
+left to right direction
+title Presentation and Submission Lifecycle - Conceptual Flow
+rectangle "Mutable private profile" as profile
+rectangle "Independent resume / portfolio draft" as draft
+rectangle "Immutable published revision" as revision #164E63
+rectangle "Protected sharing\nCurrent access checked" as share
+rectangle "Immutable submission event\nExact selected materials" as submission #312E81
+rectangle "Retained private artifacts\nHashes and owned references" as artifacts
+rectangle "Publication withdrawn\nFuture shared access denied" as withdrawn
+profile --> draft : Explicit selection / update
+draft --> revision : Explicit publish
+revision --> share : Authorize selected content
+revision --> submission : Select exact revision
+artifacts --> submission : Select exact files
+submission --> artifacts : Retain referenced bytes
+share --> withdrawn : Withdraw / revoke
+withdrawn ..> submission : Preserve existing history
+@enduml

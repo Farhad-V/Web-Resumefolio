@@ -1,0 +1,19 @@
+digraph G {
+ graph [bgcolor="#111827",fontcolor="#F3F4F6"];node [fontcolor="#F3F4F6"];edge [fontcolor="#CBD5E1"];
+rankdir=TB;graph [bgcolor="#111827",pad="0.3",nodesep="0.35",ranksep="0.55",fontname="Arial"];node [shape=box,style="rounded,filled",fillcolor="#1F2937",color="#94A3B8",fontname="Arial",fontsize=12,margin="0.17,0.12"];edge [fontname="Arial",fontsize=10,color="#94A3B8"];
+consumer [label="Consumer module
+Actor / resource / operation / expected version"];
+subgraph cluster_owner {label="Resource-owning module — proposed boundary";style=rounded;color="#94A3B8";
+public [label="Exported application contract
+Current authority + permitted result",fillcolor="#1F2937"];
+internal [label="Internal handler / invariant policy
+Owned mutation and protected state",fillcolor="#1F2937"];
+data [label="Private persistence mapping / state
+No consumer-side direct writes"];
+public->internal->data;
+}
+consumer->public [label="allowed contract"];
+note [label="Public contract is not public internet access
+A stable identifier is not permission",shape=note,fillcolor="#1F2937"];
+consumer->note [style=dashed,arrowhead=none];
+}

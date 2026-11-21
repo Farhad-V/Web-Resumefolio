@@ -1,0 +1,35 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #164E63
+skinparam ArrowColor #164E63
+skinparam ArrowFontColor #164E63
+skinparam shadowing false
+skinparam rectangle {
+ BackgroundColor #164E63
+ BorderColor #164E63
+ FontColor #164E63
+}
+top to bottom direction
+title Architecture Traceability and Evidence Chain
+rectangle "SRS requirement + exact criterion\nScope and disposition preserved" as requirement #164E63
+rectangle "Governing ADR / accepted boundary" as adr
+rectangle "HLD owner and invariant\nLLD operation / data / interface contract" as design
+rectangle "Implementation work item\nActual source revision" as implementation
+rectangle "Planned verification case\nExpected observable outcome" as test
+rectangle "Execution evidence\nRevision, environment, observed result" as evidence #164E63
+rectangle "RTM / gate / release record\nPassed, failed, blocked or not executed" as rtm
+requirement --> design
+adr --> design
+design --> implementation
+design --> test
+implementation --> evidence
+test --> evidence
+evidence --> rtm
+requirement ..> rtm : Exact criterion identity
+rtm ..> design : Change impact / missing coverage
+@enduml

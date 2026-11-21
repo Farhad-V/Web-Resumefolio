@@ -1,0 +1,45 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Proposed LC-04 Applications owned model and external artifact reference
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam classBackgroundColor #164E63
+top to bottom direction
+class ApplicationRecord {
+ -applicationId : ApplicationId
+ -ownerId : ActorId
+ -version : RevisionId
+}
+class PreparationRevision
+class ProgressEvent
+class SubmissionEvent {
+ +eventId : SubmissionId
+ +actualProvenance : EventProvenance
+}
+class SubmissionMaterialSet {
+ +setId : MaterialSetId
+ +completeness : ObservedCompleteness
+}
+class MaterialReference {
+ +artifactId : ArtifactId
+ +roleAndSource : MaterialProvenance
+}
+class SubmissionCorrection
+class "Files-owned Artifact" as Artifact <<external owner>>
+ApplicationRecord "1" -- "0..*" PreparationRevision
+ApplicationRecord "1" -- "0..*" ProgressEvent
+ApplicationRecord "1" -- "0..*" SubmissionEvent
+SubmissionEvent "1" -- "1" SubmissionMaterialSet : proposed event/set identity
+SubmissionMaterialSet "1" -- "0..*" MaterialReference : incomplete set possible
+SubmissionEvent "1" -- "0..*" SubmissionCorrection
+MaterialReference ..> Artifact : protected stable reference
+note bottom of MaterialReference
+ Actual history is not a mutable live-resume pointer.
+ Multiplicities are design proposals, not source approval.
+ Physical schema and reference handshake remain to refine.
+end note
+@enduml

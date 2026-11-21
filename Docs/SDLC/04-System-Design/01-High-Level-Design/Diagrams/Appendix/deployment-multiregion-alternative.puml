@@ -1,0 +1,29 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+title Conceptual multi-region / zone alternative — not selected or funded
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+cloud "Routing / promotion authority\nMechanism pending" as ROUTE
+rectangle "Region A (abstract)" {
+ node "Failure zone A1\nActive trusted app candidate" as A
+ node "Failure zone A2\nOptional redundant capacity" as A2 #164E63
+ A ..> A2 : consistency / fencing design required
+}
+rectangle "Region B (abstract)" {
+ node "Failure zone B1\nOptional recovery / standby target" as B #164E63
+ node "Failure zone B2\nOptional additional capacity" as B2 #164E63
+}
+ROUTE --> A : current-writer candidate
+ROUTE ..> B : only after guarded promotion
+A ..> B : evaluated copy / replication, not an assumed facility
+legend bottom
+ Region/zone labels are conceptual failure domains, not actual provider locations or certified AZ features.
+ Independent capacity, store consistency, writer fencing, keys, routing and operating cost need evidence.
+ Replication alone is not backup; no automatic failover, zero loss or availability objective is promised.
+endlegend
+@enduml

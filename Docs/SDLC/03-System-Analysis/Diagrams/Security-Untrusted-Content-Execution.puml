@@ -1,6 +1,7 @@
 @startuml
 title MVP content safety versus future executable code
-skinparam backgroundColor white
+skinparam backgroundColor #0D1525
+skinparam defaultFontColor #EDF4FF
 skinparam shadowing false
 skinparam defaultFontName Arial
 rectangle "MVP supplied content\nUploads / rich text / repository files" as U
@@ -8,8 +9,8 @@ rectangle "Current authority + supported type/size/quota\nSafe validation and re
 rectangle "Private same-server library / selected display\nAuthorized direct and byte-range access" as C
 U --> V
 V --> C
-rectangle "AFTER MVP: executable repository/YAML workloads" as X #F8EBD7
-rectangle "Future isolation / secrets / network / resource proof\nSeparate exact target approval" as T #F8EBD7
+rectangle "AFTER MVP: executable repository/YAML workloads" as X #4A302B
+rectangle "Future isolation / secrets / network / resource proof\nSeparate exact target approval" as T #4A302B
 X --> T
 note bottom of C
  Accepting data never authorizes execution.

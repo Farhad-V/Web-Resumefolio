@@ -29,7 +29,7 @@ The [interface requirements](#requirements-specification-external-interface-requ
 ## Supporting evidence and changes
 
 - [Business goals](#requirements-specification-business-requirements) and [stakeholder needs](#stakeholders-and-elicitation-stakeholders-and-elicitation)
-- [User stories and scenarios](#scenarios-and-models-user-stories-and-scenarios) and [analysis models](../03-System-Analysis/01-System-Analysis.md)
+- [User stories and scenarios](#scenarios-and-models-user-stories-and-scenarios) and [analysis models](../03-System-Analysis/01-System-Context-And-Gap-Analysis.md)
 - [Glossary](#data-definitions-glossary) and [data dictionary](#data-definitions-data-dictionary)
 - [Decisions and open issues](#change-and-baseline-open-questions-and-decisions), [review and evidence](#validation-and-traceability-validation-and-traceability) and [change control](#change-and-baseline-change-control)
 - [Product backlog](02-Product-Backlog.md) and [requirements traceability matrix](03-Requirements-Traceability-Matrix.md)
@@ -716,7 +716,7 @@ live in the shared `diagrams` folder. See the wider
 | Topic / diagram | Preview | Scalable | Editable source |
 | --- | --- | --- | --- |
 | This index — folder overview | ![stakeholders elicitation overview](Diagrams/Stakeholders-Elicitation-Overview.png) | [SVG](Diagrams/Stakeholders-Elicitation-Overview.svg) | [DOT](Diagrams/Stakeholders-Elicitation-Overview.dot) |
-| Actors — system context | ![logical component ownership](../04-System-Design/Diagrams/Archived-Png/Logical-Component-Ownership.png) | [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.svg) | [DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot) |
+| Actors — system context | ![logical component ownership](../04-System-Design/01-High-Level-Design/Diagrams/Appendix/logical-component-ownership.png) | [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.svg) | [DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot) |
 | Actors — goal overview | ![actors goal overview](Diagrams/Actors-Goal-Overview.png) | [SVG](Diagrams/Actors-Goal-Overview.svg) | [PlantUML](Diagrams/Actors-Goal-Overview.puml) |
 | Log — provenance | ![elicitation log provenance](Diagrams/Elicitation-Log-Provenance.png) | [SVG](Diagrams/Elicitation-Log-Provenance.svg) | [DOT](Diagrams/Elicitation-Log-Provenance.dot) |
 | Log — recording/review cycle | ![elicitation log recording cycle](Diagrams/Elicitation-Log-Recording-Cycle.png) | [SVG](Diagrams/Elicitation-Log-Recording-Cycle.svg) | [PlantUML](Diagrams/Elicitation-Log-Recording-Cycle.puml) |
@@ -1799,7 +1799,7 @@ Retain source and SVG/PNG outputs in version control.
 
 ![Private library and selected protected delivery](../04-System-Design/01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-diagrams-mvp-private-media-svg)
 
-[Editable source](../04-System-Design/01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-diagrams-mvp-private-media-puml) · ![mvp private media](../04-System-Design/Diagrams/Mvp-Private-Media.png).
+[Editable source](../04-System-Design/01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-diagrams-mvp-private-media-puml) · ![mvp private media](../04-System-Design/01-High-Level-Design/Diagrams/Appendix/mvp-private-media.png).
 
 </details>
 
@@ -3515,7 +3515,7 @@ The IF labels below are local inventory references, not new product requirement 
 | IF-07 Execution/deployment boundary | Authorized workflow inputs, permissions/secrets, outputs and approved targets | DEC-019, conditional; [YAML and CI/CD](#requirements-specification-yaml-workflows-and-cicd) | Isolation, triggers, syntax, network/target authority, logs/artifacts, limits and approval |
 | IF-08 Operational dependencies | Authorized operator and selected runtime, notification delivery, backup/restore facilities | DEC-017; resource DEP-01–DEP-06; [Quality and Recovery](#requirements-specification-quality-security-and-recovery-requirements) | Actual facilities, delivery/access contracts, configuration, coverage and procedure evidence |
 
-![People, clients and dependencies at the product boundary](../04-System-Design/Diagrams/Archived-Png/Logical-Component-Ownership.png)
+![People, clients and dependencies at the product boundary](../04-System-Design/01-High-Level-Design/Diagrams/Appendix/logical-component-ownership.png)
 
 [Scalable SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.svg) ·
 [Editable Graphviz](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot)
@@ -3856,7 +3856,7 @@ interface is configured and M-02 is not completed by this revision.
 
 | Diagram | Source | SVG | PNG |
 | --- | --- | --- | --- |
-| External interface context | [DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot) | [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.svg) | ![logical component ownership](../04-System-Design/Diagrams/Archived-Png/Logical-Component-Ownership.png) |
+| External interface context | [DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot) | [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.svg) | ![logical component ownership](../04-System-Design/01-High-Level-Design/Diagrams/Appendix/logical-component-ownership.png) |
 | Interaction outcomes | [PlantUML](Diagrams/External-Interface-Outcomes.puml) | [SVG](Diagrams/External-Interface-Outcomes.svg) | ![external interface outcomes](Diagrams/External-Interface-Outcomes.png) |
 
 Follow the [diagram guide](Diagrams/Diagram-Catalog.md). Keep sources, captions and renders
@@ -5284,7 +5284,7 @@ Current MVP answers are selected in the Baseline. Only explicitly deferred detai
 
 ![Private library and selected protected delivery](../04-System-Design/01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-diagrams-mvp-private-media-svg)
 
-[Editable source](../04-System-Design/01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-diagrams-mvp-private-media-puml) · ![mvp private media](../04-System-Design/Diagrams/Mvp-Private-Media.png).
+[Editable source](../04-System-Design/01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-diagrams-mvp-private-media-puml) · ![mvp private media](../04-System-Design/01-High-Level-Design/Diagrams/Appendix/mvp-private-media.png).
 
 </details>
 
@@ -5785,7 +5785,7 @@ Current MVP answers are selected in the Baseline. Only explicitly deferred detai
 
 ![Private library and selected protected delivery](../04-System-Design/01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-diagrams-mvp-private-media-svg)
 
-[Editable source](../04-System-Design/01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-diagrams-mvp-private-media-puml) · ![mvp private media](../04-System-Design/Diagrams/Mvp-Private-Media.png).
+[Editable source](../04-System-Design/01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-diagrams-mvp-private-media-puml) · ![mvp private media](../04-System-Design/01-High-Level-Design/Diagrams/Appendix/mvp-private-media.png).
 
 </details>
 
@@ -7075,7 +7075,7 @@ implemented architecture or an executed test result.
 | Domain Requirements and Constraints — domain constraint review | [PUML](Diagrams/Domain-Constraint-Review.puml) | [SVG](Diagrams/Domain-Constraint-Review.svg) | ![domain constraint review](Diagrams/Domain-Constraint-Review.png) |
 | Email, Calendar and Google Integration — google integration context | [DOT](Diagrams/Google-Integration-Context.dot) | [SVG](Diagrams/Google-Integration-Context.svg) | ![google integration context](Diagrams/Google-Integration-Context.png) |
 | Email, Calendar and Google Integration — google operation outcomes | [PUML](Diagrams/Google-Operation-Outcomes.puml) | [SVG](Diagrams/Google-Operation-Outcomes.svg) | ![google operation outcomes](Diagrams/Google-Operation-Outcomes.png) |
-| External Interface Requirements — external interface context | [DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot) | [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.svg) | ![logical component ownership](../04-System-Design/Diagrams/Archived-Png/Logical-Component-Ownership.png) |
+| External Interface Requirements — external interface context | [DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot) | [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.svg) | ![logical component ownership](../04-System-Design/01-High-Level-Design/Diagrams/Appendix/logical-component-ownership.png) |
 | External Interface Requirements — external interface outcomes | [PUML](Diagrams/External-Interface-Outcomes.puml) | [SVG](Diagrams/External-Interface-Outcomes.svg) | ![external interface outcomes](Diagrams/External-Interface-Outcomes.png) |
 | Git Hosting and Collaboration — git hosting capability map | [DOT](Diagrams/Git-Hosting-Capability-Map.dot) | [SVG](Diagrams/Git-Hosting-Capability-Map.svg) | ![git hosting capability map](Diagrams/Git-Hosting-Capability-Map.png) |
 | Git Hosting and Collaboration — git review merge flow | [PUML](Diagrams/Git-Review-Merge-Flow.puml) | [SVG](Diagrams/Git-Review-Merge-Flow.svg) | ![git review merge flow](Diagrams/Git-Review-Merge-Flow.png) |
@@ -16906,3 +16906,7 @@ established by this revision.
 · [Requirements index]()
 
 </details>
+
+## Working agreement for requirement changes
+
+Retain each stable requirement ID and record the exact actor, precondition, allowed outcome and observable denial or failure behavior. When a change is proposed, update the scope disposition and acceptance conditions after review. Link the resulting work in the [backlog](02-Product-Backlog.md) and update the [RTM](03-Requirements-Traceability-Matrix.md) for affected design and checks.

@@ -1,0 +1,31 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Proposed — Logical retirement, policy assessment and physical deletion
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+start
+:Receive explicit authorized lifecycle/erasure request;
+:Determine actual source policy, affected data classes and obligations;
+if (Logical retirement / trash permitted?) then (yes)
+ :Record attributable lifecycle state; do not imply physical reclamation;
+else (no)
+ :Report actual denied / unresolved-policy disposition;
+ stop
+endif
+:Assess all active and provisional consumer/history references;
+if (Safe physical deletion permitted under actual obligations?) then (yes)
+ :Acquire exclusive claim that excludes new reference admission;
+ :Recheck current eligibility / version / reference state;
+ :Observe actual backend deletion and record partial/unknown accurately;
+ :Credit only confirmed applicable reclaimed capacity;
+else (no)
+ :Retain necessary protection; record actual limitation / next disposition;
+endif
+:Handle replicas/caches/backups under actual reviewed lifecycle procedure;
+stop
+
+@enduml

@@ -1,0 +1,35 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+title Proposed current scoped authority at consequential admission
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+actor "Untrusted caller" as C
+participant "Validated entry boundary" as B
+participant "Resource-owning handler" as H
+participant "Current identity / scoped policy" as I
+database "Owned current state" as DB
+C -> B : resource / action / data / expected versions
+B -> B : transport / input / session / anti-forgery checks as applicable
+B -> H : bounded validated intent + verified attributable context
+H -> I : current actor / resource / action eligibility
+I --> H : actual scoped context or denial
+H -> DB : resolve current resource / lifecycle / versions
+DB --> H : actual permitted owner state
+alt authorized and valid current guarded admission
+ H -> H : operation invariants + synchronization with grant/state changes
+ H -> DB : admitted local mutation / attributable result if applicable
+ H --> C : permitted bounded result / controlled delivery context
+else denied / unresolved / conflict
+ H --> C : safe refusal; no unauthorized mutation or disclosure
+end
+note over H,DB
+ Identity alone is not operation authorization.
+ A cached prior allow is not an evergreen capability.
+ Concrete synchronization and private serving remain evaluated mechanisms.
+end note
+@enduml

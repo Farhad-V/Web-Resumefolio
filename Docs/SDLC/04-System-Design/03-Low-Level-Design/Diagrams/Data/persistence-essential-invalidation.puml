@@ -1,0 +1,27 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Proposed — Versioned invalidation and concurrent-fill safety
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+start
+:Authoritative mutation commits new relevant version/generation;
+:Publish actual post-commit invalidation if a cache is used;
+if (Invalidation observed?) then (yes)
+ :Retire affected old entries / admit exact new key;
+else (no)
+ :Retain repair need; correctness cannot depend on delivery alone;
+endif
+:Read obtains current authorized scope/version under actual guard;
+if (Cache payload matches exact current admissible identity?) then (yes)
+ :Validate actual usability and protected delivery conditions;
+else (no)
+ :Reject stale fill; rebuild only authorized exact data;
+endif
+:Apply actual admission ordering before returning bytes;
+stop
+
+@enduml

@@ -1,0 +1,29 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam shadowing false
+title Failure Classification, Safe Feedback and Recovery
+start
+:Observe failure / rejection at owning operation;
+:Keep correlation and stable operation identity;
+if (Expected input / authority / conflict outcome?) then (yes)
+ :Map documented bounded response;
+ :Record only necessary diagnostic / audit metadata;
+else (no)
+ if (Effect completion uncertain?) then (yes)
+  :Preserve recorded state and protected references;
+  :Expose contract-defined pending / unknown outcome;
+  :Resolve same operation under current authority;
+ else (no)
+  :Classify dependency or unexpected failure;
+  :Capture restricted sanitized diagnostics;
+  :Return safe unavailable / failure response;
+ endif
+endif
+:Select owner-controlled correction, retry or reconciliation;
+:Verify actual recovery result without fabricating success;
+stop
+@enduml

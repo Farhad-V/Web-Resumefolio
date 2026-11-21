@@ -1,0 +1,27 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+allowmixing
+title Proposed — Dependency inversion at the persistence boundary
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+skinparam maxMessageSize 65
+
+package "High-level application" {
+ class "PublishRevisionHandler" as H
+ interface "PublicationStore" as P {
+  +commitConfirmedRevision(intent, snapshot) : PublicationOutcome
+ }
+ H --> P : depends on contract
+}
+package "Low-level infrastructure" {
+ class "PersistenceAdapter" as A
+ database "Local database" as DB
+ A --> DB : concrete transaction mechanism
+}
+A ..|> P : implements
+
+@enduml

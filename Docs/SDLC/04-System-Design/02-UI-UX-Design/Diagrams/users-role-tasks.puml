@@ -1,0 +1,40 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam shadowing false
+left to right direction
+title MVP User Roles and Principal Tasks
+actor "Invited account holder" as owner
+actor "Employer / share recipient" as recipient
+actor "Repository collaborator" as collaborator
+actor "Workspace administrator" as admin
+rectangle "Resumefolio Core" {
+ usecase "Maintain profile and\nindependent tailored drafts" as tailor
+ usecase "Explicitly publish and\nconfigure selected sharing" as publish
+ usecase "Track manual applications and\nretrieve exact submitted material" as history
+ usecase "Read selected shared content /\neligible downloads" as view
+ usecase "Perform permitted invitation /\naccount administration" as admission
+}
+rectangle "ProjectForge" {
+ usecase "Browse permitted repositories\nand file history" as browse
+ usecase "Perform authorized\nnative Git transfers" as git
+ usecase "Manage repository issues\nand simple Kanban" as work
+}
+owner --> tailor
+owner --> publish
+owner --> history
+recipient --> view
+admin --> admission
+collaborator --> browse
+collaborator --> git
+collaborator --> work
+legend bottom
+  Task associations do not confer permission or imply role inheritance.
+  One person may occupy several roles; authority remains resource/action-specific.
+  Recipient access is link-scoped; administrator status grants no unrestricted private access.
+  ProjectForge requires current entitlement and local grants; Git has its own credentials.
+endlegend
+@enduml

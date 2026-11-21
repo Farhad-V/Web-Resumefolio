@@ -1,0 +1,29 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title MIXED CORE / FUTURE — Proposed — One authoritative work model, multiple permitted projections
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+database "Owned canonical work model\nitems / tasks / state / assignment / ordering\nSprint goal + selected scope + delivery plan" as D
+rectangle "Current authorized query / mutation contract" as Q
+rectangle "Kanban board\ncolumn mapping / card placement" as K
+rectangle "Permitted list / summary projection" as L
+rectangle "Optional timeline / calendar view\nonly if actual source choice adopted" as T
+rectangle "Protected mutation\nexpected versions + policy / criteria guards" as M
+D --> Q : same authoritative state
+Q --> K
+Q --> L
+Q ..> T : not newly selected feature
+K --> M : drag is a command, not local truth
+L --> M : explicit edits
+M --> D : coherent guarded update
+note bottom of D
+ A board is not a second Sprint Backlog.
+ Views do not store contradictory acceptance/status copies.
+ Partial queries are not complete report totals.
+end note
+
+@enduml

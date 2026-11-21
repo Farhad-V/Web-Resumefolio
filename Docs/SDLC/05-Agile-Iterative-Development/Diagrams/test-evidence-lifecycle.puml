@@ -1,0 +1,24 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam shadowing false
+title Criterion-linked Testing and Closure
+start
+:Select exact applicable criteria and actual candidate;
+:Choose unit, real integration, protocol, journey or recovery level;
+:Prepare synthetic actors, grants, data and isolated environment;
+:Define expected observable result before execution;
+:Execute normal and relevant denied / stale / failure checks;
+if (Executed result meets criterion?) then (yes)
+ :Record bounded passed result and evidence;
+else (no / blocked)
+ :Record failure, blocker or unexecuted scope accurately;
+ :Link corrective work and affected retest;
+endif
+:Update RTM and iteration review with limitations;
+:Assess release gates separately from slice completion;
+stop
+@enduml

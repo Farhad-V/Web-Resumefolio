@@ -1,0 +1,29 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+title Proposed isolated restoration and guarded service resumption
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+start
+:Assess incident / loss and select identified compatible point;
+:Prepare isolated target;\ndisable outbound dispatch and competing writers;
+:Restore compatible runtime / keys / records / bytes / Git;
+:Validate manifest integrity and actual core workflow usability;
+:Reconcile current authority / deletion decisions;\nreconcile actual external effects without replay;
+if (Usable scope and safety evidence established?) then (yes)
+ :Record actual recovery point / loss / elapsed usable-state time;
+ :Review disposition and cutover changes since capture;
+ if (Promotion prerequisites satisfied?) then (yes)
+  :Exclude unsafe writers; promote reviewed scope;\nresume guarded facilities and observe progress;
+ else (no)
+  :Retain isolation; resolve actual promotion findings;
+ endif
+else (no / unknown)
+ :Retain isolation; record missing bytes / keys / authority / effects;\nrepair or choose another reviewed recovery path;
+endif
+stop
+@enduml

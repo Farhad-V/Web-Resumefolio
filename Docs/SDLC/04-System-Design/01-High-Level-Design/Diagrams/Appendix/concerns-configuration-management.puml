@@ -1,0 +1,30 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+title Proposed versioned configuration and restricted secret delivery
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+artifact "Versioned non-secret release/configuration schema\nRequired keys, types, compatibility and provenance" as V
+rectangle "Actual environment policy / approved values\nNo invented defaults or enabled features" as E
+rectangle "Restricted secret/key source\nMechanism and recovery procedure pending" as S
+rectangle "Validate / compose effective configuration\nEnvironment + release identity + required scope" as C
+component "Web runtime" as W
+component "Worker / scheduler / adapters" as J
+rectangle "Restricted effective-identity observation\nNames/versions only, not secret values" as O
+V --> C
+E --> C
+S --> C : scoped secret access
+C --> W
+C --> J
+W --> O
+J --> O
+legend bottom
+ Configuration changes require compatibility, authority, rotation and recovery assessment.
+ Never copy production secrets into dev/staging/jobs or expose configuration dumps in diagnostics.
+ No vault, config server, runtime feature-flag service or hot-reload mechanism is selected.
+endlegend
+@enduml

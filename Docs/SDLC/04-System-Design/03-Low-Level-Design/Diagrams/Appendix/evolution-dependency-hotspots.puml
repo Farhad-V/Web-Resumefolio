@@ -1,0 +1,26 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+allowmixing
+title Proposed — Hypothetical dependency cycle and hotspot
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+component "Presentation internals" as P
+component "Applications internals" as A
+component "Universal helper\nbroad fan-in / policy coupling" as H #164E63
+component "Communication" as C
+P -[#red]-> A : forbidden internal dependency
+A -[#red]-> P : cycle
+P --> H
+A --> H
+C --> H
+note bottom of H
+ Teaching example only. No source imports,
+ fan-in counts or actual hotspot measured.
+end note
+
+@enduml

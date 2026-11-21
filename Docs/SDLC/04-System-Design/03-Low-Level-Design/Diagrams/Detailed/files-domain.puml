@@ -1,0 +1,32 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+allowmixing
+title Proposed — Artifact, reference and operation classes
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+class ArtifactRecord <<File identity>>
+class EffectiveFilePolicy
+class Reservation
+class ProtectedReference
+class StorageAttempt <<Operation>>
+class WorkReference <<Job identity>>
+class RecoveryAssessment
+class Folder <<optional logical grouping, unselected>>
+class VersionReference <<consumer-owned association>>
+class PermissionContext <<current authority, not permanent grant>>
+class ShareLink <<Sharing-owned, external to Files>>
+ArtifactRecord --> ProtectedReference
+Reservation --> EffectiveFilePolicy
+StorageAttempt --> Reservation
+WorkReference --> StorageAttempt
+VersionReference --> ArtifactRecord
+Folder ..> ArtifactRecord : optional label/group, not canonical storage path
+ShareLink ..> ArtifactRecord : only through owner eligibility and Files contract
+PermissionContext ..> ArtifactRecord : current admission context
+RecoveryAssessment ..> ArtifactRecord
+
+@enduml

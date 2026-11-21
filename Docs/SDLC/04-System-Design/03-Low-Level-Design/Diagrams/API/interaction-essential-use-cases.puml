@@ -1,0 +1,27 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Proposed — Selected actors and use-case boundaries
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+left to right direction
+actor "Authorized owner" as O
+actor "Link-scoped employer viewer" as V
+actor "Authorized operator" as A
+rectangle "Resumefolio: selected existing scenario families" {
+ usecase "UC-D01: compare/select/apply\nand separately confirm publication" as P
+ usecase "UC-D02: manage PDF / link controls" as L
+ usecase "UC-D03: retrieve exact permitted representation" as R
+ usecase "UC-D04–05: manual preparation / actual capture" as C
+ usecase "UC-D12: isolated recovery and resumption gate" as B
+}
+O --> P
+O --> L
+O --> C
+V --> R
+A --> B
+
+@enduml

@@ -1,0 +1,20 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Proposed — Files provided and required interfaces
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+component "LC-09 Files / Operations" as F
+interface "Artifact / quota / reference / recovery\nprovided" as P
+interface "Current scoped authority\nrequired" as A
+interface "Storage capability\nrequired" as S
+interface "Consumer commit evidence\nrequired" as C
+F -right- P
+F -up-( A
+F -left-( S
+F -down-( C
+
+@enduml

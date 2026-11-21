@@ -1,0 +1,31 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+allowmixing
+title MIXED CORE / FUTURE — Proposed / illustrative — Repository and collaboration identity model
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+class RepositoryRecord
+class RefObservation <<branch / tag name and observed object>>
+class NativeCommit <<backend-owned identity>>
+class PullRequestContext
+class ReviewEvidence
+class CheckEvidence
+class RepositoryMutationAttempt
+class UserContext <<Identity-owned current context>>
+class Team <<optional grouping, no grant allocated>>
+RepositoryRecord --> RefObservation
+RefObservation --> NativeCommit : branch tip in selected example
+PullRequestContext --> RepositoryRecord : exact source / target
+PullRequestContext --> NativeCommit : evaluated revisions
+PullRequestContext --> ReviewEvidence
+PullRequestContext --> CheckEvidence
+RepositoryMutationAttempt --> PullRequestContext : attributable merge intent
+ReviewEvidence --> UserContext : actor identity / actual review scope
+Team ..> UserContext : only if actual team model adopted
+
+@enduml

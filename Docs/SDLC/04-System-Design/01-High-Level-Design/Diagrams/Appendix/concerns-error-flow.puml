@@ -1,0 +1,29 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+title Proposed exception handling preserves actual effect knowledge
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+start
+:Resolve actual operation/attempt and current authority;
+if (Input / authority / version refusal?) then (yes)
+ :Return safe invalid / denied / conflict result;\nno fabricated mutation or private existence disclosure;
+else (no)
+ if (Failure before any possible external effect?) then (yes)
+  :Resolve local transaction/command outcome;\nrepeat only if bounded contract permits;
+ else (possible effect)
+  :Retain confirmed / partial / unknown observation;\nreconcile same attempt before consequential repeat;
+ endif
+endif
+:Create restricted bounded diagnostic record;\nexclude credentials and private payload dumps;
+:Project truthful user/consumer result with permitted operation reference;
+stop
+legend bottom
+ A caught exception or HTTP timeout cannot prove remote rollback.
+ Generic exception middleware must not convert unknown sends/deployments into safe retry buttons.
+endlegend
+@enduml

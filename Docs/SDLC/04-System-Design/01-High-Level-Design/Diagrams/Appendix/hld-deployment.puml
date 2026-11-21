@@ -1,0 +1,63 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #164E63
+skinparam ArrowColor #164E63
+skinparam ArrowFontColor #164E63
+skinparam shadowing false
+skinparam roundcorner 12
+skinparam componentStyle rectangle
+skinparam rectangle {
+ BackgroundColor #164E63
+ BorderColor #164E63
+ FontColor #164E63
+}
+skinparam database {
+ BackgroundColor #164E63
+ BorderColor #164E63
+ FontColor #164E63
+}
+skinparam actor {
+ BackgroundColor #164E63
+ BorderColor #164E63
+ FontColor #164E63
+}
+skinparam package {
+ BackgroundColor #111827
+ BorderColor #164E63
+ FontColor #164E63
+}
+skinparam node {
+ BackgroundColor #111827
+ BorderColor #164E63
+ FontColor #164E63
+}
+left to right direction
+title Planned Initial Deployment - Shared Host, Separate Ownership
+rectangle "Browser / employer / Git client" as clients
+node "Initial Linux host - shared failure domain" {
+ rectangle "Nginx\nTLS and request routing" as proxy #164E63
+ rectangle "Core PHP / Laravel\nSeparate key, session, process identity" as core
+ rectangle "ProjectForge PHP / Laravel\nSeparate key, session, process identity" as forge
+ database "Core database + private files\nCore credentials only" as cstore
+ database "Forge database + Git storage\nForge credentials only" as fstore
+ rectangle "Supervised application workers\nOwner-scoped jobs / durable records" as workers
+ proxy --> core
+ proxy --> forge
+ core --> forge : Restricted scoped API
+ core --> cstore
+ forge --> fstore
+ core --> workers
+ forge --> workers
+}
+rectangle "Protected backup copies\nEncryption / access restriction" as backup
+node "Isolated restore environment\nVerify records, files and Git consistency" as restore
+clients --> proxy : HTTPS
+cstore --> backup
+fstore --> backup
+backup --> restore : Recovery rehearsal
+@enduml

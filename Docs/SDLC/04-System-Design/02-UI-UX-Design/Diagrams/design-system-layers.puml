@@ -1,0 +1,33 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam shadowing false
+top to bottom direction
+title Design System Responsibilities and Reuse
+package "Foundations - visual values require review" {
+ rectangle "Semantic color / typography / spacing\nFocus / borders / motion / responsive roles" as foundations
+}
+package "Reusable accessible controls" {
+ rectangle "Buttons / links / inputs / errors\nDialogs / status / lists / tables" as controls
+}
+package "Product patterns" {
+ rectangle "Draft comparison / separate publication\nProtected selection / exact history\nConflicts / pending and unknown outcomes" as patterns
+}
+package "Screens and journeys" {
+ rectangle "Core workspace / recipient views\nPermitted ProjectForge interfaces" as screens
+}
+rectangle "Verification\nKeyboard, focus, contrast, reflow, states\nCriterion-linked candidate evidence" as verification
+foundations --> controls : Semantic tokens
+controls --> patterns : Behavioral contracts
+patterns --> screens : Consistent composition
+screens --> verification
+verification ..> controls : Correct shared defects
+verification ..> foundations : Review token changes
+legend bottom
+  Diagram styling is documentation-only, not an approved product palette.
+  Reuse does not merge Core / ProjectForge sessions, data ownership or permissions.
+endlegend
+@enduml

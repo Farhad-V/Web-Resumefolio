@@ -1,0 +1,30 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+allowmixing
+title Proposed — Law of Demeter: request an intention, avoid navigation chains
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+skinparam maxMessageSize 65
+
+package "Avoid: caller knows internal object graph" {
+ object "Caller" as C
+ object "Resume" as R
+ object "Profile" as P
+ object "Storage" as S
+ C --> R : getProfile()
+ C --> P : getStorage()
+ C --> S : readPrivateBytes()
+}
+package "Prefer: bounded owner contract" {
+ object "Caller" as C2
+ object "ResolvePermittedRepresentation" as H
+ object "Scoped artifact port" as A
+ C2 --> H : resolve(exact intent, current context)
+ H --> A : guarded eligible reference
+}
+
+@enduml

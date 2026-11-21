@@ -1,0 +1,28 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam shadowing false
+title Maintenance Observation, Recovery and Verified Change
+start
+:Observe service, security, storage, backup or user-reported issue;
+:Identify actual environment, revision, affected actor and owner;
+:Capture bounded evidence and classify impact;
+if (Unsafe access / integrity / service condition?) then (yes)
+ :Contain affected activity under the verified runbook;
+ :Preserve protected references, recorded outcomes and incident evidence;
+ if (Recovery needed?) then (yes)
+  :Use compatible rollback or approved isolated-tested recovery;
+  :Verify actual records, bytes, Git, authority and pending work;
+ endif
+else (no)
+ :Record scoped defect / update / improvement proposal;
+endif
+:Identify exact criteria, contracts and regression risks;
+:Implement separately authorized bounded correction;
+:Verify candidate and follow release / deployment gates;
+:Record actual outcome, residual gaps and procedure improvement;
+stop
+@enduml

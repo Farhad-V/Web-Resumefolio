@@ -1,0 +1,44 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #164E63
+skinparam ArrowColor #164E63
+skinparam shadowing false
+skinparam activity {
+ BackgroundColor #164E63
+ BorderColor #164E63
+ FontColor #164E63
+ DiamondBackgroundColor #164E63
+ DiamondBorderColor #164E63
+ DiamondFontColor #164E63
+ StartColor #164E63
+ EndColor #164E63
+}
+title Requirement-linked Quality Verification
+start
+:Select governing criterion and preserve its status;
+:Identify candidate revision, configuration,
+environment and representative workload;
+:Define observable expected behavior
+and applicable measurement / threshold;
+if (Required inputs and targets resolved?) then (yes)
+ :Run scoped normal, concurrent and failure scenarios;
+ :Collect bounded metrics, outcomes
+and recovery / accessibility observations;
+ :Compare actual results with governing criteria;
+ if (Criteria met with adequate evidence?) then (yes)
+  :Attach evidence and limitations to RTM / release record;
+ else (no)
+  :Record failure, affected capability
+and corrective work;
+ endif
+else (no)
+ :Record unresolved input, owner and required evidence;
+endif
+:Keep affected gate open until evidence supports acceptance;
+stop
+@enduml

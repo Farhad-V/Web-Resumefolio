@@ -1,0 +1,32 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+allowmixing
+title MIXED CORE / FUTURE — Proposed / illustrative — Git and collaboration capability boundaries
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+component "Native client / browser entry" as C
+component "LC-07 Git Collaboration\nrepository / review / ref policy" as G
+component "Evaluated native Git server adapter" as N
+database "Native objects / refs" as D
+database "Owned review / attempt metadata" as M
+component "Workflow Coordination\nseparate trigger and execution gates" as W
+component "Deployment\nseparate target approval" as T
+component "Communication / notifications\nonly actual eligible contract" as O
+C --> G : actual selected transport / public contract
+G --> N
+N --> D : Git-native handling
+G --> M
+G --> W : attributable revision observation
+W --> T : no automatic approval
+G ..> O : optional explicit supported reaction
+note bottom of G
+ Webhooks/event transport and independent services are not selected.
+ No execution of repository-supplied hooks on trusted host.
+end note
+
+@enduml

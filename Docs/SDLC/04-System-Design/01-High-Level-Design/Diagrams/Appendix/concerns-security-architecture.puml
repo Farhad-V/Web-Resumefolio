@@ -1,0 +1,31 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+title Proposed authentication / authorization responsibilities and trust domains
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+rectangle "Untrusted caller / provider content" as U #164E63
+rectangle "Trusted application" {
+ component "Boundary validation / authentication context" as A
+ component "Identity current scope contract" as I
+ component "Resource owner\nCurrent action/lifecycle/version admission" as O
+ A --> I : verified actor / session eligibility
+ A --> O : attributable bounded intent
+ O --> I : current resource scope
+}
+database "Restricted records / private artifacts / credentials" as D
+rectangle "Untrusted executor domain\nRequired denial of host/admin/production access" as E #164E63
+rectangle "Trusted target adapter\nSeparate exact approval" as T
+U --> A
+O --> D : permitted scoped operation
+O --> E : gated limited attempt only
+O --> T : independently approved target intent
+legend bottom
+ Authentication is not universal authorization; administrative policy follows exact source disposition.
+ Process/secret/network controls require actual evidence; the drawing does not establish containment.
+endlegend
+@enduml

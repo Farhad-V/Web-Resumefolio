@@ -1,0 +1,30 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Proposed — Artifact operations and separately owned sharing
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+left to right direction
+actor "Authorized owner / consumer" as U
+actor "Permitted operator" as O
+rectangle "Files / Operations" {
+ usecase "Reserve / upload / finalize artifact" as A
+ usecase "Resolve exact permitted download" as D
+ usecase "Protect / replace version reference" as V
+ usecase "Retire / reclaim only when eligible" as X
+ usecase "Assess isolated recovery" as R
+}
+rectangle "Representation / Sharing owner" {
+ usecase "Create / revoke eligible share link" as S
+}
+U --> A
+U --> D
+U --> V
+U --> S
+O --> X
+O --> R
+
+@enduml

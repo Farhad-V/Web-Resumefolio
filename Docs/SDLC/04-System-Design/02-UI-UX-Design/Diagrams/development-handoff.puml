@@ -1,0 +1,32 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam shadowing false
+title UI/UX Handoff and Implementation Evidence
+start
+:Select MVP task and exact requirement criteria;
+:Identify actor, resource owner and governing decision;
+:Package flow, wireframe, screen states,
+content, accessibility and responsive rules;
+:Map controls to React / Inertia and server contracts;
+if (Dependent policy / design input unresolved?) then (yes)
+ :Record gap, owner and affected implementation scope;
+ :Resolve before relying on that behavior;
+else (no)
+endif
+:Implement separately authorized slice with owner-local boundaries;
+:Verify normal, denied, stale, pending
+and interrupted paths as applicable;
+:Review actual UI, accessibility and contract behavior;
+if (Mismatch or failed criterion?) then (yes)
+ :Record finding and correct owning design / implementation;
+ :Retest affected behavior and shared patterns;
+else (no)
+ :Link actual revision and evidence;
+endif
+:Update RTM, work item and remaining limitations;
+stop
+@enduml

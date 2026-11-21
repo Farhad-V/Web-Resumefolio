@@ -1,0 +1,39 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title AFTER MVP — Proposed — Logical ERD: owned and observed records
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+entity Connection { 
+ * connection_id : scoped identity
+}
+entity CorrespondenceProjection {
+ * projection_id : identity
+ provider_message_id : observed reference
+ provider_thread_id : observed reference
+}
+entity LocalActivity {
+ * activity_id : identity
+}
+entity EventMapping {
+ * mapping_id : identity
+ provider_calendar_id : scoped reference
+ provider_event_id : scoped reference
+}
+entity AttendeeObservation {
+ * observation_id : identity
+ response : observed provider state
+}
+entity ReminderIntent {
+ * reminder_id : identity
+}
+Connection ||--o{ CorrespondenceProjection
+Connection ||--o{ EventMapping
+LocalActivity ||--o{ EventMapping
+EventMapping ||--o{ AttendeeObservation
+LocalActivity ||--o{ ReminderIntent
+
+@enduml

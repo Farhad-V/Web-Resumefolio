@@ -1,0 +1,35 @@
+@startsalt
+!theme cyborg
+skinparam backgroundColor #EEEEEE
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam shadowing false
+skinparam monochrome reverse
+{+
+ { Resumes > Tailored draft | Language: selected variant | Version: current }
+ { <b>Edit draft | Saved Draft / unsaved state }
+ ==
+ {
+ {+
+ <b>Draft content
+ Section navigation
+ Summary
+ "Independent authored text                 "
+ Experience / skills / selected files
+ [Save draft]
+ } |
+ {+
+ <b>Preview / comparison
+ Current draft preview
+ Proposed source differences
+ [X] Selected source field
+ [] Unselected source field
+ [Apply selected changes to draft]
+ }
+ }
+ { Persistent validation / conflict / pending feedback }
+ ==
+ { <b>Publication remains separate | Published revision: current selection }
+ { [Preview publication] | [Review and confirm publication] }
+}
+@endsalt

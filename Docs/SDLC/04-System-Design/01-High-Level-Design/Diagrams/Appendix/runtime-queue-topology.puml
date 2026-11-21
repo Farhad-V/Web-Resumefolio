@@ -1,0 +1,36 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+title Proposed durable message flow — logical lanes, backend not selected
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+database "Owned commit + pending intent" as DB
+rectangle "Dispatcher\nCommitted work discovery" as D
+queue "Interactive-independent job eligibility\nPDF / artifact processing" as Q1
+queue "Provider operation eligibility\nReviewed send / selected sync" as Q2
+queue "Reconciliation / cleanup eligibility\nUncertain attempts / safe lifecycle" as Q3
+rectangle "Bounded rendering / storage workers" as W1
+rectangle "Scoped provider workers" as W2
+rectangle "Scoped reconciliation workers" as W3
+database "Attempt observations / restricted outcomes" as O
+DB --> D
+D --> Q1
+D --> Q2
+D --> Q3
+Q1 --> W1
+Q2 --> W2
+Q3 --> W3
+W1 --> O
+W2 --> O
+W3 --> O
+O ..> Q3 : unresolved effects become reconciliation work
+legend bottom
+ Lanes are job classes; they need not be distinct physical queues or brokers.
+ Delivery / acknowledgment may duplicate and does not prove external completion.
+ Exhausted / unknown work needs visible disposition, not blind redelivery or a fictitious dead-letter product.
+endlegend
+@enduml

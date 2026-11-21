@@ -1,0 +1,31 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title AFTER MVP — Proposed — Contract-first refinement without mandatory code generation
+!pragma useVerticalIf on
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+start
+:Identify source criteria, owner, real consumers and exact meaning;
+:Draft operation, authority, inputs/results and repetition/compatibility rules;
+:Choose contract representation appropriate to actual interface;
+fork
+ :Review consumer expectations / denial / conflict / unknown paths;
+fork again
+ :Review owner invariants / persistence / external effect boundaries;
+end fork
+:Reconcile contract and planned checks;
+if (Mock or code generation actually justified?) then (yes)
+ :Generate only from identified authoritative source / compatible toolchain;
+ :Retain generator identity and limitations;
+else (no)
+ :Implement bounded contract directly when authorized;
+endif
+:Verify actual provider and consumer against same contract candidate;
+:Record evidence, compatibility limits and actual disposition;
+stop
+
+@enduml

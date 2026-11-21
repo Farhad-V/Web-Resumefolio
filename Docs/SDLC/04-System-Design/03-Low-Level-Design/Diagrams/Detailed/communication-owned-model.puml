@@ -1,0 +1,42 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title AFTER MVP — Proposed LC-05 connection intent and calendar identities
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam shadowing false
+
+skinparam classAttributeIconSize 0
+skinparam classBackgroundColor #164E63
+top to bottom direction
+class ProviderConnection {
+ +connectionId : ConnectionId
+ +ownerAndAccount : VerifiedIdentity
+ +capability : ActualCapability
+}
+class ComposeDraft
+class ReviewedSendIntent <<stable snapshot>>
+class SendAttempt {
+ +attemptId : AttemptId
+ +outcome : ObservedOutcome
+}
+class LocalActivity
+class ProviderEventMapping {
+ +providerEventIdentity : ScopedEventId
+ +changeEvidence : ObservedVersion
+}
+ProviderConnection -- ComposeDraft : scoped sender context
+ComposeDraft ..> ReviewedSendIntent : explicit final review
+ReviewedSendIntent -- SendAttempt : attributable dispatch
+ProviderConnection -- ProviderEventMapping : current account/capability
+LocalActivity -- ProviderEventMapping : explicit association only
+note bottom of SendAttempt
+ Provider acceptance is not delivery/read.
+ Unknown effects require same-attempt reconciliation.
+end note
+note bottom of ProviderEventMapping
+ Local unlink does not delete provider event.
+ Physical schema and cardinalities remain to refine.
+end note
+@enduml

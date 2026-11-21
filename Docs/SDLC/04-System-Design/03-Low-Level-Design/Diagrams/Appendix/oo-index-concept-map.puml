@@ -1,0 +1,24 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Principles, patterns and refactoring
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+rectangle "Accepted behavior + owned invariants" as B
+rectangle "Principles\nSOLID / DRY / KISS / YAGNI" as P
+rectangle "Patterns\nAdapter / Strategy / Factory / Facade" as T
+rectangle "Concrete design\nRoles / contracts / collaboration" as D
+rectangle "Evidence / observed smells" as S
+rectangle "Refactoring\nPreserve applicable behavior" as R
+B --> P : constrains application
+P --> D : guide choices
+T --> D : optional problem-specific techniques
+D --> S : inspect actual candidate
+S --> R : justify bounded change
+R --> D : evolve structure
+B --> R : protected behavior
+
+@enduml

@@ -1,0 +1,26 @@
+digraph RiskDecision {
+ graph [bgcolor="#111827",fontcolor="#F3F4F6"];node [fontcolor="#F3F4F6"];edge [fontcolor="#CBD5E1"];
+
+  graph [rankdir=TB, bgcolor="#111827", pad=0.30, nodesep=0.35, ranksep=0.5,
+         label="FEASIBILITY AND RISK DECISION FLOW", labelloc=t,
+         fontname="Segoe UI", fontsize=20, fontcolor="#F3F4F6", dpi=150];
+  node [shape=box, style="rounded,filled", fontname="Segoe UI", fontsize=13,
+        fontcolor="#F3F4F6", color="#94A3B8", fillcolor="#1F2937",
+        penwidth=1.4, margin="0.20,0.11"];
+  edge [fontname="Segoe UI", fontsize=11, color="#94A3B8",
+        fontcolor="#F3F4F6", arrowsize=0.75, penwidth=1.4];
+
+  verify [label="Verify the assumption or mitigation\nand record the evidence"];
+  decision [label="Mitigation demonstrated or\nremaining exposure explicitly accepted?",
+            shape=diamond, fillcolor="#1F2937", color="#94A3B8"];
+  open [label="Keep risk open and hold\nthe affected work or release",
+        fillcolor="#1F2937", color="#94A3B8"];
+  close [label="Close the risk for the\nrelevant outcome",
+         fillcolor="#1F2937", color="#94A3B8"];
+
+  verify -> decision;
+  decision -> close [label="Yes"];
+  decision -> open [label="No"];
+  open -> verify [label="New evidence", style=dashed, constraint=false];
+  close -> verify [label="Prior evidence invalidated", style=dashed, constraint=false];
+}

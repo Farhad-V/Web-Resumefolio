@@ -1,0 +1,44 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Proposed / illustrative — Physical schema illustration: types, scoped keys and indexes
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+left to right direction
+entity "resumes" as R {
+ * resume_id : VARCHAR(64) <<PK>>
+ owner_id : VARCHAR(64) <<NOT NULL>>
+ --
+ INDEX (owner_id, resume_id)
+}
+entity "resume_drafts" as D {
+ * resume_id : VARCHAR(64) <<PK, FK resumes>>
+ version : BIGINT <<NOT NULL>>
+ content_json : JSON <<NOT NULL>>
+ --
+ CHECK version >= 0
+}
+entity "publication_revisions" as P {
+ * revision_id : VARCHAR(64) <<PK>>
+ resume_id : VARCHAR(64) <<FK resumes, NOT NULL>>
+ source_draft_version : BIGINT <<NOT NULL>>
+ content_json : JSON <<NOT NULL>>
+ --
+ UNIQUE (resume_id, revision_id)
+ INDEX (resume_id, source_draft_version)
+}
+entity "live_publications" as L {
+ * resume_id : VARCHAR(64) <<PK, FK resumes>>
+ revision_id : VARCHAR(64) <<NOT NULL>>
+ --
+ FK (resume_id, revision_id) -> publication_revisions
+}
+R --> D
+R --> P
+L --> P : composite same-owner reference
+L --> R
+
+@enduml
