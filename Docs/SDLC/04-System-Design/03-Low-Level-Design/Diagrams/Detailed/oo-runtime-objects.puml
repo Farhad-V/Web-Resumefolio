@@ -1,0 +1,32 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+allowmixing
+title Proposed — Object diagram: one illustrative publication collaboration
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+skinparam maxMessageSize 65
+
+object "handler42 : PublishRevisionHandler" as H
+object "intent17 : PublishIntent" as I {
+ commandId = cmd17
+ resumeId = resume7
+ expectedDraftVersion = draft12
+}
+object "draft7 : ResumeDraft" as D {
+ version = draft12
+}
+object "store1 : PersistenceAdapter" as S
+object "revision31 : PublishedResumeRevision" as R {
+ sourceDraftVersion = draft12
+ revisionId = revision31
+}
+H --> I : command input
+H --> D : confirmed snapshot
+H --> S : commit contract
+S --> R : committed record
+
+@enduml

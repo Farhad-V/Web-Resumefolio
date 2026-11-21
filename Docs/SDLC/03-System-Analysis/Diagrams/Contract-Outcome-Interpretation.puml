@@ -1,26 +1,27 @@
 @startuml
 ' OWNER-MVP-2026-11-04 review: MVP core / cross-cutting. Core presentation/application/files or shared authority/recovery invariant remains applicable.
-skinparam backgroundColor white
+skinparam backgroundColor #0D1525
+skinparam defaultFontColor #EDF4FF
 skinparam defaultFontName Segoe UI
 skinparam defaultFontSize 14
 skinparam shadowing false
-skinparam ArrowColor #486777
+skinparam ArrowColor #91AED1
 skinparam ArrowFontSize 12
-skinparam rectangleBackgroundColor #EEF5FA
-skinparam rectangleBorderColor #486777
-skinparam noteBackgroundColor #FFF3DA
-skinparam noteBorderColor #B59865
+skinparam rectangleBackgroundColor #1A2940
+skinparam rectangleBorderColor #91AED1
+skinparam noteBackgroundColor #4A302B
+skinparam noteBorderColor #F1AD8A
 skinparam nodesep 35
 skinparam ranksep 45
 title Contract outcomes — evidence required for a claim
 top to bottom direction
 rectangle "Identify exact operation / subject / context\nEvaluate current authority and applicable preconditions" as request
-rectangle "Denied / invalid\nNo permitted consequential operation\nDo not expose unrelated private information" as deny #FFF3DA
+rectangle "Denied / invalid\nNo permitted consequential operation\nDo not expose unrelated private information" as deny #4A302B
 rectangle "Eligible request\nEligibility alone is not completion" as eligible
 rectangle "Actual attributable evidence\nAssess only the relevant effect and context" as evidence
-rectangle "Confirmed required success\nClaim the matching postcondition\nApply frame to this operation" as success #DFF1EA
-rectangle "Definite failure / bounded partial / pending\nReport the specific known disposition\nDo not claim the success postcondition" as other #FFF3DA
-rectangle "Unknown or contradictory effect\nDC-O38: reconcile same operation\nNo blind consequential repeat or assumed rollback" as unknown #FFF3DA
+rectangle "Confirmed required success\nClaim the matching postcondition\nApply frame to this operation" as success #17405A
+rectangle "Definite failure / bounded partial / pending\nReport the specific known disposition\nDo not claim the success postcondition" as other #4A302B
+rectangle "Unknown or contradictory effect\nDC-O38: reconcile same operation\nNo blind consequential repeat or assumed rollback" as unknown #4A302B
 request --> deny : prerequisite not satisfied
 request --> eligible : applicable prerequisites satisfied
 eligible --> evidence : inspect outcome

@@ -1,0 +1,30 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam shadowing false
+title Protected Operation Enforcement
+start
+:Select receiving browser, recipient, API, Git or worker contract;
+:Validate request shape and establish attributable caller / actor;
+if (Required current authority available?) then (yes)
+ if (Resource / action scope permitted?) then (yes)
+  :Validate exact selection, state and expected version;
+  if (Operation preconditions valid?) then (yes)
+   :Perform owner-local guarded operation / permitted delivery;
+   :Preserve durable outcome and protected references;
+   :Return bounded actual result;
+  else (no)
+   :Return invalid / conflict / unavailable material result;
+  endif
+ else (no)
+  :Return safe denied / hidden result;
+ endif
+else (no)
+ :Return safe unavailable / invalid-context result;
+endif
+:Record only necessary sanitized audit / diagnostic metadata;
+stop
+@enduml

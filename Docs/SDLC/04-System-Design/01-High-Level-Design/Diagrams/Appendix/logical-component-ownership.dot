@@ -1,0 +1,19 @@
+digraph G {
+ graph [bgcolor="#111827",fontcolor="#F3F4F6"]; node [fontcolor="#F3F4F6"]; edge [fontcolor="#CBD5E1"];
+rankdir=TB;graph [bgcolor="#111827",pad="0.3",nodesep="0.35",ranksep="0.55",fontname="Arial"]; node [shape=box,style="rounded,filled",fillcolor="#1F2937",color="#94A3B8",fontname="Arial",fontsize=12,margin="0.18,0.12"]; edge [fontname="Arial",fontsize=10,color="#94A3B8"];
+product [label="Resumefolio trusted application
+Proposed logical decomposition",fillcolor="#1F2937"];
+foundation [label="LC-01 Identity and Access
+LC-09 Files and Operations",fillcolor="#1F2937"];
+presentation [label="LC-02 Professional Presentation
+LC-03 Representation and Sharing
+LC-04 Manual Applications"];
+work [label="LC-05 Communication and Calendar
+LC-06 Work Management"];
+execution [label="LC-07 Git Collaboration
+LC-08 Workflow / Deployment Coordination",fillcolor="#1F2937"];
+product->foundation [label="shared scoped contracts"];product->presentation;product->work;product->execution;
+note [label="Grouping lines mean ownership decomposition
+NOT call order, permission inheritance or deployment nodes",shape=note,fillcolor="#1F2937"];
+foundation->note [style=invis];presentation->note [style=invis];work->note [style=invis];execution->note [style=invis];
+}

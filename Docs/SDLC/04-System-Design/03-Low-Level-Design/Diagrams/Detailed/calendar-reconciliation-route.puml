@@ -1,0 +1,36 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title AFTER MVP — Proposed local and provider calendar boundary
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam shadowing false
+
+skinparam activityBackgroundColor #164E63
+start
+:Identify activity / mapping and current authority;
+if (Local-only action?) then (yes)
+ :Apply permitted local change / unlink;
+ :No implicit provider mutation;
+ stop
+else (no)
+ :Check selected provider/calendar capability;
+endif
+if (Capability unavailable?) then (yes)
+ :Keep explicit unavailable / disconnected status;
+ :Do not replay pending provider intent;
+ stop
+else (no)
+ :Compare local/provider identity and change evidence;
+endif
+if (Concurrent meaningful change?) then (yes)
+ :Expose conflict for explicit authorized review;
+ stop
+else (no)
+ :Execute only explicit permitted provider intent;
+ :Record actual outcome / mapping or uncertainty;
+ :No inferred deletion, reminder delivery or duplicate creation;
+ stop
+endif
+@enduml

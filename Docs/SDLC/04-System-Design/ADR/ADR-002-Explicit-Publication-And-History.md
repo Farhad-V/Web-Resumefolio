@@ -1,25 +1,69 @@
-# ADR 002 Explicit Publication And History
+# ADR-002 — Explicit Publication and History
+
+[Decision index](Decision-Index.md) · [ADR-005 boundaries](ADR-005-Owner-Mvp-System-Boundaries.md) · [ADR-006 baseline](ADR-006-Selected-Mvp-Implementation-Baseline.md)
+
+## Current Status
+
+**Selected for MVP through ADR-006/T05; provider/workflow-specific clauses remain deferred.** Decision authority remains Farhad. No new approval or runtime evidence is recorded here.
+
+## Decision and Invariants
+
+Preserve reusable source, independent editable draft, immutable published revision and Applications-owned actual submitted material as distinct contexts. Source changes do not automatically propagate into existing drafts or published views. Apply only reviewed selected changes; publish through a separate attributable confirmation for the exact candidate/language.
+
+Actual submitted material is independently preserved, including authored text and exact file/revision identity as applicable. A mutable live pointer or later regeneration cannot establish what was actually submitted. Capturing a manual event does not claim automatic employer delivery or recipient receipt.
+
+| Concern | Required result |
+| --- | --- |
+| Stale comparison/candidate | Conflict/review; no silent overwrite or publication of unseen newer content |
+| Publication/PDF | Immutable publication and available rendition remain distinct outcomes |
+| Missing language/material | Truthful unavailable/incomplete state; no unrelated or newer-byte substitution |
+| Protected references | Coordinate exact bytes and local commit under T05; retain protection while uncertain |
+| Withdrawal/retirement | Change access without rewriting history or deleting still-protected material |
+| Restore | Validate manifests/references and exact digests together with intended access |
+
+## Alternatives and Consequences
+
+Resolving history through mutable source cannot meet the accepted independence rule. Duplicating every intermediate byte on every save adds cost without proving provenance or current authority. The selected direction preserves distinct immutable meaning and sufficient exact material, with physical representation constrained by the selected data/reference design.
+
+Storage, version/comparison logic and reference-aware cleanup are costs. No unlimited retention, event-sourcing architecture or new receipt-verification capability is implied. Concrete migration/renderer compatibility, capacity and recovery remain evidence obligations; ADR-006/ADR-007 govern already selected mechanisms.
+
+## Verification and Revisit
+
+Verify independent drafts, subset apply, separate publication, stale writes, exact historical material after edits/withdrawal, matching/mismatched retries, concurrent protection/cleanup and isolated restore. Use real persistence/bytes where the invariant depends on them. Revisit representation only with evidence and preserve exact material/authority through a compatible reviewed migration.
+
+## Supporting Dark Diagram
+
+![Explicit Publication and History](../03-Low-Level-Design/Diagrams/Data/data-logical-revisions-and-references.svg)
+
+[PlantUML source](../03-Low-Level-Design/Diagrams/Data/data-logical-revisions-and-references.puml) · [PNG](../03-Low-Level-Design/Diagrams/Data/data-logical-revisions-and-references.png)
+
+This canonical view illustrates the applicable current contracts; it does not convert retained proposal details or deferred features into MVP obligations.
+
+## Sources, Evidence and Retained Rationale
+
+Use [LLD contracts](../03-Low-Level-Design/03-Detailed-Module-Design.md), [Database Design](../03-Low-Level-Design/04-Database-Design.md), [API Specification](../03-Low-Level-Design/05-API-Specification.md) and the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md) for exact implementation/criterion evidence. Preserve immutable baseline provenance links.
+
+The record below retains original anchors, alternatives and context. Current status above and ADR-006/ADR-007 govern any older proposed/pending wording. Runtime setup, security, compatibility and recovery still require fresh evidence; documentation does not close those gates.
 
 <a id="design-record-07-design-decisions-adr-002-explicit-publication-and-history-md"></a>
 
 <details>
-<summary>ADR-002 â€” Explicit Publication and Historical Material Identity</summary>
+<summary>ADR-002 — Explicit Publication and Historical Material Identity</summary>
 
 <a id="design-record-07-design-decisions-adr-002-explicit-publication-and-history-md--heading-adr-002-â-explicit-publication-and-historical-material-identity"></a>
 
-### ADR-002 â€” Explicit Publication and Historical Material Identity
+### ADR-002 — Explicit Publication and Historical Material Identity
 
 Current implementation choices and scope: [Baseline](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/baseline/README.md). Runtime verification remains subject to its gates.
 
 | Item | Position |
 | --- | --- |
-| Status | **Proposed technical realization â€” owner disposition pending** |
-| Prepared / updated | November 2, 2026 |
+| Status | **Selected for MVP through ADR-006/T05; provider/workflow-specific clauses remain deferred.** |
 | Decision authority | Farhad |
 | Accepted product basis | Explicit selected source application, independent resumes, separately confirmed publication and preserved actual submitted documents |
 | Evidence boundary | No implemented schema, artifact capture, publication, restore or product-test result is supplied here |
 
-[Context](#design-record-07-design-decisions-adr-002-explicit-publication-and-history-md--heading-1-context-and-source-authority) Â· [Options](#design-record-07-design-decisions-adr-002-explicit-publication-and-history-md--heading-2-options-considered) Â· [Proposal](#design-record-07-design-decisions-adr-002-explicit-publication-and-history-md--heading-3-proposed-decision-and-consistency-rules) Â· [Consequences](#design-record-07-design-decisions-adr-002-explicit-publication-and-history-md--heading-4-consequences-and-open-mechanisms) Â· [Validation](#design-record-07-design-decisions-adr-002-explicit-publication-and-history-md--heading-5-validation-and-disposition) Â· [Evolution](#design-record-07-design-decisions-adr-002-explicit-publication-and-history-md--heading-6-revisit-and-evolution)
+[Context](#design-record-07-design-decisions-adr-002-explicit-publication-and-history-md--heading-1-context-and-source-authority) · [Options](#design-record-07-design-decisions-adr-002-explicit-publication-and-history-md--heading-2-options-considered) · [Proposal](#design-record-07-design-decisions-adr-002-explicit-publication-and-history-md--heading-3-proposed-decision-and-consistency-rules) · [Consequences](#design-record-07-design-decisions-adr-002-explicit-publication-and-history-md--heading-4-consequences-and-open-mechanisms) · [Validation](#design-record-07-design-decisions-adr-002-explicit-publication-and-history-md--heading-5-validation-and-disposition) · [Evolution](#design-record-07-design-decisions-adr-002-explicit-publication-and-history-md--heading-6-revisit-and-evolution)
 
 <a id="design-record-07-design-decisions-adr-002-explicit-publication-and-history-md--heading-1-context-and-source-authority"></a>
 
@@ -27,7 +71,7 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 The [owner-accepted profile-update policy](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#change-and-baseline-open-questions-and-decisions--id-owner-accepted-profile-update-policy) establishes four product behaviors: source changes do not automatically alter existing resumes or published views; the owner previews/selects/applies intended changes while preserving independent content; apply/save and separately confirmed publication are different actions; actual submitted documents remain independent of later changes.
 
-That behavior is accepted and is not reopened by this ADR. This record proposes the technical identities, manifests and consistency rules that realize it. See [Q-D07](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-profiles-resumes-and-portfolio--id-resolution-q-d07), [profile requirements](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-profiles-resumes-and-portfolio), [PDF/sharing requirements](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-pdf-and-controlled-sharing), [application requirements](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-manual-application-management) and [conceptual data analysis](../../03-System-Analysis/01-System-Analysis.md#analysis-domain-and-information-analysis--05-data-oriented-view).
+That behavior is accepted and is not reopened by this ADR. This record proposes the technical identities, manifests and consistency rules that realize it. See [Q-D07](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-profiles-resumes-and-portfolio--id-resolution-q-d07), [profile requirements](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-profiles-resumes-and-portfolio), [PDF/sharing requirements](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-pdf-and-controlled-sharing), [application requirements](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-manual-application-management) and [conceptual data analysis](../../03-System-Analysis/02-Domain-And-Information-Analysis.md#analysis-domain-and-information-analysis--05-data-oriented-view).
 
 Field granularity, deletion/reset/conflict details, language fallback, renderer, retention and capture/correction refinements retain their source status. An independent historical copy does not imply indefinite retention, new restoration powers or automatic receipt verification. Current resource-specific authority and actual storage capacity still apply.
 
@@ -37,19 +81,19 @@ Field granularity, deletion/reset/conflict details, language fallback, renderer,
 
 <a id="design-record-07-design-decisions-adr-002-explicit-publication-and-history-md--heading-a-â-resolve-every-view-and-history-record-through-current-mutable-source"></a>
 
-##### A â€” Resolve every view and history record through current mutable source
+##### A — Resolve every view and history record through current mutable source
 
 Minimizes explicit revision storage but permits later edits to alter displayed/claimed past content. A current resume or live link cannot identify the document actually submitted earlier. This option cannot alone satisfy the accepted independence behavior.
 
 <a id="design-record-07-design-decisions-adr-002-explicit-publication-and-history-md--heading-b-â-separate-logical-identities-and-immutable-contentmaterial-manifests"></a>
 
-##### B â€” Separate logical identities and immutable content/material manifests
+##### B — Separate logical identities and immutable content/material manifests
 
-Preserve reusable source, editable draft, publication revision and actual submitted material as distinct contexts. Manifest content can be an immutable snapshot or references to sufficient immutable versions/artifacts. Adds version/reference/accounting work while retaining exact provenance and controlled sharing. **This is the proposed direction.**
+Preserve reusable source, editable draft, publication revision and actual submitted material as distinct contexts. Manifest content can be an immutable snapshot or references to sufficient immutable versions/artifacts. Adds version/reference/accounting work while retaining exact provenance and controlled sharing. **This direction is selected for the MVP through ADR-006.**
 
 <a id="design-record-07-design-decisions-adr-002-explicit-publication-and-history-md--heading-c-â-physically-duplicate-every-filecontent-object-on-every-save"></a>
 
-##### C â€” Physically duplicate every file/content object on every save
+##### C — Physically duplicate every file/content object on every save
 
 Can preserve individual snapshots but may create unnecessary storage and cleanup burden. Duplication alone does not establish actual-submission provenance, owner confirmation or current access. The accepted behavior requires independent meaning and sufficient preserved content, not a new physical copy of every intermediate edit.
 
@@ -66,9 +110,9 @@ Maintain four distinguishable contexts:
 3. **Publication revision:** immutable confirmed content/selection/language/layout manifest with exact artifact identities, plus a guarded live pointer in the reviewed publication scope.
 4. **Actual material set:** Applications-owned submission event/material provenance and completeness, backed by exact preserved content/artifact references independently of later draft/publication state.
 
-[Candidate revision and protected-reference model](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-logical-revisions-and-references.svg)
+[Candidate revision and protected-reference model](../03-Low-Level-Design/Diagrams/Data/data-logical-revisions-and-references.svg)
 
-[Owning data model](../03-Low-Level-Design/04-Database-Design.md#design-record-04-data-design-01-analysis-to-logical-and-physical-data-models-md--heading-3-revision-and-reference-model) Â· [Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-logical-revisions-and-references.puml) Â· ![data logical revisions and references](../Diagrams/Archived-Png/Data-Logical-Revisions-And-References.png)
+[Owning data model](../03-Low-Level-Design/04-Database-Design.md#design-record-04-data-design-01-analysis-to-logical-and-physical-data-models-md--heading-3-revision-and-reference-model) · [Editable PlantUML](../03-Low-Level-Design/Diagrams/Data/data-logical-revisions-and-references.puml) · ![data logical revisions and references](../03-Low-Level-Design/Diagrams/Data/data-logical-revisions-and-references.png)
 
 The figure is a candidate logical relationship view, not final table cardinalities or accepted DDL.
 
@@ -117,7 +161,7 @@ Assess an identified candidate against exact source criteria and these focused c
 - Concurrent publication/capture/reference registration and cleanup preserve usable protected material, including lost commit/finalization acknowledgments.
 - Current authority, reviewed retirement and isolated restoration preserve exact manifests/bytes without resurrected access or external replay.
 
-Use actual persistence/storage/concurrency and authorized restore evidence alongside domain checks. Follow [review/handoff](../01-High-Level-Design/14-Appendices.md#design-record-06-design-quality-and-security-analysis-05-design-review-traceability-and-handoff-md); preserve the distinction between accepted product behavior and still-proposed technical prescriptions. Elaborating this record performs no product test and records no owner acceptance of its mechanisms.
+Use actual persistence/storage/concurrency and authorized restore evidence alongside domain checks. Follow [review/handoff](../01-High-Level-Design/14-Appendices.md#design-record-06-design-quality-and-security-analysis-05-design-review-traceability-and-handoff-md); preserve the distinction between accepted product behavior and selected MVP mechanisms and remaining evidence gates. Elaborating this record performs no product test and records no new owner acceptance or runtime result.
 
 <a id="design-record-07-design-decisions-adr-002-explicit-publication-and-history-md--heading-6-revisit-and-evolution"></a>
 
@@ -127,6 +171,6 @@ Reassess representation if measured storage/rendering cost, new content types, s
 
 Migrate existing manifests/associations with compatibility and integrity checks before releasing old representations. Lossy conversion or byte deletion is not automatically reversible through schema/code rollback. Record a superseding ADR when an accepted decision changes, retaining original rationale and actual disposition history.
 
-[Decision index](Decision-Index.md#design-record-07-design-decisions-design-decisions-md) Â· [ADR-001: Boundaries](ADR-001-Modular-Application-Boundaries.md#design-record-07-design-decisions-adr-001-modular-application-boundaries-md) Â· [ADR-003: External attempts](ADR-003-Durable-External-Attempts.md#design-record-07-design-decisions-adr-003-durable-external-attempts-md) Â· [ADR template](Decision-Index.md#design-record-07-design-decisions-design-decisions-md)
+[Decision index](Decision-Index.md#design-record-07-design-decisions-design-decisions-md) · [ADR-001: Boundaries](ADR-001-Modular-Application-Boundaries.md#design-record-07-design-decisions-adr-001-modular-application-boundaries-md) · [ADR-003: External attempts](ADR-003-Durable-External-Attempts.md#design-record-07-design-decisions-adr-003-durable-external-attempts-md) · [ADR template](Decision-Index.md#design-record-07-design-decisions-design-decisions-md)
 
 </details>

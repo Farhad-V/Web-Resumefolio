@@ -1,0 +1,31 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+allowmixing
+title Proposed — Persistence responsibilities and authoritative stores
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+component "Resource-owner handler\ncurrent authority / version / invariant" as A
+interface "Meaningful owned persistence port" as P
+component "Evaluated adapter / ORM mapping" as M
+database "Candidate relational primary\nowned records / intent / accounting / references" as D
+folder "Private artifacts\nFiles-owned adapter and protection" as F
+folder "Native Git objects / refs\nGit-owned semantics" as G
+rectangle "Derived cache / projection\nnot authority" as C
+cloud "External provider / executor / target\nactual effect truth" as E
+A --> P
+M ..|> P
+M --> D
+A --> F : public Files contract
+A --> G : public Git contract only
+A ..> C : only if selected and correct
+A --> E : separate durable attributable effect protocol
+note bottom of D
+ Replicas, document/search/key-value services and object-store products unselected.
+ Local SQL cannot atomically roll back bytes, Git refs or remote effects.
+end note
+
+@enduml

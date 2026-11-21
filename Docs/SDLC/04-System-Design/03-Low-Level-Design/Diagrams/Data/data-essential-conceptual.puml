@@ -1,0 +1,23 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Proposed / illustrative — Conceptual identities: no attributes or physical choices
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+rectangle "Professional source" as S
+rectangle "Independent resume draft" as D
+rectangle "Publication revision" as P
+rectangle "Sharing link" as L
+rectangle "Actual submission material" as A
+rectangle "Artifact" as F
+S -- D : selected source provenance, not automatic propagation
+D -- P : separately confirmed publication
+L -- P : selected published content scope
+A ..> P : optional provenance, not live content lookup
+A -- F : actual protected material identity
+P -- F : protected evidence where applicable
+
+@enduml

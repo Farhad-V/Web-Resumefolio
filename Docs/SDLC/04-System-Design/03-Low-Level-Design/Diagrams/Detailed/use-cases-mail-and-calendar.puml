@@ -1,0 +1,47 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+left to right direction
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam roundcorner 12
+skinparam ArrowColor #164E63
+skinparam actorBorderColor #164E63
+skinparam actorFontColor #164E63
+skinparam usecase {
+ BackgroundColor #164E63
+ BorderColor #164E63
+ FontColor #164E63
+}
+skinparam rectangle {
+ BorderColor #164E63
+ FontColor #164E63
+}
+title Resumefolio | Mail and calendar use cases
+actor "Connected-account user" as user
+actor "Gmail service" as gmail
+actor "Google Calendar service" as calendar
+rectangle "Resumefolio | System boundary" {
+ usecase "Read correspondence\nUC-D06-READ" as read [[../04-scenarios-and-models/user-stories-and-scenarios.md#uc-d06-read]]
+ usecase "Send a manually prepared message\nUC-D06-SEND" as send [[../04-scenarios-and-models/user-stories-and-scenarios.md#uc-d06-send]]
+ usecase "Manage a calendar activity\nUC-D06-ACTIVITY" as activity [[../04-scenarios-and-models/user-stories-and-scenarios.md#uc-d06-activity]]
+ usecase "Synchronize selected calendar information\nUC-D06-SYNC" as sync [[../04-scenarios-and-models/user-stories-and-scenarios.md#uc-d06-sync]]
+}
+user -- read
+user -- send
+user -- activity
+user -- sync
+gmail -- read
+gmail -- send
+calendar -- sync
+legend bottom
+Sources: EGC-D03-D12 and UC-D06 refinements.
+Local activity management does not imply every activity is synchronized.
+Provider permissions, synchronization policy and actual access remain to be established.
+Associations show proposed external interactions, not permission grants.
+No include/extend dependency or actor inheritance is asserted.
+endlegend
+@enduml

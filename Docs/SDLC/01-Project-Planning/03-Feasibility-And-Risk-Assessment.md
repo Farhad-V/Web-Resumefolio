@@ -1,42 +1,59 @@
 # Feasibility & Risk Assessment
 
-The proposed stack and separate application boundaries are documented. Setup, native Git integration and release safeguards still require verification on a project candidate.
+**Assessment:** The selected architecture provides a basis for isolated setup and technical verification. Production feasibility remains open until the target environment, access boundaries and recovery are demonstrated. This assessment records what Farhad needs to verify and which decisions depend on the results.
+
+The [project charter](01-Project-Charter.md#mvp-scope) defines the MVP scope. The [project management plan](02-Project-Management-Plan.md#delivery-sequence) determines the order of work.
 
 ## Assumptions and dependencies
 
-- The two applications can run with isolated databases, credentials, sessions and private storage on the selected host. Validate the host and reproducible setup before relying on either environment.
-- Invite and recovery flows depend on working system mail. Verify actual delivery using controlled test accounts before relying on email for access.
-- ProjectForge integration depends on verifying real Git operations and the user-scoped authorization boundary. Verify these before building features that depend on that boundary.
-- Private files are stored on the Resumefolio server. Verify authorization, storage limits and recovery before accepting production data.
-- Personal mail and calendar providers are outside the MVP dependency chain.
+| Assumption or dependency | How to validate it | Work affected if unresolved |
+| --- | --- | --- |
+| Core and ProjectForge can run with isolated processes, databases, credentials, sessions and private storage. | Perform a clean install, build and migration in isolated environments. Record the runtime versions, access boundaries and smoke results. | Dependent feature and integration work |
+| Invitations and recovery can rely on system mail. | Send invite and recovery messages to controlled inboxes and verify delivery and expiry behavior. | Operational account onboarding and recovery |
+| ProjectForge can enforce current account entitlement and local repository grants. | Verify supported browser, API and Git operations using synthetic accounts with distinct grants. Recheck access after entitlement changes. | ProjectForge integration |
+| Private media can remain on the existing server. | Demonstrate authorized and denied retrieval, resource limits and restore under the intended operating configuration. | Production file uploads and sharing |
+| Backup covers the databases, private artifacts and Git repositories needed for restart. | Restore a coherent backup to an isolated environment. Verify record relationships, digests, Git refs and effective access. | Stable production release |
+| Personal mail and calendar are outside the MVP. | Apply the approved scope when defining backlog dependencies. | Reassess only if scope changes |
 
 ## Resource constraints
 
-Use the existing Resumefolio server for private MVP media. Keep the two applications' databases, credentials, sessions and storage boundaries isolated. Before relying on the host, verify dependency compatibility, available disk space, enforceable limits and a usable restore. Use measured operating evidence when deciding whether the existing resources are sufficient.
+- Start with the existing host, development tools and private same-server media storage.
+- Keep the Core and ProjectForge resource boundaries separate even if they initially share a physical host. Account for their shared failure domain in the recovery plan.
+- Check dependency compatibility, disk headroom, storage growth under representative operations and worker behavior before relying on the environment.
+- Review the cost and licensing impact of any additional tooling, hosting or services with Farhad before committing. Use measured evidence to identify the resource gap.
+- Keep test data and rehearsal storage isolated from production data.
 
 ## Risks and verification
 
-| Risk | Mitigation and evidence |
-| --- | --- |
-| Environment or storage isolation fails | Verify a clean dependency install, build, isolated migrations and basic tests for both applications. |
-| Repository authority allows unauthorized access | Test supported Git operations with distinct grants and verify that expired or unauthorized access is denied. |
-| Shared materials expose private data | Verify successful and denied access to selected documents, direct file URLs and revoked shares. |
-| A publication or retry changes submitted history | Check that previously submitted materials remain available and unmodified after profile edits and recovery. |
-| A backup cannot be restored safely | Demonstrate an isolated restore and verify data integrity and access controls before release. |
+All items below are open. Farhad owns follow-up and records evidence with the associated work item. Likelihood is pending assessment. Impact describes the consequence if the risk occurs.
 
-Farhad owns risk follow-up. Record the work item, evidence and residual risk for each unresolved issue. Use the [feasibility study](../02-Requirements-Engineering/01-Software-Requirements-Specification.md#process-and-approach-02-feasibility-study) for the underlying assessment.
+| Risk | Impact | Mitigation and evidence needed | Decision if evidence is insufficient |
+| --- | --- | --- | --- |
+| Host or dependency incompatibility prevents a repeatable build | High | Verify clean dependency installation, builds and isolated migrations for both applications. Record supported runtime versions. | Reconcile the environment before dependent implementation. |
+| Inadequate isolation exposes data across applications or accounts | High | Check separate credentials and storage boundaries using distinct synthetic accounts and current access grants. | Hold the affected integration or deployment. |
+| ProjectForge grants or account revocation are enforced inconsistently | High | Validate permitted and denied Git and issue operations, including after a grant or account changes. | Hold ProjectForge integration and review the authority model. |
+| A share exposes unpublished or unselected material | High | Check authorized, denied and revoked access to the intended publication and direct file retrieval. | Hold protected sharing. |
+| Publication, retry or later edits alter submitted history | High | Preserve immutable submitted artifacts and verify their digests after later edits and retry scenarios. | Hold the affected publication or submission flow. |
+| System mail fails to deliver an invitation or recovery message | High | Exercise delivery with controlled accounts and confirm appropriate failure handling. | Hold operational onboarding or recovery. |
+| Concurrent work exhausts host storage | High | Test admission limits, retained references and observable low-space behavior with synthetic data. | Restrict intake until capacity and controls are verified. |
+| A backup cannot restore intact data and current permissions | High | Demonstrate an isolated restore and verify representative data, revocation state and service behavior. | Hold stable production release. |
 
 ## Feasibility and risk tracking
 
-- **Technical viability:** verify that the supported stack, isolated databases, private storage and standard Git clients work with the available environment.
-- **Economic viability:** first test the existing host and development tools. If evidence points to additional tooling, licensing or hosting, assess the cost and obtain the owner's decision before committing.
-- **Operational viability:** verify invitation delivery, permissions, logs, backups and an isolated restore. Record who owns each open issue and what evidence closes it.
+| Assessment area | Current conclusion | Evidence needed |
+| --- | --- | --- |
+| Technical | The stack and ownership boundaries are selected. Runtime fit is pending. | [Project setup](../05-Agile-Iterative-Development/01-Project-Setup.md), supported Git operations and protected storage checks. |
+| Economic | The plan uses the existing host and tools. Additional cost has not been established. | Capacity evidence and documented cost or licensing review if the current resources prove insufficient. |
+| Operational | The design identifies required mail, monitoring, backup and recovery responsibilities. They still require demonstration. | Recorded mail delivery, service checks and isolated recovery through the [deployment plan](../06-Deployment-Release/01-Deployment-Plan.md) and [runbook](../06-Deployment-Release/02-Runbook.md). |
 
-| Risk | Likelihood | Impact | State |
-| --- | --- | --- | --- |
-| Host or storage isolation is inadequate | To assess during setup | High | Open |
-| Repository or shared file access crosses its intended boundary | To assess during integration | High | Open |
-| Submitted history changes during publication or retry | To assess during feature testing | High | Open |
-| Backup cannot be restored with intact data and permissions | To assess in an isolated restore | High | Open |
+The [underlying feasibility study](../02-Requirements-Engineering/01-Software-Requirements-Specification.md#process-and-approach-02-feasibility-study) supplies supporting context. The [test strategy](../05-Agile-Iterative-Development/02-Test-Strategy.md) defines how to record execution evidence.
 
-Update likelihood and impact when evidence supports a rating. Keep the mitigation and result with the issue.
+### Risk decision flow
+
+![Risk decision flow from verification to closing, holding, or reopening a risk](Diagrams/Feasibility-And-Risk-Decision-Flow.png)
+
+[Editable Graphviz source](Diagrams/Feasibility-And-Risk-Decision-Flow.dot)
+
+## Evidence that changes a risk rating
+
+Record the reviewed assumption, tested revision and environment, measured or observed result, and the effect on likelihood, impact or remaining exposure. Link the issue and owner decision. Close a risk only when the mitigation has been demonstrated or the remaining exposure has been explicitly accepted for the relevant outcome. Reopen it when a design, environment or dependency change invalidates the prior evidence.

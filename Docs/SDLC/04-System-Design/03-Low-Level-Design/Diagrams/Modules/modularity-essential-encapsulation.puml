@@ -1,0 +1,39 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+allowmixing
+title Proposed — Public contract and hidden implementation
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+class Consumer
+interface PublicationContract {
+ +resolvePermitted(context, revisionId) : PublicationProjection
+}
+package "Presentation owner internals" {
+ class PublicationService {
+  -store : OwnedStore
+  -checkCurrentScope(context, revisionId)
+  +resolvePermitted(context, revisionId) : PublicationProjection
+ }
+ class OwnedStore {
+  ~loadOwnedRevision(id)
+ }
+ class PublicationRecord {
+  -privateContent
+  -storageMapping
+ }
+ PublicationService --> OwnedStore
+ OwnedStore --> PublicationRecord
+}
+class PublicationProjection {
+ +permittedRevisionIdentity
+ +permittedContent
+}
+Consumer --> PublicationContract
+PublicationService ..|> PublicationContract
+PublicationContract ..> PublicationProjection
+
+@enduml

@@ -1,0 +1,25 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+allowmixing
+title Proposed — Conceptual domain model: independent identities
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+skinparam maxMessageSize 65
+
+class ProfessionalSource <<conceptual>>
+class ResumeDraft <<conceptual>>
+class PublishedResumeRevision <<conceptual>>
+class ShareLink <<conceptual>>
+class ApplicationRecord <<conceptual>>
+class SubmissionMaterialSet <<conceptual>>
+ProfessionalSource "1" -- "0..*" ResumeDraft : selected source provenance
+ResumeDraft "1" -- "0..*" PublishedResumeRevision : separately confirmed snapshots
+ShareLink "0..*" --> "1" PublishedResumeRevision : selected publication identity
+ApplicationRecord "1" -- "0..*" SubmissionMaterialSet : actual materials / provenance
+SubmissionMaterialSet ..> PublishedResumeRevision : optional provenance reference
+
+@enduml

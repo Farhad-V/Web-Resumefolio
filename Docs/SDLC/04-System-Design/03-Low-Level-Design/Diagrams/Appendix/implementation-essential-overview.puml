@@ -1,0 +1,32 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+allowmixing
+title Proposed — Implementation view: logical owners to physical outputs
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+rectangle "Nine logical component owners\nIdentity / Presentation / Sharing / Applications\nCommunication / Work / Git / Workflow / Files" as L
+package "Proposed source organization\nnot a claim these files exist" {
+ rectangle "app/Modules/<Owner>\npublic contracts + owned implementation" as S
+ rectangle "bootstrap / routes / config\nresources / migrations / ops templates" as C
+}
+artifact "IA-01 trusted application release\ncoordinated module code / resolved dependencies" as A
+artifact "IA-02 UI/static outputs" as U
+artifact "IA-03 ordered schema migrations" as D
+artifact "IA-06 safe operating templates\nrelease manifest / prerequisite identities" as O
+L --> S : implemented by owned source
+S --> A : assembled into
+C --> A : selected release inputs
+A --> U : compatible output set
+A --> D : compatible migration set
+A --> O : identifies configuration / operating requirements
+note bottom of A
+ One coordinated release can realize several logical modules.
+ Web/worker entry points share compatible release contracts.
+ Untrusted workflow execution is not inside trusted app privilege by implication.
+end note
+
+@enduml

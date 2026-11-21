@@ -1,0 +1,59 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title MIXED CORE / FUTURE — Proposed LC-06 work views and coherent Sprint Backlog
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+class WorkProject {
+ projectId / lifecycle / version
+}
+class Board {
+ column-to-state mapping / version
+}
+class CardPlacement {
+ explicit item or task target
+ position / version
+}
+class BacklogItem {
+ criteria / work state / version
+ acceptance provenance
+}
+class Task {
+ parent context / work state
+ assignment / version
+}
+class SprintBacklog {
+ Sprint Goal
+ selected item identities
+ delivery plan / version
+}
+class Sprint {
+ period / lifecycle / version
+}
+class SprintOutcomeRecord {
+ historical goal / scope / plan context
+ actual goal and item outcomes
+}
+WorkProject --> Board : configured work view
+Board --> CardPlacement : presents
+CardPlacement --> BacklogItem : item target
+CardPlacement --> Task : task target
+BacklogItem --> Task : reviewed task relationship
+WorkProject --> BacklogItem : project work
+WorkProject --> Sprint : planned period
+Sprint --> SprintBacklog : one coherent plan
+SprintBacklog --> BacklogItem : selected work
+Sprint --> SprintOutcomeRecord : explicit period-end record
+note bottom of CardPlacement
+ Column position is not acceptance evidence.
+ Views share authoritative work state.
+end note
+note bottom of SprintOutcomeRecord
+ Period end is not goal achievement.
+ Later edits do not rewrite recorded context.
+ Cardinalities and disposition rules need review.
+end note
+@enduml

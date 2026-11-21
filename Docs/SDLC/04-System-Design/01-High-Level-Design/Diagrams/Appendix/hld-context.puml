@@ -1,0 +1,53 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #164E63
+skinparam ArrowColor #164E63
+skinparam ArrowFontColor #164E63
+skinparam shadowing false
+skinparam roundcorner 12
+skinparam componentStyle rectangle
+skinparam rectangle {
+ BackgroundColor #164E63
+ BorderColor #164E63
+ FontColor #164E63
+}
+skinparam database {
+ BackgroundColor #164E63
+ BorderColor #164E63
+ FontColor #164E63
+}
+skinparam actor {
+ BackgroundColor #164E63
+ BorderColor #164E63
+ FontColor #164E63
+}
+skinparam package {
+ BackgroundColor #111827
+ BorderColor #164E63
+ FontColor #164E63
+}
+skinparam node {
+ BackgroundColor #111827
+ BorderColor #164E63
+ FontColor #164E63
+}
+left to right direction
+title Resumefolio MVP - System Context
+actor "Invited user / administrator" as user
+actor "Employer / recipient" as recipient
+rectangle "Resumefolio Core\nIdentity, presentation, files, applications" as core #164E63
+rectangle "ProjectForge\nRepositories, issues, Kanban" as forge #164E63
+rectangle "Authorized native Git client" as git
+rectangle "System mail delivery" as mail
+user --> core : Authenticated browser / HTTPS
+recipient --> core : Protected sharing / HTTPS
+core --> forge : Scoped JSON API\nCurrent user context
+forge --> core : Current entitlement validation
+git --> forge : Authorized HTTPS Git
+core --> mail : Transactional system messages
+@enduml

@@ -1,0 +1,30 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Proposed — Artifact usability, lifecycle and presence dimensions
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+state "Usability" as U {
+ [*] --> Uploading
+ Uploading --> Available : actual validation / usable evidence
+ Uploading --> Unavailable : interrupted / rejected / uncertain
+ Available --> Unavailable : integrity / presence no longer established
+}
+state "Logical lifecycle (source-defined)" as L {
+ state Active
+ state "Retired / archived candidate" as Archived
+ state "Trash / deletion requested candidate" as Trash
+ Active --> Archived : reviewed owner policy
+ Active --> Trash : reviewed explicit lifecycle command
+ Trash --> Active : permitted restore and current usable checks
+}
+note bottom of L
+ Locked is a coordination claim, not necessarily lifecycle.
+ Trash is not physical deletion; archived is not cold storage.
+ Protected references can block reclamation in any lifecycle state.
+end note
+
+@enduml

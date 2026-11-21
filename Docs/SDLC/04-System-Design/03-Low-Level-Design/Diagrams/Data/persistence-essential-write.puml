@@ -1,0 +1,33 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Proposed — Guarded write and post-commit cache coherence
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+actor Caller
+participant "Owner handler" as H
+database "Authoritative local state" as D
+participant "Optional derived cache" as C
+Caller -> H : exact intent + identity + expected version
+H -> D : guarded current authority/version/invariant admission
+alt denied / conflict / invalid
+ D --> H : no admitted mutation; safe refusal
+else eligible new or duplicate intent
+ H -> D : coherent owned writes + attributable command result\nplus durable invalidation intent if actually needed
+ D --> H : committed result or uncertain observation
+ opt actual commit established and cache exists
+  H -> C : invalidate / advance exact version after commit
+  C --> H : actual invalidation outcome, possibly unavailable
+ end
+ H --> Caller : actual committed / unresolved outcome
+end
+note over H,C
+ Lost invalidation must not allow stale private authority/content delivery.
+ Every read uses current version/eligibility or evaluated atomic coherence.
+ Cache failure after commit is not database rollback.
+end note
+
+@enduml

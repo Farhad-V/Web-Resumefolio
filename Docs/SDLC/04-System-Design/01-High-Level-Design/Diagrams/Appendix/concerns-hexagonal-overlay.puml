@@ -1,0 +1,31 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+title Proposed owner-centered hexagonal structure and cross-cutting hooks
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+component "Driving adapters\nWeb / job / native-client entry" as IN
+package "Resource owner" {
+ component "Application handler\nCurrent authority / intent / version guards" as H
+ component "Domain policy / values\nBusiness invariants remain local to owner" as D
+ interface "Scoped required ports\nPersistence / external effects / artifact references" as P
+ H --> D
+ H --> P
+}
+component "Driven adapters\nDatabase / provider / Git / storage" as OUT
+rectangle "Cross-cutting hooks\nValidated configuration / bounded diagnostics / error translation" as C #164E63
+rectangle "Boundary-specific controls\nCurrent authority / cache freshness / resource admission / resilience" as B #164E63
+IN --> H
+OUT ..|> P
+C ..> IN : common technical support
+C ..> OUT : common technical support
+B ..> H : exact owner enforcement
+legend bottom
+ Overlay means shared obligations, not a universal business helper or unrestricted interceptor.
+ Adapters do not move owner invariants into infrastructure; no framework/product is selected.
+endlegend
+@enduml

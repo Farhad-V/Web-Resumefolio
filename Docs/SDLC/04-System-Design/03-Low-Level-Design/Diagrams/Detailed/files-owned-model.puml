@@ -1,0 +1,41 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Proposed LC-09 artifact accounting and protection identities
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam shadowing false
+
+skinparam classAttributeIconSize 0
+skinparam classBackgroundColor #164E63
+top to bottom direction
+class EffectiveFilePolicy
+class QuotaReservation {
+ +reservationId : ReservationId
+ +contextAndCategory : QuotaContext
+ +actualState : AccountingState
+}
+class ArtifactRecord {
+ +artifactId : ArtifactId
+ +version : RevisionId
+ +availability : ActualAvailability
+}
+class ProtectedReference {
+ +referenceId : ReferenceId
+ +consumerIdentity : OwnerResourceVersion
+ +protection : ActualProtectionState
+}
+class ReclamationAttempt
+class RecoveryAssessment
+EffectiveFilePolicy -- QuotaReservation : effective admission guard
+QuotaReservation -- ArtifactRecord : attributable finalization
+ArtifactRecord -- ProtectedReference : excludes unsafe reclamation
+ArtifactRecord -- ReclamationAttempt : actual deletion evidence
+RecoveryAssessment ..> ArtifactRecord : covered consistency / usability
+note bottom of ProtectedReference
+ Provisional uncertainty remains protected until reconciled.
+ Metadata, usable bytes and reclaimed capacity are distinct.
+ Final physical schema/cardinalities remain to refine.
+end note
+@enduml

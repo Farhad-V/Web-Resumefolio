@@ -1,0 +1,25 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam shadowing false
+title Record Manual Application and Preserve Submitted Materials
+start
+:Open authorized application;
+:Identify actual submission context;
+:Select exact revision / authored material / files as applicable;
+:Review capture selection and confirm;
+:Validate authority, request identity and material availability;
+if (Capture confirmed?) then (yes)
+ :Show immutable submission event and exact retained materials;
+ :Later profile edits / withdrawal leave history intact;
+ :Open submitted-material view through authorized history;
+else (no / uncertain)
+ :Show invalid, denied, unavailable or pending capture accurately;
+ :Preserve required protection while outcome is uncertain;
+ :Resolve recorded operation before duplicate capture;
+endif
+stop
+@enduml

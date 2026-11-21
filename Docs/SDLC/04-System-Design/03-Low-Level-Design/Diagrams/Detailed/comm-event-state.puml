@@ -1,0 +1,36 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title AFTER MVP — Proposed — Event status and attendee response dimensions
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+state "Provider event status observation" as E {
+ state "Tentative (if observed)" as T
+ state "Confirmed (if observed)" as C
+ state "Cancelled (if observed)" as X
+ T --> C : actual authorized / provider change evidence
+ T --> X : actual cancellation evidence
+ C --> T : actual status revision if supported
+ C --> X : actual cancellation evidence
+}
+state "Attendee response observation" as A {
+ state "Needs response" as N
+ state "Accepted" as Y
+ state "Declined" as D
+ state "Tentative response" as M
+ N --> Y : observed attendee response
+ N --> D : observed attendee response
+ N --> M : observed attendee response
+ Y --> D : observed changed response
+ M --> Y : observed changed response
+}
+note bottom of E
+ Selected conceptual observation vocabulary, not complete provider enums.
+ Local unlink is not provider cancellation; unknown deletion stays unknown.
+ Attendee acceptance does not independently confirm an event or application.
+end note
+
+@enduml

@@ -1,0 +1,27 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+allowmixing
+title HISTORICAL broader-product proposal — Proposed — Integration types and evidence boundaries
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+component "Applications" as A
+component "Presentation" as P
+component "Files" as F
+component "Communication / Calendar" as C
+cloud "Provider" as M
+actor "User / actual external portal action" as U
+A --> P : in-process exact permitted revision projection
+A --> F : opaque artifact reference + reservation/finalization protocol
+A --> C : permitted correspondence/activity reference
+C --> M : actual supported provider transport; separate intent
+U --> A : explicitly record real event and provenance
+note bottom of A
+ No messaging broker, event bus or direct raw file-transfer protocol selected.
+ SQL commit is not atomic with bytes or provider effects.
+end note
+
+@enduml

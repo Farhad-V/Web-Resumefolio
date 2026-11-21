@@ -1,0 +1,15 @@
+digraph G {
+ graph [bgcolor="#111827",fontcolor="#F3F4F6"]; node [fontcolor="#F3F4F6"]; edge [fontcolor="#CBD5E1"];
+rankdir=TB;graph [bgcolor="#111827",pad="0.3",nodesep="0.35",ranksep="0.55",fontname="Arial"];node [shape=box,style="rounded,filled",fillcolor="#1F2937",color="#94A3B8",fontname="Arial",fontsize=12,margin="0.17,0.12"];edge [fontname="Arial",fontsize=10,color="#94A3B8"];
+source [label="Accepted source behavior and constraints
+Requirements / Analysis / recorded decisions",fillcolor="#1F2937"];
+shared [label="Authoritative shared design owners
+Data • Interfaces • Runtime • Security / Quality / Operations",fillcolor="#1F2937"];
+components [label="Resource-owning component contracts
+Apply current authority, invariants and actual outcome rules",fillcolor="#1F2937"];
+adapters [label="Bounded technical adapters and facilities
+Do not acquire universal domain authority",fillcolor="#1F2937"];
+review [label="Cross-view review + actual evidence
+Record candidate, findings, limits and scoped disposition",fillcolor="#1F2937"];
+source->shared [label="required meaning"];shared->components [label="single-owner mechanism / linked convention"];components->adapters [label="scoped technical contracts"];shared->review;components->review;adapters->review;
+}

@@ -1,0 +1,28 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam shadowing false
+title Repository Issue / Board Interaction
+start
+:Enter authorized ProjectForge context;
+:Select permitted repository and issue;
+:Choose edit or board move using pointer or keyboard;
+:Submit intended change with expected version and request identity;
+:Validate caller, current entitlement and local action grant;
+if (Authority established and permitted?) then (yes)
+ if (Version and request identity consistent?) then (yes)
+  :Record owning operation / resolve matching prior result;
+  :Show stable issue identity, new state and confirmed outcome;
+ else (no)
+  :Show conflict without overwriting newer work;
+  :Review current issue before another edit;
+ endif
+else (no / unavailable)
+ :Show safe denied or unavailable state;
+endif
+:Native Git uses its separate transport credentials and grant;
+stop
+@enduml

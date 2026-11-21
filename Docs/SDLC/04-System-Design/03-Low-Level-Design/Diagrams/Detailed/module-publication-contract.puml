@@ -1,0 +1,29 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam shadowing false
+title Explicit Publication - Owning Operation and Recorded Outcome
+actor User
+participant "Core entry adapter" as Entry
+participant "Publication use case / policy" as Service
+database "Owner-local persistence" as Store
+participant "Owner-local worker" as Worker
+User -> Entry : Confirm exact candidate / language / selection
+Entry -> Service : Actor + expected version + request identity
+Service -> Service : Validate current authority and selected material
+alt Denied / invalid / stale
+ Service --> Entry : Bounded denial / validation / conflict
+else Authorized and consistent
+ Service -> Store : Reserve protected material under selected protocol
+ Service -> Store : Local transaction: revision + live selection + durable intent
+ Store --> Service : Recorded local outcome
+ Service --> Entry : Exact recorded publication / processing state
+ Worker -> Store : Finalize / reconcile durable effect under owner contract
+end
+Entry --> User : Truthful operation result; PDF availability separate
+note over Entry, Store
+Lost response does not prove rollback.
+Resolve stable operation identity before unsafe repeat.
+end note
+@enduml

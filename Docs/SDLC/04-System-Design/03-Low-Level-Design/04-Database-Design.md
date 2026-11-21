@@ -1,6 +1,8 @@
-# Database Design
+# 4. Database Design
 
-[Low-Level Design index](03-Low-Level-Design.md)
+[Previous: Detailed Module Design](03-Detailed-Module-Design.md) · [Low-Level Design introduction](01-Introduction.md) · [Next: API Specification](05-API-Specification.md)
+
+<a id="database-design"></a>
 
 ## Design Coverage
 
@@ -24,6 +26,109 @@ Use composite owner-scoped relationships for links between private resources whe
 
 **Write ordering.** Lock the owning aggregate or reservation counters in a deterministic order. Check expected version and authority before writes. For publication or submission, reserve immutable bytes, write the revision or event and outbox in the same local transaction, then finalize reservations asynchronously. Retain references while a result is pending or uncertain. Test migrations, concurrency and rollback or recovery on real MySQL before accepting the implementation.
 
+## 4.1 Schema Ownership and Enforcement
+
+The table families above specify the selected MVP direction, not executed migrations or a complete DDL catalog. Core and ProjectForge have separate schemas/users and owner-local writes. Public actor mapping across systems uses issuer/subject identity, not a cross-database foreign key or shared session table.
+
+| Concern | Enforcement contract | Migration/verification requirement |
+| --- | --- | --- |
+| Private ownership | Match owner identity across related private resources and check current actor/action policy | Define referenced composite unique keys and matching FK column types/order where owner-scoped integrity requires them; test wrong-owner links |
+| Draft and live selection | Scope draft/live-publication identity to the same material and locale | Migration must enforce intended uniqueness and pointer consistency; test cross-material/locale pointer rejection |
+| Immutable history | Append publication/submission records under the owning operation; preserve exact material references | Prevent application update/delete paths from rewriting history; verify protected-delete restrictions and actual artifact bytes |
+| Repository authority | Local actor mappings, repository grants and Git credential scopes | Verify unique issuer/subject mapping, grant keys and revoked access; relational identity alone does not prove current Core entitlement |
+| Issue version/identity | Repository-scoped number, stable issue identity and mutable version | Reject stale writes and unauthorized assignees under the owning transaction/policy |
+| Durable outcomes | Stable actor/operation/key identity bound to payload plus attributable outbox work | Concurrent same-key requests resolve one recorded outcome; mismatched reuse cannot mutate a second effect |
+
+Database constraints protect structural integrity. Authorization, eligibility, lifecycle meaning and current sharing/entitlement must also be checked by owning operations. A foreign key cannot establish permission to retrieve the referenced bytes.
+
+## 4.2 Column, Identity and Value Conventions
+
+Use the selected UUID representation consistently for application-owned public identities and their references. Resolve exact framework/package-owned session, authentication, queue and cache columns against installed package migrations; do not force conceptual table sketches over an incompatible package schema.
+
+Store hashes/verifiers under the selected credential/integrity design and never raw secret tokens for convenience. A file digest identifies byte integrity, not access authority or encryption. Size/quota accounting uses explicit units and sufficient ranges under the selected policy. Define nullability, defaults, maximum lengths and valid values in the concrete migration rather than relying on omitted sketch details.
+
+Mutable aggregate versions are updated atomically with the write. UTC timestamp storage and user-local follow-up/due context remain distinct; date-only values must not shift meaning through an arbitrary time-zone conversion. Content locale, interface language and artifact language are separate data concerns.
+
+JSON snapshots/content preserve the exact selected representation but do not replace indexed relationship identities or current access policy. Validate payload shape and bounded content at the owner. Avoid storing private bytes or unrestricted sensitive payloads in outbox/audit fields merely because JSON can hold them.
+
+## 4.3 Principal Relationship View
+
+![Dark-mode PlantUML selected logical revisions and protected references](Diagrams/Data/data-logical-revisions-and-references.svg)
+
+[PlantUML source](Diagrams/Data/data-logical-revisions-and-references.puml) · [PNG](Diagrams/Data/data-logical-revisions-and-references.png)
+
+The retained relationship view distinguishes mutable material, immutable revisions and protected artifact references. Its proposal details/multiplicities retain source status. Exact selected physical columns/constraints are specified by the MVP table families and concrete reviewed migrations, not inferred from an illustration.
+
+## 4.4 Transaction and Concurrency Protocols
+
+| Operation | Transactional obligation | Failure/repetition behavior |
+| --- | --- | --- |
+| Consume invitation | Atomically validate usable state and record consumption under the selected account contract | Concurrent use cannot produce multiple successful consumptions |
+| Save/apply draft | Check owner/current authority and expected version, then record intended changes/version | Stale/invalid intent does not overwrite later state or publish implicitly |
+| Publish | Protect exact artifacts, commit immutable revision/live selection and required durable intent locally | Preserve pending references; matching request resolves recorded result; PDF completion remains separate |
+| Capture submission | Record exact actual-material event/references and required durable intent under stable identity | Missing material remains explicit; no substitution of the current live resume or duplicate event on retry |
+| Admit/replace/remove artifact | Serialize relevant reservation/accounting decisions and owner-controlled reference release | Concurrent admission respects selected quota/reserve; cleanup cannot delete protected bytes |
+| Create/update/move issue | Apply local grant, version and request identity with stable repository/issue state | Mismatched identity or stale write conflicts without overwriting newer work |
+| Process outbox | Claim/record progress and reconcile the owning effect under its actual contract | Worker restart/lost response cannot justify duplicate effect or false completion |
+
+Use deterministic lock order where locking is required; document actual rows/counters and conflict behavior in the operation implementation. Retry bounded transient database failures only under a protocol that preserves command identity, current authority and separately recorded effects. Do not invent a universal retry count or assume every transaction can be safely replayed.
+
+Filesystem, native Git, SMTP and remote commits are outside local SQL atomicity. Keep intent and observed result attributable. A SQL rollback does not undo delivered bytes or a changed Git ref. Required protection remains until the owning evidence permits finalization/release.
+
+## 4.5 Query Paths, Indexes and Pagination
+
+| Query family | Intended scoping/access path | Check |
+| --- | --- | --- |
+| Private account/material lookup | Owner/resource with relevant locale/version | No cross-user reads and appropriate selective lookup |
+| Application follow-up | Owner plus applicable follow-up/status ordering | Stable pagination/order and intended temporal semantics |
+| Artifact/reservation work | Owner/state and reservation lifecycle/expiry | Efficient pending/cleanup discovery without premature release |
+| Repository grants/issues | Local actor/repository, state/assignee and stable issue identity | Permission-scoped results and representative query plans |
+| Pending outbox | State and next eligible processing time/operation identity | Bounded work selection, safe competing workers and recoverable claims |
+
+Define actual index order against verified queries and cardinalities. Unique constraints must match the invariant, not a guessed global uniqueness rule. Measure representative data sizes and combined workload on the selected MySQL environment before adding indexes or changing placement.
+
+Pagination must preserve stable permitted ordering under its contract. Caches/read models cannot become authority sources or substitute a live pointer for exact history. Protect actor/resource/revision/policy scope and invalidation behavior under the owning read/delivery contract.
+
+## 4.6 Retention, Deletion and Cleanup
+
+Restrict deletion of protected references and immutable history as specified. Withdrawing publication changes access, not submission meaning. Replacing a file or removing one draft association cannot authorize deletion of bytes still protected by another owner reference.
+
+Reservation expiry is a review/reconciliation input, not universal proof that no effect occurred. Distinguish genuinely abandoned work from pending/uncertain finalization before reclaiming bytes or accounting. Define account/resource removal through the selected retention policy; do not introduce broad cascades or new retention durations here.
+
+Keep audit/request/outbox metadata bounded and purpose-limited. Resolve expiration/cleanup windows and late-retry behavior through governing contracts rather than selecting arbitrary numeric defaults.
+
+## 4.7 Migration and Compatibility Plan
+
+Review each application migration independently with the actual compatible code/package versions. Specify DDL, keys/indexes, nullability/defaults, data transformation and verification. Assess existing data, immutable history, pending work and previous-code compatibility before claiming rollback is safe.
+
+Rehearse migrations on isolated real MySQL with synthetic or properly protected fixtures. Record candidate/schema version, execution result, constraint tests, query/performance observations and recovery preconditions. A clean empty-schema migration is not sufficient evidence for a populated transition or concurrency guarantee.
+
+Code rollback, schema reversal and restoring data are separate decisions. Irreversible/lossy changes need an explicit recovery/compatibility assessment under the governing release procedure. Do not silently drop valid history or recalculate actual submitted materials from mutable content during a backfill.
+
+## 4.8 Backup, Restore and Security
+
+Backups must cover Core records/private artifacts, ProjectForge metadata/native repositories and required durable outcomes/configuration under the approved procedure. Protect copies and recovery secrets, then demonstrate isolated restoration.
+
+Validate foreign/owner relationships, exact artifact digests, publication/selection state, intended current access, Git objects/refs and pending work before replay or cleanup. A database-only restore cannot establish that files/Git bytes exist. Restored state must not silently re-enable revoked access or repeat effects without reconciliation under the recovery contract.
+
+Separate database users/private paths and environment configuration. Keep production/test data isolated and sensitive payloads out of diagnostics. See [Security Implementation](08-Security-Implementation.md), [Configuration and Environment](09-Configuration-And-Environment.md) and the [runbook](../../06-Deployment-Release/02-Runbook.md).
+
+## 4.9 Database Acceptance and Handoff
+
+| Check | Evidence needed |
+| --- | --- |
+| Migration/schema | Actual DDL execution and package-schema compatibility on selected MySQL |
+| Integrity | Wrong-owner/FK/unique/pointer violations rejected and immutable/protected history preserved |
+| Concurrency | Concurrent invitation consumption, stale writes, quota reservations and repeated command identities |
+| Partial effects | Interrupted artifact finalization/outbox and database/Git/filesystem mismatch remain attributable and recoverable |
+| Read behavior | Authorized scoped queries, stable pagination and representative query plans |
+| Retention | Protected bytes/references survive replacement, withdrawal, deletion attempts and uncertain work |
+| Recovery | Isolated restore validates related records, exact bytes/digests and native Git state |
+
+Link actual migrations/code, criterion/case, candidate/environment, fixtures, expected/observed result and limitations through [Traceability](11-Traceability.md) and the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md). Follow [Detailed Module Design](03-Detailed-Module-Design.md), [API Specification](05-API-Specification.md) and [Unit Test Design](10-Unit-Test-Design.md) for operation/verification detail.
+
+No database, migration, backup job or runtime pass is created by this document. The retained records below preserve rationale and anchors; deferred-domain models and proposed details do not supersede selected MVP scope. All embedded views use local dark renders, with UML in editable PlantUML.
+
 <a id="design-record-04-data-design-01-analysis-to-logical-and-physical-data-models-md"></a>
 
 <details>
@@ -37,7 +142,7 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 **Purpose:** refine the conceptual information model into reviewable logical record families, integrity rules, access patterns and a physical-design specification for implementation.
 
-**Status:** proposed technical design, November 2, 2026. This document defines a candidate relational model and physical mapping obligations, not an accepted engine, executable migration or verified schema. The accepted profile-update/publication/history behavior is preserved; unresolved source cardinalities and policies remain unresolved.
+**Status:** proposed technical design. This document defines a candidate relational model and physical mapping obligations, not an accepted engine, executable migration or verified schema. The accepted profile-update/publication/history behavior is preserved; unresolved source cardinalities and policies remain unresolved.
 
 [Sources](#design-record-04-data-design-01-analysis-to-logical-and-physical-data-models-md--heading-1-analysis-to-design-contract) · [Ownership](#design-record-04-data-design-01-analysis-to-logical-and-physical-data-models-md--heading-2-logical-record-families-and-ownership) · [Revisions](#design-record-04-data-design-01-analysis-to-logical-and-physical-data-models-md--heading-3-revision-and-reference-model) · [Integrity](#design-record-04-data-design-01-analysis-to-logical-and-physical-data-models-md--heading-4-keys-relationships-and-integrity) · [Physical mapping](#design-record-04-data-design-01-analysis-to-logical-and-physical-data-models-md--heading-5-physical-representation-and-access-paths) · [Transactions](#design-record-04-data-design-01-analysis-to-logical-and-physical-data-models-md--heading-6-consistency-and-external-state) · [Handoff](#design-record-04-data-design-01-analysis-to-logical-and-physical-data-models-md--heading-7-schema-evolution-verification-and-handoff)
 
@@ -45,7 +150,7 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 #### 1. Analysis-to-design contract
 
-The [domain model](../../03-System-Analysis/01-System-Analysis.md#analysis-domain-and-information-analysis--03-domain-model-and-object-oriented-view) explains responsibilities; the [data-oriented view](../../03-System-Analysis/01-System-Analysis.md#analysis-domain-and-information-analysis--05-data-oriented-view) defines information meaning, conceptual ER relationships and integrity checks. Use the [dictionary](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#data-definitions-data-dictionary), [glossary](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#data-definitions-glossary), [operation contracts](../../03-System-Analysis/01-System-Analysis.md#analysis-business-rules-and-operation-contracts--10-domain-constraints-and-operation-contracts) and [source decisions](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#change-and-baseline-open-questions-and-decisions) as authorities. This file refines them rather than creating a competing conceptual specification.
+The [domain model](../../03-System-Analysis/02-Domain-And-Information-Analysis.md#analysis-domain-and-information-analysis--03-domain-model-and-object-oriented-view) explains responsibilities; the [data-oriented view](../../03-System-Analysis/02-Domain-And-Information-Analysis.md#analysis-domain-and-information-analysis--05-data-oriented-view) defines information meaning, conceptual ER relationships and integrity checks. Use the [dictionary](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#data-definitions-data-dictionary), [glossary](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#data-definitions-glossary), [operation contracts](../../03-System-Analysis/03-Processes-Scenarios-And-Business-Rules.md#analysis-business-rules-and-operation-contracts--10-domain-constraints-and-operation-contracts) and [source decisions](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#change-and-baseline-open-questions-and-decisions) as authorities. This file refines them rather than creating a competing conceptual specification.
 
 For each implementation record, trace **source concept/criterion → owning component → logical identity/relationship → invariant → physical enforcement → verification evidence**. DA-S/DA-I analysis locators and provisional requirement IDs remain source locators, not mandatory table names or final accepted requirements.
 
@@ -129,9 +234,9 @@ Cross-component reads use permitted contracts/projections; ownership does not pr
 
 #### 3. Revision and reference model
 
-[Candidate logical model for independent content and protected artifacts](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-logical-revisions-and-references.svg)
+[Candidate logical model for independent content and protected artifacts](Diagrams/Data/data-logical-revisions-and-references.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-logical-revisions-and-references.puml) · ![data logical revisions and references](../Diagrams/Archived-Png/Data-Logical-Revisions-And-References.png)
+[Editable PlantUML](Diagrams/Data/data-logical-revisions-and-references.puml) · ![data logical revisions and references](Diagrams/Data/data-logical-revisions-and-references.svg)
 
 The diagram names candidate logical records; ordinary arrows express relationships, not accepted minimum/maximum cardinalities. Physical table decomposition remains a design choice.
 
@@ -190,9 +295,9 @@ Immutable publication/submission/Sprint snapshots are intentional preservation o
 
 #### 5. Physical representation and access paths
 
-[Logical invariant to physical storage and verification allocation](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-physical-enforcement-map.svg)
+[Logical invariant to physical storage and verification allocation](Diagrams/Data/data-physical-enforcement-map.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-physical-enforcement-map.puml) · ![data physical enforcement map](../Diagrams/Archived-Png/Data-Physical-Enforcement-Map.png)
+[Editable PlantUML](Diagrams/Data/data-physical-enforcement-map.puml) · ![data physical enforcement map](Diagrams/Data/data-physical-enforcement-map.svg)
 
 <a id="design-record-04-data-design-01-analysis-to-logical-and-physical-data-models-md--heading-candidate-representation-specification"></a>
 
@@ -287,9 +392,9 @@ Only **five essential complementary diagrams** are added; no new tables. They us
 
 ##### Conceptual identities: no attributes or physical choices
 
-[Conceptual identities: no attributes or physical choices](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-conceptual.svg)
+[Conceptual identities: no attributes or physical choices](Diagrams/Data/data-essential-conceptual.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-conceptual.puml) · ![data essential conceptual](../Diagrams/Archived-Png/Data-Essential-Conceptual.png)
+[Editable PlantUML](Diagrams/Data/data-essential-conceptual.puml) · ![data essential conceptual](Diagrams/Data/data-essential-conceptual.svg)
 
 Selected conceptual excerpt to anchor the accepted source/draft/publication/actual-history distinction. It omits attributes, keys and unaccepted cardinalities. The authoritative full conceptual model remains in analysis; this excerpt creates no additional domain entities or permission grants.
 
@@ -297,9 +402,9 @@ Selected conceptual excerpt to anchor the accepted source/draft/publication/actu
 
 ##### Logical ERD: exact publication and live selection
 
-[Logical ERD: exact publication and live selection](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-logical.svg)
+[Logical ERD: exact publication and live selection](Diagrams/Data/data-essential-logical.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-logical.puml) · ![data essential logical](../Diagrams/Archived-Png/Data-Essential-Logical.png)
+[Editable PlantUML](Diagrams/Data/data-essential-logical.puml) · ![data essential logical](Diagrams/Data/data-essential-logical.svg)
 
 Proposed selected cardinalities, not acceptance of one-profile/account or all lifecycle rules. The live selection must identify a revision belonging to the same resume. sourceDraftVersion is historical provenance, not a foreign key to a mutable current version. Command results, content-language scope and artifact reference protocol remain outside this excerpt and must be refined.
 
@@ -307,9 +412,9 @@ Proposed selected cardinalities, not acceptance of one-profile/account or all li
 
 ##### Physical schema illustration: types, scoped keys and indexes
 
-[Physical schema illustration: types, scoped keys and indexes](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-physical.svg)
+[Physical schema illustration: types, scoped keys and indexes](Diagrams/Data/data-essential-physical.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-physical.puml) · ![data essential physical](../Diagrams/Archived-Png/Data-Essential-Physical.png)
+[Editable PlantUML](Diagrams/Data/data-essential-physical.puml) · ![data essential physical](Diagrams/Data/data-essential-physical.svg)
 
 SQL-style illustration consistent with the component template, not selected engine/DDL. VARCHAR(64), BIGINT, JSON and indexes are example choices, not accepted limits or a recommendation for exposed-ID encoding. Full owner FK, collation, version overflow, content validation, command identity/result storage, current authorization, language scope and protected references need actual design. Composite FK prevents selecting another resume’s revision; no cascade action is adopted. Check actual engine support and access plans before selecting indexes.
 
@@ -317,9 +422,9 @@ SQL-style illustration consistent with the component template, not selected engi
 
 ##### Conceptual to logical to physical refinement
 
-[Conceptual to logical to physical refinement](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-levels.svg)
+[Conceptual to logical to physical refinement](Diagrams/Data/data-essential-levels.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-levels.puml) · ![data essential levels](../Diagrams/Archived-Png/Data-Essential-Levels.png)
+[Editable PlantUML](Diagrams/Data/data-essential-levels.puml) · ![data essential levels](Diagrams/Data/data-essential-levels.svg)
 
 The three levels add different information. Source proposals cannot become accepted uniqueness/cardinality rules by entering a physical diagram. Physical schema and SQL atomicity cannot govern provider effects, native Git refs or artifact bytes without their actual protocols.
 
@@ -327,9 +432,9 @@ The three levels add different information. Source proposals cannot become accep
 
 ##### Normalization walkthrough with explicit example dependencies
 
-[Normalization walkthrough with explicit example dependencies](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-normalization.svg)
+[Normalization walkthrough with explicit example dependencies](Diagrams/Data/data-essential-normalization.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-normalization.puml) · ![data essential normalization](../Diagrams/Archived-Png/Data-Essential-Normalization.png)
+[Editable PlantUML](Diagrams/Data/data-essential-normalization.puml) · ![data essential normalization](Diagrams/Data/data-essential-normalization.svg)
 
 Synthetic teaching relation, not a discovered schema defect or adopted selection multiplicity. It assumes at most one entry per resume/entry pair solely for the exercise. A real entry may require language/version/occurrence identity. Do not use mutable Entry/Owner lookups to reconstruct immutable publication or actual submission content. Historical snapshots intentionally preserve exact old meaning and are not redundant mutable source-of-truth tables.
 
@@ -356,7 +461,7 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 **Purpose:** define how owned state, private artifacts and external observations remain consistent through normal writes, cache reuse, replacement, retirement and recovery.
 
-**Status:** proposed shared technical design, November 2, 2026. No database/cache engine, retention duration, backup destination or numerical recovery target is accepted here. No storage facility is configured by this update.
+**Status:** proposed shared technical design. No database/cache engine, retention duration, backup destination or numerical recovery target is accepted here. No storage facility is configured by this update.
 
 [Scope](#design-record-04-data-design-03-persistence-caching-and-data-lifecycle-md--heading-1-authority-and-storage-responsibilities) · [Persistence](#design-record-04-data-design-03-persistence-caching-and-data-lifecycle-md--heading-2-persistence-strategy-and-consistency) · [Caching](#design-record-04-data-design-03-persistence-caching-and-data-lifecycle-md--heading-3-cache-policy-and-invalidation) · [Lifecycle](#design-record-04-data-design-03-persistence-caching-and-data-lifecycle-md--heading-4-admission-replacement-and-reclamation) · [Recovery](#design-record-04-data-design-03-persistence-caching-and-data-lifecycle-md--heading-5-backup-and-recovery-consistency) · [Review](#design-record-04-data-design-03-persistence-caching-and-data-lifecycle-md--heading-6-verification-and-implementation-handoff) · [Essential views](#design-record-04-data-design-03-persistence-caching-and-data-lifecycle-md--heading-7-essential-persistence-cache-and-recovery-views)
 
@@ -364,7 +469,7 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 #### 1. Authority and storage responsibilities
 
-Use [business rules and lifecycle](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-business-rules-and-data-lifecycle), [file/operating requirements](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-administration-files-and-operational-behavior), [quality/recovery requirements](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-quality-security-and-recovery-requirements), [conceptual data analysis](../../03-System-Analysis/01-System-Analysis.md#analysis-domain-and-information-analysis--05-data-oriented-view) and [source decisions](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#change-and-baseline-open-questions-and-decisions). Detailed proposed limits/lifecycles retain their source status.
+Use [business rules and lifecycle](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-business-rules-and-data-lifecycle), [file/operating requirements](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-administration-files-and-operational-behavior), [quality/recovery requirements](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-quality-security-and-recovery-requirements), [conceptual data analysis](../../03-System-Analysis/02-Domain-And-Information-Analysis.md#analysis-domain-and-information-analysis--05-data-oriented-view) and [source decisions](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#change-and-baseline-open-questions-and-decisions). Detailed proposed limits/lifecycles retain their source status.
 
 The [logical/physical model](#design-record-04-data-design-01-analysis-to-logical-and-physical-data-models-md) owns record/key/schema refinement. This document owns shared persistence, freshness and lifecycle protocols. [Files and Operations](03-Detailed-Module-Design.md#design-record-03-component-and-module-design-components-files-and-operations-md) owns artifact accounting/protection/reclamation; resource-owning components decide whether references remain necessary. [Operations/recovery](../01-High-Level-Design/14-Appendices.md#design-record-06-design-quality-and-security-analysis-03-operations-backup-recovery-and-resilience-md) owns the actual backup/restore procedure and evidence.
 
@@ -403,9 +508,9 @@ Local SQL, stored bytes, Git refs and provider/target effects do not share an as
 
 #### 3. Cache policy and invalidation
 
-[Current eligibility before private cached content delivery](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-protected-cache-flow.svg)
+[Current eligibility before private cached content delivery](Diagrams/Data/persistence-protected-cache-flow.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-protected-cache-flow.puml) · ![persistence protected cache flow](../Diagrams/Archived-Png/Persistence-Protected-Cache-Flow.png)
+[Editable PlantUML](Diagrams/Data/persistence-protected-cache-flow.puml) · ![persistence protected cache flow](Diagrams/Data/persistence-protected-cache-flow.svg)
 
 Start with no separate distributed cache dependency unless measurements justify one. Request-local memoization must stay within the current attributable operation; persistent workers must not reuse another request's actor or positive permission decision.
 
@@ -435,9 +540,9 @@ Browser/server/CDN caches, internal redirects and signed delivery capabilities n
 
 #### 4. Admission, replacement and reclamation
 
-[Artifact lifecycle, protected references and actual reclamation](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-artifact-lifecycle.svg)
+[Artifact lifecycle, protected references and actual reclamation](Diagrams/Data/persistence-artifact-lifecycle.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-artifact-lifecycle.puml) · ![persistence artifact lifecycle](../Diagrams/Archived-Png/Persistence-Artifact-Lifecycle.png)
+[Editable PlantUML](Diagrams/Data/persistence-artifact-lifecycle.puml) · ![persistence artifact lifecycle](Diagrams/Data/persistence-artifact-lifecycle.svg)
 
 The figure separates logical availability, protected consumer use and physical reclamation. Exact source retirement/trash/retention rules remain open; this protocol grants no new deletion authority.
 
@@ -524,9 +629,9 @@ Only **six complementary diagrams** are added; no new tables. Reuse the [existin
 
 ##### 7.1 Persistence responsibilities and authoritative stores
 
-[MVP with explicitly deferred paths — Persistence responsibilities and authoritative stores](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-architecture.svg)
+[MVP with explicitly deferred paths — Persistence responsibilities and authoritative stores](Diagrams/Data/persistence-essential-architecture.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-architecture.puml) · ![persistence essential architecture](../Diagrams/Archived-Png/Persistence-Essential-Architecture.png)
+[Editable PlantUML](Diagrams/Data/persistence-essential-architecture.puml) · ![persistence essential architecture](Diagrams/Data/persistence-essential-architecture.svg)
 
 Combines persistence allocation with store boundaries without inventing a polyglot service portfolio. Primary is a logical authority role, not a selected engine/host. A replica or derived projection cannot decide current grants, quota or deletion safety unless an actual equivalent synchronization contract is established.
 
@@ -534,9 +639,9 @@ Combines persistence allocation with store boundaries without inventing a polygl
 
 ##### 7.2 Guarded write and post-commit cache coherence
 
-[Guarded write and post-commit cache coherence](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-write.svg)
+[Guarded write and post-commit cache coherence](Diagrams/Data/persistence-essential-write.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-write.puml) · ![persistence essential write](../Diagrams/Archived-Png/Persistence-Essential-Write.png)
+[Editable PlantUML](Diagrams/Data/persistence-essential-write.puml) · ![persistence essential write](Diagrams/Data/persistence-essential-write.svg)
 
 No cache engine, transaction isolation level or event platform selected. If commit is uncertain, reconcile the same command identity before claiming success or failure. Invalidation mechanics must handle lost delivery and concurrent old fills; TTL alone cannot establish revocation correctness.
 
@@ -544,9 +649,9 @@ No cache engine, transaction isolation level or event platform selected. If comm
 
 ##### 7.3 Authorized cache-aside read: hit, miss and outage
 
-[Authorized cache-aside read: hit, miss and outage](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-read.svg)
+[Authorized cache-aside read: hit, miss and outage](Diagrams/Data/persistence-essential-read.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-read.puml) · ![persistence essential read](../Diagrams/Archived-Png/Persistence-Essential-Read.png)
+[Editable PlantUML](Diagrams/Data/persistence-essential-read.puml) · ![persistence essential read](Diagrams/Data/persistence-essential-read.svg)
 
 Cache-aside is an illustrative candidate; direct authoritative reads remain the simplest baseline. Cache hit/miss is not proof of current permission, artifact presence or matching language. Cache outage may bypass only optional cache work, never required authority or usable-byte checks. No CDN/browser private-cache behavior is selected.
 
@@ -554,9 +659,9 @@ Cache-aside is an illustrative candidate; direct authoritative reads remain the 
 
 ##### 7.4 Versioned invalidation and concurrent-fill safety
 
-[Versioned invalidation and concurrent-fill safety](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-invalidation.svg)
+[Versioned invalidation and concurrent-fill safety](Diagrams/Data/persistence-essential-invalidation.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-invalidation.puml) · ![persistence essential invalidation](../Diagrams/Archived-Png/Persistence-Essential-Invalidation.png)
+[Editable PlantUML](Diagrams/Data/persistence-essential-invalidation.puml) · ![persistence essential invalidation](Diagrams/Data/persistence-essential-invalidation.svg)
 
 An old fill racing after invalidation must not overwrite a current-version entry or bypass current eligibility. Versioned keys still need cache bounds/eviction and actual authoritative-read ordering. TTL/repair events may support freshness/resource policy but do not replace synchronized authority/ref/quota correctness.
 
@@ -564,9 +669,9 @@ An old fill racing after invalidation must not overwrite a current-version entry
 
 ##### 7.5 Logical retirement, policy assessment and physical deletion
 
-[Logical retirement, policy assessment and physical deletion](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-deletion.svg)
+[Logical retirement, policy assessment and physical deletion](Diagrams/Data/persistence-essential-deletion.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-deletion.puml) · ![persistence essential deletion](../Diagrams/Archived-Png/Persistence-Essential-Deletion.png)
+[Editable PlantUML](Diagrams/Data/persistence-essential-deletion.puml) · ![persistence essential deletion](Diagrams/Data/persistence-essential-deletion.svg)
 
 No retention duration, cascade, automatic purge or legal erasure entitlement is decided by this engineering flow. A privacy/erasure request needs applicable source/legal disposition; protected history is not a blanket indefinite-retention justification. SQL unlink, cache eviction and deletion acknowledgment are not proof of byte reclamation. Backup-expiry handling requires actual policy, not invented immediate erasure.
 
@@ -574,9 +679,9 @@ No retention duration, cascade, automatic purge or legal erasure entitlement is 
 
 ##### 7.6 Consistent backup set and isolated usable restore
 
-[Consistent backup set and isolated usable restore](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-recovery.svg)
+[Consistent backup set and isolated usable restore](Diagrams/Data/persistence-essential-recovery.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-recovery.puml) · ![persistence essential recovery](../Diagrams/Archived-Png/Persistence-Essential-Recovery.png)
+[Editable PlantUML](Diagrams/Data/persistence-essential-recovery.puml) · ![persistence essential recovery](Diagrams/Data/persistence-essential-recovery.svg)
 
 Recovery must stop if prerequisites/source/keys are absent. Restore success is usable consistent state, not a completed copy. Reassess current revocations/deletion decisions; never replay restored sends, workflow launches or deployments automatically. Actual recovery steps remain owned by Operations/Recovery.
 
@@ -605,9 +710,7 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 **Use this folder to understand how analysis information becomes owned records, physical integrity rules and recoverable storage behavior.** It defines shared data mechanisms; each component keeps its concrete data structures and operation-specific invariants in its own design package.
 
-Owner and decision authority: Farhad. Updated November 2, 2026.
-
-**Current position:** both documents are populated with project-specific proposed design and **15 distinct diagrams**: seven model/refinement views and eight persistence/lifecycle views. Each has an editable PlantUML source and SVG/PNG exports. They do not establish a final database/cache/storage engine, executable schema, configured backup, accepted retention policy or verified recovery capability.
+Owner and decision authority: Farhad. **Current position:** both documents are populated with project-specific proposed design and **15 distinct diagrams**: seven model/refinement views and eight persistence/lifecycle views. Each has an editable PlantUML source and SVG/PNG exports. They do not establish a final database/cache/storage engine, executable schema, configured backup, accepted retention policy or verified recovery capability.
 
 [Reading route](#design-record-04-data-design-data-design-md--heading-1-reading-route) · [Document guide](#design-record-04-data-design-data-design-md--heading-2-find-the-right-record) · [Diagrams](#design-record-04-data-design-data-design-md--heading-3-diagram-gallery-and-catalog) · [Boundaries](#design-record-04-data-design-data-design-md--heading-4-ownership-and-shared-invariants) · [Readiness](#design-record-04-data-design-data-design-md--heading-5-review-and-implementation-readiness)
 
@@ -615,7 +718,7 @@ Owner and decision authority: Farhad. Updated November 2, 2026.
 
 #### 1. Reading route
 
-1. Read the [domain model](../../03-System-Analysis/01-System-Analysis.md#analysis-domain-and-information-analysis--03-domain-model-and-object-oriented-view), [data-oriented analysis](../../03-System-Analysis/01-System-Analysis.md#analysis-domain-and-information-analysis--05-data-oriented-view) and [dictionary](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#data-definitions-data-dictionary) for meaning, conceptual relationships and lifecycle obligations.
+1. Read the [domain model](../../03-System-Analysis/02-Domain-And-Information-Analysis.md#analysis-domain-and-information-analysis--03-domain-model-and-object-oriented-view), [data-oriented analysis](../../03-System-Analysis/02-Domain-And-Information-Analysis.md#analysis-domain-and-information-analysis--05-data-oriented-view) and [dictionary](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#data-definitions-data-dictionary) for meaning, conceptual relationships and lifecycle obligations.
 2. Read [Analysis to Logical and Physical Data Models](#design-record-04-data-design-01-analysis-to-logical-and-physical-data-models-md) for the nine ownership families, revision/reference model, keys, normalization, integrity allocation, candidate physical representations, query-driven indexes and migration/handoff requirements.
 3. Read [Persistence, Caching and Data Lifecycle](#design-record-04-data-design-03-persistence-caching-and-data-lifecycle-md) for storage responsibility, transactions, cache freshness/invalidation, artifact admission/replacement/reclamation and recovery consistency.
 4. Apply these shared rules to the [owning component package](02-Module-Breakdown.md#design-record-03-component-and-module-design-component-and-module-design-md), aligning its operation contracts with [runtime concurrency](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-03-process-view-concurrency-and-runtime-behavior-md) and [interface contracts](05-API-Specification.md#design-record-05-interface-and-api-design-interface-and-api-design-md).
@@ -646,9 +749,9 @@ The retained file numbers are stable locators. Schema integrity and normalizatio
 
 ##### Independent revisions and protected references
 
-[Candidate logical revisions and protected artifact references](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-logical-revisions-and-references.svg)
+[Candidate logical revisions and protected artifact references](Diagrams/Data/data-logical-revisions-and-references.svg)
 
-[Owning model document](#design-record-04-data-design-01-analysis-to-logical-and-physical-data-models-md) · [Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-logical-revisions-and-references.puml) · ![data logical revisions and references](../Diagrams/Archived-Png/Data-Logical-Revisions-And-References.png)
+[Owning model document](#design-record-04-data-design-01-analysis-to-logical-and-physical-data-models-md) · [Editable PlantUML](Diagrams/Data/data-logical-revisions-and-references.puml) · ![data logical revisions and references](Diagrams/Data/data-logical-revisions-and-references.svg)
 
 This selected logical view separates reusable source, independent draft, immutable publication, actual material and artifact protection. Arrows express relationships, not accepted cardinality limits or a complete physical ERD.
 
@@ -656,9 +759,9 @@ This selected logical view separates reusable source, independent draft, immutab
 
 ##### Current eligibility before private cache delivery
 
-[Private cache reuse behind current eligibility](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-protected-cache-flow.svg)
+[Private cache reuse behind current eligibility](Diagrams/Data/persistence-protected-cache-flow.svg)
 
-[Owning persistence document](#design-record-04-data-design-03-persistence-caching-and-data-lifecycle-md) · [Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-protected-cache-flow.puml) · ![persistence protected cache flow](../Diagrams/Archived-Png/Persistence-Protected-Cache-Flow.png)
+[Owning persistence document](#design-record-04-data-design-03-persistence-caching-and-data-lifecycle-md) · [Editable PlantUML](Diagrams/Data/persistence-protected-cache-flow.puml) · ![persistence protected cache flow](Diagrams/Data/persistence-protected-cache-flow.svg)
 
 A cache hit neither grants access nor proves matching bytes remain usable. Actual admission/invalidation synchronization and serving facilities still require evaluation.
 
@@ -668,11 +771,11 @@ A cache hit neither grants access nor proves matching bytes remain usable. Actua
 
 The [model diagram package](#design-record-04-data-design-01-analysis-to-logical-and-physical-data-models-md--heading-essential-data-model-diagrams) adds five complementary views to the two existing revision/reference and physical-enforcement diagrams:
 
-- [Conceptual identities without attributes or physical choices](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-conceptual.svg) · [source](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-conceptual.puml) · ![data essential conceptual](../Diagrams/Archived-Png/Data-Essential-Conceptual.png)
-- [Logical ERD with candidate attributes, keys and cardinalities](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-logical.svg) · [source](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-logical.puml) · ![data essential logical](../Diagrams/Archived-Png/Data-Essential-Logical.png)
-- [Physical schema illustration with types, scoped keys and candidate indexes](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-physical.svg) · [source](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-physical.puml) · ![data essential physical](../Diagrams/Archived-Png/Data-Essential-Physical.png)
-- [Conceptual → logical → physical refinement and verification](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-levels.svg) · [source](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-levels.puml) · ![data essential levels](../Diagrams/Archived-Png/Data-Essential-Levels.png)
-- [Normalization walkthrough with explicit assumed functional dependencies](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-normalization.svg) · [source](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-normalization.puml) · ![data essential normalization](../Diagrams/Archived-Png/Data-Essential-Normalization.png)
+- [Conceptual identities without attributes or physical choices](Diagrams/Data/data-essential-conceptual.svg) · [source](Diagrams/Data/data-essential-conceptual.puml) · ![data essential conceptual](Diagrams/Data/data-essential-conceptual.svg)
+- [Logical ERD with candidate attributes, keys and cardinalities](Diagrams/Data/data-essential-logical.svg) · [source](Diagrams/Data/data-essential-logical.puml) · ![data essential logical](Diagrams/Data/data-essential-logical.svg)
+- [Physical schema illustration with types, scoped keys and candidate indexes](Diagrams/Data/data-essential-physical.svg) · [source](Diagrams/Data/data-essential-physical.puml) · ![data essential physical](Diagrams/Data/data-essential-physical.svg)
+- [Conceptual → logical → physical refinement and verification](Diagrams/Data/data-essential-levels.svg) · [source](Diagrams/Data/data-essential-levels.puml) · ![data essential levels](Diagrams/Data/data-essential-levels.svg)
+- [Normalization walkthrough with explicit assumed functional dependencies](Diagrams/Data/data-essential-normalization.svg) · [source](Diagrams/Data/data-essential-normalization.puml) · ![data essential normalization](Diagrams/Data/data-essential-normalization.svg)
 
 The physical schema and normalization relation are labeled examples, not accepted DDL, a migration or a measured current-schema defect. Proposed multiplicities, types and indexes require actual source/engine/workload disposition. Immutable publication and actual-submission snapshots preserve historical meaning; they must not be reconstructed through mutable current source records.
 
@@ -682,12 +785,12 @@ The physical schema and normalization relation are labeled examples, not accepte
 
 The [persistence diagram package](#design-record-04-data-design-03-persistence-caching-and-data-lifecycle-md--heading-7-essential-persistence-cache-and-recovery-views) adds six complementary views to the two existing protected-cache and artifact-lifecycle diagrams:
 
-- [Persistence architecture with authoritative relational state, private bytes, native Git and external effect boundaries](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-architecture.svg) · [source](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-architecture.puml) · ![persistence essential architecture](../Diagrams/Archived-Png/Persistence-Essential-Architecture.png)
-- [Guarded write, actual commit observation and post-commit cache coherence](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-write.svg) · [source](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-write.puml) · ![persistence essential write](../Diagrams/Archived-Png/Persistence-Essential-Write.png)
-- [Authorized cache-aside read: matching hit, miss and safe outage behavior](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-read.svg) · [source](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-read.puml) · ![persistence essential read](../Diagrams/Archived-Png/Persistence-Essential-Read.png)
-- [Versioned invalidation and concurrent-fill safety](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-invalidation.svg) · [source](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-invalidation.puml) · ![persistence essential invalidation](../Diagrams/Archived-Png/Persistence-Essential-Invalidation.png)
-- [Logical retirement, obligation assessment and guarded physical deletion](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-deletion.svg) · [source](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-deletion.puml) · ![persistence essential deletion](../Diagrams/Archived-Png/Persistence-Essential-Deletion.png)
-- [Consistent recovery set and isolated usable restore](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-recovery.svg) · [source](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-recovery.puml) · ![persistence essential recovery](../Diagrams/Archived-Png/Persistence-Essential-Recovery.png)
+- [Persistence architecture with authoritative relational state, private bytes, native Git and external effect boundaries](Diagrams/Data/persistence-essential-architecture.svg) · [source](Diagrams/Data/persistence-essential-architecture.puml) · ![persistence essential architecture](Diagrams/Data/persistence-essential-architecture.svg)
+- [Guarded write, actual commit observation and post-commit cache coherence](Diagrams/Data/persistence-essential-write.svg) · [source](Diagrams/Data/persistence-essential-write.puml) · ![persistence essential write](Diagrams/Data/persistence-essential-write.svg)
+- [Authorized cache-aside read: matching hit, miss and safe outage behavior](Diagrams/Data/persistence-essential-read.svg) · [source](Diagrams/Data/persistence-essential-read.puml) · ![persistence essential read](Diagrams/Data/persistence-essential-read.svg)
+- [Versioned invalidation and concurrent-fill safety](Diagrams/Data/persistence-essential-invalidation.svg) · [source](Diagrams/Data/persistence-essential-invalidation.puml) · ![persistence essential invalidation](Diagrams/Data/persistence-essential-invalidation.svg)
+- [Logical retirement, obligation assessment and guarded physical deletion](Diagrams/Data/persistence-essential-deletion.svg) · [source](Diagrams/Data/persistence-essential-deletion.puml) · ![persistence essential deletion](Diagrams/Data/persistence-essential-deletion.svg)
+- [Consistent recovery set and isolated usable restore](Diagrams/Data/persistence-essential-recovery.svg) · [source](Diagrams/Data/persistence-essential-recovery.puml) · ![persistence essential recovery](Diagrams/Data/persistence-essential-recovery.svg)
 
 A cache hit never replaces current authority or exact usable-artifact checks. Lost invalidation must not create a stale-allow bypass. Unknown consumer commits retain protection, and deletion acknowledgment alone does not prove reclaimed capacity. Recovery requires actual compatible records/bytes/keys/repositories and current permission/effect reconciliation.
 
@@ -697,7 +800,7 @@ The [complete diagram catalog](#design-record-04-data-design-diagrams-diagram-ca
 
 ##### Reading boundaries
 
-Use the [analysis data model](../../03-System-Analysis/01-System-Analysis.md#analysis-domain-and-information-analysis--05-data-oriented-view) for authoritative conceptual meaning, the [component data template](02-Module-Breakdown.md#design-record-03-component-and-module-design-component-and-module-design-md) for component-specific class/ORM refinements, and [Operations/Recovery](../01-High-Level-Design/14-Appendices.md#design-record-06-design-quality-and-security-analysis-03-operations-backup-recovery-and-resilience-md) for actual procedures and readiness evidence. Shared storage choices do not transfer another module's write authority.
+Use the [analysis data model](../../03-System-Analysis/02-Domain-And-Information-Analysis.md#analysis-domain-and-information-analysis--05-data-oriented-view) for authoritative conceptual meaning, the [component data template](02-Module-Breakdown.md#design-record-03-component-and-module-design-component-and-module-design-md) for component-specific class/ORM refinements, and [Operations/Recovery](../01-High-Level-Design/14-Appendices.md#design-record-06-design-quality-and-security-analysis-03-operations-backup-recovery-and-resilience-md) for actual procedures and readiness evidence. Shared storage choices do not transfer another module's write authority.
 
 Replicas, sharding, alternate document/search stores, distributed caches, tiered storage and CDN remain unselected options. No TTL, retention, backup schedule, RPO/RTO, physical engine or legal erasure disposition is accepted by these diagrams. Current unconfigured-backup status remains an explicit operating gap.
 
@@ -768,8 +871,8 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Logical and physical data-model refinement
 
-- [Logical revisions and protected references](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-logical-revisions-and-references.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-logical-revisions-and-references.puml) · ![data logical revisions and references](../Diagrams/Archived-Png/Data-Logical-Revisions-And-References.png)
-- [Invariant enforcement and physical mapping](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-physical-enforcement-map.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-physical-enforcement-map.puml) · ![data physical enforcement map](../Diagrams/Archived-Png/Data-Physical-Enforcement-Map.png)
+- [Logical revisions and protected references](Diagrams/Data/data-logical-revisions-and-references.svg) · [PlantUML](Diagrams/Data/data-logical-revisions-and-references.puml) · ![data logical revisions and references](Diagrams/Data/data-logical-revisions-and-references.svg)
+- [Invariant enforcement and physical mapping](Diagrams/Data/data-physical-enforcement-map.svg) · [PlantUML](Diagrams/Data/data-physical-enforcement-map.puml) · ![data physical enforcement map](Diagrams/Data/data-physical-enforcement-map.svg)
 
 [Owning document](#design-record-04-data-design-01-analysis-to-logical-and-physical-data-models-md). Candidate logical relationships and physical enforcement allocation. Final types, constraints, engine, policy-dependent cardinalities and coordination mechanisms remain gated.
 
@@ -777,8 +880,8 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Persistence, caching and lifecycle
 
-- [Current eligibility before private cache delivery](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-protected-cache-flow.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-protected-cache-flow.puml) · ![persistence protected cache flow](../Diagrams/Archived-Png/Persistence-Protected-Cache-Flow.png)
-- [Artifact protection and physical reclamation](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-artifact-lifecycle.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-artifact-lifecycle.puml) · ![persistence artifact lifecycle](../Diagrams/Archived-Png/Persistence-Artifact-Lifecycle.png)
+- [Current eligibility before private cache delivery](Diagrams/Data/persistence-protected-cache-flow.svg) · [PlantUML](Diagrams/Data/persistence-protected-cache-flow.puml) · ![persistence protected cache flow](Diagrams/Data/persistence-protected-cache-flow.svg)
+- [Artifact protection and physical reclamation](Diagrams/Data/persistence-artifact-lifecycle.svg) · [PlantUML](Diagrams/Data/persistence-artifact-lifecycle.puml) · ![persistence artifact lifecycle](Diagrams/Data/persistence-artifact-lifecycle.svg)
 
 [Owning document](#design-record-04-data-design-03-persistence-caching-and-data-lifecycle-md). Proposed persistence and lifecycle protocols. Actual storage/cache facilities, freshness/guard mechanisms, retention and recovery evidence remain pending.
 
@@ -786,11 +889,11 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Essential conceptual, logical and physical model views
 
-- [Conceptual identities: no attributes or physical choices](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-conceptual.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-conceptual.puml) · ![data essential conceptual](../Diagrams/Archived-Png/Data-Essential-Conceptual.png)
-- [Logical ERD: exact publication and live selection](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-logical.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-logical.puml) · ![data essential logical](../Diagrams/Archived-Png/Data-Essential-Logical.png)
-- [Physical schema illustration: types, scoped keys and indexes](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-physical.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-physical.puml) · ![data essential physical](../Diagrams/Archived-Png/Data-Essential-Physical.png)
-- [Conceptual to logical to physical refinement](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-levels.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-levels.puml) · ![data essential levels](../Diagrams/Archived-Png/Data-Essential-Levels.png)
-- [Normalization walkthrough with explicit example dependencies](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-normalization.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-normalization.puml) · ![data essential normalization](../Diagrams/Archived-Png/Data-Essential-Normalization.png)
+- [Conceptual identities: no attributes or physical choices](Diagrams/Data/data-essential-conceptual.svg) · [PlantUML](Diagrams/Data/data-essential-conceptual.puml) · ![data essential conceptual](Diagrams/Data/data-essential-conceptual.svg)
+- [Logical ERD: exact publication and live selection](Diagrams/Data/data-essential-logical.svg) · [PlantUML](Diagrams/Data/data-essential-logical.puml) · ![data essential logical](Diagrams/Data/data-essential-logical.svg)
+- [Physical schema illustration: types, scoped keys and indexes](Diagrams/Data/data-essential-physical.svg) · [PlantUML](Diagrams/Data/data-essential-physical.puml) · ![data essential physical](Diagrams/Data/data-essential-physical.svg)
+- [Conceptual to logical to physical refinement](Diagrams/Data/data-essential-levels.svg) · [PlantUML](Diagrams/Data/data-essential-levels.puml) · ![data essential levels](Diagrams/Data/data-essential-levels.svg)
+- [Normalization walkthrough with explicit example dependencies](Diagrams/Data/data-essential-normalization.svg) · [PlantUML](Diagrams/Data/data-essential-normalization.puml) · ![data essential normalization](Diagrams/Data/data-essential-normalization.svg)
 
 [Owning data model document](#design-record-04-data-design-01-analysis-to-logical-and-physical-data-models-md--heading-essential-data-model-diagrams). Selected examples and normalization dependencies are illustrative, not accepted schema or migrations.
 
@@ -798,12 +901,12 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Essential persistence, cache and recovery views
 
-- [Persistence responsibilities and authoritative stores](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-architecture.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-architecture.puml) · ![persistence essential architecture](../Diagrams/Archived-Png/Persistence-Essential-Architecture.png)
-- [Guarded write and post-commit cache coherence](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-write.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-write.puml) · ![persistence essential write](../Diagrams/Archived-Png/Persistence-Essential-Write.png)
-- [Authorized cache-aside read: hit, miss and outage](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-read.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-read.puml) · ![persistence essential read](../Diagrams/Archived-Png/Persistence-Essential-Read.png)
-- [Versioned invalidation and concurrent-fill safety](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-invalidation.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-invalidation.puml) · ![persistence essential invalidation](../Diagrams/Archived-Png/Persistence-Essential-Invalidation.png)
-- [Logical retirement, policy assessment and physical deletion](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-deletion.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-deletion.puml) · ![persistence essential deletion](../Diagrams/Archived-Png/Persistence-Essential-Deletion.png)
-- [Consistent backup set and isolated usable restore](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-recovery.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-recovery.puml) · ![persistence essential recovery](../Diagrams/Archived-Png/Persistence-Essential-Recovery.png)
+- [Persistence responsibilities and authoritative stores](Diagrams/Data/persistence-essential-architecture.svg) · [PlantUML](Diagrams/Data/persistence-essential-architecture.puml) · ![persistence essential architecture](Diagrams/Data/persistence-essential-architecture.svg)
+- [Guarded write and post-commit cache coherence](Diagrams/Data/persistence-essential-write.svg) · [PlantUML](Diagrams/Data/persistence-essential-write.puml) · ![persistence essential write](Diagrams/Data/persistence-essential-write.svg)
+- [Authorized cache-aside read: hit, miss and outage](Diagrams/Data/persistence-essential-read.svg) · [PlantUML](Diagrams/Data/persistence-essential-read.puml) · ![persistence essential read](Diagrams/Data/persistence-essential-read.svg)
+- [Versioned invalidation and concurrent-fill safety](Diagrams/Data/persistence-essential-invalidation.svg) · [PlantUML](Diagrams/Data/persistence-essential-invalidation.puml) · ![persistence essential invalidation](Diagrams/Data/persistence-essential-invalidation.svg)
+- [Logical retirement, policy assessment and physical deletion](Diagrams/Data/persistence-essential-deletion.svg) · [PlantUML](Diagrams/Data/persistence-essential-deletion.puml) · ![persistence essential deletion](Diagrams/Data/persistence-essential-deletion.svg)
+- [Consistent backup set and isolated usable restore](Diagrams/Data/persistence-essential-recovery.svg) · [PlantUML](Diagrams/Data/persistence-essential-recovery.puml) · ![persistence essential recovery](Diagrams/Data/persistence-essential-recovery.svg)
 
 [Owning persistence document](#design-record-04-data-design-03-persistence-caching-and-data-lifecycle-md--heading-7-essential-persistence-cache-and-recovery-views). Existing cache/lifecycle views reused; no replica/cache/backend/backup facility selected.
 
@@ -815,20 +918,24 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 | Editable source or visual | Current applicability | Matching exports |
 | --- | --- | --- |
-| [data-essential-conceptual.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-conceptual.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-conceptual.svg) · ![data essential conceptual](../Diagrams/Archived-Png/Data-Essential-Conceptual.png) |
-| [data-essential-levels.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-levels.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-levels.svg) · ![data essential levels](../Diagrams/Archived-Png/Data-Essential-Levels.png) |
-| [data-essential-logical.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-logical.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-logical.svg) · ![data essential logical](../Diagrams/Archived-Png/Data-Essential-Logical.png) |
-| [data-essential-normalization.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-normalization.puml) | Reference / design method| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-normalization.svg) · ![data essential normalization](../Diagrams/Archived-Png/Data-Essential-Normalization.png) |
-| [data-essential-physical.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-physical.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-essential-physical.svg) · ![data essential physical](../Diagrams/Archived-Png/Data-Essential-Physical.png) |
-| [data-logical-revisions-and-references.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-logical-revisions-and-references.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-logical-revisions-and-references.svg) · ![data logical revisions and references](../Diagrams/Archived-Png/Data-Logical-Revisions-And-References.png) |
-| [data-physical-enforcement-map.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-physical-enforcement-map.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/data-physical-enforcement-map.svg) · ![data physical enforcement map](../Diagrams/Archived-Png/Data-Physical-Enforcement-Map.png) |
-| [persistence-artifact-lifecycle.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-artifact-lifecycle.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-artifact-lifecycle.svg) · ![persistence artifact lifecycle](../Diagrams/Archived-Png/Persistence-Artifact-Lifecycle.png) |
-| [persistence-essential-architecture.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-architecture.puml) | Mixed MVP / future| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-architecture.svg) · ![persistence essential architecture](../Diagrams/Archived-Png/Persistence-Essential-Architecture.png) |
-| [persistence-essential-deletion.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-deletion.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-deletion.svg) · ![persistence essential deletion](../Diagrams/Archived-Png/Persistence-Essential-Deletion.png) |
-| [persistence-essential-invalidation.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-invalidation.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-invalidation.svg) · ![persistence essential invalidation](../Diagrams/Archived-Png/Persistence-Essential-Invalidation.png) |
-| [persistence-essential-read.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-read.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-read.svg) · ![persistence essential read](../Diagrams/Archived-Png/Persistence-Essential-Read.png) |
-| [persistence-essential-recovery.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-recovery.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-recovery.svg) · ![persistence essential recovery](../Diagrams/Archived-Png/Persistence-Essential-Recovery.png) |
-| [persistence-essential-write.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-write.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-essential-write.svg) · ![persistence essential write](../Diagrams/Archived-Png/Persistence-Essential-Write.png) |
-| [persistence-protected-cache-flow.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-protected-cache-flow.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/04-data-design/diagrams/persistence-protected-cache-flow.svg) · ![persistence protected cache flow](../Diagrams/Archived-Png/Persistence-Protected-Cache-Flow.png) |
+| [data-essential-conceptual.puml](Diagrams/Data/data-essential-conceptual.puml) | MVP core / cross-cutting| [SVG](Diagrams/Data/data-essential-conceptual.svg) · ![data essential conceptual](Diagrams/Data/data-essential-conceptual.svg) |
+| [data-essential-levels.puml](Diagrams/Data/data-essential-levels.puml) | MVP core / cross-cutting| [SVG](Diagrams/Data/data-essential-levels.svg) · ![data essential levels](Diagrams/Data/data-essential-levels.svg) |
+| [data-essential-logical.puml](Diagrams/Data/data-essential-logical.puml) | MVP core / cross-cutting| [SVG](Diagrams/Data/data-essential-logical.svg) · ![data essential logical](Diagrams/Data/data-essential-logical.svg) |
+| [data-essential-normalization.puml](Diagrams/Data/data-essential-normalization.puml) | Reference / design method| [SVG](Diagrams/Data/data-essential-normalization.svg) · ![data essential normalization](Diagrams/Data/data-essential-normalization.svg) |
+| [data-essential-physical.puml](Diagrams/Data/data-essential-physical.puml) | MVP core / cross-cutting| [SVG](Diagrams/Data/data-essential-physical.svg) · ![data essential physical](Diagrams/Data/data-essential-physical.svg) |
+| [data-logical-revisions-and-references.puml](Diagrams/Data/data-logical-revisions-and-references.puml) | MVP core / cross-cutting| [SVG](Diagrams/Data/data-logical-revisions-and-references.svg) · ![data logical revisions and references](Diagrams/Data/data-logical-revisions-and-references.svg) |
+| [data-physical-enforcement-map.puml](Diagrams/Data/data-physical-enforcement-map.puml) | MVP core / cross-cutting| [SVG](Diagrams/Data/data-physical-enforcement-map.svg) · ![data physical enforcement map](Diagrams/Data/data-physical-enforcement-map.svg) |
+| [persistence-artifact-lifecycle.puml](Diagrams/Data/persistence-artifact-lifecycle.puml) | MVP core / cross-cutting| [SVG](Diagrams/Data/persistence-artifact-lifecycle.svg) · ![persistence artifact lifecycle](Diagrams/Data/persistence-artifact-lifecycle.svg) |
+| [persistence-essential-architecture.puml](Diagrams/Data/persistence-essential-architecture.puml) | Mixed MVP / future| [SVG](Diagrams/Data/persistence-essential-architecture.svg) · ![persistence essential architecture](Diagrams/Data/persistence-essential-architecture.svg) |
+| [persistence-essential-deletion.puml](Diagrams/Data/persistence-essential-deletion.puml) | MVP core / cross-cutting| [SVG](Diagrams/Data/persistence-essential-deletion.svg) · ![persistence essential deletion](Diagrams/Data/persistence-essential-deletion.svg) |
+| [persistence-essential-invalidation.puml](Diagrams/Data/persistence-essential-invalidation.puml) | MVP core / cross-cutting| [SVG](Diagrams/Data/persistence-essential-invalidation.svg) · ![persistence essential invalidation](Diagrams/Data/persistence-essential-invalidation.svg) |
+| [persistence-essential-read.puml](Diagrams/Data/persistence-essential-read.puml) | MVP core / cross-cutting| [SVG](Diagrams/Data/persistence-essential-read.svg) · ![persistence essential read](Diagrams/Data/persistence-essential-read.svg) |
+| [persistence-essential-recovery.puml](Diagrams/Data/persistence-essential-recovery.puml) | MVP core / cross-cutting| [SVG](Diagrams/Data/persistence-essential-recovery.svg) · ![persistence essential recovery](Diagrams/Data/persistence-essential-recovery.svg) |
+| [persistence-essential-write.puml](Diagrams/Data/persistence-essential-write.puml) | MVP core / cross-cutting| [SVG](Diagrams/Data/persistence-essential-write.svg) · ![persistence essential write](Diagrams/Data/persistence-essential-write.svg) |
+| [persistence-protected-cache-flow.puml](Diagrams/Data/persistence-protected-cache-flow.puml) | MVP core / cross-cutting| [SVG](Diagrams/Data/persistence-protected-cache-flow.svg) · ![persistence protected cache flow](Diagrams/Data/persistence-protected-cache-flow.svg) |
 
 </details>
+
+## Migration evidence checklist
+
+For each candidate migration record the affected tables and constraints, expected access path, production compatibility, and recovery or rollback approach. Rehearse on isolated MySQL with synthetic data and verify referential integrity and expected query behavior.

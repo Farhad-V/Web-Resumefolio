@@ -1,0 +1,23 @@
+@startmindmap
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+* Detailed and OO Design
+** 01: Shared OO approach
+*** Responsibilities and ownership
+*** SOLID / DRY / KISS / YAGNI
+*** Classes / objects / values
+*** Patterns and collaboration
+** Component packages elsewhere
+*** Interfaces / classes / data
+*** Algorithms / technical scenarios
+*** Constraints / lifetimes
+** 05: Evolution and debt
+*** Findings and impact
+*** Compatible refactoring
+*** Debt records and prioritization
+*** Verification / recovery limits
+** Decisions and evidence
+*** Proposed ADRs
+*** Exact candidate / owner disposition
+@endmindmap

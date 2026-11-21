@@ -1,0 +1,37 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title AFTER MVP — Proposed revision-bound merge and reconciliation
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam shadowing false
+
+actor "Authorized caller" as U
+participant "Git collaboration handler" as H
+database "PR / review / attempt metadata" as DB
+participant "Evaluated native Git adapter" as G
+U -> H : explicit merge intent + expected context
+H -> H : current authority / command identity
+H -> G : read exact source / target revisions
+G --> H : actual native context
+H -> DB : inspect revision-bound review / checks
+DB --> H : actual evidence
+H -> DB : record attributable intended mutation
+H -> G : candidate integration + guarded expected-ref update
+note over H,G
+ Concrete protocol must revalidate source/target/policy preconditions.
+ Target compare alone does not serialize every policy dependency.
+end note
+alt native result known
+ G --> H : confirmed update / conflict / failure evidence
+ H -> DB : record actual PR / attempt observation
+else result or metadata completion lost
+ H -> DB : retain partial / unknown coordination state
+ note over H,G
+ Reconcile actual refs for the same attributable attempt.
+ No blind repeated merge or automatic target deployment.
+ end note
+end
+H --> U : permitted actual outcome
+@enduml

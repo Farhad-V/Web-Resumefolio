@@ -1,0 +1,36 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+title Proposed coordinator knowledge state machine — not a universal product enum
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+state "Admitted / pending" as P
+state "Claimed before known dispatch" as C
+state "Dispatch possible / awaiting evidence" as D
+state "Unknown effect" as U
+state "Reconciling same attempt" as R
+state "Observed terminal outcome\nconfirmed / partial / no-effect failure as applicable" as T
+state "Confirmed prevented before dispatch" as X
+[*] --> P : durable admission committed
+P --> C : current atomic claim
+P --> X : cancellation atomically prevents dispatch
+C --> P : proven no dispatch + safe reclaim
+C --> D : consequential dispatch admitted
+D --> T : attributable terminal evidence
+D --> U : response / worker lost; effect unresolved
+U --> R : scoped reconciliation admitted
+R --> U : evidence still insufficient
+R --> T : actual terminal observation established
+R --> P : proven no dispatch + source-permitted continuation
+T --> [*]
+X --> [*]
+note bottom of T
+ Cancellation intent, output availability and cleanup are separate dimensions.
+ Terminal effect is not completed cleanup; a fresh retry is a new eligible attempt.
+ State labels refine local knowledge, not source-defined workflow UI states.
+end note
+@enduml

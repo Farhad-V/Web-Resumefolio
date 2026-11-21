@@ -1,0 +1,26 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Proposed — Authorization decision and enforcement flow
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+start
+:PEP: resolve verified current actor / credential context\nand exact resource + action;
+:PDP role: evaluate current account eligibility, scoped policy / grants;
+if (Known applicable permission established?) then (yes)
+ :Resource owner checks current lifecycle / operation invariant;
+ if (Actual guarded admission conditions satisfied?) then (yes)
+  :Allow only exact intended operation / projection;
+ else (no)
+  :Safe deny / conflict;
+ endif
+else (no / unresolved)
+ :Safe deny; no private disclosure;
+endif
+:Record bounded attributable result and policy provenance;
+stop
+
+@enduml

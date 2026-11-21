@@ -1,0 +1,32 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+allowmixing
+title Proposed — Coupling and cohesion: compare responsibility shapes
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+skinparam maxMessageSize 65
+
+package "Low cohesion / broad coupling: counterexample" {
+ class "EverythingService" as E
+ class MailSDK
+ class ResumeTables
+ class GitProcess
+ E --> MailSDK
+ E --> ResumeTables
+ E --> GitProcess
+}
+package "Cohesive selected use case" {
+ class "PublishRevisionHandler" as H
+ class "ResumeDraft" as D
+ interface "ResourceAuthority" as A
+ interface "PublicationStore" as S
+ H --> D : publication invariant
+ H --> A : current scope
+ H --> S : guarded commit
+}
+
+@enduml

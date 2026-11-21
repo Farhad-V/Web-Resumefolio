@@ -1,0 +1,30 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam shadowing false
+top to bottom direction
+title Responsive Presentation and Explicit Language Context
+rectangle "Current task / resource / actor authority" as task
+rectangle "Interface copy: English\nIndependent of professional-content language" as ui
+rectangle "Selected professional variant: English or German\nManually maintained, exact revision identity" as content
+rectangle "Artifact language / availability\nCurrent sharing and download eligibility" as artifact
+rectangle "Follow-up / due context\nPreserve local meaning and applicable time zone" as temporal
+rectangle "Adaptive presentation\nReading order, narrow/wide layout, long content, focus" as layout
+rectangle "Authorized coherent result\nNo implicit translation or unrelated fallback" as result
+task --> ui
+task --> content
+content --> artifact
+task --> temporal
+ui --> layout
+artifact --> layout
+temporal --> layout
+layout --> result
+legend bottom
+  Layout changes presentation, not selected material, permissions or historical meaning.
+  Missing variants / artifacts use the governed unavailable path, not silent substitution.
+  Product theme and future RTL support are separate reviewed decisions.
+endlegend
+@enduml

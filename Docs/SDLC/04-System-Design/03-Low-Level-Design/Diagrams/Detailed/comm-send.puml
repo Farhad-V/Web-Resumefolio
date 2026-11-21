@@ -1,0 +1,33 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title AFTER MVP — Proposed — Reviewed send and delivery observations
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+actor Owner
+participant "Communication owner" as C
+database "Intent / attempt" as D
+participant Adapter
+participant Provider
+Owner -> C : confirm exact account, recipients, content, attachments
+C -> D : guard current eligibility; bind immutable reviewed intent
+C -> Adapter : dispatch same attributable attempt
+Adapter -> Provider : actual supported send
+alt attributable acceptance
+ Provider --> Adapter : provider evidence
+ Adapter -> D : record accepted under current claim
+else rejection with actual no-effect evidence
+ Adapter -> D : record confirmed rejected
+else observation absent / partial
+ Adapter -> D : retain unknown / partial; no blind resend
+end
+C --> Owner : truthful permitted outcome
+note over D,Provider
+ Delivery/read are separate observations only if actually supported.
+ Acceptance does not set application progress or actual submission.
+end note
+
+@enduml

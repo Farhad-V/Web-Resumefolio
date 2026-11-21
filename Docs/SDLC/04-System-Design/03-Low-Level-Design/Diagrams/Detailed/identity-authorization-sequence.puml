@@ -1,0 +1,34 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Proposed current authority and revocation boundary
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam shadowing false
+
+actor Caller
+participant "Resource-owning handler" as H
+participant "Identity / authority contract" as I
+database "Current account / session / grant state" as DB
+Caller -> H : intended resource / action / expected version
+H -> I : resolve current attributable context
+I -> DB : current eligibility / policy / scoped state
+DB --> I : actual versioned context
+I --> H : bounded authority decision / denial
+H -> H : current resource lifecycle and operation invariant
+note over H,DB
+ Concrete synchronization must cover grant/account-change races.
+ A positive check is not an indefinitely reusable capability.
+end note
+alt permitted
+ H -> H : admit exact owned operation
+ H --> Caller : permitted attributable result
+else denied / unresolved authority
+ H --> Caller : safe denial; no unauthorized mutation/disclosure
+end
+note over I,DB
+ Revocation completion defines when subsequent decisions see new state.
+ Already emitted bytes / admitted external effects are not recalled.
+end note
+@enduml

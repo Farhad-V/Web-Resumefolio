@@ -1,6 +1,8 @@
-# API Specification
+# 5. API Specification
 
-[Low-Level Design index](03-Low-Level-Design.md)
+[Previous: Database Design](04-Database-Design.md) · [Low-Level Design introduction](01-Introduction.md) · [Next: Algorithms and Business Rules](06-Algorithms-And-Business-Rules.md)
+
+<a id="api-specification"></a>
 
 ## Contract Coverage
 
@@ -24,6 +26,105 @@ Issue states are todo, in_progress and done. Priorities are low, normal and high
 
 Return 401 for invalid identity, 403 for a forbidden visible action, 404 for missing or hidden resources, 409 for stale writes or mismatched idempotency payloads, 422 for invalid input and 503 when required authority cannot be checked. Errors expose a stable code and correlation ID. Do not include private content or storage paths. Bind write keys to actor, operation and payload and return the stored outcome for a matching retry. Reconcile uncertain outcomes before any repeat that could duplicate effects. Verify these contracts with allowed, denied, invalid, stale and interrupted requests.
 
+## 5.1 Interface Scope and Authority
+
+The route table above is the selected MVP contract direction with proposed implementation names. It is not a deployed route inventory or an executed compatibility result. Internal module operations need not become HTTP endpoints. Browser/Inertia, protected file delivery, scoped JSON and native Git retain distinct authentication and response contracts.
+
+| Interface | Caller context | Required receiving checks |
+| --- | --- | --- |
+| Core entitlement status | Narrow service credential and Core issuer/subject identity | Authenticate permitted service access; disclose only current account/entitlement status |
+| ProjectForge JSON | Signed scoped actor request from Core | Caller/token scope, current Core entitlement and local repository/action authority |
+| Browser workspace | Receiving Laravel session | Current account/resource/action policy, validated inputs and applicable state-change protection |
+| Protected recipient/file | Current link/viewer context | Selected publication/content/language, eligible download and current direct-delivery policy |
+| Native Git | Evaluated transport credential and repository/action scope | Current entitlement and local grants for the actual native operation |
+
+A scoped service credential is not universal human authority. Status access cannot read professional content. Issue-write permission does not authorize Git push. Required current authority unavailable returns the documented safe unavailable outcome instead of permission inferred from previous access.
+
+## 5.2 Request and Response Field Contract
+
+| Field / concept | Meaning and validation |
+| --- | --- |
+| Actor and scope | Bind to the authenticated caller's permitted context; never trust an arbitrary payload user identifier as authority |
+| Repository / issue ID | Public stable resource identity with current visibility/action policy; no host storage path |
+| Immutable revision | Resolve the exact requested repository revision for files/history; response identifies the resolved content context |
+| Repository-relative path | Validate relative-path semantics and permitted repository content; reject traversal/out-of-scope access |
+| Opaque cursor | Preserve documented stable ordering and authorized result scope; client does not manufacture a database offset contract |
+| `Idempotency-Key` | Required for listed writes; bind actor/operation/payload and resolve matching recorded outcome |
+| `expectedVersion` | Required for listed mutable issue update; compare within owning write transaction |
+| Issue fields | Validate selected state/priority values, field limits, assignee eligibility and temporal meaning under the owning contract |
+| Correlation ID / stable error code | Bounded diagnostic linkage, not an access credential or sensitive payload |
+
+Concrete schemas must specify required/optional/null fields, types, lengths/ranges, unknown-field policy, error shape and examples before relying on them in implementation. Those details are not silently settled by an abbreviated table. Distinguish an omitted PATCH field from an explicit clearing value according to its reviewed schema; do not infer null/update behavior from UI appearance.
+
+Issue creation/update returns only permitted fields. Preserve stable issue identity and repository issue number through board moves. Dates that are local/date-only retain their intended meaning and applicable context; do not convert them arbitrarily into instants. The database design governs storage, not an unreviewed JSON serialization guess.
+
+## 5.3 Error Mapping and Information Hiding
+
+| JSON status | Contract use | Client behavior |
+| --- | --- | --- |
+| `401` | Invalid identity | Establish the permitted receiving context; no business mutation assumed |
+| `403` | Forbidden visible action | Explain bounded restriction without offering a bypass |
+| `404` | Missing or hidden resource | Do not disclose private existence through alternate wording/payload |
+| `409` | Stale write or mismatched repeated payload | Review current state or correct request-identity misuse; no blind overwrite |
+| `422` | Invalid input | Correct field/selection using permitted validation details |
+| `503` | Required authority cannot be checked | Safe unavailable outcome; do not use stale/broad authority |
+
+These are the documented categories, not a full enumeration of every possible infrastructure response. Define transport/body-size/rate-limit behavior in actual endpoint configuration when applicable; do not fabricate guarantees or status mappings here. Native Git and file/browser entry paths use their own protocol behavior.
+
+A rejection has no unauthorized business effect; necessary bounded audit metadata may still be recorded. Network failure/lost response is not a definitive business rejection and may follow a remote commit. Exclude secrets, private bytes, stack traces and host paths from client errors.
+
+## 5.4 Idempotency, Concurrency and Uncertain Completion
+
+For listed writes, validate current authority and bind stable request identity to actor, operation and payload. A matching retry resolves the stored outcome under that contract; a different payload reusing the key conflicts. Concurrent same-key requests must not both create independent effects. Expected-version checks protect mutable state separately from request identity.
+
+Retain recorded outcomes and related protection through pending/uncertain work. If a response disappears, resolve the same operation before a repeat that could duplicate an issue or other effect. Do not infer remote rollback from a local exception or automatically replay every error. Request-key expiry/retention and late-retry semantics need explicit implementation criteria; no arbitrary duration is introduced here.
+
+Each application commits locally. Durable work/outbox supports attributable asynchronous effects where selected; queue acceptance does not prove completion. Current authority and preserved separately recorded outcomes remain required on recovery. Filesystem/Git/mail effects do not become atomic with local SQL.
+
+## 5.5 Pagination, Revision and Content Delivery
+
+Repository/issue list results contain only permitted resources with stable contract-defined order/cursor behavior. Validate filters and cursor context and document invalid/stale cursor behavior in the concrete schema. Apply current authority to subsequent pages; a previous cursor cannot confer access after revocation.
+
+File/history queries distinguish immutable revision identity from mutable branch/head selection. Return the resolved revision and permitted repository-relative data without exposing host paths. Protected Core media/PDF delivery resolves current link/viewer policy, selected material/language and byte eligibility even for direct/alternate/range/cache paths. Cached content is not a substitute for current authority.
+
+Native Git uses actual client-compatible transfer semantics, not a JSON CRUD envelope. Ordinary commits are client-created under the native workflow; no API command is introduced merely to fake a Git transfer. Advanced fork/review/merge/releases and user execution remain deferred even where retained interaction examples discuss them.
+
+## 5.6 Representative Command and Outcome Sequence
+
+![Dark-mode PlantUML command outcome and recorded identity](Diagrams/API/api-command-outcome-sequence.svg)
+
+[PlantUML source](Diagrams/API/api-command-outcome-sequence.puml) · [PNG](Diagrams/API/api-command-outcome-sequence.png)
+
+This retained sequence illustrates stable command/outcome reasoning; read its proposal details with selected MVP scope. Exact route payloads, transaction boundaries and status mappings follow the contract table and owning operation. A diagram is not a deployed endpoint or a client interoperability test.
+
+## 5.7 Compatibility, Security and Configuration
+
+Version the service contract deliberately and review existing consumers when changing identity, scope, fields, errors, pagination or request-key behavior. Permission/visibility changes are compatibility changes even if the JSON shape stays the same. Do not repurpose stable IDs or remove information needed to resolve recorded outcomes silently.
+
+Protect intended transport with TLS and restricted service access. Keep independent application keys/sessions and secrets out of source/frontend output/logs. Actual signing/token format, key lifecycle, timeout values, field bounds and host bindings must follow selected decisions and verified setup; proposed names alone do not specify them.
+
+For cookie-authenticated browser state changes, retain selected Laravel anti-forgery/session protections; CORS or same-origin placement does not replace authorization. Content validation, private artifact handling and safe rendering remain the owners' obligations. No new API gateway, identity provider, broker or browser authentication layer is selected by this chapter.
+
+## 5.8 Endpoint Verification and Handoff
+
+| Contract | Required checks |
+| --- | --- |
+| Entitlement status | Correct/invalid service identity, status-only data, changed account/entitlement and unavailable bounded check |
+| Repository summaries | Authorized set, hidden resources, stable pagination and revoked access |
+| Files/history | Exact resolved revision, allowed relative path, invalid traversal/revision and no host-path leakage |
+| Issue list | Repository scoping, filter/cursor validation and local grant changes |
+| Issue create | Valid fields, permitted assignee, stable created identity, repeated key and concurrent same-key execution |
+| Issue update/board move | Expected-version conflict, same issue identity, mismatched key payload and distinct Git authority |
+| Direct/browser/Git paths | Applicable receiving session/viewer/transport checks independent of JSON success |
+| Partial failure | Lost response after commit, interrupted durable work and safe owner-controlled result resolution |
+| Evolution | Concrete schema examples, consumer compatibility and actual candidate/configuration evidence |
+
+Use real server/persistence/concurrency checks where guarantees depend on them, plus actual Git-client and protected-delivery interoperability. Mocks support limited contract isolation but cannot establish native transport, permission or recovery behavior.
+
+For each endpoint record actual method/path/schema, actor/scopes, preconditions, response/error examples, timeout/retry/cursor rules, implementation revision, exact criteria and executed results. Link [Detailed Module Design](03-Detailed-Module-Design.md), [Database Design](04-Database-Design.md), [Unit Test Design](10-Unit-Test-Design.md) and [Traceability](11-Traceability.md) / [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md).
+
+The retained records below preserve original anchors and alternatives. Deferred provider/runner and advanced collaboration examples do not create MVP routes. This update implements no endpoint, installs no dependency and claims no runtime pass. Embedded UML is maintained locally in dark-mode PlantUML.
+
 <a id="design-record-05-interface-and-api-design-01-api-protocols-contracts-and-compatibility-md"></a>
 
 <details>
@@ -37,7 +138,7 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 **Purpose:** define shared communication choices, contract contents, result semantics and compatibility rules for browser, component and external integration boundaries.
 
-**Status:** proposed technical design, November 2, 2026. This is a shared contract specification, not an implemented route catalog, adopted frontend stack or verified provider/client compatibility matrix. Concrete signatures and payload schemas remain with their owning components.
+**Status:** proposed technical design. This is a shared contract specification, not an implemented route catalog, adopted frontend stack or verified provider/client compatibility matrix. Concrete signatures and payload schemas remain with their owning components.
 
 [Scope](#design-record-05-interface-and-api-design-01-api-protocols-contracts-and-compatibility-md--heading-1-sources-and-interface-ownership) · [Protocols](#design-record-05-interface-and-api-design-01-api-protocols-contracts-and-compatibility-md--heading-2-protocol-choices-by-consumer) · [Contracts](#design-record-05-interface-and-api-design-01-api-protocols-contracts-and-compatibility-md--heading-3-required-contract-record) · [HTTP](#design-record-05-interface-and-api-design-01-api-protocols-contracts-and-compatibility-md--heading-4-http-results-and-concurrency) · [Repetition](#design-record-05-interface-and-api-design-01-api-protocols-contracts-and-compatibility-md--heading-5-command-identity-and-asynchronous-effects) · [Boundaries](#design-record-05-interface-and-api-design-01-api-protocols-contracts-and-compatibility-md--heading-6-external-and-protected-exchanges) · [Evolution](#design-record-05-interface-and-api-design-01-api-protocols-contracts-and-compatibility-md--heading-7-versioning-and-compatibility) · [Review](#design-record-05-interface-and-api-design-01-api-protocols-contracts-and-compatibility-md--heading-8-verification-and-handoff) · [Essential views](#design-record-05-interface-and-api-design-01-api-protocols-contracts-and-compatibility-md--heading-9-essential-api-and-contract-views)
 
@@ -45,7 +146,7 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 #### 1. Sources and interface ownership
 
-Use [EIF-D01–EIF-D10 and IF-01–IF-08](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-external-interface-requirements), [analysis interfaces](../../03-System-Analysis/01-System-Analysis.md#analysis-interfaces-security-and-quality-analysis--12-interfaces-and-external-interactions), the [dictionary](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#data-definitions-data-dictionary) and [architecture boundaries](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md). Inventory labels identify source boundaries, not new API endpoint IDs or selected transports.
+Use [EIF-D01–EIF-D10 and IF-01–IF-08](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-external-interface-requirements), [analysis interfaces](../../03-System-Analysis/04-Interfaces-Security-And-Quality.md#analysis-interfaces-security-and-quality-analysis--12-interfaces-and-external-interactions), the [dictionary](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#data-definitions-data-dictionary) and [architecture boundaries](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md). Inventory labels identify source boundaries, not new API endpoint IDs or selected transports.
 
 The resource-owning component provides the contract and enforces its invariants. Consumers use explicit permitted identities/projections and cannot mutate private records through a shared ORM model. This folder owns shared conventions; [component designs](02-Module-Breakdown.md#design-record-03-component-and-module-design-component-and-module-design-md) own exact operations/types, [interaction realizations](#design-record-05-interface-and-api-design-03-use-case-realizations-and-interactions-md) own selected collaborations, and [runtime design](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-03-process-view-concurrency-and-runtime-behavior-md) owns concurrency/reconciliation behavior.
 
@@ -105,15 +206,15 @@ Final endpoint mappings and disclosure rules belong in each exact contract. Doma
 
 Use an evaluated expected-version field or applicable ETag/If-Match precondition to prevent stale writes. If using HTTP validators, scope them to the actual representation and implement their comparison semantics correctly; an arbitrary domain revision is not automatically a compliant ETag. A single resource validator may not guard a cross-record Sprint or grant-change race. Exact locking/admission remains [data/runtime design](04-Database-Design.md#design-record-04-data-design-01-analysis-to-logical-and-physical-data-models-md).
 
-For HTTP error representations, evaluate [RFC 9457 Problem Details](https://www.rfc-editor.org/rfc/rfc9457.html): stable problem type/title/status semantics with safe instance/field extensions where useful. Do not expose stack traces, storage paths, secrets or private target existence. Display text may be localized; machine codes and field identities remain stable. These standards were reviewed November 2, 2026; framework/route compatibility is not verified here.
+For HTTP error representations, evaluate [RFC 9457 Problem Details](https://www.rfc-editor.org/rfc/rfc9457.html): stable problem type/title/status semantics with safe instance/field extensions where useful. Do not expose stack traces, storage paths, secrets or private target existence. Display text may be localized; machine codes and field identities remain stable. These standards were consulted; framework/route compatibility is not verified here.
 
 <a id="design-record-05-interface-and-api-design-01-api-protocols-contracts-and-compatibility-md--heading-5-command-identity-and-asynchronous-effects"></a>
 
 #### 5. Command identity and asynchronous effects
 
-[Identified command, guarded owner mutation and safe outcome lookup](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-command-outcome-sequence.svg)
+[Identified command, guarded owner mutation and safe outcome lookup](Diagrams/API/api-command-outcome-sequence.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-command-outcome-sequence.puml) · ![api command outcome sequence](../Diagrams/Archived-Png/Api-Command-Outcome-Sequence.png)
+[Editable PlantUML](Diagrams/API/api-command-outcome-sequence.puml) · ![api command outcome sequence](Diagrams/API/api-command-outcome-sequence.svg)
 
 Consequential commands use a documented stable command identity scoped to the actual operation/actor/resource contract. Validate current authority before returning a prior result. Compare attributable intended payload/version context so reuse with changed intent conflicts instead of executing new work. Storage/expiry and secret-safe intent representation are explicit implementation decisions; no idempotency-header standard or infinite retention is assumed.
 
@@ -155,9 +256,9 @@ Executor callbacks must be authenticated and bound to the exact attempt/generati
 
 #### 7. Versioning and compatibility
 
-[Contract change, consumer compatibility and safe retirement](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-contract-evolution.svg)
+[Contract change, consumer compatibility and safe retirement](Diagrams/API/api-contract-evolution.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-contract-evolution.puml) · ![api contract evolution](../Diagrams/Archived-Png/Api-Contract-Evolution.png)
+[Editable PlantUML](Diagrams/API/api-contract-evolution.puml) · ![api contract evolution](Diagrams/API/api-contract-evolution.svg)
 
 Version externally consumed contracts deliberately. Select path/header/media-type or another explicit scheme only for actual consumers; do not create an arbitrary `/v1` public API solely for internal modularity. In-process interfaces also need consumer coordination, and queued payloads may outlive the deployment that produced them.
 
@@ -207,9 +308,9 @@ Only **four complementary diagrams** are added; no new tables, endpoints or sche
 
 ##### 9.1 Consumers, owner contracts and external adapters
 
-[MVP with explicitly deferred paths — Consumers, owner contracts and external adapters](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-boundaries.svg)
+[MVP with explicitly deferred paths — Consumers, owner contracts and external adapters](Diagrams/API/api-essential-boundaries.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-boundaries.puml) · ![api essential boundaries](../Diagrams/Archived-Png/Api-Essential-Boundaries.png)
+[Editable PlantUML](Diagrams/API/api-essential-boundaries.puml) · ![api essential boundaries](Diagrams/API/api-essential-boundaries.svg)
 
 Essential interface landscape and provider/consumer boundary in one view. Actual authentication, anti-forgery and resource checks remain required at all applicable entry paths. Adapters preserve denied/conflict/pending/partial/unknown outcomes; a reachable technical credential is not human authority.
 
@@ -217,9 +318,9 @@ Essential interface landscape and provider/consumer boundary in one view. Actual
 
 ##### 9.2 Protocol selection by actual boundary need
 
-[MVP with explicitly deferred paths — Protocol selection by actual boundary need](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-selection.svg)
+[MVP with explicitly deferred paths — Protocol selection by actual boundary need](Diagrams/API/api-essential-selection.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-selection.puml) · ![api essential selection](../Diagrams/Archived-Png/Api-Essential-Selection.png)
+[Editable PlantUML](Diagrams/API/api-essential-selection.puml) · ![api essential selection](Diagrams/API/api-essential-selection.svg)
 
 Decision aid, not a product-selection benchmark. GraphQL/gRPC/WebSocket/async transport require an actual justified need, supported consumers and operating compatibility. Durable asynchronous intent is a semantic requirement where needed, not automatic selection of a messaging broker or exactly-once delivery.
 
@@ -227,9 +328,9 @@ Decision aid, not a product-selection benchmark. GraphQL/gRPC/WebSocket/async tr
 
 ##### 9.3 Contract-first refinement without mandatory code generation
 
-[Contract-first refinement without mandatory code generation](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-contract-workflow.svg)
+[Contract-first refinement without mandatory code generation](Diagrams/API/api-essential-contract-workflow.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-contract-workflow.puml) · ![api essential contract workflow](../Diagrams/Archived-Png/Api-Essential-Contract-Workflow.png)
+[Editable PlantUML](Diagrams/API/api-essential-contract-workflow.puml) · ![api essential contract workflow](Diagrams/API/api-essential-contract-workflow.svg)
 
 OpenAPI, AsyncAPI, protobuf and GraphQL schemas are alternative representations for actual selected protocols, not four required artifacts. Mock/codegen is optional and cannot prove real authorization, external idempotency or runtime interoperability. No spec file, toolchain or production implementation is generated here.
 
@@ -237,9 +338,9 @@ OpenAPI, AsyncAPI, protobuf and GraphQL schemas are alternative representations 
 
 ##### 9.4 Consumer expectations and provider verification
 
-[Consumer expectations and provider verification](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-consumer-verification.svg)
+[Consumer expectations and provider verification](Diagrams/API/api-essential-consumer-verification.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-consumer-verification.puml) · ![api essential consumer verification](../Diagrams/Archived-Png/Api-Essential-Consumer-Verification.png)
+[Editable PlantUML](Diagrams/API/api-essential-consumer-verification.puml) · ![api essential consumer verification](Diagrams/API/api-essential-consumer-verification.svg)
 
 Compact consumer-driven contract-testing concept, not an installed test platform. Actual consumers must tolerate additive fields/enums where claimed; changed defaults, permission scope, effects or ordering can break compatibility even with unchanged schema. Required live/controlled evidence remains separately scoped.
 
@@ -285,7 +386,7 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 **Purpose:** show how technical components collaborate to realize existing analysis scenarios without changing their goals or accepted behavior.
 
-**Status:** proposed technical realizations, November 2, 2026. The routes and diagrams specify responsibilities and consistency obligations, not implemented endpoints, proven atomicity or executed scenario tests. Exact signatures and mechanisms remain with component owners.
+**Status:** proposed technical realizations. The routes and diagrams specify responsibilities and consistency obligations, not implemented endpoints, proven atomicity or executed scenario tests. Exact signatures and mechanisms remain with component owners.
 
 [Sources](#design-record-05-interface-and-api-design-03-use-case-realizations-and-interactions-md--heading-1-source-and-realization-conventions) · [Coverage](#design-record-05-interface-and-api-design-03-use-case-realizations-and-interactions-md--heading-2-scenario-to-component-map) · [Content](#design-record-05-interface-and-api-design-03-use-case-realizations-and-interactions-md--heading-3-content-sharing-and-actual-material) · [Providers](#design-record-05-interface-and-api-design-03-use-case-realizations-and-interactions-md--heading-4-provider-interactions) · [Work and execution](#design-record-05-interface-and-api-design-03-use-case-realizations-and-interactions-md--heading-5-work-git-execution-and-deployment) · [Recovery](#design-record-05-interface-and-api-design-03-use-case-realizations-and-interactions-md--heading-6-policy-admission-and-recovery) · [Review](#design-record-05-interface-and-api-design-03-use-case-realizations-and-interactions-md--heading-7-verification-and-completion-boundary) · [Essential views](#design-record-05-interface-and-api-design-03-use-case-realizations-and-interactions-md--heading-8-essential-use-case-realization-views)
 
@@ -293,7 +394,7 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 #### 1. Source and realization conventions
 
-Use the existing [use-case/scenario catalog](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#scenarios-and-models-user-stories-and-scenarios), [scenario-based analysis](../../03-System-Analysis/01-System-Analysis.md#analysis-behavioral-and-scenario-analysis--06-scenario-based-view), [state-based analysis](../../03-System-Analysis/01-System-Analysis.md#analysis-behavioral-and-scenario-analysis--07-state-based-view) and [operation contracts](../../03-System-Analysis/01-System-Analysis.md#analysis-business-rules-and-operation-contracts--10-domain-constraints-and-operation-contracts). UC-D and SB-M references retain those sources' status; this document allocates no new primary use cases or acceptance.
+Use the existing [use-case/scenario catalog](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#scenarios-and-models-user-stories-and-scenarios), [scenario-based analysis](../../03-System-Analysis/03-Processes-Scenarios-And-Business-Rules.md#analysis-behavioral-and-scenario-analysis--06-scenario-based-view), [state-based analysis](../../03-System-Analysis/03-Processes-Scenarios-And-Business-Rules.md#analysis-behavioral-and-scenario-analysis--07-state-based-view) and [operation contracts](../../03-System-Analysis/03-Processes-Scenarios-And-Business-Rules.md#analysis-business-rules-and-operation-contracts--10-domain-constraints-and-operation-contracts). UC-D and SB-M references retain those sources' status; this document allocates no new primary use cases or acceptance.
 
 Follow [shared API contracts](#design-record-05-interface-and-api-design-01-api-protocols-contracts-and-compatibility-md), [runtime coordination](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-03-process-view-concurrency-and-runtime-behavior-md) and [data integrity](04-Database-Design.md#design-record-04-data-design-01-analysis-to-logical-and-physical-data-models-md). Each protected operation resolves current actor/resource authority, expected versions and attributable intent before its owner admits effects. An arrow denotes a responsibility exchange, not a remote service, database transaction or automatic trigger.
 
@@ -303,7 +404,7 @@ Existing component diagrams remain the detailed owning views. The new overview a
 
 #### 2. Scenario-to-component map
 
-All SB-M identifiers below resolve in the linked [scenario analysis](../../03-System-Analysis/01-System-Analysis.md#analysis-behavioral-and-scenario-analysis--06-scenario-based-view). This is responsibility coverage, not criterion closure or a claim that every alternative path has an implementation sequence.
+All SB-M identifiers below resolve in the linked [scenario analysis](../../03-System-Analysis/03-Processes-Scenarios-And-Business-Rules.md#analysis-behavioral-and-scenario-analysis--06-scenario-based-view). This is responsibility coverage, not criterion closure or a claim that every alternative path has an implementation sequence.
 
 | Existing scenario family | Technical owner and detailed realization |
 | --- | --- |
@@ -381,9 +482,9 @@ Communication distinguishes locally owned event intent, provider identity/mappin
 
 **After MVP.** Shared operating and recovery controls still apply where relevant.
 
-[After MVP — Guarded handoffs without inherited authority](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-git-execution-deployment.svg)
+[After MVP — Guarded handoffs without inherited authority](Diagrams/API/interaction-git-execution-deployment.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-git-execution-deployment.puml) · ![interaction git execution deployment](../Diagrams/Archived-Png/Interaction-Git-Execution-Deployment.png)
+[Editable PlantUML](Diagrams/API/interaction-git-execution-deployment.puml) · ![interaction git execution deployment](Diagrams/API/interaction-git-execution-deployment.svg)
 
 <a id="design-record-05-interface-and-api-design-03-use-case-realizations-and-interactions-md--heading-work-and-changed-collaboration"></a>
 
@@ -415,9 +516,9 @@ Run success supplies no deployment permission. The target stage separately binds
 
 Files/Operations authorizes effective policy changes, atomically reserves concurrent growth, validates actual usable artifacts and records true accounting. Protected consumer references exclude reclamation; retiring a record or a finished workflow does not prove bytes/workspace were reclaimed. Partial/unknown storage outcomes retain evidence and applicable protection/accounting for reconciliation. See [admission sequence](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-admission-sequence.svg) and [reclamation route](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/components/diagrams/files-reclamation-route.svg).
 
-[MVP with explicitly deferred paths — Isolated restoration and explicit resumption gate](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-isolated-recovery.svg)
+[MVP with explicitly deferred paths — Isolated restoration and explicit resumption gate](Diagrams/API/interaction-isolated-recovery.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-isolated-recovery.puml) · ![interaction isolated recovery](../Diagrams/Archived-Png/Interaction-Isolated-Recovery.png)
+[Editable PlantUML](Diagrams/API/interaction-isolated-recovery.puml) · ![interaction isolated recovery](Diagrams/API/interaction-isolated-recovery.svg)
 
 For UC-D12, the authorized operator identifies source/version and intended scope; Operations coordinates isolated restoration with outbound actions disabled. Affected owners verify schema/content manifests, bytes/native repositories, keys, protected references and actual current authority. Reconcile provider/executor/target effects before resuming work. Missing bytes/keys, inconsistent references or unresolved dangerous effects remain findings, not a successful usable-state claim.
 
@@ -453,9 +554,9 @@ Only **four complementary diagrams** are added; no new tables, payloads or use-c
 
 ##### 8.1 Selected actors and use-case boundaries
 
-[Selected actors and use-case boundaries](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-use-cases.svg)
+[Selected actors and use-case boundaries](Diagrams/API/interaction-essential-use-cases.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-use-cases.puml) · ![interaction essential use cases](../Diagrams/Archived-Png/Interaction-Essential-Use-Cases.png)
+[Editable PlantUML](Diagrams/API/interaction-essential-use-cases.puml) · ![interaction essential use cases](Diagrams/API/interaction-essential-use-cases.svg)
 
 Selected existing source-family summary, not new use-case allocation or complete system coverage. No include/extend arrow joins apply, publish or capture: they are distinct deliberate goals/actions, not automatically executed substeps. Other source families remain mapped in section 2.
 
@@ -463,9 +564,9 @@ Selected existing source-family summary, not new use-case allocation or complete
 
 ##### 8.2 Use-case realization through owner contracts
 
-[Use-case realization through owner contracts](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-realization.svg)
+[Use-case realization through owner contracts](Diagrams/API/interaction-essential-realization.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-realization.puml) · ![interaction essential realization](../Diagrams/Archived-Png/Interaction-Essential-Realization.png)
+[Editable PlantUML](Diagrams/API/interaction-essential-realization.puml) · ![interaction essential realization](Diagrams/API/interaction-essential-realization.svg)
 
 UML-style realization overview, not a claim that every arrow is a network API call. The existing Sharing retrieval sequence owns detailed ordering. Concrete revocation/admission/reference synchronization must still be designed and verified.
 
@@ -473,9 +574,9 @@ UML-style realization overview, not a claim that every arrow is a network API ca
 
 ##### 8.3 Separate owner commands across the content journey
 
-[Separate owner commands across the content journey](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-end-to-end.svg)
+[Separate owner commands across the content journey](Diagrams/API/interaction-essential-end-to-end.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-end-to-end.puml) · ![interaction essential end to end](../Diagrams/Archived-Png/Interaction-Essential-End-To-End.png)
+[Editable PlantUML](Diagrams/API/interaction-essential-end-to-end.puml) · ![interaction essential end to end](Diagrams/API/interaction-essential-end-to-end.svg)
 
 End-to-end activity spans separate commands and user decisions, not one atomic API transaction or mandatory sequence for every user. Recording a manual submission does not require this exact publication journey; actual submitted material can come from the source-permitted real route. Provider acceptance alone is not an actual submission claim.
 
@@ -483,9 +584,9 @@ End-to-end activity spans separate commands and user decisions, not one atomic A
 
 ##### 8.4 Alternate paths, duplicate commands and uncertain effects
 
-[Alternate paths, duplicate commands and uncertain effects](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-alternates.svg)
+[Alternate paths, duplicate commands and uncertain effects](Diagrams/API/interaction-essential-alternates.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-alternates.puml) · ![interaction essential alternates](../Diagrams/Archived-Png/Interaction-Essential-Alternates.png)
+[Editable PlantUML](Diagrams/API/interaction-essential-alternates.puml) · ![interaction essential alternates](Diagrams/API/interaction-essential-alternates.svg)
 
 Generic exception interaction complements rather than replaces operation-specific sequences. Local commit response loss uses same-command local reconciliation; remote effects require actual adapter evidence and cannot be inferred from SQL rollback, lease expiry or timeout. No observation API, retry count or automatic effect replay is invented.
 
@@ -518,8 +619,8 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### API protocols, contracts and compatibility
 
-- [Identified command and actual outcome contract](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-command-outcome-sequence.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-command-outcome-sequence.puml) · ![api command outcome sequence](../Diagrams/Archived-Png/Api-Command-Outcome-Sequence.png)
-- [Contract evolution and compatibility](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-contract-evolution.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-contract-evolution.puml) · ![api contract evolution](../Diagrams/Archived-Png/Api-Contract-Evolution.png)
+- [Identified command and actual outcome contract](Diagrams/API/api-command-outcome-sequence.svg) · [PlantUML](Diagrams/API/api-command-outcome-sequence.puml) · ![api command outcome sequence](Diagrams/API/api-command-outcome-sequence.svg)
+- [Contract evolution and compatibility](Diagrams/API/api-contract-evolution.svg) · [PlantUML](Diagrams/API/api-contract-evolution.puml) · ![api contract evolution](Diagrams/API/api-contract-evolution.svg)
 
 [Owning document](#design-record-05-interface-and-api-design-01-api-protocols-contracts-and-compatibility-md). Proposed shared contract behavior. Exact routes/types, framework and external compatibility, dispatch and transition mechanisms remain implementation work.
 
@@ -527,8 +628,8 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Use-case realizations and interactions
 
-- [Independent Git, execution and deployment admission](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-git-execution-deployment.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-git-execution-deployment.puml) · ![interaction git execution deployment](../Diagrams/Archived-Png/Interaction-Git-Execution-Deployment.png)
-- [Isolated recovery and resumption gate](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-isolated-recovery.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-isolated-recovery.puml) · ![interaction isolated recovery](../Diagrams/Archived-Png/Interaction-Isolated-Recovery.png)
+- [Independent Git, execution and deployment admission](Diagrams/API/interaction-git-execution-deployment.svg) · [PlantUML](Diagrams/API/interaction-git-execution-deployment.puml) · ![interaction git execution deployment](Diagrams/API/interaction-git-execution-deployment.svg)
+- [Isolated recovery and resumption gate](Diagrams/API/interaction-isolated-recovery.svg) · [PlantUML](Diagrams/API/interaction-isolated-recovery.puml) · ![interaction isolated recovery](Diagrams/API/interaction-isolated-recovery.svg)
 
 [Owning document](#design-record-05-interface-and-api-design-03-use-case-realizations-and-interactions-md). Cross-component responsibility overviews complement detailed component-owned sequences; exact synchronization, compatibility and operating evidence remain pending.
 
@@ -536,10 +637,10 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Essential API and contract views
 
-- [Consumers, owner contracts and external adapters](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-boundaries.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-boundaries.puml) · ![api essential boundaries](../Diagrams/Archived-Png/Api-Essential-Boundaries.png)
-- [Protocol selection by actual boundary need](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-selection.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-selection.puml) · ![api essential selection](../Diagrams/Archived-Png/Api-Essential-Selection.png)
-- [Contract-first refinement without mandatory code generation](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-contract-workflow.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-contract-workflow.puml) · ![api essential contract workflow](../Diagrams/Archived-Png/Api-Essential-Contract-Workflow.png)
-- [Consumer expectations and provider verification](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-consumer-verification.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-consumer-verification.puml) · ![api essential consumer verification](../Diagrams/Archived-Png/Api-Essential-Consumer-Verification.png)
+- [Consumers, owner contracts and external adapters](Diagrams/API/api-essential-boundaries.svg) · [PlantUML](Diagrams/API/api-essential-boundaries.puml) · ![api essential boundaries](Diagrams/API/api-essential-boundaries.svg)
+- [Protocol selection by actual boundary need](Diagrams/API/api-essential-selection.svg) · [PlantUML](Diagrams/API/api-essential-selection.puml) · ![api essential selection](Diagrams/API/api-essential-selection.svg)
+- [Contract-first refinement without mandatory code generation](Diagrams/API/api-essential-contract-workflow.svg) · [PlantUML](Diagrams/API/api-essential-contract-workflow.puml) · ![api essential contract workflow](Diagrams/API/api-essential-contract-workflow.svg)
+- [Consumer expectations and provider verification](Diagrams/API/api-essential-consumer-verification.svg) · [PlantUML](Diagrams/API/api-essential-consumer-verification.puml) · ![api essential consumer verification](Diagrams/API/api-essential-consumer-verification.svg)
 
 [Owning API contract guide](#design-record-05-interface-and-api-design-01-api-protocols-contracts-and-compatibility-md--heading-9-essential-api-and-contract-views). Existing evolution/interaction views reused; no protocol, gateway, schema tooling or endpoint allocated.
 
@@ -547,10 +648,10 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Essential use-case realization views
 
-- [Selected actors and use-case boundaries](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-use-cases.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-use-cases.puml) · ![interaction essential use cases](../Diagrams/Archived-Png/Interaction-Essential-Use-Cases.png)
-- [Use-case realization through owner contracts](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-realization.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-realization.puml) · ![interaction essential realization](../Diagrams/Archived-Png/Interaction-Essential-Realization.png)
-- [Separate owner commands across the content journey](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-end-to-end.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-end-to-end.puml) · ![interaction essential end to end](../Diagrams/Archived-Png/Interaction-Essential-End-To-End.png)
-- [Alternate paths, duplicate commands and uncertain effects](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-alternates.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-alternates.puml) · ![interaction essential alternates](../Diagrams/Archived-Png/Interaction-Essential-Alternates.png)
+- [Selected actors and use-case boundaries](Diagrams/API/interaction-essential-use-cases.svg) · [PlantUML](Diagrams/API/interaction-essential-use-cases.puml) · ![interaction essential use cases](Diagrams/API/interaction-essential-use-cases.svg)
+- [Use-case realization through owner contracts](Diagrams/API/interaction-essential-realization.svg) · [PlantUML](Diagrams/API/interaction-essential-realization.puml) · ![interaction essential realization](Diagrams/API/interaction-essential-realization.svg)
+- [Separate owner commands across the content journey](Diagrams/API/interaction-essential-end-to-end.svg) · [PlantUML](Diagrams/API/interaction-essential-end-to-end.puml) · ![interaction essential end to end](Diagrams/API/interaction-essential-end-to-end.svg)
+- [Alternate paths, duplicate commands and uncertain effects](Diagrams/API/interaction-essential-alternates.svg) · [PlantUML](Diagrams/API/interaction-essential-alternates.puml) · ![interaction essential alternates](Diagrams/API/interaction-essential-alternates.svg)
 
 [Owning interaction guide](#design-record-05-interface-and-api-design-03-use-case-realizations-and-interactions-md--heading-8-essential-use-case-realization-views). Existing detailed component sequences reused; no new source use cases, API payloads or execution evidence allocated.
 
@@ -562,8 +663,8 @@ Current MVP figures replace the former common-product boundary. Future and histo
 
 | Editable source | Current applicability |
 | --- | --- |
-| [api-essential-contract-workflow.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-contract-workflow.puml) | Method / document navigation|
-| [interaction-git-execution-deployment.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-git-execution-deployment.puml) | Future after MVP|
+| [api-essential-contract-workflow.puml](Diagrams/API/api-essential-contract-workflow.puml) | Method / document navigation|
+| [interaction-git-execution-deployment.puml](Diagrams/API/interaction-git-execution-deployment.puml) | Future after MVP|
 
 <a id="design-record-05-interface-and-api-design-diagrams-diagram-catalog-md--heading-complete-diagram-alignment--november-4"></a>
 
@@ -573,18 +674,18 @@ Current MVP figures replace the former common-product boundary. Future and histo
 
 | Editable source or visual | Current applicability | Matching exports |
 | --- | --- | --- |
-| [api-command-outcome-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-command-outcome-sequence.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-command-outcome-sequence.svg) · ![api command outcome sequence](../Diagrams/Archived-Png/Api-Command-Outcome-Sequence.png) |
-| [api-contract-evolution.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-contract-evolution.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-contract-evolution.svg) · ![api contract evolution](../Diagrams/Archived-Png/Api-Contract-Evolution.png) |
-| [api-essential-boundaries.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-boundaries.puml) | Mixed MVP / future| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-boundaries.svg) · ![api essential boundaries](../Diagrams/Archived-Png/Api-Essential-Boundaries.png) |
-| [api-essential-consumer-verification.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-consumer-verification.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-consumer-verification.svg) · ![api essential consumer verification](../Diagrams/Archived-Png/Api-Essential-Consumer-Verification.png) |
-| [api-essential-contract-workflow.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-contract-workflow.puml) | Method / document navigation| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-contract-workflow.svg) · ![api essential contract workflow](../Diagrams/Archived-Png/Api-Essential-Contract-Workflow.png) |
-| [api-essential-selection.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-selection.puml) | Mixed MVP / future| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-selection.svg) · ![api essential selection](../Diagrams/Archived-Png/Api-Essential-Selection.png) |
-| [interaction-essential-alternates.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-alternates.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-alternates.svg) · ![interaction essential alternates](../Diagrams/Archived-Png/Interaction-Essential-Alternates.png) |
-| [interaction-essential-end-to-end.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-end-to-end.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-end-to-end.svg) · ![interaction essential end to end](../Diagrams/Archived-Png/Interaction-Essential-End-To-End.png) |
-| [interaction-essential-realization.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-realization.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-realization.svg) · ![interaction essential realization](../Diagrams/Archived-Png/Interaction-Essential-Realization.png) |
-| [interaction-essential-use-cases.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-use-cases.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-use-cases.svg) · ![interaction essential use cases](../Diagrams/Archived-Png/Interaction-Essential-Use-Cases.png) |
-| [interaction-git-execution-deployment.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-git-execution-deployment.puml) | Future after MVP| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-git-execution-deployment.svg) · ![interaction git execution deployment](../Diagrams/Archived-Png/Interaction-Git-Execution-Deployment.png) |
-| [interaction-isolated-recovery.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-isolated-recovery.puml) | Mixed MVP / future| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-isolated-recovery.svg) · ![interaction isolated recovery](../Diagrams/Archived-Png/Interaction-Isolated-Recovery.png) |
+| [api-command-outcome-sequence.puml](Diagrams/API/api-command-outcome-sequence.puml) | MVP core / cross-cutting| [SVG](Diagrams/API/api-command-outcome-sequence.svg) · ![api command outcome sequence](Diagrams/API/api-command-outcome-sequence.svg) |
+| [api-contract-evolution.puml](Diagrams/API/api-contract-evolution.puml) | MVP core / cross-cutting| [SVG](Diagrams/API/api-contract-evolution.svg) · ![api contract evolution](Diagrams/API/api-contract-evolution.svg) |
+| [api-essential-boundaries.puml](Diagrams/API/api-essential-boundaries.puml) | Mixed MVP / future| [SVG](Diagrams/API/api-essential-boundaries.svg) · ![api essential boundaries](Diagrams/API/api-essential-boundaries.svg) |
+| [api-essential-consumer-verification.puml](Diagrams/API/api-essential-consumer-verification.puml) | MVP core / cross-cutting| [SVG](Diagrams/API/api-essential-consumer-verification.svg) · ![api essential consumer verification](Diagrams/API/api-essential-consumer-verification.svg) |
+| [api-essential-contract-workflow.puml](Diagrams/API/api-essential-contract-workflow.puml) | Method / document navigation| [SVG](Diagrams/API/api-essential-contract-workflow.svg) · ![api essential contract workflow](Diagrams/API/api-essential-contract-workflow.svg) |
+| [api-essential-selection.puml](Diagrams/API/api-essential-selection.puml) | Mixed MVP / future| [SVG](Diagrams/API/api-essential-selection.svg) · ![api essential selection](Diagrams/API/api-essential-selection.svg) |
+| [interaction-essential-alternates.puml](Diagrams/API/interaction-essential-alternates.puml) | MVP core / cross-cutting| [SVG](Diagrams/API/interaction-essential-alternates.svg) · ![interaction essential alternates](Diagrams/API/interaction-essential-alternates.svg) |
+| [interaction-essential-end-to-end.puml](Diagrams/API/interaction-essential-end-to-end.puml) | MVP core / cross-cutting| [SVG](Diagrams/API/interaction-essential-end-to-end.svg) · ![interaction essential end to end](Diagrams/API/interaction-essential-end-to-end.svg) |
+| [interaction-essential-realization.puml](Diagrams/API/interaction-essential-realization.puml) | MVP core / cross-cutting| [SVG](Diagrams/API/interaction-essential-realization.svg) · ![interaction essential realization](Diagrams/API/interaction-essential-realization.svg) |
+| [interaction-essential-use-cases.puml](Diagrams/API/interaction-essential-use-cases.puml) | MVP core / cross-cutting| [SVG](Diagrams/API/interaction-essential-use-cases.svg) · ![interaction essential use cases](Diagrams/API/interaction-essential-use-cases.svg) |
+| [interaction-git-execution-deployment.puml](Diagrams/API/interaction-git-execution-deployment.puml) | Future after MVP| [SVG](Diagrams/API/interaction-git-execution-deployment.svg) · ![interaction git execution deployment](Diagrams/API/interaction-git-execution-deployment.svg) |
+| [interaction-isolated-recovery.puml](Diagrams/API/interaction-isolated-recovery.puml) | Mixed MVP / future| [SVG](Diagrams/API/interaction-isolated-recovery.svg) · ![interaction isolated recovery](Diagrams/API/interaction-isolated-recovery.svg) |
 
 </details>
 
@@ -601,9 +702,7 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 **Use this folder to understand communication contracts and how components collaborate to realize existing scenarios.** Shared protocol/result/compatibility conventions belong here; exact signatures and domain invariants remain with their owning components.
 
-Owner and decision authority: Farhad. Updated November 2, 2026.
-
-**Current position:** both documents are populated with project-specific proposed design. **Twelve local diagrams** illustrate contracts, protocol selection, consumer verification, use-case realization and safe interactions; detailed component diagrams are linked at their owning locations. No implemented route catalog, adopted frontend/API stack, verified external integration or accepted baseline is claimed.
+Owner and decision authority: Farhad. **Current position:** both documents are populated with project-specific proposed design. **Twelve local diagrams** illustrate contracts, protocol selection, consumer verification, use-case realization and safe interactions; detailed component diagrams are linked at their owning locations. No implemented route catalog, adopted frontend/API stack, verified external integration or accepted baseline is claimed.
 
 [Reading route](#design-record-05-interface-and-api-design-interface-and-api-design-md--heading-1-reading-route) · [Document guide](#design-record-05-interface-and-api-design-interface-and-api-design-md--heading-2-find-the-right-record) · [Diagrams](#design-record-05-interface-and-api-design-interface-and-api-design-md--heading-3-diagrams-and-owning-views) · [Boundaries](#design-record-05-interface-and-api-design-interface-and-api-design-md--heading-4-ownership-and-preservation-rules) · [Readiness](#design-record-05-interface-and-api-design-interface-and-api-design-md--heading-5-review-and-current-limits)
 
@@ -611,7 +710,7 @@ Owner and decision authority: Farhad. Updated November 2, 2026.
 
 #### 1. Reading route
 
-1. Read [interface requirements](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-external-interface-requirements) and [analysis interfaces](../../03-System-Analysis/01-System-Analysis.md#analysis-interfaces-security-and-quality-analysis--12-interfaces-and-external-interactions) for existing boundary meanings and source status.
+1. Read [interface requirements](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-external-interface-requirements) and [analysis interfaces](../../03-System-Analysis/04-Interfaces-Security-And-Quality.md#analysis-interfaces-security-and-quality-analysis--12-interfaces-and-external-interactions) for existing boundary meanings and source status.
 2. Read [API Protocols, Contracts and Compatibility](#design-record-05-interface-and-api-design-01-api-protocols-contracts-and-compatibility-md) for protocol options, required contract records, HTTP/result semantics, expected versions, command identity, protected/external exchanges and compatibility.
 3. Read [Use-Case Realizations and Interactions](#design-record-05-interface-and-api-design-03-use-case-realizations-and-interactions-md) for UC-D01–UC-D12/SB-M01–SB-M16 responsibility coverage, technical routes, failure boundaries and linked component sequences.
 4. Follow the [component catalog](02-Module-Breakdown.md#design-record-03-component-and-module-design-component-and-module-design-md) for concrete operations/types and the [runtime design](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-03-process-view-concurrency-and-runtime-behavior-md) for concurrency and reconciliation obligations.
@@ -641,9 +740,9 @@ The retained numbers are stable document locators. Component/external integratio
 
 ##### Identified command and actual outcome
 
-[Command handling and permitted outcome lookup](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-command-outcome-sequence.svg)
+[Command handling and permitted outcome lookup](Diagrams/API/api-command-outcome-sequence.svg)
 
-[Owning contract document](#design-record-05-interface-and-api-design-01-api-protocols-contracts-and-compatibility-md) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-command-outcome-sequence.puml) · ![api command outcome sequence](../Diagrams/Archived-Png/Api-Command-Outcome-Sequence.png)
+[Owning contract document](#design-record-05-interface-and-api-design-01-api-protocols-contracts-and-compatibility-md) · [PlantUML](Diagrams/API/api-command-outcome-sequence.puml) · ![api command outcome sequence](Diagrams/API/api-command-outcome-sequence.svg)
 
 Transport acceptance and a local commit do not certify remote completion. Lost responses resolve the same attributable operation before a consequential repeat.
 
@@ -653,9 +752,9 @@ Transport acceptance and a local commit do not certify remote completion. Lost r
 
 **After MVP.** Shared operating and recovery controls still apply where relevant.
 
-[After MVP — Independent authority at Git, execution and deployment boundaries](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-git-execution-deployment.svg)
+[After MVP — Independent authority at Git, execution and deployment boundaries](Diagrams/API/interaction-git-execution-deployment.svg)
 
-[Owning realizations document](#design-record-05-interface-and-api-design-03-use-case-realizations-and-interactions-md) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-git-execution-deployment.puml) · ![interaction git execution deployment](../Diagrams/Archived-Png/Interaction-Git-Execution-Deployment.png)
+[Owning realizations document](#design-record-05-interface-and-api-design-03-use-case-realizations-and-interactions-md) · [PlantUML](Diagrams/API/interaction-git-execution-deployment.puml) · ![interaction git execution deployment](Diagrams/API/interaction-git-execution-deployment.svg)
 
 The overview does not prescribe automatic execution or deployment. Explicit trigger policy, actual execution-enabling evidence and separate target approval remain necessary.
 
@@ -665,10 +764,10 @@ The overview does not prescribe automatic execution or deployment. Explicit trig
 
 The [essential API package](#design-record-05-interface-and-api-design-01-api-protocols-contracts-and-compatibility-md--heading-9-essential-api-and-contract-views) adds four views to the existing command/outcome sequence and contract-evolution diagram:
 
-- [Consumer/provider boundaries](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-boundaries.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-boundaries.puml) · ![api essential boundaries](../Diagrams/Archived-Png/Api-Essential-Boundaries.png)
-- [Protocol selection by actual consumer need](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-selection.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-selection.puml) · ![api essential selection](../Diagrams/Archived-Png/Api-Essential-Selection.png)
-- [Contract-first refinement](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-contract-workflow.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-contract-workflow.puml) · ![api essential contract workflow](../Diagrams/Archived-Png/Api-Essential-Contract-Workflow.png)
-- [Consumer expectations and provider verification](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-consumer-verification.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/api-essential-consumer-verification.puml) · ![api essential consumer verification](../Diagrams/Archived-Png/Api-Essential-Consumer-Verification.png)
+- [Consumer/provider boundaries](Diagrams/API/api-essential-boundaries.svg) · [PlantUML](Diagrams/API/api-essential-boundaries.puml) · ![api essential boundaries](Diagrams/API/api-essential-boundaries.svg)
+- [Protocol selection by actual consumer need](Diagrams/API/api-essential-selection.svg) · [PlantUML](Diagrams/API/api-essential-selection.puml) · ![api essential selection](Diagrams/API/api-essential-selection.svg)
+- [Contract-first refinement](Diagrams/API/api-essential-contract-workflow.svg) · [PlantUML](Diagrams/API/api-essential-contract-workflow.puml) · ![api essential contract workflow](Diagrams/API/api-essential-contract-workflow.svg)
+- [Consumer expectations and provider verification](Diagrams/API/api-essential-consumer-verification.svg) · [PlantUML](Diagrams/API/api-essential-consumer-verification.puml) · ![api essential consumer verification](Diagrams/API/api-essential-consumer-verification.svg)
 
 These views select no public REST API, gateway, GraphQL/gRPC/broker, code-generation tool or versioned endpoint scheme. Module contracts can remain in-process; native Git and protected-byte/provider/control exchanges retain their actual distinct contracts. Consumer expectations cannot override accepted behavior or privacy.
 
@@ -678,10 +777,10 @@ These views select no public REST API, gateway, GraphQL/gRPC/broker, code-genera
 
 The [essential realization package](#design-record-05-interface-and-api-design-03-use-case-realizations-and-interactions-md--heading-8-essential-use-case-realization-views) adds four views to the existing Git/execution/deployment overview and isolated-recovery sequence:
 
-- [Selected actors and existing use-case families](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-use-cases.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-use-cases.puml) · ![interaction essential use cases](../Diagrams/Archived-Png/Interaction-Essential-Use-Cases.png)
-- [Protected retrieval realized through owner contracts](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-realization.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-realization.puml) · ![interaction essential realization](../Diagrams/Archived-Png/Interaction-Essential-Realization.png)
-- [Separate commands across the content journey](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-end-to-end.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-end-to-end.puml) · ![interaction essential end to end](../Diagrams/Archived-Png/Interaction-Essential-End-To-End.png)
-- [Alternate paths and uncertain effects](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-alternates.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/05-interface-and-api-design/diagrams/interaction-essential-alternates.puml) · ![interaction essential alternates](../Diagrams/Archived-Png/Interaction-Essential-Alternates.png)
+- [Selected actors and existing use-case families](Diagrams/API/interaction-essential-use-cases.svg) · [PlantUML](Diagrams/API/interaction-essential-use-cases.puml) · ![interaction essential use cases](Diagrams/API/interaction-essential-use-cases.svg)
+- [Protected retrieval realized through owner contracts](Diagrams/API/interaction-essential-realization.svg) · [PlantUML](Diagrams/API/interaction-essential-realization.puml) · ![interaction essential realization](Diagrams/API/interaction-essential-realization.svg)
+- [Separate commands across the content journey](Diagrams/API/interaction-essential-end-to-end.svg) · [PlantUML](Diagrams/API/interaction-essential-end-to-end.puml) · ![interaction essential end to end](Diagrams/API/interaction-essential-end-to-end.svg)
+- [Alternate paths and uncertain effects](Diagrams/API/interaction-essential-alternates.svg) · [PlantUML](Diagrams/API/interaction-essential-alternates.puml) · ![interaction essential alternates](Diagrams/API/interaction-essential-alternates.svg)
 
 Document 03 reuses the detailed component-owned publication/retrieval/capture/send/calendar/work/Git/executor/file sequences. Its scenario map describes responsibility, not exact criterion closure. The content journey spans deliberate separate actions, not one automatic publish/send/submit transaction. Generic alternate paths complement, rather than replace, each operation's actual contract.
 
@@ -724,3 +823,7 @@ When changing a contract, identify consumers and stored pending payloads, reconc
 [System Design home](../../01-Project-Planning/02-Project-Management-Plan.md#stage-4-system-design) · [Component Design](02-Module-Breakdown.md#design-record-03-component-and-module-design-component-and-module-design-md) · [Diagram catalog](#design-record-05-interface-and-api-design-diagrams-diagram-catalog-md)
 
 </details>
+
+## Endpoint readiness checklist
+
+For every implemented endpoint, record the supported request and response shapes, actor and scope, relevant status codes and compatibility policy. Link contract tests for valid, unauthorized, invalid and conflicting requests. Confirm implementation-specific routes against the candidate before marking the contract stable.

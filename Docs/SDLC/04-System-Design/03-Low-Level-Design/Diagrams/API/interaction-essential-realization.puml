@@ -1,0 +1,25 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+allowmixing
+title Proposed — Use-case realization through owner contracts
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+usecase "UC-D03: protected retrieval" as U
+component "Sharing\nRetrieveRepresentation / current viewer eligibility" as S
+interface "Presentation\nResolvePublication contract" as P
+interface "Files\nResolveUsableArtifact / controlled delivery contract" as F
+interface "Applicable current identity / scope contract" as I
+U ..> S : realized through this collaboration
+S --> P : exact selected publication
+S --> F : exact usable artifact and protected serving
+S --> I : applicable current scope; employer context stays link-scoped
+note bottom of S
+ Public contracts, not private ORM/table access or remote service requirement.
+ Missing variant is not permission to return a draft, another language or old PDF.
+end note
+
+@enduml

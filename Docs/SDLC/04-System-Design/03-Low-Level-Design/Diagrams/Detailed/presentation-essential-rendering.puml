@@ -1,0 +1,28 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Proposed — Version-bound rendering inputs and separate outputs
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+rectangle "Exact draft version\nowner-only preview" as D
+rectangle "Committed publication manifest\ncontent / selection / language / artifact provenance" as P
+rectangle "Identified layout / template inputs\nsection structure / style parameters\nversioning and safe content rules pending" as T
+rectangle "Evaluated safe renderer\nexact input and output contract" as R
+rectangle "Web preview / eligible publication page" as W
+rectangle "Generated PDF\nseparate actual rendition work / Files protection" as F
+rectangle "Print view\nonly if actually selected by source/representation policy" as V
+D --> R : explicit preview, never auto-publish
+P --> R : exact committed revision
+T --> R : reproducibility requires stable inputs
+R --> W
+R --> F : separately report actual generation / availability
+R ..> V : conditional output
+note bottom of R
+ Uploaded PDF is a distinct representation; not silently regenerated or relabeled.
+ Theme/layout edits must not rewrite prior actual-material claims.
+end note
+
+@enduml

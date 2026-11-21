@@ -1,0 +1,30 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title AFTER MVP — Proposed — Conditional event creation and attendee response
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+actor Owner
+participant "Calendar owner" as C
+participant "Provider adapter" as A
+participant Provider as P
+actor Attendee
+Owner -> C : explicitly publish selected local activity
+C -> C : current calendar authority, exact version and intent identity
+alt invitation behavior actually sourced and supported
+ C -> A : reviewed event / attendee intent
+ A -> P : actual permitted create / update
+ P --> A : event identity / actual outcome or uncertainty
+ A --> C : attributable mapping evidence
+ P --> Attendee : invitation if actual provider behavior enables it
+ Attendee -> P : response through actually supported route
+ C -> A : observe permitted event / attendee state
+ A --> C : response observation + freshness, if available
+else capability not established
+ C --> Owner : local activity or explicit unavailable response; no invented invite
+end
+
+@enduml

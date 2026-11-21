@@ -1,0 +1,36 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+title HISTORICAL broader-product proposal — UML package organization — illustrative code structure
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+package "Application composition / entry adapters" as BOOT
+package "Product modules" {
+ package "IdentityAccess" as I
+ package "Presentation" as P
+ package "Sharing" as S
+ package "Applications" as A
+ package "CommunicationCalendar" as C
+ package "Work" as W
+ package "GitCollaboration" as G
+ package "WorkflowDeployment" as X
+ package "FilesOperations" as F
+}
+package "Small technical contracts / primitives" as V
+package "Infrastructure implementations" as INF
+BOOT ..> P : wires handlers / adapters (example)
+BOOT ..> INF : composition
+S ..> P : exported contract only
+A ..> F : exported reference contract
+P ..> V
+INF ..> V : implements technical ports
+legend bottom
+ Within each module: exported application contracts, internal domain/policies and adapters as needed.
+ Concrete namespaces and dependency enforcement remain implementation work.
+ Package nesting is code organization, not database ownership or process isolation.
+endlegend
+@enduml

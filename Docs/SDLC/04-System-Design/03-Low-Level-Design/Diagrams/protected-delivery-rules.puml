@@ -1,0 +1,28 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam shadowing false
+title Protected Delivery Decision Rules
+start
+:Establish current link-scoped viewer context;
+if (Current link / viewer policy valid?) then (yes)
+ :Resolve selected publication, language and requested material;
+ if (Exact selection and download / view eligibility allowed?) then (yes)
+  :Resolve usable exact artifact / representation;
+  if (Material available and authorized?) then (yes)
+   :Deliver only permitted selected content;
+  else (no)
+   :Return safe unavailable / denied outcome;
+  endif
+ else (no)
+  :Return safe denied / hidden outcome;
+ endif
+else (no)
+ :Return safe invalid / changed-access outcome;
+endif
+:Never substitute unrelated language, draft or private artifact;
+stop
+@enduml

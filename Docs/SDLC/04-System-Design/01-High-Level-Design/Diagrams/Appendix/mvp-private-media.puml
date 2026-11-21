@@ -1,0 +1,31 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+title My Files & Media — private storage and selected employer delivery
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam wrapWidth 180
+
+actor "Private owner" as U
+actor "Employer viewer" as V
+rectangle "Core private library\nType / size / quota validation" as L #164E63
+folder "Private bytes\nSame Resumefolio server" as F
+rectangle "Independent resume draft\nExplicit media selection" as R
+rectangle "Separate publication confirmation\nPassword / link-scoped authority" as P #164E63
+rectangle "Protected delivery admission\nFile / PDF / preview / byte range" as D
+cloud "YouTube externally hosted video" as Y
+U --> L : upload or add external link
+L --> F : private upload; no publication
+L --> R : optional explicit selection
+R --> P : publish separately
+V --> D : request exact selected material
+D --> P : check current link / selection / authority
+D --> F : serve only authorized bytes
+P --> Y : simple external embedded playback
+note bottom of F
+ Private uploaded videos are not sent to YouTube.
+ Backups cover bytes and protected references.
+ No heavyweight transcoding or in-product editor.
+end note
+@enduml

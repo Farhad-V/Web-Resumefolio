@@ -1,0 +1,33 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+title Cross-boundary interaction — Applications and Files actual-material capture
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+actor "Authorized owner" as U
+participant "Applications handler" as A
+participant "Files public contract" as F
+database "Owned application state" as DB
+U -> A : actual event / material intent + command / versions
+A -> A : current authority + intended capture provenance
+A -> F : resolve exact usable material and protect reference
+F --> A : protection / actual usability evidence or unavailable
+alt source-required material and current guards satisfied
+ A -> DB : coherent event / manifest / completeness / result commit
+ DB --> A : actual committed capture identity
+ A -> F : finalize using actual committed consumer evidence
+ F --> A : confirmed finalization or unresolved acknowledgment
+ A --> U : actual event and truthful material completeness
+else denied / stale / unavailable material
+ A --> U : safe actual result; no fabricated complete capture
+end
+note over A,F
+ Concrete guard excludes reference registration racing physical deletion.
+ Lost commit/finalization response reconciles same consumer/operation before release.
+ No implicit send, publication, share activation or actual-recipient receipt claim.
+end note
+@enduml

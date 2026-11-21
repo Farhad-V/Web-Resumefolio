@@ -1,0 +1,28 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+title Proposed shared technical components — no universal business service
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+package "Trusted application artifact" {
+ component "Resource-owner handlers / domain policies" as H
+ component "Small technical contracts\nClock / IDs / bounded result types" as C
+ component "Infrastructure adapters\nPersistence / diagnostics / configuration" as A
+ H ..> C : narrow dependency
+ A ..> C : implements contract
+}
+component "Optional telemetry agent / sidecar\nNot selected or deployed" as S #164E63
+database "Restricted diagnostic destination\nFacility / retention pending" as D
+A --> D : evaluated export path
+A ..> S : alternative collection only
+S ..> D
+legend bottom
+ Shared library and sidecar are different packaging/operating choices.
+ No universal Shared domain model, global user singleton, service locator or privileged bypass.
+ A sidecar has no automatic authority to read secrets or every private record.
+endlegend
+@enduml

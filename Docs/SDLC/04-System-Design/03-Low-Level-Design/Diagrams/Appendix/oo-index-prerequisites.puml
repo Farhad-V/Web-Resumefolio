@@ -1,0 +1,26 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Prerequisites and reading dependencies
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+rectangle "Requirements / source decisions" as R
+rectangle "Analysis domain model\nand operation contracts" as A
+rectangle "Architecture drivers\nand module boundaries" as S
+rectangle "01: OO principles" as P
+rectangle "Component-specific realization" as C
+rectangle "05: Evolution procedure" as E
+rectangle "Data / API / security guidance" as X
+R --> A
+R --> S
+A --> P
+S --> P
+P --> C
+X --> C
+C --> E : baseline to assess
+R --> E : behavior to preserve
+
+@enduml

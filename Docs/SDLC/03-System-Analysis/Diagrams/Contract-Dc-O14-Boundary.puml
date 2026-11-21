@@ -1,14 +1,15 @@
 @startuml
 ' OWNER-MVP-2026-11-04 review: Future after MVP. Provider, advanced Sprint/review, or untrusted execution requirement retained as deferred.
-skinparam backgroundColor white
+skinparam backgroundColor #0D1525
+skinparam defaultFontColor #EDF4FF
 skinparam defaultFontName Segoe UI
 skinparam defaultFontSize 13
 skinparam shadowing false
-skinparam ArrowColor #526B7B
-skinparam rectangleBackgroundColor #EDF4FB
-skinparam rectangleBorderColor #526B7B
-skinparam noteBackgroundColor #FFF3DF
-skinparam noteBorderColor #B99557
+skinparam ArrowColor #91AED1
+skinparam rectangleBackgroundColor #1A2940
+skinparam rectangleBorderColor #91AED1
+skinparam noteBackgroundColor #4A302B
+skinparam noteBorderColor #F1AD8A
 skinparam nodesep 38
 skinparam ranksep 42
 top to bottom direction
@@ -16,7 +17,7 @@ top to bottom direction
 title AFTER MVP — DC-O14 — Unlink a local provider mapping
 rectangle "BEFORE / ELIGIBILITY\nLocal association identified; provider may\nbe disconnected" as Before
 rectangle "CONFIRMED SUCCESS ONLY\nOnly intended local mapping removed if\nconfirmed" as After
-rectangle "FRAME / PROTECTED MEANING\nProvider event is not deleted by unlink;\nlocal authority still required" as Frame #DFF1EA
+rectangle "FRAME / PROTECTED MEANING\nProvider event is not deleted by unlink;\nlocal authority still required" as Frame #17405A
 Before --> After : DC-O14\npermitted effect actually confirmed
 After -[hidden]down-> Frame
 note bottom of Before

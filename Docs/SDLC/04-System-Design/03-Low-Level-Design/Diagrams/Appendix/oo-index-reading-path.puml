@@ -1,0 +1,25 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Section learning path
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+rectangle "Before: architecture drivers / boundaries\nAnalysis domain + operation contracts" as A
+rectangle "01: Principles and OO approach\nRoles, invariants, patterns, collaboration" as B
+rectangle "Apply: actual component package\nClasses / algorithms / scenarios / constraints" as C
+rectangle "05: Evolution and technical debt\nAssess changes, compatibility and evidence" as D
+rectangle "Record: ADR + review / handoff\nActual candidate and disposition" as E
+A --> B
+B --> C
+C --> D : when reviewing or changing
+D --> C : refine affected realization
+D --> E
+note bottom of B
+ Only 01 and 05 exist in this folder.
+ Numbers 02–04 are unused stable numbering gaps.
+end note
+
+@enduml

@@ -35,3 +35,7 @@ Start with [isolated project setup](../05-Agile-Iterative-Development/01-Project
 | <a id="pbi-034"></a>[PBI-034](https://github.com/Farhad-V/Web-Resumefolio/issues/41) | Enforce storage reservations and bounded Git/media admission | PBI-002, PBI-030 | AFO / QSR / GIT; G2; G5 |
 
 [Recorded package details and deferred work](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/Project-Management/product-backlog.md).
+
+## Readiness and evidence
+
+A work item is ready to select when its expected outcome, acceptance checks, prerequisites and owning design are clear. If the work is too broad to demonstrate, split by observable user outcome. Capture actual results and follow-up on the existing issue. Keep deferred work out of the selected sprint scope unless the scope decision is updated.

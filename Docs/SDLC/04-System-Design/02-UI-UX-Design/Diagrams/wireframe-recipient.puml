@@ -1,0 +1,23 @@
+@startsalt
+!theme cyborg
+skinparam backgroundColor #EEEEEE
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam shadowing false
+skinparam monochrome reverse
+{+
+ <b>Selected professional presentation
+ Content language: eligible variant
+ ==
+ Published resume / portfolio content
+ Selected professional sections
+ Selected media only
+ ==
+ <b>Eligible downloads
+ [Download selected PDF]
+ Availability feedback when not usable
+ ==
+ Access is limited to this shared material
+ No owner editing or workspace navigation
+}
+@endsalt

@@ -1,0 +1,52 @@
+@startuml
+!theme plain
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam ArrowFontColor #CBD5E1
+skinparam shadowing false
+skinparam componentStyle uml2
+skinparam component {
+ BackgroundColor #1F2937
+ BorderColor #94A3B8
+ FontColor #F3F4F6
+}
+skinparam package {
+ BackgroundColor #111827
+ BorderColor #67E8F9
+ FontColor #67E8F9
+}
+left to right direction
+title MVP Components and Contract Dependencies
+package "Resumefolio Core" {
+ component "Identity and Access" as identity #164E63
+ component "Professional Presentation" as presentation #164E63
+ component "Representation and Sharing" as sharing #164E63
+ component "Files and Operations" as files #164E63
+ component "Applications" as applications #164E63
+ component "Scoped ProjectForge Adapter" as adapter
+ presentation ..> identity : Current actor authority
+ sharing ..> presentation : Selected published revision
+ sharing ..> files : Authorized artifact retrieval
+ applications ..> presentation : Exact selected revision
+ applications ..> files : Protect exact artifact references
+ adapter ..> identity : Actor context
+}
+package "ProjectForge" {
+ component "Scoped API Entry" as api #312E81
+ component "Git Collaboration" as git #312E81
+ component "Work Management" as work #312E81
+ api ..> git : Repository queries / grants
+ api ..> work : Issue / board commands
+ work ..> git : Repository authority
+ git ..> identity : Current entitlement status only
+ work ..> identity : Current entitlement status only
+}
+adapter ..> api : Authenticated user-scoped JSON
+legend bottom
+  Dotted arrows: logical contract dependency, not a complete execution sequence.
+  Local calls stay inside the owning application; cross-system calls use scoped contracts.
+  Each protected entry point also enforces its applicable current authorization policy.
+endlegend
+@enduml

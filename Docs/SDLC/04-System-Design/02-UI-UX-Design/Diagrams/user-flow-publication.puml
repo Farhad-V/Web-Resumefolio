@@ -1,0 +1,38 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam shadowing false
+title Tailor, Save and Explicitly Publish
+start
+:Open permitted draft and identify language/version;
+:Compare selected profile changes with current draft;
+if (Apply selected changes?) then (yes)
+ :Submit selected changes with expected version;
+ if (Authorized, valid and current?) then (yes)
+  :Show Saved Draft and unchanged Published Revision;
+ else (no)
+  :Show validation / denial / conflict;
+  :Preserve permitted intent and review current state;
+  stop
+ endif
+else (no)
+ :Return to draft without applying selection;
+endif
+:Preview intended draft;
+if (Separately confirm publication?) then (yes)
+ :Validate current authority, version and selected artifacts;
+ if (Publication confirmed?) then (yes)
+  :Show exact Published Revision;
+  :Show PDF and sharing availability separately;
+ else (no / unknown)
+  :Show actual denied, conflict, pending or unknown result;
+  :Resolve recorded outcome before unsafe repeat;
+ endif
+else (no)
+ :Keep publication unchanged;
+endif
+stop
+@enduml

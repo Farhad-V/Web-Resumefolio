@@ -1,0 +1,29 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title MIXED CORE / FUTURE — Proposed — Candidate task lifecycle versus acceptance
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+[*] --> Backlog : create under reviewed relationship policy
+Backlog --> Todo : explicitly select / plan
+Todo --> InProgress : permitted start
+InProgress --> Review : request review if adopted
+Review --> Done : actual task completion criteria satisfied
+Review --> InProgress : rework
+Todo --> Cancelled : explicit permitted cancellation
+InProgress --> Cancelled : explicit permitted cancellation
+note right of Done
+ Illustrative status vocabulary only; Q-D18 remains proposed.
+ Task Done does not mean backlog item accepted.
+ Item acceptance and Sprint Goal outcome are separate decisions.
+end note
+note bottom of Review
+ This is a selected transition example, not a complete allowed-transition matrix.
+ Board column labels and drag order cannot bypass current guards.
+ Reopen/correction and additional transitions need source disposition.
+end note
+
+@enduml

@@ -1,0 +1,49 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+title MIXED CORE / FUTURE — Big-picture event-storming board — proposed synthesis, no workshop performed
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+left to right direction
+rectangle "Presentation / sharing lane" {
+ rectangle "Owner: apply selected changes" as P1 #164E63
+ rectangle "Draft changes saved" as P2 #164E63
+ rectangle "Owner: separately confirm publication" as P3 #164E63
+ rectangle "Publication revision recorded" as P4 #164E63
+ P1 --> P2
+ P2 ..> P3 : separate human decision
+ P3 --> P4
+}
+rectangle "Actual-material lane" {
+ rectangle "Owner: record actual event + materials" as A1 #164E63
+ rectangle "Submission capture recorded" as A2 #164E63
+ rectangle "Completeness depends on actual usable references" as A3 #164E63
+ A1 --> A2
+ A2 --> A3
+}
+rectangle "Git / execution lane" {
+ rectangle "Authorized actor: merge exact revisions" as G1 #164E63
+ rectangle "Native ref change observed" as G2 #164E63
+ rectangle "Evaluate supported trigger + real enabling gates" as G3 #164E63
+ rectangle "Admit attributable attempt OR block" as G4 #164E63
+ G1 --> G2
+ G2 --> G3
+ G3 --> G4
+}
+rectangle "Work lane" {
+ rectangle "Authorized actor: close Sprint period" as W1 #164E63
+ rectangle "Period outcome recorded" as W2 #164E63
+ rectangle "Goal outcome / item acceptance remain independent" as W3 #164E63
+ W1 --> W2
+ W2 --> W3
+}
+legend bottom
+ Blue = command / actor intent; orange = candidate past-tense domain fact; purple = policy / constraint.
+ Hotspots: reference/deletion guards; actual-material provenance; execution feasibility; detailed source policy.
+ No event bus, event sourcing, automatic deployment or new accepted event schema is selected.
+endlegend
+@enduml

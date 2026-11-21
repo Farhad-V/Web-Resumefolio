@@ -1,0 +1,31 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+title Proposed transaction boundary — local atomicity, external observations
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+rectangle "Current attributable command / expected versions" as IN
+rectangle "Evaluated local transaction boundary" {
+ rectangle "Owner invariant / revision / uniqueness guards" as G
+ rectangle "Owned state mutation" as S
+ rectangle "Attributable command result + required pending intent" as P
+ G --> S
+ S --> P
+}
+rectangle "Committed durable work discovery" as D
+rectangle "Scoped external adapter / native Git / storage effect" as E
+rectangle "Guarded attributable observation / reconciliation" as O
+IN --> G
+P --> D : only committed intent
+D --> E : outside local transaction
+E --> O : actual confirmed / partial / unknown evidence
+legend bottom
+ No SQL lock is held while waiting for provider/runner/target work.
+ Physical bytes and native refs are not rolled back by SQL; cross-owner reference guards remain explicit.
+ Stored result, dispatched request and actual effect are distinct facts.
+endlegend
+@enduml

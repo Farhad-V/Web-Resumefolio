@@ -1,0 +1,27 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Proposed — Essential representation routes
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+rectangle "Exact committed publication manifest\ncontent / language / layout identity / evidence" as P
+rectangle "Eligible web representation" as W
+rectangle "Explicit generated PDF work\nexact renderer + publication input identity" as G
+rectangle "Independent admitted uploaded PDF\nactual declared language / artifact identity" as U
+rectangle "Files usable artifact + protected reference" as F
+rectangle "Current link/viewer + mode/language eligibility\ncontrolled exact delivery" as D
+P --> W
+P --> G
+G --> F : actual generation result, not metadata-only success
+U --> F : independent upload association, not conversion
+W --> D
+F --> D
+note bottom of D
+ No draft, other-language or old-PDF fallback.
+ JSON/image/embed and HTTP Accept negotiation are not selected.
+end note
+
+@enduml

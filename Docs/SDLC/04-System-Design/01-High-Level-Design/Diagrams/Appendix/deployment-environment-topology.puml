@@ -1,0 +1,35 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+title Proposed environment separation — contexts, not three new paid hosts
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+rectangle "Identified versioned release / dependency / schema manifest" as R
+node "Development context" {
+ artifact "Local controlled app / tests" as DEV
+ database "Synthetic development state" as DD
+ DEV --> DD
+}
+node "Isolated staging / recovery rehearsal context\nFacility pending; may be temporary" {
+ artifact "Candidate release + guarded workers" as ST
+ database "Controlled compatible state / restricted keys" as SD
+ ST --> SD
+}
+node "Production candidate context\nActual promotion/readiness pending" {
+ artifact "Reviewed exact release + configuration identity" as PR
+ database "Authorized operating state / private artifacts" as PD
+ PR --> PD
+}
+R --> DEV
+R --> ST
+R --> PR : only reviewed promotion
+legend bottom
+ Separate data/credentials/addresses and outbound-effect controls are required in each actual facility.
+ A database name or namespace alone is not sufficient isolation; staging must not send/deploy with production credentials.
+ Production data is not copied into dev/staging by default; no automatic database promotion is implied.
+endlegend
+@enduml

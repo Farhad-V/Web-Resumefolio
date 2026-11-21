@@ -1,0 +1,20 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title AFTER MVP — Proposed — Communication and calendar interfaces
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+component "LC-05 Communication / Calendar" as C
+interface "Compose / reviewed send / local activity / mapping\nprovided contracts" as P
+interface "Current authority\nrequired" as A
+interface "Provider capability\nrequired" as E
+interface "Protected artifacts\nrequired" as F
+C -right- P
+C -up-( A
+C -left-( E
+C -down-( F
+
+@enduml

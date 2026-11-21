@@ -1,0 +1,37 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+title Logical concern dataflow across trust boundaries
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+rectangle "Untrusted input domain" {
+ rectangle "E1 Caller / external content source" as U
+}
+rectangle "Trusted application responsibility boundary" {
+ usecase "P1\nValidate / establish attributable context" as V
+ usecase "P2\nApply current owner authority / invariants" as A
+ usecase "P3\nProduce permitted result / bounded metadata" as R
+ V --> A : validated intent / context
+ A --> R : actual scoped outcome
+}
+rectangle "Restricted state / secret domain" {
+ database "D1 Owned state / pending intent / observations" as DB
+}
+rectangle "Restricted diagnostic domain" {
+ database "D2 Sanitized evidence / telemetry" as LOG
+}
+U --> V : untrusted identifiers / content / credentials
+A --> DB : guarded owned mutation / intent
+DB --> A : current permitted state / observed effect
+R --> U : bounded permitted result
+R --> LOG : restricted metadata, not raw credential/content
+legend bottom
+ Ovals are data transformations, stores are logical; arrows carry data, not authority or control order.
+ Trust boxes require actual validation/access/secret controls; they do not prove physical isolation.
+ Provider/executor/target effect boundaries remain scoped in their owning designs.
+endlegend
+@enduml

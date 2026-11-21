@@ -1,0 +1,36 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Proposed — Create link, verify viewer and admit exact retrieval
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+actor Owner
+participant Sharing as S
+participant "Current authority / verifier" as A
+participant "Presentation / Files contracts" as F
+actor Viewer
+Owner -> S : explicit exact link/content configuration
+S -> A : current owner management scope
+S -> F : intended publication / exact usable reference evidence
+S -> S : guarded configuration + protected verifier reference + command result
+S --> Owner : actual bounded management outcome
+Viewer -> S : intended link + supplied password proof
+S -> A : current eligibility and actual verification / abuse controls
+alt proof valid and link currently eligible
+ S -> S : establish bounded viewer context tied to current generation
+ Viewer -> S : exact web / PDF / language request
+ S -> S : recheck current link/context/mode/content at protected admission
+ S -> F : exact permitted manifest / usable bytes and delivery protection
+ F --> Viewer : controlled permitted output or safe unavailable
+else denied / disabled / expired / unavailable
+ S --> Viewer : safe bounded refusal; no private fallback
+end
+note over S,F
+ Every later request, range request and cache route needs current checks.
+ Early positive verification is not perpetual byte-access authority.
+end note
+
+@enduml

@@ -1,0 +1,24 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam shadowing false
+title Repeatable Isolated Setup and Evidence
+start
+:Confirm selected stack, work item and actual target paths;
+:Record effective compatible tools / required extensions;
+:Resolve and lock dependencies for both applications;
+:Provision separate keys, sessions, databases and private roots;
+:Verify safe test targets before migrations / fixtures;
+:Run actual isolated install, migration, build and basic checks;
+:Verify receiving entry, owner-local jobs and required facilities;
+if (Clean setup repeatable with evidence?) then (yes)
+ :Record actual commands, versions, revision and results;
+else (no)
+ :Record failed prerequisite / blocker and corrective work;
+endif
+:Review outcome without claiming dependent gates passed;
+stop
+@enduml

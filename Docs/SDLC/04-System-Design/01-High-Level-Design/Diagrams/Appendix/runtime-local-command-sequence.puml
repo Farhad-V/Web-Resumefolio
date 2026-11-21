@@ -1,0 +1,35 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+title Proposed guarded local command and duplicate result lookup
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+actor Caller
+participant "Web / owner handler" as H
+participant "Current authority" as A
+database "Owned records / command result / pending intent" as DB
+Caller -> H : intended mutation + command identity + expected version
+H -> A : verify current actor / resource / action
+A --> H : scoped context or denial
+alt permitted intent
+ H -> DB : begin guarded transaction; compare prior command intent
+ alt matching duplicate with permitted prior result
+  DB --> H : actual recorded result
+ else new command and valid current guards
+  H -> DB : mutate owned state + result + required pending intent
+  DB --> H : committed result or explicit conflict
+ end
+ H --> Caller : actual local result / pending reference
+else denied / invalid
+ H --> Caller : safe refusal; no admitted mutation
+end
+note over H,DB
+ No provider/runner call while holding the local transaction.
+ Lost response resolves the same command; it is not proof of rollback.
+ Concrete grant/version/uniqueness guards remain evaluated implementation work.
+end note
+@enduml

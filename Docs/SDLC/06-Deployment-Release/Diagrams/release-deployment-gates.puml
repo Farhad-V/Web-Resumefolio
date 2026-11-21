@@ -1,0 +1,35 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam shadowing false
+title Verified Release and Separate Deployment Records
+start
+:Identify candidate, locked build and migration/configuration set;
+:Verify exact scope, security, compatibility and recovery gates;
+if (Required release evidence complete and approved?) then (yes)
+ :Prepare verified scope, interfaces and limitations in release notes;
+ :Under separate publication authority, tag exact revision
+and publish release from that tag;
+else (no)
+ :Keep release planned and record unmet gates;
+ stop
+endif
+:Confirm intended environment and rehearsed runbook prerequisites;
+if (Deployment authorized and prerequisites valid?) then (yes)
+ :Roll out same verified candidate using reviewed steps;
+ :Verify revision, migrations, health and essential journeys;
+ if (Post-rollout checks pass?) then (yes)
+  :Record deployed revision, actual results and handoff;
+ else (no)
+  :Contain affected activity and preserve evidence;
+  :Use compatible rollback or approved data recovery;
+  :Reverify actual recovery result and record incident;
+ endif
+else (no)
+ :Keep deployment unperformed;
+endif
+stop
+@enduml

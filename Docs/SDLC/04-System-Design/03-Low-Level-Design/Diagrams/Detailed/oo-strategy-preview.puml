@@ -1,0 +1,26 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+allowmixing
+title Proposed — Optional Strategy preview: exact representation resolution
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+skinparam maxMessageSize 65
+
+class "ResolveRepresentationHandler" as H
+interface "RepresentationResolver" as S {
+ +resolve(exactSelection) : RepresentationOutcome
+}
+class "GeneratedResolver" as G
+class "UploadedResolver" as U
+class "ExplicitSelectionPolicy" as P
+H --> P : validate requested kind / language / eligibility
+P --> S : select eligible implementation
+G ..|> S
+U ..|> S
+H --> S : execute selected resolution
+
+@enduml

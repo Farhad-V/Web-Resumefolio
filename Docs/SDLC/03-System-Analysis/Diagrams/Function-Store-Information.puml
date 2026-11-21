@@ -1,7 +1,8 @@
 @startuml
 ' OWNER-MVP-2026-11-04 review: MVP systems. Correct information/store ownership and prevent future execution or shared core/Git stores.
 title MVP DFD — core and separate ProjectForge information owners
-skinparam backgroundColor white
+skinparam backgroundColor #0D1525
+skinparam defaultFontColor #EDF4FF
 skinparam shadowing false
 skinparam defaultFontName Arial
 skinparam wrapWidth 190
@@ -24,7 +25,7 @@ U --> C
 C <--> W : authenticated user-scoped API
 C <--> G : authenticated user-scoped API
 CL --> G : real native transfer\nclient-created commits
-rectangle "AFTER MVP: F05 private communications / advanced F06 and F07 / F08 execution" as FUT #F8EBD7
+rectangle "AFTER MVP: F05 private communications / advanced F06 and F07 / F08 execution" as FUT #4A302B
 legend bottom
  Arrows carry information; they imply no common database, cross-system SQL transaction or permission inheritance.
 endlegend

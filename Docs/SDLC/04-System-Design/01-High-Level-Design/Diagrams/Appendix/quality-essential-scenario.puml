@@ -1,0 +1,28 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+title Proposed — Concrete quality scenario and evidence contract
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+rectangle "Source\nAuthorized viewer / competing owner change" as S
+rectangle "Stimulus\nExact private representation request\nwhile link/grant/mode changes" as T
+rectangle "Artifact\nSharing / Identity / Files serving boundary" as A
+rectangle "Environment\nConcurrent change; warm or cold cache\nactual selected candidate and mechanism" as E
+rectangle "Response\nOnly current permitted exact content admitted\ntruthful denial / unavailable; no private fallback" as R
+rectangle "Response measure\nActual admission/revocation ordering\npermitted vs prohibited byte observations\nlatency/errors recorded separately" as M
+S --> T
+T --> A
+E --> A : scenario context
+A --> R
+R --> M
+note bottom of M
+ QA-01 example, not a test result or accepted numerical target.
+ Already emitted bytes cannot be recalled.
+ Fast responses cannot offset unauthorized disclosure.
+end note
+
+@enduml

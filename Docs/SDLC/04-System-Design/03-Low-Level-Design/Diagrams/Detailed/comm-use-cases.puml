@@ -1,0 +1,27 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title AFTER MVP — Proposed — Owner communication and calendar use cases
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+left to right direction
+actor "Authorized owner" as U
+rectangle "LC-05" {
+ usecase "Read / compose / save draft" as D
+ usecase "Review and deliberately send / reply" as S
+ usecase "Save local activity / reminder intent" as L
+ usecase "Explicitly publish selected activity" as P
+ usecase "Review invitation / attendee capability\nonly if source and adapter permit" as I
+ usecase "Reconcile / disconnect selected account" as R
+}
+U --> D
+U --> S
+U --> L
+U --> P
+U --> I
+U --> R
+
+@enduml

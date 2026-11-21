@@ -1,0 +1,31 @@
+@startsalt
+!theme cyborg
+skinparam backgroundColor #EEEEEE
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam shadowing false
+skinparam monochrome reverse
+{+
+ { Resumefolio | Account: invited user | [Account] }
+ { Dashboard | Profile | Resumes / Portfolio | Files | Applications }
+ ==
+ { <b>Dashboard | [Create application] }
+ {+
+ <b>Applications and follow-up
+ Application / status / next action / follow-up
+ [Open application] | [View all applications]
+ }
+ {+
+ <b>Professional materials
+ Draft name / language / saved state
+ Published revision shown separately
+ [Open draft] | [View resumes]
+ }
+ {+
+ <b>ProjectForge
+ Current connection / permission status
+ [Open permitted repositories]
+ }
+ { Status region: loading / empty / unavailable as applicable }
+}
+@endsalt

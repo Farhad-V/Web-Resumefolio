@@ -1,0 +1,24 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam shadowing false
+title Sprint 01 - Proposed Setup Goal and Evidence Cycle
+start
+:Planning: refine setup issue, prerequisites and exact criteria;
+:Confirm selected goal/work before marking execution started;
+:Execute separately authorized isolated setup;
+:Record actual revision, commands and S01 checks;
+:Review demonstrated outcome against goal;
+if (Required setup evidence sufficient?) then (yes)
+ :Record verified scope only;
+else (no / not executed)
+ :Record unmet checks, blocker and follow-up;
+endif
+:Retrospective: inspect actual process observations;
+:Select one concrete improvement and success signal;
+:Carry work and improvement into next planning record;
+stop
+@enduml

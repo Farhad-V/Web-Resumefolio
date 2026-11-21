@@ -1,0 +1,28 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Proposed — Refactoring/migration work lifecycle
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+[*] --> Identified
+Identified --> Assessed : baseline + source impact
+Assessed --> Planned : remedy / compatibility / evidence plan
+Planned --> Changing : authorized bounded scope
+Changing --> Verifying : candidate ready
+Verifying --> Changing : failed checks; correct
+Verifying --> Ready : required checks pass
+Ready --> Closed : actual disposition + retained evidence
+Changing --> Stopped : unsafe or incompatible result
+Stopped --> Assessed : assess actual effects / recovery
+Closed --> [*]
+note right of Ready
+ Not product state enums.
+ Ready is not owner acceptance
+ or deployment authorization.
+end note
+
+@enduml

@@ -1,0 +1,37 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title AFTER MVP — Proposed reviewed send and uncertain response handling
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam shadowing false
+
+actor User
+participant "Communication handler" as H
+database "Intent / attempt records" as DB
+participant "Bounded worker" as W
+participant "Evaluated provider adapter" as P
+User -> H : explicit reviewed sender/recipient/content/artifacts
+H -> H : current authority + intent/version identity
+H -> DB : commit pending intent + attributable attempt
+DB --> H : local commit outcome
+H --> User : permitted pending/result reference
+W -> DB : atomically claim exact attempt
+W -> W : recheck capability and dispatch eligibility
+W -> P : send exact reviewed intent
+alt actual provider result observed
+ P --> W : acceptance / rejection evidence
+ W -> DB : record supported outcome under current claim
+else response lost after possible dispatch
+ W -> DB : retain UNKNOWN + bounded evidence
+ note over W,P
+ No blind resend on queue retry or lease expiry.
+ Reconcile the same attempt only through actual supported evidence.
+ end note
+end
+note over H,DB
+ Acceptance is not receipt or application progress.
+ No automatic submitted-material capture.
+end note
+@enduml

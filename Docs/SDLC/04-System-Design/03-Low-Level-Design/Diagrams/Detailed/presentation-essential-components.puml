@@ -1,0 +1,26 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Proposed — Presentation ownership and provided/required contracts
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+component "LC-02 Professional Presentation\nsource / independent drafts / publication manifests" as P
+interface "Save / compare / apply / preview / publish\nprovided" as C
+interface "Current authority\nrequired" as I
+interface "Files protection / usability\nrequired" as F
+component "Representation / Sharing\nrendition and viewer/link eligibility" as S
+component "Applications\nindependent actual materials" as A
+P -right- C
+P -up-( I
+P -left-( F
+S --> C : exact permitted committed manifest
+A --> C : exact permitted source/revision provenance
+note bottom of P
+ Logical modules, not separate profile/portfolio/theme microservices.
+ CDN, analytics and external social sync are not selected.
+end note
+
+@enduml

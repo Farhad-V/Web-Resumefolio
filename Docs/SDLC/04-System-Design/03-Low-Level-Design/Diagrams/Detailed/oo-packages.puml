@@ -1,0 +1,28 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+allowmixing
+title Proposed — Package diagram: acyclic source dependencies
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+skinparam maxMessageSize 65
+
+package "Composition root" as ROOT
+package "Presentation transport" as WEB
+package "Presentation application" as APP
+package "Presentation domain" as DOMAIN
+package "Presentation required ports" as PORTS
+package "Infrastructure adapters" as INFRA
+ROOT ..> WEB
+ROOT ..> INFRA
+WEB ..> APP
+APP ..> DOMAIN
+APP ..> PORTS
+PORTS ..> DOMAIN : contract values
+INFRA ..> PORTS
+INFRA ..> DOMAIN : mapping values
+
+@enduml

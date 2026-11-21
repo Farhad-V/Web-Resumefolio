@@ -1,21 +1,22 @@
 @startuml
 ' OWNER-MVP-2026-11-04 review: Mixed MVP / future. Retained broader-product associations require explicit future node labels; MVP uses only core/basic ProjectForge.
-skinparam backgroundColor white
+skinparam backgroundColor #0D1525
+skinparam defaultFontColor #EDF4FF
 skinparam defaultFontName Segoe UI
 skinparam defaultFontSize 13
 skinparam shadowing false
 skinparam roundcorner 5
-skinparam ArrowColor #526B7B
+skinparam ArrowColor #91AED1
 skinparam sequenceMessageAlign center
-skinparam sequenceParticipantBackgroundColor #DFF1EF
-skinparam sequenceParticipantBorderColor #526B7B
-skinparam sequenceActorBorderColor #526B7B
-skinparam sequenceLifeLineBorderColor #9AAEB7
-skinparam sequenceGroupBackgroundColor #F8FAFC
-skinparam sequenceGroupBorderColor #7B919E
-skinparam sequenceDividerBackgroundColor #EDF4FB
-skinparam noteBackgroundColor #FFF3DF
-skinparam noteBorderColor #B99557
+skinparam sequenceParticipantBackgroundColor #17405A
+skinparam sequenceParticipantBorderColor #91AED1
+skinparam sequenceActorBorderColor #91AED1
+skinparam sequenceLifeLineBorderColor #91AED1
+skinparam sequenceGroupBackgroundColor #1A2940
+skinparam sequenceGroupBorderColor #91AED1
+skinparam sequenceDividerBackgroundColor #1A2940
+skinparam noteBackgroundColor #4A302B
+skinparam noteBorderColor #F1AD8A
 skinparam maxMessageSize 220
 hide footbox
 autonumber

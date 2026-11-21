@@ -1,0 +1,43 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+title Option C — UML component comparison (deferred default)
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam wrapWidth 190
+
+component "Web client / entry interface" as H
+package "Identity deployment candidate" {
+ component "Identity service" as I
+ database "Identity-owned data" as DI
+ I --> DI
+}
+package "Content deployment candidate" {
+ component "Presentation / application service" as P
+ database "Content-owned data" as DP
+ P --> DP
+}
+package "Work deployment candidate" {
+ component "Communication / work service" as W
+ database "Work-owned data" as DW
+ W --> DW
+}
+package "Coordination deployment candidates" {
+ component "Git / workflow / file services" as G
+ database "Coordination-owned data" as DG
+ G --> DG
+}
+H --> I
+H --> P
+H --> W
+H --> G
+legend bottom
+ Entry calls and cross-service collaboration use authenticated scoped network contracts.
+ Grouped boxes keep this option schematic, not a final service split.
+ Independent release potential adds distributed consistency/operations work.
+ External isolation/target/recovery gates remain for every option.
+endlegend
+@enduml

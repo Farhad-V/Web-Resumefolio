@@ -1,0 +1,29 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+title Candidate resilience composition — not a generic retry-all wrapper
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+rectangle "Operation-specific eligibility / repetition policy" as P
+rectangle "Bulkhead / admission budget\nBounded work class and shared headroom" as B
+rectangle "Circuit breaker if justified\nScoped dependency health/admission" as C
+rectangle "Adapter with evaluated deadline / timeout\nTimeout does not confirm remote stop" as A
+rectangle "Actual outcome classification" as O
+rectangle "Safe read / proven no-effect local failure\nBounded retry only when contract permits" as R
+rectangle "Possible consequential effect\nSame-attempt reconciliation, no blind repeat" as U
+P --> B
+B --> C
+C --> A : closed / eligible controlled probe
+A --> O
+O --> R : known safe eligibility
+O --> U : partial / unknown effect
+legend bottom
+ Values, backend, isolation budget, breaker scope and probe mechanism require evaluation.
+ Bulkheads reduce resource coupling, not security isolation. A timeout/breaker cannot prove no external effect.
+ Backoff, jitter and attempt limits apply only after actual repetition safety is established.
+endlegend
+@enduml

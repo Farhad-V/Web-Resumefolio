@@ -1,0 +1,32 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+title HISTORICAL broader-product proposal — Optional Kubernetes-style alternative — not adopted for the initial candidate
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+rectangle "Cluster control plane\nNot provisioned; operating cost / compatibility gate" as CP
+node "Trusted workload cluster candidate" {
+ rectangle "Namespace: trusted-app (illustrative)" {
+  rectangle "Web Deployment -> web Pods\nScoped service identity / resources" as W
+  rectangle "Worker Deployment -> worker Pods\nExact attempts / claim guards" as J
+  rectangle "Scheduler job responsibility\nOverlap / uniqueness controls" as S
+ }
+ rectangle "Service / ingress controller\nImplementation / policy pending" as I
+ I --> W
+}
+rectangle "External or separately evaluated isolated executor\nNamespace alone is not untrusted-code containment" as E #164E63
+rectangle "Durable database / private storage\nPersistence and recovery separately evaluated" as D
+CP ..> W : desired-state control
+W --> D
+J --> D
+J --> E : gated scope only
+legend bottom
+ Clusters, namespaces, Pods and Deployments illustrate a possible orchestration mapping only.
+ No replicas, node sizes, manifests, storage class or network-policy implementation is selected.
+ A namespace/container label cannot prove hostile job isolation, cross-tenant privacy or HA.
+endlegend
+@enduml

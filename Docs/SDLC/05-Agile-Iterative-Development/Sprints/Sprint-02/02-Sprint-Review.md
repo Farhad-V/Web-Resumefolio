@@ -21,3 +21,13 @@ Record the implementation revision, changed components and any deviations. Link 
 **Status:** not started.
 
 Record the test case, tested revision, environment, actual result and unresolved failures.
+
+## Sprint 02 test execution record
+
+**Status:** not started. Once the sprint selects a scope, list its criteria and test cases before execution.
+
+| Case and criterion | Candidate and environment | Expected result | Observed result and evidence | Status / follow-up |
+| --- | --- | --- | --- | --- |
+| Pending sprint selection | Pending | Pending | No evidence recorded | Not executed |
+
+Use the [STLC workflow](../../02-Test-Strategy.md#software-testing-life-cycle-stlc) for environment readiness, defects, regression and closure.

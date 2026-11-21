@@ -1,0 +1,34 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+title HISTORICAL broader-product proposal — Candidate bounded contexts — meaning and invariant ownership
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+rectangle "Resumefolio trusted product model" {
+ rectangle "Identity / Access\nAccount, session, grant\nCurrent eligibility" as I
+ rectangle "Presentation\nSource, draft, publication\nIndependent content / confirmation" as P
+ rectangle "Sharing\nLink, viewer, rendition\nCurrent permitted delivery" as S
+ rectangle "Applications\nPreparation, submission, actual material\nHistorical provenance / completeness" as A
+ rectangle "Communication / Calendar\nCapability, send attempt, mapping\nLocal intent vs provider truth" as C
+ rectangle "Work\nItem, task, Sprint Backlog\nGoal / selection / delivery plan" as W
+ rectangle "Git Collaboration\nRepository, ref, review\nExact native revision authority" as G
+ rectangle "Workflow / Deployment\nRun, attempt, target approval\nGated effect / observation" as X
+ rectangle "Files / Operations\nArtifact, reservation, reference\nActual usability / safe reclamation" as F
+ I -[hidden]right-> P
+ P -[hidden]right-> S
+ A -[hidden]right-> C
+ C -[hidden]right-> W
+ G -[hidden]right-> X
+ X -[hidden]right-> F
+ I -[hidden]down-> A
+ A -[hidden]down-> G
+}
+legend bottom
+ Candidate language/invariant boundaries, not services, tables or deployment nodes.
+ Resource, event, project and completion meanings remain context-specific.
+endlegend
+@enduml

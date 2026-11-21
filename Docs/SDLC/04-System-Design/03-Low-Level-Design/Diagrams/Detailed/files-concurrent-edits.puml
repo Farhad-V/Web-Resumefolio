@@ -1,0 +1,26 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Proposed — Concurrent reference replacement conflict resolution
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+start
+:Receive intended replacement with expected association version;
+:Validate new artifact usability and current authority;
+:Protect new reference against deletion;
+:Acquire actual owner/version coordination;
+if (Expected association still current?) then (yes)
+ :Commit exact intended association switch;
+ :Finalize new protection;
+ :Release old association only if no longer required;
+else (no)
+ :Report conflict; preserve old association;
+ :Reconcile candidate protection using actual no-commit evidence;
+endif
+:Retain all other publication / submission / attachment protections;
+stop
+
+@enduml

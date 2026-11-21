@@ -1,0 +1,21 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+allowmixing
+title Proposed — Applications layered architecture
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+rectangle "Presentation\nApplication forms / API projection" as P
+rectangle "Application\nSavePreparation / RecordProgress\nCaptureActualSubmission / CorrectSubmissionRecord" as A
+rectangle "Domain\nApplicationRecord / ProgressEvent\nSubmissionEvent / MaterialSet / Correction" as D
+interface "Required narrow contracts" as R
+rectangle "Infrastructure\nOwned persistence / public owner adapters" as I
+P --> A
+A --> D
+A --> R
+I ..|> R
+
+@enduml

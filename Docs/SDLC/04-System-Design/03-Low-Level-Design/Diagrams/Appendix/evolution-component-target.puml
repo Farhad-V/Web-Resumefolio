@@ -1,0 +1,30 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+allowmixing
+title Proposed — Legacy-shaped versus target component state
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+package "Hypothetical existing shape" {
+ component "Broad resume manager\ntransport + policy + storage + effects" as M
+}
+package "Candidate target within modular app" {
+ component "Transport" as T
+ component "Presentation use cases" as P
+ component "Applications capture use case" as A
+ interface "Presentation projection contract" as PC
+ component "Persistence / artifact adapters" as I
+ T --> P
+ T --> A
+ A --> PC
+ P ..|> PC
+ P --> I
+}
+M ..> P : bounded extraction
+M ..> A : retain actual-material ownership
+
+@enduml

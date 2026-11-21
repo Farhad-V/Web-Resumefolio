@@ -1,0 +1,27 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Proposed — Operation and job knowledge states
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+[*] --> Queued
+Queued --> Running : current guarded claim and eligibility
+Queued --> CancelledBeforeDispatch : confirmed prevention of dispatch
+Running --> Succeeded : actual operation-specific completion evidence
+Running --> FailedKnown : authoritative known failure
+Running --> Reconciling : partial / unknown effect
+Running --> StopRequested : cancellation intent
+StopRequested --> Succeeded : completion wins race
+StopRequested --> StoppedConfirmed : actual facility stop evidence
+StopRequested --> Reconciling : stop/effect unknown
+Reconciling --> Succeeded : completion established
+Reconciling --> FailedKnown : actual known failure evidence
+note right of StoppedConfirmed
+ Stop confirmation is separate from cleanup.
+ Terminal job state is not reclaimed capacity.
+end note
+
+@enduml

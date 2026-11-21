@@ -1,0 +1,28 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+title AFTER MVP — Hetzner provider context — dated input versus unselected facilities
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+rectangle "Hetzner Cloud context" {
+ node "Observed demo guest\nNov 1 inventory: 2 vCPU / 4 GB / 40 GB\nNot a final placement or capacity result" as H
+ rectangle "Candidate Cloud Firewall\nRules / attachment not verified" as FW #164E63
+ rectangle "Candidate private Network / subnet\nNot configured by this design" as N #164E63
+ rectangle "Optional Load Balancer\nNot selected / provisioned" as LB #164E63
+ rectangle "Optional attached storage / snapshot facility\nCoverage / cost / recovery not selected" as V #164E63
+ FW ..> H : evaluate actual applicable protection
+ N ..> H : only if required
+ LB ..> H : alternative ingress
+ V ..> H : evaluate explicit data coverage
+}
+rectangle "Independent protected backup destination\nProduct/account not selected; backups not set up" as B
+H --> B : required recovery design, not working transfer
+legend bottom
+ Named provider capabilities are options, not inspected account settings or purchase approval.
+ Same-provider copies require failure/access-domain evaluation; snapshots are not assumed consistent or complete.
+endlegend
+@enduml

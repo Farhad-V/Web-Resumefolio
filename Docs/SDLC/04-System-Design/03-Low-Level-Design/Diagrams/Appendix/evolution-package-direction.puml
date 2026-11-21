@@ -1,0 +1,26 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+allowmixing
+title Proposed — Before/after package dependency direction
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+package "Before: illustrative cycle" {
+ package "Presentation internal" as P1
+ package "Applications internal" as A1
+ P1 ..> A1
+ A1 ..> P1
+}
+package "After: candidate dependency boundary" {
+ package "Applications use case" as A2
+ package "Presentation public contract" as PC
+ package "Presentation implementation" as P2
+ A2 ..> PC : permitted projection
+ P2 ..> PC : realizes contract
+}
+
+@enduml

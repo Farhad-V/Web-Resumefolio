@@ -2,24 +2,123 @@
 
 # 14. Appendices
 
-[High-Level Design index](01-High-Level-Design.md)
+[Previous: Traceability](13-Traceability.md) · [High-Level Design introduction](01-Introduction.md)
 
-The implementation references and detailed design records below retain diagrams, design alternatives, cross-cutting analysis and review evidence.
+This appendix provides navigation, supporting references, the current HLD diagram catalog and retained design records. Use the current HLD chapters and selected ADRs to interpret older alternatives, proposed controls and deferred-domain material. Inclusion here does not approve a proposal, expand MVP scope or establish runtime evidence.
+
+## 14.1 Reference Guide and Authority
+
+| Question | Governing reference |
+| --- | --- |
+| What belongs in the MVP? | [Project charter](../../01-Project-Planning/01-Project-Charter.md#mvp-scope) and selected scope dispositions |
+| What behavior and terms are required? | [SRS](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md), including its data definitions and criterion status |
+| Which architecture choices are selected or superseded? | [ADR index](../ADR/Decision-Index.md), especially the system-boundary, implementation-baseline and frontend records |
+| Where is current architectural ownership explained? | [Introduction](01-Introduction.md), [Architecture Overview](04-Architecture-Overview.md) and [Components](05-Components.md) |
+| How are records, exact artifacts and lifecycle rules preserved? | [Data Architecture](06-Data-Architecture.md) and physical Database Design |
+| Which contracts govern calls and failure outcomes? | [Integration & Interfaces](07-Integration-And-Interfaces.md) and the API specification |
+| What has actually been implemented or verified? | Work-item/source references and execution evidence in the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md) and owning test/release records |
+| Where are operational commands and recovery results recorded? | [Project Setup](../../05-Agile-Iterative-Development/01-Project-Setup.md), [deployment plan](../../06-Deployment-Release/01-Deployment-Plan.md) and [runbook](../../06-Deployment-Release/02-Runbook.md) |
+
+A source link or diagram is design context, not evidence of a passing implementation. Resolve conflicts against accepted scope and the applicable selected/superseding ADR, then update affected documents together. Do not interpret retained broad-product models as authorization to implement deferred mail/calendar, AI, advanced collaboration, general Sprints or user workflow/deployment execution.
 
 ## Implementation design references
 
-- [MVP wireframes](../02-UI-UX-Design/06-Wireframes-And-Prototypes.md#mvp-wireframes)
-- [MVP physical schema design](../03-Low-Level-Design/04-Database-Design.md#mvp-physical-schema-design)
-- [MVP API contracts](../03-Low-Level-Design/05-API-Specification.md#mvp-api-contracts)
-- [Criterion-level design and test trace](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md#criterion-level-design-and-test-trace)
+<a id="implementation-design-references"></a>
+
+### 14.2 Detailed Design and Verification References
+
+| Reference | Use |
+| --- | --- |
+| [MVP wireframes](../02-UI-UX-Design/06-Wireframes-And-Prototypes.md#mvp-wireframes) | Intended user journeys and interactions; UI does not replace server authorization |
+| [Detailed Module Design](../03-Low-Level-Design/03-Detailed-Module-Design.md) | Owning operations, invariants and component contracts |
+| [MVP physical schema design](../03-Low-Level-Design/04-Database-Design.md#mvp-physical-schema-design) | Record families, keys, constraints, write ordering and engine-specific verification |
+| [MVP API contracts](../03-Low-Level-Design/05-API-Specification.md#mvp-api-contracts) | Scoped requests, errors, request identity, conflicts and retry behavior |
+| [Criterion-level design and test trace](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md#criterion-level-design-and-test-trace) | Exact criteria, applicability, implementation and execution evidence |
+| [Test strategy](../../05-Agile-Iterative-Development/02-Test-Strategy.md) | Planned cases, actual results and regression/release verification |
+| [Feasibility and risk assessment](../../01-Project-Planning/03-Feasibility-And-Risk-Assessment.md) | Open risks, assumptions, owners and evidence-dependent holds |
+
+## 14.3 Current HLD Diagram Catalog
+
+All current diagrams listed here use dark-mode PlantUML. Each view has editable `.puml` source plus SVG for document embedding and PNG for image viewers. The catalog identifies current chapter assets separately from the retained legacy catalog later in this appendix.
+
+| View | Owning chapter | Editable source | SVG | PNG |
+| --- | --- | --- | --- | --- |
+| System context | [System Context](03-System-Context.md) | [PlantUML](Diagrams/hld-context.puml) | [SVG](Diagrams/hld-context.svg) | [PNG](Diagrams/hld-context.png) |
+| Application structure and ownership | [Architecture Overview](04-Architecture-Overview.md) | [PlantUML](Diagrams/hld-containers.puml) | [SVG](Diagrams/hld-containers.svg) | [PNG](Diagrams/hld-containers.png) |
+| Component dependencies | [Components](05-Components.md) | [PlantUML](Diagrams/hld-components.puml) | [SVG](Diagrams/hld-components.svg) | [PNG](Diagrams/hld-components.png) |
+| Conceptual data relationships | [Data Architecture](06-Data-Architecture.md) | [PlantUML](Diagrams/hld-data-model.puml) | [SVG](Diagrams/hld-data-model.svg) | [PNG](Diagrams/hld-data-model.png) |
+| Presentation/submission lifecycle | [Data Architecture](06-Data-Architecture.md) | [PlantUML](Diagrams/hld-lifecycle.puml) | [SVG](Diagrams/hld-lifecycle.svg) | [PNG](Diagrams/hld-lifecycle.png) |
+| Scoped service interaction | [Integration & Interfaces](07-Integration-And-Interfaces.md) | [PlantUML](Diagrams/hld-scoped-integration.puml) | [SVG](Diagrams/hld-scoped-integration.svg) | [PNG](Diagrams/hld-scoped-integration.png) |
+| Technology responsibilities | [Technology Stack](08-Technology-Stack.md) | [PlantUML](Diagrams/hld-technology-stack.puml) | [SVG](Diagrams/hld-technology-stack.svg) | [PNG](Diagrams/hld-technology-stack.png) |
+| Initial deployment topology | [Deployment Architecture](09-Deployment-Architecture.md) | [PlantUML](Diagrams/hld-deployment.puml) | [SVG](Diagrams/hld-deployment.svg) | [PNG](Diagrams/hld-deployment.png) |
+| Promotion/recovery decisions | [Deployment Architecture](09-Deployment-Architecture.md) | [PlantUML](Diagrams/hld-deployment-promotion.puml) | [SVG](Diagrams/hld-deployment-promotion.svg) | [PNG](Diagrams/hld-deployment-promotion.png) |
+| Security/trust boundaries | [Security Architecture](10-Security-Architecture.md) | [PlantUML](Diagrams/hld-security-boundaries.puml) | [SVG](Diagrams/hld-security-boundaries.svg) | [PNG](Diagrams/hld-security-boundaries.png) |
+| Quality verification | [Non-Functional Strategy](11-Non-Functional-Strategy.md) | [PlantUML](Diagrams/hld-quality-verification.puml) | [SVG](Diagrams/hld-quality-verification.svg) | [PNG](Diagrams/hld-quality-verification.png) |
+| Risk/decision follow-up | [Risks & Key Decisions](12-Risks-And-Key-Decisions.md) | [PlantUML](Diagrams/hld-risk-decisions.puml) | [SVG](Diagrams/hld-risk-decisions.svg) | [PNG](Diagrams/hld-risk-decisions.png) |
+| Traceability/evidence chain | [Traceability](13-Traceability.md) | [PlantUML](Diagrams/hld-traceability.puml) | [SVG](Diagrams/hld-traceability.svg) | [PNG](Diagrams/hld-traceability.png) |
+
+### 14.3.1 Rendering and Maintenance
+
+From this chapter's directory, adjust the local JAR path and render a source with Java/PlantUML:
+
+```powershell
+java -jar path/to/plantuml.jar -tsvg Diagrams/hld-context.puml
+java -jar path/to/plantuml.jar -tpng Diagrams/hld-context.puml
+```
+
+Repeat for the affected source basename. Use the project's available renderer/layout dependencies; record the actual tool version when reproducibility matters. Keep the explicit dark background, readable labels and ownership boundaries in the source. Do not substitute Mermaid or standalone DOT for UML maintenance.
+
+Update source and both rendered formats together, inspect the result for clipped/overlapping labels, and check chapter links. A shared view should retain one canonical source and be reused rather than copied into competing variants. Do not add a diagram merely to repeat an existing table or current view.
+
+## 14.4 Retained Record Navigation
+
+The detailed records below retain rationale, alternatives, cross-cutting analysis and original local anchors. Their statuses remain part of the retained source; selected ADRs and current scope govern interpretation.
+
+| Record | Reading guidance |
+| --- | --- |
+| [Resumefolio — Design Drivers and Solution Options](#design-record-01-software-architecture-01-design-drivers-and-solution-options-md) | Retained design record; interpret using current scope and selected ADR status |
+| [Resumefolio — System Decomposition and Boundaries](#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md) | Retained design record; interpret using current scope and selected ADR status |
+| [Resumefolio — Process View Concurrency and Runtime Behavior](#design-record-01-software-architecture-03-process-view-concurrency-and-runtime-behavior-md) | Retained design record; interpret using current scope and selected ADR status |
+| [Resumefolio — Deployment Topology Nodes and Networks](#design-record-01-software-architecture-04-deployment-topology-nodes-and-networks-md) | Retained design record; interpret using current scope and selected ADR status |
+| [Resumefolio — Cross-Cutting Concerns Overview](#design-record-01-software-architecture-05-cross-cutting-concerns-overview-md) | Retained design record; interpret using current scope and selected ADR status |
+| [Resumefolio — Architecture Diagram Catalog](#design-record-01-software-architecture-diagrams-diagram-catalog-md) | Retained design record; interpret using current scope and selected ADR status |
+| [Resumefolio — Software Architecture](#design-record-01-software-architecture-software-architecture-md) | Retained design record; interpret using current scope and selected ADR status |
+| [Resumefolio — Quality Attributes and Design Trade-offs](#design-record-06-design-quality-and-security-analysis-01-quality-attributes-and-design-trade-offs-md) | Retained design record; interpret using current scope and selected ADR status |
+| [Resumefolio — Security, Threat Modeling and Trust Boundaries](#design-record-06-design-quality-and-security-analysis-02-security-threat-modeling-and-trust-boundaries-md) | Retained design record; interpret using current scope and selected ADR status |
+| [Resumefolio — Operations, Backup, Recovery and Resilience](#design-record-06-design-quality-and-security-analysis-03-operations-backup-recovery-and-resilience-md) | Retained design record; interpret using current scope and selected ADR status |
+| [Resumefolio — Design Review, Traceability and Implementation Handoff](#design-record-06-design-quality-and-security-analysis-05-design-review-traceability-and-handoff-md) | Retained design record; interpret using current scope and selected ADR status |
+| [Resumefolio — Design Quality and Security Analysis](#design-record-06-design-quality-and-security-analysis-design-quality-and-security-analysis-md) | Retained design record; interpret using current scope and selected ADR status |
+| [Quality and Security — Diagram Catalog](#design-record-06-design-quality-and-security-analysis-diagrams-diagram-catalog-md) | Retained design record; interpret using current scope and selected ADR status |
+| [Resumefolio — Design Review Evidence](#design-record-06-design-quality-and-security-analysis-review-and-traceability-evidence-evidence-catalog-md) | Retained design record; interpret using current scope and selected ADR status |
+| [Resumefolio — FAU References and Design Coverage](#design-record-design-references-and-coverage-md) | Retained design record; interpret using current scope and selected ADR status |
+| [Resumefolio — Design Purpose, Scope and Approach](#design-record-design-scope-and-approach-md) | Retained design record; interpret using current scope and selected ADR status |
+
+Retained UML views now use local dark-mode PlantUML sources and SVG renders. Non-UML charts/maps also use local dark renders, with their native Graphviz or plotting sources. These remain supporting retained records; local rendering does not change their proposal or deferred-scope status. Use the current catalog above for chapter maintenance. Remote links are references; their content or availability is not established by this appendix update.
 
 ## Design review and implementation handoff
 
-Set shared boundaries and consequential choices early. During [Development](../../01-Project-Planning/02-Project-Management-Plan.md#stage-5-agile-iterative-development), refine only the design needed for the selected capability, update the relevant design records and diagrams, and use the traceability matrix to link the affected requirement and acceptance criterion. Record consequential changes in an architecture decision record.
+<a id="design-review-and-implementation-handoff"></a>
 
-Use the [design scope](#design-record-design-scope-and-approach-md), [reference and coverage map](#design-record-design-references-and-coverage-md) and [review and handoff](#design-record-06-design-quality-and-security-analysis-05-design-review-traceability-and-handoff-md) to track unresolved choices and evidence. Record verified code, tests and release readiness in their respective stages.
+### 14.5 Handoff Checklist
+
+Set shared boundaries and consequential choices early. During [Development](../../01-Project-Planning/02-Project-Management-Plan.md#stage-5-agile-iterative-development), refine the design needed for the selected capability, update affected records/diagrams and attach exact requirement/criterion traces. Record consequential changes in an ADR.
+
+Before implementation, confirm the selected slice, owning component/data, actor/resource authority, input/version/request identity, local/remote effects and failure outcomes. Before acceptance, attach actual revision-specific results for the applicable normal, denied, stale, concurrent and interrupted paths. Keep unresolved inputs and gates explicit.
+
+For deployment/recovery handoff, confirm build/configuration identity, migration compatibility, owner-local pending work, protected backup coverage, isolated restore evidence and the rehearsed runbook. Documentation completion alone does not approve rollout, demonstrate interoperability or close a risk.
+
+Use the [design scope](#design-record-design-scope-and-approach-md), [reference and coverage map](#design-record-design-references-and-coverage-md) and [review and handoff record](#design-record-06-design-quality-and-security-analysis-05-design-review-traceability-and-handoff-md) for supporting analysis. Record verified code, tests and release readiness in their owning stages and the RTM.
+
+## 14.6 Appendix Maintenance Rules
+
+Preserve stable record anchors used by HLD, LLD and planning documents. When moving or consolidating a record, update its inbound references or retain an explicit anchor; do not silently break deep links.
+
+Keep accepted/selected decisions distinguishable from proposed alternatives and deferred material. Reconcile contradictions through the relevant authority and ADR rather than silently promoting an archived paragraph. Maintain exact criterion IDs and preserve evidence status: a source reference, planned check and executed result are different things.
+
+Use concise references to canonical requirements, schemas and contracts instead of duplicating changing specifications here. Add no documentary update dates. Keep secrets, private payloads and unverified runtime claims out of appendix content and evidence catalogs.
 
 ## Detailed design records
+
 
 <a id="design-record-01-software-architecture-01-design-drivers-and-solution-options-md"></a>
 
@@ -34,7 +133,7 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 **Current direction:** retain modular core ownership and connect the separate ProjectForge through an authenticated user-scoped API. Core private media stays on the Resumefolio server. Advanced workflow execution is deferred; its isolation requirements are retained for later planning.
 
-**Status:** proposed architecture candidate, November 2, 2026. Farhad retains decision authority. This assessment compares options against project evidence; it does not select every technology, establish capacity, approve spending or accept a design baseline.
+**Status:** proposed architecture candidate. Farhad retains decision authority. This assessment compares options against project evidence; it does not select every technology, establish capacity, approve spending or accept a design baseline.
 
 [Drivers](#design-record-01-software-architecture-01-design-drivers-and-solution-options-md--heading-1-design-drivers) · [Options](#design-record-01-software-architecture-01-design-drivers-and-solution-options-md--heading-2-solution-options) · [Comparison](#design-record-01-software-architecture-01-design-drivers-and-solution-options-md--heading-3-comparative-assessment) · [Recommendation](#design-record-01-software-architecture-01-design-drivers-and-solution-options-md--heading-4-proposed-solution) · [Gates](#design-record-01-software-architecture-01-design-drivers-and-solution-options-md--heading-5-open-decisions-and-evidence-gates) · [Next steps](#design-record-01-software-architecture-01-design-drivers-and-solution-options-md--heading-6-decision-and-continuation) · [Context/use cases](#design-record-01-software-architecture-01-design-drivers-and-solution-options-md--heading-0-system-context-and-use-case-scope)
 
@@ -42,9 +141,9 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 #### Current MVP boundary figure
 
-[Accepted core and separate ProjectForge boundary](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg)
+[Accepted core and separate ProjectForge boundary](Diagrams/Appendix/mvp-system-boundaries.svg)
 
-[Editable source](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) · ![mvp system boundaries](../Diagrams/Archived-Png/Mvp-System-Boundaries.png). Historical broader-product figures below retain earlier alternatives/detail; they do not define the current system boundary.
+[Editable source](Diagrams/Appendix/mvp-system-boundaries.puml) · ![mvp system boundaries](Diagrams/Appendix/mvp-system-boundaries.svg). Historical broader-product figures below retain earlier alternatives/detail; they do not define the current system boundary.
 
 <a id="design-record-01-software-architecture-01-design-drivers-and-solution-options-md--heading-0-system-context-and-use-case-scope"></a>
 
@@ -56,9 +155,9 @@ The following package adds the requested context, utility, behavioral, option, d
 
 ##### C4 Level 1 — system context
 
-[C4 Level 1 system context](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-c4-system-context.svg)
+[C4 Level 1 system context](Diagrams/Appendix/drivers-c4-system-context.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-c4-system-context.puml) · ![drivers c4 system context](../Diagrams/Archived-Png/Drivers-C4-System-Context.png)
+[Editable PlantUML](Diagrams/Appendix/drivers-c4-system-context.puml) · ![drivers c4 system context](Diagrams/Appendix/drivers-c4-system-context.svg)
 
 This view follows the official [C4 system-context abstraction](https://c4model.com/diagrams/system-context): people and whole software systems, with internal modules/stores omitted. It is a project-authored diagram, not a copied C4 example. External integration relationships do not certify their availability or permissions.
 
@@ -66,9 +165,9 @@ This view follows the official [C4 system-context abstraction](https://c4model.c
 
 ##### UML use-case overview
 
-[MVP with explicitly deferred paths — UML use-case scope overview](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-use-cases.svg)
+[MVP with explicitly deferred paths — UML use-case scope overview](Diagrams/Appendix/drivers-uml-use-cases.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-use-cases.puml) · ![drivers uml use cases](../Diagrams/Archived-Png/Drivers-Uml-Use-Cases.png)
+[Editable PlantUML](Diagrams/Appendix/drivers-uml-use-cases.puml) · ![drivers uml use cases](Diagrams/Appendix/drivers-uml-use-cases.svg)
 
 UC-D01–UC-D12 retain their meanings and source status in the [authoritative scenario catalog](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#scenarios-and-models-user-stories-and-scenarios). This is a selected actor association overview, not a new permission matrix or a replacement for the source's operation-specific use cases.
 
@@ -78,9 +177,9 @@ UC-D01–UC-D12 retain their meanings and source status in the [authoritative sc
 
 Architecture must preserve the agreed product behavior while remaining understandable and operable within the owner's resources. The following DD labels are local assessment locators, not new requirement identifiers.
 
-[Architecture drivers and consequences](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-to-architecture.svg)
+[Architecture drivers and consequences](Diagrams/Appendix/drivers-to-architecture.svg)
 
-[Editable Graphviz](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-to-architecture.dot) · ![drivers to architecture](../Diagrams/Archived-Png/Drivers-To-Architecture.png)
+[Editable Graphviz](Diagrams/Appendix/drivers-to-architecture.dot) · ![drivers to architecture](Diagrams/Appendix/drivers-to-architecture.svg)
 
 <a id="design-record-01-software-architecture-01-design-drivers-and-solution-options-md--heading-driver-summary-table"></a>
 
@@ -127,7 +226,7 @@ Git means actual repository transfer and collaboration. Workflow execution means
 
 ##### DD-04 — Remote effects and honest failure states
 
-**Source:** [mail/calendar requirements](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-email-calendar-and-google-integration); [analysis interface contracts](../../03-System-Analysis/01-System-Analysis.md#analysis-interfaces-security-and-quality-analysis--12-interfaces-and-external-interactions).
+**Source:** [mail/calendar requirements](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-email-calendar-and-google-integration); [analysis interface contracts](../../03-System-Analysis/04-Interfaces-Security-And-Quality.md#analysis-interfaces-security-and-quality-analysis--12-interfaces-and-external-interactions).
 
 Google operations, Git changes and deployment can have effects outside a local database transaction. Persist reviewed intent and attempt identity, distinguish pending/partial/unknown results and reconcile before consequential repetition. A timeout cannot establish that nothing happened remotely.
 
@@ -137,13 +236,13 @@ Google operations, Git changes and deployment can have effects outside a local d
 
 **Source:** [resources and constraints](../../01-Project-Planning/03-Feasibility-And-Risk-Assessment.md#resource-constraints); [confirmed capacity](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/01-project-planning/11-capacity-and-preliminary-sizing.md).
 
-Plan against 20 total project hours/week, Laravel/OOP, existing resources and no assumed additional paid infrastructure. The November 1 demo observation reported 2 vCPU, 4 GB RAM and 40 GB disk. This is dated inventory, not representative-load proof or a final production topology. Ten initial users and possible growth toward roughly 1,000 are planning directions, not concurrency or capacity measurements.
+Plan against 20 total project hours/week, Laravel/OOP, existing resources and no assumed additional paid infrastructure. The previously inspected demo observation reported 2 vCPU, 4 GB RAM and 40 GB disk. This is dated inventory, not representative-load proof or a final production topology. Ten initial users and possible growth toward roughly 1,000 are planning directions, not concurrency or capacity measurements.
 
 <a id="design-record-01-software-architecture-01-design-drivers-and-solution-options-md--heading-dd-06--recoverability-and-operational-completeness"></a>
 
 ##### DD-06 — Recoverability and operational completeness
 
-**Source:** [quality/recovery requirements](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-quality-security-and-recovery-requirements); [qualified analysis handoff](../../03-System-Analysis/01-System-Analysis.md#analysis-review-and-design-handoff--14-feasibility-dependencies-and-design-handoff).
+**Source:** [quality/recovery requirements](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-quality-security-and-recovery-requirements); [qualified analysis handoff](../../03-System-Analysis/05-Analysis-Review-And-Design-Handoff.md#analysis-review-and-design-handoff--14-feasibility-dependencies-and-design-handoff).
 
 Backups were reported unconfigured and OAuth uncreated. The inspected demo did not establish working outbound delivery, workers or scheduling. The design must include their setup and verification paths without representing them as existing capabilities. Recoverable database/artifact/Git state matters more than a diagram labeled HA.
 
@@ -151,9 +250,9 @@ Backups were reported unconfigured and OAuth uncreated. The inspected demo did n
 
 ##### Quality attribute utility tree
 
-[Candidate unranked quality attribute utility tree](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-quality-utility-tree.svg)
+[Candidate unranked quality attribute utility tree](Diagrams/Appendix/drivers-quality-utility-tree.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-quality-utility-tree.puml) · ![drivers quality utility tree](../Diagrams/Archived-Png/Drivers-Quality-Utility-Tree.png)
+[Editable PlantUML](Diagrams/Appendix/drivers-quality-utility-tree.puml) · ![drivers quality utility tree](Diagrams/Appendix/drivers-quality-utility-tree.svg)
 
 Leaves describe evaluation responses/measures, not demonstrated results. Stakeholder importance/difficulty rankings remain unassigned; Q-D25/Q-D26 target proposals retain their source status. See [quality scenarios](#design-record-06-design-quality-and-security-analysis-01-quality-attributes-and-design-trade-offs-md) for the full measurement contract.
 
@@ -179,9 +278,9 @@ One application release and database support all features, with direct cross-fea
 - **Assessment:** keep deployment simplicity, but reject weak internal ownership as the target design. A monolith can be disciplined; Option B makes that discipline explicit.
 
 
-[Historical or unselected alternative — Option A — weakly bounded monolith](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-option-a-components.svg)
+[Historical or unselected alternative — Option A — weakly bounded monolith](Diagrams/Appendix/drivers-option-a-components.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-option-a-components.puml) · ![drivers option a components](../Diagrams/Archived-Png/Drivers-Option-A-Components.png)
+[Editable PlantUML](Diagrams/Appendix/drivers-option-a-components.puml) · ![drivers option a components](Diagrams/Appendix/drivers-option-a-components.svg)
 
 <a id="design-record-01-software-architecture-01-design-drivers-and-solution-options-md--heading-option-b--modular-monolith-with-explicit-adapters"></a>
 
@@ -195,9 +294,9 @@ Historical Option B proposed one coordinated trusted application release contain
 - **Assessment:** preferred initial candidate, conditional on enforcement and actual feasibility findings.
 
 
-[Option B — modular monolith](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-option-b-components.svg)
+[Option B — modular monolith](Diagrams/Appendix/drivers-option-b-components.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-option-b-components.puml) · ![drivers option b components](../Diagrams/Archived-Png/Drivers-Option-B-Components.png)
+[Editable PlantUML](Diagrams/Appendix/drivers-option-b-components.puml) · ![drivers option b components](Diagrams/Appendix/drivers-option-b-components.svg)
 
 <a id="design-record-01-software-architecture-01-design-drivers-and-solution-options-md--heading-option-c--microservices-from-the-beginning"></a>
 
@@ -211,9 +310,9 @@ Independently deployed services own their data and coordinate through network co
 - **Assessment:** defer as the default architecture. Reconsider a specific extraction when measured resource, release, team or isolation needs outweigh its cost.
 
 
-[Historical or unselected alternative — Option C — initial microservices](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-option-c-components.svg)
+[Historical or unselected alternative — Option C — initial microservices](Diagrams/Appendix/drivers-option-c-components.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-option-c-components.puml) · ![drivers option c components](../Diagrams/Archived-Png/Drivers-Option-C-Components.png)
+[Editable PlantUML](Diagrams/Appendix/drivers-option-c-components.puml) · ![drivers option c components](Diagrams/Appendix/drivers-option-c-components.svg)
 
 <a id="design-record-01-software-architecture-01-design-drivers-and-solution-options-md--heading-cross-option-choice--build-reuse-or-integrate"></a>
 
@@ -253,9 +352,9 @@ The ordinal matrix below is an **illustrative author assessment requested for vi
 
 **Rationale:** A minimizes initial packaging but deliberately lacks enforced ownership; B adds contract work while retaining local deployment/transaction simplicity; C offers independent release potential but expands distributed state and solo operations. C's failure-separation score is conditional potential, not HA: independent services on one host may share failure/resource domains. None scores 5 for proven security, capacity or recovery, which are separate hard gates rather than compensable axes.
 
-[Historical or unselected alternative — Illustrative qualitative option radar chart](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-options-radar.svg)
+[Historical or unselected alternative — Illustrative qualitative option radar chart](Diagrams/Appendix/drivers-options-radar.svg)
 
-[Editable chart generator](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-options-radar.py) · [Rubric/data](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-options-radar.json) · ![drivers options radar](../Diagrams/Archived-Png/Drivers-Options-Radar.png)
+[Editable chart generator](Diagrams/Appendix/drivers-options-radar.py) · [Rubric/data](Diagrams/Appendix/drivers-options-radar.json) · ![drivers options radar](Diagrams/Appendix/drivers-options-radar.svg)
 
 These values make the existing qualitative rationale inspectable. They do not replace exact criteria or justify B by a weighted sum. Review/revise them if the option definition or evidence changes; retain the distinction between judgment and measurement.
 
@@ -267,9 +366,9 @@ These values make the existing qualitative rationale inspectable. They do not re
 
 #### 4. Proposed solution
 
-[Proposed trusted application and external effect boundaries](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.svg)
+[Proposed trusted application and external effect boundaries](Diagrams/Appendix/logical-component-ownership.svg)
 
-[Editable Graphviz](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot) · ![logical component ownership](../Diagrams/Archived-Png/Logical-Component-Ownership.png)
+[Editable Graphviz](Diagrams/Appendix/logical-component-ownership.dot) · ![logical component ownership](Diagrams/Appendix/logical-component-ownership.svg)
 
 **Responsibility allocation:** core owns Identity/Access, Presentation, Sharing, Applications and Files/Operations. ProjectForge owns basic Git/Work in MVP. Communication/Calendar and advanced Workflow/Deployment are future responsibilities. See the [component catalog](../03-Low-Level-Design/02-Module-Breakdown.md#design-record-03-component-and-module-design-component-and-module-design-md). This diagram groups responsibilities; it does not select concrete packages, network protocols or a physically separate host for each box.
 
@@ -289,9 +388,9 @@ These values make the existing qualitative rationale inspectable. They do not re
 
 ##### UML deployment candidate
 
-[Option B proposed UML deployment](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.svg)
+[Option B proposed UML deployment](Diagrams/Appendix/drivers-uml-deployment.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.puml) · ![drivers uml deployment](../Diagrams/Archived-Png/Drivers-Uml-Deployment.png)
+[Editable PlantUML](Diagrams/Appendix/drivers-uml-deployment.puml) · ![drivers uml deployment](Diagrams/Appendix/drivers-uml-deployment.svg)
 
 This is the preferred option's candidate placement, not the observed server or accepted physical topology. Same-release web/background artifacts do not imply separate hosts. No backup destination or safe executor has been established. Detailed [deployment design](#design-record-01-software-architecture-04-deployment-topology-nodes-and-networks-md) remains authoritative for placement and access-zone refinement.
 
@@ -299,9 +398,9 @@ This is the preferred option's candidate placement, not the observed server or a
 
 ##### Critical UML sequence — selected apply and publication
 
-[Critical source apply and separate publication interaction](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-critical-publication-sequence.svg)
+[Critical source apply and separate publication interaction](Diagrams/Appendix/drivers-critical-publication-sequence.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-critical-publication-sequence.puml) · ![drivers critical publication sequence](../Diagrams/Archived-Png/Drivers-Critical-Publication-Sequence.png)
+[Editable PlantUML](Diagrams/Appendix/drivers-critical-publication-sequence.puml) · ![drivers critical publication sequence](Diagrams/Appendix/drivers-critical-publication-sequence.svg)
 
 This scenario was chosen because it exercises the accepted independence rule, current authority, version guards, local persistence and cross-owner artifact protection. It refines [UC-D01](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#scenarios-and-models-user-stories-and-scenarios--id-uc-d01); the [Presentation component](../03-Low-Level-Design/03-Detailed-Module-Design.md#design-record-03-component-and-module-design-components-professional-presentation-md) owns the detailed contract. Exact synchronization/reference protocols remain implementation work.
 
@@ -309,9 +408,9 @@ This scenario was chosen because it exercises the accepted independence rule, cu
 
 #### 5. Open decisions and evidence gates
 
-[Architecture decision and evidence route](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/architecture-decision-route.svg)
+[Architecture decision and evidence route](Diagrams/Appendix/architecture-decision-route.svg)
 
-[Editable Graphviz](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/architecture-decision-route.dot) · ![architecture decision route](../Diagrams/Archived-Png/Architecture-Decision-Route.png)
+[Editable Graphviz](Diagrams/Appendix/architecture-decision-route.dot) · ![architecture decision route](Diagrams/Appendix/architecture-decision-route.svg)
 
 <a id="design-record-01-software-architecture-01-design-drivers-and-solution-options-md--heading-g1--git-implementation-and-repository-contract"></a>
 
@@ -395,7 +494,7 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 **Proposed structure:** logical components allocated across the Resumefolio core, separate ProjectForge system and deferred communications/execution responsibilities, with explicit interfaces to native Git, providers, artifact storage and a conditionally enabled execution facility.
 
-**Status:** proposed logical architecture, November 2, 2026. These are responsibility and information boundaries, not nine microservices, nine databases or an accepted physical deployment. Farhad retains decision authority.
+**Status:** proposed logical architecture. These are responsibility and information boundaries, not nine microservices, nine databases or an accepted physical deployment. Farhad retains decision authority.
 
 [Overview](#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md--heading-1-system-and-component-boundaries) · [Catalog](#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md--heading-2-component-responsibility-catalog) · [Interfaces](#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md--heading-3-public-interfaces-and-dependency-rules) · [Consistency](#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md--heading-4-information-and-consistency-boundaries) · [Access](#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md--heading-5-access-and-trust-boundaries) · [Review](#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md--heading-7-review-and-continuation) · [DDD/context views](#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md--heading-6-ddd-interpretation-and-implementation-mapping)
 
@@ -403,19 +502,19 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 #### Current MVP boundary figure
 
-[Accepted core and separate ProjectForge boundary](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg)
+[Accepted core and separate ProjectForge boundary](Diagrams/Appendix/mvp-system-boundaries.svg)
 
-[Editable source](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) · ![mvp system boundaries](../Diagrams/Archived-Png/Mvp-System-Boundaries.png). Historical broader-product figures below retain earlier alternatives/detail; they do not define the current system boundary.
+[Editable source](Diagrams/Appendix/mvp-system-boundaries.puml) · ![mvp system boundaries](Diagrams/Appendix/mvp-system-boundaries.svg). Historical broader-product figures below retain earlier alternatives/detail; they do not define the current system boundary.
 
 <a id="design-record-01-software-architecture-02-system-decomposition-and-boundaries-md--heading-1-system-and-component-boundaries"></a>
 
 #### 1. System and component boundaries
 
-This view realizes the [architecture recommendation](#design-record-01-software-architecture-01-design-drivers-and-solution-options-md) under [accepted scope](../../01-Project-Planning/01-Project-Charter.md#mvp-scope). Existing [analysis context](../../03-System-Analysis/01-System-Analysis.md#foundation-02-system-context-and-boundaries), [domain model](../../03-System-Analysis/01-System-Analysis.md#analysis-domain-and-information-analysis--03-domain-model-and-object-oriented-view) and [interface analysis](../../03-System-Analysis/01-System-Analysis.md#analysis-interfaces-security-and-quality-analysis--12-interfaces-and-external-interactions) remain authoritative about required meaning and behavior.
+This view realizes the [architecture recommendation](#design-record-01-software-architecture-01-design-drivers-and-solution-options-md) under [accepted scope](../../01-Project-Planning/01-Project-Charter.md#mvp-scope). Existing [analysis context](../../03-System-Analysis/01-System-Context-And-Gap-Analysis.md#foundation-02-system-context-and-boundaries), [domain model](../../03-System-Analysis/02-Domain-And-Information-Analysis.md#analysis-domain-and-information-analysis--03-domain-model-and-object-oriented-view) and [interface analysis](../../03-System-Analysis/04-Interfaces-Security-And-Quality.md#analysis-interfaces-security-and-quality-analysis--12-interfaces-and-external-interactions) remain authoritative about required meaning and behavior.
 
-[Logical component ownership](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.svg)
+[Logical component ownership](Diagrams/Appendix/logical-component-ownership.svg)
 
-[Editable DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot) · ![logical component ownership](../Diagrams/Archived-Png/Logical-Component-Ownership.png)
+[Editable DOT](Diagrams/Appendix/logical-component-ownership.dot) · ![logical component ownership](Diagrams/Appendix/logical-component-ownership.svg)
 
 Browser/employer users access the core through their own scoped contexts. Git clients access ProjectForge through repository grants. Core and ProjectForge communicate through authenticated user-scoped API, not shared module/database access. Internal core modules may use an evaluated common artifact/store without transferring ownership. Future provider/deployment targets remain separate deferred responsibilities.
 
@@ -425,9 +524,9 @@ The overview groups components for readability. It deliberately omits a mesh of 
 
 ##### C4 Level 1 — whole-system context
 
-[Whole-system context reused from the driver assessment](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-c4-system-context.svg)
+[Whole-system context reused from the driver assessment](Diagrams/Appendix/drivers-c4-system-context.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-c4-system-context.puml) · ![drivers c4 system context](../Diagrams/Archived-Png/Drivers-C4-System-Context.png) · [Owning context record](#design-record-01-software-architecture-01-design-drivers-and-solution-options-md--heading-0-system-context-and-use-case-scope)
+[Editable PlantUML](Diagrams/Appendix/drivers-c4-system-context.puml) · ![drivers c4 system context](Diagrams/Appendix/drivers-c4-system-context.svg) · [Owning context record](#design-record-01-software-architecture-01-design-drivers-and-solution-options-md--heading-0-system-context-and-use-case-scope)
 
 Reuse the same C4 Level 1 view rather than create a competing context boundary. It shows people and external systems, not internal modules.
 
@@ -435,9 +534,9 @@ Reuse the same C4 Level 1 view rather than create a competing context boundary. 
 
 ##### C4 Level 2 — applications and data stores
 
-[C4 Level 2 container candidate](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-c4-containers.svg)
+[C4 Level 2 container candidate](Diagrams/Appendix/boundaries-c4-containers.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-c4-containers.puml) · ![boundaries c4 containers](../Diagrams/Archived-Png/Boundaries-C4-Containers.png)
+[Editable PlantUML](Diagrams/Appendix/boundaries-c4-containers.puml) · ![boundaries c4 containers](Diagrams/Appendix/boundaries-c4-containers.svg)
 
 This proposed container view follows [C4's application/data-store abstraction](https://c4model.com/diagrams/container). Logical modules are not containers; a C4 container is not necessarily a Docker container. Web and background applications may share one release, while physical host multiplicity and mechanisms remain in deployment design. Conditional execution is shown as an unevaluated separate trust domain, not an enabled facility.
 
@@ -589,9 +688,9 @@ LC identifiers are local architecture locators, not newly allocated requirements
 
 ##### UML component view
 
-[UML logical component and contract view](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-ddd-contexts.svg)
+[UML logical component and contract view](Diagrams/Appendix/boundaries-ddd-contexts.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-ddd-contexts.puml) · ![boundaries ddd contexts](../Diagrams/Archived-Png/Boundaries-Ddd-Contexts.png)
+[Editable PlantUML](Diagrams/Appendix/boundaries-ddd-contexts.puml) · ![boundaries ddd contexts](Diagrams/Appendix/boundaries-ddd-contexts.svg)
 
 This is explicitly a UML logical component view. [C4 Level 3](https://c4model.com/diagrams/component) decomposes one container; the selected collaborations here span logical owners whose code can be reused by web/worker artifacts, so no false single-container Level 3 claim is made. The existing detailed component catalog remains authoritative for operations.
 
@@ -635,9 +734,9 @@ CRC-style means responsibilities/collaborators are summarized at component scale
 
 #### 3. Public interfaces and dependency rules
 
-[MVP with explicitly deferred paths — Public contract and adapter boundaries](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/component-contract-boundaries.svg)
+[MVP with explicitly deferred paths — Public contract and adapter boundaries](Diagrams/Appendix/component-contract-boundaries.svg)
 
-[Editable DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/component-contract-boundaries.dot) · ![component contract boundaries](../Diagrams/Archived-Png/Component-Contract-Boundaries.png)
+[Editable DOT](Diagrams/Appendix/component-contract-boundaries.dot) · ![component contract boundaries](Diagrams/Appendix/component-contract-boundaries.svg)
 
 1. A component changes only its own domain state. Consumers call its public application contract; they do not update its tables, construct internal ORM objects or use a storage path to bypass policy.
 2. Contracts carry stable resource/actor/operation identities and expected revisions where appropriate. Return permitted data projections and attributable outcomes instead of unrestricted mutable entities.
@@ -654,9 +753,9 @@ CRC-style means responsibilities/collaborators are summarized at component scale
 
 ##### Module dependency direction
 
-[Selected module dependency diagram](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-ddd-contexts.svg)
+[Selected module dependency diagram](Diagrams/Appendix/boundaries-ddd-contexts.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-ddd-contexts.puml) · ![boundaries ddd contexts](../Diagrams/Archived-Png/Boundaries-Ddd-Contexts.png)
+[Editable PlantUML](Diagrams/Appendix/boundaries-ddd-contexts.puml) · ![boundaries ddd contexts](Diagrams/Appendix/boundaries-ddd-contexts.svg)
 
 Consumer-to-provider arrows describe selected code/contract dependencies, not event-flow direction. Current authority is common to protected owners; omitted mesh edges do not waive it. Interface definitions remain owned by the provider; no shared unrestricted ORM model or recursive owner callback is introduced.
 
@@ -664,9 +763,9 @@ Consumer-to-provider arrows describe selected code/contract dependencies, not ev
 
 ##### Hexagonal realization example
 
-[Hexagonal component realization](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-hexagonal-module.svg)
+[Hexagonal component realization](Diagrams/Appendix/boundaries-hexagonal-module.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-hexagonal-module.puml) · ![boundaries hexagonal module](../Diagrams/Archived-Png/Boundaries-Hexagonal-Module.png)
+[Editable PlantUML](Diagrams/Appendix/boundaries-hexagonal-module.puml) · ![boundaries hexagonal module](Diagrams/Appendix/boundaries-hexagonal-module.svg)
 
 The example separates driving adapters, owner application/domain logic and required ports/driven adapters. Composition wires actual implementations; transport/ORM/provider details do not acquire domain ownership. It is a candidate convention, not a new framework choice.
 
@@ -678,9 +777,9 @@ The example separates driving adapters, owner application/domain logic and requi
 
 ##### Source, draft, publication and actual materials
 
-[Independent presentation and historical identities](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/presentation-history-boundaries.svg)
+[Independent presentation and historical identities](Diagrams/Appendix/presentation-history-boundaries.svg)
 
-[Editable DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/presentation-history-boundaries.dot) · ![presentation history boundaries](../Diagrams/Archived-Png/Presentation-History-Boundaries.png)
+[Editable DOT](Diagrams/Appendix/presentation-history-boundaries.dot) · ![presentation history boundaries](Diagrams/Appendix/presentation-history-boundaries.svg)
 
 Presentation compares identified source and draft versions, applies only selected changes, and saves the draft. A separate publication confirmation creates an identified publication revision and changes the live pointer atomically within the chosen persistence mechanism. Link controls remain owned by Sharing. Files confirms artifact usability and protected reference identity; Applications retains actual submitted material manifests independently.
 
@@ -704,9 +803,9 @@ Deletion/unlink/retirement is an operation on a particular owner and reference, 
 
 ##### Cross-boundary UML sequence — actual material capture
 
-[Cross-boundary actual-material capture sequence](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-cross-context-capture.svg)
+[Cross-boundary actual-material capture sequence](Diagrams/Appendix/boundaries-cross-context-capture.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-cross-context-capture.puml) · ![boundaries cross context capture](../Diagrams/Archived-Png/Boundaries-Cross-Context-Capture.png)
+[Editable PlantUML](Diagrams/Appendix/boundaries-cross-context-capture.puml) · ![boundaries cross context capture](Diagrams/Appendix/boundaries-cross-context-capture.svg)
 
 This refines the [Applications capture contract](../03-Low-Level-Design/03-Detailed-Module-Design.md#design-record-03-component-and-module-design-components-applications-md) and [Files reference protocol](../03-Low-Level-Design/03-Detailed-Module-Design.md#design-record-03-component-and-module-design-components-files-and-operations-md). The same capture event may be recorded with incomplete material according to its actual source contract; the diagram's unavailable branch must not fabricate a nonexistent event or a complete usable set. Exact consumer/reference/transaction guards remain implementation work.
 
@@ -736,9 +835,9 @@ The implementation view maps logical components to module packages and artifacts
 
 ##### Candidate bounded contexts
 
-[Candidate bounded contexts](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-ddd-contexts.svg)
+[Candidate bounded contexts](Diagrams/Appendix/boundaries-ddd-contexts.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-ddd-contexts.puml) · ![boundaries ddd contexts](../Diagrams/Archived-Png/Boundaries-Ddd-Contexts.png)
+[Editable PlantUML](Diagrams/Appendix/boundaries-ddd-contexts.puml) · ![boundaries ddd contexts](Diagrams/Appendix/boundaries-ddd-contexts.svg)
 
 [DDD bounded-context guidance](https://martinfowler.com/bliki/BoundedContext.html) informs explicit model/vocabulary boundaries and their relationships. Here the nine LC owners are candidates, not validated workshop outcomes, team assignments or mandatory service splits. “Project” in professional presentation, work and Git remains deliberately different; “completion” in a task, provider attempt and deployment is not interchangeable.
 
@@ -746,9 +845,9 @@ The implementation view maps logical components to module packages and artifacts
 
 ##### DDD context map
 
-[DDD context map](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-ddd-contexts.svg)
+[DDD context map](Diagrams/Appendix/boundaries-ddd-contexts.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-ddd-contexts.puml) · ![boundaries ddd contexts](../Diagrams/Archived-Png/Boundaries-Ddd-Contexts.png)
+[Editable PlantUML](Diagrams/Appendix/boundaries-ddd-contexts.puml) · ![boundaries ddd contexts](Diagrams/Appendix/boundaries-ddd-contexts.svg)
 
 U/D labels name upstream model-provider and downstream model-consumer relationships for selected contracts. They do not assert team customer/supplier negotiations, Shared Kernel or organizational partnership. Candidate published contracts/projections keep models separate; provider/native-Git adapters translate external meaning rather than letting it overwrite internal invariants. No DDD framework is selected.
 
@@ -756,9 +855,9 @@ U/D labels name upstream model-provider and downstream model-consumer relationsh
 
 ##### UML package view
 
-[UML candidate package organization](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-uml-packages.svg)
+[UML candidate package organization](Diagrams/Appendix/boundaries-uml-packages.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-uml-packages.puml) · ![boundaries uml packages](../Diagrams/Archived-Png/Boundaries-Uml-Packages.png)
+[Editable PlantUML](Diagrams/Appendix/boundaries-uml-packages.puml) · ![boundaries uml packages](Diagrams/Appendix/boundaries-uml-packages.svg)
 
 Package names are illustrative, not inspected production namespaces. See [implementation/artifact design](../03-Low-Level-Design/12-Appendices.md#design-record-03-component-and-module-design-02-implementation-view-and-artifacts-md) for the owning package-to-release responsibilities. Multiple packages can share a process/store, and a package boundary alone is not containment.
 
@@ -766,9 +865,9 @@ Package names are illustrative, not inspected production namespaces. See [implem
 
 ##### Big-picture event-storming board
 
-[MVP with explicitly deferred paths — Proposed big-picture event-storming board](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-big-picture-events.svg)
+[MVP with explicitly deferred paths — Proposed big-picture event-storming board](Diagrams/Appendix/boundaries-big-picture-events.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-big-picture-events.puml) · ![boundaries big picture events](../Diagrams/Archived-Png/Boundaries-Big-Picture-Events.png)
+[Editable PlantUML](Diagrams/Appendix/boundaries-big-picture-events.puml) · ![boundaries big picture events](Diagrams/Appendix/boundaries-big-picture-events.svg)
 
 This is a **proposed desk synthesis** of existing scenarios, not a facilitated workshop, stakeholder agreement or observed production event log. Blue commands, orange past-tense domain facts and purple policy constraints preserve deliberate human actions and eligibility gates. Hotspots identify unresolved questions rather than claim resolution. No event bus, event-sourced persistence or automatic side-effect trigger is adopted. Exact event schemas and subscription policy remain component-owned design work.
 
@@ -822,7 +921,7 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 **Proposed runtime:** short authorized web operations, durable pending work, supervised bounded workers, scheduled reconciliation and an independently controlled executor boundary. Local database commits and external effects have distinct outcomes.
 
-**Status:** proposed technical design, November 2, 2026. No queue/backend, executor, workload limit or timeout value is accepted or verified by this document. Farhad retains decision authority.
+**Status:** proposed technical design. No queue/backend, executor, workload limit or timeout value is accepted or verified by this document. Farhad retains decision authority.
 
 [Processes](#design-record-01-software-architecture-03-process-view-concurrency-and-runtime-behavior-md--heading-1-runtime-responsibilities) · [Commands](#design-record-01-software-architecture-03-process-view-concurrency-and-runtime-behavior-md--heading-2-local-command-and-transaction-protocol) · [Concurrency](#design-record-01-software-architecture-03-process-view-concurrency-and-runtime-behavior-md--heading-3-shared-state-and-concurrency-rules) · [Workers](#design-record-01-software-architecture-03-process-view-concurrency-and-runtime-behavior-md--heading-4-durable-work-dispatch-and-reconciliation) · [Cancellation](#design-record-01-software-architecture-03-process-view-concurrency-and-runtime-behavior-md--heading-5-cancellation-and-external-execution) · [Recovery](#design-record-01-software-architecture-03-process-view-concurrency-and-runtime-behavior-md--heading-6-failure-recovery-and-observability) · [Verification](#design-record-01-software-architecture-03-process-view-concurrency-and-runtime-behavior-md--heading-7-verification-and-open-decisions) · [Full diagram package](#design-record-01-software-architecture-03-process-view-concurrency-and-runtime-behavior-md--heading-8-runtime-diagram-package)
 
@@ -830,23 +929,23 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 #### Current MVP boundary figure
 
-[Accepted core and separate ProjectForge boundary](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg)
+[Accepted core and separate ProjectForge boundary](Diagrams/Appendix/mvp-system-boundaries.svg)
 
-[Editable source](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) · ![mvp system boundaries](../Diagrams/Archived-Png/Mvp-System-Boundaries.png). Historical broader-product figures below retain earlier alternatives/detail; they do not define the current system boundary.
+[Editable source](Diagrams/Appendix/mvp-system-boundaries.puml) · ![mvp system boundaries](Diagrams/Appendix/mvp-system-boundaries.svg). Historical broader-product figures below retain earlier alternatives/detail; they do not define the current system boundary.
 
 <a id="design-record-01-software-architecture-03-process-view-concurrency-and-runtime-behavior-md--heading-authoritative-context"></a>
 
 #### Authoritative context
 
-Use the [architecture assessment](#design-record-01-software-architecture-01-design-drivers-and-solution-options-md), [logical component boundaries](#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md), [analysis states](../../03-System-Analysis/01-System-Analysis.md#analysis-behavioral-and-scenario-analysis--07-state-based-view), [activities](../../03-System-Analysis/01-System-Analysis.md#analysis-functional-and-process-analysis--08-control-flow-based-view), [operation contracts](../../03-System-Analysis/01-System-Analysis.md#analysis-business-rules-and-operation-contracts--10-domain-constraints-and-operation-contracts) and [interface analysis](../../03-System-Analysis/01-System-Analysis.md#analysis-interfaces-security-and-quality-analysis--12-interfaces-and-external-interactions). This view realizes their behavior technically; it does not replace their domain state vocabulary or source policy.
+Use the [architecture assessment](#design-record-01-software-architecture-01-design-drivers-and-solution-options-md), [logical component boundaries](#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md), [analysis states](../../03-System-Analysis/03-Processes-Scenarios-And-Business-Rules.md#analysis-behavioral-and-scenario-analysis--07-state-based-view), [activities](../../03-System-Analysis/03-Processes-Scenarios-And-Business-Rules.md#analysis-functional-and-process-analysis--08-control-flow-based-view), [operation contracts](../../03-System-Analysis/03-Processes-Scenarios-And-Business-Rules.md#analysis-business-rules-and-operation-contracts--10-domain-constraints-and-operation-contracts) and [interface analysis](../../03-System-Analysis/04-Interfaces-Security-And-Quality.md#analysis-interfaces-security-and-quality-analysis--12-interfaces-and-external-interactions). This view realizes their behavior technically; it does not replace their domain state vocabulary or source policy.
 
 <a id="design-record-01-software-architecture-03-process-view-concurrency-and-runtime-behavior-md--heading-1-runtime-responsibilities"></a>
 
 #### 1. Runtime responsibilities
 
-[MVP with explicitly deferred paths — Proposed runtime responsibilities](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-responsibilities.svg)
+[MVP with explicitly deferred paths — Proposed runtime responsibilities](Diagrams/Appendix/runtime-responsibilities.svg)
 
-[Editable DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-responsibilities.dot) · ![runtime responsibilities](../Diagrams/Archived-Png/Runtime-Responsibilities.png)
+[Editable DOT](Diagrams/Appendix/runtime-responsibilities.dot) · ![runtime responsibilities](Diagrams/Appendix/runtime-responsibilities.svg)
 
 <a id="design-record-01-software-architecture-03-process-view-concurrency-and-runtime-behavior-md--heading-web-request-processes"></a>
 
@@ -946,9 +1045,9 @@ Calendar synchronization compares attributable local/provider revisions and sour
 
 #### 4. Durable work dispatch and reconciliation
 
-[Durable intent and external effect handling](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/durable-attempt-protocol.svg)
+[Durable intent and external effect handling](Diagrams/Appendix/durable-attempt-protocol.svg)
 
-[Editable DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/durable-attempt-protocol.dot) · ![durable attempt protocol](../Diagrams/Archived-Png/Durable-Attempt-Protocol.png)
+[Editable DOT](Diagrams/Appendix/durable-attempt-protocol.dot) · ![durable attempt protocol](Diagrams/Appendix/durable-attempt-protocol.svg)
 
 <a id="design-record-01-software-architecture-03-process-view-concurrency-and-runtime-behavior-md--heading-commit-and-dispatch"></a>
 
@@ -982,9 +1081,9 @@ Separate retryable local/read failures from consequential mutations with uncerta
 
 **After MVP.** Shared operating and recovery controls still apply where relevant.
 
-[Cancellation and lost-runner reconciliation](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/cancellation-reconciliation.svg)
+[Cancellation and lost-runner reconciliation](Diagrams/Appendix/cancellation-reconciliation.svg)
 
-[Editable DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/cancellation-reconciliation.dot) · ![cancellation reconciliation](../Diagrams/Archived-Png/Cancellation-Reconciliation.png)
+[Editable DOT](Diagrams/Appendix/cancellation-reconciliation.dot) · ![cancellation reconciliation](Diagrams/Appendix/cancellation-reconciliation.svg)
 
 Store cancellation intent against the exact attempt. If work is still unclaimed and atomically preventable, record confirmed cancellation without dispatch. If running, request stop through the evaluated adapter and keep the result pending until actual evidence establishes termination or completion. Completion can win a cancellation race; retain the real terminal result and known effects rather than overwriting it with the request label.
 
@@ -1062,9 +1161,9 @@ These views refine the same proposed runtime from distinct perspectives. UML int
 
 ##### 8.1 Sequence — guarded local command
 
-[Sequence — guarded local command](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-local-command-sequence.svg)
+[Sequence — guarded local command](Diagrams/Appendix/runtime-local-command-sequence.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-local-command-sequence.puml) · ![runtime local command sequence](../Diagrams/Archived-Png/Runtime-Local-Command-Sequence.png)
+[Editable PlantUML](Diagrams/Appendix/runtime-local-command-sequence.puml) · ![runtime local command sequence](Diagrams/Appendix/runtime-local-command-sequence.svg)
 
 The local scenario separates current authorization, duplicate intent, guarded local mutation and actual result. Exact lock/version/uniqueness semantics belong to the selected persistence implementation; a failure to return a response is not proof of rollback.
 
@@ -1072,9 +1171,9 @@ The local scenario separates current authorization, duplicate intent, guarded lo
 
 ##### 8.2 Sequence — lost external response
 
-[Sequence — lost external response](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-remote-effect-sequence.svg)
+[Sequence — lost external response](Diagrams/Appendix/runtime-remote-effect-sequence.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-remote-effect-sequence.puml) · ![runtime remote effect sequence](../Diagrams/Archived-Png/Runtime-Remote-Effect-Sequence.png)
+[Editable PlantUML](Diagrams/Appendix/runtime-remote-effect-sequence.puml) · ![runtime remote effect sequence](Diagrams/Appendix/runtime-remote-effect-sequence.svg)
 
 This scenario covers a lost response after possible external dispatch. Local claim fencing protects observations, not remote execution. Actual provider/executor lookup may be unavailable; preserve Unknown rather than inventing a safe repeat. See [ADR-003](../ADR/ADR-003-Durable-External-Attempts.md#design-record-07-design-decisions-adr-003-durable-external-attempts-md).
 
@@ -1082,9 +1181,9 @@ This scenario covers a lost response after possible external dispatch. Local cla
 
 ##### 8.3 UML activity — lanes and fork/join
 
-[UML activity — lanes and fork/join](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-swimlane-fork-join.svg)
+[UML activity — lanes and fork/join](Diagrams/Appendix/runtime-swimlane-fork-join.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-swimlane-fork-join.puml) · ![runtime swimlane fork join](../Diagrams/Archived-Png/Runtime-Swimlane-Fork-Join.png)
+[Editable PlantUML](Diagrams/Appendix/runtime-swimlane-fork-join.puml) · ![runtime swimlane fork join](Diagrams/Appendix/runtime-swimlane-fork-join.svg)
 
 The lanes allocate responsibilities. After commit, response delivery and background processing proceed independently. The join is the end of the illustrated scenario observation, not a synchronous web request waiting for remote work; the observation branch can finish with durable unresolved state. No one-thread-per-lane or selected thread API is implied.
 
@@ -1092,9 +1191,9 @@ The lanes allocate responsibilities. After commit, response delivery and backgro
 
 ##### 8.4 UML state machine — attempt knowledge
 
-[UML state machine — attempt knowledge](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-attempt-state-machine.svg)
+[UML state machine — attempt knowledge](Diagrams/Appendix/runtime-attempt-state-machine.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-attempt-state-machine.puml) · ![runtime attempt state machine](../Diagrams/Archived-Png/Runtime-Attempt-State-Machine.png)
+[Editable PlantUML](Diagrams/Appendix/runtime-attempt-state-machine.puml) · ![runtime attempt state machine](Diagrams/Appendix/runtime-attempt-state-machine.svg)
 
 This is a proposed **coordinator-knowledge model**, not a replacement for source workflow/product enums. Cancellation request, output capture, cleanup and deployment effect are orthogonal dimensions. Only actual evidence enables terminal/no-dispatch transitions. A retry after possible effect requires the reviewed distinct-attempt policy.
 
@@ -1104,9 +1203,9 @@ This is a proposed **coordinator-knowledge model**, not a replacement for source
 
 **After MVP.** Shared operating and recovery controls still apply where relevant.
 
-[UML communication — numbered collaboration](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-communication-diagram.svg)
+[UML communication — numbered collaboration](Diagrams/Appendix/runtime-communication-diagram.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-communication-diagram.puml) · ![runtime communication diagram](../Diagrams/Archived-Png/Runtime-Communication-Diagram.png)
+[Editable PlantUML](Diagrams/Appendix/runtime-communication-diagram.puml) · ![runtime communication diagram](Diagrams/Appendix/runtime-communication-diagram.svg)
 
 Numbered messages describe one collaboration over communication links. The sequence diagrams own detailed alternatives. Numbers show scenario ordering, not a distributed transaction or guaranteed single delivery.
 
@@ -1114,9 +1213,9 @@ Numbered messages describe one collaboration over communication links. The seque
 
 ##### 8.6 UML timing — lease versus effect knowledge
 
-[UML timing — lease versus effect knowledge](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-claim-timing.svg)
+[UML timing — lease versus effect knowledge](Diagrams/Appendix/runtime-claim-timing.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-claim-timing.puml) · ![runtime claim timing](../Diagrams/Archived-Png/Runtime-Claim-Timing.png)
+[Editable PlantUML](Diagrams/Appendix/runtime-claim-timing.puml) · ![runtime claim timing](Diagrams/Appendix/runtime-claim-timing.svg)
 
 Ticks are synthetic ordered positions, **not elapsed seconds, accepted lease values or benchmark data**. The example eventually obtains acceptance evidence; unresolved/partial alternatives remain possible. Lease expiry never proves that a remote action did not happen.
 
@@ -1126,9 +1225,9 @@ Ticks are synthetic ordered positions, **not elapsed seconds, accepted lease val
 
 **After MVP.** Shared operating and recovery controls still apply where relevant.
 
-[MVP with explicitly deferred paths — Process/thread view — bounded execution units](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-process-thread-view.svg)
+[MVP with explicitly deferred paths — Process/thread view — bounded execution units](Diagrams/Appendix/runtime-process-thread-view.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-process-thread-view.puml) · ![runtime process thread view](../Diagrams/Archived-Png/Runtime-Process-Thread-View.png)
+[Editable PlantUML](Diagrams/Appendix/runtime-process-thread-view.puml) · ![runtime process thread view](Diagrams/Appendix/runtime-process-thread-view.svg)
 
 The candidate uses short request-process work and bounded background process work. It does not assume that PHP request workers are a language-level thread pool, or that logical roles require distinct hosts. Exact runtime/threading, pool sizes, supervisor and scheduler remain evaluated facilities.
 
@@ -1136,9 +1235,9 @@ The candidate uses short request-process work and bounded background process wor
 
 ##### 8.8 Concurrency model — bounded processes and scoped work
 
-[Concurrency model — bounded processes and scoped work](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-concurrency-model.svg)
+[Concurrency model — bounded processes and scoped work](Diagrams/Appendix/runtime-concurrency-model.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-concurrency-model.puml) · ![runtime concurrency model](../Diagrams/Archived-Png/Runtime-Concurrency-Model.png)
+[Editable PlantUML](Diagrams/Appendix/runtime-concurrency-model.puml) · ![runtime concurrency model](Diagrams/Appendix/runtime-concurrency-model.svg)
 
 The current candidate is bounded process concurrency with scoped per-operation context, local guards and durable work. Event-loop/async I/O, thread pools and actor systems are alternatives to evaluate if justified, **not three simultaneously selected frameworks**. No numeric concurrency or timeout default is adopted.
 
@@ -1146,9 +1245,9 @@ The current candidate is bounded process concurrency with scoped per-operation c
 
 ##### 8.9 Message flow and logical queue topology
 
-[Message flow and logical queue topology](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-queue-topology.svg)
+[Message flow and logical queue topology](Diagrams/Appendix/runtime-queue-topology.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-queue-topology.puml) · ![runtime queue topology](../Diagrams/Archived-Png/Runtime-Queue-Topology.png)
+[Editable PlantUML](Diagrams/Appendix/runtime-queue-topology.puml) · ![runtime queue topology](Diagrams/Appendix/runtime-queue-topology.svg)
 
 These are logical eligible-work classes, not an adopted broker or mandatory physical queue count. Unknown effects route to reconciliation/disposition, not unconditional re-execution. Actual acknowledgment, visibility, scheduler overlap and failure-lane mechanisms require compatible implementation and evidence.
 
@@ -1156,9 +1255,9 @@ These are logical eligible-work classes, not an adopted broker or mandatory phys
 
 ##### 8.10 UML deployment — runtime processes on candidate nodes
 
-[UML deployment — runtime processes on candidate nodes](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.svg)
+[UML deployment — runtime processes on candidate nodes](Diagrams/Appendix/drivers-uml-deployment.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.puml) · ![drivers uml deployment](../Diagrams/Archived-Png/Drivers-Uml-Deployment.png)
+[Editable PlantUML](Diagrams/Appendix/drivers-uml-deployment.puml) · ![drivers uml deployment](Diagrams/Appendix/drivers-uml-deployment.svg)
 
 This view maps proposed runtime roles to a candidate environment and separate conditional executor boundary. Artifacts can share one compatible release. It is neither an observed service inventory nor evidence of resource fit, working scheduling or HA; see [deployment design](#design-record-01-software-architecture-04-deployment-topology-nodes-and-networks-md).
 
@@ -1166,9 +1265,9 @@ This view maps proposed runtime roles to a candidate environment and separate co
 
 ##### 8.11 Resource contention — guards and shared capacity
 
-[Resource contention — guards and shared capacity](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-resource-contention.svg)
+[Resource contention — guards and shared capacity](Diagrams/Appendix/runtime-resource-contention.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-resource-contention.puml) · ![runtime resource contention](../Diagrams/Archived-Png/Runtime-Resource-Contention.png)
+[Editable PlantUML](Diagrams/Appendix/runtime-resource-contention.puml) · ![runtime resource contention](Diagrams/Appendix/runtime-resource-contention.svg)
 
 The guard subjects express invariants to protect: revisions, aggregate quota and reference/deletion exclusion. They do not select a global lock, isolation level or acquisition algorithm. Actual SQL/native-Git/storage races and combined resource pressure need integration checks.
 
@@ -1176,9 +1275,9 @@ The guard subjects express invariants to protect: revisions, aggregate quota and
 
 ##### 8.12 DFD — intent and observation data
 
-[DFD — intent and observation data](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-dataflow.svg)
+[DFD — intent and observation data](Diagrams/Appendix/runtime-dataflow.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-dataflow.puml) · ![runtime dataflow](../Diagrams/Archived-Png/Runtime-Dataflow.png)
+[Editable PlantUML](Diagrams/Appendix/runtime-dataflow.puml) · ![runtime dataflow](Diagrams/Appendix/runtime-dataflow.svg)
 
 This DFD uses external entities, transformations and logical stores. It deliberately shows input/intent/observation/result **data**, not thread scheduling or automatic triggers. Logical stores may share a database. Current authority and exact external identities remain mandatory at applicable transformations.
 
@@ -1186,9 +1285,9 @@ This DFD uses external entities, transformations and logical stores. It delibera
 
 ##### 8.13 Optional wait-for graph — hypothetical deadlock
 
-[Optional wait-for graph — hypothetical deadlock](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-wait-for-example.svg)
+[Optional wait-for graph — hypothetical deadlock](Diagrams/Appendix/runtime-wait-for-example.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-wait-for-example.puml) · ![runtime wait for example](../Diagrams/Archived-Png/Runtime-Wait-For-Example.png)
+[Editable PlantUML](Diagrams/Appendix/runtime-wait-for-example.puml) · ![runtime wait for example](Diagrams/Appendix/runtime-wait-for-example.svg)
 
 This optional graph demonstrates how opposite abstract guard acquisition could form a wait cycle. It is not an observed defect, actual engine lock graph or proof that the selected design deadlocks. Define real transaction/guard order and test under the chosen engine before making deadlock-freedom claims.
 
@@ -1217,7 +1316,7 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 **Current deployment constraint:** core uploads/media stay in private directories on the Resumefolio server. Core runtime/database mechanisms remain design work; ProjectForge is a distinct API-connected system whose engine, physical placement and database are undecided. Independent recoverable backups and least privilege remain required. Untrusted workflow execution is deferred.
 
-**Status:** proposed deployment candidate, November 2, 2026. This is not the current server configuration, a demonstrated capacity result, an infrastructure purchase or an accepted production baseline. Farhad is the delivery/operations owner and decision authority.
+**Status:** proposed deployment candidate. This is not the current server configuration, a demonstrated capacity result, an infrastructure purchase or an accepted production baseline. Farhad is the delivery/operations owner and decision authority.
 
 [Evidence](#design-record-01-software-architecture-04-deployment-topology-nodes-and-networks-md--heading-1-observed-inputs-and-design-boundaries) · [Topology](#design-record-01-software-architecture-04-deployment-topology-nodes-and-networks-md--heading-2-proposed-nodes-and-runtime-environments) · [Networks](#design-record-01-software-architecture-04-deployment-topology-nodes-and-networks-md--heading-3-network-zones-and-communication-paths) · [Artifacts](#design-record-01-software-architecture-04-deployment-topology-nodes-and-networks-md--heading-4-artifacts-storage-and-secrets) · [Release](#design-record-01-software-architecture-04-deployment-topology-nodes-and-networks-md--heading-5-deployment-and-maintenance-procedure) · [Recovery](#design-record-01-software-architecture-04-deployment-topology-nodes-and-networks-md--heading-6-availability-backup-and-disaster-recovery) · [Validation](#design-record-01-software-architecture-04-deployment-topology-nodes-and-networks-md--heading-7-capacity-validation-and-open-decisions) · [Diagram/sizing package](#design-record-01-software-architecture-04-deployment-topology-nodes-and-networks-md--heading-9-deployment-diagram-and-sizing-package)
 
@@ -1225,17 +1324,17 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 #### Current MVP boundary figure
 
-[Accepted core and separate ProjectForge boundary](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg)
+[Accepted core and separate ProjectForge boundary](Diagrams/Appendix/mvp-system-boundaries.svg)
 
-[Editable source](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) · ![mvp system boundaries](../Diagrams/Archived-Png/Mvp-System-Boundaries.png). Historical broader-product figures below retain earlier alternatives/detail; they do not define the current system boundary.
+[Editable source](Diagrams/Appendix/mvp-system-boundaries.puml) · ![mvp system boundaries](Diagrams/Appendix/mvp-system-boundaries.svg). Historical broader-product figures below retain earlier alternatives/detail; they do not define the current system boundary.
 
 <a id="design-record-01-software-architecture-04-deployment-topology-nodes-and-networks-md--heading-1-observed-inputs-and-design-boundaries"></a>
 
 #### 1. Observed inputs and design boundaries
 
-Use [resources and constraints](../../01-Project-Planning/03-Feasibility-And-Risk-Assessment.md#resource-constraints), [capacity planning](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/01-project-planning/11-capacity-and-preliminary-sizing.md), [analysis handoff](../../03-System-Analysis/01-System-Analysis.md#analysis-review-and-design-handoff--14-feasibility-dependencies-and-design-handoff), [architecture options](#design-record-01-software-architecture-01-design-drivers-and-solution-options-md) and [runtime design](#design-record-01-software-architecture-03-process-view-concurrency-and-runtime-behavior-md).
+Use [resources and constraints](../../01-Project-Planning/03-Feasibility-And-Risk-Assessment.md#resource-constraints), [capacity planning](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/01-project-planning/11-capacity-and-preliminary-sizing.md), [analysis handoff](../../03-System-Analysis/05-Analysis-Review-And-Design-Handoff.md#analysis-review-and-design-handoff--14-feasibility-dependencies-and-design-handoff), [architecture options](#design-record-01-software-architecture-01-design-drivers-and-solution-options-md) and [runtime design](#design-record-01-software-architecture-03-process-view-concurrency-and-runtime-behavior-md).
 
-The November 1 demo observation reported a Hetzner guest with 2 vCPU, 4 GB RAM, 40 GB disk and Ubuntu 24.04.4 LTS, with Nginx, PHP 8.3-FPM, MySQL and an existing Laravel application. That inventory is dated evidence, not a fresh inspection, final runtime version selection or proof of the combined product workload.
+The previously inspected demo observation reported a Hetzner guest with 2 vCPU, 4 GB RAM, 40 GB disk and Ubuntu 24.04.4 LTS, with Nginx, PHP 8.3-FPM, MySQL and an existing Laravel application. That inventory is dated evidence, not a fresh inspection, final runtime version selection or proof of the combined product workload.
 
 The owner reported OAuth uncreated and backups unconfigured. Inspected delivery declarations and worker/scheduler observations did not establish functioning outbound mail or background operation. Certificate/timer observations do not prove every future renewal succeeds. Do not turn these findings into installed/configured facilities in the diagram.
 
@@ -1245,9 +1344,9 @@ Use existing resources and 20 total project hours/week; no extra paid host/servi
 
 #### 2. Proposed nodes and runtime environments
 
-[Proposed deployment responsibilities and boundaries](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.svg)
+[Proposed deployment responsibilities and boundaries](Diagrams/Appendix/logical-component-ownership.svg)
 
-[Editable DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot) · ![logical component ownership](../Diagrams/Archived-Png/Logical-Component-Ownership.png)
+[Editable DOT](Diagrams/Appendix/logical-component-ownership.dot) · ![logical component ownership](Diagrams/Appendix/logical-component-ownership.svg)
 
 <a id="design-record-01-software-architecture-04-deployment-topology-nodes-and-networks-md--heading-dn-01--client-environment"></a>
 
@@ -1301,9 +1400,9 @@ Google, outbound delivery facilities and any separately managed deployment targe
 
 **After MVP.** Shared operating and recovery controls still apply where relevant.
 
-[Required communication zones](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.svg)
+[Required communication zones](Diagrams/Appendix/logical-component-ownership.svg)
 
-[Editable DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot) · ![logical component ownership](../Diagrams/Archived-Png/Logical-Component-Ownership.png)
+[Editable DOT](Diagrams/Appendix/logical-component-ownership.dot) · ![logical component ownership](Diagrams/Appendix/logical-component-ownership.svg)
 
 **Public application ingress:** expose only intended HTTPS routes and evaluated Git transport. Serve public static assets separately from protected artifact/repository storage. Reject directory/path bypasses and enforce current permission before protected delivery. TLS termination and any proxy-to-application link need an explicit trusted forwarding configuration.
 
@@ -1349,9 +1448,9 @@ Supply application/database/provider/deployment credentials through controlled o
 
 #### 5. Deployment and maintenance procedure
 
-[Release promotion and bounded rollback](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/release-and-recovery-route.svg)
+[Release promotion and bounded rollback](Diagrams/Appendix/release-and-recovery-route.svg)
 
-[Editable DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/release-and-recovery-route.dot) · ![release and recovery route](../Diagrams/Archived-Png/Release-And-Recovery-Route.png)
+[Editable DOT](Diagrams/Appendix/release-and-recovery-route.dot) · ![release and recovery route](Diagrams/Appendix/release-and-recovery-route.svg)
 
 1. **Identify the candidate:** record source/build/dependency identities, runtime requirements, migration impact, configuration prerequisites, relevant tests and owner-authorized scope. A documentation candidate is not a deployable application artifact.
 2. **Prepare an isolated rehearsal:** use controlled data and separate secrets/addresses/credentials. Disable consequential provider/executor/target actions unless explicitly in scope. A separate database name alone does not demonstrate adequate environment isolation.
@@ -1429,15 +1528,15 @@ FAU V07 deployment modeling maps artifacts to nodes and communication links, whi
 
 #### 9. Deployment diagram and sizing package
 
-The package below separates the proposed starting topology, optional infrastructure/orchestration/resilience alternatives and dated observations. No box provisions a facility. No cloud feature, namespace, region, rule, listener or sizing value is accepted through a diagram. Sources for provider/orchestration terminology were reviewed November 2, 2026; actual account/runtime compatibility remains unverified.
+The package below separates the proposed starting topology, optional infrastructure/orchestration/resilience alternatives and recorded observations. No box provisions a facility. No cloud feature, namespace, region, rule, listener or sizing value is accepted through a diagram. Sources for provider/orchestration terminology were consulted; actual account/runtime compatibility remains unverified.
 
 <a id="design-record-01-software-architecture-04-deployment-topology-nodes-and-networks-md--heading-91-optional-c4-level-1-anchor"></a>
 
 ##### 9.1 Optional C4 Level 1 anchor
 
-[Shared whole-system context](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-c4-system-context.svg)
+[Shared whole-system context](Diagrams/Appendix/drivers-c4-system-context.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-c4-system-context.puml) · ![drivers c4 system context](../Diagrams/Archived-Png/Drivers-C4-System-Context.png) · [Owning context assessment](#design-record-01-software-architecture-01-design-drivers-and-solution-options-md--heading-0-system-context-and-use-case-scope)
+[Editable PlantUML](Diagrams/Appendix/drivers-c4-system-context.puml) · ![drivers c4 system context](Diagrams/Appendix/drivers-c4-system-context.svg) · [Owning context assessment](#design-record-01-software-architecture-01-design-drivers-and-solution-options-md--heading-0-system-context-and-use-case-scope)
 
 The same context anchor is reused; deployment nodes, subnets and optional infrastructure belong in the views below, not in C4 Level 1.
 
@@ -1445,9 +1544,9 @@ The same context anchor is reused; deployment nodes, subnets and optional infras
 
 ##### 9.2 UML deployment — nodes, artifacts and environments
 
-[UML deployment — nodes, artifacts and environments](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.svg)
+[UML deployment — nodes, artifacts and environments](Diagrams/Appendix/drivers-uml-deployment.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.puml) · ![drivers uml deployment](../Diagrams/Archived-Png/Drivers-Uml-Deployment.png)
+[Editable PlantUML](Diagrams/Appendix/drivers-uml-deployment.puml) · ![drivers uml deployment](Diagrams/Appendix/drivers-uml-deployment.svg)
 
 This view distinguishes physical/environment nodes, UML execution environments, deployable release artifacts and retained operating data. It is a proposed mapping, not a fresh inventory or configured runtime.
 
@@ -1455,9 +1554,9 @@ This view distinguishes physical/environment nodes, UML execution environments, 
 
 ##### 9.3 Network topology — subnets and routing concepts
 
-[Historical or unselected alternative — Network topology — subnets and routing concepts](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-network-topology.svg)
+[Historical or unselected alternative — Network topology — subnets and routing concepts](Diagrams/Appendix/deployment-network-topology.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-network-topology.puml) · ![deployment network topology](../Diagrams/Archived-Png/Deployment-Network-Topology.png)
+[Editable PlantUML](Diagrams/Appendix/deployment-network-topology.puml) · ![deployment network topology](Diagrams/Appendix/deployment-network-topology.svg)
 
 Subnet/VPC terminology describes a design concept, not an assigned address space or an adopted product. The initial colocated candidate may use local interfaces/sockets instead. Actual CIDRs, route/gateway rules, private interface placement and administration paths remain decisions.
 
@@ -1465,9 +1564,9 @@ Subnet/VPC terminology describes a design concept, not an assigned address space
 
 ##### 9.4 Infrastructure — provider context and optional components
 
-[Historical or unselected alternative — Infrastructure — provider context and optional components](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-provider-infrastructure.svg)
+[Historical or unselected alternative — Infrastructure — provider context and optional components](Diagrams/Appendix/deployment-provider-infrastructure.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-provider-infrastructure.puml) · ![deployment provider infrastructure](../Diagrams/Archived-Png/Deployment-Provider-Infrastructure.png)
+[Editable PlantUML](Diagrams/Appendix/deployment-provider-infrastructure.puml) · ![deployment provider infrastructure](Diagrams/Appendix/deployment-provider-infrastructure.svg)
 
 The provider input is the dated Hetzner guest observation. Official [Hetzner Networks](https://docs.hetzner.com/networking/networks/overview/) describe private server links/subnets, and [Cloud Firewalls](https://docs.hetzner.com/cloud/firewalls/overview/) describe traffic rules. Their existence in provider documentation is not account configuration evidence. No load balancer, attached volume, network, snapshot or paid option is adopted here; verify actual coverage and effective protection at selection time.
 
@@ -1475,9 +1574,9 @@ The provider input is the dated Hetzner guest observation. Official [Hetzner Net
 
 ##### 9.5 Container/orchestration — optional cluster design
 
-[Historical or unselected alternative — Container/orchestration — optional cluster design](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-orchestration-alternative.svg)
+[Historical or unselected alternative — Container/orchestration — optional cluster design](Diagrams/Appendix/deployment-orchestration-alternative.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-orchestration-alternative.puml) · ![deployment orchestration alternative](../Diagrams/Archived-Png/Deployment-Orchestration-Alternative.png)
+[Editable PlantUML](Diagrams/Appendix/deployment-orchestration-alternative.puml) · ![deployment orchestration alternative](Diagrams/Appendix/deployment-orchestration-alternative.svg)
 
 This fulfills the orchestration view as a clearly unelected alternative. Official [Kubernetes multi-tenancy guidance](https://kubernetes.io/docs/concepts/security/multi-tenancy/) discusses isolation controls beyond namespace naming. A namespace is not proof of hostile-code containment. The proposed initial topology does not require Kubernetes; any adoption needs resource/operating, storage/recovery, identity and network evidence.
 
@@ -1485,9 +1584,9 @@ This fulfills the orchestration view as a clearly unelected alternative. Officia
 
 ##### 9.6 Network segmentation — logical security zones
 
-[Network segmentation — logical security zones](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.svg)
+[Network segmentation — logical security zones](Diagrams/Appendix/security-trust-boundaries.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.puml) · ![security trust boundaries](../Diagrams/Archived-Png/Security-Trust-Boundaries.png)
+[Editable PlantUML](Diagrams/Appendix/security-trust-boundaries.puml) · ![security trust boundaries](Diagrams/Appendix/security-trust-boundaries.svg)
 
 DMZ is a logical public-facing edge role here, not an installed physical subnet. Evaluate actual provider/host/local-process rules and ingress/egress behavior. Do not infer private-network encryption, firewall coverage or user-level authorization from a colored zone. Detailed controls remain in the [security design](#design-record-06-design-quality-and-security-analysis-02-security-threat-modeling-and-trust-boundaries-md).
 
@@ -1495,9 +1594,9 @@ DMZ is a logical public-facing edge role here, not an installed physical subnet.
 
 ##### 9.7 Traffic flow — proxy and optional balancing
 
-[Traffic flow — proxy and optional balancing](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-traffic-flow.svg)
+[Traffic flow — proxy and optional balancing](Diagrams/Appendix/deployment-traffic-flow.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-traffic-flow.puml) · ![deployment traffic flow](../Diagrams/Archived-Png/Deployment-Traffic-Flow.png)
+[Editable PlantUML](Diagrams/Appendix/deployment-traffic-flow.puml) · ![deployment traffic flow](Diagrams/Appendix/deployment-traffic-flow.svg)
 
 The initial direct reverse-proxy route and optional balancing route are alternatives. Gateways/load balancers are not silently added to the starting infrastructure. Actual trusted headers, TLS termination/hops, timeouts, private cache and controlled-byte serving need configuration/interoperability checks.
 
@@ -1505,9 +1604,9 @@ The initial direct reverse-proxy route and optional balancing route are alternat
 
 ##### 9.8 Multi-region / failure-zone alternative
 
-[Multi-region / failure-zone alternative](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-multiregion-alternative.svg)
+[Multi-region / failure-zone alternative](Diagrams/Appendix/deployment-multiregion-alternative.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-multiregion-alternative.puml) · ![deployment multiregion alternative](../Diagrams/Archived-Png/Deployment-Multiregion-Alternative.png)
+[Editable PlantUML](Diagrams/Appendix/deployment-multiregion-alternative.puml) · ![deployment multiregion alternative](Diagrams/Appendix/deployment-multiregion-alternative.svg)
 
 Abstract regions/zones illustrate a possible future failure-domain design, not actual purchased regions or a claim that a provider offers a specific AZ abstraction. Independent live capacity, consistent data/ref/artifact state, writer fencing, recovery keys, routing and solo operating cost are prerequisites. Replication cannot replace an independent protected backup.
 
@@ -1515,9 +1614,9 @@ Abstract regions/zones illustrate a possible future failure-domain design, not a
 
 ##### 9.9 Failover and disaster recovery
 
-[Failover and disaster recovery](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-failover-dr-route.svg)
+[Failover and disaster recovery](Diagrams/Appendix/deployment-failover-dr-route.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-failover-dr-route.puml) · ![deployment failover dr route](../Diagrams/Archived-Png/Deployment-Failover-Dr-Route.png)
+[Editable PlantUML](Diagrams/Appendix/deployment-failover-dr-route.puml) · ![deployment failover dr route](Diagrams/Appendix/deployment-failover-dr-route.svg)
 
 A missing standby takes the backup/isolated-restoration route only when a usable backup actually exists. Backups are not set up, so this remains an unmet recovery prerequisite, not a currently runnable DR capability. Current authority and external-effect reconciliation remain required before resumption; no automatic failover or numerical recovery promise is created.
 
@@ -1525,9 +1624,9 @@ A missing standby takes the backup/isolated-restoration route only when a usable
 
 ##### 9.10 Environment topology — dev, staging, production
 
-[Environment topology — dev, staging, production](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-environment-topology.svg)
+[Environment topology — dev, staging, production](Diagrams/Appendix/deployment-environment-topology.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-environment-topology.puml) · ![deployment environment topology](../Diagrams/Archived-Png/Deployment-Environment-Topology.png)
+[Editable PlantUML](Diagrams/Appendix/deployment-environment-topology.puml) · ![deployment environment topology](Diagrams/Appendix/deployment-environment-topology.svg)
 
 Dev/staging/prod name isolated execution/data/credential contexts, not three authorized hosts or databases to create now. A temporary staging/recovery target may be evaluated within constraints. No default production-data copying, production-secret reuse or outbound effect is permitted by this diagram.
 
@@ -1535,9 +1634,9 @@ Dev/staging/prod name isolated execution/data/credential contexts, not three aut
 
 ##### 9.11 CI/CD — exact artifact to target mapping
 
-[CI/CD — exact artifact to target mapping](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-cicd-artifact-nodes.svg)
+[CI/CD — exact artifact to target mapping](Diagrams/Appendix/deployment-cicd-artifact-nodes.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-cicd-artifact-nodes.puml) · ![deployment cicd artifact nodes](../Diagrams/Archived-Png/Deployment-Cicd-Artifact-Nodes.png)
+[Editable PlantUML](Diagrams/Appendix/deployment-cicd-artifact-nodes.puml) · ![deployment cicd artifact nodes](Diagrams/Appendix/deployment-cicd-artifact-nodes.svg)
 
 This is artifact promotion and schema/runtime compatibility, not a claim of configured CI. Web and workers use compatible exact release identity; migrations operate on retained data and can be irreversible. A workflow result supplies no deployment permission. See [Workflow/Deployment](../03-Low-Level-Design/03-Detailed-Module-Design.md#design-record-03-component-and-module-design-components-workflow-and-deployment-md) and [operating procedure](#design-record-06-design-quality-and-security-analysis-03-operations-backup-recovery-and-resilience-md).
 
@@ -1545,9 +1644,9 @@ This is artifact promotion and schema/runtime compatibility, not a claim of conf
 
 ##### 9.12 Sequence — protected request across tiers
 
-[Sequence — protected request across tiers](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-network-request-sequence.svg)
+[Sequence — protected request across tiers](Diagrams/Appendix/deployment-network-request-sequence.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-network-request-sequence.puml) · ![deployment network request sequence](../Diagrams/Archived-Png/Deployment-Network-Request-Sequence.png)
+[Editable PlantUML](Diagrams/Appendix/deployment-network-request-sequence.puml) · ![deployment network request sequence](Diagrams/Appendix/deployment-network-request-sequence.svg)
 
 This is one protected request through the candidate tiers, with the optional balancer expressed as an alternative. The private adapter may use evaluated streaming or internal delivery, but may not bypass current eligibility or expose raw paths. It is not a measured latency trace or a promise of one selected serving mechanism.
 
@@ -1562,15 +1661,15 @@ This is a **candidate link contract**, not scanned listeners, open-firewall rule
 | Link | Candidate protocol / port | Exposure and remaining decision |
 | --- | --- | --- |
 | DN-01 client → application edge | HTTPS / TCP 443 proposed | Intended public ingress; actual TLS/proxy/routing configuration pending |
-| Optional balancer → reverse proxy | Protected compatible transport / port TBD | Only if balancing is adopted; trusted-hop/header policy required |
+| Optional balancer → reverse proxy | Protected compatible transport / port requires environment verification | Only if balancing is adopted; trusted-hop/header policy required |
 | Reverse proxy → PHP/application runtime | Evaluated FastCGI/local socket or compatible runtime path | Local/restricted only; no arbitrary public runtime port |
-| Web/worker → transactional store | Local socket or engine-specific restricted protocol / port TBD | Engine/bind/TLS/access policy pending; not public |
-| Client → native Git interface | Evaluated Git-over-HTTPS or SSH transport / final port TBD | HTTPS conventionally 443; SSH choice, credentials and endpoint require actual Git contract |
+| Web/worker → transactional store | Local socket or engine-specific restricted protocol / port requires environment verification | Engine/bind/TLS/access policy pending; not public |
+| Client → native Git interface | Evaluated Git-over-HTTPS or SSH transport / final port requires environment verification | HTTPS conventionally 443; SSH choice, credentials and endpoint require actual Git contract |
 | Worker → Google provider | HTTPS / TCP 443 proposed | Required authorized capability only; OAuth/setup and exact APIs pending |
-| Coordinator → executor | Authenticated scoped control/observation protocol / port TBD | Only evaluated execution boundary; no public admin/host interface |
-| Trusted deploy adapter → target | Target-supported protected protocol / port TBD | Separate exact artifact/target approval and restricted credential |
-| Backup sender → independent destination | Evaluated protected transfer / port TBD | Destination/keys/coverage not configured; no raw unrestricted copy path |
-| Authorized operator → management interface | Evaluated restricted administration protocol / port TBD | Restricted source/identity; no assumed SSH/public control-plane exposure |
+| Coordinator → executor | Authenticated scoped control/observation protocol / port requires environment verification | Only evaluated execution boundary; no public admin/host interface |
+| Trusted deploy adapter → target | Target-supported protected protocol / port requires environment verification | Separate exact artifact/target approval and restricted credential |
+| Backup sender → independent destination | Evaluated protected transfer / port requires environment verification | Destination/keys/coverage not configured; no raw unrestricted copy path |
+| Authorized operator → management interface | Evaluated restricted administration protocol / port requires environment verification | Restricted source/identity; no assumed SSH/public control-plane exposure |
 
 DNS, certificate renewal, proxy-to-proxy paths and any later queue/storage service also need explicit entries once actual facilities are selected. Record effective listeners/rules separately after authorized inspection; diagram labels are not inventory evidence.
 
@@ -1585,10 +1684,10 @@ Only the demo guest has a dated numeric allocation. Rows sharing a candidate hos
 | Existing demo guest (dated Nov 1 observation) | 2 vCPU / 4 GB RAM / 40 GB local disk; inventory, not final production selection | Existing/proposed simultaneous workloads, actual CPU/memory/I/O/disk/network and safe headroom |
 | DN-02 trusted web/background environment | Candidate colocation; no additional allocation selected | Request mix, worker/scheduler demand, queue age, deployment/migration and operating overhead |
 | Relational/private-artifact/native-Git stores if colocated | Share DN-02 resources; no separately additive node budget | Transactions/locks, retained/protected bytes, repository growth, temporary generation, logs and restore space |
-| DN-03 Git facility if extracted | Placement and allocation TBD; no paid host assumed | Real transfer/ref workload, operating identity/storage and recovery/combined-load comparison |
-| DN-04 conditional executor | Mechanism, location and safe resource envelope TBD | Containment, bounded process/CPU/memory/temp/output/network, termination/cleanup and actual build fit |
-| DN-05 independent recovery destination | Not selected/configured; capacity TBD | Consistent protected data size, reviewed retention/base dependencies, encryption/key access, transfer and usable restore |
-| Staging/recovery rehearsal context | Isolated facility TBD; may be temporary | Compatible dataset/runtime, no unsafe production effects, actual restore/test and disposal needs |
+| DN-03 Git facility if extracted | Placement and allocation require verification; no paid host assumed | Real transfer/ref workload, operating identity/storage and recovery/combined-load comparison |
+| DN-04 conditional executor | Mechanism, location and safe resource envelope requires verification | Containment, bounded process/CPU/memory/temp/output/network, termination/cleanup and actual build fit |
+| DN-05 independent recovery destination | Not selected/configured; capacity requires verification | Consistent protected data size, reviewed retention/base dependencies, encryption/key access, transfer and usable restore |
+| Staging/recovery rehearsal context | Isolated facility requires verification; may be temporary | Compatible dataset/runtime, no unsafe production effects, actual restore/test and disposal needs |
 | Optional balancer/cluster/standby/region | Not adopted or provisioned; no budget allocated | Justified requirement plus capacity/consistency/fencing/cost/solo-operations evaluation |
 
 Use the exact proposed Q-D24/Q-D25/Q-D26 policies only with their recorded status and workload/measurement contract. Ten accounts and a quiet-server snapshot cannot determine combined capacity. If safe facilities cannot meet agreed scope/resources, record the explicit conflict/options; do not silently buy infrastructure or relabel missing capability as complete.
@@ -1616,7 +1715,7 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 **Purpose:** make shared architectural obligations visible, identify their authoritative design owners and explain how components coordinate changes. Detailed rules remain in their owning documents; this overview is their navigation and integration map.
 
-**Status:** proposed coordination view, November 2, 2026. The owners below are logical design responsibilities, not separate staffed teams. Farhad remains the project decision-maker. No new permission, numerical target, infrastructure choice or accepted baseline is established here.
+**Status:** proposed coordination view. The owners below are logical design responsibilities, not separate staffed teams. Farhad remains the project decision-maker. No new permission, numerical target, infrastructure choice or accepted baseline is established here.
 
 [Ownership](#design-record-01-software-architecture-05-cross-cutting-concerns-overview-md--heading-1-ownership-and-scope) · [Concern catalog](#design-record-01-software-architecture-05-cross-cutting-concerns-overview-md--heading-2-shared-concern-catalog) · [Coordination](#design-record-01-software-architecture-05-cross-cutting-concerns-overview-md--heading-3-cross-component-coordination-examples) · [Change route](#design-record-01-software-architecture-05-cross-cutting-concerns-overview-md--heading-4-change-and-decision-route) · [Review](#design-record-01-software-architecture-05-cross-cutting-concerns-overview-md--heading-5-review-and-completion) · [Full realization package](#design-record-01-software-architecture-05-cross-cutting-concerns-overview-md--heading-7-cross-cutting-realization-package)
 
@@ -1624,9 +1723,9 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 #### Current MVP boundary figure
 
-[Accepted core and separate ProjectForge boundary](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg)
+[Accepted core and separate ProjectForge boundary](Diagrams/Appendix/mvp-system-boundaries.svg)
 
-[Editable source](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) · ![mvp system boundaries](../Diagrams/Archived-Png/Mvp-System-Boundaries.png). Historical broader-product figures below retain earlier alternatives/detail; they do not define the current system boundary.
+[Editable source](Diagrams/Appendix/mvp-system-boundaries.puml) · ![mvp system boundaries](Diagrams/Appendix/mvp-system-boundaries.svg). Historical broader-product figures below retain earlier alternatives/detail; they do not define the current system boundary.
 
 <a id="design-record-01-software-architecture-05-cross-cutting-concerns-overview-md--heading-1-ownership-and-scope"></a>
 
@@ -1634,11 +1733,11 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 A concern is cross-cutting when the same source obligation affects several components, runtime paths or deployment artifacts. It does not automatically require a new component, shared database table or framework layer. For example, authorization spans the product, but resource owners must still enforce operation-specific authority.
 
-[Shared concern ownership and component realization](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/cross-cutting-ownership.svg)
+[Shared concern ownership and component realization](Diagrams/Appendix/cross-cutting-ownership.svg)
 
-[Editable DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/cross-cutting-ownership.dot) · ![cross cutting ownership](../Diagrams/Archived-Png/Cross-Cutting-Ownership.png)
+[Editable DOT](Diagrams/Appendix/cross-cutting-ownership.dot) · ![cross cutting ownership](Diagrams/Appendix/cross-cutting-ownership.svg)
 
-**Source authority:** [accepted scope](../../01-Project-Planning/01-Project-Charter.md#mvp-scope), [requirements specification](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-requirements-specification), [source questions/decisions](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#change-and-baseline-open-questions-and-decisions) and [analysis quality/security view](../../03-System-Analysis/01-System-Analysis.md#analysis-interfaces-security-and-quality-analysis--13-security-quality-and-operational-analysis). Design refines mechanisms; it must not silently change a source rule.
+**Source authority:** [accepted scope](../../01-Project-Planning/01-Project-Charter.md#mvp-scope), [requirements specification](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-requirements-specification), [source questions/decisions](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#change-and-baseline-open-questions-and-decisions) and [analysis quality/security view](../../03-System-Analysis/04-Interfaces-Security-And-Quality.md#analysis-interfaces-security-and-quality-analysis--13-security-quality-and-operational-analysis). Design refines mechanisms; it must not silently change a source rule.
 
 **Shared design owner:** one topic document owns each mechanism’s rationale and shared convention. Other views link that record and describe their specific application. The concern locators below are navigation labels, not new requirements or a completed verification checklist.
 
@@ -1752,7 +1851,7 @@ A concern is cross-cutting when the same source obligation affects several compo
 
 ##### CC-09 — Shared interaction accessibility and language
 
-**Authoritative design:** [Shared interaction accessibility and language](../02-UI-UX-Design/02-UI-UX-Design.md).
+**Authoritative design:** [Shared interaction accessibility and language](../02-UI-UX-Design/01-Introduction.md).
 
 **Ownership:** Interaction design owns shared UI behavior; each feature realizes its source scenario and permitted state.
 
@@ -1808,9 +1907,9 @@ These are integration walkthroughs, not observed executions. See [component boun
 
 #### 4. Change and decision route
 
-[Cross-cutting change coordination](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/cross-cutting-change-route.svg)
+[Cross-cutting change coordination](Diagrams/Appendix/cross-cutting-change-route.svg)
 
-[Editable DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/cross-cutting-change-route.dot) · ![cross cutting change route](../Diagrams/Archived-Png/Cross-Cutting-Change-Route.png)
+[Editable DOT](Diagrams/Appendix/cross-cutting-change-route.dot) · ![cross cutting change route](Diagrams/Appendix/cross-cutting-change-route.svg)
 
 1. Identify the exact source rule, proposed change and its authority. If required behavior is unclear or changes, refine the authoritative requirement/analysis record first.
 2. Identify the shared mechanism owner, component consumers, runtime operations, data/artifacts, UI flows and operating procedures affected.
@@ -1858,7 +1957,7 @@ Advisor consultation remains unavailable as previously recorded; no independent 
 
 #### 7. Cross-cutting realization package
 
-This package supplies the requested shared views without replacing their authoritative design owners. All mechanisms are proposals or evaluation examples; no library, collector, sidecar, breaker, cache, secret store or control is installed by a diagram. Supporting official guidance was reviewed November 2, 2026; actual compatibility/effectiveness remains unverified.
+This package supplies the requested shared views without replacing their authoritative design owners. All mechanisms are proposals or evaluation examples; no library, collector, sidecar, breaker, cache, secret store or control is installed by a diagram. Supporting official guidance was consulted; actual compatibility/effectiveness remains unverified.
 
 <a id="design-record-01-software-architecture-05-cross-cutting-concerns-overview-md--heading-71-concern-to-component-matrix"></a>
 
@@ -1885,9 +1984,9 @@ This is a responsibility map, not criterion closure or a service deployment matr
 
 ##### 7.2 Hexagonal architecture with concern overlays
 
-[Hexagonal architecture with concern overlays](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-hexagonal-overlay.svg)
+[Hexagonal architecture with concern overlays](Diagrams/Appendix/concerns-hexagonal-overlay.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-hexagonal-overlay.puml) · ![concerns hexagonal overlay](../Diagrams/Archived-Png/Concerns-Hexagonal-Overlay.png)
+[Editable PlantUML](Diagrams/Appendix/concerns-hexagonal-overlay.puml) · ![concerns hexagonal overlay](Diagrams/Appendix/concerns-hexagonal-overlay.svg)
 
 The overlay identifies shared hooks and owner-side enforcement, not a universal layer that can authorize every operation. Domain invariants stay with each owner; common libraries must not pull private models into a global shared service.
 
@@ -1895,9 +1994,9 @@ The overlay identifies shared hooks and owner-side enforcement, not a universal 
 
 ##### 7.3 Security architecture and trust crossings
 
-[MVP with explicitly deferred paths — Security architecture and trust crossings](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-security-architecture.svg)
+[MVP with explicitly deferred paths — Security architecture and trust crossings](Diagrams/Appendix/concerns-security-architecture.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-security-architecture.puml) · ![concerns security architecture](../Diagrams/Archived-Png/Concerns-Security-Architecture.png)
+[Editable PlantUML](Diagrams/Appendix/concerns-security-architecture.puml) · ![concerns security architecture](Diagrams/Appendix/concerns-security-architecture.svg)
 
 Authentication, current scoped authority and resource/lifecycle validity are distinct. Existing administrative-policy reconciliation remains pending. Neither a network boundary nor a diagram label demonstrates implemented controls or untrusted-code isolation.
 
@@ -1905,9 +2004,9 @@ Authentication, current scoped authority and resource/lifecycle validity are dis
 
 ##### 7.4 Authentication and authorization sequence
 
-[Authentication and authorization sequence](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-authn-authz-sequence.svg)
+[Authentication and authorization sequence](Diagrams/Appendix/concerns-authn-authz-sequence.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-authn-authz-sequence.puml) · ![concerns authn authz sequence](../Diagrams/Archived-Png/Concerns-Authn-Authz-Sequence.png)
+[Editable PlantUML](Diagrams/Appendix/concerns-authn-authz-sequence.puml) · ![concerns authn authz sequence](Diagrams/Appendix/concerns-authn-authz-sequence.svg)
 
 This is a selected protected account request; employer links, Git credentials, callbacks and jobs use their own actual contexts. The owner must synchronize consequential admission with current grant/state changes. No authentication library, factor mechanism or timeout is selected.
 
@@ -1915,9 +2014,9 @@ This is a selected protected account request; employer links, Git credentials, c
 
 ##### 7.5 Observability — logs, metrics and tracing
 
-[Observability — logs, metrics and tracing](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-observability-pipeline.svg)
+[Observability — logs, metrics and tracing](Diagrams/Appendix/concerns-observability-pipeline.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-observability-pipeline.puml) · ![concerns observability pipeline](../Diagrams/Archived-Png/Concerns-Observability-Pipeline.png)
+[Editable PlantUML](Diagrams/Appendix/concerns-observability-pipeline.puml) · ![concerns observability pipeline](Diagrams/Appendix/concerns-observability-pipeline.svg)
 
 Official [OpenTelemetry signal concepts](https://opentelemetry.io/docs/concepts/signals/) distinguish logs, metrics and traces; [OWASP Logging guidance](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html) informs restricted diagnostic design. No collector/backend/sidecar is adopted. Define actual coverage, sampling/retention, secret filtering, cardinality, access, outage behavior and tested alert routing before operation. Correlation is not authorization.
 
@@ -1925,9 +2024,9 @@ Official [OpenTelemetry signal concepts](https://opentelemetry.io/docs/concepts/
 
 ##### 7.6 Activity — error and exception outcomes
 
-[Activity — error and exception outcomes](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-error-flow.svg)
+[Activity — error and exception outcomes](Diagrams/Appendix/concerns-error-flow.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-error-flow.puml) · ![concerns error flow](../Diagrams/Archived-Png/Concerns-Error-Flow.png)
+[Editable PlantUML](Diagrams/Appendix/concerns-error-flow.puml) · ![concerns error flow](Diagrams/Appendix/concerns-error-flow.svg)
 
 Classify the actual operation and effect boundary, not merely the thrown exception. A timeout may leave an effect unknown; retry/cancellation/compensation must follow the owner contract. Safe UI/API feedback and restricted diagnostics retain actual state without private fallback or secrets.
 
@@ -1935,9 +2034,9 @@ Classify the actual operation and effect boundary, not merely the thrown excepti
 
 ##### 7.7 Configuration management and effective identity
 
-[Configuration management and effective identity](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-configuration-management.svg)
+[Configuration management and effective identity](Diagrams/Appendix/concerns-configuration-management.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-configuration-management.puml) · ![concerns configuration management](../Diagrams/Archived-Png/Concerns-Configuration-Management.png)
+[Editable PlantUML](Diagrams/Appendix/concerns-configuration-management.puml) · ![concerns configuration management](Diagrams/Appendix/concerns-configuration-management.svg)
 
 Validate exact environment/release configuration and required secret scope. Effective identity observations contain version/provenance, not values. Source-controlled non-secret templates and protected recoverable secret access have different lifecycles. No configuration service, vault or automatic production flag enabling is selected.
 
@@ -1945,9 +2044,9 @@ Validate exact environment/release configuration and required secret scope. Effe
 
 ##### 7.8 Caching strategy and current authority
 
-[Caching strategy and current authority](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-cache-strategy.svg)
+[Caching strategy and current authority](Diagrams/Appendix/concerns-cache-strategy.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-cache-strategy.puml) · ![concerns cache strategy](../Diagrams/Archived-Png/Concerns-Cache-Strategy.png)
+[Editable PlantUML](Diagrams/Appendix/concerns-cache-strategy.puml) · ![concerns cache strategy](Diagrams/Appendix/concerns-cache-strategy.svg)
 
 Cache payload, key scope, freshness/invalidation, concurrent fill, size and fallback need an owning record. Current authority and exact representation availability remain separate from a hit. See [persistence/cache policy](../03-Low-Level-Design/04-Database-Design.md#design-record-04-data-design-03-persistence-caching-and-data-lifecycle-md) for shared rules; no new TTL or backend is invented.
 
@@ -1955,9 +2054,9 @@ Cache payload, key scope, freshness/invalidation, concurrent fill, size and fall
 
 ##### 7.9 Local transaction and external effect boundaries
 
-[Local transaction and external effect boundaries](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-transaction-boundary.svg)
+[Local transaction and external effect boundaries](Diagrams/Appendix/concerns-transaction-boundary.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-transaction-boundary.puml) · ![concerns transaction boundary](../Diagrams/Archived-Png/Concerns-Transaction-Boundary.png)
+[Editable PlantUML](Diagrams/Appendix/concerns-transaction-boundary.puml) · ![concerns transaction boundary](Diagrams/Appendix/concerns-transaction-boundary.svg)
 
 The illustrated local boundary commits only state within the evaluated transaction mechanism. Consumer/artifact protection and provider/Git/executor/target effects need their own coordination/reconciliation. Sharing one SQL store does not authorize another module to mutate internal records. See [ADR-003](../ADR/ADR-003-Durable-External-Attempts.md#design-record-07-design-decisions-adr-003-durable-external-attempts-md).
 
@@ -1965,9 +2064,9 @@ The illustrated local boundary commits only state within the evaluated transacti
 
 ##### 7.10 Resilience — bounded protection and safe repetition
 
-[Resilience — bounded protection and safe repetition](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-resilience-patterns.svg)
+[Resilience — bounded protection and safe repetition](Diagrams/Appendix/concerns-resilience-patterns.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-resilience-patterns.puml) · ![concerns resilience patterns](../Diagrams/Archived-Png/Concerns-Resilience-Patterns.png)
+[Editable PlantUML](Diagrams/Appendix/concerns-resilience-patterns.puml) · ![concerns resilience patterns](Diagrams/Appendix/concerns-resilience-patterns.svg)
 
 Official [Retry](https://learn.microsoft.com/en-us/azure/architecture/patterns/retry) and [Circuit Breaker](https://learn.microsoft.com/en-us/azure/architecture/patterns/circuit-breaker) guidance informs pattern evaluation, not an Azure service choice. Evaluate operation-specific repeat safety before backoff/retry, and actual resource separation before bulkhead claims. A deadline bounds waiting; it cannot by itself terminate a remote process or prove no effect.
 
@@ -1975,9 +2074,9 @@ Official [Retry](https://learn.microsoft.com/en-us/azure/architecture/patterns/r
 
 ##### 7.11 UML circuit-breaker state machine
 
-[UML circuit-breaker state machine](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-circuit-breaker-states.svg)
+[UML circuit-breaker state machine](Diagrams/Appendix/concerns-circuit-breaker-states.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-circuit-breaker-states.puml) · ![concerns circuit breaker states](../Diagrams/Archived-Png/Concerns-Circuit-Breaker-States.png)
+[Editable PlantUML](Diagrams/Appendix/concerns-circuit-breaker-states.puml) · ![concerns circuit breaker states](Diagrams/Appendix/concerns-circuit-breaker-states.svg)
 
 Closed/Open/Half-open are proposed dependency-admission states, not business attempt outcomes. No numerical predicate, cooldown, probe count, state store or fleet-wide synchronization is selected. Half-open probes must be actually safe and supported; do not probe with an ambiguous consequential send/deploy.
 
@@ -1985,9 +2084,9 @@ Closed/Open/Half-open are proposed dependency-admission states, not business att
 
 ##### 7.12 Interceptor / middleware chain
 
-[Interceptor / middleware chain](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-middleware-chain.svg)
+[Interceptor / middleware chain](Diagrams/Appendix/concerns-middleware-chain.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-middleware-chain.puml) · ![concerns middleware chain](../Diagrams/Archived-Png/Concerns-Middleware-Chain.png)
+[Editable PlantUML](Diagrams/Appendix/concerns-middleware-chain.puml) · ![concerns middleware chain](Diagrams/Appendix/concerns-middleware-chain.svg)
 
 This is responsibility ordering, not inspected Laravel configuration or a complete interceptor API. Verify early denial, exception unwinding, body limits, current authority, anti-forgery scope and safe result handling for actual routes. Equivalent checks must cover non-HTTP entry paths.
 
@@ -1995,9 +2094,9 @@ This is responsibility ordering, not inspected Laravel configuration or a comple
 
 ##### 7.13 Shared libraries and optional sidecar responsibilities
 
-[Shared libraries and optional sidecar responsibilities](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-shared-components.svg)
+[Shared libraries and optional sidecar responsibilities](Diagrams/Appendix/concerns-shared-components.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-shared-components.puml) · ![concerns shared components](../Diagrams/Archived-Png/Concerns-Shared-Components.png)
+[Editable PlantUML](Diagrams/Appendix/concerns-shared-components.puml) · ![concerns shared components](Diagrams/Appendix/concerns-shared-components.svg)
 
 The preferred candidate starts with narrow technical contracts/adapters; the sidecar illustrates an optional packaging alternative. Libraries, collector processes and sidecars have different lifetime/resource/credential implications. No universal domain model or additional privileged process is justified solely by cross-cutting concerns.
 
@@ -2005,9 +2104,9 @@ The preferred candidate starts with narrow technical contracts/adapters; the sid
 
 ##### 7.14 DFD with trust boundaries
 
-[MVP with explicitly deferred paths — DFD with trust boundaries](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-trust-dfd.svg)
+[MVP with explicitly deferred paths — DFD with trust boundaries](Diagrams/Appendix/concerns-trust-dfd.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-trust-dfd.puml) · ![concerns trust dfd](../Diagrams/Archived-Png/Concerns-Trust-Dfd.png)
+[Editable PlantUML](Diagrams/Appendix/concerns-trust-dfd.puml) · ![concerns trust dfd](Diagrams/Appendix/concerns-trust-dfd.svg)
 
 The DFD shows what crosses a logical trust boundary: raw input, verified context, current state, actual outcomes and bounded diagnostics. It does not prove physical segmentation, encryption or authorization. Actual secret/content leakage, forged metadata and restored authority cases remain in the [threat register](#design-record-06-design-quality-and-security-analysis-02-security-threat-modeling-and-trust-boundaries-md).
 
@@ -2061,13 +2160,13 @@ Trace the selected concern to exact source/design criteria, affected owners, nor
 
 ### Resumefolio — Architecture Diagram Catalog
 
-Status: Proposed design views, November 2, 2026. No topology, capacity or control is demonstrated by a diagram.
+Status: Proposed design views. No topology, capacity or control is demonstrated by a diagram.
 
 | Diagram | Purpose | Editable source | PNG |
 |---|---|---|---|
-| [Drivers and design implications](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-to-architecture.svg) | Drivers and design implications | [DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-to-architecture.dot) | ![drivers to architecture](../Diagrams/Archived-Png/Drivers-To-Architecture.png) |
-| [Proposed application and effect boundaries](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.svg) | Proposed application and effect boundaries | [DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot) | ![logical component ownership](../Diagrams/Archived-Png/Logical-Component-Ownership.png) |
-| [Decision and evidence route](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/architecture-decision-route.svg) | Decision and evidence route | [DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/architecture-decision-route.dot) | ![architecture decision route](../Diagrams/Archived-Png/Architecture-Decision-Route.png) |
+| [Drivers and design implications](Diagrams/Appendix/drivers-to-architecture.svg) | Drivers and design implications | [DOT](Diagrams/Appendix/drivers-to-architecture.dot) | ![drivers to architecture](Diagrams/Appendix/drivers-to-architecture.svg) |
+| [Proposed application and effect boundaries](Diagrams/Appendix/logical-component-ownership.svg) | Proposed application and effect boundaries | [DOT](Diagrams/Appendix/logical-component-ownership.dot) | ![logical component ownership](Diagrams/Appendix/logical-component-ownership.svg) |
+| [Decision and evidence route](Diagrams/Appendix/architecture-decision-route.svg) | Decision and evidence route | [DOT](Diagrams/Appendix/architecture-decision-route.dot) | ![architecture decision route](Diagrams/Appendix/architecture-decision-route.svg) |
 
 [Owning assessment](#design-record-01-software-architecture-01-design-drivers-and-solution-options-md) · [Architecture index](#design-record-01-software-architecture-software-architecture-md)
 
@@ -2079,9 +2178,9 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### System decomposition and boundaries
 
-- [Logical component ownership](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.svg) · [DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot) · ![logical component ownership](../Diagrams/Archived-Png/Logical-Component-Ownership.png)
-- [Public contracts and adapter boundaries](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/component-contract-boundaries.svg) · [DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/component-contract-boundaries.dot) · ![component contract boundaries](../Diagrams/Archived-Png/Component-Contract-Boundaries.png)
-- [Presentation and historical identity boundaries](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/presentation-history-boundaries.svg) · [DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/presentation-history-boundaries.dot) · ![presentation history boundaries](../Diagrams/Archived-Png/Presentation-History-Boundaries.png)
+- [Logical component ownership](Diagrams/Appendix/logical-component-ownership.svg) · [DOT](Diagrams/Appendix/logical-component-ownership.dot) · ![logical component ownership](Diagrams/Appendix/logical-component-ownership.svg)
+- [Public contracts and adapter boundaries](Diagrams/Appendix/component-contract-boundaries.svg) · [DOT](Diagrams/Appendix/component-contract-boundaries.dot) · ![component contract boundaries](Diagrams/Appendix/component-contract-boundaries.svg)
+- [Presentation and historical identity boundaries](Diagrams/Appendix/presentation-history-boundaries.svg) · [DOT](Diagrams/Appendix/presentation-history-boundaries.dot) · ![presentation history boundaries](Diagrams/Appendix/presentation-history-boundaries.svg)
 
 [Owning decomposition document](#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md). All three diagrams describe proposed logical boundaries, not verified physical facilities.
 
@@ -2089,9 +2188,9 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Runtime concurrency and failure handling
 
-- [Runtime responsibilities](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-responsibilities.svg) · [DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-responsibilities.dot) · ![runtime responsibilities](../Diagrams/Archived-Png/Runtime-Responsibilities.png)
-- [Durable intent and external effects](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/durable-attempt-protocol.svg) · [DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/durable-attempt-protocol.dot) · ![durable attempt protocol](../Diagrams/Archived-Png/Durable-Attempt-Protocol.png)
-- [Cancellation and reconciliation](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/cancellation-reconciliation.svg) · [DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/cancellation-reconciliation.dot) · ![cancellation reconciliation](../Diagrams/Archived-Png/Cancellation-Reconciliation.png)
+- [Runtime responsibilities](Diagrams/Appendix/runtime-responsibilities.svg) · [DOT](Diagrams/Appendix/runtime-responsibilities.dot) · ![runtime responsibilities](Diagrams/Appendix/runtime-responsibilities.svg)
+- [Durable intent and external effects](Diagrams/Appendix/durable-attempt-protocol.svg) · [DOT](Diagrams/Appendix/durable-attempt-protocol.dot) · ![durable attempt protocol](Diagrams/Appendix/durable-attempt-protocol.svg)
+- [Cancellation and reconciliation](Diagrams/Appendix/cancellation-reconciliation.svg) · [DOT](Diagrams/Appendix/cancellation-reconciliation.dot) · ![cancellation reconciliation](Diagrams/Appendix/cancellation-reconciliation.svg)
 
 [Owning runtime design](#design-record-01-software-architecture-03-process-view-concurrency-and-runtime-behavior-md). Proposed process/behavior views; no queue, executor or runtime result is established by the diagrams.
 
@@ -2099,9 +2198,9 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Deployment topology and operating boundaries
 
-- [Proposed deployment candidate](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.svg) · [DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot) · ![logical component ownership](../Diagrams/Archived-Png/Logical-Component-Ownership.png)
-- [Network access zones](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.svg) · [DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot) · ![logical component ownership](../Diagrams/Archived-Png/Logical-Component-Ownership.png)
-- [Release and recovery route](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/release-and-recovery-route.svg) · [DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/release-and-recovery-route.dot) · ![release and recovery route](../Diagrams/Archived-Png/Release-And-Recovery-Route.png)
+- [Proposed deployment candidate](Diagrams/Appendix/logical-component-ownership.svg) · [DOT](Diagrams/Appendix/logical-component-ownership.dot) · ![logical component ownership](Diagrams/Appendix/logical-component-ownership.svg)
+- [Network access zones](Diagrams/Appendix/logical-component-ownership.svg) · [DOT](Diagrams/Appendix/logical-component-ownership.dot) · ![logical component ownership](Diagrams/Appendix/logical-component-ownership.svg)
+- [Release and recovery route](Diagrams/Appendix/release-and-recovery-route.svg) · [DOT](Diagrams/Appendix/release-and-recovery-route.dot) · ![release and recovery route](Diagrams/Appendix/release-and-recovery-route.svg)
 
 [Owning deployment design](#design-record-01-software-architecture-04-deployment-topology-nodes-and-networks-md). Proposed placements and paths; backup/executor facilities and capacity remain unverified.
 
@@ -2109,8 +2208,8 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Cross-cutting concern coordination
 
-- [Shared concern ownership](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/cross-cutting-ownership.svg) · [DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/cross-cutting-ownership.dot) · ![cross cutting ownership](../Diagrams/Archived-Png/Cross-Cutting-Ownership.png)
-- [Cross-cutting change route](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/cross-cutting-change-route.svg) · [DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/cross-cutting-change-route.dot) · ![cross cutting change route](../Diagrams/Archived-Png/Cross-Cutting-Change-Route.png)
+- [Shared concern ownership](Diagrams/Appendix/cross-cutting-ownership.svg) · [DOT](Diagrams/Appendix/cross-cutting-ownership.dot) · ![cross cutting ownership](Diagrams/Appendix/cross-cutting-ownership.svg)
+- [Cross-cutting change route](Diagrams/Appendix/cross-cutting-change-route.svg) · [DOT](Diagrams/Appendix/cross-cutting-change-route.dot) · ![cross cutting change route](Diagrams/Appendix/cross-cutting-change-route.svg)
 
 [Owning overview](#design-record-01-software-architecture-05-cross-cutting-concerns-overview-md). Coordination views; detailed mechanisms remain in their authoritative topic records.
 
@@ -2118,15 +2217,15 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Drivers and options — complete visual comparison package
 
-- [C4 Level 1 — system context](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-c4-system-context.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-c4-system-context.puml) · ![drivers c4 system context](../Diagrams/Archived-Png/Drivers-C4-System-Context.png)
-- [Quality attribute utility tree](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-quality-utility-tree.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-quality-utility-tree.puml) · ![drivers quality utility tree](../Diagrams/Archived-Png/Drivers-Quality-Utility-Tree.png)
-- [UML use-case scope overview](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-use-cases.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-use-cases.puml) · ![drivers uml use cases](../Diagrams/Archived-Png/Drivers-Uml-Use-Cases.png)
-- [Option A — weakly bounded monolith](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-option-a-components.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-option-a-components.puml) · ![drivers option a components](../Diagrams/Archived-Png/Drivers-Option-A-Components.png)
-- [Option B — modular monolith](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-option-b-components.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-option-b-components.puml) · ![drivers option b components](../Diagrams/Archived-Png/Drivers-Option-B-Components.png)
-- [Option C — initial microservices](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-option-c-components.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-option-c-components.puml) · ![drivers option c components](../Diagrams/Archived-Png/Drivers-Option-C-Components.png)
-- [UML deployment — Option B candidate](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.puml) · ![drivers uml deployment](../Diagrams/Archived-Png/Drivers-Uml-Deployment.png)
-- [Critical sequence — explicit publication](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-critical-publication-sequence.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-critical-publication-sequence.puml) · ![drivers critical publication sequence](../Diagrams/Archived-Png/Drivers-Critical-Publication-Sequence.png)
-- [Illustrative qualitative radar](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-options-radar.svg) · [Python generator](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-options-radar.py) · [Rubric/data](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-options-radar.json) · ![drivers options radar](../Diagrams/Archived-Png/Drivers-Options-Radar.png)
+- [C4 Level 1 — system context](Diagrams/Appendix/drivers-c4-system-context.svg) · [PlantUML](Diagrams/Appendix/drivers-c4-system-context.puml) · ![drivers c4 system context](Diagrams/Appendix/drivers-c4-system-context.svg)
+- [Quality attribute utility tree](Diagrams/Appendix/drivers-quality-utility-tree.svg) · [PlantUML](Diagrams/Appendix/drivers-quality-utility-tree.puml) · ![drivers quality utility tree](Diagrams/Appendix/drivers-quality-utility-tree.svg)
+- [UML use-case scope overview](Diagrams/Appendix/drivers-uml-use-cases.svg) · [PlantUML](Diagrams/Appendix/drivers-uml-use-cases.puml) · ![drivers uml use cases](Diagrams/Appendix/drivers-uml-use-cases.svg)
+- [Option A — weakly bounded monolith](Diagrams/Appendix/drivers-option-a-components.svg) · [PlantUML](Diagrams/Appendix/drivers-option-a-components.puml) · ![drivers option a components](Diagrams/Appendix/drivers-option-a-components.svg)
+- [Option B — modular monolith](Diagrams/Appendix/drivers-option-b-components.svg) · [PlantUML](Diagrams/Appendix/drivers-option-b-components.puml) · ![drivers option b components](Diagrams/Appendix/drivers-option-b-components.svg)
+- [Option C — initial microservices](Diagrams/Appendix/drivers-option-c-components.svg) · [PlantUML](Diagrams/Appendix/drivers-option-c-components.puml) · ![drivers option c components](Diagrams/Appendix/drivers-option-c-components.svg)
+- [UML deployment — Option B candidate](Diagrams/Appendix/drivers-uml-deployment.svg) · [PlantUML](Diagrams/Appendix/drivers-uml-deployment.puml) · ![drivers uml deployment](Diagrams/Appendix/drivers-uml-deployment.svg)
+- [Critical sequence — explicit publication](Diagrams/Appendix/drivers-critical-publication-sequence.svg) · [PlantUML](Diagrams/Appendix/drivers-critical-publication-sequence.puml) · ![drivers critical publication sequence](Diagrams/Appendix/drivers-critical-publication-sequence.svg)
+- [Illustrative qualitative radar](Diagrams/Appendix/drivers-options-radar.svg) · [Python generator](Diagrams/Appendix/drivers-options-radar.py) · [Rubric/data](Diagrams/Appendix/drivers-options-radar.json) · ![drivers options radar](Diagrams/Appendix/drivers-options-radar.svg)
 
 [Owning driver/option assessment](#design-record-01-software-architecture-01-design-drivers-and-solution-options-md). Proposed views and unweighted ordinal judgments, not benchmark results or selected facilities. ADR-001 remains the single decision record.
 
@@ -2134,35 +2233,35 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Decomposition — expanded boundary views
 
-- [DDD context map](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-ddd-contexts.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-ddd-contexts.puml) · ![boundaries ddd contexts](../Diagrams/Archived-Png/Boundaries-Ddd-Contexts.png)
-- [Candidate bounded contexts](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-ddd-contexts.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-ddd-contexts.puml) · ![boundaries ddd contexts](../Diagrams/Archived-Png/Boundaries-Ddd-Contexts.png)
-- [C4 Level 2 container candidate](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-c4-containers.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-c4-containers.puml) · ![boundaries c4 containers](../Diagrams/Archived-Png/Boundaries-C4-Containers.png)
-- [UML logical component and contract view](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-ddd-contexts.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-ddd-contexts.puml) · ![boundaries ddd contexts](../Diagrams/Archived-Png/Boundaries-Ddd-Contexts.png)
-- [UML candidate package organization](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-uml-packages.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-uml-packages.puml) · ![boundaries uml packages](../Diagrams/Archived-Png/Boundaries-Uml-Packages.png)
-- [Hexagonal component realization](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-hexagonal-module.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-hexagonal-module.puml) · ![boundaries hexagonal module](../Diagrams/Archived-Png/Boundaries-Hexagonal-Module.png)
-- [Selected module dependency diagram](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-ddd-contexts.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-ddd-contexts.puml) · ![boundaries ddd contexts](../Diagrams/Archived-Png/Boundaries-Ddd-Contexts.png)
-- [Proposed big-picture event-storming board](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-big-picture-events.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-big-picture-events.puml) · ![boundaries big picture events](../Diagrams/Archived-Png/Boundaries-Big-Picture-Events.png)
-- [Cross-boundary actual-material capture sequence](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-cross-context-capture.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-cross-context-capture.puml) · ![boundaries cross context capture](../Diagrams/Archived-Png/Boundaries-Cross-Context-Capture.png)
+- [DDD context map](Diagrams/Appendix/boundaries-ddd-contexts.svg) · [PlantUML](Diagrams/Appendix/boundaries-ddd-contexts.puml) · ![boundaries ddd contexts](Diagrams/Appendix/boundaries-ddd-contexts.svg)
+- [Candidate bounded contexts](Diagrams/Appendix/boundaries-ddd-contexts.svg) · [PlantUML](Diagrams/Appendix/boundaries-ddd-contexts.puml) · ![boundaries ddd contexts](Diagrams/Appendix/boundaries-ddd-contexts.svg)
+- [C4 Level 2 container candidate](Diagrams/Appendix/boundaries-c4-containers.svg) · [PlantUML](Diagrams/Appendix/boundaries-c4-containers.puml) · ![boundaries c4 containers](Diagrams/Appendix/boundaries-c4-containers.svg)
+- [UML logical component and contract view](Diagrams/Appendix/boundaries-ddd-contexts.svg) · [PlantUML](Diagrams/Appendix/boundaries-ddd-contexts.puml) · ![boundaries ddd contexts](Diagrams/Appendix/boundaries-ddd-contexts.svg)
+- [UML candidate package organization](Diagrams/Appendix/boundaries-uml-packages.svg) · [PlantUML](Diagrams/Appendix/boundaries-uml-packages.puml) · ![boundaries uml packages](Diagrams/Appendix/boundaries-uml-packages.svg)
+- [Hexagonal component realization](Diagrams/Appendix/boundaries-hexagonal-module.svg) · [PlantUML](Diagrams/Appendix/boundaries-hexagonal-module.puml) · ![boundaries hexagonal module](Diagrams/Appendix/boundaries-hexagonal-module.svg)
+- [Selected module dependency diagram](Diagrams/Appendix/boundaries-ddd-contexts.svg) · [PlantUML](Diagrams/Appendix/boundaries-ddd-contexts.puml) · ![boundaries ddd contexts](Diagrams/Appendix/boundaries-ddd-contexts.svg)
+- [Proposed big-picture event-storming board](Diagrams/Appendix/boundaries-big-picture-events.svg) · [PlantUML](Diagrams/Appendix/boundaries-big-picture-events.puml) · ![boundaries big picture events](Diagrams/Appendix/boundaries-big-picture-events.svg)
+- [Cross-boundary actual-material capture sequence](Diagrams/Appendix/boundaries-cross-context-capture.svg) · [PlantUML](Diagrams/Appendix/boundaries-cross-context-capture.puml) · ![boundaries cross context capture](Diagrams/Appendix/boundaries-cross-context-capture.svg)
 
-[C4 Level 1 context](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-c4-system-context.svg) is reused from the driver assessment. [Owning decomposition document](#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md). Candidate contexts/contracts and desk-synthesized events do not establish accepted services, workshop outcomes, configured facilities or implemented control.
+[C4 Level 1 context](Diagrams/Appendix/drivers-c4-system-context.svg) is reused from the driver assessment. [Owning decomposition document](#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md). Candidate contexts/contracts and desk-synthesized events do not establish accepted services, workshop outcomes, configured facilities or implemented control.
 
 <a id="design-record-01-software-architecture-diagrams-diagram-catalog-md--heading-runtime--expanded-process-and-concurrency-views"></a>
 
 #### Runtime — expanded process and concurrency views
 
-- [Sequence — guarded local command](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-local-command-sequence.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-local-command-sequence.puml) · ![runtime local command sequence](../Diagrams/Archived-Png/Runtime-Local-Command-Sequence.png)
-- [Sequence — lost external response](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-remote-effect-sequence.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-remote-effect-sequence.puml) · ![runtime remote effect sequence](../Diagrams/Archived-Png/Runtime-Remote-Effect-Sequence.png)
-- [UML activity — lanes and fork/join](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-swimlane-fork-join.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-swimlane-fork-join.puml) · ![runtime swimlane fork join](../Diagrams/Archived-Png/Runtime-Swimlane-Fork-Join.png)
-- [UML state machine — attempt knowledge](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-attempt-state-machine.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-attempt-state-machine.puml) · ![runtime attempt state machine](../Diagrams/Archived-Png/Runtime-Attempt-State-Machine.png)
-- [UML communication — numbered collaboration](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-communication-diagram.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-communication-diagram.puml) · ![runtime communication diagram](../Diagrams/Archived-Png/Runtime-Communication-Diagram.png)
-- [UML timing — lease versus effect knowledge](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-claim-timing.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-claim-timing.puml) · ![runtime claim timing](../Diagrams/Archived-Png/Runtime-Claim-Timing.png)
-- [Process/thread view — bounded execution units](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-process-thread-view.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-process-thread-view.puml) · ![runtime process thread view](../Diagrams/Archived-Png/Runtime-Process-Thread-View.png)
-- [Concurrency model — bounded processes and scoped work](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-concurrency-model.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-concurrency-model.puml) · ![runtime concurrency model](../Diagrams/Archived-Png/Runtime-Concurrency-Model.png)
-- [Message flow and logical queue topology](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-queue-topology.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-queue-topology.puml) · ![runtime queue topology](../Diagrams/Archived-Png/Runtime-Queue-Topology.png)
-- [UML deployment — runtime processes on candidate nodes](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.puml) · ![drivers uml deployment](../Diagrams/Archived-Png/Drivers-Uml-Deployment.png)
-- [Resource contention — guards and shared capacity](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-resource-contention.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-resource-contention.puml) · ![runtime resource contention](../Diagrams/Archived-Png/Runtime-Resource-Contention.png)
-- [DFD — intent and observation data](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-dataflow.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-dataflow.puml) · ![runtime dataflow](../Diagrams/Archived-Png/Runtime-Dataflow.png)
-- [Optional wait-for graph — hypothetical deadlock](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-wait-for-example.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-wait-for-example.puml) · ![runtime wait for example](../Diagrams/Archived-Png/Runtime-Wait-For-Example.png)
+- [Sequence — guarded local command](Diagrams/Appendix/runtime-local-command-sequence.svg) · [PlantUML](Diagrams/Appendix/runtime-local-command-sequence.puml) · ![runtime local command sequence](Diagrams/Appendix/runtime-local-command-sequence.svg)
+- [Sequence — lost external response](Diagrams/Appendix/runtime-remote-effect-sequence.svg) · [PlantUML](Diagrams/Appendix/runtime-remote-effect-sequence.puml) · ![runtime remote effect sequence](Diagrams/Appendix/runtime-remote-effect-sequence.svg)
+- [UML activity — lanes and fork/join](Diagrams/Appendix/runtime-swimlane-fork-join.svg) · [PlantUML](Diagrams/Appendix/runtime-swimlane-fork-join.puml) · ![runtime swimlane fork join](Diagrams/Appendix/runtime-swimlane-fork-join.svg)
+- [UML state machine — attempt knowledge](Diagrams/Appendix/runtime-attempt-state-machine.svg) · [PlantUML](Diagrams/Appendix/runtime-attempt-state-machine.puml) · ![runtime attempt state machine](Diagrams/Appendix/runtime-attempt-state-machine.svg)
+- [UML communication — numbered collaboration](Diagrams/Appendix/runtime-communication-diagram.svg) · [PlantUML](Diagrams/Appendix/runtime-communication-diagram.puml) · ![runtime communication diagram](Diagrams/Appendix/runtime-communication-diagram.svg)
+- [UML timing — lease versus effect knowledge](Diagrams/Appendix/runtime-claim-timing.svg) · [PlantUML](Diagrams/Appendix/runtime-claim-timing.puml) · ![runtime claim timing](Diagrams/Appendix/runtime-claim-timing.svg)
+- [Process/thread view — bounded execution units](Diagrams/Appendix/runtime-process-thread-view.svg) · [PlantUML](Diagrams/Appendix/runtime-process-thread-view.puml) · ![runtime process thread view](Diagrams/Appendix/runtime-process-thread-view.svg)
+- [Concurrency model — bounded processes and scoped work](Diagrams/Appendix/runtime-concurrency-model.svg) · [PlantUML](Diagrams/Appendix/runtime-concurrency-model.puml) · ![runtime concurrency model](Diagrams/Appendix/runtime-concurrency-model.svg)
+- [Message flow and logical queue topology](Diagrams/Appendix/runtime-queue-topology.svg) · [PlantUML](Diagrams/Appendix/runtime-queue-topology.puml) · ![runtime queue topology](Diagrams/Appendix/runtime-queue-topology.svg)
+- [UML deployment — runtime processes on candidate nodes](Diagrams/Appendix/drivers-uml-deployment.svg) · [PlantUML](Diagrams/Appendix/drivers-uml-deployment.puml) · ![drivers uml deployment](Diagrams/Appendix/drivers-uml-deployment.svg)
+- [Resource contention — guards and shared capacity](Diagrams/Appendix/runtime-resource-contention.svg) · [PlantUML](Diagrams/Appendix/runtime-resource-contention.puml) · ![runtime resource contention](Diagrams/Appendix/runtime-resource-contention.svg)
+- [DFD — intent and observation data](Diagrams/Appendix/runtime-dataflow.svg) · [PlantUML](Diagrams/Appendix/runtime-dataflow.puml) · ![runtime dataflow](Diagrams/Appendix/runtime-dataflow.svg)
+- [Optional wait-for graph — hypothetical deadlock](Diagrams/Appendix/runtime-wait-for-example.svg) · [PlantUML](Diagrams/Appendix/runtime-wait-for-example.puml) · ![runtime wait for example](Diagrams/Appendix/runtime-wait-for-example.svg)
 
 [Owning runtime document](#design-record-01-software-architecture-03-process-view-concurrency-and-runtime-behavior-md--heading-8-runtime-diagram-package). Synthetic timing and hypothetical wait-for analysis are illustrations, not measurements/observed defects; runtime/queue/containment facilities remain pending.
 
@@ -2170,17 +2269,17 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Deployment — expanded topology, environments and resilience package
 
-- [UML deployment — nodes, artifacts and environments](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.puml) · ![drivers uml deployment](../Diagrams/Archived-Png/Drivers-Uml-Deployment.png)
-- [Network topology — subnets and routing concepts](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-network-topology.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-network-topology.puml) · ![deployment network topology](../Diagrams/Archived-Png/Deployment-Network-Topology.png)
-- [Infrastructure — provider context and optional components](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-provider-infrastructure.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-provider-infrastructure.puml) · ![deployment provider infrastructure](../Diagrams/Archived-Png/Deployment-Provider-Infrastructure.png)
-- [Container/orchestration — optional cluster design](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-orchestration-alternative.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-orchestration-alternative.puml) · ![deployment orchestration alternative](../Diagrams/Archived-Png/Deployment-Orchestration-Alternative.png)
-- [Network segmentation — logical security zones](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.puml) · ![security trust boundaries](../Diagrams/Archived-Png/Security-Trust-Boundaries.png)
-- [Traffic flow — proxy and optional balancing](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-traffic-flow.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-traffic-flow.puml) · ![deployment traffic flow](../Diagrams/Archived-Png/Deployment-Traffic-Flow.png)
-- [Multi-region / failure-zone alternative](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-multiregion-alternative.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-multiregion-alternative.puml) · ![deployment multiregion alternative](../Diagrams/Archived-Png/Deployment-Multiregion-Alternative.png)
-- [Failover and disaster recovery](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-failover-dr-route.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-failover-dr-route.puml) · ![deployment failover dr route](../Diagrams/Archived-Png/Deployment-Failover-Dr-Route.png)
-- [Environment topology — dev, staging, production](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-environment-topology.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-environment-topology.puml) · ![deployment environment topology](../Diagrams/Archived-Png/Deployment-Environment-Topology.png)
-- [CI/CD — exact artifact to target mapping](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-cicd-artifact-nodes.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-cicd-artifact-nodes.puml) · ![deployment cicd artifact nodes](../Diagrams/Archived-Png/Deployment-Cicd-Artifact-Nodes.png)
-- [Sequence — protected request across tiers](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-network-request-sequence.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-network-request-sequence.puml) · ![deployment network request sequence](../Diagrams/Archived-Png/Deployment-Network-Request-Sequence.png)
+- [UML deployment — nodes, artifacts and environments](Diagrams/Appendix/drivers-uml-deployment.svg) · [PlantUML](Diagrams/Appendix/drivers-uml-deployment.puml) · ![drivers uml deployment](Diagrams/Appendix/drivers-uml-deployment.svg)
+- [Network topology — subnets and routing concepts](Diagrams/Appendix/deployment-network-topology.svg) · [PlantUML](Diagrams/Appendix/deployment-network-topology.puml) · ![deployment network topology](Diagrams/Appendix/deployment-network-topology.svg)
+- [Infrastructure — provider context and optional components](Diagrams/Appendix/deployment-provider-infrastructure.svg) · [PlantUML](Diagrams/Appendix/deployment-provider-infrastructure.puml) · ![deployment provider infrastructure](Diagrams/Appendix/deployment-provider-infrastructure.svg)
+- [Container/orchestration — optional cluster design](Diagrams/Appendix/deployment-orchestration-alternative.svg) · [PlantUML](Diagrams/Appendix/deployment-orchestration-alternative.puml) · ![deployment orchestration alternative](Diagrams/Appendix/deployment-orchestration-alternative.svg)
+- [Network segmentation — logical security zones](Diagrams/Appendix/security-trust-boundaries.svg) · [PlantUML](Diagrams/Appendix/security-trust-boundaries.puml) · ![security trust boundaries](Diagrams/Appendix/security-trust-boundaries.svg)
+- [Traffic flow — proxy and optional balancing](Diagrams/Appendix/deployment-traffic-flow.svg) · [PlantUML](Diagrams/Appendix/deployment-traffic-flow.puml) · ![deployment traffic flow](Diagrams/Appendix/deployment-traffic-flow.svg)
+- [Multi-region / failure-zone alternative](Diagrams/Appendix/deployment-multiregion-alternative.svg) · [PlantUML](Diagrams/Appendix/deployment-multiregion-alternative.puml) · ![deployment multiregion alternative](Diagrams/Appendix/deployment-multiregion-alternative.svg)
+- [Failover and disaster recovery](Diagrams/Appendix/deployment-failover-dr-route.svg) · [PlantUML](Diagrams/Appendix/deployment-failover-dr-route.puml) · ![deployment failover dr route](Diagrams/Appendix/deployment-failover-dr-route.svg)
+- [Environment topology — dev, staging, production](Diagrams/Appendix/deployment-environment-topology.svg) · [PlantUML](Diagrams/Appendix/deployment-environment-topology.puml) · ![deployment environment topology](Diagrams/Appendix/deployment-environment-topology.svg)
+- [CI/CD — exact artifact to target mapping](Diagrams/Appendix/deployment-cicd-artifact-nodes.svg) · [PlantUML](Diagrams/Appendix/deployment-cicd-artifact-nodes.puml) · ![deployment cicd artifact nodes](Diagrams/Appendix/deployment-cicd-artifact-nodes.svg)
+- [Sequence — protected request across tiers](Diagrams/Appendix/deployment-network-request-sequence.svg) · [PlantUML](Diagrams/Appendix/deployment-network-request-sequence.puml) · ![deployment network request sequence](Diagrams/Appendix/deployment-network-request-sequence.svg)
 
 [Owning deployment document and tables](#design-record-01-software-architecture-04-deployment-topology-nodes-and-networks-md--heading-9-deployment-diagram-and-sizing-package). C4 context is reused from the driver view. Cloud/cluster/region/standby alternatives are not selected facilities; ports and sizing are candidate contracts or dated inventory, not live configuration.
 
@@ -2188,19 +2287,19 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Cross-cutting concerns — expanded realization package
 
-- [Hexagonal architecture with concern overlays](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-hexagonal-overlay.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-hexagonal-overlay.puml) · ![concerns hexagonal overlay](../Diagrams/Archived-Png/Concerns-Hexagonal-Overlay.png)
-- [Security architecture and trust crossings](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-security-architecture.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-security-architecture.puml) · ![concerns security architecture](../Diagrams/Archived-Png/Concerns-Security-Architecture.png)
-- [Authentication and authorization sequence](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-authn-authz-sequence.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-authn-authz-sequence.puml) · ![concerns authn authz sequence](../Diagrams/Archived-Png/Concerns-Authn-Authz-Sequence.png)
-- [Observability — logs, metrics and tracing](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-observability-pipeline.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-observability-pipeline.puml) · ![concerns observability pipeline](../Diagrams/Archived-Png/Concerns-Observability-Pipeline.png)
-- [Activity — error and exception outcomes](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-error-flow.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-error-flow.puml) · ![concerns error flow](../Diagrams/Archived-Png/Concerns-Error-Flow.png)
-- [Configuration management and effective identity](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-configuration-management.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-configuration-management.puml) · ![concerns configuration management](../Diagrams/Archived-Png/Concerns-Configuration-Management.png)
-- [Caching strategy and current authority](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-cache-strategy.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-cache-strategy.puml) · ![concerns cache strategy](../Diagrams/Archived-Png/Concerns-Cache-Strategy.png)
-- [Local transaction and external effect boundaries](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-transaction-boundary.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-transaction-boundary.puml) · ![concerns transaction boundary](../Diagrams/Archived-Png/Concerns-Transaction-Boundary.png)
-- [Resilience — bounded protection and safe repetition](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-resilience-patterns.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-resilience-patterns.puml) · ![concerns resilience patterns](../Diagrams/Archived-Png/Concerns-Resilience-Patterns.png)
-- [UML circuit-breaker state machine](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-circuit-breaker-states.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-circuit-breaker-states.puml) · ![concerns circuit breaker states](../Diagrams/Archived-Png/Concerns-Circuit-Breaker-States.png)
-- [Interceptor / middleware chain](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-middleware-chain.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-middleware-chain.puml) · ![concerns middleware chain](../Diagrams/Archived-Png/Concerns-Middleware-Chain.png)
-- [Shared libraries and optional sidecar responsibilities](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-shared-components.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-shared-components.puml) · ![concerns shared components](../Diagrams/Archived-Png/Concerns-Shared-Components.png)
-- [DFD with trust boundaries](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-trust-dfd.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-trust-dfd.puml) · ![concerns trust dfd](../Diagrams/Archived-Png/Concerns-Trust-Dfd.png)
+- [Hexagonal architecture with concern overlays](Diagrams/Appendix/concerns-hexagonal-overlay.svg) · [PlantUML](Diagrams/Appendix/concerns-hexagonal-overlay.puml) · ![concerns hexagonal overlay](Diagrams/Appendix/concerns-hexagonal-overlay.svg)
+- [Security architecture and trust crossings](Diagrams/Appendix/concerns-security-architecture.svg) · [PlantUML](Diagrams/Appendix/concerns-security-architecture.puml) · ![concerns security architecture](Diagrams/Appendix/concerns-security-architecture.svg)
+- [Authentication and authorization sequence](Diagrams/Appendix/concerns-authn-authz-sequence.svg) · [PlantUML](Diagrams/Appendix/concerns-authn-authz-sequence.puml) · ![concerns authn authz sequence](Diagrams/Appendix/concerns-authn-authz-sequence.svg)
+- [Observability — logs, metrics and tracing](Diagrams/Appendix/concerns-observability-pipeline.svg) · [PlantUML](Diagrams/Appendix/concerns-observability-pipeline.puml) · ![concerns observability pipeline](Diagrams/Appendix/concerns-observability-pipeline.svg)
+- [Activity — error and exception outcomes](Diagrams/Appendix/concerns-error-flow.svg) · [PlantUML](Diagrams/Appendix/concerns-error-flow.puml) · ![concerns error flow](Diagrams/Appendix/concerns-error-flow.svg)
+- [Configuration management and effective identity](Diagrams/Appendix/concerns-configuration-management.svg) · [PlantUML](Diagrams/Appendix/concerns-configuration-management.puml) · ![concerns configuration management](Diagrams/Appendix/concerns-configuration-management.svg)
+- [Caching strategy and current authority](Diagrams/Appendix/concerns-cache-strategy.svg) · [PlantUML](Diagrams/Appendix/concerns-cache-strategy.puml) · ![concerns cache strategy](Diagrams/Appendix/concerns-cache-strategy.svg)
+- [Local transaction and external effect boundaries](Diagrams/Appendix/concerns-transaction-boundary.svg) · [PlantUML](Diagrams/Appendix/concerns-transaction-boundary.puml) · ![concerns transaction boundary](Diagrams/Appendix/concerns-transaction-boundary.svg)
+- [Resilience — bounded protection and safe repetition](Diagrams/Appendix/concerns-resilience-patterns.svg) · [PlantUML](Diagrams/Appendix/concerns-resilience-patterns.puml) · ![concerns resilience patterns](Diagrams/Appendix/concerns-resilience-patterns.svg)
+- [UML circuit-breaker state machine](Diagrams/Appendix/concerns-circuit-breaker-states.svg) · [PlantUML](Diagrams/Appendix/concerns-circuit-breaker-states.puml) · ![concerns circuit breaker states](Diagrams/Appendix/concerns-circuit-breaker-states.svg)
+- [Interceptor / middleware chain](Diagrams/Appendix/concerns-middleware-chain.svg) · [PlantUML](Diagrams/Appendix/concerns-middleware-chain.puml) · ![concerns middleware chain](Diagrams/Appendix/concerns-middleware-chain.svg)
+- [Shared libraries and optional sidecar responsibilities](Diagrams/Appendix/concerns-shared-components.svg) · [PlantUML](Diagrams/Appendix/concerns-shared-components.puml) · ![concerns shared components](Diagrams/Appendix/concerns-shared-components.svg)
+- [DFD with trust boundaries](Diagrams/Appendix/concerns-trust-dfd.svg) · [PlantUML](Diagrams/Appendix/concerns-trust-dfd.puml) · ![concerns trust dfd](Diagrams/Appendix/concerns-trust-dfd.svg)
 
 [Owning concern overview and matrices](#design-record-01-software-architecture-05-cross-cutting-concerns-overview-md--heading-7-cross-cutting-realization-package). Shared responsibilities and optional resilience/sidecar examples do not establish selected facilities, numerical policies or verified controls.
 
@@ -2212,34 +2311,34 @@ Current MVP figures replace the former common-product boundary. Future and histo
 
 | Editable source | Current applicability |
 | --- | --- |
-| [boundaries-c4-containers.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-c4-containers.puml) | MVP systems|
-| [boundaries-ddd-context-map.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-ddd-contexts.puml) | MVP systems|
-| [boundaries-ddd-contexts.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-ddd-contexts.puml) | MVP systems|
-| [boundaries-module-dependencies.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-ddd-contexts.puml) | MVP systems|
-| [boundaries-uml-components.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-ddd-contexts.puml) | MVP systems|
-| [boundaries-uml-packages.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-uml-packages.puml) | MVP systems|
-| [deployment-candidate-topology.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot) | MVP core / cross-cutting|
-| [deployment-cicd-artifact-nodes.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-cicd-artifact-nodes.puml) | MVP core / cross-cutting|
-| [deployment-failover-dr-route.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-failover-dr-route.puml) | MVP core / cross-cutting|
-| [deployment-network-request-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-network-request-sequence.puml) | MVP core / cross-cutting|
-| [deployment-network-topology.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-network-topology.puml) | Historical / alternative|
-| [deployment-orchestration-alternative.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-orchestration-alternative.puml) | Historical / alternative|
-| [deployment-provider-infrastructure.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-provider-infrastructure.puml) | Historical / alternative|
-| [deployment-security-segmentation.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.puml) | MVP systems|
-| [deployment-traffic-flow.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-traffic-flow.puml) | MVP core / cross-cutting|
-| [deployment-uml-nodes-artifacts.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.puml) | MVP deployment|
-| [drivers-c4-system-context.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-c4-system-context.puml) | MVP systems|
-| [drivers-uml-deployment.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.puml) | MVP deployment|
-| [logical-component-ownership.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot) | MVP core / cross-cutting|
-| [network-access-zones.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot) | MVP core / cross-cutting|
-| [proposed-solution-boundaries.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot) | MVP core / cross-cutting|
-| [runtime-communication-diagram.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-communication-diagram.puml) | Method / document navigation|
-| [runtime-process-deployment.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.puml) | MVP deployment|
+| [boundaries-c4-containers.puml](Diagrams/Appendix/boundaries-c4-containers.puml) | MVP systems|
+| [boundaries-ddd-context-map.puml](Diagrams/Appendix/boundaries-ddd-contexts.puml) | MVP systems|
+| [boundaries-ddd-contexts.puml](Diagrams/Appendix/boundaries-ddd-contexts.puml) | MVP systems|
+| [boundaries-module-dependencies.puml](Diagrams/Appendix/boundaries-ddd-contexts.puml) | MVP systems|
+| [boundaries-uml-components.puml](Diagrams/Appendix/boundaries-ddd-contexts.puml) | MVP systems|
+| [boundaries-uml-packages.puml](Diagrams/Appendix/boundaries-uml-packages.puml) | MVP systems|
+| [deployment-candidate-topology.dot](Diagrams/Appendix/logical-component-ownership.dot) | MVP core / cross-cutting|
+| [deployment-cicd-artifact-nodes.puml](Diagrams/Appendix/deployment-cicd-artifact-nodes.puml) | MVP core / cross-cutting|
+| [deployment-failover-dr-route.puml](Diagrams/Appendix/deployment-failover-dr-route.puml) | MVP core / cross-cutting|
+| [deployment-network-request-sequence.puml](Diagrams/Appendix/deployment-network-request-sequence.puml) | MVP core / cross-cutting|
+| [deployment-network-topology.puml](Diagrams/Appendix/deployment-network-topology.puml) | Historical / alternative|
+| [deployment-orchestration-alternative.puml](Diagrams/Appendix/deployment-orchestration-alternative.puml) | Historical / alternative|
+| [deployment-provider-infrastructure.puml](Diagrams/Appendix/deployment-provider-infrastructure.puml) | Historical / alternative|
+| [deployment-security-segmentation.puml](Diagrams/Appendix/security-trust-boundaries.puml) | MVP systems|
+| [deployment-traffic-flow.puml](Diagrams/Appendix/deployment-traffic-flow.puml) | MVP core / cross-cutting|
+| [deployment-uml-nodes-artifacts.puml](Diagrams/Appendix/drivers-uml-deployment.puml) | MVP deployment|
+| [drivers-c4-system-context.puml](Diagrams/Appendix/drivers-c4-system-context.puml) | MVP systems|
+| [drivers-uml-deployment.puml](Diagrams/Appendix/drivers-uml-deployment.puml) | MVP deployment|
+| [logical-component-ownership.dot](Diagrams/Appendix/logical-component-ownership.dot) | MVP core / cross-cutting|
+| [network-access-zones.dot](Diagrams/Appendix/logical-component-ownership.dot) | MVP core / cross-cutting|
+| [proposed-solution-boundaries.dot](Diagrams/Appendix/logical-component-ownership.dot) | MVP core / cross-cutting|
+| [runtime-communication-diagram.puml](Diagrams/Appendix/runtime-communication-diagram.puml) | Method / document navigation|
+| [runtime-process-deployment.puml](Diagrams/Appendix/drivers-uml-deployment.puml) | MVP deployment|
 | [mvp-private-media.puml](#design-record-01-software-architecture-diagrams-mvp-private-media-puml) | MVP core / cross-cutting|
-| [mvp-system-boundaries.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) | MVP core / cross-cutting|
+| [mvp-system-boundaries.puml](Diagrams/Appendix/mvp-system-boundaries.puml) | MVP core / cross-cutting|
 
-| [boundaries-big-picture-events.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-big-picture-events.puml) | Mixed MVP / future|
-| [drivers-uml-use-cases.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-use-cases.puml) | Mixed MVP / future|
+| [boundaries-big-picture-events.puml](Diagrams/Appendix/boundaries-big-picture-events.puml) | Mixed MVP / future|
+| [drivers-uml-use-cases.puml](Diagrams/Appendix/drivers-uml-use-cases.puml) | Mixed MVP / future|
 
 <a id="design-record-01-software-architecture-diagrams-diagram-catalog-md--heading-complete-diagram-alignment--november-4"></a>
 
@@ -2249,77 +2348,77 @@ Current MVP figures replace the former common-product boundary. Future and histo
 
 | Editable source or visual | Current applicability | Matching exports |
 | --- | --- | --- |
-| [architecture-decision-route.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/architecture-decision-route.dot) | Method / document navigation| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/architecture-decision-route.svg) · ![architecture decision route](../Diagrams/Archived-Png/Architecture-Decision-Route.png) |
-| [boundaries-big-picture-events.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-big-picture-events.puml) | Mixed MVP / future| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-big-picture-events.svg) · ![boundaries big picture events](../Diagrams/Archived-Png/Boundaries-Big-Picture-Events.png) |
-| [boundaries-c4-containers.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-c4-containers.puml) | MVP systems| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-c4-containers.svg) · ![boundaries c4 containers](../Diagrams/Archived-Png/Boundaries-C4-Containers.png) |
-| [boundaries-cross-context-capture.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-cross-context-capture.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-cross-context-capture.svg) · ![boundaries cross context capture](../Diagrams/Archived-Png/Boundaries-Cross-Context-Capture.png) |
-| [boundaries-ddd-context-map.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-ddd-contexts.puml) | MVP systems| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-ddd-contexts.svg) · ![boundaries ddd contexts](../Diagrams/Archived-Png/Boundaries-Ddd-Contexts.png) |
-| [boundaries-ddd-contexts.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-ddd-contexts.puml) | MVP systems| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-ddd-contexts.svg) · ![boundaries ddd contexts](../Diagrams/Archived-Png/Boundaries-Ddd-Contexts.png) |
-| [boundaries-hexagonal-module.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-hexagonal-module.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-hexagonal-module.svg) · ![boundaries hexagonal module](../Diagrams/Archived-Png/Boundaries-Hexagonal-Module.png) |
-| [boundaries-module-dependencies.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-ddd-contexts.puml) | MVP systems| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-ddd-contexts.svg) · ![boundaries ddd contexts](../Diagrams/Archived-Png/Boundaries-Ddd-Contexts.png) |
-| [boundaries-uml-components.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-ddd-contexts.puml) | MVP systems| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-ddd-contexts.svg) · ![boundaries ddd contexts](../Diagrams/Archived-Png/Boundaries-Ddd-Contexts.png) |
-| [boundaries-uml-packages.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-uml-packages.puml) | MVP systems| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-uml-packages.svg) · ![boundaries uml packages](../Diagrams/Archived-Png/Boundaries-Uml-Packages.png) |
-| [cancellation-reconciliation.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/cancellation-reconciliation.dot) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/cancellation-reconciliation.svg) · ![cancellation reconciliation](../Diagrams/Archived-Png/Cancellation-Reconciliation.png) |
-| [component-contract-boundaries.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/component-contract-boundaries.dot) | Mixed MVP / future| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/component-contract-boundaries.svg) · ![component contract boundaries](../Diagrams/Archived-Png/Component-Contract-Boundaries.png) |
-| [concerns-authn-authz-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-authn-authz-sequence.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-authn-authz-sequence.svg) · ![concerns authn authz sequence](../Diagrams/Archived-Png/Concerns-Authn-Authz-Sequence.png) |
-| [concerns-cache-strategy.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-cache-strategy.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-cache-strategy.svg) · ![concerns cache strategy](../Diagrams/Archived-Png/Concerns-Cache-Strategy.png) |
-| [concerns-circuit-breaker-states.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-circuit-breaker-states.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-circuit-breaker-states.svg) · ![concerns circuit breaker states](../Diagrams/Archived-Png/Concerns-Circuit-Breaker-States.png) |
-| [concerns-configuration-management.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-configuration-management.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-configuration-management.svg) · ![concerns configuration management](../Diagrams/Archived-Png/Concerns-Configuration-Management.png) |
-| [concerns-error-flow.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-error-flow.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-error-flow.svg) · ![concerns error flow](../Diagrams/Archived-Png/Concerns-Error-Flow.png) |
-| [concerns-hexagonal-overlay.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-hexagonal-overlay.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-hexagonal-overlay.svg) · ![concerns hexagonal overlay](../Diagrams/Archived-Png/Concerns-Hexagonal-Overlay.png) |
-| [concerns-middleware-chain.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-middleware-chain.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-middleware-chain.svg) · ![concerns middleware chain](../Diagrams/Archived-Png/Concerns-Middleware-Chain.png) |
-| [concerns-observability-pipeline.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-observability-pipeline.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-observability-pipeline.svg) · ![concerns observability pipeline](../Diagrams/Archived-Png/Concerns-Observability-Pipeline.png) |
-| [concerns-resilience-patterns.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-resilience-patterns.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-resilience-patterns.svg) · ![concerns resilience patterns](../Diagrams/Archived-Png/Concerns-Resilience-Patterns.png) |
-| [concerns-security-architecture.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-security-architecture.puml) | Mixed MVP / future| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-security-architecture.svg) · ![concerns security architecture](../Diagrams/Archived-Png/Concerns-Security-Architecture.png) |
-| [concerns-shared-components.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-shared-components.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-shared-components.svg) · ![concerns shared components](../Diagrams/Archived-Png/Concerns-Shared-Components.png) |
-| [concerns-transaction-boundary.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-transaction-boundary.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-transaction-boundary.svg) · ![concerns transaction boundary](../Diagrams/Archived-Png/Concerns-Transaction-Boundary.png) |
-| [concerns-trust-dfd.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-trust-dfd.puml) | Mixed MVP / future| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-trust-dfd.svg) · ![concerns trust dfd](../Diagrams/Archived-Png/Concerns-Trust-Dfd.png) |
-| [cross-cutting-change-route.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/cross-cutting-change-route.dot) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/cross-cutting-change-route.svg) · ![cross cutting change route](../Diagrams/Archived-Png/Cross-Cutting-Change-Route.png) |
-| [cross-cutting-ownership.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/cross-cutting-ownership.dot) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/cross-cutting-ownership.svg) · ![cross cutting ownership](../Diagrams/Archived-Png/Cross-Cutting-Ownership.png) |
-| [deployment-candidate-topology.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.svg) · ![logical component ownership](../Diagrams/Archived-Png/Logical-Component-Ownership.png) |
-| [deployment-cicd-artifact-nodes.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-cicd-artifact-nodes.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-cicd-artifact-nodes.svg) · ![deployment cicd artifact nodes](../Diagrams/Archived-Png/Deployment-Cicd-Artifact-Nodes.png) |
-| [deployment-environment-topology.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-environment-topology.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-environment-topology.svg) · ![deployment environment topology](../Diagrams/Archived-Png/Deployment-Environment-Topology.png) |
-| [deployment-failover-dr-route.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-failover-dr-route.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-failover-dr-route.svg) · ![deployment failover dr route](../Diagrams/Archived-Png/Deployment-Failover-Dr-Route.png) |
-| [deployment-multiregion-alternative.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-multiregion-alternative.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-multiregion-alternative.svg) · ![deployment multiregion alternative](../Diagrams/Archived-Png/Deployment-Multiregion-Alternative.png) |
-| [deployment-network-request-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-network-request-sequence.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-network-request-sequence.svg) · ![deployment network request sequence](../Diagrams/Archived-Png/Deployment-Network-Request-Sequence.png) |
-| [deployment-network-topology.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-network-topology.puml) | Historical / alternative| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-network-topology.svg) · ![deployment network topology](../Diagrams/Archived-Png/Deployment-Network-Topology.png) |
-| [deployment-orchestration-alternative.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-orchestration-alternative.puml) | Historical / alternative| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-orchestration-alternative.svg) · ![deployment orchestration alternative](../Diagrams/Archived-Png/Deployment-Orchestration-Alternative.png) |
-| [deployment-provider-infrastructure.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-provider-infrastructure.puml) | Historical / alternative| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-provider-infrastructure.svg) · ![deployment provider infrastructure](../Diagrams/Archived-Png/Deployment-Provider-Infrastructure.png) |
-| [deployment-security-segmentation.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.puml) | MVP systems| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.svg) · ![security trust boundaries](../Diagrams/Archived-Png/Security-Trust-Boundaries.png) |
-| [deployment-traffic-flow.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-traffic-flow.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-traffic-flow.svg) · ![deployment traffic flow](../Diagrams/Archived-Png/Deployment-Traffic-Flow.png) |
-| [deployment-uml-nodes-artifacts.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.puml) | MVP deployment| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.svg) · ![drivers uml deployment](../Diagrams/Archived-Png/Drivers-Uml-Deployment.png) |
-| [drivers-c4-system-context.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-c4-system-context.puml) | MVP systems| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-c4-system-context.svg) · ![drivers c4 system context](../Diagrams/Archived-Png/Drivers-C4-System-Context.png) |
-| [drivers-critical-publication-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-critical-publication-sequence.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-critical-publication-sequence.svg) · ![drivers critical publication sequence](../Diagrams/Archived-Png/Drivers-Critical-Publication-Sequence.png) |
-| [drivers-option-a-components.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-option-a-components.puml) | Historical / alternative| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-option-a-components.svg) · ![drivers option a components](../Diagrams/Archived-Png/Drivers-Option-A-Components.png) |
-| [drivers-option-b-components.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-option-b-components.puml) | MVP systems| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-option-b-components.svg) · ![drivers option b components](../Diagrams/Archived-Png/Drivers-Option-B-Components.png) |
-| [drivers-option-c-components.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-option-c-components.puml) | Historical / alternative| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-option-c-components.svg) · ![drivers option c components](../Diagrams/Archived-Png/Drivers-Option-C-Components.png) |
-| [drivers-options-radar.py](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-options-radar.py) | Historical / alternative | [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-options-radar.svg) · ![drivers options radar](../Diagrams/Archived-Png/Drivers-Options-Radar.png) |
-| [drivers-quality-utility-tree.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-quality-utility-tree.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-quality-utility-tree.svg) · ![drivers quality utility tree](../Diagrams/Archived-Png/Drivers-Quality-Utility-Tree.png) |
-| [drivers-to-architecture.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-to-architecture.dot) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-to-architecture.svg) · ![drivers to architecture](../Diagrams/Archived-Png/Drivers-To-Architecture.png) |
-| [drivers-uml-deployment.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.puml) | MVP deployment| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.svg) · ![drivers uml deployment](../Diagrams/Archived-Png/Drivers-Uml-Deployment.png) |
-| [drivers-uml-use-cases.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-use-cases.puml) | Mixed MVP / future| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-use-cases.svg) · ![drivers uml use cases](../Diagrams/Archived-Png/Drivers-Uml-Use-Cases.png) |
-| [durable-attempt-protocol.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/durable-attempt-protocol.dot) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/durable-attempt-protocol.svg) · ![durable attempt protocol](../Diagrams/Archived-Png/Durable-Attempt-Protocol.png) |
-| [logical-component-ownership.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.svg) · ![logical component ownership](../Diagrams/Archived-Png/Logical-Component-Ownership.png) |
-| [mvp-private-media.puml](#design-record-01-software-architecture-diagrams-mvp-private-media-puml) | MVP core / cross-cutting| [SVG](#design-record-01-software-architecture-diagrams-mvp-private-media-svg) · ![mvp private media](../Diagrams/Mvp-Private-Media.png) |
-| [mvp-system-boundaries.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg) · ![mvp system boundaries](../Diagrams/Archived-Png/Mvp-System-Boundaries.png) |
-| [network-access-zones.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.svg) · ![logical component ownership](../Diagrams/Archived-Png/Logical-Component-Ownership.png) |
-| [presentation-history-boundaries.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/presentation-history-boundaries.dot) | Method / document navigation| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/presentation-history-boundaries.svg) · ![presentation history boundaries](../Diagrams/Archived-Png/Presentation-History-Boundaries.png) |
-| [proposed-solution-boundaries.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.svg) · ![logical component ownership](../Diagrams/Archived-Png/Logical-Component-Ownership.png) |
-| [release-and-recovery-route.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/release-and-recovery-route.dot) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/release-and-recovery-route.svg) · ![release and recovery route](../Diagrams/Archived-Png/Release-And-Recovery-Route.png) |
-| [runtime-attempt-state-machine.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-attempt-state-machine.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-attempt-state-machine.svg) · ![runtime attempt state machine](../Diagrams/Archived-Png/Runtime-Attempt-State-Machine.png) |
-| [runtime-claim-timing.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-claim-timing.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-claim-timing.svg) · ![runtime claim timing](../Diagrams/Archived-Png/Runtime-Claim-Timing.png) |
-| [runtime-communication-diagram.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-communication-diagram.puml) | Method / document navigation| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-communication-diagram.svg) · ![runtime communication diagram](../Diagrams/Archived-Png/Runtime-Communication-Diagram.png) |
-| [runtime-concurrency-model.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-concurrency-model.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-concurrency-model.svg) · ![runtime concurrency model](../Diagrams/Archived-Png/Runtime-Concurrency-Model.png) |
-| [runtime-dataflow.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-dataflow.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-dataflow.svg) · ![runtime dataflow](../Diagrams/Archived-Png/Runtime-Dataflow.png) |
-| [runtime-local-command-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-local-command-sequence.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-local-command-sequence.svg) · ![runtime local command sequence](../Diagrams/Archived-Png/Runtime-Local-Command-Sequence.png) |
-| [runtime-process-deployment.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.puml) | MVP deployment| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.svg) · ![drivers uml deployment](../Diagrams/Archived-Png/Drivers-Uml-Deployment.png) |
-| [runtime-process-thread-view.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-process-thread-view.puml) | Mixed MVP / future| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-process-thread-view.svg) · ![runtime process thread view](../Diagrams/Archived-Png/Runtime-Process-Thread-View.png) |
-| [runtime-queue-topology.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-queue-topology.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-queue-topology.svg) · ![runtime queue topology](../Diagrams/Archived-Png/Runtime-Queue-Topology.png) |
-| [runtime-remote-effect-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-remote-effect-sequence.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-remote-effect-sequence.svg) · ![runtime remote effect sequence](../Diagrams/Archived-Png/Runtime-Remote-Effect-Sequence.png) |
-| [runtime-resource-contention.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-resource-contention.puml) | MVP systems| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-resource-contention.svg) · ![runtime resource contention](../Diagrams/Archived-Png/Runtime-Resource-Contention.png) |
-| [runtime-responsibilities.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-responsibilities.dot) | Mixed MVP / future| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-responsibilities.svg) · ![runtime responsibilities](../Diagrams/Archived-Png/Runtime-Responsibilities.png) |
-| [runtime-swimlane-fork-join.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-swimlane-fork-join.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-swimlane-fork-join.svg) · ![runtime swimlane fork join](../Diagrams/Archived-Png/Runtime-Swimlane-Fork-Join.png) |
-| [runtime-wait-for-example.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-wait-for-example.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-wait-for-example.svg) · ![runtime wait for example](../Diagrams/Archived-Png/Runtime-Wait-For-Example.png) |
+| [architecture-decision-route.dot](Diagrams/Appendix/architecture-decision-route.dot) | Method / document navigation| [SVG](Diagrams/Appendix/architecture-decision-route.svg) · ![architecture decision route](Diagrams/Appendix/architecture-decision-route.svg) |
+| [boundaries-big-picture-events.puml](Diagrams/Appendix/boundaries-big-picture-events.puml) | Mixed MVP / future| [SVG](Diagrams/Appendix/boundaries-big-picture-events.svg) · ![boundaries big picture events](Diagrams/Appendix/boundaries-big-picture-events.svg) |
+| [boundaries-c4-containers.puml](Diagrams/Appendix/boundaries-c4-containers.puml) | MVP systems| [SVG](Diagrams/Appendix/boundaries-c4-containers.svg) · ![boundaries c4 containers](Diagrams/Appendix/boundaries-c4-containers.svg) |
+| [boundaries-cross-context-capture.puml](Diagrams/Appendix/boundaries-cross-context-capture.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/boundaries-cross-context-capture.svg) · ![boundaries cross context capture](Diagrams/Appendix/boundaries-cross-context-capture.svg) |
+| [boundaries-ddd-context-map.puml](Diagrams/Appendix/boundaries-ddd-contexts.puml) | MVP systems| [SVG](Diagrams/Appendix/boundaries-ddd-contexts.svg) · ![boundaries ddd contexts](Diagrams/Appendix/boundaries-ddd-contexts.svg) |
+| [boundaries-ddd-contexts.puml](Diagrams/Appendix/boundaries-ddd-contexts.puml) | MVP systems| [SVG](Diagrams/Appendix/boundaries-ddd-contexts.svg) · ![boundaries ddd contexts](Diagrams/Appendix/boundaries-ddd-contexts.svg) |
+| [boundaries-hexagonal-module.puml](Diagrams/Appendix/boundaries-hexagonal-module.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/boundaries-hexagonal-module.svg) · ![boundaries hexagonal module](Diagrams/Appendix/boundaries-hexagonal-module.svg) |
+| [boundaries-module-dependencies.puml](Diagrams/Appendix/boundaries-ddd-contexts.puml) | MVP systems| [SVG](Diagrams/Appendix/boundaries-ddd-contexts.svg) · ![boundaries ddd contexts](Diagrams/Appendix/boundaries-ddd-contexts.svg) |
+| [boundaries-uml-components.puml](Diagrams/Appendix/boundaries-ddd-contexts.puml) | MVP systems| [SVG](Diagrams/Appendix/boundaries-ddd-contexts.svg) · ![boundaries ddd contexts](Diagrams/Appendix/boundaries-ddd-contexts.svg) |
+| [boundaries-uml-packages.puml](Diagrams/Appendix/boundaries-uml-packages.puml) | MVP systems| [SVG](Diagrams/Appendix/boundaries-uml-packages.svg) · ![boundaries uml packages](Diagrams/Appendix/boundaries-uml-packages.svg) |
+| [cancellation-reconciliation.dot](Diagrams/Appendix/cancellation-reconciliation.dot) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/cancellation-reconciliation.svg) · ![cancellation reconciliation](Diagrams/Appendix/cancellation-reconciliation.svg) |
+| [component-contract-boundaries.dot](Diagrams/Appendix/component-contract-boundaries.dot) | Mixed MVP / future| [SVG](Diagrams/Appendix/component-contract-boundaries.svg) · ![component contract boundaries](Diagrams/Appendix/component-contract-boundaries.svg) |
+| [concerns-authn-authz-sequence.puml](Diagrams/Appendix/concerns-authn-authz-sequence.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/concerns-authn-authz-sequence.svg) · ![concerns authn authz sequence](Diagrams/Appendix/concerns-authn-authz-sequence.svg) |
+| [concerns-cache-strategy.puml](Diagrams/Appendix/concerns-cache-strategy.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/concerns-cache-strategy.svg) · ![concerns cache strategy](Diagrams/Appendix/concerns-cache-strategy.svg) |
+| [concerns-circuit-breaker-states.puml](Diagrams/Appendix/concerns-circuit-breaker-states.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/concerns-circuit-breaker-states.svg) · ![concerns circuit breaker states](Diagrams/Appendix/concerns-circuit-breaker-states.svg) |
+| [concerns-configuration-management.puml](Diagrams/Appendix/concerns-configuration-management.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/concerns-configuration-management.svg) · ![concerns configuration management](Diagrams/Appendix/concerns-configuration-management.svg) |
+| [concerns-error-flow.puml](Diagrams/Appendix/concerns-error-flow.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/concerns-error-flow.svg) · ![concerns error flow](Diagrams/Appendix/concerns-error-flow.svg) |
+| [concerns-hexagonal-overlay.puml](Diagrams/Appendix/concerns-hexagonal-overlay.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/concerns-hexagonal-overlay.svg) · ![concerns hexagonal overlay](Diagrams/Appendix/concerns-hexagonal-overlay.svg) |
+| [concerns-middleware-chain.puml](Diagrams/Appendix/concerns-middleware-chain.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/concerns-middleware-chain.svg) · ![concerns middleware chain](Diagrams/Appendix/concerns-middleware-chain.svg) |
+| [concerns-observability-pipeline.puml](Diagrams/Appendix/concerns-observability-pipeline.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/concerns-observability-pipeline.svg) · ![concerns observability pipeline](Diagrams/Appendix/concerns-observability-pipeline.svg) |
+| [concerns-resilience-patterns.puml](Diagrams/Appendix/concerns-resilience-patterns.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/concerns-resilience-patterns.svg) · ![concerns resilience patterns](Diagrams/Appendix/concerns-resilience-patterns.svg) |
+| [concerns-security-architecture.puml](Diagrams/Appendix/concerns-security-architecture.puml) | Mixed MVP / future| [SVG](Diagrams/Appendix/concerns-security-architecture.svg) · ![concerns security architecture](Diagrams/Appendix/concerns-security-architecture.svg) |
+| [concerns-shared-components.puml](Diagrams/Appendix/concerns-shared-components.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/concerns-shared-components.svg) · ![concerns shared components](Diagrams/Appendix/concerns-shared-components.svg) |
+| [concerns-transaction-boundary.puml](Diagrams/Appendix/concerns-transaction-boundary.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/concerns-transaction-boundary.svg) · ![concerns transaction boundary](Diagrams/Appendix/concerns-transaction-boundary.svg) |
+| [concerns-trust-dfd.puml](Diagrams/Appendix/concerns-trust-dfd.puml) | Mixed MVP / future| [SVG](Diagrams/Appendix/concerns-trust-dfd.svg) · ![concerns trust dfd](Diagrams/Appendix/concerns-trust-dfd.svg) |
+| [cross-cutting-change-route.dot](Diagrams/Appendix/cross-cutting-change-route.dot) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/cross-cutting-change-route.svg) · ![cross cutting change route](Diagrams/Appendix/cross-cutting-change-route.svg) |
+| [cross-cutting-ownership.dot](Diagrams/Appendix/cross-cutting-ownership.dot) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/cross-cutting-ownership.svg) · ![cross cutting ownership](Diagrams/Appendix/cross-cutting-ownership.svg) |
+| [deployment-candidate-topology.dot](Diagrams/Appendix/logical-component-ownership.dot) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/logical-component-ownership.svg) · ![logical component ownership](Diagrams/Appendix/logical-component-ownership.svg) |
+| [deployment-cicd-artifact-nodes.puml](Diagrams/Appendix/deployment-cicd-artifact-nodes.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/deployment-cicd-artifact-nodes.svg) · ![deployment cicd artifact nodes](Diagrams/Appendix/deployment-cicd-artifact-nodes.svg) |
+| [deployment-environment-topology.puml](Diagrams/Appendix/deployment-environment-topology.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/deployment-environment-topology.svg) · ![deployment environment topology](Diagrams/Appendix/deployment-environment-topology.svg) |
+| [deployment-failover-dr-route.puml](Diagrams/Appendix/deployment-failover-dr-route.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/deployment-failover-dr-route.svg) · ![deployment failover dr route](Diagrams/Appendix/deployment-failover-dr-route.svg) |
+| [deployment-multiregion-alternative.puml](Diagrams/Appendix/deployment-multiregion-alternative.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/deployment-multiregion-alternative.svg) · ![deployment multiregion alternative](Diagrams/Appendix/deployment-multiregion-alternative.svg) |
+| [deployment-network-request-sequence.puml](Diagrams/Appendix/deployment-network-request-sequence.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/deployment-network-request-sequence.svg) · ![deployment network request sequence](Diagrams/Appendix/deployment-network-request-sequence.svg) |
+| [deployment-network-topology.puml](Diagrams/Appendix/deployment-network-topology.puml) | Historical / alternative| [SVG](Diagrams/Appendix/deployment-network-topology.svg) · ![deployment network topology](Diagrams/Appendix/deployment-network-topology.svg) |
+| [deployment-orchestration-alternative.puml](Diagrams/Appendix/deployment-orchestration-alternative.puml) | Historical / alternative| [SVG](Diagrams/Appendix/deployment-orchestration-alternative.svg) · ![deployment orchestration alternative](Diagrams/Appendix/deployment-orchestration-alternative.svg) |
+| [deployment-provider-infrastructure.puml](Diagrams/Appendix/deployment-provider-infrastructure.puml) | Historical / alternative| [SVG](Diagrams/Appendix/deployment-provider-infrastructure.svg) · ![deployment provider infrastructure](Diagrams/Appendix/deployment-provider-infrastructure.svg) |
+| [deployment-security-segmentation.puml](Diagrams/Appendix/security-trust-boundaries.puml) | MVP systems| [SVG](Diagrams/Appendix/security-trust-boundaries.svg) · ![security trust boundaries](Diagrams/Appendix/security-trust-boundaries.svg) |
+| [deployment-traffic-flow.puml](Diagrams/Appendix/deployment-traffic-flow.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/deployment-traffic-flow.svg) · ![deployment traffic flow](Diagrams/Appendix/deployment-traffic-flow.svg) |
+| [deployment-uml-nodes-artifacts.puml](Diagrams/Appendix/drivers-uml-deployment.puml) | MVP deployment| [SVG](Diagrams/Appendix/drivers-uml-deployment.svg) · ![drivers uml deployment](Diagrams/Appendix/drivers-uml-deployment.svg) |
+| [drivers-c4-system-context.puml](Diagrams/Appendix/drivers-c4-system-context.puml) | MVP systems| [SVG](Diagrams/Appendix/drivers-c4-system-context.svg) · ![drivers c4 system context](Diagrams/Appendix/drivers-c4-system-context.svg) |
+| [drivers-critical-publication-sequence.puml](Diagrams/Appendix/drivers-critical-publication-sequence.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/drivers-critical-publication-sequence.svg) · ![drivers critical publication sequence](Diagrams/Appendix/drivers-critical-publication-sequence.svg) |
+| [drivers-option-a-components.puml](Diagrams/Appendix/drivers-option-a-components.puml) | Historical / alternative| [SVG](Diagrams/Appendix/drivers-option-a-components.svg) · ![drivers option a components](Diagrams/Appendix/drivers-option-a-components.svg) |
+| [drivers-option-b-components.puml](Diagrams/Appendix/drivers-option-b-components.puml) | MVP systems| [SVG](Diagrams/Appendix/drivers-option-b-components.svg) · ![drivers option b components](Diagrams/Appendix/drivers-option-b-components.svg) |
+| [drivers-option-c-components.puml](Diagrams/Appendix/drivers-option-c-components.puml) | Historical / alternative| [SVG](Diagrams/Appendix/drivers-option-c-components.svg) · ![drivers option c components](Diagrams/Appendix/drivers-option-c-components.svg) |
+| [drivers-options-radar.py](Diagrams/Appendix/drivers-options-radar.py) | Historical / alternative | [SVG](Diagrams/Appendix/drivers-options-radar.svg) · ![drivers options radar](Diagrams/Appendix/drivers-options-radar.svg) |
+| [drivers-quality-utility-tree.puml](Diagrams/Appendix/drivers-quality-utility-tree.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/drivers-quality-utility-tree.svg) · ![drivers quality utility tree](Diagrams/Appendix/drivers-quality-utility-tree.svg) |
+| [drivers-to-architecture.dot](Diagrams/Appendix/drivers-to-architecture.dot) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/drivers-to-architecture.svg) · ![drivers to architecture](Diagrams/Appendix/drivers-to-architecture.svg) |
+| [drivers-uml-deployment.puml](Diagrams/Appendix/drivers-uml-deployment.puml) | MVP deployment| [SVG](Diagrams/Appendix/drivers-uml-deployment.svg) · ![drivers uml deployment](Diagrams/Appendix/drivers-uml-deployment.svg) |
+| [drivers-uml-use-cases.puml](Diagrams/Appendix/drivers-uml-use-cases.puml) | Mixed MVP / future| [SVG](Diagrams/Appendix/drivers-uml-use-cases.svg) · ![drivers uml use cases](Diagrams/Appendix/drivers-uml-use-cases.svg) |
+| [durable-attempt-protocol.dot](Diagrams/Appendix/durable-attempt-protocol.dot) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/durable-attempt-protocol.svg) · ![durable attempt protocol](Diagrams/Appendix/durable-attempt-protocol.svg) |
+| [logical-component-ownership.dot](Diagrams/Appendix/logical-component-ownership.dot) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/logical-component-ownership.svg) · ![logical component ownership](Diagrams/Appendix/logical-component-ownership.svg) |
+| [mvp-private-media.puml](#design-record-01-software-architecture-diagrams-mvp-private-media-puml) | MVP core / cross-cutting| [SVG](#design-record-01-software-architecture-diagrams-mvp-private-media-svg) · ![mvp private media](Diagrams/Appendix/mvp-private-media.svg) |
+| [mvp-system-boundaries.puml](Diagrams/Appendix/mvp-system-boundaries.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/mvp-system-boundaries.svg) · ![mvp system boundaries](Diagrams/Appendix/mvp-system-boundaries.svg) |
+| [network-access-zones.dot](Diagrams/Appendix/logical-component-ownership.dot) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/logical-component-ownership.svg) · ![logical component ownership](Diagrams/Appendix/logical-component-ownership.svg) |
+| [presentation-history-boundaries.dot](Diagrams/Appendix/presentation-history-boundaries.dot) | Method / document navigation| [SVG](Diagrams/Appendix/presentation-history-boundaries.svg) · ![presentation history boundaries](Diagrams/Appendix/presentation-history-boundaries.svg) |
+| [proposed-solution-boundaries.dot](Diagrams/Appendix/logical-component-ownership.dot) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/logical-component-ownership.svg) · ![logical component ownership](Diagrams/Appendix/logical-component-ownership.svg) |
+| [release-and-recovery-route.dot](Diagrams/Appendix/release-and-recovery-route.dot) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/release-and-recovery-route.svg) · ![release and recovery route](Diagrams/Appendix/release-and-recovery-route.svg) |
+| [runtime-attempt-state-machine.puml](Diagrams/Appendix/runtime-attempt-state-machine.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/runtime-attempt-state-machine.svg) · ![runtime attempt state machine](Diagrams/Appendix/runtime-attempt-state-machine.svg) |
+| [runtime-claim-timing.puml](Diagrams/Appendix/runtime-claim-timing.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/runtime-claim-timing.svg) · ![runtime claim timing](Diagrams/Appendix/runtime-claim-timing.svg) |
+| [runtime-communication-diagram.puml](Diagrams/Appendix/runtime-communication-diagram.puml) | Method / document navigation| [SVG](Diagrams/Appendix/runtime-communication-diagram.svg) · ![runtime communication diagram](Diagrams/Appendix/runtime-communication-diagram.svg) |
+| [runtime-concurrency-model.puml](Diagrams/Appendix/runtime-concurrency-model.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/runtime-concurrency-model.svg) · ![runtime concurrency model](Diagrams/Appendix/runtime-concurrency-model.svg) |
+| [runtime-dataflow.puml](Diagrams/Appendix/runtime-dataflow.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/runtime-dataflow.svg) · ![runtime dataflow](Diagrams/Appendix/runtime-dataflow.svg) |
+| [runtime-local-command-sequence.puml](Diagrams/Appendix/runtime-local-command-sequence.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/runtime-local-command-sequence.svg) · ![runtime local command sequence](Diagrams/Appendix/runtime-local-command-sequence.svg) |
+| [runtime-process-deployment.puml](Diagrams/Appendix/drivers-uml-deployment.puml) | MVP deployment| [SVG](Diagrams/Appendix/drivers-uml-deployment.svg) · ![drivers uml deployment](Diagrams/Appendix/drivers-uml-deployment.svg) |
+| [runtime-process-thread-view.puml](Diagrams/Appendix/runtime-process-thread-view.puml) | Mixed MVP / future| [SVG](Diagrams/Appendix/runtime-process-thread-view.svg) · ![runtime process thread view](Diagrams/Appendix/runtime-process-thread-view.svg) |
+| [runtime-queue-topology.puml](Diagrams/Appendix/runtime-queue-topology.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/runtime-queue-topology.svg) · ![runtime queue topology](Diagrams/Appendix/runtime-queue-topology.svg) |
+| [runtime-remote-effect-sequence.puml](Diagrams/Appendix/runtime-remote-effect-sequence.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/runtime-remote-effect-sequence.svg) · ![runtime remote effect sequence](Diagrams/Appendix/runtime-remote-effect-sequence.svg) |
+| [runtime-resource-contention.puml](Diagrams/Appendix/runtime-resource-contention.puml) | MVP systems| [SVG](Diagrams/Appendix/runtime-resource-contention.svg) · ![runtime resource contention](Diagrams/Appendix/runtime-resource-contention.svg) |
+| [runtime-responsibilities.dot](Diagrams/Appendix/runtime-responsibilities.dot) | Mixed MVP / future| [SVG](Diagrams/Appendix/runtime-responsibilities.svg) · ![runtime responsibilities](Diagrams/Appendix/runtime-responsibilities.svg) |
+| [runtime-swimlane-fork-join.puml](Diagrams/Appendix/runtime-swimlane-fork-join.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/runtime-swimlane-fork-join.svg) · ![runtime swimlane fork join](Diagrams/Appendix/runtime-swimlane-fork-join.svg) |
+| [runtime-wait-for-example.puml](Diagrams/Appendix/runtime-wait-for-example.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/runtime-wait-for-example.svg) · ![runtime wait for example](Diagrams/Appendix/runtime-wait-for-example.svg) |
 
 </details>
 
@@ -2401,9 +2500,7 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 **Start here to understand the proposed technical solution:** its drivers and alternatives, responsibility boundaries, runtime behavior, deployment possibilities and shared concerns.
 
-Owner and decision authority: Farhad. Updated November 2, 2026.
-
-**Current position:** all five architecture documents are populated and now include expanded visual packages. The diagram directory contains **69 distinct views**: 54 PlantUML diagrams, 14 Graphviz diagrams and one qualitative radar chart, each with SVG/PNG exports. This inventory describes documentation, not configured infrastructure, verified runtime behavior or accepted architecture. Final mechanisms, exact criterion closure and owner baseline disposition remain pending.
+Owner and decision authority: Farhad. **Current position:** all five architecture documents are populated and now include expanded visual packages. The diagram directory contains **69 distinct views**: 54 PlantUML diagrams, 14 Graphviz diagrams and one qualitative radar chart, each with SVG/PNG exports. This inventory describes documentation, not configured infrastructure, verified runtime behavior or accepted architecture. Final mechanisms, exact criterion closure and owner baseline disposition remain pending.
 
 [Reading route](#design-record-01-software-architecture-software-architecture-md--heading-1-reading-route) · [View guide](#design-record-01-software-architecture-software-architecture-md--heading-2-find-the-right-document-and-view) · [Diagrams](#design-record-01-software-architecture-software-architecture-md--heading-3-diagram-gallery-and-catalog) · [Abstractions](#design-record-01-software-architecture-software-architecture-md--heading-4-reading-the-abstraction-levels) · [Candidate](#design-record-01-software-architecture-software-architecture-md--heading-5-current-recommendation-and-evidence-gates) · [Review](#design-record-01-software-architecture-software-architecture-md--heading-6-review-and-maintenance)
 
@@ -2411,9 +2508,9 @@ Owner and decision authority: Farhad. Updated November 2, 2026.
 
 #### Current MVP boundary figure
 
-[Accepted core and separate ProjectForge boundary](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg)
+[Accepted core and separate ProjectForge boundary](Diagrams/Appendix/mvp-system-boundaries.svg)
 
-[Editable source](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) · ![mvp system boundaries](../Diagrams/Archived-Png/Mvp-System-Boundaries.png). Historical broader-product figures below retain earlier alternatives/detail; they do not define the current system boundary.
+[Editable source](Diagrams/Appendix/mvp-system-boundaries.puml) · ![mvp system boundaries](Diagrams/Appendix/mvp-system-boundaries.svg). Historical broader-product figures below retain earlier alternatives/detail; they do not define the current system boundary.
 
 <a id="design-record-01-software-architecture-software-architecture-md--heading-1-reading-route"></a>
 
@@ -2422,7 +2519,7 @@ Owner and decision authority: Farhad. Updated November 2, 2026.
 1. [Design Drivers and Solution Options](#design-record-01-software-architecture-01-design-drivers-and-solution-options-md): six drivers, three alternatives, system context/use cases, quality utility tree, option diagrams, critical scenario and qualitative decision support.
 2. [System Decomposition and Boundaries](#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md): nine logical owners, candidate DDD contexts/relationships, C4 container shape, contracts, dependencies, package/hexagonal views and ownership/responsibility tables.
 3. [Process View, Concurrency and Runtime Behavior](#design-record-01-software-architecture-03-process-view-concurrency-and-runtime-behavior-md): guarded commands, durable work, actual effect knowledge, cancellation, process/queue/concurrency views and shared-resource risks.
-4. [Deployment Topology, Nodes and Networks](#design-record-01-software-architecture-04-deployment-topology-nodes-and-networks-md): dated observations versus candidate nodes/artifacts, routing/security zones, alternative cloud/orchestration/resilience layouts, environments, promotion and port/sizing contracts.
+4. [Deployment Topology, Nodes and Networks](#design-record-01-software-architecture-04-deployment-topology-nodes-and-networks-md): recorded observations versus candidate nodes/artifacts, routing/security zones, alternative cloud/orchestration/resilience layouts, environments, promotion and port/sizing contracts.
 5. [Cross-Cutting Concerns Overview](#design-record-01-software-architecture-05-cross-cutting-concerns-overview-md): concern ownership, component matrix, authn/authz, diagnostics/configuration/cache/transactions/resilience, middleware/shared components and quality/policy tables.
 
 Read each figure with its owning caption and evidence limits. Follow [purpose/scope/approach](#design-record-design-scope-and-approach-md) for source authority and the [reference map](#design-record-design-references-and-coverage-md) for FAU provenance and project adaptations.
@@ -2454,9 +2551,9 @@ For final operation signatures/classes/algorithms, use the [component catalog](.
 
 ##### Shared whole-system anchor
 
-[C4 Level 1 system context](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-c4-system-context.svg)
+[C4 Level 1 system context](Diagrams/Appendix/drivers-c4-system-context.svg)
 
-[Owning context assessment](#design-record-01-software-architecture-01-design-drivers-and-solution-options-md--heading-0-system-context-and-use-case-scope) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-c4-system-context.puml) · ![drivers c4 system context](../Diagrams/Archived-Png/Drivers-C4-System-Context.png)
+[Owning context assessment](#design-record-01-software-architecture-01-design-drivers-and-solution-options-md--heading-0-system-context-and-use-case-scope) · [PlantUML](Diagrams/Appendix/drivers-c4-system-context.puml) · ![drivers c4 system context](Diagrams/Appendix/drivers-c4-system-context.svg)
 
 The same context is reused by decomposition and deployment. People and whole external systems belong here; modules, private stores and subnets belong at other levels.
 
@@ -2464,9 +2561,9 @@ The same context is reused by decomposition and deployment. People and whole ext
 
 ##### Candidate applications and stores
 
-[C4 Level 2 container candidate](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-c4-containers.svg)
+[C4 Level 2 container candidate](Diagrams/Appendix/boundaries-c4-containers.svg)
 
-[Owning decomposition](#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-c4-containers.puml) · ![boundaries c4 containers](../Diagrams/Archived-Png/Boundaries-C4-Containers.png)
+[Owning decomposition](#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md) · [PlantUML](Diagrams/Appendix/boundaries-c4-containers.puml) · ![boundaries c4 containers](Diagrams/Appendix/boundaries-c4-containers.svg)
 
 This is a proposed application/store shape, not a selected physical topology or safe executor. Web/background applications may share a compatible release; logical owners are not automatically separate containers.
 
@@ -2482,7 +2579,7 @@ This is a proposed application/store shape, not a selected physical topology or 
 | 04 — Deployment | 14 | Original topology/routes plus infrastructure, zones, alternatives, environments, pipeline and request sequence |
 | 05 — Cross-cutting | 15 | Original ownership/change routes plus thirteen shared realization views |
 
-Counts total 69 unique SVG/PNG pairs; reused anchors are not counted again. The [full diagram catalog](#design-record-01-software-architecture-diagrams-diagram-catalog-md) links all editable sources and exports. The [radar generator](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-options-radar.py) and [rubric/data](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-options-radar.json) make its unweighted ordinal judgments inspectable. Those scores are qualitative author assessments, not benchmarks, accepted priorities or a weighted decision total.
+Counts total 69 unique SVG/PNG pairs; reused anchors are not counted again. The [full diagram catalog](#design-record-01-software-architecture-diagrams-diagram-catalog-md) links all editable sources and exports. The [radar generator](Diagrams/Appendix/drivers-options-radar.py) and [rubric/data](Diagrams/Appendix/drivers-options-radar.json) make its unweighted ordinal judgments inspectable. Those scores are qualitative author assessments, not benchmarks, accepted priorities or a weighted decision total.
 
 <a id="design-record-01-software-architecture-software-architecture-md--heading-4-reading-the-abstraction-levels"></a>
 
@@ -2516,7 +2613,7 @@ For any actual review, identify exact source/design revisions, claimed criterion
 
 When changing a model, update its owning record, source and exports together; reconcile consumers, data/runtime/deployment consequences and ADRs; preserve historical evidence and actual proposal/acceptance status. Use [design evolution](../03-Low-Level-Design/12-Appendices.md#design-record-02-detailed-and-object-oriented-design-05-design-evolution-refactoring-and-technical-debt-md). Reuse anchors rather than create competing context diagrams or duplicated policies.
 
-[Project Planning](../../01-Project-Planning/02-Project-Management-Plan.md), [Requirements Engineering](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md) and [System Analysis](../../03-System-Analysis/01-System-Analysis.md) retain their authority and review limits. The agreed pre-implementation baseline sequence and actual owner disposition remain required; no coding authorization, purchase, test Pass or phase acceptance is created by this index.
+[Project Planning](../../01-Project-Planning/02-Project-Management-Plan.md), [Requirements Engineering](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md) and [System Analysis](../../03-System-Analysis/01-System-Context-And-Gap-Analysis.md) retain their authority and review limits. The agreed pre-implementation baseline sequence and actual owner disposition remain required; no coding authorization, purchase, test Pass or phase acceptance is created by this index.
 
 [System Design home](../../01-Project-Planning/02-Project-Management-Plan.md#stage-4-system-design) · [Purpose and approach](#design-record-design-scope-and-approach-md) · [FAU reference map](#design-record-design-references-and-coverage-md) · [Diagram catalog](#design-record-01-software-architecture-diagrams-diagram-catalog-md)
 
@@ -2535,7 +2632,7 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 **Purpose:** connect quality obligations to concrete design scenarios, mechanisms, trade-offs and evidence needed to judge the candidate architecture.
 
-**Status:** proposed evaluation design, November 2, 2026. No workload, latency, availability, accessibility or recovery target is accepted here. No benchmark, security assessment, restoration or formal ATAM workshop has been performed by this update.
+**Status:** proposed evaluation design. No workload, latency, availability, accessibility or recovery target is accepted here. No benchmark, security assessment, restoration or formal ATAM workshop has been performed by this update.
 
 [Authority](#design-record-06-design-quality-and-security-analysis-01-quality-attributes-and-design-trade-offs-md--heading-1-source-authority-and-evaluation-boundaries) · [Scenarios](#design-record-06-design-quality-and-security-analysis-01-quality-attributes-and-design-trade-offs-md--heading-2-quality-scenario-catalog) · [Trade-offs](#design-record-06-design-quality-and-security-analysis-01-quality-attributes-and-design-trade-offs-md--heading-3-design-trade-offs-and-sensitive-decisions) · [Method](#design-record-06-design-quality-and-security-analysis-01-quality-attributes-and-design-trade-offs-md--heading-4-evaluation-and-measurement-procedure) · [Evidence](#design-record-06-design-quality-and-security-analysis-01-quality-attributes-and-design-trade-offs-md--heading-5-evidence-record-and-readiness) · [Essential views](#design-record-06-design-quality-and-security-analysis-01-quality-attributes-and-design-trade-offs-md--heading-6-essential-quality-and-trade-off-views)
 
@@ -2543,21 +2640,21 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 #### 1. Source authority and evaluation boundaries
 
-Use [QSR-D01–QSR-D14](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-quality-security-and-recovery-requirements), the [quantitative target contracts](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-quality-security-and-recovery-requirements), [Q-D25](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-quality-security-and-recovery-requirements--id-resolution-q-d25), [Q-D26](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-quality-security-and-recovery-requirements--id-resolution-q-d26) and [analysis quality/operating view](../../03-System-Analysis/01-System-Analysis.md#analysis-interfaces-security-and-quality-analysis--13-security-quality-and-operational-analysis). Source-defined behavior and owner acceptance remain authoritative; design cannot convert a target proposal into an agreed NFR.
+Use [QSR-D01–QSR-D14](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-quality-security-and-recovery-requirements), the [quantitative target contracts](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-quality-security-and-recovery-requirements), [Q-D25](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-quality-security-and-recovery-requirements--id-resolution-q-d25), [Q-D26](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-quality-security-and-recovery-requirements--id-resolution-q-d26) and [analysis quality/operating view](../../03-System-Analysis/04-Interfaces-Security-And-Quality.md#analysis-interfaces-security-and-quality-analysis--13-security-quality-and-operational-analysis). Source-defined behavior and owner acceptance remain authoritative; design cannot convert a target proposal into an agreed NFR.
 
 Q-D25 supplies concrete proposed workload/latency/error/availability/client/accessibility values, and Q-D26 proposes backup/retention/recovery objectives. They remain pending owner disposition and actual evidence. Preserve their exact measurement contexts when evaluating them; do not copy only a convenient number into an ADR or acceptance checklist. The owner confirmed backups are not set up.
 
 Use [host evidence](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#process-and-approach-02-feasibility-study) and [planning capacity](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/01-project-planning/11-capacity-and-preliminary-sizing.md) as design inputs. Size the deployment against measured concurrent demand and account for monitoring, backup and incident work in the operating design.
 
-This document owns cross-attribute evaluation. Detailed controls/procedures remain with [Security](#design-record-06-design-quality-and-security-analysis-02-security-threat-modeling-and-trust-boundaries-md), [Operations/Recovery](#design-record-06-design-quality-and-security-analysis-03-operations-backup-recovery-and-resilience-md), [UI/Accessibility](../02-UI-UX-Design/02-UI-UX-Design.md), [Data](../03-Low-Level-Design/04-Database-Design.md#design-record-04-data-design-data-design-md), [Runtime](#design-record-01-software-architecture-03-process-view-concurrency-and-runtime-behavior-md) and component owners.
+This document owns cross-attribute evaluation. Detailed controls/procedures remain with [Security](#design-record-06-design-quality-and-security-analysis-02-security-threat-modeling-and-trust-boundaries-md), [Operations/Recovery](#design-record-06-design-quality-and-security-analysis-03-operations-backup-recovery-and-resilience-md), [UI/Accessibility](../02-UI-UX-Design/01-Introduction.md), [Data](../03-Low-Level-Design/04-Database-Design.md#design-record-04-data-design-data-design-md), [Runtime](#design-record-01-software-architecture-03-process-view-concurrency-and-runtime-behavior-md) and component owners.
 
 <a id="design-record-06-design-quality-and-security-analysis-01-quality-attributes-and-design-trade-offs-md--heading-2-quality-scenario-catalog"></a>
 
 #### 2. Quality scenario catalog
 
-[Quality concerns connected to scenario evidence](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-scenario-evidence-map.svg)
+[Quality concerns connected to scenario evidence](Diagrams/Appendix/quality-scenario-evidence-map.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-scenario-evidence-map.puml) · ![quality scenario evidence map](../Diagrams/Archived-Png/Quality-Scenario-Evidence-Map.png)
+[Editable PlantUML](Diagrams/Appendix/quality-scenario-evidence-map.puml) · ![quality scenario evidence map](Diagrams/Appendix/quality-scenario-evidence-map.svg)
 
 The QA labels below are local design-evaluation locators, not primary requirement IDs or assigned priorities. Each scenario records stimulus/source, environment, affected artifact, response and response measure. Proposed evaluation order follows unresolved dependencies and risk, not an accepted requirement priority.
 
@@ -2599,7 +2696,7 @@ The QA labels below are local design-evaluation locators, not primary requiremen
 
 **Basis:** QSR-D03; EIF-D02. **Stimulus/environment:** owner/viewer performs representative editing, confirmation, protected viewing and failure recovery with the reviewed client/input/viewport matrix. **Response:** understandable outcomes, operable controls, preserved input and accessible feedback without accidental publication or duplicate actions.
 
-**Mechanisms:** explicit confirmations, stable labels/focus, accessible form/error handling and responsive presentation. **Measures/evidence:** task success/error observations and applicable criterion checks under the exact reviewed standard/client matrix. Q-D25's WCAG/client proposals remain proposals; automated checks alone cannot certify conformance, and PDFs require separate assessment. See [UI/Accessibility](../02-UI-UX-Design/02-UI-UX-Design.md).
+**Mechanisms:** explicit confirmations, stable labels/focus, accessible form/error handling and responsive presentation. **Measures/evidence:** task success/error observations and applicable criterion checks under the exact reviewed standard/client matrix. Q-D25's WCAG/client proposals remain proposals; automated checks alone cannot certify conformance, and PDFs require separate assessment. See [UI/Accessibility](../02-UI-UX-Design/01-Introduction.md).
 
 <a id="design-record-06-design-quality-and-security-analysis-01-quality-attributes-and-design-trade-offs-md--heading-qa-06--usable-restoration-and-safe-resumed-operation"></a>
 
@@ -2641,11 +2738,11 @@ The proposed modular boundary is recorded in [ADR-001](../ADR/ADR-001-Modular-Ap
 
 #### 4. Evaluation and measurement procedure
 
-[Scenario-based evaluation and disposition route](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-tradeoff-evaluation-route.svg)
+[Scenario-based evaluation and disposition route](Diagrams/Appendix/quality-tradeoff-evaluation-route.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-tradeoff-evaluation-route.puml) · ![quality tradeoff evaluation route](../Diagrams/Archived-Png/Quality-Tradeoff-Evaluation-Route.png)
+[Editable PlantUML](Diagrams/Appendix/quality-tradeoff-evaluation-route.puml) · ![quality tradeoff evaluation route](Diagrams/Appendix/quality-tradeoff-evaluation-route.svg)
 
-The [SEI ATAM description](https://www.sei.cmu.edu/library/the-architecture-tradeoff-analysis-method/) supplies the rationale for examining interacting quality attributes. The [SEI ATAM collection](https://www.sei.cmu.edu/library/architecture-tradeoff-analysis-method-collection/) describes scenarios, architectural approaches, sensitivity/trade-off points and risk findings. Sources reviewed November 2, 2026. This document uses a lightweight scenario-based review inspired by that approach; it is not a completed formal ATAM evaluation.
+The [SEI ATAM description](https://www.sei.cmu.edu/library/the-architecture-tradeoff-analysis-method/) supplies the rationale for examining interacting quality attributes. The [SEI ATAM collection](https://www.sei.cmu.edu/library/architecture-tradeoff-analysis-method-collection/) describes scenarios, architectural approaches, sensitivity/trade-off points and risk findings. Source guidance informs this review. This document uses a lightweight scenario-based review inspired by that approach; it is not a completed formal ATAM evaluation.
 
 1. Establish source status, important journeys and actual stakeholder/operating constraints. Resolve target proposals with the owner rather than importing an industry default.
 2. Define precise stimulus, environment, affected artifact, response and measure for each selected scenario. Record normal/stress/failure/growth/change conditions separately.
@@ -2678,9 +2775,9 @@ Only **three complementary diagrams** are added; no new tables, scores, targets 
 
 ##### 6.1 Concrete quality scenario and evidence contract
 
-[Concrete quality scenario and evidence contract](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-essential-scenario.svg)
+[Concrete quality scenario and evidence contract](Diagrams/Appendix/quality-essential-scenario.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-essential-scenario.puml) · ![quality essential scenario](../Diagrams/Archived-Png/Quality-Essential-Scenario.png)
+[Editable PlantUML](Diagrams/Appendix/quality-essential-scenario.puml) · ![quality essential scenario](Diagrams/Appendix/quality-essential-scenario.svg)
 
 The six-part scenario shape refines the existing QA-01 narrative without a new table. Exact criterion, current authority/serving synchronization, test environment and raw observations are still required. A cache hit or mock allow cannot prove the admission boundary.
 
@@ -2688,9 +2785,9 @@ The six-part scenario shape refines the existing QA-01 narrative without a new t
 
 ##### 6.2 Quality trade-off hypotheses and non-negotiable invariants
 
-[Quality trade-off hypotheses and non-negotiable invariants](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-essential-conflicts.svg)
+[Quality trade-off hypotheses and non-negotiable invariants](Diagrams/Appendix/quality-essential-conflicts.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-essential-conflicts.puml) · ![quality essential conflicts](../Diagrams/Archived-Png/Quality-Essential-Conflicts.png)
+[Editable PlantUML](Diagrams/Appendix/quality-essential-conflicts.puml) · ![quality essential conflicts](Diagrams/Appendix/quality-essential-conflicts.svg)
 
 Selected cross-attribute tensions, not a universal rule that security always worsens performance. Mechanisms can improve several attributes; measure actual combined effects. Missing isolation cannot be compensated by a favorable cost score, and existing scope cannot be silently dropped to improve a metric.
 
@@ -2698,9 +2795,9 @@ Selected cross-attribute tensions, not a universal rule that security always wor
 
 ##### 6.3 Candidate tactics mapped to scenario responsibilities
 
-[Candidate tactics mapped to scenario responsibilities](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-essential-tactics.svg)
+[Candidate tactics mapped to scenario responsibilities](Diagrams/Appendix/quality-essential-tactics.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-essential-tactics.puml) · ![quality essential tactics](../Diagrams/Archived-Png/Quality-Essential-Tactics.png)
+[Editable PlantUML](Diagrams/Appendix/quality-essential-tactics.puml) · ![quality essential tactics](Diagrams/Appendix/quality-essential-tactics.svg)
 
 Combines tactics and component responsibility without selecting middleware, cache, broker, isolation product or backup destination. Bounded work, current guards and explicit outcomes support planned scenarios; their effectiveness and operating burden remain to verify. Total project work, including operations, stays within the actual 20-hour/week capacity constraint.
 
@@ -2708,7 +2805,7 @@ Combines tactics and component responsibility without selecting middleware, cach
 
 ##### Reused decision-support views and deliberate omissions
 
-The architecture drivers already own the [quality utility tree](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-quality-utility-tree.svg) and [option radar](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-options-radar.svg), with [owning option context and sources](#design-record-01-software-architecture-01-design-drivers-and-solution-options-md). Link to those views rather than create a second ranking or inconsistent option score. The radar is **unweighted illustrative author judgment**, not measured performance, accepted stakeholder weights or an aggregate winner. The utility tree does not establish owner-approved importance/difficulty ranking.
+The architecture drivers already own the [quality utility tree](Diagrams/Appendix/drivers-quality-utility-tree.svg) and [option radar](Diagrams/Appendix/drivers-options-radar.svg), with [owning option context and sources](#design-record-01-software-architecture-01-design-drivers-and-solution-options-md). Link to those views rather than create a second ranking or inconsistent option score. The radar is **unweighted illustrative author judgment**, not measured performance, accepted stakeholder weights or an aggregate winner. The utility tree does not establish owner-approved importance/difficulty ranking.
 
 CAP/PACELC or Pareto charts are omitted: no actual partitioned replicated service decision, quantified objective set or measured option frontier has been established for this modular application. These diagrams would not replace the concrete authority, persistence, unknown-effect and resource scenarios above. There is no measured before/after result to plot; candidate tactics remain hypotheses until actual controlled evaluation.
 
@@ -2729,7 +2826,7 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 **Purpose:** refine analysis threats into explicit assets, trust crossings, control responsibilities, residual risks and planned verification for the proposed design.
 
-**Status:** proposed bounded threat model, November 2, 2026. This is neither a complete attack inventory nor a penetration test, implemented control assessment, compliance certification or accepted security baseline. Concrete authentication, cryptographic, serving and containment mechanisms require evaluation.
+**Status:** proposed bounded threat model. This is neither a complete attack inventory nor a penetration test, implemented control assessment, compliance certification or accepted security baseline. Concrete authentication, cryptographic, serving and containment mechanisms require evaluation.
 
 [Authority](#design-record-06-design-quality-and-security-analysis-02-security-threat-modeling-and-trust-boundaries-md--heading-1-sources-assets-and-authority) · [Boundaries](#design-record-06-design-quality-and-security-analysis-02-security-threat-modeling-and-trust-boundaries-md--heading-2-trust-boundaries-and-data-flows) · [Threats](#design-record-06-design-quality-and-security-analysis-02-security-threat-modeling-and-trust-boundaries-md--heading-3-stride-informed-threat-register) · [Controls](#design-record-06-design-quality-and-security-analysis-02-security-threat-modeling-and-trust-boundaries-md--heading-4-shared-control-design) · [Verification](#design-record-06-design-quality-and-security-analysis-02-security-threat-modeling-and-trust-boundaries-md--heading-5-verification-incident-and-recovery-boundaries) · [Readiness](#design-record-06-design-quality-and-security-analysis-02-security-threat-modeling-and-trust-boundaries-md--heading-6-open-decisions-and-maintenance)
 
@@ -2737,7 +2834,7 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 #### 1. Sources, assets and authority
 
-Use [analysis security/quality/operations](../../03-System-Analysis/01-System-Analysis.md#analysis-interfaces-security-and-quality-analysis--13-security-quality-and-operational-analysis), [account requirements](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-accounts-authentication-and-permissions), [QSR security/recovery requirements](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-quality-security-and-recovery-requirements), [interface requirements](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-external-interface-requirements) and [source decisions](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#change-and-baseline-open-questions-and-decisions). Analysis SQ-A/SQ-T locators and proposed detailed Q-D03–Q-D05/Q-D08/Q-D11/Q-D23 policies retain their source status.
+Use [analysis security/quality/operations](../../03-System-Analysis/04-Interfaces-Security-And-Quality.md#analysis-interfaces-security-and-quality-analysis--13-security-quality-and-operational-analysis), [account requirements](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-accounts-authentication-and-permissions), [QSR security/recovery requirements](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-quality-security-and-recovery-requirements), [interface requirements](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-external-interface-requirements) and [source decisions](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#change-and-baseline-open-questions-and-decisions). Analysis SQ-A/SQ-T locators and proposed detailed Q-D03–Q-D05/Q-D08/Q-D11/Q-D23 policies retain their source status.
 
 **Protected assets:** private professional/application/correspondence/work data; exact publication/submission/history manifests; artifact bytes and Git objects/refs; account/session/link/provider/client credentials and recovery material; current grants/approval intent; restricted diagnostics; resource headroom; and consistent usable recovery points/keys.
 
@@ -2749,9 +2846,9 @@ Use [analysis security/quality/operations](../../03-System-Analysis/01-System-An
 
 #### 2. Trust boundaries and data flows
 
-[Proposed trust crossings and separated privileged domains](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.svg)
+[Proposed trust crossings and separated privileged domains](Diagrams/Appendix/security-trust-boundaries.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.puml) · ![security trust boundaries](../Diagrams/Archived-Png/Security-Trust-Boundaries.png)
+[Editable PlantUML](Diagrams/Appendix/security-trust-boundaries.puml) · ![security trust boundaries](Diagrams/Appendix/security-trust-boundaries.svg)
 
 The figure is a logical security view, not a firewall rule set or proof of physical isolation. Module separation inside one application does not create an OS/process trust boundary.
 
@@ -2856,9 +2953,9 @@ This register covers selected threats across all six STRIDE categories. It does 
 
 ##### Current authorization and state-change admission
 
-[Current scoped authority and guarded consequential operation](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/security-current-authority-sequence.svg)
+[Current scoped authority and guarded consequential operation](Diagrams/Appendix/security-current-authority-sequence.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/security-current-authority-sequence.puml) · ![security current authority sequence](../Diagrams/Archived-Png/Security-Current-Authority-Sequence.png)
+[Editable PlantUML](Diagrams/Appendix/security-current-authority-sequence.puml) · ![security current authority sequence](Diagrams/Appendix/security-current-authority-sequence.svg)
 
 Identity supplies verified current context; the resource owner evaluates operation/lifecycle invariants and synchronizes admission with relevant grant/account/version changes. Missing authority denies safely. Cached positive decisions, serialized worker sessions and client-supplied ownership cannot become evergreen capabilities. Protect state-changing cookie-authenticated requests through evaluated session/anti-forgery controls; same-origin deployment alone is insufficient.
 
@@ -2880,7 +2977,7 @@ Use an evaluated supported password-verification facility for authentication pas
 
 Scope credential use to the actual actor/resource/attempt, restrict operators/adapters and exclude broad production/application secrets from untrusted jobs. Define provisioning, rotation/revocation, key versioning, incident handling and independent recoverable key access. Avoid placing unrestricted decryption keys alongside the entire exposed data set; separation must not make legitimate recovery impossible. Backing up ciphertext without usable authorized key recovery is not sufficient.
 
-The official [OWASP Secrets Management guidance](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html) informs credential lifecycle evaluation. No vault, encryption product, key location or token lifetime is selected. Sources in this document were reviewed November 2, 2026; implementation compatibility and control effectiveness remain unverified.
+The official [OWASP Secrets Management guidance](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html) informs credential lifecycle evaluation. No vault, encryption product, key location or token lifetime is selected. Sources inform this document; implementation compatibility and control effectiveness remain unverified.
 
 <a id="design-record-06-design-quality-and-security-analysis-02-security-threat-modeling-and-trust-boundaries-md--heading-restricted-diagnostics-and-secure-change"></a>
 
@@ -2929,7 +3026,7 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 **Purpose:** define the operating responsibilities, recoverable state, controlled procedures and evidence required to keep the proposed product usable and recover it safely.
 
-**Status:** proposed operating design, November 2, 2026. Backups are not set up. No supervisor, scheduler, alert, backup destination, recovery target or redundant facility is configured by this document. Procedures below require evaluated platform-specific runbooks before execution.
+**Status:** proposed operating design. Backups are not set up. No supervisor, scheduler, alert, backup destination, recovery target or redundant facility is configured by this document. Procedures below require evaluated platform-specific runbooks before execution.
 
 [Authority](#design-record-06-design-quality-and-security-analysis-03-operations-backup-recovery-and-resilience-md--heading-1-authority-current-inputs-and-ownership) · [Operation](#design-record-06-design-quality-and-security-analysis-03-operations-backup-recovery-and-resilience-md--heading-2-normal-operation-and-observation) · [Backup](#design-record-06-design-quality-and-security-analysis-03-operations-backup-recovery-and-resilience-md--heading-3-backup-set-consistency-and-protection) · [Recovery](#design-record-06-design-quality-and-security-analysis-03-operations-backup-recovery-and-resilience-md--heading-4-isolated-recovery-procedure) · [Release](#design-record-06-design-quality-and-security-analysis-03-operations-backup-recovery-and-resilience-md--heading-5-deployment-and-change-recovery) · [Resilience](#design-record-06-design-quality-and-security-analysis-03-operations-backup-recovery-and-resilience-md--heading-6-degradation-incidents-and-resilience) · [Readiness](#design-record-06-design-quality-and-security-analysis-03-operations-backup-recovery-and-resilience-md--heading-7-verification-and-operating-handoff)
 
@@ -2937,9 +3034,9 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 #### 1. Authority, current inputs and ownership
 
-Use [QSR-D04/D10–D14 and Q-D26](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-quality-security-and-recovery-requirements--id-resolution-q-d26), [quantitative target contracts](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-quality-security-and-recovery-requirements), [AFO-D09–D12](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-administration-files-and-operational-behavior), [business lifecycle/recovery rules](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-business-rules-and-data-lifecycle) and [analysis operating view](../../03-System-Analysis/01-System-Analysis.md#analysis-interfaces-security-and-quality-analysis--13-security-quality-and-operational-analysis). Source policy and owner disposition remain authoritative.
+Use [QSR-D04/D10–D14 and Q-D26](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-quality-security-and-recovery-requirements--id-resolution-q-d26), [quantitative target contracts](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-quality-security-and-recovery-requirements), [AFO-D09–D12](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-administration-files-and-operational-behavior), [business lifecycle/recovery rules](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-business-rules-and-data-lifecycle) and [analysis operating view](../../03-System-Analysis/04-Interfaces-Security-And-Quality.md#analysis-interfaces-security-and-quality-analysis--13-security-quality-and-operational-analysis). Source policy and owner disposition remain authoritative.
 
-Farhad is the sole delivery/operations owner; all operating work fits the total 20 project hours/week. The November 1 demo reported 2 vCPU/4 GB/40 GB with Nginx/PHP/MySQL and an existing Laravel application. The limited inspected paths showed log-only mail declaration and did not establish running workers/scheduler. These dated observations are not a complete service inventory or current working-facility proof.
+Farhad is the sole delivery/operations owner; all operating work fits the total 20 project hours/week. The previously inspected demo reported 2 vCPU/4 GB/40 GB with Nginx/PHP/MySQL and an existing Laravel application. The limited inspected paths showed log-only mail declaration and did not establish running workers/scheduler. These recorded observations are not a complete service inventory or current working-facility proof.
 
 The owner explicitly confirmed application backups have not been set up. Q-D26's proposed daily schedule, seven-daily/four-weekly retention and recovery objectives remain proposals, not accepted targets or demonstrated capability. No paid service, host or account change is authorized through design prose.
 
@@ -2976,9 +3073,9 @@ Define thresholds, observation intervals, retained evidence and actionable alert
 
 #### 3. Backup set, consistency and protection
 
-[Recoverable set and independent protected copy](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/operations-recovery-coverage.svg)
+[Recoverable set and independent protected copy](Diagrams/Appendix/operations-recovery-coverage.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/operations-recovery-coverage.puml) · ![operations recovery coverage](../Diagrams/Archived-Png/Operations-Recovery-Coverage.png)
+[Editable PlantUML](Diagrams/Appendix/operations-recovery-coverage.puml) · ![operations recovery coverage](Diagrams/Appendix/operations-recovery-coverage.svg)
 
 <a id="design-record-06-design-quality-and-security-analysis-03-operations-backup-recovery-and-resilience-md--heading-coverage-manifest"></a>
 
@@ -3001,7 +3098,7 @@ Select an evaluated business-consistent capture method: controlled write quiesce
 
 Store protected copies outside the applicable primary failure domain, with evaluated encryption/access controls and recovery-key separation. Another directory on the same disk cannot recover that disk's loss. Evaluate resistance to compromised application/operator credentials, destructive synchronization and backup deletion; immutability/offline or equivalent separation needs actual facility evidence, not a product label.
 
-The official [CISA StopRansomware guide](https://www.cisa.gov/sites/default/files/2023-10/StopRansomware-Guide-508C-v3_1.pdf), reviewed November 2, 2026, supports protected offline/encrypted copies and regular restoration/integrity checks. It informs the design without selecting a destination, copy count, product or paid service for this project.
+The official [CISA StopRansomware guide](https://www.cisa.gov/sites/default/files/2023-10/StopRansomware-Guide-508C-v3_1.pdf), supports protected offline/encrypted copies and regular restoration/integrity checks. It informs the design without selecting a destination, copy count, product or paid service for this project.
 
 <a id="design-record-06-design-quality-and-security-analysis-03-operations-backup-recovery-and-resilience-md--heading-backup-job-outcome-and-retention"></a>
 
@@ -3015,9 +3112,9 @@ Apply only reviewed retention rules to identified successful recovery points. Co
 
 #### 4. Isolated recovery procedure
 
-[Isolated restoration, reconciliation and controlled promotion](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/operations-isolated-restore-route.svg)
+[Isolated restoration, reconciliation and controlled promotion](Diagrams/Appendix/operations-isolated-restore-route.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/operations-isolated-restore-route.puml) · ![operations isolated restore route](../Diagrams/Archived-Png/Operations-Isolated-Restore-Route.png)
+[Editable PlantUML](Diagrams/Appendix/operations-isolated-restore-route.puml) · ![operations isolated restore route](Diagrams/Appendix/operations-isolated-restore-route.svg)
 
 1. **Assess and select.** Identify incident/loss scope, intended usable service, chosen compatible recovery point and known newer state/effects. For compromise, preserve appropriate evidence and prevent continued unauthorized access; restoring into the same unresolved compromise is not recovery.
 2. **Prepare isolation.** Use an authorized target with controlled ingress/egress. Disable scheduler/worker dispatch, provider sends, execution and deployment callbacks/triggers until reconciliation. Do not restore directly over the live source as an exploratory step.
@@ -3095,7 +3192,7 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 **Purpose:** define how an identified design candidate is traced, inspected, evaluated and handed over without confusing populated documentation with semantic sufficiency or implementation readiness.
 
-**Status:** populated review procedure and candidate-position summary, November 2, 2026. This update is not a completed exact-criterion review, owner disposition, accepted design baseline, product verification or release approval.
+**Status:** populated review procedure and candidate-position summary. This update is not a completed exact-criterion review, owner disposition, accepted design baseline, product verification or release approval.
 
 [Authority](#design-record-06-design-quality-and-security-analysis-05-design-review-traceability-and-handoff-md--heading-1-source-authority-and-current-position) · [Traceability](#design-record-06-design-quality-and-security-analysis-05-design-review-traceability-and-handoff-md--heading-2-exact-trace-record-and-coverage) · [Review](#design-record-06-design-quality-and-security-analysis-05-design-review-traceability-and-handoff-md--heading-3-cross-view-review-and-walkthroughs) · [Verification](#design-record-06-design-quality-and-security-analysis-05-design-review-traceability-and-handoff-md--heading-4-testability-and-evidence) · [Findings](#design-record-06-design-quality-and-security-analysis-05-design-review-traceability-and-handoff-md--heading-5-findings-and-disposition) · [Handoff](#design-record-06-design-quality-and-security-analysis-05-design-review-traceability-and-handoff-md--heading-6-completion-gates-and-implementation-handoff) · [Maintenance](#design-record-06-design-quality-and-security-analysis-05-design-review-traceability-and-handoff-md--heading-7-review-package-and-maintenance)
 
@@ -3103,7 +3200,7 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 #### 1. Source authority and current position
 
-Use the [requirements traceability record](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#validation-and-traceability-validation-and-traceability--heading-traceability), [source inventory](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#validation-and-traceability-traceability-source-inventory), [criterion locators](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#validation-and-traceability-proposed-criterion-locators), [analysis review](../../03-System-Analysis/01-System-Analysis.md#analysis-review-and-design-handoff--11-model-consistency-traceability-and-review), [analysis handoff](../../03-System-Analysis/01-System-Analysis.md#analysis-review-and-design-handoff--14-feasibility-dependencies-and-design-handoff) and [source decisions](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#change-and-baseline-open-questions-and-decisions). Preserve source identity, wording, revision and acceptance status.
+Use the [requirements traceability record](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#validation-and-traceability-validation-and-traceability--heading-traceability), [source inventory](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#validation-and-traceability-traceability-source-inventory), [criterion locators](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#validation-and-traceability-proposed-criterion-locators), [analysis review](../../03-System-Analysis/05-Analysis-Review-And-Design-Handoff.md#analysis-review-and-design-handoff--11-model-consistency-traceability-and-review), [analysis handoff](../../03-System-Analysis/05-Analysis-Review-And-Design-Handoff.md#analysis-review-and-design-handoff--14-feasibility-dependencies-and-design-handoff) and [source decisions](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#change-and-baseline-open-questions-and-decisions). Preserve source identity, wording, revision and acceptance status.
 
 The existing inventories describe 157 provisional requirement identities and 470 criterion locators. Those are inherited inventory counts, not newly verified design-coverage totals. The identified analysis review reports 39 bounded current comparisons and explicitly limits the remaining comparisons; that historical scope does not become a fresh design review through linking.
 
@@ -3115,9 +3212,9 @@ Farhad retains owner decision authority. The accepted profile-update/publication
 
 #### 2. Exact trace record and coverage
 
-[Exact source-to-design-to-evidence trace chain](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/review-trace-chain.svg)
+[Exact source-to-design-to-evidence trace chain](Diagrams/Appendix/review-trace-chain.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/review-trace-chain.puml) · ![review trace chain](../Diagrams/Archived-Png/Review-Trace-Chain.png)
+[Editable PlantUML](Diagrams/Appendix/review-trace-chain.puml) · ![review trace chain](Diagrams/Appendix/review-trace-chain.svg)
 
 Maintain one attributable comparison record per exact source criterion/obligation being assessed, with links to multiple realizations where needed. A source requirement often has several criteria and one design element can serve several criteria; neither relationship implies automatic coverage.
 
@@ -3167,7 +3264,7 @@ Check source scope/constraints against [architecture](#design-record-01-software
 | Execution and deployment | Real enabling evidence, bounded secrets/resources, cancel/complete/loss/cleanup and separately approved exact target intent |
 | Isolated recovery | Consistent records/bytes/refs/keys, current revocation/deletion, actual external state and no automatic replay |
 
-Use existing [interaction realizations](../03-Low-Level-Design/05-API-Specification.md#design-record-05-interface-and-api-design-03-use-case-realizations-and-interactions-md), [quality scenarios](#design-record-06-design-quality-and-security-analysis-01-quality-attributes-and-design-trade-offs-md), [threat register](#design-record-06-design-quality-and-security-analysis-02-security-threat-modeling-and-trust-boundaries-md), [recovery procedure](#design-record-06-design-quality-and-security-analysis-03-operations-backup-recovery-and-resilience-md) and [UI guidance](../02-UI-UX-Design/02-UI-UX-Design.md). They supply design inputs, not evidence that the walkthrough was performed.
+Use existing [interaction realizations](../03-Low-Level-Design/05-API-Specification.md#design-record-05-interface-and-api-design-03-use-case-realizations-and-interactions-md), [quality scenarios](#design-record-06-design-quality-and-security-analysis-01-quality-attributes-and-design-trade-offs-md), [threat register](#design-record-06-design-quality-and-security-analysis-02-security-threat-modeling-and-trust-boundaries-md), [recovery procedure](#design-record-06-design-quality-and-security-analysis-03-operations-backup-recovery-and-resilience-md) and [UI guidance](../02-UI-UX-Design/01-Introduction.md). They supply design inputs, not evidence that the walkthrough was performed.
 
 <a id="design-record-06-design-quality-and-security-analysis-05-design-review-traceability-and-handoff-md--heading-4-testability-and-evidence"></a>
 
@@ -3203,9 +3300,9 @@ Record the reviewer and scope honestly. Root-owned documentary inspection is not
 
 #### 6. Completion gates and implementation handoff
 
-[Candidate review and scoped implementation handoff](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/review-handoff-gates.svg)
+[Candidate review and scoped implementation handoff](Diagrams/Appendix/review-handoff-gates.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/review-handoff-gates.puml) · ![review handoff gates](../Diagrams/Archived-Png/Review-Handoff-Gates.png)
+[Editable PlantUML](Diagrams/Appendix/review-handoff-gates.puml) · ![review handoff gates](Diagrams/Appendix/review-handoff-gates.svg)
 
 <a id="design-record-06-design-quality-and-security-analysis-05-design-review-traceability-and-handoff-md--heading-gate-a--identified-traceable-candidate"></a>
 
@@ -3262,9 +3359,7 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 **Use this folder to understand how the proposed design will be evaluated, protected, operated and handed over.** It owns shared quality scenarios, threat/control responsibilities, recovery procedures, interaction quality and review rules. Components retain their concrete realization and operation-specific invariants.
 
-Owner and decision authority: Farhad. Updated November 2, 2026.
-
-**Current position:** all five documents are populated with project-specific proposed design and ten diagrams. This is documentation completion, not a completed security assessment, measured quality result, configured backup, accessibility conformance claim, exact-criterion closure or accepted baseline.
+Owner and decision authority: Farhad. **Current position:** all five documents are populated with project-specific proposed design and ten diagrams. This is documentation completion, not a completed security assessment, measured quality result, configured backup, accessibility conformance claim, exact-criterion closure or accepted baseline.
 
 [Reading route](#design-record-06-design-quality-and-security-analysis-design-quality-and-security-analysis-md--heading-1-reading-route) · [Document guide](#design-record-06-design-quality-and-security-analysis-design-quality-and-security-analysis-md--heading-2-find-the-right-record) · [Diagrams](#design-record-06-design-quality-and-security-analysis-design-quality-and-security-analysis-md--heading-3-diagram-gallery-and-catalog) · [Ownership](#design-record-06-design-quality-and-security-analysis-design-quality-and-security-analysis-md--heading-4-shared-responsibilities-and-boundaries) · [Readiness](#design-record-06-design-quality-and-security-analysis-design-quality-and-security-analysis-md--heading-5-review-and-current-limits)
 
@@ -3272,11 +3367,11 @@ Owner and decision authority: Farhad. Updated November 2, 2026.
 
 #### 1. Reading route
 
-1. Read [quality/security/recovery requirements](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-quality-security-and-recovery-requirements), [analysis security/quality/operations](../../03-System-Analysis/01-System-Analysis.md#analysis-interfaces-security-and-quality-analysis--13-security-quality-and-operational-analysis) and [source decisions](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#change-and-baseline-open-questions-and-decisions) for obligations, proposed targets and authority.
+1. Read [quality/security/recovery requirements](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-quality-security-and-recovery-requirements), [analysis security/quality/operations](../../03-System-Analysis/04-Interfaces-Security-And-Quality.md#analysis-interfaces-security-and-quality-analysis--13-security-quality-and-operational-analysis) and [source decisions](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#change-and-baseline-open-questions-and-decisions) for obligations, proposed targets and authority.
 2. Read [Quality Attributes and Design Trade-offs](#design-record-06-design-quality-and-security-analysis-01-quality-attributes-and-design-trade-offs-md) for seven scenario families, mechanism consequences and a lightweight evaluation procedure.
 3. Read [Security, Threat Modeling and Trust Boundaries](#design-record-06-design-quality-and-security-analysis-02-security-threat-modeling-and-trust-boundaries-md) for protected assets, six trust boundaries, twelve STRIDE-informed threat records and control responsibilities.
 4. Read [Operations, Backup, Recovery and Resilience](#design-record-06-design-quality-and-security-analysis-03-operations-backup-recovery-and-resilience-md) for process observation, consistent backup coverage, isolated restoration, release failure handling and operating handoff.
-5. Read [User Interface, Accessibility and Interaction Quality](../02-UI-UX-Design/02-UI-UX-Design.md) for shared journeys, states, forms, keyboard/responsive behavior and planned accessibility verification.
+5. Read [User Interface, Accessibility and Interaction Quality](../02-UI-UX-Design/01-Introduction.md) for shared journeys, states, forms, keyboard/responsive behavior and planned accessibility verification.
 6. Use [Design Review, Traceability and Implementation Handoff](#design-record-06-design-quality-and-security-analysis-05-design-review-traceability-and-handoff-md) to identify the candidate, compare exact criteria, record actual findings/evidence and assess scoped handoff gates.
 
 Apply shared rules through [component designs](../03-Low-Level-Design/02-Module-Breakdown.md#design-record-03-component-and-module-design-component-and-module-design-md), [data design](../03-Low-Level-Design/04-Database-Design.md#design-record-04-data-design-data-design-md), [interface contracts](../03-Low-Level-Design/05-API-Specification.md#design-record-05-interface-and-api-design-interface-and-api-design-md) and [runtime coordination](#design-record-01-software-architecture-03-process-view-concurrency-and-runtime-behavior-md). A shared guide does not replace the owner's concrete mechanism.
@@ -3291,7 +3386,7 @@ Apply shared rules through [component designs](../03-Low-Level-Design/02-Module-
 | What assets and trust crossings need controls and threat checks? | [02 — Security model](#design-record-06-design-quality-and-security-analysis-02-security-threat-modeling-and-trust-boundaries-md) |
 | How are real processes, queues and dependency health observed? | [03 — Normal operation](#design-record-06-design-quality-and-security-analysis-03-operations-backup-recovery-and-resilience-md--heading-2-normal-operation-and-observation) |
 | What must a consistent backup cover and how is usable recovery established? | [03 — Backup and restoration](#design-record-06-design-quality-and-security-analysis-03-operations-backup-recovery-and-resilience-md) |
-| How should draft/publication/history, conflicts and uncertain outcomes appear? | [04 — Journey and feedback design](../02-UI-UX-Design/02-UI-UX-Design.md) |
+| How should draft/publication/history, conflicts and uncertain outcomes appear? | [04 — Journey and feedback design](../02-UI-UX-Design/01-Introduction.md) |
 | Which accessibility/client checks are proposed and what evidence is needed? | [04 — Accessibility and verification](../02-UI-UX-Design/10-Accessibility.md#5-accessibility-and-responsive-behavior) |
 | What establishes exact coverage and implementation readiness? | [05 — Traceability and gates](#design-record-06-design-quality-and-security-analysis-05-design-review-traceability-and-handoff-md) |
 | Where should actual sanitized findings and measured results be stored? | [Evidence guidance](#design-record-06-design-quality-and-security-analysis-review-and-traceability-evidence-evidence-catalog-md) |
@@ -3304,9 +3399,9 @@ Apply shared rules through [component designs](../03-Low-Level-Design/02-Module-
 
 ##### Trust boundaries
 
-[Proposed logical trust crossings](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.svg)
+[Proposed logical trust crossings](Diagrams/Appendix/security-trust-boundaries.svg)
 
-[Owning security document](#design-record-06-design-quality-and-security-analysis-02-security-threat-modeling-and-trust-boundaries-md) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.puml) · ![security trust boundaries](../Diagrams/Archived-Png/Security-Trust-Boundaries.png)
+[Owning security document](#design-record-06-design-quality-and-security-analysis-02-security-threat-modeling-and-trust-boundaries-md) · [PlantUML](Diagrams/Appendix/security-trust-boundaries.puml) · ![security trust boundaries](Diagrams/Appendix/security-trust-boundaries.svg)
 
 This is a logical view. Module ownership, a container label or an arrow does not establish process/network isolation or demonstrated control effectiveness.
 
@@ -3314,9 +3409,9 @@ This is a logical view. Module ownership, a container label or an arrow does not
 
 ##### Exact traceability
 
-[Exact source criterion to design and evidence](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/review-trace-chain.svg)
+[Exact source criterion to design and evidence](Diagrams/Appendix/review-trace-chain.svg)
 
-[Owning review document](#design-record-06-design-quality-and-security-analysis-05-design-review-traceability-and-handoff-md) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/review-trace-chain.puml) · ![review trace chain](../Diagrams/Archived-Png/Review-Trace-Chain.png)
+[Owning review document](#design-record-06-design-quality-and-security-analysis-05-design-review-traceability-and-handoff-md) · [PlantUML](Diagrams/Appendix/review-trace-chain.puml) · ![review trace chain](Diagrams/Appendix/review-trace-chain.svg)
 
 A valid reference is not semantic coverage; a verification plan is not an executed result. Preserve source and candidate revisions in every actual comparison.
 
@@ -3404,8 +3499,8 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Quality attributes and design trade-offs
 
-- [Quality scenarios and required evidence](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-scenario-evidence-map.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-scenario-evidence-map.puml) · ![quality scenario evidence map](../Diagrams/Archived-Png/Quality-Scenario-Evidence-Map.png)
-- [Scenario-based trade-off evaluation](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-tradeoff-evaluation-route.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-tradeoff-evaluation-route.puml) · ![quality tradeoff evaluation route](../Diagrams/Archived-Png/Quality-Tradeoff-Evaluation-Route.png)
+- [Quality scenarios and required evidence](Diagrams/Appendix/quality-scenario-evidence-map.svg) · [PlantUML](Diagrams/Appendix/quality-scenario-evidence-map.puml) · ![quality scenario evidence map](Diagrams/Appendix/quality-scenario-evidence-map.svg)
+- [Scenario-based trade-off evaluation](Diagrams/Appendix/quality-tradeoff-evaluation-route.svg) · [PlantUML](Diagrams/Appendix/quality-tradeoff-evaluation-route.puml) · ![quality tradeoff evaluation route](Diagrams/Appendix/quality-tradeoff-evaluation-route.svg)
 
 [Owning document](#design-record-06-design-quality-and-security-analysis-01-quality-attributes-and-design-trade-offs-md). Proposed evaluation coverage and procedure; targets, actual measurements and scoped acceptance remain pending.
 
@@ -3413,8 +3508,8 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Security threat model and trust boundaries
 
-- [Logical trust boundaries](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.puml) · ![security trust boundaries](../Diagrams/Archived-Png/Security-Trust-Boundaries.png)
-- [Current scoped authority and consequential admission](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/security-current-authority-sequence.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/security-current-authority-sequence.puml) · ![security current authority sequence](../Diagrams/Archived-Png/Security-Current-Authority-Sequence.png)
+- [Logical trust boundaries](Diagrams/Appendix/security-trust-boundaries.svg) · [PlantUML](Diagrams/Appendix/security-trust-boundaries.puml) · ![security trust boundaries](Diagrams/Appendix/security-trust-boundaries.svg)
+- [Current scoped authority and consequential admission](Diagrams/Appendix/security-current-authority-sequence.svg) · [PlantUML](Diagrams/Appendix/security-current-authority-sequence.puml) · ![security current authority sequence](Diagrams/Appendix/security-current-authority-sequence.svg)
 
 [Owning document](#design-record-06-design-quality-and-security-analysis-02-security-threat-modeling-and-trust-boundaries-md). Proposed bounded threat/control views; actual policy reconciliation, mechanisms and security verification remain pending.
 
@@ -3422,8 +3517,8 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Operations, backup and recovery
 
-- [Recoverable set and independent protected copy](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/operations-recovery-coverage.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/operations-recovery-coverage.puml) · ![operations recovery coverage](../Diagrams/Archived-Png/Operations-Recovery-Coverage.png)
-- [Isolated restore and guarded resumption](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/operations-isolated-restore-route.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/operations-isolated-restore-route.puml) · ![operations isolated restore route](../Diagrams/Archived-Png/Operations-Isolated-Restore-Route.png)
+- [Recoverable set and independent protected copy](Diagrams/Appendix/operations-recovery-coverage.svg) · [PlantUML](Diagrams/Appendix/operations-recovery-coverage.puml) · ![operations recovery coverage](Diagrams/Appendix/operations-recovery-coverage.svg)
+- [Isolated restore and guarded resumption](Diagrams/Appendix/operations-isolated-restore-route.svg) · [PlantUML](Diagrams/Appendix/operations-isolated-restore-route.puml) · ![operations isolated restore route](Diagrams/Appendix/operations-isolated-restore-route.svg)
 
 [Owning document](#design-record-06-design-quality-and-security-analysis-03-operations-backup-recovery-and-resilience-md). Proposed operating/recovery procedures. Actual facilities, backup setup, targets and usable restoration evidence remain pending.
 
@@ -3431,17 +3526,17 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### User interface and accessibility
 
-- [Explicit review, draft save and publication](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/ui-source-apply-publication.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/ui-source-apply-publication.puml) · ![ui source apply publication](../Diagrams/Archived-Png/Ui-Source-Apply-Publication.png)
-- [Truthful outcomes and safe recovery actions](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/ui-outcome-recovery-route.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/ui-outcome-recovery-route.puml) · ![ui outcome recovery route](../Diagrams/Archived-Png/Ui-Outcome-Recovery-Route.png)
+- [Explicit review, draft save and publication](Diagrams/Appendix/ui-source-apply-publication.svg) · [PlantUML](Diagrams/Appendix/ui-source-apply-publication.puml) · ![ui source apply publication](Diagrams/Appendix/ui-source-apply-publication.svg)
+- [Truthful outcomes and safe recovery actions](Diagrams/Appendix/ui-outcome-recovery-route.svg) · [PlantUML](Diagrams/Appendix/ui-outcome-recovery-route.puml) · ![ui outcome recovery route](Diagrams/Appendix/ui-outcome-recovery-route.svg)
 
-[Owning document](../02-UI-UX-Design/02-UI-UX-Design.md). Proposed interaction behavior, not screen prototypes or conformance evidence. Actual widgets, client compatibility and accessibility validation remain pending.
+[Owning document](../02-UI-UX-Design/01-Introduction.md). Proposed interaction behavior, not screen prototypes or conformance evidence. Actual widgets, client compatibility and accessibility validation remain pending.
 
 <a id="design-record-06-design-quality-and-security-analysis-diagrams-diagram-catalog-md--heading-design-review-traceability-and-handoff"></a>
 
 #### Design review, traceability and handoff
 
-- [Exact criterion to design and evidence trace chain](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/review-trace-chain.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/review-trace-chain.puml) · ![review trace chain](../Diagrams/Archived-Png/Review-Trace-Chain.png)
-- [Scoped candidate and implementation handoff gates](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/review-handoff-gates.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/review-handoff-gates.puml) · ![review handoff gates](../Diagrams/Archived-Png/Review-Handoff-Gates.png)
+- [Exact criterion to design and evidence trace chain](Diagrams/Appendix/review-trace-chain.svg) · [PlantUML](Diagrams/Appendix/review-trace-chain.puml) · ![review trace chain](Diagrams/Appendix/review-trace-chain.svg)
+- [Scoped candidate and implementation handoff gates](Diagrams/Appendix/review-handoff-gates.svg) · [PlantUML](Diagrams/Appendix/review-handoff-gates.puml) · ![review handoff gates](Diagrams/Appendix/review-handoff-gates.svg)
 
 [Owning document](#design-record-06-design-quality-and-security-analysis-05-design-review-traceability-and-handoff-md). Review procedure views, not performed criterion comparisons, product-test results or owner baseline disposition.
 
@@ -3449,9 +3544,9 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Essential quality and trade-off views
 
-- [Concrete quality scenario and evidence contract](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-essential-scenario.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-essential-scenario.puml) · ![quality essential scenario](../Diagrams/Archived-Png/Quality-Essential-Scenario.png)
-- [Quality trade-off hypotheses and non-negotiable invariants](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-essential-conflicts.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-essential-conflicts.puml) · ![quality essential conflicts](../Diagrams/Archived-Png/Quality-Essential-Conflicts.png)
-- [Candidate tactics mapped to scenario responsibilities](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-essential-tactics.svg) · [PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-essential-tactics.puml) · ![quality essential tactics](../Diagrams/Archived-Png/Quality-Essential-Tactics.png)
+- [Concrete quality scenario and evidence contract](Diagrams/Appendix/quality-essential-scenario.svg) · [PlantUML](Diagrams/Appendix/quality-essential-scenario.puml) · ![quality essential scenario](Diagrams/Appendix/quality-essential-scenario.svg)
+- [Quality trade-off hypotheses and non-negotiable invariants](Diagrams/Appendix/quality-essential-conflicts.svg) · [PlantUML](Diagrams/Appendix/quality-essential-conflicts.puml) · ![quality essential conflicts](Diagrams/Appendix/quality-essential-conflicts.svg)
+- [Candidate tactics mapped to scenario responsibilities](Diagrams/Appendix/quality-essential-tactics.svg) · [PlantUML](Diagrams/Appendix/quality-essential-tactics.puml) · ![quality essential tactics](Diagrams/Appendix/quality-essential-tactics.svg)
 
 [Owning quality evaluation guide](#design-record-06-design-quality-and-security-analysis-01-quality-attributes-and-design-trade-offs-md--heading-6-essential-quality-and-trade-off-views). Utility tree/radar and evaluation route reused; no measured improvement or accepted ranking implied.
 
@@ -3463,7 +3558,7 @@ Current MVP figures replace the former common-product boundary. Future and histo
 
 | Editable source | Current applicability |
 | --- | --- |
-| [security-trust-boundaries.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.puml) | MVP systems|
+| [security-trust-boundaries.puml](Diagrams/Appendix/security-trust-boundaries.puml) | MVP systems|
 
 <a id="design-record-06-design-quality-and-security-analysis-diagrams-diagram-catalog-md--heading-complete-diagram-alignment--november-4"></a>
 
@@ -3473,19 +3568,19 @@ Current MVP figures replace the former common-product boundary. Future and histo
 
 | Editable source or visual | Current applicability | Matching exports |
 | --- | --- | --- |
-| [operations-isolated-restore-route.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/operations-isolated-restore-route.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/operations-isolated-restore-route.svg) · ![operations isolated restore route](../Diagrams/Archived-Png/Operations-Isolated-Restore-Route.png) |
-| [operations-recovery-coverage.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/operations-recovery-coverage.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/operations-recovery-coverage.svg) · ![operations recovery coverage](../Diagrams/Archived-Png/Operations-Recovery-Coverage.png) |
-| [quality-essential-conflicts.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-essential-conflicts.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-essential-conflicts.svg) · ![quality essential conflicts](../Diagrams/Archived-Png/Quality-Essential-Conflicts.png) |
-| [quality-essential-scenario.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-essential-scenario.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-essential-scenario.svg) · ![quality essential scenario](../Diagrams/Archived-Png/Quality-Essential-Scenario.png) |
-| [quality-essential-tactics.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-essential-tactics.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-essential-tactics.svg) · ![quality essential tactics](../Diagrams/Archived-Png/Quality-Essential-Tactics.png) |
-| [quality-scenario-evidence-map.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-scenario-evidence-map.puml) | Method / document navigation| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-scenario-evidence-map.svg) · ![quality scenario evidence map](../Diagrams/Archived-Png/Quality-Scenario-Evidence-Map.png) |
-| [quality-tradeoff-evaluation-route.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-tradeoff-evaluation-route.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-tradeoff-evaluation-route.svg) · ![quality tradeoff evaluation route](../Diagrams/Archived-Png/Quality-Tradeoff-Evaluation-Route.png) |
-| [review-handoff-gates.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/review-handoff-gates.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/review-handoff-gates.svg) · ![review handoff gates](../Diagrams/Archived-Png/Review-Handoff-Gates.png) |
-| [review-trace-chain.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/review-trace-chain.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/review-trace-chain.svg) · ![review trace chain](../Diagrams/Archived-Png/Review-Trace-Chain.png) |
-| [security-current-authority-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/security-current-authority-sequence.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/security-current-authority-sequence.svg) · ![security current authority sequence](../Diagrams/Archived-Png/Security-Current-Authority-Sequence.png) |
-| [security-trust-boundaries.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.puml) | MVP systems| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.svg) · ![security trust boundaries](../Diagrams/Archived-Png/Security-Trust-Boundaries.png) |
-| [ui-outcome-recovery-route.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/ui-outcome-recovery-route.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/ui-outcome-recovery-route.svg) · ![ui outcome recovery route](../Diagrams/Archived-Png/Ui-Outcome-Recovery-Route.png) |
-| [ui-source-apply-publication.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/ui-source-apply-publication.puml) | MVP core / cross-cutting| [SVG](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/ui-source-apply-publication.svg) · ![ui source apply publication](../Diagrams/Archived-Png/Ui-Source-Apply-Publication.png) |
+| [operations-isolated-restore-route.puml](Diagrams/Appendix/operations-isolated-restore-route.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/operations-isolated-restore-route.svg) · ![operations isolated restore route](Diagrams/Appendix/operations-isolated-restore-route.svg) |
+| [operations-recovery-coverage.puml](Diagrams/Appendix/operations-recovery-coverage.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/operations-recovery-coverage.svg) · ![operations recovery coverage](Diagrams/Appendix/operations-recovery-coverage.svg) |
+| [quality-essential-conflicts.puml](Diagrams/Appendix/quality-essential-conflicts.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/quality-essential-conflicts.svg) · ![quality essential conflicts](Diagrams/Appendix/quality-essential-conflicts.svg) |
+| [quality-essential-scenario.puml](Diagrams/Appendix/quality-essential-scenario.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/quality-essential-scenario.svg) · ![quality essential scenario](Diagrams/Appendix/quality-essential-scenario.svg) |
+| [quality-essential-tactics.puml](Diagrams/Appendix/quality-essential-tactics.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/quality-essential-tactics.svg) · ![quality essential tactics](Diagrams/Appendix/quality-essential-tactics.svg) |
+| [quality-scenario-evidence-map.puml](Diagrams/Appendix/quality-scenario-evidence-map.puml) | Method / document navigation| [SVG](Diagrams/Appendix/quality-scenario-evidence-map.svg) · ![quality scenario evidence map](Diagrams/Appendix/quality-scenario-evidence-map.svg) |
+| [quality-tradeoff-evaluation-route.puml](Diagrams/Appendix/quality-tradeoff-evaluation-route.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/quality-tradeoff-evaluation-route.svg) · ![quality tradeoff evaluation route](Diagrams/Appendix/quality-tradeoff-evaluation-route.svg) |
+| [review-handoff-gates.puml](Diagrams/Appendix/review-handoff-gates.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/review-handoff-gates.svg) · ![review handoff gates](Diagrams/Appendix/review-handoff-gates.svg) |
+| [review-trace-chain.puml](Diagrams/Appendix/review-trace-chain.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/review-trace-chain.svg) · ![review trace chain](Diagrams/Appendix/review-trace-chain.svg) |
+| [security-current-authority-sequence.puml](Diagrams/Appendix/security-current-authority-sequence.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/security-current-authority-sequence.svg) · ![security current authority sequence](Diagrams/Appendix/security-current-authority-sequence.svg) |
+| [security-trust-boundaries.puml](Diagrams/Appendix/security-trust-boundaries.puml) | MVP systems| [SVG](Diagrams/Appendix/security-trust-boundaries.svg) · ![security trust boundaries](Diagrams/Appendix/security-trust-boundaries.svg) |
+| [ui-outcome-recovery-route.puml](Diagrams/Appendix/ui-outcome-recovery-route.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/ui-outcome-recovery-route.svg) · ![ui outcome recovery route](Diagrams/Appendix/ui-outcome-recovery-route.svg) |
+| [ui-source-apply-publication.puml](Diagrams/Appendix/ui-source-apply-publication.puml) | MVP core / cross-cutting| [SVG](Diagrams/Appendix/ui-source-apply-publication.svg) · ![ui source apply publication](Diagrams/Appendix/ui-source-apply-publication.svg) |
 
 </details>
 
@@ -3500,9 +3595,7 @@ Current MVP figures replace the former common-product boundary. Future and histo
 
 **Purpose:** store actual, attributable design inspections, option evaluations, findings and measured verification results for identified candidates.
 
-Owner: Farhad. Updated November 2, 2026.
-
-**Current position:** this directory contains this guidance README only. No review report, product-test result, benchmark, security assessment or restoration evidence is added by this update. Documentation checks reported elsewhere retain their original scope and location.
+Owner: Farhad. **Current position:** this directory contains this guidance README only. No review report, product-test result, benchmark, security assessment or restoration evidence is added by this update. Documentation checks reported elsewhere retain their original scope and location.
 
 [Evidence types](#design-record-06-design-quality-and-security-analysis-review-and-traceability-evidence-evidence-catalog-md--heading-1-what-belongs-here) · [Required metadata](#design-record-06-design-quality-and-security-analysis-review-and-traceability-evidence-evidence-catalog-md--heading-2-required-evidence-record) · [Organization](#design-record-06-design-quality-and-security-analysis-review-and-traceability-evidence-evidence-catalog-md--heading-3-naming-and-package-organization) · [Handling](#design-record-06-design-quality-and-security-analysis-review-and-traceability-evidence-evidence-catalog-md--heading-4-sensitive-information-and-history) · [Review use](#design-record-06-design-quality-and-security-analysis-review-and-traceability-evidence-evidence-catalog-md--heading-5-using-evidence-in-review-and-handoff)
 
@@ -3561,7 +3654,7 @@ Preserve original records and their limitations. A later result can supersede an
 
 #### 5. Using evidence in review and handoff
 
-Link evidence from the exact trace/finding record in [Design Review, Traceability and Implementation Handoff](#design-record-06-design-quality-and-security-analysis-05-design-review-traceability-and-handoff-md). Keep source identity aligned with the [requirements traceability authority](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#validation-and-traceability-validation-and-traceability--heading-traceability) and preserve the limits of the [analysis review](../../03-System-Analysis/01-System-Analysis.md#analysis-review-and-design-handoff--11-model-consistency-traceability-and-review).
+Link evidence from the exact trace/finding record in [Design Review, Traceability and Implementation Handoff](#design-record-06-design-quality-and-security-analysis-05-design-review-traceability-and-handoff-md). Keep source identity aligned with the [requirements traceability authority](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#validation-and-traceability-validation-and-traceability--heading-traceability) and preserve the limits of the [analysis review](../../03-System-Analysis/05-Analysis-Review-And-Design-Handoff.md#analysis-review-and-design-handoff--11-model-consistency-traceability-and-review).
 
 Before relying on a record, check that its candidate/environment/method covers the present claim, protected state and relevant failure/concurrency/recovery paths. An old result may inform a change without verifying it. A mock success cannot prove provider delivery, native transfer, isolation or usable restoration. Rendering diagrams and resolving links verify documentation only.
 
@@ -3582,7 +3675,7 @@ Actual owner disposition, design acceptance, implementation readiness and produc
 
 **Purpose:** identify the teaching sources behind the design approach and map their concerns to the project's current owning documents.
 
-Updated November 2, 2026. **Status:** source-provenance and documentation-coverage map; no technical selection, criterion closure, standards compliance or baseline acceptance is established here.
+**Status:** source-provenance and documentation-coverage map; no technical selection, criterion closure, standards compliance or baseline acceptance is established here.
 
 [Provenance](#design-record-design-references-and-coverage-md--heading-1-source-provenance-and-limits) · [FAU content](#design-record-design-references-and-coverage-md--heading-2-what-the-lectures-support) · [Coverage](#design-record-design-references-and-coverage-md--heading-3-current-project-coverage-map) · [Adaptations](#design-record-design-references-and-coverage-md--heading-4-project-adaptations-and-source-authority) · [Use](#design-record-design-references-and-coverage-md--heading-5-reading-and-maintenance)
 
@@ -3680,7 +3773,7 @@ The six topics organize documentation, not runtime services. Architecture Model 
 | Quality attributes, scenarios and trade-offs | [Quality evaluation](#design-record-06-design-quality-and-security-analysis-01-quality-attributes-and-design-trade-offs-md) |
 | Assets, trust crossings, threats and control responsibility | [Security model](#design-record-06-design-quality-and-security-analysis-02-security-threat-modeling-and-trust-boundaries-md) |
 | Supervision, backup, usable recovery and resilience | [Operations/recovery](#design-record-06-design-quality-and-security-analysis-03-operations-backup-recovery-and-resilience-md) |
-| User journeys, feedback, keyboard/responsive and accessibility design | [UI/interaction quality](../02-UI-UX-Design/02-UI-UX-Design.md) |
+| User journeys, feedback, keyboard/responsive and accessibility design | [UI/interaction quality](../02-UI-UX-Design/01-Introduction.md) |
 | Exact traceability, testability, findings and scoped handoff | [Review/handoff](#design-record-06-design-quality-and-security-analysis-05-design-review-traceability-and-handoff-md) |
 | Actual sanitized evidence requirements | [Evidence guidance](#design-record-06-design-quality-and-security-analysis-review-and-traceability-evidence-evidence-catalog-md) |
 
@@ -3725,9 +3818,7 @@ When lecture provenance changes, identify the newly inspected source and locator
 
 **Purpose:** translate the identified requirements and analysis into an explainable technical candidate, coherent component prescriptions and a reviewable implementation handoff.
 
-Owner and decision authority: Farhad. Updated November 2, 2026.
-
-**Current position:** architecture, shared design topics, component records, diagrams and three proposed ADRs have been populated. Exact criterion closure, final physical/compatibility prescriptions, applicable feasibility evidence and owner baseline disposition remain pending. Documentation completion is not implementation readiness or product verification.
+Owner and decision authority: Farhad. **Current position:** architecture, shared design topics, component records, diagrams and three proposed ADRs have been populated. Exact criterion closure, final physical/compatibility prescriptions, applicable feasibility evidence and owner baseline disposition remain pending. Documentation completion is not implementation readiness or product verification.
 
 [Authority](#design-record-design-scope-and-approach-md--heading-1-inputs-and-source-authority) · [Scope](#design-record-design-scope-and-approach-md--heading-2-design-scope-and-project-boundaries) · [Organization](#design-record-design-scope-and-approach-md--heading-3-model-organization-and-ownership) · [Approach](#design-record-design-scope-and-approach-md--heading-4-working-approach) · [Gates](#design-record-design-scope-and-approach-md--heading-5-independent-work-and-dependent-gates) · [Handoff](#design-record-design-scope-and-approach-md--heading-6-completion-and-implementation-handoff)
 
@@ -3735,9 +3826,9 @@ Owner and decision authority: Farhad. Updated November 2, 2026.
 
 #### Current MVP boundary figure
 
-[Accepted core and separate ProjectForge boundary](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg)
+[Accepted core and separate ProjectForge boundary](Diagrams/Appendix/mvp-system-boundaries.svg)
 
-[Editable source](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml) · ![mvp system boundaries](../Diagrams/Archived-Png/Mvp-System-Boundaries.png). Historical broader-product figures below retain earlier alternatives/detail; they do not define the current system boundary.
+[Editable source](Diagrams/Appendix/mvp-system-boundaries.puml) · ![mvp system boundaries](Diagrams/Appendix/mvp-system-boundaries.svg). Historical broader-product figures below retain earlier alternatives/detail; they do not define the current system boundary.
 
 Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/baseline/README.md). Deferred provider, advanced collaboration and workflow-execution designs are not MVP prerequisites.
 
@@ -3745,7 +3836,7 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### 1. Inputs and source authority
 
-Use [accepted scope](../../01-Project-Planning/01-Project-Charter.md#mvp-scope), [resources/constraints](../../01-Project-Planning/03-Feasibility-And-Risk-Assessment.md#resource-constraints), [requirements specification](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-requirements-specification), [source decisions](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#change-and-baseline-open-questions-and-decisions), [qualified analysis handoff](../../03-System-Analysis/01-System-Analysis.md#analysis-review-and-design-handoff--14-feasibility-dependencies-and-design-handoff) and [analysis review](../../03-System-Analysis/01-System-Analysis.md#analysis-review-and-design-handoff--11-model-consistency-traceability-and-review).
+Use [accepted scope](../../01-Project-Planning/01-Project-Charter.md#mvp-scope), [resources/constraints](../../01-Project-Planning/03-Feasibility-And-Risk-Assessment.md#resource-constraints), [requirements specification](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-requirements-specification), [source decisions](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#change-and-baseline-open-questions-and-decisions), [qualified analysis handoff](../../03-System-Analysis/05-Analysis-Review-And-Design-Handoff.md#analysis-review-and-design-handoff--14-feasibility-dependencies-and-design-handoff) and [analysis review](../../03-System-Analysis/05-Analysis-Review-And-Design-Handoff.md#analysis-review-and-design-handoff--11-model-consistency-traceability-and-review).
 
 Requirements define required behavior and source status; analysis defines domain/scenario/rule/information meaning; design specifies how the candidate realizes it. A technical model cannot silently alter a permission, accepted capability or numerical target. Preserve exact source revisions and decisions, including the [accepted profile-update/publication core](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#change-and-baseline-open-questions-and-decisions--id-owner-accepted-profile-update-policy); do not request settled approval again.
 
@@ -3828,221 +3919,223 @@ Record actual sanitized evidence using [evidence guidance](#design-record-06-des
 
 ## Design assets
 
-- [architecture-decision-route.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/architecture-decision-route.dot)
-- ![architecture-decision-route.png](../Diagrams/Archived-Png/Architecture-Decision-Route.png)
-- [architecture-decision-route.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/architecture-decision-route.svg)
-- ![boundaries-big-picture-events.png](../Diagrams/Archived-Png/Boundaries-Big-Picture-Events.png)
-- [boundaries-big-picture-events.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-big-picture-events.puml)
-- [boundaries-big-picture-events.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-big-picture-events.svg)
-- ![boundaries-c4-containers.png](../Diagrams/Archived-Png/Boundaries-C4-Containers.png)
-- [boundaries-c4-containers.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-c4-containers.puml)
-- [boundaries-c4-containers.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-c4-containers.svg)
-- ![boundaries-cross-context-capture.png](../Diagrams/Archived-Png/Boundaries-Cross-Context-Capture.png)
-- [boundaries-cross-context-capture.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-cross-context-capture.puml)
-- [boundaries-cross-context-capture.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-cross-context-capture.svg)
-- ![boundaries-ddd-contexts.png](../Diagrams/Archived-Png/Boundaries-Ddd-Contexts.png)
-- [boundaries-ddd-contexts.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-ddd-contexts.puml)
-- [boundaries-ddd-contexts.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-ddd-contexts.svg)
-- ![boundaries-hexagonal-module.png](../Diagrams/Archived-Png/Boundaries-Hexagonal-Module.png)
-- [boundaries-hexagonal-module.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-hexagonal-module.puml)
-- [boundaries-hexagonal-module.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-hexagonal-module.svg)
-- ![boundaries-uml-packages.png](../Diagrams/Archived-Png/Boundaries-Uml-Packages.png)
-- [boundaries-uml-packages.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-uml-packages.puml)
-- [boundaries-uml-packages.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/boundaries-uml-packages.svg)
-- [cancellation-reconciliation.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/cancellation-reconciliation.dot)
-- ![cancellation-reconciliation.png](../Diagrams/Archived-Png/Cancellation-Reconciliation.png)
-- [cancellation-reconciliation.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/cancellation-reconciliation.svg)
-- [component-contract-boundaries.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/component-contract-boundaries.dot)
-- ![component-contract-boundaries.png](../Diagrams/Archived-Png/Component-Contract-Boundaries.png)
-- [component-contract-boundaries.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/component-contract-boundaries.svg)
-- ![concerns-authn-authz-sequence.png](../Diagrams/Archived-Png/Concerns-Authn-Authz-Sequence.png)
-- [concerns-authn-authz-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-authn-authz-sequence.puml)
-- [concerns-authn-authz-sequence.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-authn-authz-sequence.svg)
-- ![concerns-cache-strategy.png](../Diagrams/Archived-Png/Concerns-Cache-Strategy.png)
-- [concerns-cache-strategy.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-cache-strategy.puml)
-- [concerns-cache-strategy.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-cache-strategy.svg)
-- ![concerns-circuit-breaker-states.png](../Diagrams/Archived-Png/Concerns-Circuit-Breaker-States.png)
-- [concerns-circuit-breaker-states.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-circuit-breaker-states.puml)
-- [concerns-circuit-breaker-states.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-circuit-breaker-states.svg)
-- ![concerns-configuration-management.png](../Diagrams/Archived-Png/Concerns-Configuration-Management.png)
-- [concerns-configuration-management.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-configuration-management.puml)
-- [concerns-configuration-management.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-configuration-management.svg)
-- ![concerns-error-flow.png](../Diagrams/Archived-Png/Concerns-Error-Flow.png)
-- [concerns-error-flow.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-error-flow.puml)
-- [concerns-error-flow.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-error-flow.svg)
-- ![concerns-hexagonal-overlay.png](../Diagrams/Archived-Png/Concerns-Hexagonal-Overlay.png)
-- [concerns-hexagonal-overlay.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-hexagonal-overlay.puml)
-- [concerns-hexagonal-overlay.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-hexagonal-overlay.svg)
-- ![concerns-middleware-chain.png](../Diagrams/Archived-Png/Concerns-Middleware-Chain.png)
-- [concerns-middleware-chain.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-middleware-chain.puml)
-- [concerns-middleware-chain.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-middleware-chain.svg)
-- ![concerns-observability-pipeline.png](../Diagrams/Archived-Png/Concerns-Observability-Pipeline.png)
-- [concerns-observability-pipeline.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-observability-pipeline.puml)
-- [concerns-observability-pipeline.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-observability-pipeline.svg)
-- ![concerns-resilience-patterns.png](../Diagrams/Archived-Png/Concerns-Resilience-Patterns.png)
-- [concerns-resilience-patterns.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-resilience-patterns.puml)
-- [concerns-resilience-patterns.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-resilience-patterns.svg)
-- ![concerns-security-architecture.png](../Diagrams/Archived-Png/Concerns-Security-Architecture.png)
-- [concerns-security-architecture.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-security-architecture.puml)
-- [concerns-security-architecture.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-security-architecture.svg)
-- ![concerns-shared-components.png](../Diagrams/Archived-Png/Concerns-Shared-Components.png)
-- [concerns-shared-components.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-shared-components.puml)
-- [concerns-shared-components.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-shared-components.svg)
-- ![concerns-transaction-boundary.png](../Diagrams/Archived-Png/Concerns-Transaction-Boundary.png)
-- [concerns-transaction-boundary.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-transaction-boundary.puml)
-- [concerns-transaction-boundary.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-transaction-boundary.svg)
-- ![concerns-trust-dfd.png](../Diagrams/Archived-Png/Concerns-Trust-Dfd.png)
-- [concerns-trust-dfd.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-trust-dfd.puml)
-- [concerns-trust-dfd.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/concerns-trust-dfd.svg)
-- [cross-cutting-change-route.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/cross-cutting-change-route.dot)
-- ![cross-cutting-change-route.png](../Diagrams/Archived-Png/Cross-Cutting-Change-Route.png)
-- [cross-cutting-change-route.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/cross-cutting-change-route.svg)
-- [cross-cutting-ownership.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/cross-cutting-ownership.dot)
-- ![cross-cutting-ownership.png](../Diagrams/Archived-Png/Cross-Cutting-Ownership.png)
-- [cross-cutting-ownership.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/cross-cutting-ownership.svg)
-- ![deployment-cicd-artifact-nodes.png](../Diagrams/Archived-Png/Deployment-Cicd-Artifact-Nodes.png)
-- [deployment-cicd-artifact-nodes.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-cicd-artifact-nodes.puml)
-- [deployment-cicd-artifact-nodes.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-cicd-artifact-nodes.svg)
-- ![deployment-environment-topology.png](../Diagrams/Archived-Png/Deployment-Environment-Topology.png)
-- [deployment-environment-topology.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-environment-topology.puml)
-- [deployment-environment-topology.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-environment-topology.svg)
-- ![deployment-failover-dr-route.png](../Diagrams/Archived-Png/Deployment-Failover-Dr-Route.png)
-- [deployment-failover-dr-route.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-failover-dr-route.puml)
-- [deployment-failover-dr-route.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-failover-dr-route.svg)
-- ![deployment-multiregion-alternative.png](../Diagrams/Archived-Png/Deployment-Multiregion-Alternative.png)
-- [deployment-multiregion-alternative.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-multiregion-alternative.puml)
-- [deployment-multiregion-alternative.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-multiregion-alternative.svg)
-- ![deployment-network-request-sequence.png](../Diagrams/Archived-Png/Deployment-Network-Request-Sequence.png)
-- [deployment-network-request-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-network-request-sequence.puml)
-- [deployment-network-request-sequence.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-network-request-sequence.svg)
-- ![deployment-network-topology.png](../Diagrams/Archived-Png/Deployment-Network-Topology.png)
-- [deployment-network-topology.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-network-topology.puml)
-- [deployment-network-topology.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-network-topology.svg)
-- ![deployment-orchestration-alternative.png](../Diagrams/Archived-Png/Deployment-Orchestration-Alternative.png)
-- [deployment-orchestration-alternative.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-orchestration-alternative.puml)
-- [deployment-orchestration-alternative.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-orchestration-alternative.svg)
-- ![deployment-provider-infrastructure.png](../Diagrams/Archived-Png/Deployment-Provider-Infrastructure.png)
-- [deployment-provider-infrastructure.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-provider-infrastructure.puml)
-- [deployment-provider-infrastructure.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-provider-infrastructure.svg)
-- ![deployment-traffic-flow.png](../Diagrams/Archived-Png/Deployment-Traffic-Flow.png)
-- [deployment-traffic-flow.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-traffic-flow.puml)
-- [deployment-traffic-flow.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/deployment-traffic-flow.svg)
-- ![drivers-c4-system-context.png](../Diagrams/Archived-Png/Drivers-C4-System-Context.png)
-- [drivers-c4-system-context.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-c4-system-context.puml)
-- [drivers-c4-system-context.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-c4-system-context.svg)
-- ![drivers-critical-publication-sequence.png](../Diagrams/Archived-Png/Drivers-Critical-Publication-Sequence.png)
-- [drivers-critical-publication-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-critical-publication-sequence.puml)
-- [drivers-critical-publication-sequence.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-critical-publication-sequence.svg)
-- ![drivers-option-a-components.png](../Diagrams/Archived-Png/Drivers-Option-A-Components.png)
-- [drivers-option-a-components.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-option-a-components.puml)
-- [drivers-option-a-components.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-option-a-components.svg)
-- ![drivers-option-b-components.png](../Diagrams/Archived-Png/Drivers-Option-B-Components.png)
-- [drivers-option-b-components.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-option-b-components.puml)
-- [drivers-option-b-components.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-option-b-components.svg)
-- ![drivers-option-c-components.png](../Diagrams/Archived-Png/Drivers-Option-C-Components.png)
-- [drivers-option-c-components.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-option-c-components.puml)
-- [drivers-option-c-components.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-option-c-components.svg)
-- [drivers-options-radar.json](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-options-radar.json)
-- ![drivers-options-radar.png](../Diagrams/Archived-Png/Drivers-Options-Radar.png)
-- [drivers-options-radar.py](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-options-radar.py)
-- [drivers-options-radar.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-options-radar.svg)
-- ![drivers-quality-utility-tree.png](../Diagrams/Archived-Png/Drivers-Quality-Utility-Tree.png)
-- [drivers-quality-utility-tree.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-quality-utility-tree.puml)
-- [drivers-quality-utility-tree.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-quality-utility-tree.svg)
-- [drivers-to-architecture.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-to-architecture.dot)
-- ![drivers-to-architecture.png](../Diagrams/Archived-Png/Drivers-To-Architecture.png)
-- [drivers-to-architecture.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-to-architecture.svg)
-- ![drivers-uml-deployment.png](../Diagrams/Archived-Png/Drivers-Uml-Deployment.png)
-- [drivers-uml-deployment.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.puml)
-- [drivers-uml-deployment.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-deployment.svg)
-- ![drivers-uml-use-cases.png](../Diagrams/Archived-Png/Drivers-Uml-Use-Cases.png)
-- [drivers-uml-use-cases.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-use-cases.puml)
-- [drivers-uml-use-cases.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/drivers-uml-use-cases.svg)
-- [durable-attempt-protocol.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/durable-attempt-protocol.dot)
-- ![durable-attempt-protocol.png](../Diagrams/Archived-Png/Durable-Attempt-Protocol.png)
-- [durable-attempt-protocol.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/durable-attempt-protocol.svg)
-- [logical-component-ownership.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.dot)
-- ![logical-component-ownership.png](../Diagrams/Archived-Png/Logical-Component-Ownership.png)
-- [logical-component-ownership.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/logical-component-ownership.svg)
-- ![mvp-system-boundaries.png](../Diagrams/Archived-Png/Mvp-System-Boundaries.png)
-- [mvp-system-boundaries.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.puml)
-- [mvp-system-boundaries.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/mvp-system-boundaries.svg)
-- [presentation-history-boundaries.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/presentation-history-boundaries.dot)
-- ![presentation-history-boundaries.png](../Diagrams/Archived-Png/Presentation-History-Boundaries.png)
-- [presentation-history-boundaries.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/presentation-history-boundaries.svg)
-- [release-and-recovery-route.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/release-and-recovery-route.dot)
-- ![release-and-recovery-route.png](../Diagrams/Archived-Png/Release-And-Recovery-Route.png)
-- [release-and-recovery-route.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/release-and-recovery-route.svg)
-- ![runtime-attempt-state-machine.png](../Diagrams/Archived-Png/Runtime-Attempt-State-Machine.png)
-- [runtime-attempt-state-machine.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-attempt-state-machine.puml)
-- [runtime-attempt-state-machine.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-attempt-state-machine.svg)
-- ![runtime-claim-timing.png](../Diagrams/Archived-Png/Runtime-Claim-Timing.png)
-- [runtime-claim-timing.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-claim-timing.puml)
-- [runtime-claim-timing.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-claim-timing.svg)
-- ![runtime-communication-diagram.png](../Diagrams/Archived-Png/Runtime-Communication-Diagram.png)
-- [runtime-communication-diagram.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-communication-diagram.puml)
-- [runtime-communication-diagram.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-communication-diagram.svg)
-- ![runtime-concurrency-model.png](../Diagrams/Archived-Png/Runtime-Concurrency-Model.png)
-- [runtime-concurrency-model.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-concurrency-model.puml)
-- [runtime-concurrency-model.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-concurrency-model.svg)
-- ![runtime-dataflow.png](../Diagrams/Archived-Png/Runtime-Dataflow.png)
-- [runtime-dataflow.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-dataflow.puml)
-- [runtime-dataflow.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-dataflow.svg)
-- ![runtime-local-command-sequence.png](../Diagrams/Archived-Png/Runtime-Local-Command-Sequence.png)
-- [runtime-local-command-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-local-command-sequence.puml)
-- [runtime-local-command-sequence.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-local-command-sequence.svg)
-- ![runtime-process-thread-view.png](../Diagrams/Archived-Png/Runtime-Process-Thread-View.png)
-- [runtime-process-thread-view.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-process-thread-view.puml)
-- [runtime-process-thread-view.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-process-thread-view.svg)
-- ![runtime-queue-topology.png](../Diagrams/Archived-Png/Runtime-Queue-Topology.png)
-- [runtime-queue-topology.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-queue-topology.puml)
-- [runtime-queue-topology.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-queue-topology.svg)
-- ![runtime-remote-effect-sequence.png](../Diagrams/Archived-Png/Runtime-Remote-Effect-Sequence.png)
-- [runtime-remote-effect-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-remote-effect-sequence.puml)
-- [runtime-remote-effect-sequence.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-remote-effect-sequence.svg)
-- ![runtime-resource-contention.png](../Diagrams/Archived-Png/Runtime-Resource-Contention.png)
-- [runtime-resource-contention.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-resource-contention.puml)
-- [runtime-resource-contention.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-resource-contention.svg)
-- [runtime-responsibilities.dot](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-responsibilities.dot)
-- ![runtime-responsibilities.png](../Diagrams/Archived-Png/Runtime-Responsibilities.png)
-- [runtime-responsibilities.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-responsibilities.svg)
-- ![runtime-swimlane-fork-join.png](../Diagrams/Archived-Png/Runtime-Swimlane-Fork-Join.png)
-- [runtime-swimlane-fork-join.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-swimlane-fork-join.puml)
-- [runtime-swimlane-fork-join.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-swimlane-fork-join.svg)
-- ![runtime-wait-for-example.png](../Diagrams/Archived-Png/Runtime-Wait-For-Example.png)
-- [runtime-wait-for-example.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-wait-for-example.puml)
-- [runtime-wait-for-example.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/01-software-architecture/diagrams/runtime-wait-for-example.svg)
-- ![operations-isolated-restore-route.png](../Diagrams/Archived-Png/Operations-Isolated-Restore-Route.png)
-- [operations-isolated-restore-route.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/operations-isolated-restore-route.puml)
-- [operations-isolated-restore-route.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/operations-isolated-restore-route.svg)
-- ![operations-recovery-coverage.png](../Diagrams/Archived-Png/Operations-Recovery-Coverage.png)
-- [operations-recovery-coverage.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/operations-recovery-coverage.puml)
-- [operations-recovery-coverage.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/operations-recovery-coverage.svg)
-- ![quality-essential-conflicts.png](../Diagrams/Archived-Png/Quality-Essential-Conflicts.png)
-- [quality-essential-conflicts.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-essential-conflicts.puml)
-- [quality-essential-conflicts.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-essential-conflicts.svg)
-- ![quality-essential-scenario.png](../Diagrams/Archived-Png/Quality-Essential-Scenario.png)
-- [quality-essential-scenario.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-essential-scenario.puml)
-- [quality-essential-scenario.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-essential-scenario.svg)
-- ![quality-essential-tactics.png](../Diagrams/Archived-Png/Quality-Essential-Tactics.png)
-- [quality-essential-tactics.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-essential-tactics.puml)
-- [quality-essential-tactics.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-essential-tactics.svg)
-- ![quality-scenario-evidence-map.png](../Diagrams/Archived-Png/Quality-Scenario-Evidence-Map.png)
-- [quality-scenario-evidence-map.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-scenario-evidence-map.puml)
-- [quality-scenario-evidence-map.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-scenario-evidence-map.svg)
-- ![quality-tradeoff-evaluation-route.png](../Diagrams/Archived-Png/Quality-Tradeoff-Evaluation-Route.png)
-- [quality-tradeoff-evaluation-route.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-tradeoff-evaluation-route.puml)
-- [quality-tradeoff-evaluation-route.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/quality-tradeoff-evaluation-route.svg)
-- ![review-handoff-gates.png](../Diagrams/Archived-Png/Review-Handoff-Gates.png)
-- [review-handoff-gates.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/review-handoff-gates.puml)
-- [review-handoff-gates.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/review-handoff-gates.svg)
-- ![review-trace-chain.png](../Diagrams/Archived-Png/Review-Trace-Chain.png)
-- [review-trace-chain.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/review-trace-chain.puml)
-- [review-trace-chain.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/review-trace-chain.svg)
-- ![security-current-authority-sequence.png](../Diagrams/Archived-Png/Security-Current-Authority-Sequence.png)
-- [security-current-authority-sequence.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/security-current-authority-sequence.puml)
-- [security-current-authority-sequence.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/security-current-authority-sequence.svg)
-- ![security-trust-boundaries.png](../Diagrams/Archived-Png/Security-Trust-Boundaries.png)
-- [security-trust-boundaries.puml](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.puml)
-- [security-trust-boundaries.svg](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/06-design-quality-and-security-analysis/diagrams/security-trust-boundaries.svg)
-- ![mvp-private-media.png](../Diagrams/Mvp-Private-Media.png)
+This retained asset list supports the detailed records. For the current local dark-mode PlantUML source/render sets, use [Current HLD Diagram Catalog](#143-current-hld-diagram-catalog).
+
+- [architecture-decision-route.dot](Diagrams/Appendix/architecture-decision-route.dot)
+- ![architecture-decision-route.png](Diagrams/Appendix/architecture-decision-route.svg)
+- [architecture-decision-route.svg](Diagrams/Appendix/architecture-decision-route.svg)
+- ![boundaries-big-picture-events.png](Diagrams/Appendix/boundaries-big-picture-events.svg)
+- [boundaries-big-picture-events.puml](Diagrams/Appendix/boundaries-big-picture-events.puml)
+- [boundaries-big-picture-events.svg](Diagrams/Appendix/boundaries-big-picture-events.svg)
+- ![boundaries-c4-containers.png](Diagrams/Appendix/boundaries-c4-containers.svg)
+- [boundaries-c4-containers.puml](Diagrams/Appendix/boundaries-c4-containers.puml)
+- [boundaries-c4-containers.svg](Diagrams/Appendix/boundaries-c4-containers.svg)
+- ![boundaries-cross-context-capture.png](Diagrams/Appendix/boundaries-cross-context-capture.svg)
+- [boundaries-cross-context-capture.puml](Diagrams/Appendix/boundaries-cross-context-capture.puml)
+- [boundaries-cross-context-capture.svg](Diagrams/Appendix/boundaries-cross-context-capture.svg)
+- ![boundaries-ddd-contexts.png](Diagrams/Appendix/boundaries-ddd-contexts.svg)
+- [boundaries-ddd-contexts.puml](Diagrams/Appendix/boundaries-ddd-contexts.puml)
+- [boundaries-ddd-contexts.svg](Diagrams/Appendix/boundaries-ddd-contexts.svg)
+- ![boundaries-hexagonal-module.png](Diagrams/Appendix/boundaries-hexagonal-module.svg)
+- [boundaries-hexagonal-module.puml](Diagrams/Appendix/boundaries-hexagonal-module.puml)
+- [boundaries-hexagonal-module.svg](Diagrams/Appendix/boundaries-hexagonal-module.svg)
+- ![boundaries-uml-packages.png](Diagrams/Appendix/boundaries-uml-packages.svg)
+- [boundaries-uml-packages.puml](Diagrams/Appendix/boundaries-uml-packages.puml)
+- [boundaries-uml-packages.svg](Diagrams/Appendix/boundaries-uml-packages.svg)
+- [cancellation-reconciliation.dot](Diagrams/Appendix/cancellation-reconciliation.dot)
+- ![cancellation-reconciliation.png](Diagrams/Appendix/cancellation-reconciliation.svg)
+- [cancellation-reconciliation.svg](Diagrams/Appendix/cancellation-reconciliation.svg)
+- [component-contract-boundaries.dot](Diagrams/Appendix/component-contract-boundaries.dot)
+- ![component-contract-boundaries.png](Diagrams/Appendix/component-contract-boundaries.svg)
+- [component-contract-boundaries.svg](Diagrams/Appendix/component-contract-boundaries.svg)
+- ![concerns-authn-authz-sequence.png](Diagrams/Appendix/concerns-authn-authz-sequence.svg)
+- [concerns-authn-authz-sequence.puml](Diagrams/Appendix/concerns-authn-authz-sequence.puml)
+- [concerns-authn-authz-sequence.svg](Diagrams/Appendix/concerns-authn-authz-sequence.svg)
+- ![concerns-cache-strategy.png](Diagrams/Appendix/concerns-cache-strategy.svg)
+- [concerns-cache-strategy.puml](Diagrams/Appendix/concerns-cache-strategy.puml)
+- [concerns-cache-strategy.svg](Diagrams/Appendix/concerns-cache-strategy.svg)
+- ![concerns-circuit-breaker-states.png](Diagrams/Appendix/concerns-circuit-breaker-states.svg)
+- [concerns-circuit-breaker-states.puml](Diagrams/Appendix/concerns-circuit-breaker-states.puml)
+- [concerns-circuit-breaker-states.svg](Diagrams/Appendix/concerns-circuit-breaker-states.svg)
+- ![concerns-configuration-management.png](Diagrams/Appendix/concerns-configuration-management.svg)
+- [concerns-configuration-management.puml](Diagrams/Appendix/concerns-configuration-management.puml)
+- [concerns-configuration-management.svg](Diagrams/Appendix/concerns-configuration-management.svg)
+- ![concerns-error-flow.png](Diagrams/Appendix/concerns-error-flow.svg)
+- [concerns-error-flow.puml](Diagrams/Appendix/concerns-error-flow.puml)
+- [concerns-error-flow.svg](Diagrams/Appendix/concerns-error-flow.svg)
+- ![concerns-hexagonal-overlay.png](Diagrams/Appendix/concerns-hexagonal-overlay.svg)
+- [concerns-hexagonal-overlay.puml](Diagrams/Appendix/concerns-hexagonal-overlay.puml)
+- [concerns-hexagonal-overlay.svg](Diagrams/Appendix/concerns-hexagonal-overlay.svg)
+- ![concerns-middleware-chain.png](Diagrams/Appendix/concerns-middleware-chain.svg)
+- [concerns-middleware-chain.puml](Diagrams/Appendix/concerns-middleware-chain.puml)
+- [concerns-middleware-chain.svg](Diagrams/Appendix/concerns-middleware-chain.svg)
+- ![concerns-observability-pipeline.png](Diagrams/Appendix/concerns-observability-pipeline.svg)
+- [concerns-observability-pipeline.puml](Diagrams/Appendix/concerns-observability-pipeline.puml)
+- [concerns-observability-pipeline.svg](Diagrams/Appendix/concerns-observability-pipeline.svg)
+- ![concerns-resilience-patterns.png](Diagrams/Appendix/concerns-resilience-patterns.svg)
+- [concerns-resilience-patterns.puml](Diagrams/Appendix/concerns-resilience-patterns.puml)
+- [concerns-resilience-patterns.svg](Diagrams/Appendix/concerns-resilience-patterns.svg)
+- ![concerns-security-architecture.png](Diagrams/Appendix/concerns-security-architecture.svg)
+- [concerns-security-architecture.puml](Diagrams/Appendix/concerns-security-architecture.puml)
+- [concerns-security-architecture.svg](Diagrams/Appendix/concerns-security-architecture.svg)
+- ![concerns-shared-components.png](Diagrams/Appendix/concerns-shared-components.svg)
+- [concerns-shared-components.puml](Diagrams/Appendix/concerns-shared-components.puml)
+- [concerns-shared-components.svg](Diagrams/Appendix/concerns-shared-components.svg)
+- ![concerns-transaction-boundary.png](Diagrams/Appendix/concerns-transaction-boundary.svg)
+- [concerns-transaction-boundary.puml](Diagrams/Appendix/concerns-transaction-boundary.puml)
+- [concerns-transaction-boundary.svg](Diagrams/Appendix/concerns-transaction-boundary.svg)
+- ![concerns-trust-dfd.png](Diagrams/Appendix/concerns-trust-dfd.svg)
+- [concerns-trust-dfd.puml](Diagrams/Appendix/concerns-trust-dfd.puml)
+- [concerns-trust-dfd.svg](Diagrams/Appendix/concerns-trust-dfd.svg)
+- [cross-cutting-change-route.dot](Diagrams/Appendix/cross-cutting-change-route.dot)
+- ![cross-cutting-change-route.png](Diagrams/Appendix/cross-cutting-change-route.svg)
+- [cross-cutting-change-route.svg](Diagrams/Appendix/cross-cutting-change-route.svg)
+- [cross-cutting-ownership.dot](Diagrams/Appendix/cross-cutting-ownership.dot)
+- ![cross-cutting-ownership.png](Diagrams/Appendix/cross-cutting-ownership.svg)
+- [cross-cutting-ownership.svg](Diagrams/Appendix/cross-cutting-ownership.svg)
+- ![deployment-cicd-artifact-nodes.png](Diagrams/Appendix/deployment-cicd-artifact-nodes.svg)
+- [deployment-cicd-artifact-nodes.puml](Diagrams/Appendix/deployment-cicd-artifact-nodes.puml)
+- [deployment-cicd-artifact-nodes.svg](Diagrams/Appendix/deployment-cicd-artifact-nodes.svg)
+- ![deployment-environment-topology.png](Diagrams/Appendix/deployment-environment-topology.svg)
+- [deployment-environment-topology.puml](Diagrams/Appendix/deployment-environment-topology.puml)
+- [deployment-environment-topology.svg](Diagrams/Appendix/deployment-environment-topology.svg)
+- ![deployment-failover-dr-route.png](Diagrams/Appendix/deployment-failover-dr-route.svg)
+- [deployment-failover-dr-route.puml](Diagrams/Appendix/deployment-failover-dr-route.puml)
+- [deployment-failover-dr-route.svg](Diagrams/Appendix/deployment-failover-dr-route.svg)
+- ![deployment-multiregion-alternative.png](Diagrams/Appendix/deployment-multiregion-alternative.svg)
+- [deployment-multiregion-alternative.puml](Diagrams/Appendix/deployment-multiregion-alternative.puml)
+- [deployment-multiregion-alternative.svg](Diagrams/Appendix/deployment-multiregion-alternative.svg)
+- ![deployment-network-request-sequence.png](Diagrams/Appendix/deployment-network-request-sequence.svg)
+- [deployment-network-request-sequence.puml](Diagrams/Appendix/deployment-network-request-sequence.puml)
+- [deployment-network-request-sequence.svg](Diagrams/Appendix/deployment-network-request-sequence.svg)
+- ![deployment-network-topology.png](Diagrams/Appendix/deployment-network-topology.svg)
+- [deployment-network-topology.puml](Diagrams/Appendix/deployment-network-topology.puml)
+- [deployment-network-topology.svg](Diagrams/Appendix/deployment-network-topology.svg)
+- ![deployment-orchestration-alternative.png](Diagrams/Appendix/deployment-orchestration-alternative.svg)
+- [deployment-orchestration-alternative.puml](Diagrams/Appendix/deployment-orchestration-alternative.puml)
+- [deployment-orchestration-alternative.svg](Diagrams/Appendix/deployment-orchestration-alternative.svg)
+- ![deployment-provider-infrastructure.png](Diagrams/Appendix/deployment-provider-infrastructure.svg)
+- [deployment-provider-infrastructure.puml](Diagrams/Appendix/deployment-provider-infrastructure.puml)
+- [deployment-provider-infrastructure.svg](Diagrams/Appendix/deployment-provider-infrastructure.svg)
+- ![deployment-traffic-flow.png](Diagrams/Appendix/deployment-traffic-flow.svg)
+- [deployment-traffic-flow.puml](Diagrams/Appendix/deployment-traffic-flow.puml)
+- [deployment-traffic-flow.svg](Diagrams/Appendix/deployment-traffic-flow.svg)
+- ![drivers-c4-system-context.png](Diagrams/Appendix/drivers-c4-system-context.svg)
+- [drivers-c4-system-context.puml](Diagrams/Appendix/drivers-c4-system-context.puml)
+- [drivers-c4-system-context.svg](Diagrams/Appendix/drivers-c4-system-context.svg)
+- ![drivers-critical-publication-sequence.png](Diagrams/Appendix/drivers-critical-publication-sequence.svg)
+- [drivers-critical-publication-sequence.puml](Diagrams/Appendix/drivers-critical-publication-sequence.puml)
+- [drivers-critical-publication-sequence.svg](Diagrams/Appendix/drivers-critical-publication-sequence.svg)
+- ![drivers-option-a-components.png](Diagrams/Appendix/drivers-option-a-components.svg)
+- [drivers-option-a-components.puml](Diagrams/Appendix/drivers-option-a-components.puml)
+- [drivers-option-a-components.svg](Diagrams/Appendix/drivers-option-a-components.svg)
+- ![drivers-option-b-components.png](Diagrams/Appendix/drivers-option-b-components.svg)
+- [drivers-option-b-components.puml](Diagrams/Appendix/drivers-option-b-components.puml)
+- [drivers-option-b-components.svg](Diagrams/Appendix/drivers-option-b-components.svg)
+- ![drivers-option-c-components.png](Diagrams/Appendix/drivers-option-c-components.svg)
+- [drivers-option-c-components.puml](Diagrams/Appendix/drivers-option-c-components.puml)
+- [drivers-option-c-components.svg](Diagrams/Appendix/drivers-option-c-components.svg)
+- [drivers-options-radar.json](Diagrams/Appendix/drivers-options-radar.json)
+- ![drivers-options-radar.png](Diagrams/Appendix/drivers-options-radar.svg)
+- [drivers-options-radar.py](Diagrams/Appendix/drivers-options-radar.py)
+- [drivers-options-radar.svg](Diagrams/Appendix/drivers-options-radar.svg)
+- ![drivers-quality-utility-tree.png](Diagrams/Appendix/drivers-quality-utility-tree.svg)
+- [drivers-quality-utility-tree.puml](Diagrams/Appendix/drivers-quality-utility-tree.puml)
+- [drivers-quality-utility-tree.svg](Diagrams/Appendix/drivers-quality-utility-tree.svg)
+- [drivers-to-architecture.dot](Diagrams/Appendix/drivers-to-architecture.dot)
+- ![drivers-to-architecture.png](Diagrams/Appendix/drivers-to-architecture.svg)
+- [drivers-to-architecture.svg](Diagrams/Appendix/drivers-to-architecture.svg)
+- ![drivers-uml-deployment.png](Diagrams/Appendix/drivers-uml-deployment.svg)
+- [drivers-uml-deployment.puml](Diagrams/Appendix/drivers-uml-deployment.puml)
+- [drivers-uml-deployment.svg](Diagrams/Appendix/drivers-uml-deployment.svg)
+- ![drivers-uml-use-cases.png](Diagrams/Appendix/drivers-uml-use-cases.svg)
+- [drivers-uml-use-cases.puml](Diagrams/Appendix/drivers-uml-use-cases.puml)
+- [drivers-uml-use-cases.svg](Diagrams/Appendix/drivers-uml-use-cases.svg)
+- [durable-attempt-protocol.dot](Diagrams/Appendix/durable-attempt-protocol.dot)
+- ![durable-attempt-protocol.png](Diagrams/Appendix/durable-attempt-protocol.svg)
+- [durable-attempt-protocol.svg](Diagrams/Appendix/durable-attempt-protocol.svg)
+- [logical-component-ownership.dot](Diagrams/Appendix/logical-component-ownership.dot)
+- ![logical-component-ownership.png](Diagrams/Appendix/logical-component-ownership.svg)
+- [logical-component-ownership.svg](Diagrams/Appendix/logical-component-ownership.svg)
+- ![mvp-system-boundaries.png](Diagrams/Appendix/mvp-system-boundaries.svg)
+- [mvp-system-boundaries.puml](Diagrams/Appendix/mvp-system-boundaries.puml)
+- [mvp-system-boundaries.svg](Diagrams/Appendix/mvp-system-boundaries.svg)
+- [presentation-history-boundaries.dot](Diagrams/Appendix/presentation-history-boundaries.dot)
+- ![presentation-history-boundaries.png](Diagrams/Appendix/presentation-history-boundaries.svg)
+- [presentation-history-boundaries.svg](Diagrams/Appendix/presentation-history-boundaries.svg)
+- [release-and-recovery-route.dot](Diagrams/Appendix/release-and-recovery-route.dot)
+- ![release-and-recovery-route.png](Diagrams/Appendix/release-and-recovery-route.svg)
+- [release-and-recovery-route.svg](Diagrams/Appendix/release-and-recovery-route.svg)
+- ![runtime-attempt-state-machine.png](Diagrams/Appendix/runtime-attempt-state-machine.svg)
+- [runtime-attempt-state-machine.puml](Diagrams/Appendix/runtime-attempt-state-machine.puml)
+- [runtime-attempt-state-machine.svg](Diagrams/Appendix/runtime-attempt-state-machine.svg)
+- ![runtime-claim-timing.png](Diagrams/Appendix/runtime-claim-timing.svg)
+- [runtime-claim-timing.puml](Diagrams/Appendix/runtime-claim-timing.puml)
+- [runtime-claim-timing.svg](Diagrams/Appendix/runtime-claim-timing.svg)
+- ![runtime-communication-diagram.png](Diagrams/Appendix/runtime-communication-diagram.svg)
+- [runtime-communication-diagram.puml](Diagrams/Appendix/runtime-communication-diagram.puml)
+- [runtime-communication-diagram.svg](Diagrams/Appendix/runtime-communication-diagram.svg)
+- ![runtime-concurrency-model.png](Diagrams/Appendix/runtime-concurrency-model.svg)
+- [runtime-concurrency-model.puml](Diagrams/Appendix/runtime-concurrency-model.puml)
+- [runtime-concurrency-model.svg](Diagrams/Appendix/runtime-concurrency-model.svg)
+- ![runtime-dataflow.png](Diagrams/Appendix/runtime-dataflow.svg)
+- [runtime-dataflow.puml](Diagrams/Appendix/runtime-dataflow.puml)
+- [runtime-dataflow.svg](Diagrams/Appendix/runtime-dataflow.svg)
+- ![runtime-local-command-sequence.png](Diagrams/Appendix/runtime-local-command-sequence.svg)
+- [runtime-local-command-sequence.puml](Diagrams/Appendix/runtime-local-command-sequence.puml)
+- [runtime-local-command-sequence.svg](Diagrams/Appendix/runtime-local-command-sequence.svg)
+- ![runtime-process-thread-view.png](Diagrams/Appendix/runtime-process-thread-view.svg)
+- [runtime-process-thread-view.puml](Diagrams/Appendix/runtime-process-thread-view.puml)
+- [runtime-process-thread-view.svg](Diagrams/Appendix/runtime-process-thread-view.svg)
+- ![runtime-queue-topology.png](Diagrams/Appendix/runtime-queue-topology.svg)
+- [runtime-queue-topology.puml](Diagrams/Appendix/runtime-queue-topology.puml)
+- [runtime-queue-topology.svg](Diagrams/Appendix/runtime-queue-topology.svg)
+- ![runtime-remote-effect-sequence.png](Diagrams/Appendix/runtime-remote-effect-sequence.svg)
+- [runtime-remote-effect-sequence.puml](Diagrams/Appendix/runtime-remote-effect-sequence.puml)
+- [runtime-remote-effect-sequence.svg](Diagrams/Appendix/runtime-remote-effect-sequence.svg)
+- ![runtime-resource-contention.png](Diagrams/Appendix/runtime-resource-contention.svg)
+- [runtime-resource-contention.puml](Diagrams/Appendix/runtime-resource-contention.puml)
+- [runtime-resource-contention.svg](Diagrams/Appendix/runtime-resource-contention.svg)
+- [runtime-responsibilities.dot](Diagrams/Appendix/runtime-responsibilities.dot)
+- ![runtime-responsibilities.png](Diagrams/Appendix/runtime-responsibilities.svg)
+- [runtime-responsibilities.svg](Diagrams/Appendix/runtime-responsibilities.svg)
+- ![runtime-swimlane-fork-join.png](Diagrams/Appendix/runtime-swimlane-fork-join.svg)
+- [runtime-swimlane-fork-join.puml](Diagrams/Appendix/runtime-swimlane-fork-join.puml)
+- [runtime-swimlane-fork-join.svg](Diagrams/Appendix/runtime-swimlane-fork-join.svg)
+- ![runtime-wait-for-example.png](Diagrams/Appendix/runtime-wait-for-example.svg)
+- [runtime-wait-for-example.puml](Diagrams/Appendix/runtime-wait-for-example.puml)
+- [runtime-wait-for-example.svg](Diagrams/Appendix/runtime-wait-for-example.svg)
+- ![operations-isolated-restore-route.png](Diagrams/Appendix/operations-isolated-restore-route.svg)
+- [operations-isolated-restore-route.puml](Diagrams/Appendix/operations-isolated-restore-route.puml)
+- [operations-isolated-restore-route.svg](Diagrams/Appendix/operations-isolated-restore-route.svg)
+- ![operations-recovery-coverage.png](Diagrams/Appendix/operations-recovery-coverage.svg)
+- [operations-recovery-coverage.puml](Diagrams/Appendix/operations-recovery-coverage.puml)
+- [operations-recovery-coverage.svg](Diagrams/Appendix/operations-recovery-coverage.svg)
+- ![quality-essential-conflicts.png](Diagrams/Appendix/quality-essential-conflicts.svg)
+- [quality-essential-conflicts.puml](Diagrams/Appendix/quality-essential-conflicts.puml)
+- [quality-essential-conflicts.svg](Diagrams/Appendix/quality-essential-conflicts.svg)
+- ![quality-essential-scenario.png](Diagrams/Appendix/quality-essential-scenario.svg)
+- [quality-essential-scenario.puml](Diagrams/Appendix/quality-essential-scenario.puml)
+- [quality-essential-scenario.svg](Diagrams/Appendix/quality-essential-scenario.svg)
+- ![quality-essential-tactics.png](Diagrams/Appendix/quality-essential-tactics.svg)
+- [quality-essential-tactics.puml](Diagrams/Appendix/quality-essential-tactics.puml)
+- [quality-essential-tactics.svg](Diagrams/Appendix/quality-essential-tactics.svg)
+- ![quality-scenario-evidence-map.png](Diagrams/Appendix/quality-scenario-evidence-map.svg)
+- [quality-scenario-evidence-map.puml](Diagrams/Appendix/quality-scenario-evidence-map.puml)
+- [quality-scenario-evidence-map.svg](Diagrams/Appendix/quality-scenario-evidence-map.svg)
+- ![quality-tradeoff-evaluation-route.png](Diagrams/Appendix/quality-tradeoff-evaluation-route.svg)
+- [quality-tradeoff-evaluation-route.puml](Diagrams/Appendix/quality-tradeoff-evaluation-route.puml)
+- [quality-tradeoff-evaluation-route.svg](Diagrams/Appendix/quality-tradeoff-evaluation-route.svg)
+- ![review-handoff-gates.png](Diagrams/Appendix/review-handoff-gates.svg)
+- [review-handoff-gates.puml](Diagrams/Appendix/review-handoff-gates.puml)
+- [review-handoff-gates.svg](Diagrams/Appendix/review-handoff-gates.svg)
+- ![review-trace-chain.png](Diagrams/Appendix/review-trace-chain.svg)
+- [review-trace-chain.puml](Diagrams/Appendix/review-trace-chain.puml)
+- [review-trace-chain.svg](Diagrams/Appendix/review-trace-chain.svg)
+- ![security-current-authority-sequence.png](Diagrams/Appendix/security-current-authority-sequence.svg)
+- [security-current-authority-sequence.puml](Diagrams/Appendix/security-current-authority-sequence.puml)
+- [security-current-authority-sequence.svg](Diagrams/Appendix/security-current-authority-sequence.svg)
+- ![security-trust-boundaries.png](Diagrams/Appendix/security-trust-boundaries.svg)
+- [security-trust-boundaries.puml](Diagrams/Appendix/security-trust-boundaries.puml)
+- [security-trust-boundaries.svg](Diagrams/Appendix/security-trust-boundaries.svg)
+- ![mvp-private-media.png](Diagrams/Appendix/mvp-private-media.svg)

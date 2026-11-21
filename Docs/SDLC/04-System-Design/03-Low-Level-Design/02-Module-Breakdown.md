@@ -1,12 +1,84 @@
 # 2. Module Breakdown
 
-[Low-Level Design index](03-Low-Level-Design.md)
+[Previous: LLD Introduction](01-Introduction.md) · [Next: Detailed Module Design](03-Detailed-Module-Design.md)
 
 ## 2.1 Module List
-Core owns Identity and Access, Professional Presentation, Files and Operations, Representation and Sharing, and Applications. ProjectForge owns Git Collaboration and Work Management. Shared operational support stays local to each application.
+
+Modules own business state and invariant-preserving operations inside two independent Laravel applications. They are logical code/contract boundaries, not a requirement for a separate service, database or deployment per module. Actual namespaces, classes and route locations are recorded during implementation.
+
+| Application / module | Owns | Public contract responsibility |
+| --- | --- | --- |
+| Core: Identity and Access | Invited identity, account/session state and current entitlement | Establish actor context and narrow status-only entitlement results; resource owners still enforce action policy |
+| Core: Professional Presentation | Profile content, independent tailored drafts, explicit selected updates and immutable publication revisions | Compare/apply selected changes, save current-version drafts and separately publish exact candidates |
+| Core: Representation and Sharing | Recipient representation and current link/selection/download policy | Resolve permitted content/language and eligible delivery; no unrestricted private-library access |
+| Core: Files and Operations | Private artifact bytes/metadata, reservations, protected references, PDF work and lifecycle processing | Admit/associate/retrieve permitted artifacts and preserve exact retained material through failure/cleanup |
+| Core: Applications | Manual application tracking and immutable submission events | Capture actual selected material and retrieve exact history independently of later publication changes |
+| ProjectForge: Git Collaboration | Repositories, local grants, native transfers and file/history authority | Validate current entitlement/local action grants and preserve real Git transport/revision behavior |
+| ProjectForge: Work Management | Repository issues and simple Kanban | Validate issue/board authority, expected versions and stable request identity; preserve issue identity |
+
+Owner-local jobs/outbox, persistence, mail, rendering and diagnostic adapters support these responsibilities without acquiring universal content authority. Personal mail/calendar and workflow/deployment coordination records remain deferred. General Sprints and advanced review/releases are not added by a broad retained module inventory.
 
 ## 2.2 Module Dependencies
-Presentation uses authorized profile data and immutable artifact references. Sharing resolves a specific publication and selected files. Applications capture submitted artifacts without changing the publication. Core reaches ProjectForge through its scoped API. Keep persistence within the owning module and database.
+
+| Consumer → owner | Permitted dependency | Invariant |
+| --- | --- | --- |
+| Protected entry → Identity / resource owner | Actor context and current resource/action authorization | Authentication or UI visibility alone is insufficient |
+| Presentation → Files | Exact usable artifact identity and protected references | Saving/publishing cannot silently substitute unavailable bytes |
+| Sharing → Presentation / Files | Selected immutable/currently eligible representation and authorized bytes | Current policy applies to direct delivery; no private path shortcut |
+| Applications → Presentation / Files | Exact actual-material selection and retained references | Historical events do not resolve only through a mutable live pointer |
+| Core adapter → ProjectForge | Authenticated actor-scoped API contract | Core never writes Forge tables/repositories directly |
+| ProjectForge → Core Identity status | Narrow current entitlement query | Status authority reads no professional content or private artifacts |
+| Work Management → repository authority | Local repository/resource action policy | Issue access does not grant native Git write |
+
+Dependencies name contracts, not shared ORM models or unrestricted database reads. A query should return a permitted projection/reference rather than exposing another owner's mutable entity internals. Cross-module coordination keeps an explicit operation owner and truthful separately recorded outcomes.
+
+### Current Component View
+
+![Dark-mode PlantUML owning components and contracts](../01-High-Level-Design/Diagrams/hld-components.svg)
+
+[PlantUML source](../01-High-Level-Design/Diagrams/hld-components.puml) · [PNG](../01-High-Level-Design/Diagrams/hld-components.png)
+
+This canonical shared view identifies current MVP responsibilities. The retained package/layer views below illustrate design techniques and keep their original proposed/deferred status; they do not supersede the separate-system boundary or create additional MVP modules.
+
+## 2.3 Public Contracts and Encapsulation
+
+Each module exposes named commands/queries with explicit actor/resource input, validation, preconditions, version/request identity where applicable, owned effects and observable outcomes. Keep implementation details private: repository/storage paths, internal tables, credential material and mutable domain state are not a public module interface.
+
+Use application services/use-case handlers to coordinate a deliberate operation. Controllers/Inertia/API/Git/worker adapters translate entry context and results; policies/domain rules preserve current authority and invariants; persistence and external adapters realize permitted effects. Avoid hidden business actions in getters, unrelated ORM callbacks or implicit cascade behavior.
+
+Concrete methods and framework types are refined in [Detailed Module Design](03-Detailed-Module-Design.md). Do not turn every local contract into HTTP or infer an existing class from an illustrative name.
+
+## 2.4 Persistence, Transactions and Effects
+
+Each system writes only its owned database/storage. Within an application, the owning use case controls the documented local transaction and lock/version checks. Selected foreign-key/unique constraints support integrity; they do not replace current authorization or lifecycle policy.
+
+Filesystem, Git, mail and remote commits are not made atomic by a SQL transaction. Use the selected protected reservations, durable intent/outcome/outbox and owner-controlled reconciliation where required. A lost response may follow a remote commit; resolve stable request identity before an unsafe repeat.
+
+Retain artifact protection while an outcome remains pending/uncertain. Applying profile changes updates the intended draft only; publication is separate; withdrawal does not rewrite submitted history. See [Database Design](04-Database-Design.md) and [API Specification](05-API-Specification.md) for exact ordering, constraints and result behavior.
+
+## 2.5 Composition and Runtime Scope
+
+Laravel's composition/configuration supplies concrete adapters to the owning operations. Keep request actor/resource context explicit and prevent it from leaking into another user/job through long-lived mutable objects. Workers acquire the owner-local credentials and applicable current authority required by their operation.
+
+Shared helper code may support formatting, transport or bounded diagnostics, but it must not become a second owner of private business state or a universal permission bypass. Sharing code does not merge application keys, sessions, databases or private paths. Actual lifecycle/container bindings and dependency checks require implementation evidence.
+
+## 2.6 Module Verification and Handoff
+
+| Concern | Required evidence |
+| --- | --- |
+| Encapsulation | Consumers use permitted contracts; no unauthorized table/filesystem shortcuts |
+| Actor isolation | Cross-user/direct requests and reused worker context preserve current resource authority |
+| Presentation/history | Explicit apply/publish and exact immutable submission artifacts survive later changes |
+| Service/Git boundary | Wrong caller/scope, changed entitlement/grants and actual native client operations behave correctly |
+| Concurrency/repetition | Stale versions, request-identity mismatch, concurrent admission and lost response preserve invariants |
+| Durable recovery | Interrupted finalization, pending references and filesystem/Git/database disagreement remain reconcilable |
+| Composition | Actual bindings/configuration support both isolated applications without hidden shared authority |
+
+Link exact criteria and actual revision-specific evidence through [Traceability](11-Traceability.md) and the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md). Proposed signatures, module counts and rendered diagrams do not establish implemented boundaries or a runtime pass.
+
+## Retained Modularity and Component Records
+
+The records below preserve stable anchors and rationale. Use selected ADRs/current MVP scope to interpret proposed organization and deferred communication/execution material. Supporting UML is rendered locally in dark-mode PlantUML; non-UML dependency maps retain their native source with dark renders.
 
 <a id="design-record-03-component-and-module-design-01-modularity-dependencies-and-encapsulation-md"></a>
 
@@ -19,7 +91,7 @@ Presentation uses authorized profile data and immutable artifact references. Sha
 
 **Proposed rule:** each logical module owns its domain state and invariant-enforcing operations. Consumers use explicit public contracts and permitted projections; infrastructure realizes technical ports without acquiring universal business authority.
 
-**Status:** proposed implementation organization, November 2, 2026. No code package, selected dependency-checking tool, measured metric or accepted baseline is created here. Farhad retains decision authority.
+**Status:** proposed implementation organization. No code package, selected dependency-checking tool, measured metric or accepted baseline is created here. Farhad retains decision authority.
 
 [Boundaries](#design-record-03-component-and-module-design-01-modularity-dependencies-and-encapsulation-md--heading-1-module-boundaries-and-owned-responsibilities) · [Contracts](#design-record-03-component-and-module-design-01-modularity-dependencies-and-encapsulation-md--heading-2-public-contracts-and-internal-encapsulation) · [Dependencies](#design-record-03-component-and-module-design-01-modularity-dependencies-and-encapsulation-md--heading-3-dependency-direction-and-coordination) · [Injection](#design-record-03-component-and-module-design-01-modularity-dependencies-and-encapsulation-md--heading-4-dependency-injection-and-object-lifetime) · [Evaluation](#design-record-03-component-and-module-design-01-modularity-dependencies-and-encapsulation-md--heading-5-cohesion-coupling-and-boundary-review) · [Handoff](#design-record-03-component-and-module-design-01-modularity-dependencies-and-encapsulation-md--heading-6-implementation-handoff-and-current-limits) · [Essential views](#design-record-03-component-and-module-design-01-modularity-dependencies-and-encapsulation-md--heading-8-essential-modularity-and-encapsulation-views)
 
@@ -29,15 +101,15 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Source context
 
-This document refines the [logical component catalog](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md), [runtime protocol](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-03-process-view-concurrency-and-runtime-behavior-md) and [OO principles](03-Detailed-Module-Design.md#design-record-02-detailed-and-object-oriented-design-01-design-principles-and-object-oriented-approach-md). Required meanings remain in the [analysis domain model](../../03-System-Analysis/01-System-Analysis.md#analysis-domain-and-information-analysis--03-domain-model-and-object-oriented-view), [operation contracts](../../03-System-Analysis/01-System-Analysis.md#analysis-business-rules-and-operation-contracts--10-domain-constraints-and-operation-contracts) and [source decisions](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#change-and-baseline-open-questions-and-decisions).
+This document refines the [logical component catalog](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md), [runtime protocol](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-03-process-view-concurrency-and-runtime-behavior-md) and [OO principles](03-Detailed-Module-Design.md#design-record-02-detailed-and-object-oriented-design-01-design-principles-and-object-oriented-approach-md). Required meanings remain in the [analysis domain model](../../03-System-Analysis/02-Domain-And-Information-Analysis.md#analysis-domain-and-information-analysis--03-domain-model-and-object-oriented-view), [operation contracts](../../03-System-Analysis/03-Processes-Scenarios-And-Business-Rules.md#analysis-business-rules-and-operation-contracts--10-domain-constraints-and-operation-contracts) and [source decisions](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#change-and-baseline-open-questions-and-decisions).
 
 <a id="design-record-03-component-and-module-design-01-modularity-dependencies-and-encapsulation-md--heading-1-module-boundaries-and-owned-responsibilities"></a>
 
 #### 1. Module boundaries and owned responsibilities
 
-[Proposed module boundary](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/module-public-and-private-boundary.svg)
+[Proposed module boundary](Diagrams/Modules/module-public-and-private-boundary.svg)
 
-[Editable DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/module-public-and-private-boundary.dot) · ![module public and private boundary](../Diagrams/Archived-Png/Module-Public-And-Private-Boundary.png)
+[Editable DOT](Diagrams/Modules/module-public-and-private-boundary.dot) · ![module public and private boundary](Diagrams/Modules/module-public-and-private-boundary.svg)
 
 **Logical component:** a coherent architectural responsibility, such as Presentation or Sharing. **Code module:** the package structure that realizes that responsibility and makes exported/internal elements identifiable. **Deployment unit:** an artifact/process arrangement that can be installed or run. These concepts are related but are not interchangeable: several modules can share one release and database.
 
@@ -87,9 +159,9 @@ The resource owner verifies current actor/resource/action/lifecycle policy at th
 
 #### 3. Dependency direction and coordination
 
-[Allowed dependencies and infrastructure realization](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/module-dependency-direction.svg)
+[Allowed dependencies and infrastructure realization](Diagrams/Modules/module-dependency-direction.svg)
 
-[Editable DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/module-dependency-direction.dot) · ![module dependency direction](../Diagrams/Archived-Png/Module-Dependency-Direction.png)
+[Editable DOT](Diagrams/Modules/module-dependency-direction.dot) · ![module dependency direction](Diagrams/Modules/module-dependency-direction.svg)
 
 <a id="design-record-03-component-and-module-design-01-modularity-dependencies-and-encapsulation-md--heading-allowed-dependency-rules"></a>
 
@@ -122,9 +194,9 @@ Avoid using a generic event bus to conceal a required synchronous invariant or a
 
 #### 4. Dependency injection and object lifetime
 
-[Composition and lifetime boundaries](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/module-composition-and-lifetimes.svg)
+[Composition and lifetime boundaries](Diagrams/Modules/module-composition-and-lifetimes.svg)
 
-[Editable DOT](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/module-composition-and-lifetimes.dot) · ![module composition and lifetimes](../Diagrams/Archived-Png/Module-Composition-And-Lifetimes.png)
+[Editable DOT](Diagrams/Modules/module-composition-and-lifetimes.dot) · ![module composition and lifetimes](Diagrams/Modules/module-composition-and-lifetimes.svg)
 
 Use the framework composition root to register approved implementations and construct explicit dependencies. Controllers/handlers receive needed collaborators rather than finding arbitrary services through global lookups. Introduce a port when actual variability, effect control or verification warrants it, not simply to wrap every framework method.
 
@@ -207,9 +279,9 @@ This focused package adds **four diagrams and four reference tables**. Reuse the
 
 ##### 8.1 Owner packages and source dependency direction
 
-[Owner packages and source dependency direction](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/modularity-essential-packages.svg)
+[Owner packages and source dependency direction](Diagrams/Modules/modularity-essential-packages.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/modularity-essential-packages.puml) · ![modularity essential packages](../Diagrams/Archived-Png/Modularity-Essential-Packages.png)
+[Editable PlantUML](Diagrams/Modules/modularity-essential-packages.puml) · ![modularity essential packages](Diagrams/Modules/modularity-essential-packages.svg)
 
 Proposed acyclic source graph, not actual namespaces or a measured import audit. Ports belong in the actual owning contract/application location selected for the codebase; the package label is illustrative. Composition root wires concrete adapters rather than domain code locating arbitrary services.
 
@@ -217,9 +289,9 @@ Proposed acyclic source graph, not actual namespaces or a measured import audit.
 
 ##### 8.2 Allowed layers and forbidden bypasses
 
-[Allowed layers and forbidden bypasses](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/modularity-essential-layers.svg)
+[Allowed layers and forbidden bypasses](Diagrams/Modules/modularity-essential-layers.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/modularity-essential-layers.puml) · ![modularity essential layers](../Diagrams/Archived-Png/Modularity-Essential-Layers.png)
+[Editable PlantUML](Diagrams/Modules/modularity-essential-layers.puml) · ![modularity essential layers](Diagrams/Modules/modularity-essential-layers.svg)
 
 Combines layering, public boundary and dependency inversion in one essential view. Runtime calls may reach an injected adapter while source dependency points toward an abstraction. A shared database or process does not relax another owner’s write boundary.
 
@@ -227,9 +299,9 @@ Combines layering, public boundary and dependency inversion in one essential vie
 
 ##### 8.3 Public contract and hidden implementation
 
-[Public contract and hidden implementation](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/modularity-essential-encapsulation.svg)
+[Public contract and hidden implementation](Diagrams/Modules/modularity-essential-encapsulation.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/modularity-essential-encapsulation.puml) · ![modularity essential encapsulation](../Diagrams/Archived-Png/Modularity-Essential-Encapsulation.png)
+[Editable PlantUML](Diagrams/Modules/modularity-essential-encapsulation.puml) · ![modularity essential encapsulation](Diagrams/Modules/modularity-essential-encapsulation.svg)
 
 Plus marks public, minus private; tilde denotes package visibility conceptually, not a PHP access modifier. Actual module-internal visibility needs namespaces/import rules and review beyond language member visibility. Return a scoped projection rather than mutable ORM entity, credentials or raw private path. Interface access itself is not permission.
 
@@ -237,9 +309,9 @@ Plus marks public, minus private; tilde denotes package visibility conceptually,
 
 ##### 8.4 Tangled versus owner-controlled dependencies
 
-[Tangled versus owner-controlled dependencies](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/modularity-essential-before-after.svg)
+[Tangled versus owner-controlled dependencies](Diagrams/Modules/modularity-essential-before-after.svg)
 
-[Editable PlantUML](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/04-system-design/03-component-and-module-design/diagrams/modularity-essential-before-after.puml) · ![modularity essential before after](../Diagrams/Archived-Png/Modularity-Essential-Before-After.png)
+[Editable PlantUML](Diagrams/Modules/modularity-essential-before-after.puml) · ![modularity essential before after](Diagrams/Modules/modularity-essential-before-after.svg)
 
 Illustrates information hiding and cohesion without claiming production smells. Removing a source cycle requires actual ownership/import analysis; a generic event bus cannot conceal an invariant dependency or authorize hidden effects. Do not split every method into an interface merely to lower arrow count.
 
@@ -425,3 +497,7 @@ Review contracts against the owning requirements, current authority, data/state 
 Keep analysis meaning separate from physical deployment/code mechanisms. Use the [reference map](../01-High-Level-Design/14-Appendices.md#design-record-design-references-and-coverage-md), [evolution procedure](12-Appendices.md#design-record-02-detailed-and-object-oriented-design-05-design-evolution-refactoring-and-technical-debt-md) and [Design review/handoff](../01-High-Level-Design/14-Appendices.md#design-record-06-design-quality-and-security-analysis-05-design-review-traceability-and-handoff-md) when a material interface/ownership choice changes.
 
 </details>
+
+## Directory and ownership check
+
+When setup defines the application layout, record the actual namespace or route beside each owning module. Keep Core and ProjectForge data ownership separate and link any crossing to its interface contract.

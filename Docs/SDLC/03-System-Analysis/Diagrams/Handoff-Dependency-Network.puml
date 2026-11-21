@@ -1,6 +1,7 @@
 @startuml
 title MVP dependency network — provider and runner gates are future
-skinparam backgroundColor white
+skinparam backgroundColor #0D1525
+skinparam defaultFontColor #EDF4FF
 skinparam shadowing false
 skinparam defaultFontName Arial
 rectangle "Current owner MVP scope + requirements" as R
@@ -14,6 +15,6 @@ C --> D
 B --> D
 D --> V
 V --> READY
-rectangle "AFTER MVP planning\nPersonal Google account consent / OAuth\nAdvanced Sprint / review / execution isolation" as F #F8EBD7
+rectangle "AFTER MVP planning\nPersonal Google account consent / OAuth\nAdvanced Sprint / review / execution isolation" as F #4A302B
 R ..> F : retained future requirements\nnot MVP prerequisites
 @enduml

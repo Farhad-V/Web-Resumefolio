@@ -1,0 +1,27 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title AFTER MVP — Proposed — Conditional scheduling and conflict detection
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+start
+:Capture intended local time, zone and activity;
+:Validate time meaning and current authority;
+if (Free-busy capability permitted and established?) then (yes)
+ :Fetch bounded permitted availability with freshness;
+ if (Conflict observed?) then (yes)
+  :Show actual conflict and explicit alternatives;
+ else (no)
+  :Show no observed conflict, not reservation guarantee;
+ endif
+else (no)
+ :Availability unknown; preserve local intent;
+endif
+:Owner deliberately selects local save or eligible provider action;
+:Recheck current capability/version before consequential mutation;
+stop
+
+@enduml

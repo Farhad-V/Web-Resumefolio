@@ -1,0 +1,30 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title AFTER MVP — Proposed — Bounded recurrence expansion and exception identity
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+start
+:Read exact source recurrence, zone and exception identity;
+:Choose actual bounded query window / processing budget;
+:Validate recurrence semantics against supported adapter model;
+while (Next occurrence within window and budget?) is (yes)
+ :Derive source occurrence identity in recurrence zone;
+ if (Cancelled exception?) then (yes)
+  :Retain cancellation / skip visible occurrence;
+ else (no)
+  if (Explicit override?) then (yes)
+   :Apply override preserving original occurrence identity;
+  else (no)
+   :Project ordinary occurrence;
+  endif
+ endif
+ :Map display instant/zone without flattening all-day dates;
+endwhile (no)
+:Return bounded projection / truthful continuation;
+stop
+
+@enduml

@@ -1,0 +1,25 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Proposed / illustrative — Candidate short-lived branch and guarded integration flow
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+start
+:Start from identified current target revision;
+:Create short-lived topic branch if appropriate;
+:Commit and actually push through permitted native transport;
+:Open revision-bound pull request;
+:Evaluate required checks and review policy;
+if (Source/target/evidence still current and merge permitted?) then (yes)
+ :Guarded native integration into main;
+ :Reconcile actual ref outcome and PR metadata;
+else (no)
+ :Revise / re-evaluate / close without merge;
+endif
+stop
+
+@enduml

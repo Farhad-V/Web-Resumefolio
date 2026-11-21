@@ -1,0 +1,20 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+allowmixing
+title Proposed — Design evolution timeline and ADR history
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+rectangle "Existing proposal records\nADR-001 modular boundaries\nADR-002 publication / history\nADR-003 durable external attempts" as A
+rectangle "Current documentation package\nNovember 2, 2026\nExamples and engineering procedure" as B
+rectangle "Proposed evolution decision\nADR-004 compatible incremental change\nStatus: Proposed" as C
+rectangle "Future candidate-specific work\nEvidence -> owner disposition\nimplementation -> verification" as D
+A --> B : context, not acceptance
+B --> C : records recommendation
+C --> D : conditional next steps
+
+@enduml

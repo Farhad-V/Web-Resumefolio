@@ -1,0 +1,31 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam shadowing false
+top to bottom direction
+title ADR Selection, Supersession and Amendment
+rectangle "ADR-001\nHistorical common-application proposal\nInternal ownership rationale retained" as a1
+rectangle "ADR-005\nAccepted independent Core / ProjectForge boundary" as a5
+rectangle "ADR-002\nExplicit publication and exact history" as a2
+rectangle "ADR-003\nDurable attributable effects" as a3
+rectangle "ADR-004\nCompatible incremental evolution" as a4
+rectangle "ADR-006\nSelected MVP implementation baseline\nT05 rules and evidence gates" as a6
+rectangle "ADR-007\nReact / Inertia frontend amendment\nTrusted Blade PDF retained" as a7
+rectangle "Implementation / acceptance evidence\nExact criteria, candidate and real checks" as evidence
+a5 --> a1 : Supersedes common-system allocation
+a6 --> a5 : Preserves accepted boundary
+a6 --> a2 : Selects applicable MVP realization
+a6 --> a3 : Selects applicable MVP mechanisms
+a6 --> a4 : Selects MVP evolution principles
+a7 --> a6 : Amends only interactive frontend choice
+a6 --> evidence : Selection requires verification
+a7 --> evidence : Build / UI / direct-request checks
+legend bottom
+  Arrows describe decision relationships, not runtime dependencies.
+  Selection is not implementation or a passing release gate.
+  Deferred clauses remain outside MVP; earlier rationale and anchors are preserved.
+endlegend
+@enduml

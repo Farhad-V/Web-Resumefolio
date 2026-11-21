@@ -1,0 +1,31 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title AFTER MVP — Proposed — Message and send knowledge: distinct dimensions
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+state "Local draft" as Draft
+state "Reviewed immutable intent" as Reviewed
+state "Dispatch pending" as Pending
+state "Provider accepted (not delivered)" as Accepted
+state "Rejected with evidence" as Rejected
+state "Unknown / partial observation" as Unknown
+[*] --> Draft
+Draft --> Reviewed : explicit review exact version
+Reviewed --> Draft : content / recipient / attachment changes
+Reviewed --> Pending : deliberate current eligible send
+Pending --> Accepted : attributable acceptance
+Pending --> Rejected : actual rejection evidence
+Pending --> Unknown : effect observation insufficient
+Unknown --> Accepted : actual reconciliation evidence
+Unknown --> Rejected : authoritative no-effect rejection
+note right of Accepted
+ Delivered / read are independent evidence fields,
+ not automatic next states or guaranteed capabilities.
+ A local read observation is not recipient read.
+end note
+
+@enduml

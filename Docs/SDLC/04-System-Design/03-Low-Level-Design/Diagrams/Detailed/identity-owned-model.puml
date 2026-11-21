@@ -1,0 +1,37 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Proposed LC-01 account session and scoped authority identities
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam shadowing false
+
+skinparam classAttributeIconSize 0
+skinparam classBackgroundColor #164E63
+top to bottom direction
+class Account {
+ +actorId : ActorId
+ +lifecycle : ActualAccountState
+ +version : RevisionId
+}
+class Invitation
+class SessionRecord
+class CredentialVerifier <<restricted>>
+class ScopedGrant {
+ +resource : ScopedResourceId
+ +permissionContext : PolicyReference
+ +version : RevisionId
+}
+class AuthorityChangeRecord
+Account -- Invitation : intended identity
+Account -- SessionRecord : bounded context
+Account -- CredentialVerifier : protected verification
+Account -- ScopedGrant : explicit subject / resource scope
+ScopedGrant -- AuthorityChangeRecord : attributable changes
+note bottom of ScopedGrant
+ Authentication is not universal authorization.
+ Resource owner retains operation/lifecycle checks.
+ Role policy and concrete schema remain to reconcile.
+end note
+@enduml

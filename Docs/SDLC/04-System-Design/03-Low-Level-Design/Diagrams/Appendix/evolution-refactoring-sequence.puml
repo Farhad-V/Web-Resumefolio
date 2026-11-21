@@ -1,0 +1,31 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Proposed — Step-by-step transformation and verification
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+
+actor Engineer
+participant "Current candidate" as C
+participant "Contract checks" as T
+participant "Adapter seam" as S
+Engineer -> C : identify exact baseline and invariants
+Engineer -> T : establish focused observed behavior + source obligations
+T --> Engineer : results / known defects / limitations
+Engineer -> C : extract smallest cohesive handler
+Engineer -> T : compare normal / denied / conflict / unknown outcomes
+T --> Engineer : pass or stop and correct
+Engineer -> S : introduce bounded abstraction if justified
+Engineer -> C : wire one compatible implementation
+Engineer -> T : verify persistence races + affected integration
+T --> Engineer : candidate-specific evidence
+Engineer -> C : remove obsolete path only after compatibility gate
+note over Engineer,T
+ Proposed engineering sequence, not runtime product messages
+ or evidence that a refactoring has been executed.
+end note
+
+@enduml

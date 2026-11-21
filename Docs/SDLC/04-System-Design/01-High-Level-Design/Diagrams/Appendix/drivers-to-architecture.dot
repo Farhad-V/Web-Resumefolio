@@ -1,0 +1,15 @@
+digraph G {
+ graph [bgcolor="#111827",fontcolor="#F3F4F6"]; node [fontcolor="#F3F4F6"]; edge [fontcolor="#CBD5E1"];
+ rankdir=LR; graph [bgcolor="#111827",pad="0.3",nodesep="0.35",ranksep="0.6",fontname="Segoe UI"]; node [shape=box,style="rounded,filled",fillcolor="#1F2937",color="#94A3B8",fontname="Segoe UI",fontsize=12,margin="0.16,0.12"]; edge [color="#94A3B8",fontname="Segoe UI",fontsize=10];
+privacy [label="Private resource access
+One coherent product"]; history [label="Explicit publication
+Preserved actual history"]; effects [label="Real Git and provider effects
+Conditional untrusted execution"]; resources [label="20 project hours/week
+Existing budget and dated host inventory"];
+modules [label="Explicit module ownership
+Per-operation authorization",fillcolor="#1F2937"]; revisions [label="Separate source / draft / publication
+Independent submission materials",fillcolor="#1F2937"]; attempts [label="Attributable attempts
+Durable intent and reconciliation",fillcolor="#1F2937"]; gates [label="Evaluate resource and isolation gates
+No unverified capacity claim",fillcolor="#1F2937"];
+privacy->modules;history->revisions;effects->attempts;effects->gates;resources->modules;resources->gates;
+}

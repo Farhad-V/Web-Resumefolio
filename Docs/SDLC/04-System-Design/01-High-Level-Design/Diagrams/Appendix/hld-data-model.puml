@@ -1,0 +1,67 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #164E63
+skinparam ArrowColor #164E63
+skinparam ArrowFontColor #164E63
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam class {
+ BackgroundColor #164E63
+ BorderColor #164E63
+ FontColor #164E63
+}
+skinparam package {
+ BackgroundColor #111827
+ BorderColor #164E63
+ FontColor #164E63
+}
+top to bottom direction
+title Conceptual Data Ownership and Relationships
+package "Core-owned information" {
+ class "Account" as account #164E63
+ class "Profile" as profile
+ class "Resume / portfolio" as resume
+ class "Independent draft" as draft
+ class "Published revision" as revision
+ class "Sharing policy / link" as share
+ class "Private artifact" as artifact
+ class "Application" as application
+ class "Submission event" as submission #164E63
+ account --> profile : Owns
+ account --> resume : Owns
+ resume --> draft : Has editable material
+ resume --> revision : Has immutable snapshots
+ share --> resume : Controls selected access
+ revision --> artifact : References selected bytes
+ account --> artifact : Owns
+ account --> application : Owns
+ application --> submission : Retains immutable history
+ submission --> revision : Preserves exact selection when used
+ submission --> artifact : Protects exact bytes
+}
+package "ProjectForge-owned information" {
+ class "Forge actor mapping" as actor #164E63
+ class "Repository" as repo
+ class "Repository grant" as grant
+ class "Git credential scope" as credential
+ class "Issue" as issue
+ class "Native Git objects / refs" as objects
+ grant --> actor : Authorizes actor
+ grant --> repo : Applies to repository
+ credential --> actor : Belongs to actor
+ credential --> repo : Restricts transport access
+ repo --> issue : Contains
+ repo --> objects : Uses private Git storage
+}
+actor ..> account : Issuer + subject reference\nNo cross-database foreign key
+legend bottom
+  Conceptual associations only: multiplicities and physical constraints belong in Database Design.
+  Association arrows describe relationships, not unrestricted read access or mutation rights.
+  Current sharing access and immutable submission history remain separate.
+endlegend
+@enduml

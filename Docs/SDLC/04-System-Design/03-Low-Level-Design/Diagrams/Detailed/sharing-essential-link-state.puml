@@ -1,0 +1,27 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+title Proposed — Link eligibility and viewer generation
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+[*] --> Configured : actual authorized link creation
+Configured --> Enabled : explicitly enabled under reviewed policy
+Enabled --> Disabled : owner disable / revoke admission
+Disabled --> Enabled : explicit permitted re-enable, if supported
+Enabled --> Expired : only if expiry policy adopted and reached
+Enabled --> Enabled : password rotation / scoped update increments applicable generation
+note right of Enabled
+ Effective eligibility also requires current resource/content policy.
+ Viewer context must match current link authorization generation.
+ Download mode change is independent from link enable/disable.
+end note
+note bottom of Disabled
+ Disable/rotation invalidation needs actual synchronized completion boundary.
+ Previously emitted/downloaded bytes cannot be recalled.
+ Restoring old data must not re-enable revoked links.
+end note
+
+@enduml

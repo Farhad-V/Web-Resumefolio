@@ -1,0 +1,24 @@
+digraph OutcomeRoadmap {
+ graph [bgcolor="#111827",fontcolor="#F3F4F6"];node [fontcolor="#F3F4F6"];edge [fontcolor="#CBD5E1"];
+
+  graph [rankdir=TB, bgcolor="#111827", pad=0.3, nodesep=0.4, ranksep=0.5,
+         label="MVP OUTCOME ROADMAP", labelloc=t, labeljust=l,
+         fontname="Segoe UI", fontsize=22, fontcolor="#F3F4F6", dpi=150];
+  node [shape=box, style="rounded,filled", fontname="Segoe UI", fontsize=14,
+        fontcolor="#F3F4F6", color="#94A3B8", fillcolor="#1F2937",
+        penwidth=1.4, margin="0.22,0.13", width=2.7];
+  edge [color="#94A3B8", arrowsize=0.75, penwidth=1.4];
+
+  setup [label="Isolated project setup", fillcolor="#1F2937", color="#94A3B8"];
+  workspace [label="Invited access and\nprivate workspace"];
+  sharing [label="Resumes, files, PDFs\nand protected sharing"];
+  applications [label="Manual applications\nand submitted history"];
+  git [label="ProjectForge authorization\nand Git checks"];
+  integration [label="Basic ProjectForge\nintegration"];
+  release [label="MVP verification and release", fillcolor="#1F2937", color="#94A3B8"];
+
+  { rank=same; workspace; git; }
+  { rank=same; applications; integration; }
+  setup -> workspace -> sharing -> applications -> release;
+  setup -> git -> integration -> release;
+}

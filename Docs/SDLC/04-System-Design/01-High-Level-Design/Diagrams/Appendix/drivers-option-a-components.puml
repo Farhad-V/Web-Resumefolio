@@ -1,0 +1,31 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+title Option A — UML component comparison (not recommended)
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam wrapWidth 190
+
+package "One trusted application release" {
+ component "Web / command handlers" as H
+ component "Mixed feature logic\nDirect cross-feature model access" as M
+ component "Background / adapters" as W
+ H --> M
+ M --> W
+}
+database "Shared relational records" as DB
+folder "Private bytes / native Git" as F
+component "Provider / executor / target interfaces\nIndependent authority still required" as E
+H --> DB : convenient direct access
+M --> DB
+W --> DB
+M --> F
+W --> E
+note bottom of M
+ Low initial packaging overhead; ownership and invariant checks can erode.
+ This comparison does not endorse unsafe execution in the application.
+end note
+@enduml

@@ -1,0 +1,32 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+allowmixing
+title Proposed — Inheritance versus composition: rendition variation
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam classAttributeIconSize 0
+skinparam maxMessageSize 65
+
+package "Avoid: misleading subtype" {
+ class GeneratedRendition {
+  +renderTemplate()
+ }
+ class UploadedRendition
+ GeneratedRendition <|-- UploadedRendition : cannot honor template rendering
+}
+package "Prefer when variation justifies it" {
+ class "ResolveRepresentationHandler" as H
+ interface "RepresentationResolver" as R {
+  +resolve(exactSelection) : RepresentationOutcome
+ }
+ class "GeneratedResolver" as G
+ class "UploadedResolver" as U
+ H --> R : composed collaborator
+ G ..|> R
+ U ..|> R
+}
+
+@enduml

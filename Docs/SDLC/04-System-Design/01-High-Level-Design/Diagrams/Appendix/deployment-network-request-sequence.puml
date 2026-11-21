@@ -1,0 +1,39 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+title HISTORICAL broader-product proposal — Proposed protected request across network/runtime boundaries
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+actor Browser as B
+participant "Optional balancer (if adopted)" as L
+participant "HTTPS reverse proxy" as P
+participant "Trusted application owner" as A
+database "Current authority / publication / record state" as DB
+participant "Private artifact adapter" as F
+alt starting direct ingress candidate
+ B -> P : HTTPS intended protected request
+else optional balancing alternative
+ B -> L : HTTPS intended protected request
+ L -> P : evaluated trusted transport / forwarded context
+end
+P -> A : validated runtime boundary / intended route
+A -> DB : resolve current viewer/resource scope + exact representation
+DB --> A : versioned eligibility / available identity or refusal
+alt permitted current guarded admission
+ A -> F : exact scoped usable artifact
+ F --> A : permitted delivery context or unavailable
+ A --> P : authorized projection / controlled bytes or accurate unavailable
+ P --> B : protected response
+else denied / stale / missing
+ A --> P : safe bounded result; no private fallback
+ P --> B : actual denied/unavailable result
+end
+note over P,F
+ Concrete proxy/cache/range and revocation admission rules need evaluated configuration.
+ An internal redirect cannot expose raw private paths; already emitted bytes cannot be recalled.
+end note
+@enduml

@@ -1,0 +1,31 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+title Proposed truthful outcome feedback and safe next action
+skinparam backgroundColor #111827
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+start
+:User performs explicit permitted intent;
+:Show pending context; preserve safe input;\nprevent accidental duplicate submission;
+:Resolve same attributable operation result;
+if (Confirmed?) then (yes)
+ :Name exactly what completed;\nretain useful result / revision context;
+else (no)
+ if (Invalid / denied / conflict?) then (yes)
+  :Identify safe correction / authorization / review path;\npreserve permitted intent and meaningful focus;
+ else (pending / partial / unknown)
+  :Show actual known stage and operation reference;\noffer authorized status lookup / reconciliation;
+  note right
+   No unconditional Send again / Deploy again.
+   Cancellation requested is not confirmed stop.
+   Refresh resolves outcome rather than repeats effect.
+  end note
+ endif
+endif
+:Expose feedback visually and through appropriate semantics;\nnext action uses current authority and versions;
+stop
+@enduml

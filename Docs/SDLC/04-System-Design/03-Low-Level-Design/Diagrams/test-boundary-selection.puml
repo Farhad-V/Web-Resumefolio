@@ -1,0 +1,30 @@
+@startuml
+!theme cyborg
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam shadowing false
+title Select the Test Boundary for the Required Guarantee
+start
+:Identify exact criterion and observable invariant;
+if (Pure domain / policy decision?) then (yes)
+ :Deterministic unit case with explicit clock and inputs;
+ :Assert result and meaningful forbidden / allowed effect;
+else (no)
+ if (Depends on database / filesystem / concurrency?) then (yes)
+  :Real persistence / storage integration case;
+ else (no)
+  :Actual protocol, browser or recovery check
+for the relevant boundary;
+ endif
+endif
+:Use fakes only within their stated simulation limits;
+:Record candidate, setup, expected and observed outcome;
+if (Failure or evidence gap?) then (yes)
+ :Link diagnosis / corrective work and retest scope;
+else (no)
+ :Link bounded result to exact criterion;
+endif
+stop
+@enduml

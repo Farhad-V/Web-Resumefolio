@@ -1,0 +1,50 @@
+@startuml
+!theme plain
+skinparam backgroundColor #111827
+skinparam defaultFontName Arial
+skinparam defaultFontColor #F3F4F6
+skinparam ArrowColor #CBD5E1
+skinparam ArrowFontColor #CBD5E1
+skinparam shadowing false
+skinparam roundcorner 12
+skinparam componentStyle rectangle
+skinparam rectangle {
+ BackgroundColor #1F2937
+ BorderColor #64748B
+ FontColor #F3F4F6
+}
+skinparam database {
+ BackgroundColor #1F2937
+ BorderColor #64748B
+ FontColor #F3F4F6
+}
+skinparam actor {
+ BackgroundColor #1F2937
+ BorderColor #CBD5E1
+ FontColor #F3F4F6
+}
+skinparam package {
+ BackgroundColor #111827
+ BorderColor #67E8F9
+ FontColor #67E8F9
+}
+skinparam node {
+ BackgroundColor #111827
+ BorderColor #64748B
+ FontColor #F3F4F6
+}
+left to right direction
+title Resumefolio MVP - System Context
+actor "Invited user / administrator" as user
+actor "Employer / recipient" as recipient
+rectangle "Resumefolio Core\nIdentity, presentation, files, applications" as core #164E63
+rectangle "ProjectForge\nRepositories, issues, Kanban" as forge #312E81
+rectangle "Authorized native Git client" as git
+rectangle "System mail delivery" as mail
+user --> core : Authenticated browser / HTTPS
+recipient --> core : Protected sharing / HTTPS
+core --> forge : Scoped JSON API\nCurrent user context
+forge --> core : Current entitlement validation
+git --> forge : Authorized HTTPS Git
+core --> mail : Transactional system messages
+@enduml
