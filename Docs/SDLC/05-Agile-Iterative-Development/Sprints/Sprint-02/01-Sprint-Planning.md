@@ -76,3 +76,16 @@ Record actual detailed design/implementation/testing in [Review](02-Sprint-Revie
 When planning is confirmed, record actual goal, selected issues, dependencies, exact checks and current status. Review any change to those facts rather than silently substituting another outcome. Feed observed results and follow-up back through refinement and carry a real process improvement from the retrospective into the next plan.
 
 No execution, setup, test result, remote issue change or deployment is established by this planning document.
+
+## Ordered Work, SMTP and Backup Acceptance
+
+Follow **#37 → #5 → #6** as the reading/start sequence. SMTP and backup investigation may proceed independently where safe inputs exist; actual application checks depend on the required setup. See [Sprint 02 slices](../../03-Sprint-Delivery-Plan.md#sprint-02). Initial estimate: **28–56 total owner-work hours**, uncalibrated; this exceeds one 20-hour project week and does not define the timebox. Split/carry work explicitly before a sprint commitment.
+
+| Locator | Expected result | Current execution |
+| --- | --- | --- |
+| S02-T04 | Authorized synthetic SMTP test recipients receive the controlled test messages; transport acceptance and receipt are recorded separately without exposing credentials. | Not executed |
+| S02-T05 | Connection failure/throttling/retry produce truthful outcomes without duplicate business actions or secret-bearing diagnostics. | Not executed |
+| S02-T06 | Independent restic destination access/capacity, protected separate keys, selected retention and coherent capture inventory are checked or explicitly blocked. | Not executed |
+| S02-T07 | An isolated restore target and safe procedure are recorded; preparation makes no actual restore-success claim (#27 owns integrated restore proof). | Not executed |
+
+The exit demonstration includes both reproducible applications, actual controlled SMTP evidence and backup-prerequisite evidence, with exact applicable criteria. Missing service configuration, authorized recipient or independent destination remains an input blocker; no purchase, credential disclosure or live-data operation is authorized by this plan.

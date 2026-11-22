@@ -128,3 +128,7 @@ This is the same proposed allocation as the GitHub [Sprint Backlog](https://gith
 | 10 | Integrated acceptance and restore | [#25](https://github.com/Farhad-V/Web-Resumefolio/issues/25), [#27](https://github.com/Farhad-V/Web-Resumefolio/issues/27) |
 | 11 | Quality and operating guidance | [#26](https://github.com/Farhad-V/Web-Resumefolio/issues/26), [#28](https://github.com/Farhad-V/Web-Resumefolio/issues/28) |
 | 12 | Release review and authorized deployment | [#29](https://github.com/Farhad-V/Web-Resumefolio/issues/29) |
+
+## Detailed Execution Plan
+
+Use the [Sprint Delivery Plan](03-Sprint-Delivery-Plan.md) for the exact within-group reading/start order, explicit prerequisites, item slices, demonstrations, planned checks and uncalibrated effort ranges. It expands this allocation without starting any iteration or changing the owner-deferred dates/duration/final group count.

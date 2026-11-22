@@ -44,4 +44,17 @@ The unexecuted setup checks previously drafted for Sprint 01 now belong here; th
 | S02-T02 | Migrations/fixtures use separate isolated databases and synthetic data. | Not executed |
 | S02-T03 | Both applications start with verified designated entry/basic responses. | Not executed |
 
-Record additional SMTP and backup prerequisite checks from #5/#6 before confirmation. These checks do not imply delivered mail, recipient receipt, successful backup or demonstrated restore.
+Use S02-T04–S02-T07 below for SMTP and backup prerequisites from #5/#6; refine actual safe fixtures before execution. These checks do not imply delivered mail, recipient receipt, successful backup or demonstrated restore.
+
+## SMTP and Backup Planned Execution Record
+
+Follow **#37 → #5 → #6** as the reading/start sequence. SMTP and backup investigation may proceed independently where safe inputs exist; actual application checks depend on the required setup. See [Sprint 02 slices](../../03-Sprint-Delivery-Plan.md#sprint-02). Initial estimate: **28–56 total owner-work hours**, uncalibrated; this exceeds one 20-hour project week and does not define the timebox. Split/carry work explicitly before a sprint commitment.
+
+| Locator | Expected result | Current execution |
+| --- | --- | --- |
+| S02-T04 | Authorized synthetic SMTP test recipients receive the controlled test messages; transport acceptance and receipt are recorded separately without exposing credentials. | Not executed |
+| S02-T05 | Connection failure/throttling/retry produce truthful outcomes without duplicate business actions or secret-bearing diagnostics. | Not executed |
+| S02-T06 | Independent restic destination access/capacity, protected separate keys, selected retention and coherent capture inventory are checked or explicitly blocked. | Not executed |
+| S02-T07 | An isolated restore target and safe procedure are recorded; preparation makes no actual restore-success claim (#27 owns integrated restore proof). | Not executed |
+
+The exit demonstration includes both reproducible applications, actual controlled SMTP evidence and backup-prerequisite evidence, with exact applicable criteria. Missing service configuration, authorized recipient or independent destination remains an input blocker; no purchase, credential disclosure or live-data operation is authorized by this plan.

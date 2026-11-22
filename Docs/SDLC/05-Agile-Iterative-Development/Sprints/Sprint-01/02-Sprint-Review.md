@@ -147,8 +147,12 @@ The proposed sprint goal is scope/host/readiness. Earlier unexecuted setup check
 
 | Check | Expected result | Status |
 | --- | --- | --- |
-| S01-T01 Scope and dependencies | Selected #1/#2 scope and dependencies match exact acceptance criteria. | Not executed |
-| S01-T02 Host/readiness | #7/#8/#9 have actual readiness evidence or explicit blockers. | Not executed |
+| S01-T01 Scope and dependencies | Capacity/scope #1 and actual host/isolation #2 have exact readiness evidence or named blockers. | Not executed |
+| S01-T02 Host/readiness | #7 planning, #8 criterion coverage and #9 design baseline have exact reviewed evidence or explicit blockers. | Not executed |
 | S01-T03 Next-slice readiness | Setup prerequisites and planned checks are explicit; no execution inferred. | Not executed |
 
 Record the tested revision, environment, observed results, evidence and follow-up in the selected readiness work items. Use the [STLC workflow](../../02-Test-Strategy.md#software-testing-life-cycle-stlc) to close the checks.
+
+## Refined Work Evidence
+
+Use [Sprint 01 ordered slices](../../03-Sprint-Delivery-Plan.md#sprint-01); every actual task/criterion result remains pending. Generic S01 checks summarize readiness and do not replace item-specific evidence.
