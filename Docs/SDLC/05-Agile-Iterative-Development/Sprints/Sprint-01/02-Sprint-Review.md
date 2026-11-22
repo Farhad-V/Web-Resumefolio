@@ -7,15 +7,15 @@ Accountable owner: Farhad. All product work below is Not started; tests are Not 
 
 ## Review Readiness and Evidence Boundary
 
-**Review not conducted; no setup increment demonstrated.** Sprint 01's candidate goal remains proposed in Planning. The capability table below is the broader MVP progress register; it is not a commitment to deliver all packages within Sprint 01. Keep implementation not started and checks not executed until actual evidence changes them.
+**Review not conducted; no readiness increment demonstrated.** Sprint 01's candidate goal remains proposed in Planning. The capability table below is the broader MVP progress register; it is not a commitment to deliver all packages within Sprint 01. Keep implementation not started and checks not executed until actual evidence changes them.
 
-Use the existing [setup issue](https://github.com/Farhad-V/Web-Resumefolio/issues/37), [Project Setup](../../01-Project-Setup.md) and [Planning](01-Sprint-Planning.md) for the selected slice. A documentation update or installed workstation tool is not product implementation or repeatable setup proof.
+Use the existing [proposed allocation](../../00-Agile-Iterative-Development.md#proposed-sprint-allocation), [Project Setup](../../01-Project-Setup.md) and [Planning](01-Sprint-Planning.md) for the selected slice. A documentation update or installed workstation tool is not product implementation or repeatable setup proof.
 
 ### Review Procedure
 
 1. Identify the actual confirmed goal/issues, candidate/build and environment.
 2. Demonstrate what ran and compare observed results to exact applicable criteria.
-3. Inspect actual S01-T01–S01-T03 results and remaining setup obligations, including safe targets and reproducibility.
+3. Inspect actual S01-T01–S01-T03 results and remaining readiness obligations and unresolved prerequisites.
 4. Preserve failures, blockers, unexecuted work and simulation/coverage limits.
 5. Record actual feedback/decisions and link remaining work without inventing acceptance.
 6. Review what can proceed next under its prerequisites; setup does not automatically pass G2 or release gates.
@@ -25,7 +25,7 @@ Use the existing [setup issue](https://github.com/Farhad-V/Web-Resumefolio/issue
 | --- | --- |
 | Demonstrated candidate / environment | None recorded |
 | Actual command/test results | None recorded; planned S01 checks remain not executed |
-| Confirmed accepted setup outcome | None recorded |
+| Confirmed accepted readiness outcome | None recorded |
 | Participant/owner review feedback | None recorded |
 | Newly agreed next increment | None recorded; select from actual evidence |
 
@@ -137,18 +137,18 @@ Link real job handlers, scheduled tasks, immutable artifact lifecycle, quota enf
 
 **Status:** pending. Record the tested revision, environment, check and actual outcome.
 
-Candidate checks: run a clean install, build, isolated migration and the basic automated checks for each application. Record failures and link each verified result to the setup work item.
+Candidate checks: review exact scope/dependency and host/readiness evidence for #1, #2, #7, #8 and #9. Setup checks belong to Sprint 02; all remain not executed.
 
 See the [test strategy](../../02-Test-Strategy.md) for cross-sprint checks.
 
 ## Sprint 01 test execution record
 
-The candidate sprint goal is a repeatable local setup. The checks below are planned for the authorized setup work and currently have no execution evidence.
+The proposed sprint goal is scope/host/readiness. Earlier unexecuted setup checks are now S02 checks in Sprint 02 Planning; the revised S01 checks below have no execution evidence.
 
 | Check | Expected result | Status |
 | --- | --- | --- |
-| S01-T01 Clean install and build | Each application builds from its recorded dependency inputs. | Not executed |
-| S01-T02 Isolated migrations and fixtures | Each application uses its own test database and synthetic data. | Not executed |
-| S01-T03 Local smoke check | Each application starts and its designated health or entry response can be verified. | Not executed |
+| S01-T01 Scope and dependencies | Selected #1/#2 scope and dependencies match exact acceptance criteria. | Not executed |
+| S01-T02 Host/readiness | #7/#8/#9 have actual readiness evidence or explicit blockers. | Not executed |
+| S01-T03 Next-slice readiness | Setup prerequisites and planned checks are explicit; no execution inferred. | Not executed |
 
-Record the tested revision, environment, observed results, evidence and follow-up in the setup work item. Use the [STLC workflow](../../02-Test-Strategy.md#software-testing-life-cycle-stlc) to close the checks.
+Record the tested revision, environment, observed results, evidence and follow-up in the selected readiness work items. Use the [STLC workflow](../../02-Test-Strategy.md#software-testing-life-cycle-stlc) to close the checks.

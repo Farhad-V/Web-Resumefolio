@@ -530,9 +530,11 @@ Within a short local transaction, check current authority/version, persist only 
 
 ##### RecordProgress(context, applicationId, expectedVersion, transitionInput)
 
-Record a deliberate progress event using the reviewed state/transition policy, actor and effective time/reason. Reject invalid/stale transitions or return a defined unresolved-policy condition. Do not infer status from an email subject, calendar invite, provider send result or the existence of a sharing link.
+Apply the [owner-selected manual status policy](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#owner-selected-manual-application-status). Every ordered pair of the seven existing statuses is permitted, including backward/reopen moves and an explicitly recorded same-status occurrence. No mandatory reason, interview sequence or terminal-state lock is imposed. The receiving operation validates ownership/current actor, input and expectedVersion; only invalid input, unauthorized action or stale state prevents a status write.
 
-Q-D12 proposes Preparing, Ready, Submitted, Interview, Offer, Rejected and Withdrawn, with separate actual-submission recording before Submitted and attributable correction. These remain source proposals; do not turn them into fixed accepted implementation enums here. Submitted progress and material-set completeness remain separate dimensions even when one command coordinates their source-required relationship.
+In the application transaction, append a progress event with actor, previous/new status, optional reason, effective time and server-recorded time, and advance the mutable application version/current status. Default effective time to the confirmed action time; preserve any explicit valid user-supplied effective time. Same-status recording requires an explicit user progress action, not passive navigation or an unrelated save. Preserve old progress events; corrections append rather than rewrite them. When leaving Offer, clear the current offer_outcome and preserve its prior value in the new event's before snapshot.
+
+Status changes are manual only. Selecting Submitted is independent from exact-material capture and cannot be blocked solely by missing captured material; show capture as incomplete when appropriate. Do not send, infer receipt or alter historical materials from a progress edit. The selected state vocabulary comes from Q-D12; this owner's later manual-movement decision resolves the former transition-policy gap. Runtime verification remains pending.
 
 <a id="design-record-03-component-and-module-design-components-applications-md--heading-captureactualsubmissioncontext-applicationid-expectedversion-actualeventinput-materialinput"></a>
 

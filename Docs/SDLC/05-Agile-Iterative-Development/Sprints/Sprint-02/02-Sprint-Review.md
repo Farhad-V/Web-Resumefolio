@@ -31,3 +31,17 @@ Record the test case, tested revision, environment, actual result and unresolved
 | Pending sprint selection | Pending | Pending | No evidence recorded | Not executed |
 
 Use the [STLC workflow](../../02-Test-Strategy.md#software-testing-life-cycle-stlc) for environment readiness, defects, regression and closure.
+
+## Proposed Selection and Planned Checks
+
+The proposed allocation is #37 (isolated setup), #5 (transactional SMTP) and #6 (backup prerequisites). No work or checks are executed. Confirm exact issue acceptance, safe targets and capacity before starting.
+
+The unexecuted setup checks previously drafted for Sprint 01 now belong here; their locators are S02-T01–S02-T03.
+
+| Locator | Expected result | Status |
+| --- | --- | --- |
+| S02-T01 | Both applications install/build from recorded dependency inputs. | Not executed |
+| S02-T02 | Migrations/fixtures use separate isolated databases and synthetic data. | Not executed |
+| S02-T03 | Both applications start with verified designated entry/basic responses. | Not executed |
+
+Record additional SMTP and backup prerequisite checks from #5/#6 before confirmation. These checks do not imply delivered mail, recipient receipt, successful backup or demonstrated restore.

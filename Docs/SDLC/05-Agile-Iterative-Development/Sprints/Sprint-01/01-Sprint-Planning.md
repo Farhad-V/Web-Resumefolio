@@ -2,77 +2,26 @@
 
 [Development overview](../../00-Agile-Iterative-Development.md) · [Review](02-Sprint-Review.md) · [Retrospective](03-Sprint-Retrospective.md)
 
-**Status: proposed; execution not recorded.** Candidate goal: demonstrate repeatable isolated local setup for Resumefolio Core and ProjectForge. The candidate issue and work breakdown below are not a confirmed sprint commitment or an implementation result.
+**Status: proposed; execution not recorded.** Candidate goal: establish scope, host and readiness before isolated setup. Candidate issues: [#1](https://github.com/Farhad-V/Web-Resumefolio/issues/1), [#2](https://github.com/Farhad-V/Web-Resumefolio/issues/2), [#7](https://github.com/Farhad-V/Web-Resumefolio/issues/7), [#8](https://github.com/Farhad-V/Web-Resumefolio/issues/8), [#9](https://github.com/Farhad-V/Web-Resumefolio/issues/9).
 
 ## Sprint Planning
 
-### Candidate Goal and Demonstration
-
-A clean checkout can follow recorded setup instructions to install/build both independent applications, use isolated databases/private roots and run the designated basic checks. Demonstrate the actual candidate/environment and commands, not merely that tools exist or design documents are complete.
-
-Use [Project Setup](../../01-Project-Setup.md), [Test Strategy](../../02-Test-Strategy.md) and the [setup work item](https://github.com/Farhad-V/Web-Resumefolio/issues/37) to refine exact scope before recording the selection as confirmed. Preserve the applicable G1 definition and exact RTM criteria; do not invent acceptance thresholds, sprint duration or a delivery forecast.
-
-### Candidate Work Breakdown
-
-| Work | Intended result | Dependency / evidence |
-| --- | --- | --- |
-| Confirm checkout and targets | Actual source revision and independent application locations identified | No implicit demo/production reuse |
-| Resolve compatible tools/dependencies | Effective selected stack, required extensions and appropriate locks | Actual install/build evidence, not assumed version compatibility |
-| Establish owner/environment isolation | Separate keys, sessions, database users/schemas and private roots; safe test stores | Verify effective targets/permissions before migrations/fixtures |
-| Run migrations and build | Both apps build and migrate under reviewed isolated configuration | Record actual commands, working directories and results |
-| Verify local operation | Designated entry/health and basic automated checks are repeatable | S01-T01–S01-T03 remain not executed until observed |
-| Complete runnable setup record | Clean-checkout procedure includes actual startup/shutdown and safe configuration guidance | No secrets or unexecuted host-specific commands represented as verified |
-| Review and follow-up | Demonstrated scope, failures/blockers and next required work linked | Separate setup success from G2 or full release readiness |
-
-Confirm selected issue links and refine/split tasks in the owning work item; this table does not create issues or claim assignment. Farhad retains delivery/decision responsibility. Check actual available capacity and operating obligations before commitment; no staffing, velocity or calendar assumptions are introduced.
+Confirm each issue's exact outcome, criterion, dependency and readiness evidence. Demonstrate the reviewed scope/host/prerequisite records and unresolved inputs; documentation existence alone does not prove implementation or host readiness. No fixed dates, duration, velocity or accepted result is recorded.
 
 ## Backlog Refinement
 
-**Pending.** Review the [product backlog](https://github.com/Farhad-V/Web-Resumefolio/issues) and existing [board](https://github.com/users/Farhad-V/projects/7/views/1). Keep the exact selected outcome, requirement/criterion, prerequisites, verification and unresolved inputs linked from the owning issue.
-
-Split multi-outcome work into independently reviewable pieces. Resolve input questions needed by the selected slice without reopening settled architecture. If evidence requires a consequential choice change, use the [ADR index](../../../04-System-Design/ADR/Decision-Index.md) and update affected contracts/traces.
-
-Refinement is not implementation or a remote board change. No issue/board mutation is performed by completing this record.
-
-## Proposed Setup Backlog
-
-The existing setup issue is the candidate source; confirm its acceptance checks and actual prerequisites before locking scope. Identify application paths, effective versions, secret-safe configuration, isolated data/storage targets and required commands/results.
-
-| Ready-to-start check | Must be explicit |
-| --- | --- |
-| Scope | One demonstrable setup outcome and exact applicable criteria |
-| Owner/targets | Core/Forge ownership and actual safe environment paths/stores |
-| Dependencies | Available tools, compatible package resolution and any blocked input |
-| Verification | Planned clean install/build, migrations/fixtures and entry/basic checks |
-| Data safety | Synthetic data and no implicit production/demo effects |
-| Evidence | Where actual revision, commands/results and limitations will be recorded |
-
-## Scope and Exclusions
-
-Preserve independent Laravel/React/Inertia applications, selected database/private storage and native Git direction. No common database/session is introduced to simplify setup. Personal mail/calendar, AI, advanced review/releases, general Sprints and user workflow/deployment execution remain outside MVP.
-
-Actual scoped identity/native Git verification remains mandatory at its assigned boundary gate before dependent enablement. Basic setup alone does not demonstrate protected sharing/history, capacity, accessibility or isolated restoration.
+Follow the [proposed allocation](../../00-Agile-Iterative-Development.md#proposed-sprint-allocation) and current issue definitions. Keep blocked inputs explicit; split unrelated outcomes before commitment. Farhad owns delivery and decisions within 20 total project hours/week. Setup #37, SMTP #5 and backup prerequisites #6 are proposed for Sprint 02.
 
 ## Planned Acceptance Checks
 
 | Locator | Expected result | Current execution |
 | --- | --- | --- |
-| S01-T01 | Both applications install/build from recorded compatible dependency inputs | Not executed |
-| S01-T02 | Reviewed migrations/fixtures use intended separate isolated databases/synthetic data | Not executed |
-| S01-T03 | Both applications start and the designated entry/health/basic response is verified | Not executed |
+| S01-T01 | Selected scope and dependency records for #1/#2 are reviewed against their exact acceptance criteria. | Not executed |
+| S01-T02 | Host/readiness evidence for #7/#8/#9 identifies actual targets, limits and unresolved blockers. | Not executed |
+| S01-T03 | The proposed next setup slice has explicit prerequisites and planned checks, without claiming setup execution. | Not executed |
 
-These locators refer to the [Review execution record](02-Sprint-Review.md#sprint-01-test-execution-record), not new requirement IDs. Record exact criteria and all additional setup obligations from the authoritative work item/Project Setup. A planned expected result is not a pass.
+These locators map to the [Review execution record](02-Sprint-Review.md#sprint-01-test-execution-record). Earlier unexecuted setup checks have moved to [Sprint 02 Planning](../Sprint-02/01-Sprint-Planning.md) as S02 checks; no prior execution evidence is discarded.
 
-## Planning-to-Review Flow
+## Scope and Exclusions
 
-![Dark-mode PlantUML Sprint 01 planning, review and retrospective cycle](Diagrams/sprint01-evidence-cycle.svg)
-
-[PlantUML source](Diagrams/sprint01-evidence-cycle.puml) · [PNG](Diagrams/sprint01-evidence-cycle.png)
-
-Record actual detailed design/implementation/testing in [Review](02-Sprint-Review.md#detailed-analysis-and-design) and linked owning documents. Preserve denied, failed, blocked and unexecuted scope. Finishing an iteration does not imply all work or release gates passed.
-
-## Handoff
-
-When planning is confirmed, record actual goal, selected issues, dependencies, exact checks and current status. Review any change to those facts rather than silently substituting another outcome. Feed observed results and follow-up back through refinement and carry a real process improvement from the retrospective into the next plan.
-
-No execution, setup, test result, remote issue change or deployment is established by this planning document.
+Preserve selected MVP boundaries and settled architecture. No application code, environment setup, test pass, deployment or completed readiness gate is established by this plan. Confirm capacity and exact issue acceptance before execution. Record actual design, implementation and verification in [Review](02-Sprint-Review.md#detailed-analysis-and-design); preserve failed, blocked and unexecuted results.

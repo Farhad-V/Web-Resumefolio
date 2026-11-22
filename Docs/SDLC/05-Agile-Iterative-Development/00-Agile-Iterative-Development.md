@@ -6,7 +6,7 @@
 
 Deliver the selected MVP through small, demonstrable increments with exact acceptance checks and recorded outcomes. Refine analysis/design as the selected capability needs it, implement within its owning boundaries, verify behavior and use feedback to select the next work.
 
-**Recorded position:** Sprint 01 planning is proposed, with repeatable isolated setup for Core and ProjectForge as the candidate goal. The current review records product work as not started and tests as not executed. Sprint 02 is not started. Completing design documents or this overview does not change those implementation facts.
+**Recorded position:** Sprint 01 planning is proposed, with scope/host/readiness as the candidate goal and isolated setup allocated to Sprint 02. The current review records product work as not started and tests as not executed. Sprint 02 is not started. Completing design documents or this overview does not change those implementation facts.
 
 Use linked work items for detailed execution evidence and owning documents for authoritative requirements, contracts and procedures. Avoid duplicating conflicting status, fictional progress, delivery dates, sprint duration or velocity estimates in the overview.
 
@@ -76,7 +76,7 @@ Use the existing sprint review vocabulary consistently. Record actual checks/obs
 
 ## Sprint 01
 
-**Proposed candidate goal:** demonstrate repeatable isolated local setup for both applications. Confirm selected issues, prerequisites and checks in Planning before recording execution as started. Project Setup owns the actual environment and successful commands.
+**Proposed candidate goal:** establish scope, host and readiness evidence for candidate issues #1, #2, #7, #8 and #9. Confirm selected issues, prerequisites and checks in Planning before recording execution as started. Project Setup owns the actual environment and successful commands.
 
 - [Sprint Planning](Sprints/Sprint-01/01-Sprint-Planning.md)
 - [Sprint Review](Sprints/Sprint-01/02-Sprint-Review.md)
@@ -86,7 +86,7 @@ The review is the current capability progress record, with implementation not st
 
 ## Sprint 02
 
-**Not started.** Select its goal after reviewing actual Sprint 01 evidence and refining the next independently demonstrable outcome. Do not preassign a feature, forecast or completed carry-over without that evidence.
+**Proposed; not started.** Candidate goal: isolated setup for both applications with transactional SMTP and backup prerequisites (#37, #5, #6). Confirm actual prerequisites and capacity after Sprint 01 review; the allocation is not a start or completion claim.
 
 - [Sprint Planning](Sprints/Sprint-02/01-Sprint-Planning.md)
 - [Sprint Review](Sprints/Sprint-02/02-Sprint-Review.md)
@@ -109,3 +109,22 @@ Use [LLD Traceability](../04-System-Design/03-Low-Level-Design/11-Traceability.m
 An iteration increment does not itself publish a release or authorize production rollout. Follow the [Deployment Plan](../06-Deployment-Release/01-Deployment-Plan.md) and [Runbook](../06-Deployment-Release/02-Runbook.md) for the separately recorded release candidate, promotion, smoke checks and compatible recovery. Carry known issues and verified operating procedures into [Maintenance](../07-Maintenance-Evolution/01-Maintenance-Plan.md).
 
 No source implementation, sprint execution, test pass, release or deployment is performed by completing this overview.
+
+## Proposed Sprint Allocation
+
+This is the same proposed allocation as the GitHub [Sprint Backlog](https://github.com/users/Farhad-V/projects/7/views/4). All 28 MVP issues are allocated once. These are planning groups, not dated iterations, confirmed commitments or executed results. Duration, final group count and capacity per sprint remain unconfirmed. The owner has 20 total project hours/week including documentation, learning, tests and operations. Confirm scope/capacity before each start.
+
+| Sprint | Proposed goal | Candidate issues |
+| --- | --- | --- |
+| 01 | Scope, host and readiness | [#1](https://github.com/Farhad-V/Web-Resumefolio/issues/1), [#2](https://github.com/Farhad-V/Web-Resumefolio/issues/2), [#7](https://github.com/Farhad-V/Web-Resumefolio/issues/7), [#8](https://github.com/Farhad-V/Web-Resumefolio/issues/8), [#9](https://github.com/Farhad-V/Web-Resumefolio/issues/9) |
+| 02 | Isolated setup, SMTP and backup prerequisites | [#37](https://github.com/Farhad-V/Web-Resumefolio/issues/37), [#5](https://github.com/Farhad-V/Web-Resumefolio/issues/5), [#6](https://github.com/Farhad-V/Web-Resumefolio/issues/6) |
+| 03 | Invited identity and authentication | [#10](https://github.com/Farhad-V/Web-Resumefolio/issues/10) |
+| 04 | Resource admission and early Git security spike | [#41](https://github.com/Farhad-V/Web-Resumefolio/issues/41), [#38](https://github.com/Farhad-V/Web-Resumefolio/issues/38) |
+| 05 | Workspace, profile, resume and private media | [#11](https://github.com/Farhad-V/Web-Resumefolio/issues/11), [#12](https://github.com/Farhad-V/Web-Resumefolio/issues/12), [#13](https://github.com/Farhad-V/Web-Resumefolio/issues/13) |
+| 06 | PDFs, atomic publication and history | [#14](https://github.com/Farhad-V/Web-Resumefolio/issues/14), [#40](https://github.com/Farhad-V/Web-Resumefolio/issues/40) |
+| 07 | Protected sharing and manual applications | [#15](https://github.com/Farhad-V/Web-Resumefolio/issues/15), [#16](https://github.com/Farhad-V/Web-Resumefolio/issues/16) |
+| 08 | Scoped integration and native Git | [#39](https://github.com/Farhad-V/Web-Resumefolio/issues/39), [#20](https://github.com/Farhad-V/Web-Resumefolio/issues/20) |
+| 09 | Repository issues, fixed board and account lifecycle | [#22](https://github.com/Farhad-V/Web-Resumefolio/issues/22), [#19](https://github.com/Farhad-V/Web-Resumefolio/issues/19), [#24](https://github.com/Farhad-V/Web-Resumefolio/issues/24) |
+| 10 | Integrated acceptance and restore | [#25](https://github.com/Farhad-V/Web-Resumefolio/issues/25), [#27](https://github.com/Farhad-V/Web-Resumefolio/issues/27) |
+| 11 | Quality and operating guidance | [#26](https://github.com/Farhad-V/Web-Resumefolio/issues/26), [#28](https://github.com/Farhad-V/Web-Resumefolio/issues/28) |
+| 12 | Release review and authorized deployment | [#29](https://github.com/Farhad-V/Web-Resumefolio/issues/29) |

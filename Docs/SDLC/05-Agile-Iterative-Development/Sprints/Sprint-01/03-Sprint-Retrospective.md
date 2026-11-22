@@ -8,15 +8,15 @@
 
 Inspect how the selected work was planned, executed, verified and reviewed, then choose one concrete improvement to try. The Review records product/candidate outcomes; the Retrospective records process observations and the improvement experiment. Keep both distinct from requirement acceptance and release readiness.
 
-The proposed Sprint 01 goal is repeatable isolated setup for both applications. Use its actual evidence if/when executed; do not invent tool failures, team behavior, delays or success merely to populate this template. Farhad retains delivery responsibility; no staffed team or facilitation session is implied.
+The proposed Sprint 01 goal is scope, host and readiness for #1/#2/#7/#8/#9; isolated setup is allocated to Sprint 02. Use its actual evidence if/when executed; do not invent tool failures, team behavior, delays or success merely to populate this template. Farhad retains delivery responsibility; no staffed team or facilitation session is implied.
 
 ## Review Prompts
 
 | Area | Neutral prompt | Evidence to consult |
 | --- | --- | --- |
-| Planning | Was the intended setup outcome small and explicit enough to demonstrate? | Confirmed selection, criteria and actual changes to scope |
+| Planning | Was the intended readiness outcome small and explicit enough to demonstrate? | Confirmed selection, criteria and actual changes to scope |
 | Dependencies | Which required input was unclear or unavailable? | Recorded blocker, decision and exit condition |
-| Reproducibility | Could the recorded commands/environment be repeated safely? | Actual setup/build/migration results and clean-checkout attempt |
+| Reproducibility | Could the recorded commands/environment be repeated safely? | Actual scope/host/readiness evidence and identified blockers |
 | Isolation | Were test targets/credentials/private roots clear before work? | Safe configuration/target checks, without secret values |
 | Verification | Were expected results defined before execution and failures retained? | S01 checks, actual outcomes and limitations |
 | Documentation | Did the owning documents avoid duplicated or misleading status? | Linked work item, setup guide, Review and RTM |

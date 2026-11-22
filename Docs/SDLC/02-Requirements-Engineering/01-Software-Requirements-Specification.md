@@ -4424,6 +4424,16 @@ status set, capture mechanism and retention policy remain undecided.
 <a id="requirements-specification-manual-application-management--heading-app-d04-explicit-progress-states-and-transitions"></a>
 ###### APP-D04: Explicit Progress States and Transitions
 
+<a id="owner-selected-manual-application-status"></a>
+
+**Owner-selected manual status policy.** The owner explicitly selected unrestricted manual movement between the existing MVP statuses: Preparing, Ready, Submitted, Interview, Offer, Rejected and Withdrawn. The authorized user may choose any of these statuses from any current status, at any time, including backward moves, reopening after rejection/withdrawal and corrections. No mandatory workflow sequence, prerequisite interview, locked terminal state or required reason blocks that choice. A deliberate same-status progress record is permitted for another interview or progress occurrence; an ordinary page load or unrelated save never invents an event.
+
+Each explicit progress record preserves the previous history and appends actor, previous/new status, effective time and recorded time; a reason is optional. Default effective time is the confirmed action time; a user-supplied valid effective time records when the event actually occurred. Current ownership/authorization, valid status input and optimistic concurrency still apply. A stale write returns a conflict for review rather than overwriting a later change. Only the user's explicit confirmed action changes the current status; no mail, calendar, sharing, capture or automated inference changes it.
+
+Status and actual-material capture remain independent: selecting Submitted does not send an application, prove employer receipt or certify that submitted files were preserved. Missing/failed capture stays explicitly incomplete and does not block the user's status choice. A backward/correction move never changes or deletes previously preserved actual submitted materials. Leaving Offer clears the current offer-outcome field if set, while any previously recorded outcome remains in attributed progress history.
+
+This current owner decision supersedes older proposed transition restrictions for the MVP. The existing status vocabulary, private access, immutable material history and runtime verification gates remain in force.
+
 **Owner-scope acceptance additions (MVP; planned, not executed):**
 
 - The user can save status, a manual next action and follow-up date without any email/calendar connection; later edits do not change actual submitted materials.
@@ -4434,7 +4444,7 @@ status set, capture mechanism and retention policy remain undecided.
 
 **Actor / conditions:** Authorized user records or corrects application progress.
 
-**Proposed obligation:** Application progress shall follow a reviewed set of states, allowed transitions and correction rules with explicit observable outcomes.
+**Selected obligation:** Application progress uses the existing status set with unrestricted user-directed movement, append-only attributed progress records and the owner-selected manual policy above.
 
 **Acceptance criteria**
 - A permitted transition yields the intended current state and reviewed history information.
@@ -4443,7 +4453,7 @@ status set, capture mechanism and retention policy remain undecided.
 
 **Planned verification:** Later transition-table walkthrough and valid/invalid/correction tests.
 
-**Open detail:** Final values, backward transitions, timestamps, event versus recorded time, reason fields, history editability and concurrent changes.
+**Decision resolved:** The owner-selected manual policy above fixes movement, repeated same-status events, optional reasons, effective/recorded time, preserved history and stale-write behavior. Implementation and transition/history tests remain unexecuted.
 
 <a id="requirements-specification-manual-application-management--heading-app-d05-user-directed-submission-recording"></a>
 ###### APP-D05: User-directed Submission Recording

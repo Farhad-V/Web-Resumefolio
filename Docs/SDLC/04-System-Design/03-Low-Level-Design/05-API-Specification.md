@@ -54,7 +54,7 @@ A scoped service credential is not universal human authority. Status access cann
 | Issue fields | Validate selected state/priority values, field limits, assignee eligibility and temporal meaning under the owning contract |
 | Correlation ID / stable error code | Bounded diagnostic linkage, not an access credential or sensitive payload |
 
-Concrete schemas must specify required/optional/null fields, types, lengths/ranges, unknown-field policy, error shape and examples before relying on them in implementation. Those details are not silently settled by an abbreviated table. Distinguish an omitted PATCH field from an explicit clearing value according to its reviewed schema; do not infer null/update behavior from UI appearance.
+The [concrete MVP schemas](#mvp-json-schemas) specify required/optional/null fields, types, bounds, unknown-field policy and PATCH clearing. The [error and retry contract](#mvp-json-errors-and-retries) fixes the JSON error shape, recorded-result semantics and synthetic examples. Implement and verify these contracts rather than inferring behavior from UI appearance.
 
 Issue creation/update returns only permitted fields. Preserve stable issue identity and repository issue number through board moves. Dates that are local/date-only retain their intended meaning and applicable context; do not convert them arbitrarily into instants. The database design governs storage, not an unreviewed JSON serialization guess.
 
@@ -77,7 +77,7 @@ A rejection has no unauthorized business effect; necessary bounded audit metadat
 
 For listed writes, validate current authority and bind stable request identity to actor, operation and payload. A matching retry resolves the stored outcome under that contract; a different payload reusing the key conflicts. Concurrent same-key requests must not both create independent effects. Expected-version checks protect mutable state separately from request identity.
 
-Retain recorded outcomes and related protection through pending/uncertain work. If a response disappears, resolve the same operation before a repeat that could duplicate an issue or other effect. Do not infer remote rollback from a local exception or automatically replay every error. Request-key expiry/retention and late-retry semantics need explicit implementation criteria; no arbitrary duration is introduced here.
+Retain recorded outcomes and related protection through pending/uncertain work. If a response disappears, resolve the same operation before a repeat that could duplicate an issue or other effect. Do not infer remote rollback from a local exception or automatically replay every error. T05 selects seven-day outcome retention; pending/uncertain protection and late retries follow the [concrete retry contract](#mvp-json-errors-and-retries).
 
 Each application commits locally. Durable work/outbox supports attributable asynchronous effects where selected; queue acceptance does not prove completion. Current authority and preserved separately recorded outcomes remain required on recovery. Filesystem/Git/mail effects do not become atomic with local SQL.
 
@@ -124,6 +124,114 @@ Use real server/persistence/concurrency checks where guarantees depend on them, 
 For each endpoint record actual method/path/schema, actor/scopes, preconditions, response/error examples, timeout/retry/cursor rules, implementation revision, exact criteria and executed results. Link [Detailed Module Design](03-Detailed-Module-Design.md), [Database Design](04-Database-Design.md), [Unit Test Design](10-Unit-Test-Design.md) and [Traceability](11-Traceability.md) / [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md).
 
 The retained records below preserve original anchors and alternatives. Deferred provider/runner and advanced collaboration examples do not create MVP routes. This update implements no endpoint, installs no dependency and claims no runtime pass. Embedded UML is maintained locally in dark-mode PlantUML.
+
+<a id="mvp-json-schemas"></a>
+
+## 5.9 Concrete MVP JSON Schemas
+
+This section refines the proposed routes above for implementation. It selects serialization and validation details, not new product capabilities or deployed endpoints. It takes precedence over abbreviated field lists and retained broad-product examples. T02–T07 and Q-D04/Q-D09/Q-D18 remain the governing security, policy and temporal decisions in the [selected technical baseline](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/baseline/technical-decisions.md) and [policy baseline](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/baseline/policy-decisions.md).
+
+### Common Representation and Validation
+
+- JSON bodies are UTF-8 objects with unique member names. Reject unknown input members, duplicate members, wrong types and invalid enum values; do not coerce numeric strings, booleans or nulls. Reject malformed JSON with `400`, unsupported request media type with `415`, and schema-invalid JSON with `422`. Authentication/visibility guards still apply before disclosing resource-specific validation.
+- Public IDs are canonical UUID strings; resolve them to the owning database's `BINARY(16)` identities. UUID possession conveys no authority. Versions are integers from 1 through 9,007,199,254,740,991, incremented once per successful mutation; reject overflow rather than wrap or lose JSON precision.
+- Dates are valid Gregorian `YYYY-MM-DD` strings. A non-null local date is paired with an IANA `dueTimezone`; it remains a date in that zone, not an implicit midnight UTC instant. UTC instants use RFC 3339 strings ending in `Z`. Reject impossible dates and unknown zones. No language fallback is introduced.
+- The JSON field bounds below are technical validation bounds, not increases to the selected storage/admission ceilings. Lengths count Unicode code points, without silently truncating content. A required title/name must contain a non-whitespace character; trim title edges, preserve body text. Issue title: 1–255 characters; body: 0–65,535 characters; repository display name: 1–255 characters; timezone: 1–64 ASCII characters.
+- Reject actor/owner/repository/version/event fields supplied outside the allowlisted operation schema. The route fixes repository and issue identity. `assigneeId` never grants membership or Git authority; a non-null assignee must currently be eligible in that repository.
+- List input permits `limit` (integer 1–100, default 25) and `cursor` (opaque string, maximum 2,048 ASCII characters). These bound a response page, not total permitted data. Unknown query parameters are invalid. List responses are `{ "data": [...], "nextCursor": null }`, with `nextCursor` a string when more results exist. Singleton success responses are `{ "data": {...} }`. Success has no error member.
+
+### Request Objects and Response Objects
+
+| Operation | Exact permitted input | Response `data` |
+| --- | --- | --- |
+| Account status | Required path `userId`; no query or body. Authenticate the status-only service identity. | `{userId: UUID, active: boolean, entitled: boolean}`. An authenticated unknown subject returns `404`; inactive or unentitled existing subjects return their current false flags, without account content. |
+| Repository list | Optional `limit`, `cursor`; no body. | Array of `{id: UUID, displayName: string}`. |
+| Repository files | Required query `revision`; optional `path` (default root), `limit`, `cursor`; no body. | `{repositoryId: UUID, revision: string, path: string, kind: "file" or "directory", entries: [...]}` as defined below. |
+| Repository history | Required query `revision`; optional `limit`, `cursor`; no body. | `{repositoryId: UUID, revision: string, commits: [...]}`; `nextCursor` is a sibling of `data`. Each commit is `{id: string, parentIds: string[], subject: string, authoredAt: UTC instant or null}`. Missing/invalid Git author dates are null, not invented instants. |
+| Issue list | Optional `state` (`todo`, `in_progress`, `done`), `limit`, `cursor`; no body. | Array of Issue objects below. |
+| Issue create | Required JSON `title`, `body`; optional `priority`, `assigneeId`, `dueDate`, `dueTimezone`. Required `Idempotency-Key`. | One Issue object, status `201`. Initial `state` is `todo`, `priority` defaults to `normal`, `assigneeId` and date pair default to null, version is 1. |
+| Issue update / board move | Required JSON `expectedVersion`; at least one of `title`, `body`, `state`, `priority`, `assigneeId`, `dueDate`, `dueTimezone`. Required `Idempotency-Key`. | One Issue object, status `200`, with the resulting version. No arbitrary field, repository move or grant update. |
+
+An **Issue** is exactly `{id, repositoryId, number, title, body, state, priority, assigneeId, dueDate, dueTimezone, version}`. IDs are UUIDs, `number` is a repository-local positive safe integer, enums are the values above (`priority`: `low`, `normal`, `high`), and only `assigneeId`, `dueDate` and `dueTimezone` are nullable. All response members are present. Issue bodies are untrusted plain text for this interface; render as text, never executable HTML. The database uses the same character/value bounds. Authorization can deny the entire object; the server must not return another repository's issue under a substituted route ID.
+
+The MVP board is a projection of these same issues with fixed columns in order `todo`, `in_progress`, `done`. A board move updates `state` through the issue PATCH contract; it never creates a second task or grants repository write. Custom columns/order, independent Backlog Item/task hierarchies and Sprint planning are deferred by Q-D18/Q-D19.
+
+### PATCH Omission and Clearing
+
+An omitted field retains its existing value. Explicit null clears `assigneeId`. Explicit null for `dueDate` clears both date and zone; omit `dueTimezone` or send it as null in that case. Setting/changing a non-null date requires a non-null zone in the same request. A zone-only change requires an existing date and a non-null zone. `dueTimezone: null` with a retained/non-null date is invalid. Creation requires both non-null date/zone or both null/omitted. Null title, body, state, priority or expectedVersion is invalid; `body: ""` explicitly clears body text. Validate the resulting complete object before committing. A PATCH containing no mutable field is `422`; a valid no-op with matching expected version records the successful outcome and increments version once, so retries remain unambiguous.
+
+### Serialized Response Budget
+
+The complete uncompressed UTF-8 JSON response, including envelope, escaped values and cursor, must not exceed **8 MiB (8,388,608 bytes)**. Enforce this bound during bounded serialization before sending any success bytes; compression does not increase it. List `limit` is a maximum, not a promise of that many results. Return fewer entries when needed and a cursor that resumes at the first omitted entry, without skipping it or falsely claiming exhaustion. If even one permitted item/projection plus envelope cannot fit, return `422 representation_too_large` with no partial success; do not loop with an empty page and unchanged cursor. Admission/resource limits still apply independently.
+
+Planned contract checks (not executed): list 100 one-MiB text files and verify metadata-only results; request one file and verify its preview ceiling; measure escaped UTF-8 serialized bytes at/beyond the total budget; traverse reduced pages without omissions/duplicates; verify an unrepresentable singleton gives the stable error.
+
+### Revision, Path and Cursor Semantics
+
+`revision` is a complete immutable Git object ID (40 or 64 hexadecimal characters, matching the repository's configured object format); files accept a readable commit/tree, history requires a readable commit under the repository policy. Responses return canonical lower-case resolved identity. Do not silently replace a missing revision with HEAD. `path` is a UTF-8 repository-relative path of at most 4,096 bytes: no absolute prefix, drive prefix, backslash, NUL, `.`/`..` segment or decoded traversal. Decode the HTTP query once before validating. Empty path means root. Git entries that cannot be represented safely in this API receive an explicit unsupported-path outcome; do not reinterpret them as host paths.
+
+File `entries` contain `{path, name, kind, objectId, sizeBytes, text, contentState}`. Kinds are `file`, `directory`, `symlink`, `submodule`; sizes are nonnegative safe integers for blobs and null otherwise. Directory results contain one page of immediate children, with optional `limit`/`cursor` using the common bounds; file results contain only the requested entry. A sibling `nextCursor` is present and null for a single file or exhausted directory. A requested symlink/submodule has result `kind: "file"` as a non-directory entry and its precise kind in `entries[0]`; never dereference it. Directory listings always return metadata only: every entry has `text: null` and `contentState: metadata_only`, including regular files. Inline text is available only when requesting one specific regular UTF-8 file no larger than 1 MiB; otherwise `text` is null. `contentState` is `inline`, `binary`, `too_large` or `metadata_only`; never call a binary/large file empty or fetch a symlink/submodule target. This preview ceiling changes no Git transfer or repository quota. The UI escapes inline content. File entries sort by raw Git path bytes; the cursor is bound to repository, immutable revision, path and page order.
+
+Repository lists sort by public UUID bytes; issues sort by ascending repository-local issue number. History traverses parents from the resolved start commit in a deterministic order (parents sorted by object ID, depth-first, each commit once), preserving the traversal frontier in a server-validated cursor. Cursors bind the authenticated actor, operation, resource, filters and order; they never convey permission. Invalid/tampered or wrong-context cursors return `422` with `invalid_cursor`. If a cursor's retained traversal context is unavailable, return `409` with `cursor_unavailable` and require a fresh list. Recheck authority on every page. Lists are not a cross-request database snapshot: concurrent creation may appear on a later page; revoked objects are omitted. Do not manufacture empty results from a dependency/read failure.
+
+<a id="mvp-json-errors-and-retries"></a>
+
+## 5.10 Error, Retry and Security Contract
+
+JSON errors are exactly `{ "error": { "code": "stable_code", "message": "Safe user-facing description", "fields": {} }, "correlationId": "opaque-diagnostic-id" }`. `fields` is an object mapping allowlisted input field names to arrays of safe validation codes; it is empty outside field-validation errors. Never echo request secrets, private bodies, host paths or stack traces. The correlation ID is server-generated or validated bounded diagnostic text, not an authorization token. Error messages may be localized; clients branch on codes. Unknown/missing/hidden resources all use the same `404 resource_not_found` shape.
+
+| Status | Stable codes / use |
+| --- | --- |
+| 400 | `invalid_json` |
+| 401 | `invalid_identity`; missing/invalid/expired credential |
+| 403 | `forbidden`; visible but unauthorized action |
+| 404 | `resource_not_found`; hidden/missing subject/resource/revision/path |
+| 409 | `version_conflict`, `idempotency_conflict`, `operation_pending`, `cursor_unavailable` |
+| 413 | `payload_too_large`; enforced receiving body bound |
+| 415 | `unsupported_media_type` |
+| 422 | `validation_failed`, `invalid_cursor`, `unsupported_path`, `representation_too_large` |
+| 429 | `rate_limited`; enforced receiving admission limit |
+| 500 | `internal_error`; bounded diagnostic, not proof of rollback |
+| 503 | `authority_unavailable`, `dependency_unavailable` |
+
+Status/codes do not certify whether an earlier attempt committed. For issue writes use an opaque, case-sensitive `Idempotency-Key` of 1–128 printable ASCII characters (no whitespace/control characters). Key identity is actor + operation + key; operation includes method and canonical repository/issue route IDs. Canonical payload hash includes validated input, defaults, explicit field presence/clearing and expectedVersion; JSON property order is irrelevant. Reject conflicting reuse with `409 idempotency_conflict`. Recheck current authority before disclosing a recorded result. A matching completed retry returns the original allowed status/body without another version change/event. An in-progress/uncertain attempt returns `409 operation_pending`; reconcile that operation, never create a second effect. A definitive rejected transaction produces no business mutation.
+
+T05 retains outcome protection for **7 days**; compute expiry from terminal completion, and retain the claim while attributable work remains pending/uncertain. Expiry alone never releases protected bytes. After a completed key's retained record is purged, deduplication is no longer guaranteed: do not automatically resend an old create; inspect current issue state or use owner reconciliation. A stale update remains subject to expectedVersion. No unbounded forever-replay guarantee is made.
+
+T03 actor JWT validation pins RS256, issuer, `projectforge-api` audience, immutable Core UUID subject, allowlisted action scope and a maximum five-minute lifetime. The status-only credential grants no content scope. On every new protected request, including browser and native Git admission, verify Core active/entitled status and local grants; no positive entitlement cache. T07 sets status timeout to **2 seconds**, API connect timeout **2 seconds** and response timeout **10 seconds**. A timeout is an unknown outcome until reconciled. Retry only classified safe/idempotent work under the same operation identity; T07's **1/5/30-minute** backoff then manual recovery applies to durable retryable work, not automatic blind retries of all HTTP writes. Package settings, actual credentials and interoperability remain setup evidence gates.
+
+### Synthetic Examples
+
+Create input: `{"title":"Review resume","body":"","priority":"normal","assigneeId":null,"dueDate":"2026-12-01","dueTimezone":"Europe/Berlin"}` plus a fresh key. Success: `{"data":{"id":"11111111-1111-4111-8111-111111111111","repositoryId":"22222222-2222-4222-8222-222222222222","number":1,"title":"Review resume","body":"","state":"todo","priority":"normal","assigneeId":null,"dueDate":"2026-12-01","dueTimezone":"Europe/Berlin","version":1}}`.
+
+Clear-date PATCH: `{"expectedVersion":1,"dueDate":null}` retains other fields and returns both date fields null at version 2. A different write using expectedVersion 1 then receives `409` with `{"error":{"code":"version_conflict","message":"Review the current issue before saving.","fields":{}},"correlationId":"example-only"}`. None of these examples is an executed result.
+
+<a id="mvp-browser-and-native-interface-contracts"></a>
+
+## 5.11 Browser SSO and Non-JSON Receiving Contracts
+
+### Independent Sessions and OAuth Admission
+
+T03 selects Core Passport authorization-code SSO with PKCE S256 and ProjectForge's League OAuth2 Client GenericProvider. Navigation between sections of an already authenticated receiving application retains its valid Laravel session. Entering ProjectForge without a valid local session starts the explicit Core authorization flow; a still-valid Core session permits reauthorization without asking for the password merely because the section changed. Independent app sessions are never a shared session table or a grant to all repositories.
+
+Bind the authorization attempt to the initiating ProjectForge browser context with a cryptographically random one-use state and a PKCE verifier; exact registered redirect URI, pinned Core issuer and five-minute callback deadline must match. Reject missing, mismatched, expired or reused state/code; do not provision an actor from caller-supplied email/UUID. Exchange the code server-side and obtain the immutable Core UUID through the protected user-info contract. Provision/bind `(pinned issuer, Core UUID)` only after current invited/active account and explicit ProjectForge entitlement checks. No refresh tokens in MVP; OAuth access lifetime is five minutes. Store tokens server-side encrypted at rest; never expose them in Inertia props. Failed admission leaves no authenticated Forge context. Current Core status and local grants are rechecked on every later protected Forge browser/API/Git admission.
+
+The user-info receiver authenticates the short-lived Core OAuth access token, derives the subject from it, and returns only `{userId: UUID, active: boolean, entitled: boolean}` for that subject. It accepts no caller-selected subject override. The status-only service endpoint remains separate and can query a specified UUID only with its restricted service credential. Concrete Passport/SSO/user-info route names and package interoperability are Setup/G2 records; this contract defines identity/result semantics without inventing deployed routes or an OpenID Connect implementation.
+
+### Applicable Interface Inventory
+
+| Receiving path | Owning contract and bounded result |
+| --- | --- |
+| IF-01 workspace/browser | Receiving Laravel session plus current owner policy; Inertia validation errors retain the user's input, stale writes require review, and denied actions do not commit. See [screen forms and recovery](../02-UI-UX-Design/08-Screen-Specifications.md#4-forms-feedback-and-recovery). |
+| IF-02 protected employer/file/PDF | Link-scoped viewer identity, current generation and selected resume/language/artifact; no owner account required. Direct/range access uses the same decision, Nginx internal delivery, no-store/nosniff and safe disposition. Missing or unauthorized content never falls back to unrelated content. See [retrieval/revocation](03-Detailed-Module-Design.md#design-record-03-component-and-module-design-components-representation-and-sharing-md--heading-4-protected-retrieval-and-revocation-protocol). |
+| IF-03 private file input/output | Owner admission, detected type/actual size and concurrent selected quotas; incomplete/failed validation is not usable content. Exact artifacts and protected references follow [database write protocols](04-Database-Design.md#mvp-protected-foreign-keys). |
+| IF-04/IF-05 personal mail/calendar | Deferred after MVP. Transactional invitation/recovery SMTP is an operating dependency, not a personal mail/calendar connection. Record actual delivery/failure independently; SMTP acceptance is not recipient receipt/read. |
+| IF-06 native Git | T04 HTTPS Smart HTTP/PAT and per-operation/ref policy; clone/fetch/push remain native protocol exchanges. Discovery and service method must match read/write authority; deny dumb HTTP, anonymous access, force/non-fast-forward pushes and ref deletion. See [native transfer contract](03-Detailed-Module-Design.md#design-record-03-component-and-module-design-components-git-collaboration-md--heading-transfergitcontext-repositoryid-transportoperation-refintent). Client pull includes local integration, not a server JSON command. |
+| IF-07 user workflow/deployment targets | Deferred after MVP; a push or issue event cannot admit user code execution or deployment. Developer release operations remain separately authorized. |
+| IF-08 external/operating failures | Scoped Core/Forge JSON uses sections 5.9–5.10; actual SMTP and backup/restore use their owner-local durable result and [operating procedure](../../06-Deployment-Release/02-Runbook.md). Unknown completion requires reconciliation, not false success or blind repetition. |
+
+IF labels retain the SRS's interface families; the scoped Core/ProjectForge seam is an MVP refinement, not a replacement for those families. Exact native/browser/SMTP/backup runtime configuration and real-client/delivery/restore results remain mandatory evidence gates.
+
 
 <a id="design-record-05-interface-and-api-design-01-api-protocols-contracts-and-compatibility-md"></a>
 

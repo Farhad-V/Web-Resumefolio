@@ -53,6 +53,8 @@ Record the immutable event and exact material metadata/digests with applicable d
 
 Mutable application status, next action and follow-up are distinct operations with expected-version/authority rules. Recording a manual submission does not automatically send it to an employer.
 
+Application status follows the [owner-selected manual policy](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#owner-selected-manual-application-status): allow any of the seven existing statuses from any current status, including backward/reopened states and explicit same-status progress events. Reason is optional. Validate current owner/input/expected version, then append attributed before/after status and offer-outcome snapshots plus effective/recorded times in the same local write as the new current state. Clear current offer outcome when leaving Offer; preserve its history. Missing exact-material capture stays explicitly incomplete and does not prevent manual status selection. No external event or capture completion automatically changes status; no status edit rewrites actual submitted material.
+
 ### Admit, Replace and Reclaim Artifacts
 
 | Phase | Rule |

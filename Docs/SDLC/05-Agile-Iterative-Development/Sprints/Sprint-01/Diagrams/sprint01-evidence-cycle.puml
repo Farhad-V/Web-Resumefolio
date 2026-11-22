@@ -5,14 +5,14 @@ skinparam defaultFontName Arial
 skinparam defaultFontColor #F3F4F6
 skinparam ArrowColor #CBD5E1
 skinparam shadowing false
-title Sprint 01 - Proposed Setup Goal and Evidence Cycle
+title Iteration - Proposed Goal and Evidence Cycle
 start
-:Planning: refine setup issue, prerequisites and exact criteria;
+:Planning: refine selected issues, prerequisites and exact criteria;
 :Confirm selected goal/work before marking execution started;
-:Execute separately authorized isolated setup;
-:Record actual revision, commands and S01 checks;
+:Execute only confirmed, authorized selected work;
+:Record actual revision, observations and applicable checks;
 :Review demonstrated outcome against goal;
-if (Required setup evidence sufficient?) then (yes)
+if (Required selected evidence sufficient?) then (yes)
  :Record verified scope only;
 else (no / not executed)
  :Record unmet checks, blocker and follow-up;

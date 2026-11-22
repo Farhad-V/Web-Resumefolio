@@ -10,14 +10,14 @@ The physical schema section covers table families, keys, types and indexes. The 
 
 ## MVP physical schema design
 
-Use isolated InnoDB databases with utf8mb4. Public identifiers use UUIDs stored as BINARY(16); timestamps are UTC DATETIME(6). Retain the user's time zone for a follow-up or due date. Resolve foreign keys only within their owning database. Use RESTRICT for protected references and immutable history. Mutable aggregates carry an unsigned version, checked in their write transaction.
+Use isolated InnoDB databases with utf8mb4. Public identifiers use UUIDs stored as BINARY(16); timestamps are UTC DATETIME(6). Retain the user's time zone for a follow-up or due date. Resolve foreign keys only within their owning database. Use RESTRICT for protected references and immutable history, subject to the explicit permanent-erasure and retention policy in section 4.11. Mutable aggregates carry an unsigned version, checked in their write transaction.
 
 | Store | Tables and core columns | Keys, integrity and access paths |
 | --- | --- | --- |
-| Core identity | users(id, email_normalized, password_hash, state, projectforge_entitlement); invitations(id, user_id, token_hash, expires_at, consumed_at); sessions(id, user_id, expires_at, revoked_at) | Unique normalized email and token digest. Index sessions by user and expiry. Consume an invitation atomically. The selected authentication package owns recovery and TOTP storage. |
+| Core identity | users(id, email_normalized, password_hash, state, is_admin, projectforge_entitlement); invitations(id, user_id, token_hash, expires_at, consumed_at); sessions(id, user_id, expires_at, revoked_at) | Unique normalized email and token digest. Index sessions by user and expiry. Consume an invitation atomically. The selected authentication package owns recovery and TOTP storage. |
 | Core presentation | profiles(id, owner_id, version); resumes(id, owner_id, version); resume_drafts(id, resume_id, locale, version, content_json); publication_revisions(id, resume_id, locale, revision_no, snapshot_json); live_publications(resume_id, locale, publication_id) | One profile per owner, one draft and live pointer per resume/locale. Unique revision number per resume/locale. Scoped foreign key ensures the live pointer matches its resume and locale. Draft changes never mutate immutable revisions. |
 | Core private media | artifacts(id, owner_id, storage_key, sha256, size_bytes, detected_mime, locale, state); artifact_reservations(id, owner_id, artifact_id, bytes, state, expires_at); publication_artifacts(publication_id, artifact_id, position); share_links(id, resume_id, password_hash, state, version) | Unique storage key; index owner/state and reservation expiry. Preserve artifact references across retries. Share authority checks the current link, live revision and selected attachment before each request. |
-| Core applications | applications(id, owner_id, status, next_action, follow_up_at, follow_up_timezone, version); submission_events(id, application_id, event_no, submitted_at, context_json); submission_artifacts(event_id, artifact_id, sha256) | Index applications by owner and follow-up. Unique event number per application. Submission events append; attached artifacts retain the exact bytes and recorded digest. |
+| Core applications | applications(id, owner_id, status, next_action, follow_up_date, follow_up_timezone, version); submission_events(id, application_id, event_no, submitted_at, context_json); submission_artifacts(event_id, artifact_id, sha256) | Index applications by owner and follow-up. Unique event number per application. Submission events append; attached artifacts retain the exact bytes and recorded digest. |
 | ProjectForge accounts | forge_users(id, core_issuer, core_user_uuid, state); repositories(id, storage_key, state, version); repository_grants(repository_id, user_id, role); git_credentials(id, user_id, token_hash, expires_at, revoked_at); git_credential_scopes(credential_id, repository_id, access) | Unique issuer/user UUID, storage key and credential digest. Composite primary keys for grants and credential scopes. Index grants by user. Git refs and objects remain in private bare repositories. |
 | ProjectForge issues | issues(id, repository_id, issue_no, title, body, state, priority, assignee_id, due_date, due_timezone, version); issue_events(id, issue_id, actor_id, version, event_type) | Unique issue number per repository; index repository/state and assignee. Application policy verifies the assignee is eligible for that repository. Moves keep the same issue ID and record an attributable event. |
 | Both stores | idempotency_records(actor_id, operation, key_hash, payload_hash, state, expires_at); outbox(id, operation_id, payload_json, state, next_attempt_at); audit_events(id, actor_id, event_type, resource_id, occurred_at) | Unique actor/operation/key and operation IDs as appropriate. Index pending outbox rows by state and next attempt. Store only bounded, necessary metadata. Use package-provided queue/cache infrastructure where applicable. |
@@ -28,7 +28,7 @@ Use composite owner-scoped relationships for links between private resources whe
 
 ## 4.1 Schema Ownership and Enforcement
 
-The table families above specify the selected MVP direction, not executed migrations or a complete DDL catalog. Core and ProjectForge have separate schemas/users and owner-local writes. Public actor mapping across systems uses issuer/subject identity, not a cross-database foreign key or shared session table.
+The table families above specify the selected MVP direction, not executed migrations. The [column contracts](#mvp-column-contracts) and [scoped keys/write protocols](#mvp-protected-foreign-keys) below complete application-owned physical details; package-owned DDL still requires Setup verification. Core and ProjectForge have separate schemas/users and owner-local writes. Public actor mapping across systems uses issuer/subject identity, not a cross-database foreign key or shared session table.
 
 | Concern | Enforcement contract | Migration/verification requirement |
 | --- | --- | --- |
@@ -45,7 +45,7 @@ Database constraints protect structural integrity. Authorization, eligibility, l
 
 Use the selected UUID representation consistently for application-owned public identities and their references. Resolve exact framework/package-owned session, authentication, queue and cache columns against installed package migrations; do not force conceptual table sketches over an incompatible package schema.
 
-Store hashes/verifiers under the selected credential/integrity design and never raw secret tokens for convenience. A file digest identifies byte integrity, not access authority or encryption. Size/quota accounting uses explicit units and sufficient ranges under the selected policy. Define nullability, defaults, maximum lengths and valid values in the concrete migration rather than relying on omitted sketch details.
+Store hashes/verifiers under the selected credential/integrity design and never raw secret tokens for convenience. A file digest identifies byte integrity, not access authority or encryption. Size/quota accounting uses explicit units and sufficient ranges under the selected policy. Use section 4.10 for application-owned nullability, defaults, lengths and valid values, and express them in the concrete migrations. Verify package-owned schema separately.
 
 Mutable aggregate versions are updated atomically with the write. UTC timestamp storage and user-local follow-up/due context remain distinct; date-only values must not shift meaning through an arbitrary time-zone conversion. Content locale, interface language and artifact language are separate data concerns.
 
@@ -71,7 +71,7 @@ The retained relationship view distinguishes mutable material, immutable revisio
 | Create/update/move issue | Apply local grant, version and request identity with stable repository/issue state | Mismatched identity or stale write conflicts without overwriting newer work |
 | Process outbox | Claim/record progress and reconcile the owning effect under its actual contract | Worker restart/lost response cannot justify duplicate effect or false completion |
 
-Use deterministic lock order where locking is required; document actual rows/counters and conflict behavior in the operation implementation. Retry bounded transient database failures only under a protocol that preserves command identity, current authority and separately recorded effects. Do not invent a universal retry count or assume every transaction can be safely replayed.
+Use deterministic lock order where locking is required; implement the concrete row/counter ordering in section 4.11 and verify conflict behavior. Retry bounded transient database failures only under a protocol that preserves command identity, current authority and separately recorded effects. Do not invent a universal retry count or assume every transaction can be safely replayed.
 
 Filesystem, native Git, SMTP and remote commits are outside local SQL atomicity. Keep intent and observed result attributable. A SQL rollback does not undo delivered bytes or a changed Git ref. Required protection remains until the owning evidence permits finalization/release.
 
@@ -128,6 +128,127 @@ Separate database users/private paths and environment configuration. Keep produc
 Link actual migrations/code, criterion/case, candidate/environment, fixtures, expected/observed result and limitations through [Traceability](11-Traceability.md) and the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md). Follow [Detailed Module Design](03-Detailed-Module-Design.md), [API Specification](05-API-Specification.md) and [Unit Test Design](10-Unit-Test-Design.md) for operation/verification detail.
 
 No database, migration, backup job or runtime pass is created by this document. The retained records below preserve rationale and anchors; deferred-domain models and proposed details do not supersede selected MVP scope. All embedded views use local dark renders, with UML in editable PlantUML.
+
+<a id="mvp-column-contracts"></a>
+
+## 4.10 Concrete MVP Column Contracts
+
+The following is the application-owned physical design to implement and verify on MySQL 8.4; it is not executed DDL. It completes the abbreviated table families above. The [selected technical baseline](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/baseline/technical-decisions.md) T02–T08 and [policy baseline](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/baseline/policy-decisions.md) Q-D06–14 govern values, retention and protection. These refinements do not create a migration or alter a live store.
+
+### Shared Types, Nulls and Defaults
+
+| Symbol / convention | Physical contract |
+| --- | --- |
+| `U` | `BINARY(16)` UUID; application-generated, non-null, no database default. `id:U` is the primary key unless a composite PK is stated. UUID bytes encode the canonical API identity without application-dependent byte swapping. |
+| `V` | `BIGINT UNSIGNED NOT NULL DEFAULT 1`, with `CHECK (version BETWEEN 1 AND 9007199254740991)`; transactional compare-and-increment. Public issue/event numbers have the same positive safe-integer bound and no default. |
+| `T` | `DATETIME(6)` UTC, non-null, explicitly supplied by the operation; `T?` is nullable with default null. No implicit on-update clock on immutable rows. |
+| `S(n)` | `VARCHAR(n)` under utf8mb4, non-null, no default; `S(n)?` nullable/default null. IDs, token hashes, storage keys, locales, timezones, enums and normalized identifiers use binary/case-sensitive comparison. Human display text is not an identity key. |
+| `H` | `BINARY(32)` SHA-256 digest, non-null/no default. Credential verifiers use protected package/password formats where specified, not an assumed unsalted SHA-256 password hash. |
+| `J` | MySQL `JSON NOT NULL`, explicitly supplied after owner validation; it is not a replacement for scoped relational references. |
+| `B` | `BIGINT UNSIGNED NOT NULL`, no default, for exact byte counts; negative/overflow values rejected before writes. |
+| Row timestamps | Mutable root rows include `created_at:T`, `updated_at:T`; immutable/event rows include `created_at:T` only. Join rows need no implicit timestamp unless stated. |
+
+Every field below is non-null with no default unless `?`, a named default, or a package-owned exception is stated. Required names/titles contain non-whitespace content. Application validation and migration checks agree on enum values, positive counters and paired fields. MySQL character limits do not substitute for API code-point validation; no silent truncation. All foreign keys are owner-local with `ON UPDATE RESTRICT` and `ON DELETE RESTRICT`; deletion explicitly releases eligible children under policy rather than broad cascades. Same-host databases have no cross-system FKs.
+
+### Core Identity and Presentation
+
+| Table | Columns beyond row timestamps | Constraints / indexes |
+| --- | --- | --- |
+| `users` | `id:U`, `email_normalized:S(254)`, `password_hash:S(255)?`, `state:S(16)` default `invited`, `is_admin:BOOLEAN` default false, `projectforge_entitlement:BOOLEAN` default false, `version:V` | Unique email with exact normalized comparison; state in `invited,active,suspended,disabled`. Password may be null only before completed activation; active admission requires the selected password/factor setup. |
+| `invitations` | `id:U`, `user_id:U`, `token_hash:H`, `expires_at:T`, `consumed_at:T?` | FK user; unique token digest; index `(user_id,expires_at)`; T02 expiry 72 hours from issue, atomic single consumption. Expiry/consumption never activates an otherwise disabled account. |
+| `profiles` | `id:U`, `owner_id:U`, `version:V`, `content_json:J` | FK owner; unique owner and `(id,owner_id)`. JSON contains ordered reusable professional entries and their stable entry IDs; no mandatory sensitive demographics. |
+| `resumes` | `id:U`, `owner_id:U`, `version:V`, `archived_at:T?`, `deleted_at:T?` | FK owner; unique `(id,owner_id)`; index `(owner_id,deleted_at)`. Content is in language drafts/revisions, not an implicit profile live view. |
+| `resume_drafts` | `id:U`, `resume_id:U`, `owner_id:U`, `locale:S(2)`, `version:V`, `source_profile_version:BIGINT UNSIGNED?`, `content_json:J`, `deleted_at:T?` | FK `(resume_id,owner_id)`; unique `(resume_id,locale)` and `(id,owner_id)`. Locale `en,de`; optional source version is positive. Source comparison preserves ordered selection and independent overrides. |
+| `publication_revisions` | `id:U`, `resume_id:U`, `owner_id:U`, `locale:S(2)`, `revision_no:BIGINT UNSIGNED`, `snapshot_json:J`, `source_draft_version:BIGINT UNSIGNED`, `created_at:T` | FK `(resume_id,owner_id)`; unique `(resume_id,locale,revision_no)`, `(id,resume_id,locale,owner_id)` and `(id,owner_id)`. Positive counters; locale `en,de`. Append-only snapshot records exact chosen text/layout/selection. Q-D06 publish guard requires display name, contact method and meaningful selected section. |
+| `live_publications` | `resume_id:U`, `owner_id:U`, `locale:S(2)`, `publication_id:U`, `version:V` | PK `(resume_id,locale)`; FK `(resume_id,owner_id)` and `(publication_id,resume_id,locale,owner_id)` to the revision's corresponding unique key. Withdrawing removes the live pointer under version/authority protection, not the revision/history. |
+
+Laravel/Fortify/Passport-owned password recovery, TOTP, OAuth, queue/cache and `sessions` columns are exceptions: use their compatible installed package migrations and record their actual DDL during Setup. The conceptual sessions sketch is not a replacement package schema. Extend or wrap package storage to enforce T02's two-hour idle/twelve-hour absolute lifetime, reset/disable revocation and sensitive-action freshness; do not assume a native `revoked_at` column exists. Keep TOTP secrets encrypted and recovery-code handling package-compatible. Recovery tokens expire after 30 minutes; Admin TOTP is mandatory. No raw token/secret is stored in evidence.
+
+### Core Files, Renditions and Sharing
+
+| Table | Columns beyond row timestamps | Constraints / indexes |
+| --- | --- | --- |
+| `artifacts` | `id:U`, `owner_id:U`, `storage_key:S(255)`, `sha256:H`, `size_bytes:B`, `detected_mime:S(127)`, `locale:S(2)?`, `state:S(16)`, `version:V` | FK owner; unique storage key and `(id,owner_id)`; index `(owner_id,state)`. State `quarantined,processing,usable,failed,retired,deleting,deleted`; file usability follows T06 validation, never client MIME alone. Locale null for language-neutral media, otherwise `en,de`. Private immutable keys are server-generated, never user paths. |
+| `artifact_reservations` | `id:U`, `owner_id:U`, `artifact_id:U?`, `operation_id:U`, `bytes:B`, `state:S(16)`, `expires_at:T`, `version:V` | FK owner and optional `(artifact_id,owner_id)`; unique `(id,owner_id)`; index `(owner_id,state)`, `(state,expires_at)`, `operation_id`. State `reserved,protected,finalized,released,uncertain`; state assigned explicitly. Expiry triggers reconciliation, never automatic unsafe reclamation. |
+| `publication_artifacts` | `publication_id:U`, `owner_id:U`, `artifact_id:U`, `position:INT UNSIGNED`, `purpose:S(32)` | PK `(publication_id,artifact_id,purpose)`; unique `(publication_id,purpose,position)`; owner-scoped FKs to publication/artifact. Position starts at zero. Purpose `selected_media,uploaded_pdf,generated_pdf`; exact locale/rendition eligibility is checked by the owning operation. |
+| `resume_artifacts` | `resume_id:U`, `owner_id:U`, `artifact_id:U`, `locale:S(2)`, `purpose:S(32)`, `position:INT UNSIGNED` | PK `(resume_id,locale,purpose,position)`; owner-scoped FKs; locale `en,de`; same purposes as above. Draft/current selection is separate from immutable publication associations. |
+| `resume_download_settings` | `resume_id:U`, `owner_id:U`, `locale:S(2)`, `generated_enabled:BOOLEAN` default false, `uploaded_enabled:BOOLEAN` default false, `version:V` | PK `(resume_id,locale)`; owner-scoped FK; locale `en,de`. Supports both/neither independently. A flag never makes a failed/missing artifact available. |
+| `rendition_requests` | `id:U`, `owner_id:U`, `publication_id:U`, `artifact_id:U?`, `operation_id:U`, `state:S(16)`, `version:V` | Owner-scoped FKs; index `(publication_id,state)`, unique operation ID. State `pending,processing,available,failed,uncertain`; available requires the exact usable generated artifact. Publication locale/version fixes rendering input. |
+| `share_links` | `id:U`, `resume_id:U`, `owner_id:U`, `token_hash:H`, `password_hash:S(255)`, `state:S(16)` default `active`, `generation:BIGINT UNSIGNED` default 1, `expires_at:T?`, `version:V` | Unique token digest and `(id,resume_id,owner_id)`; owner-scoped resume FK; positive generation. State `active,disabled`. Q-D11 identity has at least 32 random bytes; store its digest, never a public storage path. Password change/disable atomically increments generation. |
+| `viewer_contexts` | `id:U`, `share_link_id:U`, `resume_id:U`, `owner_id:U`, `generation:BIGINT UNSIGNED`, `session_token_hash:H`, `created_at:T`, `last_seen_at:T`, `expires_at:T`, `revoked_at:T?` | Composite FK to share link; unique session digest; index `(share_link_id,generation)`, `expires_at`. Q-D11 enforces 30-minute idle/eight-hour absolute lifetime and current generation/expiry/state on every new admission. Viewer context is not a named employer identity. |
+
+<a id="mvp-application-columns"></a>
+
+### Core Applications and Exact History
+
+| Table | Columns beyond row timestamps | Constraints / indexes |
+| --- | --- | --- |
+| `applications` | `id:U`, `owner_id:U`, `company:S(255)`, `opportunity_title:S(255)`, `opportunity_url:S(2048)?`, `resume_id:U?`, `cover_letter:MEDIUMTEXT` default empty string (explicitly inserted), `status:S(16)` default `preparing`, `offer_outcome:S(8)?`, `next_action:S(2048)?`, `follow_up_date:DATE?`, `follow_up_timezone:S(64)?`, `version:V`, `archived_at:T?`, `deleted_at:T?` | FK owner and optional `(resume_id,owner_id)`; unique `(id,owner_id)`; index `(owner_id,follow_up_date,status)`. Status `preparing,ready,submitted,interview,offer,rejected,withdrawn`; outcome null/`accepted`/`declined`, non-null only in `offer`. Date and zone are both null or both non-null. Rename the earlier conceptual `follow_up_at` to this date pair to preserve Q-D09's date-only meaning. Opportunity URL is recorded context, never permission to fetch it. |
+| `application_progress_events` | `id:U`, `application_id:U`, `owner_id:U`, `actor_id:U`, `version:BIGINT UNSIGNED`, `from_status:S(16)`, `to_status:S(16)`, `from_offer_outcome:S(8)?`, `to_offer_outcome:S(8)?`, `reason:S(2048)?`, `effective_at:T`, `created_at:T` | Owner-scoped application FK; unique `(application_id,version)`; statuses use the application's same enum. Append with the versioned progress change; do not rewrite an old progress event to disguise a correction. Every pair of the seven statuses is allowed by the [owner-selected manual policy](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#owner-selected-manual-application-status), including explicit same-status progress events. Reason is optional; effective_at defaults to the confirmed action time, created_at records server persistence time. Outcome snapshots are null/accepted/declined and non-null only for an Offer endpoint; leaving Offer clears current outcome but retains the prior snapshot. Status edits never mutate submitted materials or require completed capture. |
+| `submission_events` | `id:U`, `application_id:U`, `owner_id:U`, `event_no:BIGINT UNSIGNED`, `submitted_at:T`, `submitted_timezone:S(64)`, `context_json:J`, `material_json:J`, `corrects_event_id:U?`, `created_at:T` | Owner-scoped application FK; unique `(application_id,event_no)`, `(id,owner_id)`, `(id,application_id,owner_id)`. Correction FK `(corrects_event_id,application_id,owner_id)` references an earlier event for that application. Material JSON preserves exact authored text, selected language/mode and provenance; no live-pointer reconstruction. Positive safe event numbers. |
+| `submission_artifacts` | `event_id:U`, `owner_id:U`, `artifact_id:U`, `sha256:H`, `purpose:S(32)`, `position:INT UNSIGNED` | PK `(event_id,purpose,position)`; owner-scoped event/artifact FKs. SHA-256 must match the reserved immutable artifact when capture commits. Purpose `resume_pdf,cover_letter,supporting_material`; each position identifies the exact selected bytes. |
+
+Incomplete private preparation can omit the selected resume, cover letter, next action and follow-up; empty preparation text is explicit. Required company/title validation applies when saving a usable application record. Q-D12 progress edits do not send or certify delivery. Do not insert a successful immutable submission event until all required exact material is durably protected; store incomplete/failed attempts in the durable operation record. Corrections append another event and never mutate the prior set.
+
+### ProjectForge Accounts, Repositories and Issues
+
+| Table | Columns beyond row timestamps | Constraints / indexes |
+| --- | --- | --- |
+| `forge_users` | `id:U`, `core_issuer:S(255)`, `core_user_uuid:U`, `state:S(16)` default `active`, `version:V` | Unique `(core_issuer,core_user_uuid)`; state `active,disabled`. Mapping is not proof of current Core entitlement. No FK into Core. |
+| `repositories` | `id:U`, `owner_id:U`, `display_name:S(255)`, `storage_key:S(255)`, `state:S(16)`, `next_issue_no:BIGINT UNSIGNED` default 1, `version:V` | FK owner to forge_users; unique storage key; index `(owner_id,state)`; state `provisioning,active,archived,retiring,failed`. Counter bounded to positive JSON-safe range and incremented under the repository lock; abort on exhaustion. |
+| `repository_grants` | `repository_id:U`, `user_id:U`, `role:S(8)` | Composite PK `(repository_id,user_id)`; FKs repository/user; index `(user_id,repository_id)`; role `owner,writer,reader`. Owner change and grant re-evaluation occur atomically under the owning policy. |
+| `issue_grants` | `repository_id:U`, `user_id:U`, `access:S(8)` | Composite PK `(repository_id,user_id)`; FKs repository/user; index `(user_id,repository_id)`; access `read,write`. Explicit issue-only capability; no Git permission inferred from it. |
+| `git_credentials` | `id:U`, `user_id:U`, `token_hash:H`, `created_at:T`, `expires_at:T`, `revoked_at:T?` | FK forge user; unique token digest; index `(user_id,expires_at)`. T04 uses a 32-byte random PAT shown once, expiring after 90 days; current entitlement and grants still checked. |
+| `git_credential_scopes` | `credential_id:U`, `repository_id:U`, `access:S(8)` | PK `(credential_id,repository_id)`; FKs credential/repository; access `read,write`. Credential scope intersects current user grants; it cannot add authority. |
+| `issues` | `id:U`, `repository_id:U`, `issue_no:BIGINT UNSIGNED`, `title:S(255)`, `body:MEDIUMTEXT` explicitly empty when blank, `state:S(16)` default `todo`, `priority:S(8)` default `normal`, `assignee_id:U?`, `due_date:DATE?`, `due_timezone:S(64)?`, `version:V` | FK repository and optional forge assignee; unique `(repository_id,issue_no)` and `(id,repository_id)`; indexes `(repository_id,state,issue_no)`, `(assignee_id,due_date)`. State `todo,in_progress,done`; priority `low,normal,high`. Title/body/date/version bounds match [API schemas](05-API-Specification.md#mvp-json-schemas). |
+| `issue_events` | `id:U`, `issue_id:U`, `repository_id:U`, `actor_id:U`, `version:BIGINT UNSIGNED`, `event_type:S(16)`, `created_at:T` | Composite FK issue/repository and FK actor; unique `(issue_id,version)`. Event type `created,updated,moved`; a move uses `moved`, including a combined edit. Record one attributable event per resulting issue version. |
+
+Assignee eligibility is checked inside the issue mutation protocol against current issue/repository grants. A FK proves identity, not eligibility. Removing a grant cannot leave later operations treating an ineligible assignee as newly authorized; retain attribution and expose the unavailable assignment for correction. Issue number allocation and event insertion commit with the issue and idempotency outcome. Failed transactions may leave no new issue; numbers are identities, not a promise of gapless global sequencing.
+
+<a id="mvp-protected-foreign-keys"></a>
+
+## 4.11 Owner-Scoped Foreign Keys and Durable Operations
+
+These matching keys are mandatory, not informal owner-ID comparisons:
+
+| Child columns | Referenced unique columns |
+| --- | --- |
+| `resume_drafts(resume_id,owner_id)`; `publication_revisions(resume_id,owner_id)`; `share_links(resume_id,owner_id)`; optional `applications(resume_id,owner_id)` | `resumes(id,owner_id)` |
+| `live_publications(publication_id,resume_id,locale,owner_id)` | `publication_revisions(id,resume_id,locale,owner_id)` |
+| `publication_artifacts(publication_id,owner_id)`; `rendition_requests(publication_id,owner_id)` | `publication_revisions(id,owner_id)` |
+| Every concrete artifact association's `(artifact_id,owner_id)` | `artifacts(id,owner_id)` |
+| `submission_events(application_id,owner_id)` | `applications(id,owner_id)` |
+| `submission_artifacts(event_id,owner_id)` | `submission_events(id,owner_id)` |
+| `viewer_contexts(share_link_id,resume_id,owner_id)` | `share_links(id,resume_id,owner_id)` |
+
+Define columns in identical type/order/collation on both sides; create parent unique keys before child FKs. Require non-null owner IDs on associations; the only nullable artifact FK is a not-yet-finalized reservation/rendition. The same owner's different resumes/languages are still distinct selections and require current operation policy, not just these FKs.
+
+Each store owns `idempotency_records`: `id:U` PK, `actor_id:U`, `operation:S(255)`, `key_hash:H`, `payload_hash:H`, `state:S(16)`, `resource_id:U?`, `response_status:SMALLINT UNSIGNED?`, `response_json:JSON?`, `created_at:T`, `expires_at:T`, `completed_at:T?`. Unique `(actor_id,operation,key_hash)`; index `(state,expires_at)`. Operation includes canonical method/resource route. States `in_progress,completed,failed,uncertain`; `response_status`/`response_json` are both present for a replayable terminal result and absent otherwise. Store only the permitted bounded response needed for exact replay, under the same private access as its resource; never credentials or unrelated private content. A resource ID here is diagnostic polymorphic identity, not a cross-owner FK or permission shortcut. See [API retry contract](05-API-Specification.md#mvp-json-errors-and-retries).
+
+`outbox` has `id:U` PK, `operation_id:U` FK to the local operation record, `effect_key:S(128)`, `payload_json:J`, `state:S(16)`, `attempt_count:INT UNSIGNED` default 0, `next_attempt_at:T?`, `claimed_until:T?`, `created_at:T`, `completed_at:T?`. Unique `(operation_id,effect_key)`, index `(state,next_attempt_at)`; states `pending,processing,completed,failed,uncertain`. One operation can have multiple explicitly named effects. Lease expiry allows investigation/reclaim under the effect protocol; it does not prove an earlier external effect failed. Payloads contain minimum references, never arbitrary secret/private byte copies.
+
+Owner-local background commands without a public request key allocate their own stable internal command identity in the same operation store before dispatch; the actor is the explicit service/operation principal, never a guessed human. Compute completed request expiry seven days after terminal completion and retain the record through pending effects. Cleanup removes eligible completed child outbox records before their operation record, preserving required reconciliation/audit references.
+
+ProjectForge's `query_cursors` supports bounded history traversal without putting an unbounded graph frontier in a URL: `id:U` PK, `actor_id:U` FK to forge_users, `repository_id:U` FK to repositories, `token_hash:H` unique, `context_hash:H`, `traversal_json:J`, `created_at:T`, `expires_at:T`; index `expires_at`. Context binds resolved revision, path/filter/order and receiving operation. Expired or discarded context returns the API's explicit cursor-unavailable outcome. Cursor retention is an operational paging choice, never permission or a retained business-history guarantee. No source data is deleted by cursor expiry.
+
+`audit_events` has `id:U` PK, `actor_id:U?`, `event_type:S(64)`, `resource_id:U?`, `operation_id:U?`, `outcome:S(16)`, `metadata_json:J`, `occurred_at:T`. Outcome `accepted,denied,failed,pending,unknown`; index `(occurred_at,id)` and `(resource_id,occurred_at)`. System events may have no human actor. Preserve attributed IDs without a cascading FK into erasable human records. Allowlist diagnostic metadata; T07 bounds audit retention to 180 days with authorized expiry, not ordinary arbitrary editing. Operation references are owner-local and protect still-required reconciliation evidence.
+
+### Concrete Write Locks and Reference Protection
+
+- Invitation: lock the invitation row, then owning user; validate current usable state/expiry and consume/activate once in the same transaction.
+- Issue create: claim the unique idempotency record, then lock the repository/counter and relevant current grants in deterministic ID order; allocate number, insert issue/event and complete recorded response atomically. Issue update locks the claimed operation and issue, checks current grant/expected version, updates once, inserts its event and stored response together.
+- Publication: claim operation, lock resume then language draft/live pointer, validate expected versions; lock selected artifact rows sorted by UUID before inserting protected associations, immutable revision/live pointer and outbox. Submission locks application then sorted exact artifacts and commits event/associations/outcome together. No external call is performed while holding a transaction just to satisfy a diagram.
+- File admission uses owner-local `storage_accounts(scope:S(16), subject_key:S(64), used_bytes:B default 0, reserved_bytes:B default 0, version:V)` with PK `(scope,subject_key)`; scope is `global,user,repository`. Use canonical server-defined subject keys. Lock global, then user/repository counters in stable order before creating/releasing a reservation. Count quarantine/temporary bytes; policy/physical free-space guards still apply. Git reservations use the same owner-local ledger protocol, not Core's database. Reconcile actual temporary usage before releasing capacity.
+- Reference insertion/release and garbage collection lock the same artifact row before evaluating all concrete draft/publication/submission/rendition associations and active reservations. Collection marks `deleting` only after proving no protected consumer remains; after commit, delete bytes and record confirmed outcome before releasing accounted usage. Failed/unknown removal remains attributable and cannot falsely release capacity. No new association may attach to a deleting/deleted artifact.
+
+Unique operation claim and business mutations use the same local transaction where possible; a crash before commit leaves neither completed effect nor false replay result. Durable asynchronous intent is committed before dispatch. At repeat admission recheck current authority, then resolve recorded outcome before expectedVersion rejection of an already completed same-key command. These are protocols to test on real MySQL, not claims of demonstrated concurrency safety.
+
+### Retention, Dates and Migration Acceptance
+
+Q-D14 retains soft-deleted private drafts/applications for 30 days; expiry only makes unreferenced eligible data reclaimable. Deliberate permanent erasure has its separate explicit owner authority and other-owner-copy/deletion-record rules; immutable history protection does not invent eternal retention against that policy. Backups retain T08's seven daily/four weekly copies; recovery must reapply later deletion/revocation records before serving access. Never remove protected bytes because an idempotency/audit timer elapsed.
+
+Application follow-up and issue due dates are `DATE` plus IANA zone, whereas actual submission/created/recorded times are UTC `DATETIME(6)`. Enforce pair-null checks for each date/zone and validate actual zones in application code. Timestamps, date-only values and preserved source text are not interchangeable. Migration review must exercise wrong-owner/wrong-resume/wrong-locale FKs, nullable optional FK behavior, unique numbers/digests, enum and version bounds, API-to-column round trips, same-key races, quota/reference races and interrupted finalization on the selected real MySQL. Record package-owned DDL and actual checks at Setup; no installed-schema or runtime pass is asserted here.
+
 
 <a id="design-record-04-data-design-01-analysis-to-logical-and-physical-data-models-md"></a>
 
@@ -939,3 +1060,17 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 ## Migration evidence checklist
 
 For each candidate migration record the affected tables and constraints, expected access path, production compatibility, and recovery or rollback approach. Rehearse on isolated MySQL with synthetic data and verify referential integrity and expected query behavior.
+
+<a id="core-administrator-persistence"></a>
+
+## Core Administrator Persistence and Admission
+
+`users.is_admin` is a non-null boolean, default false, owned by Core. It records the selected administrator duty independently of `projectforge_entitlement` and Forge repository grants. It is never accepted from registration, profile updates, mass assignment, SSO claims or client-controlled session data.
+
+At each administrative request, read the current active Core account and `is_admin` flag, require the selected administrator TOTP setup and successful factor verification, and enforce the selected 15-minute recent-authentication requirement for sensitive actions. A previously loaded page or cached session role is insufficient. Authorization failure or unavailable current authority denies the action.
+
+The explicit Core action matrix is: manage account invitation/state/administrator assignment; manage selected operational policies; read permitted audit metadata. Every action additionally requires its owning action policy. Administrator status alone permits no private resume, file, application, message or repository content access, impersonation, or Forge entitlement/grant. Actor-owned content still follows its ordinary ownership/recipient policy.
+
+An authorized current administrator changes `is_admin` through an explicit privileged operation: recheck actor privilege and target version under the owning transaction, update once, increment the version and append an audit event with actor, target, old/new flag, server time and outcome. No secret/private payload belongs in that event. The initial administrator is provisioned only by an explicit reviewed operator bootstrap procedure against the intended isolated environment, with recorded audit evidence; neither first signup nor invitation automatically grants administration. Package TOTP/recovery storage remains package-owned and subject to Setup verification.
+
+Planned checks (not executed): default/non-admin denial, forged role input rejection, suspended/disabled actor denial, absent/invalid TOTP and expired recent-authentication denial, privilege revocation between page load and action, stale/concurrent assignment conflict and atomic audit, bootstrap isolation, and denial of private content or Forge access solely because of administrator status. No migrations or authorization implementation are recorded yet.

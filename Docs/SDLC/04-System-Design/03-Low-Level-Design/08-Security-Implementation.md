@@ -54,6 +54,10 @@ Rotation/revocation may affect active sessions, service calls, pending work and 
 
 Deny unauthorized operations without unauthorized business effects. If required authority cannot be established, return the documented safe unavailable result instead of assuming cached or broad service permission. Receiving resource owners remain authoritative even if another entry already authenticated the caller.
 
+### Core Administrator Authority
+
+Use the current persisted `users.is_admin` flag, active account, mandatory administrator TOTP and sensitive-action recent authentication defined in the [Core administrator persistence/action matrix](04-Database-Design.md#core-administrator-persistence). Recheck current authority at the privileged effect; reject client-supplied role changes outside the explicit audited administrator operation. Core administration grants no private-content or Forge repository access. Bootstrap and later assignment follow that same persistence contract, never an automatic first-user rule.
+
 ### Enforcement Flow
 
 ![Dark-mode PlantUML protected operation enforcement](Diagrams/security-enforcement.svg)
