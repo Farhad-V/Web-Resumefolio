@@ -90,7 +90,7 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 | Area | Actual current position | Consequence for this phase |
 | --- | --- | --- |
-| Planning | Historical M-01 baseline accepted with tracked follow-up; current availability is 20 total project hours/week | Reuse accepted scope/constraints; do not treat an old requested date as a verified forecast |
+| Planning | Work follows the selected scope, dependencies and demonstrated outcomes. | Reuse accepted scope/constraints; do not treat an old requested date as a verified forecast |
 | Requirements | 157 candidate records, 470 proposed criterion locators and 84 planned question-review cases; most detailed policies remain proposed | Read the exact source and its status; a count or link is not evidence that a requirement is verified |
 | Owner decision | No automatic profile-to-resume changes; explicit preview/select/apply; separate publication confirmation; independent text and actual submitted materials preserved | Use this accepted behavior now. Do not ask for its approval again |
 | System context | Full logical context draft with actor/external-boundary diagrams; twelve scope and eight interface inventory areas represented | Refine the domain inside that boundary; context coverage is not complete behavioral analysis |
@@ -257,7 +257,7 @@ Keep a single primary home for each requirement, vocabulary definition and quest
 | Backup/recovery | Owner has not set up backups | Coverage, preservation/restored-access obligations and recovery concepts | Suitable independent storage/recovery design; actual restore proof before readiness |
 | CI/CD isolation | No demonstrated suitable execution environment; feasibility conditions remain | Logical definition/run/attempt/result and target-authority model | Justified runner/isolation/resource design and actual controls before enabling execution |
 | Quality/file limits | Concrete targets/limits are proposals; idle resources do not prove capacity | Identify workloads, boundary cases and constraints | Acceptance of affected values and later measured compliance |
-| Delivery | Owner stated 20 total project hours/week; old requested date is not a forecast | Analysis/design and traceable work decomposition | A justified accepted forecast and reconciled execution baseline |
+| Delivery | Work follows the selected scope, dependencies and demonstrated outcomes. | Analysis/design and traceable work decomposition | A justified accepted forecast and reconciled execution baseline |
 
 Use the [question register](../02-Requirements-Engineering/01-Software-Requirements-Specification.md#change-and-baseline-open-questions-and-decisions), [feasibility study](../02-Requirements-Engineering/01-Software-Requirements-Specification.md#process-and-approach-02-feasibility-study) and [gate assessment](../02-Requirements-Engineering/01-Software-Requirements-Specification.md#validation-and-traceability-validation-and-traceability--heading-remaining-verification). A later implemented test is not needed merely to draw a provisional model, but a known decisive conflict cannot be waived by calling it future work.
 
@@ -365,7 +365,7 @@ The diagram shows document authority and the feedback path for missing requireme
 | --- | --- |
 | [Project scope](../01-Project-Planning/01-Project-Charter.md#mvp-scope) | Accepted capability boundaries and exclusions, including DEC-028–DEC-017; maintain all twelve scope areas |
 | [Planning completion criteria](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/01-project-planning/10-planning-completion-criteria.md) | Historical identified M-01 acceptance; later working copies require their own review |
-| [Resources and constraints](../01-Project-Planning/03-Feasibility-And-Risk-Assessment.md#resource-constraints) | Actual availability is 20 hours/week, including learning, documentation and testing |
+| [Resources and constraints](../01-Project-Planning/03-Feasibility-And-Risk-Assessment.md#resource-constraints) | Work follows the selected scope, dependencies and demonstrated outcomes. |
 | [Requirements specification](../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-requirements-specification) | Entry point to primary obligations; preserve requirement IDs and link to their authoritative text |
 | [Actors and context](../02-Requirements-Engineering/01-Software-Requirements-Specification.md#stakeholders-and-elicitation-actors-and-system-context) and [scenarios](../02-Requirements-Engineering/01-Software-Requirements-Specification.md#scenarios-and-models-user-stories-and-scenarios) | Intended goals and externally visible paths; review their detailed policy status |
 | [Data dictionary](../02-Requirements-Engineering/01-Software-Requirements-Specification.md#data-definitions-data-dictionary) | Shared terminology; resolve competing definitions at their source |
@@ -465,7 +465,7 @@ A structural link check is not semantic validation. A proposed review case is no
 <a id="foundation-01-analysis-purpose-scope-and-approach--heading-7-responsibility-constraints-and-change-handling"></a>
 #### 7. Responsibility, Constraints and Change Handling
 
-Farhad owns product decisions and acceptance and is the sole delivery/operations owner. Codex prepares models, checks consistency and documents evidence within the authorized task; its review is not owner acceptance. Budget work against the actual 20 hours/week. Keep effort estimates provisional until the scope and dependency findings support them.
+Farhad owns product decisions and acceptance and is the sole delivery/operations owner. Codex prepares models, checks consistency and documents evidence within the authorized task; its review is not owner acceptance. Keep effort estimates provisional until the scope and dependency findings support them.
 
 Maintain one primary source for each requirement, term and decision. When analysis exposes a missing rule, link the finding back to that source, record the proposed or accepted resolution, and update affected views together. Do not silently convert a proposal into an accepted obligation or infer approval of unrelated policy details.
 
@@ -759,7 +759,7 @@ Outside Version 1: product AI, automatic translation and automatic old-demo migr
 
 | Topic | Verified current knowledge / proposal status | Effect on continuation |
 | --- | --- | --- |
-| Capacity | Owner stated 20 project hours/week; observed hosting/runtime facts have dated evidence | Continue domain analysis; do not infer workload sufficiency, numerical service promises or a final forecast |
+| Capacity | Work follows the selected scope, dependencies and demonstrated outcomes. | Continue domain analysis; do not infer workload sufficiency, numerical service promises or a final forecast |
 | OAuth | Owner confirmed not created | Model provider boundary and disconnected/failure states; preserve access gate for affected acceptance/development |
 | Backups | Owner confirmed not set up | Model coverage/restored-access responsibilities; actual independent storage/recovery design and later restore evidence remain required |
 | Core source-update behavior | Owner accepted preview/selected apply, separate publication and preservation of resume-specific content and actual submitted materials | Use this decision directly; do not request the same acceptance again |

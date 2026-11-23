@@ -87,7 +87,7 @@ Use branch by abstraction or a strangler facade only when an actual replacement 
 
 #### Consequences and limits
 
-Temporary adapters and coexistence add maintenance work within the total 20 project hours/week. Refactoring preserves applicable behavior; source-policy or API behavior changes need separate disposition. Reverting code cannot undo irreversible data changes or remote effects. Stop, preserve evidence and select compatible rollback, reviewed forward repair or scoped recovery according to actual state.
+Refactoring preserves applicable behavior; source-policy or API behavior changes need separate disposition. Reverting code cannot undo irreversible data changes or remote effects. Stop, preserve evidence and select compatible rollback, reviewed forward repair or scoped recovery according to actual state.
 
 <a id="design-record-07-design-decisions-adr-004-compatible-incremental-design-evolution-md--heading-validation-and-disposition"></a>
 

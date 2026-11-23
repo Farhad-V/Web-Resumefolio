@@ -8,7 +8,7 @@ rectangle "Current owner MVP scope + requirements" as R
 rectangle "Core / ProjectForge API authority\nNative Git compatibility\nSame-server private media capacity" as C
 rectangle "Backup destination / consistent coverage\nActual isolated restore evidence" as B
 rectangle "MVP design decisions / unresolved exact mechanisms" as D
-rectangle "Scoped review and delivery reconciliation\n20 TOTAL project hours/week" as V
+rectangle "Scoped review and delivery reconciliation\nScope and dependencies" as V
 rectangle "Implementation-ready MVP scope\nIdentified baseline and actual owner disposition" as READY
 R --> D
 C --> D

@@ -29,7 +29,7 @@ title Analysis — source authority and feedback
 top to bottom direction
 rectangle "Accepted authority\nScope + bounded owner decisions" as A #17405A
 rectangle "Working specification\nRequirements + scenarios + dictionary\nDetailed proposals retain their status" as W
-rectangle "Known constraints\n20 hours/week; existing host\nOAuth absent; backups not configured" as F #4A302B
+rectangle "Known constraints\nScope and dependencies; existing host\nOAuth absent; backups not configured" as F #4A302B
 rectangle "Analysis models\nStructure + transformations + behavior" as M #17405A
 rectangle "Consistency review\nSources, outcomes, assumptions and gates" as R
 rectangle "Qualified design-handoff candidate\nReviewed conclusions + unresolved gates" as H #17405A

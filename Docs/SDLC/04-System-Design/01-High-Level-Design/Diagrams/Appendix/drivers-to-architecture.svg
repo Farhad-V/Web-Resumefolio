@@ -86,7 +86,7 @@
 <g id="node4" class="node">
 <title>resources</title>
 <path fill="#1f2937" stroke="#94a3b8" d="M223.29,-128.78C223.29,-128.78 12,-128.78 12,-128.78 6,-128.78 0,-122.78 0,-116.78 0,-116.78 0,-89 0,-89 0,-83 6,-77 12,-77 12,-77 223.29,-77 223.29,-77 229.29,-77 235.29,-83 235.29,-89 235.29,-89 235.29,-116.78 235.29,-116.78 235.29,-122.78 229.29,-128.78 223.29,-128.78"/>
-<text xml:space="preserve" text-anchor="middle" x="117.64" y="-108.74" font-family="Segoe UI" font-size="12.00" fill="#f3f4f6">20 project hours/week</text>
+<text xml:space="preserve" text-anchor="middle" x="117.64" y="-108.74" font-family="Segoe UI" font-size="12.00" fill="#f3f4f6">Scope and dependencies</text>
 <text xml:space="preserve" text-anchor="middle" x="117.64" y="-91.49" font-family="Segoe UI" font-size="12.00" fill="#f3f4f6">Existing budget and dated host inventory</text>
 </g>
 <!-- resources&#45;&gt;modules -->

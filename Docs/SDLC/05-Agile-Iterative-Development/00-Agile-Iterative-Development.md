@@ -8,7 +8,7 @@ Deliver the selected MVP through small, demonstrable increments with exact accep
 
 **Recorded position:** Sprint 01 planning is proposed, with scope/host/readiness as the candidate goal and isolated setup allocated to Sprint 02. The current review records product work as not started and tests as not executed. Sprint 02 is not started. Completing design documents or this overview does not change those implementation facts.
 
-Use linked work items for detailed execution evidence and owning documents for authoritative requirements, contracts and procedures. Avoid duplicating conflicting status, fictional progress, delivery dates, sprint duration or velocity estimates in the overview.
+Use linked work items for detailed execution evidence and owning documents for authoritative requirements, contracts and procedures. Avoid conflicting status and fictional progress.
 
 ## Delivery Scope and Boundaries
 
@@ -36,7 +36,7 @@ The development process may use sprint records and developer CI/CD without enabl
 | Verification | Relevant normal, denied, stale/concurrent/interrupted and operational checks | Test case/result and [RTM](../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md) |
 | Review | Demonstrated result versus goal, evidence, limitations and feedback | Sprint Review |
 | Retrospective | Actionable process improvement and follow-up | Sprint Retrospective |
-| Next selection | Independently demonstrable outcome consistent with current evidence/capacity | Refined backlog and next planning record |
+| Next selection | Independently demonstrable outcome consistent with current evidence | Refined backlog and next planning record |
 
 Keep failed, blocked and unexecuted work visible. Ending an iteration does not imply every selected item succeeded or every MVP gate passed. Do not silently convert carry-over into completed work.
 
@@ -44,7 +44,7 @@ Keep failed, blocked and unexecuted work visible. Ending an iteration does not i
 
 Before selecting work, identify the exact applicable requirement/criterion and resource owner. Split several unrelated outcomes into reviewable slices. Include required contract, migration, test and documentation work rather than treating verification as optional cleanup.
 
-Check setup/integration dependencies, actual available capacity, operating obligations and unresolved decisions. The [delivery sequence](../01-Project-Planning/02-Project-Management-Plan.md#delivery-sequence) orders evidence-based outcomes without assigning sprint dates. Independent settled work may proceed where an unmet gate does not apply; dependent capability must not assume a gate passed.
+Check setup/integration dependencies, operating obligations and unresolved decisions. The [delivery sequence](../01-Project-Planning/02-Project-Management-Plan.md#delivery-sequence) orders evidence-based outcomes. Independent settled work may proceed where an unmet gate does not apply; dependent capability must not assume a gate passed.
 
 For each selected item, record goal/outcome, issue link, criterion, owner/module, prerequisites, expected demonstration and required checks. Product assumptions remain distinct from agreed obligations; capture consequential design changes through an ADR rather than silently altering scope.
 
@@ -86,7 +86,7 @@ The review is the current capability progress record, with implementation not st
 
 ## Sprint 02
 
-**Proposed; not started.** Candidate goal: isolated setup for both applications with transactional SMTP and backup prerequisites (#37, #5, #6). Confirm actual prerequisites and capacity after Sprint 01 review; the allocation is not a start or completion claim.
+**Proposed; not started.** Candidate goal: isolated setup for both applications with transactional SMTP and backup prerequisites (#37, #5, #6). Confirm actual prerequisites after Sprint 01 review; the allocation is not a start or completion claim.
 
 - [Sprint Planning](Sprints/Sprint-02/01-Sprint-Planning.md)
 - [Sprint Review](Sprints/Sprint-02/02-Sprint-Review.md)
@@ -96,7 +96,7 @@ The review is the current capability progress record, with implementation not st
 
 In Review, compare the intended goal with what actually ran. Record source/build, environment, criterion/case results, denied/failure paths, known limitations and feedback. Update affected requirements/design/work items where evidence changes understanding; keep failed/unexecuted checks explicit.
 
-In Retrospective, identify an observed process problem or useful practice and one concrete improvement with follow-up. Do not fabricate team feedback, participant observations or measured velocity. The project owner retains delivery/operating responsibility; documentation does not imply a staffed team.
+In Retrospective, identify an observed process problem or useful practice and one concrete improvement with follow-up. Do not fabricate team feedback, participant observations. The project owner retains delivery/operating responsibility; documentation does not imply a staffed team.
 
 ## Evidence Handoff
 
@@ -112,7 +112,7 @@ No source implementation, sprint execution, test pass, release or deployment is 
 
 ## Proposed Sprint Allocation
 
-This is the same proposed allocation as the GitHub [Sprint Backlog](https://github.com/users/Farhad-V/projects/7/views/4). All 28 MVP issues are allocated once. These are planning groups, not dated iterations, confirmed commitments or executed results. Duration, final group count and capacity per sprint remain unconfirmed. The owner has 20 total project hours/week including documentation, learning, tests and operations. Confirm scope/capacity before each start.
+This is the same proposed allocation as the GitHub [Sprint Backlog](https://github.com/users/Farhad-V/projects/7/views/4). All 28 MVP issues are allocated once. These are proposed planning groups with no executed results. Confirm scope/responsibilities before each start.
 
 | Sprint | Proposed goal | Candidate issues |
 | --- | --- | --- |
@@ -131,4 +131,4 @@ This is the same proposed allocation as the GitHub [Sprint Backlog](https://gith
 
 ## Detailed Execution Plan
 
-Use the [Sprint Delivery Plan](03-Sprint-Delivery-Plan.md) for the exact within-group reading/start order, explicit prerequisites, item slices, demonstrations, planned checks and uncalibrated effort ranges. It expands this allocation without starting any iteration or changing the owner-deferred dates/duration/final group count.
+Use the [Sprint Delivery Plan](03-Sprint-Delivery-Plan.md) for the exact within-group reading/start order, explicit prerequisites, item slices, demonstrations, planned checks . It expands this allocation without starting any iteration or changing the selected scope.

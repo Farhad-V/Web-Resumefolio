@@ -34,7 +34,7 @@ Use the [STLC workflow](../../02-Test-Strategy.md#software-testing-life-cycle-st
 
 ## Proposed Selection and Planned Checks
 
-The proposed allocation is #37 (isolated setup), #5 (transactional SMTP) and #6 (backup prerequisites). No work or checks are executed. Confirm exact issue acceptance, safe targets and capacity before starting.
+The proposed allocation is #37 (isolated setup), #5 (transactional SMTP) and #6 (backup prerequisites). No work or checks are executed. Confirm exact issue acceptance and safe targets before starting.
 
 The unexecuted setup checks previously drafted for Sprint 01 now belong here; their locators are S02-T01–S02-T03.
 
@@ -48,7 +48,7 @@ Use S02-T04–S02-T07 below for SMTP and backup prerequisites from #5/#6; refine
 
 ## SMTP and Backup Planned Execution Record
 
-Follow **#37 → #5 → #6** as the reading/start sequence. SMTP and backup investigation may proceed independently where safe inputs exist; actual application checks depend on the required setup. See [Sprint 02 slices](../../03-Sprint-Delivery-Plan.md#sprint-02). Initial estimate: **28–56 total owner-work hours**, uncalibrated; this exceeds one 20-hour project week and does not define the timebox. Split/carry work explicitly before a sprint commitment.
+Follow **#37 → #5 → #6** as the reading/start sequence. SMTP and backup investigation may proceed independently where safe inputs exist; actual application checks depend on the required setup. See [Sprint 02 slices](../../03-Sprint-Delivery-Plan.md#sprint-02). Select a demonstrable slice and split or carry remaining work explicitly.
 
 | Locator | Expected result | Current execution |
 | --- | --- | --- |

@@ -6,7 +6,7 @@ Follow the [dependency-ordered delivery plan](../05-Agile-Iterative-Development/
 
 | Work item | Outcome | Dependencies | Requirement areas and gates |
 | --- | --- | --- | --- |
-| <a id="pbi-001"></a>[PBI-001](https://github.com/Farhad-V/Web-Resumefolio/issues/1) | Record 20-hour capacity and MVP scope | None | BIZ / DOM; G0 |
+| <a id="pbi-001"></a>[PBI-001](https://github.com/Farhad-V/Web-Resumefolio/issues/1) | Record MVP scope and delivery responsibilities | None | BIZ / DOM; G0 |
 | <a id="pbi-002"></a>[PBI-002](https://github.com/Farhad-V/Web-Resumefolio/issues/2) | Verify shared-host capacity and isolation prerequisites | None | AFO / QSR; G1; G5 |
 | <a id="pbi-005"></a>[PBI-005](https://github.com/Farhad-V/Web-Resumefolio/issues/5) | Verify invitation and recovery SMTP delivery | PBI-002 | ACC / EIF; G4 |
 | <a id="pbi-006"></a>[PBI-006](https://github.com/Farhad-V/Web-Resumefolio/issues/6) | Verify independent backup destination and restore plan | PBI-002 | QSR / AFO; G4 |
@@ -43,4 +43,4 @@ A work item is ready to select when its expected outcome, acceptance checks, pre
 
 ## Task Slices, Order and Completion
 
-The [Sprint Delivery Plan](../05-Agile-Iterative-Development/03-Sprint-Delivery-Plan.md) and development-plan section on each current MVP issue define the ordered task slices, observable results, verification and preliminary estimates. Existing 28 MVP issue identities are preserved; task checklists refine them without creating duplicate backlog items. Six deferred issues remain after MVP. Planning completion does not close any execution or acceptance item.
+The [Sprint Delivery Plan](../05-Agile-Iterative-Development/03-Sprint-Delivery-Plan.md) and development-plan section on each current MVP issue define the ordered task slices, observable results, verification. Existing 28 MVP issue identities are preserved; task checklists refine them without creating duplicate backlog items. Six deferred issues remain after MVP. Planning completion does not close any execution or acceptance item.

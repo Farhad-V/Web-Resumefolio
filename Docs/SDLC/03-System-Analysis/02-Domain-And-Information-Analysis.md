@@ -382,7 +382,7 @@ Source associations are not proof of complete acceptance-criterion coverage. [Ex
 
 - [ ] Obtain provider, safe execution and recovery evidence at their dependent gates.
 
-This model is populated for analysis and review. It does not complete the whole System Analysis phase, accept M-02/M-03, implement the product or prove capacity. Existing 2-vCPU/4-GB hosting, OAuth not created, backups not configured and the owner's 20 project hours/week remain known constraints/facts. They do not prevent logical models; they still constrain dependent feasibility and acceptance. The existing Laravel demo is not implementation evidence for this full scope.
+This model is populated for analysis and review. It does not complete the whole System Analysis phase, accept M-02/M-03, implement the product or prove capacity. They do not prevent logical models; they still constrain dependent feasibility and acceptance. The existing Laravel demo is not implementation evidence for this full scope.
 
 <a id="analysis-domain-and-information-analysis--03-domain-model-and-object-oriented-view--heading-8-next-views-and-maintenance"></a>
 ##### 8. Next Views and Maintenance
@@ -982,7 +982,7 @@ For competing source/override changes, publish/replacement, revoke/retrieval, ca
 
 - [ ] Complete criterion-level cross-view traceability and actual dependent evidence.
 
-Known facts remain known: OAuth is not created; backups are not configured; the observed host has 2 vCPU, 4 GB RAM and 40 GB local disk; availability is 20 project hours/week. These facts permit conceptual modeling but do not establish tested capacity, safe execution or successful recovery. Numerical file/performance/recovery proposals are not accepted by creating this view.
+These facts permit conceptual modeling but do not establish tested capacity, safe execution or successful recovery. Numerical file/performance/recovery proposals are not accepted by creating this view.
 
 <a id="analysis-domain-and-information-analysis--05-data-oriented-view--heading-8-handoff-and-maintenance"></a>
 ##### 8. Handoff and Maintenance

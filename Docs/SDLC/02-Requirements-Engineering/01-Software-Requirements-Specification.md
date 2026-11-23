@@ -251,7 +251,7 @@ Users sign in with individual accounts. Access depends on the current grant, res
 | --- | --- |
 | **LOG-002** | The owner supplied hosting screenshots and SSH output. See the [dated server inventory and limits](#process-and-approach-02-feasibility-study--id-server-observation-2026-11-01). |
 | <a id="stakeholders-and-elicitation-elicitation-log--id-log-003"></a>**LOG-003** | The owner requested completion of the open questions. Codex drafted proposals and performed [bounded read-only checks](#validation-and-traceability-server-readonly-check-2026-11-01). Individual proposals awaited review. |
-| <a id="stakeholders-and-elicitation-elicitation-log--id-log-004-capacity-answer-and-follow-up-observation"></a>**LOG-004** | The owner confirmed **20 total project hours per week**, including learning, documentation and testing. [Capacity record](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/01-project-planning/11-capacity-and-preliminary-sizing.md) |
+| <a id="stakeholders-and-elicitation-elicitation-log--id-log-004-capacity-answer-and-follow-up-observation"></a>**LOG-004** | Work follows the selected scope, dependencies and demonstrated outcomes. |
 | <a id="stakeholders-and-elicitation-elicitation-log--id-log-005-actual-oauth-status-answer"></a>**LOG-005** | The owner reported that the intended Google OAuth project had not been created. Google integration is deferred. [Q-D15](#change-and-baseline-open-questions-and-decisions--id-q-d15) |
 | <a id="stakeholders-and-elicitation-elicitation-log--id-log-006-actual-backup-setup-answer"></a>**LOG-006** | The owner reported that application backups had not been set up. The destination, coverage and isolated restore still require evidence. [Q-D26](#change-and-baseline-open-questions-and-decisions--id-q-d26) |
 
@@ -2094,7 +2094,7 @@ invented by this outcome map.
 | --- | --- | --- |
 | Version 1 scope | Full agreed scope retained; product AI/automatic translation/automatic demo migration excluded | Material changes require explicit owner decision and impacts; no silent reduction |
 | Resource/budget | Existing server/resources; no assumed paid service or new infrastructure | Inspect actual capacity/cost allowance and compare options before commitment |
-| Solo delivery/operation | Farhad has 20 total project hours/week for all current responsibilities; earlier full-time wording is historical | Quantify usable capacity and full engineering/maintenance effort when forecasting |
+| Solo delivery/operation | Work follows the selected scope, dependencies and demonstrated outcomes. | Quantify usable capacity and full engineering/maintenance effort when forecasting |
 | Delivery target | November 8, 2026 requested; current schedule snapshots provisional | Forecast after analysis/design, then reconcile backlog/Sprints/milestones before coding |
 | Success measures | Observable criteria proposed above; no quantified benefit baseline or target improvement agreed | Decide whether extra benefit measurement is needed and, if so, its method/population/target |
 | External service and execution viability | Google/email/server/recovery/CI findings remain open | Respect existing ASM/DEP/RSK and GAP-D01–GAP-D11 gates before dependent acceptance |
@@ -7209,7 +7209,7 @@ The MVP core supports private professional information and independent resumes/p
 | External exchange | Browser/Git clients, selected Google operations and operational dependencies; exact contracts/actual access remain to be established |
 | Execution/deployment | Real agreed execution only after required feasibility/security/resource gates; Push/merge does not inherently authorize production deployment |
 | Operating scale | Initial target 10 users; workload/concurrency/capacity need evidence; roughly 1,000 users is a growth direction |
-| Delivery resources | One owner; current owner input: 20 project hours/week including learning/docs/tests; existing server/budget and Laravel/OOP; architecture, database, frontend, Git engine and runner not selected here |
+| Delivery resources | Work follows the selected scope, dependencies and demonstrated outcomes. |
 | Delivery date | November 8, 2026 requested target, not a validated forecast |
 
 Product AI, automatic translation and automatic legacy-demo migration remain
@@ -7442,7 +7442,7 @@ Current MVP answers are selected in the Baseline. Only explicitly deferred detai
 <a id="requirements-specification-requirements-specification--heading-november-1-2026--q-d28-capacity-evidence"></a>
 ##### November 1, 2026 — Q-D28 Capacity Evidence
 
-The owner supplied 20 project hours/week. [Confirmed capacity and preliminary sizing](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/01-project-planning/11-capacity-and-preliminary-sizing.md) now answer the numerical availability input and expose the historical target conflict. Exact design-dependent effort, live tracking reconciliation and baseline disposition remain pending. This updates a current working constraint without changing requirement IDs or historical accepted scope.
+Exact design-dependent effort, live tracking reconciliation and baseline disposition remain pending. This updates a current working constraint without changing requirement IDs or historical accepted scope.
 
 </details>
 
@@ -11305,11 +11305,7 @@ supplement labels; use the qualifying term/context in specifications and scenari
       ]
     }
   ],
-  "owner_capacity_input": {
-    "hours_per_week": 20,
-    "source": "Actual user reply to capacity question in this conversation, November 1, 2026",
-    "includes": "Learning, documentation, testing and development; not 20 hours coding plus extra engineering time"
-  },
+  "delivery_owner": "Farhad",
   "tracking_access": {
     "github_search": "422 repository not searchable or not permitted",
     "direct_issue_fetch": "No usable title/body/state/number returned for local issue-8 URL; live status not verified",
@@ -16655,7 +16651,7 @@ Date: November 1, 2026. Authority: owner requested completion of the remaining q
 <a id="change-and-baseline-change-control--heading-chg-d07--investigate-remaining-gates-and-apply-confirmed-weekly-capacity"></a>
 ##### CHG-D07 — Investigate Remaining Gates and Apply Confirmed Weekly Capacity
 
-November 1, 2026. Authority: owner asked whether the remaining questions could be solved; Codex proceeded with scoped investigation and received an actual 20-hour/week availability reply. Changes record bounded operating findings, documentary review, infrastructure exclusions, preliminary sizing and phase-specific next actions. [Gate assessment](#validation-and-traceability-validation-and-traceability--heading-remaining-verification) preserves all evidence limits. This changes current working availability from unspecified full-time to the supplied 20 hours, while historical accepted snapshots/DEC records are unchanged. No product scope reduction, final architecture, numerical target approval, accepted completion date, production configuration or baseline acceptance is recorded.
+November 1, 2026. Changes record bounded operating findings, documentary review, infrastructure exclusions, preliminary sizing and phase-specific next actions. [Gate assessment](#validation-and-traceability-validation-and-traceability--heading-remaining-verification) preserves all evidence limits. No product scope reduction, final architecture, numerical target approval, accepted completion date, production configuration or baseline acceptance is recorded.
 
 <a id="change-and-baseline-change-control--heading-chg-d08--record-actual-oauth-setup-status"></a>
 ##### CHG-D08 — Record Actual OAuth Setup Status
@@ -16736,7 +16732,7 @@ Farhad explicitly accepted this behavior on November 1, 2026: profile changes do
 <a id="change-and-baseline-open-questions-and-decisions--heading-known-setup-facts-and-remaining-evidence"></a>
 ##### Known setup facts and remaining evidence
 
-The owner already stated 20 total project hours/week, no configured application backup and no created Google OAuth project. Do not repeatedly ask those same questions. Actual backup destination, consistent capture and demonstrated restore are still operational gates; personal Google integration is after MVP. Runtime compatibility and host capacity need actual checks. These facts do not assert product tests, actor acceptance or Release readiness.
+Do not repeatedly ask those same questions. Actual backup destination, consistent capture and demonstrated restore are still operational gates; personal Google integration is after MVP. Runtime compatibility and host capacity need actual checks. These facts do not assert product tests, actor acceptance or Release readiness.
 
 [Gate definitions](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/baseline/implementation-sequence.md#gate-register) · [Review criteria](#change-and-baseline-requirements-review-and-baseline-criteria) · [Change control](#change-and-baseline-change-control)
 

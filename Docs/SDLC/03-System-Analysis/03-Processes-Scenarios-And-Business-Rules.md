@@ -1370,7 +1370,7 @@ These diagrams end an observation/request path when pending or unknown; the unde
 | SCP-11 Upload/storage limits | CF-M15, CF-M17; detailed cleanup depends on SM-M16/contracts |
 | SCP-12 Deployment/operational readiness | CF-M14, CF-M16–17 |
 
-Known gates are carried forward without re-asking the owner: OAuth is not created; backups are not configured; suitable execution isolation/capacity is not demonstrated. The existing Ubuntu demo host has 2 vCPU, 4 GB RAM and 40 GB disk; idle resource readings do not prove multi-feature load, untrusted execution safety or recovery. These facts permit analysis of conditional workflows, not enabling dependent capabilities. The owner has 20 total project hours/week; sequencing and estimates remain planning work.
+Known gates are carried forward without re-asking the owner: OAuth is not created; backups are not configured; suitable execution isolation/capacity is not demonstrated. The existing Ubuntu demo host has 2 vCPU, 4 GB RAM and 40 GB disk; idle resource readings do not prove multi-feature load, untrusted execution safety or recovery. These facts permit analysis of conditional workflows, not enabling dependent capabilities.
 
 <a id="analysis-functional-and-process-analysis--08-control-flow-based-view--heading-7-review-cases-for-later-verification"></a>
 ##### 7. Review cases for later verification
@@ -1435,7 +1435,7 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 Separate accepted problem direction, actual documentary/technical evidence, intended product behavior and untested explanations. These are different kinds of evidence. The records below cover the agreed product scope without inventing how the owner currently performs everyday work.
 
-The owner has stated 20 total project hours/week, OAuth not created and backups not configured. Historical Ubuntu/demo observations establish a dated environment, not current capacity or demonstrated recovery. No new interview, server session, reference-code inspection, business-task observation or benchmark was performed in this review.
+Historical Ubuntu/demo observations establish a dated environment, not current capacity or demonstrated recovery. No new interview, server session, reference-code inspection, business-task observation or benchmark was performed in this review.
 
 ![CP — current evidence versus target and hypothesis](Diagrams/Process-Evidence-Classes.svg)
 
@@ -1489,7 +1489,7 @@ The owner has stated 20 total project hours/week, OAuth not created and backups 
 
 **Source:** [open-questions-and-decisions.md](../02-Requirements-Engineering/01-Software-Requirements-Specification.md#change-and-baseline-open-questions-and-decisions)
 
-**Supported statement:** Explicit source/apply/publication/history core accepted; owner availability 20 hours/week, OAuth not created, backups not configured are known inputs.
+Work follows the selected scope, dependencies and demonstrated outcomes.
 
 **Limit:** Intended product behavior and setup facts do not establish existing daily preparation/tool/sending procedure or measured effort.
 
@@ -1541,7 +1541,7 @@ The owner has stated 20 total project hours/week, OAuth not created and backups 
 
 **Source:** [product-backlog.md](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/Project-Management/product-backlog.md)
 
-**Supported statement:** 29 local PBI references and provisional dates/Sprints; GitHub issues/project remain live authority; current capacity input is 20 hours/week.
+Work follows the selected scope, dependencies and demonstrated outcomes.
 
 **Limit:** No live issue/board or actual Sprint execution is inspected; historical full-time wording is not a current numerical commitment.
 
@@ -1768,7 +1768,7 @@ Each area identifies what is known, which current actions remain unobserved and 
 
 **Actor context:** Recorded sole project owner/operator; technical observation scope known, complete operating routine not observed.
 
-**Known:** Owner reports 20 total hours/week and no backups; dated Ubuntu/Nginx/MySQL/PHP/Laravel/demo inventory exists. OAuth setup absence is distinct from operating delivery.
+OAuth setup absence is distinct from operating delivery.
 
 **Current trigger:** The historical read-only inspection is recorded; no observed incident/update/backup/restore task timeline supplied.
 
@@ -1864,13 +1864,13 @@ These findings concern the documents reviewed. They do not establish measured us
 <a id="analysis-functional-and-process-analysis--15-current-processes-and-bottleneck-analysis--heading-cp-f04--historical-availability-wording"></a>
 ###### CP-F04 — Historical availability wording
 
-**Observed:** Resources/index retain historical full-time/provisional wording while explicit current sections say 20 total hours/week.
+Work follows the selected scope, dependencies and demonstrated outcomes.
 
 **Impact:** Using old wording as current capacity would invalidate a new estimate; no new forecast is accepted here.
 
 **Cause status:** Historical/editorial boundary is documented; actual schedule slippage or rework duration not measured.
 
-**Next action:** Use current 20-hour input and reconcile affected wording/work/forecast after design without rewriting accepted planning history.
+Work follows the selected scope, dependencies and demonstrated outcomes.
 
 **Source:** [05-resources-and-constraints.md](../01-Project-Planning/03-Feasibility-And-Risk-Assessment.md#resource-constraints)
 
@@ -2136,7 +2136,7 @@ No hypothesis below is a confirmed measured business bottleneck. Each includes a
 
 **Possible effect:** Potential delayed operating response or engineering work if observed against defined expectations.
 
-**Competing explanation:** Current actual workload may be small or managed by other mechanisms; 20 hours/week alone does not establish a bottleneck.
+Work follows the selected scope, dependencies and demonstrated outcomes.
 
 **Supporting evidence needed:** Record a relevant authorized procedure/event and actual effort/wait/result/resource context; distinguish known absent backups from a measured outage or recovery duration.
 
@@ -2297,7 +2297,7 @@ Record clock meaning and interruptions before comparing durations. Preserve inte
 
 **Required data:** Identified environment/procedure/source/date, authorized non-secret observation and actual result.
 
-**Interpretation:** A plan or backup artifact is not a performed restore. Do not invent RPO/RTO or an operations allowance beyond 20 total hours/week.
+**Interpretation:** A plan or backup artifact is not a performed restore.
 
 **Actual result:** Not measured in this task; no numerical baseline or target benefit
 
@@ -5030,7 +5030,7 @@ Account suspension, scoped membership revocation, protected-link disablement and
 
 Restoring retained data must not silently reactivate old grants, send a message, replay provider changes or deploy code. Current authorization and current external state are reassessed. Unknown results are reconciled against the same operation/attempt before any separately authorized retry. Retry is not an automatic Unknown-to-success arrow.
 
-Known constraints: OAuth is not configured; backups are not configured. The existing 2-vCPU / 4-GB / 40-GB Ubuntu demo host and idle resource readings do not establish safe execution isolation, load capacity or usable recovery. SM-M17 therefore begins with missing prerequisites. No live restore, deployment or server change is authorized by this document. The owner has 20 total project hours/week; this is planning input, not a state transition.
+Known constraints: OAuth is not configured; backups are not configured. The existing 2-vCPU / 4-GB / 40-GB Ubuntu demo host and idle resource readings do not establish safe execution isolation, load capacity or usable recovery. SM-M17 therefore begins with missing prerequisites. No live restore, deployment or server change is authorized by this document.
 
 <a id="analysis-behavioral-and-scenario-analysis--07-state-based-view--heading-5-business-rule-consistency"></a>
 ##### 5. Business-rule consistency

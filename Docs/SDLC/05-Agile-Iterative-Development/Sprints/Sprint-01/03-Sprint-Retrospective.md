@@ -28,11 +28,11 @@ The proposed Sprint 01 goal is scope, host and readiness for #1/#2/#7/#8/#9; iso
 1. Confirm the actual reviewed work, candidate and remaining gaps.
 2. Gather factual observations of what helped or hindered the process.
 3. Distinguish process issues from product defects, environment blockers and policy decisions; route each to its owning record.
-4. Select a small actionable improvement within current scope/capacity.
+4. Select a small actionable improvement within current scope/responsibilities.
 5. Record its responsible follow-up, linked item if needed and how the next review will evaluate it.
 6. Carry the improvement into [Sprint 02 Planning](../Sprint-02/01-Sprint-Planning.md) if applicable, without inventing a confirmed next goal.
 
-Avoid arbitrary scores, participant counts, dates, duration commitments or forecast savings. A suggestion is not an agreed action until actual disposition is recorded.
+Avoid arbitrary scores and fabricated participant observations. A suggestion is not an agreed action until actual disposition is recorded.
 
 ## Observation and Action Template
 

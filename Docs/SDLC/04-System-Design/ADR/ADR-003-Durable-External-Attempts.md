@@ -155,7 +155,7 @@ These boundaries do not all require the same queue or retry policy. Native synch
 
 **Expected benefits:** required work remains discoverable after local commit; repeated local intent can resolve to one attributable result; uncertainty and recovery obligations remain visible. These are design rationale, not observed reliability results.
 
-**Costs:** additional intent/attempt/claim/observation persistence, restricted status projections, worker supervision, queue-age/resource management and reconciliation procedures. Pending state consumes actual storage/operating capacity within the sole owner's total 20 project hours/week.
+**Costs:** additional intent/attempt/claim/observation persistence, restricted status projections, worker supervision, queue-age/resource management and reconciliation procedures.
 
 **Limits:** durable dispatch does not promise exactly-once execution, universal provider lookup, safe cancellation, automatic compensation or remote rollback. Backoff/circuit breaking reduces pressure but does not prove no effect. Compensation is a separate attributable authorized operation and may be impossible or irreversible.
 

@@ -24,7 +24,7 @@ rectangle "Resumefolio\nFull agreed Version 1 scope" as system
 rectangle "Owner / applicant\nProfessional presentation\nManual applications\nMail / calendar" as owner
 rectangle "Employer viewer\nSelected protected presentation\nNo product account required" as viewer
 rectangle "Authorized participant\nWork / Sprints / Git\nConditional execution" as participant
-rectangle "Authorized operator\nAdministration / recovery\n20 total project hours per week" as operator
+rectangle "Authorized operator\nAdministration / recovery" as operator
 rectangle "Excluded\nProduct AI / automatic translation\nAutomatic old-demo migration" as excluded #164E63
 owner --> system : scoped goals
 viewer --> system : selected disclosure only

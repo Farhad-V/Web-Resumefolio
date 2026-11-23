@@ -10,7 +10,7 @@
 
 A clean checkout can follow recorded setup instructions to install/build both independent applications, use isolated databases/private roots and run the designated basic checks. Demonstrate the actual candidate/environment and commands, not merely that tools exist or design documents are complete.
 
-Use [Project Setup](../../01-Project-Setup.md), [Test Strategy](../../02-Test-Strategy.md) and the [setup work item](https://github.com/Farhad-V/Web-Resumefolio/issues/37) to refine exact scope before recording the selection as confirmed. Preserve the applicable G1 definition and exact RTM criteria; do not invent acceptance thresholds, sprint duration or a delivery forecast.
+Use [Project Setup](../../01-Project-Setup.md), [Test Strategy](../../02-Test-Strategy.md) and the [setup work item](https://github.com/Farhad-V/Web-Resumefolio/issues/37) to refine exact scope before recording the selection as confirmed. Preserve the applicable G1 definition and exact RTM criteria; preserve the selected acceptance thresholds.
 
 ### Candidate Work Breakdown
 
@@ -24,7 +24,7 @@ Use [Project Setup](../../01-Project-Setup.md), [Test Strategy](../../02-Test-St
 | Complete runnable setup record | Clean-checkout procedure includes actual startup/shutdown and safe configuration guidance | No secrets or unexecuted host-specific commands represented as verified |
 | Review and follow-up | Demonstrated scope, failures/blockers and next required work linked | Separate setup success from G2 or full release readiness |
 
-Confirm selected issue links and refine/split tasks in the owning work item; this table does not create issues or claim assignment. Farhad retains delivery/decision responsibility. Check actual available capacity and operating obligations before commitment; no staffing, velocity or calendar assumptions are introduced.
+Confirm selected issue links and refine/split tasks in the owning work item; this table does not create issues or claim assignment. Farhad retains delivery/decision responsibility. Check operating obligations and prerequisites before selection.
 
 ## Backlog Refinement
 
@@ -79,7 +79,7 @@ No execution, setup, test result, remote issue change or deployment is establish
 
 ## Ordered Work, SMTP and Backup Acceptance
 
-Follow **#37 → #5 → #6** as the reading/start sequence. SMTP and backup investigation may proceed independently where safe inputs exist; actual application checks depend on the required setup. See [Sprint 02 slices](../../03-Sprint-Delivery-Plan.md#sprint-02). Initial estimate: **28–56 total owner-work hours**, uncalibrated; this exceeds one 20-hour project week and does not define the timebox. Split/carry work explicitly before a sprint commitment.
+Follow **#37 → #5 → #6** as the reading/start sequence. SMTP and backup investigation may proceed independently where safe inputs exist; actual application checks depend on the required setup. See [Sprint 02 slices](../../03-Sprint-Delivery-Plan.md#sprint-02). Select a demonstrable slice and split or carry remaining work explicitly.
 
 | Locator | Expected result | Current execution |
 | --- | --- | --- |

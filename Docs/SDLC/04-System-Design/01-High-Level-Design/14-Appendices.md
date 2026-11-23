@@ -236,7 +236,7 @@ Google operations, Git changes and deployment can have effects outside a local d
 
 **Source:** [resources and constraints](../../01-Project-Planning/03-Feasibility-And-Risk-Assessment.md#resource-constraints); [confirmed capacity](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/01-project-planning/11-capacity-and-preliminary-sizing.md).
 
-Plan against 20 total project hours/week, Laravel/OOP, existing resources and no assumed additional paid infrastructure. The previously inspected demo observation reported 2 vCPU, 4 GB RAM and 40 GB disk. This is dated inventory, not representative-load proof or a final production topology. Ten initial users and possible growth toward roughly 1,000 are planning directions, not concurrency or capacity measurements.
+The previously inspected demo observation reported 2 vCPU, 4 GB RAM and 40 GB disk. This is dated inventory, not representative-load proof or a final production topology. Ten initial users and possible growth toward roughly 1,000 are planning directions, not concurrency or capacity measurements.
 
 <a id="design-record-01-software-architecture-01-design-drivers-and-solution-options-md--heading-dd-06--recoverability-and-operational-completeness"></a>
 
@@ -448,7 +448,7 @@ Determine independent backup/key coverage and applicable quality targets. **Comp
 
 ##### G6 — Exact traceability and delivery agreement
 
-Reconcile affected requirement criteria and analysis contracts against this candidate, then refine full engineering effort and tracking against 20 hours/week. **Completion evidence:** identified source/design candidate, actual review findings, resolved or explicitly scoped gates and actual owner disposition. Requested dates are not accepted forecasts.
+**Completion evidence:** identified source/design candidate, actual review findings, resolved or explicitly scoped gates and actual owner disposition. Requested dates are not accepted forecasts.
 
 <a id="design-record-01-software-architecture-01-design-drivers-and-solution-options-md--heading-6-decision-and-continuation"></a>
 
@@ -1338,7 +1338,7 @@ The previously inspected demo observation reported a Hetzner guest with 2 vCPU, 
 
 The owner reported OAuth uncreated and backups unconfigured. Inspected delivery declarations and worker/scheduler observations did not establish functioning outbound mail or background operation. Certificate/timer observations do not prove every future renewal succeeds. Do not turn these findings into installed/configured facilities in the diagram.
 
-Use existing resources and 20 total project hours/week; no extra paid host/service is assumed. Ten initial accounts and growth direction toward roughly 1,000 are not workload or concurrent-job specifications. Preserve the existing demo and reference projects; installing or testing this candidate on them requires separate scoped operational work.
+Ten initial accounts and growth direction toward roughly 1,000 are not workload or concurrent-job specifications. Preserve the existing demo and reference projects; installing or testing this candidate on them requires separate scoped operational work.
 
 <a id="design-record-01-software-architecture-04-deployment-topology-nodes-and-networks-md--heading-2-proposed-nodes-and-runtime-environments"></a>
 
@@ -2603,7 +2603,7 @@ The candidate retains explicit logical ownership inside the core and ProjectForg
 
 Remaining evidence includes actual Git/provider compatibility, execution containment/resource fit, final database/schema/guard mechanisms, working mail/worker/scheduler facilities, independent backup/key recovery, reviewed quality/client targets and representative combined capacity. OAuth is not created and backups are not set up under the existing source facts. The dated 2-vCPU/4-GB/40-GB guest observation is inventory, not available production capacity; colocation shares that budget rather than multiplying it per diagram box.
 
-No diagram opens ports, assigns subnets, provisions pods/regions, configures a collector/breaker/cache, establishes HA or demonstrates usable restoration. Independent design work can continue where a gate does not apply, while affected readiness remains conditional on evidence. All delivery/operations work fits the sole owner's 20 total project hours/week; no extra service spending is authorized here.
+No diagram opens ports, assigns subnets, provisions pods/regions, configures a collector/breaker/cache, establishes HA or demonstrates usable restoration. Independent design work can continue where a gate does not apply, while affected readiness remains conditional on evidence.
 
 <a id="design-record-01-software-architecture-software-architecture-md--heading-6-review-and-maintenance"></a>
 
@@ -2799,7 +2799,7 @@ Selected cross-attribute tensions, not a universal rule that security always wor
 
 [Editable PlantUML](Diagrams/Appendix/quality-essential-tactics.puml) · ![quality essential tactics](Diagrams/Appendix/quality-essential-tactics.svg)
 
-Combines tactics and component responsibility without selecting middleware, cache, broker, isolation product or backup destination. Bounded work, current guards and explicit outcomes support planned scenarios; their effectiveness and operating burden remain to verify. Total project work, including operations, stays within the actual 20-hour/week capacity constraint.
+Combines tactics and component responsibility without selecting middleware, cache, broker, isolation product or backup destination. Bounded work, current guards and explicit outcomes support planned scenarios; their effectiveness and operating burden remain to verify.
 
 <a id="design-record-06-design-quality-and-security-analysis-01-quality-attributes-and-design-trade-offs-md--heading-reused-decision-support-views-and-deliberate-omissions"></a>
 
@@ -3036,7 +3036,7 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 
 Use [QSR-D04/D10–D14 and Q-D26](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-quality-security-and-recovery-requirements--id-resolution-q-d26), [quantitative target contracts](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-quality-security-and-recovery-requirements), [AFO-D09–D12](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-administration-files-and-operational-behavior), [business lifecycle/recovery rules](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-business-rules-and-data-lifecycle) and [analysis operating view](../../03-System-Analysis/04-Interfaces-Security-And-Quality.md#analysis-interfaces-security-and-quality-analysis--13-security-quality-and-operational-analysis). Source policy and owner disposition remain authoritative.
 
-Farhad is the sole delivery/operations owner; all operating work fits the total 20 project hours/week. The previously inspected demo reported 2 vCPU/4 GB/40 GB with Nginx/PHP/MySQL and an existing Laravel application. The limited inspected paths showed log-only mail declaration and did not establish running workers/scheduler. These recorded observations are not a complete service inventory or current working-facility proof.
+The previously inspected demo reported 2 vCPU/4 GB/40 GB with Nginx/PHP/MySQL and an existing Laravel application. The limited inspected paths showed log-only mail declaration and did not establish running workers/scheduler. These recorded observations are not a complete service inventory or current working-facility proof.
 
 The owner explicitly confirmed application backups have not been set up. Q-D26's proposed daily schedule, seven-daily/four-weekly retention and recovery objectives remain proposals, not accepted targets or demonstrated capability. No paid service, host or account change is authorized through design prose.
 
@@ -3326,7 +3326,7 @@ Record the precise status of provider setup/access, native Git engine/transport,
 
 ##### Gate D — Scoped disposition and delivery alignment
 
-Present findings/residual risks, actual verification plan/evidence and unresolved conditions for owner disposition of the identified candidate. Preserve the agreed pre-implementation baseline sequence; do not infer implementation authorization or whole-phase acceptance from populated documentation. Reconcile estimates, dependencies, backlog and live tracking with the actual 20 total project hours/week and accepted scope before a forecast/commitment.
+Present findings/residual risks, actual verification plan/evidence and unresolved conditions for owner disposition of the identified candidate. Preserve the agreed pre-implementation baseline sequence; do not infer implementation authorization or whole-phase acceptance from populated documentation.
 
 Possible recorded dispositions are scoped acceptance, conditional disposition with explicit blocked commitments, rework or deferred decision—only when actually made. Product release/security/recovery readiness remains separately evidenced even if a design scope is accepted.
 
@@ -3464,7 +3464,7 @@ The [diagram catalog](#design-record-06-design-quality-and-security-analysis-dia
 
 Q-D25/Q-D26 numerical/client/accessibility/recovery proposals retain their source status. The dated small-server observation is not capacity evidence, and ten accounts do not define concurrent workload. Backups are not set up; independent destination/key access, consistent capture and usable restoration remain required evidence. Execution containment/resource fit, native Git/provider compatibility, actual mail/worker/scheduler operation, final physical prescriptions and exact criterion closure remain pending at their affected gates.
 
-The sole owner's total project capacity is 20 hours/week, including operation and recovery work. New facilities/costs or reduced capabilities require explicit decisions through existing authority; design prose supplies neither spending approval nor baseline acceptance.
+New facilities/costs or reduced capabilities require explicit decisions through existing authority; design prose supplies neither spending approval nor baseline acceptance.
 
 Before handoff, use document 05's four gates: identified traceable candidate; sufficient technical prescriptions; applicable feasibility/verification prerequisites; and actual scoped disposition with delivery alignment. Continue independent design work where an unresolved gate does not affect it. Store only actual evidence with candidate/environment/method/reviewer/limits; do not prefill successful checklists or invent risk acceptance.
 
@@ -3848,7 +3848,7 @@ The inherited 157 provisional requirement identities and 470 criterion locators 
 
 The current candidate covers core identity/dashboard, presentation/private media/protected PDFs and sharing, manual applications/history/follow-up, and separate basic ProjectForge integration. Provider communication/calendar, advanced work/Sprints/Git review/releases and workflow execution/deployment are future candidate models. Allocate only the owner-defined MVP to Version 1; retain broader capability as explicitly deferred proposals.
 
-Laravel and object-oriented development are recorded constraints. Initial ten-user scope and possible future growth are not measured concurrency or capacity. The sole owner's total capacity is 20 project hours/week, including design, delivery, operation and recovery. The dated small-server observations are feasibility inputs, not final platform selection or proof of workload fit.
+Laravel and object-oriented development are recorded constraints. Initial ten-user scope and possible future growth are not measured concurrency or capacity. The dated small-server observations are feasibility inputs, not final platform selection or proof of workload fit.
 
 AI features, automatic translation and legacy demo migration remain outside Version 1. Professional English/German content is manually maintained. Do not introduce new services, paid infrastructure, public API consumers or product policies merely to fill a design topic.
 

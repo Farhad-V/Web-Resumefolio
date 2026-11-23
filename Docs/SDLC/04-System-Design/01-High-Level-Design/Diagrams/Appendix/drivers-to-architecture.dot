@@ -4,7 +4,7 @@ digraph G {
 privacy [label="Private resource access
 One coherent product"]; history [label="Explicit publication
 Preserved actual history"]; effects [label="Real Git and provider effects
-Conditional untrusted execution"]; resources [label="20 project hours/week
+Conditional untrusted execution"]; resources [label="Scope and dependencies
 Existing budget and dated host inventory"];
 modules [label="Explicit module ownership
 Per-operation authorization",fillcolor="#1F2937"]; revisions [label="Separate source / draft / publication

@@ -4,7 +4,7 @@
 
 ## Selection, Verification and Completion Rules
 
-These are proposed development groups. The owner deferred dates, duration and final sprint count. Keep the 12-group allocation as a dependency map; it is not a promise that each package fits one timebox. Before each start, select a demonstrable slice within actual capacity, splitting/carrying work explicitly when needed. No iteration is started, no task completed and no test passed by this refinement.
+These are proposed development groups organized by dependencies. Select a demonstrable slice and split or carry work explicitly when needed. No iteration is started, no task completed and no test passed by this refinement.
 
 **Ready to select:** exact issue/slice and applicable RTM criteria identified; earlier dependencies accepted for the required boundary; actual safe environment and input available; expected outcomes and denied/failure checks clear; task small enough to review. An unavailable host, service credential, backup destination or required legal/license disposition is a named gate/input, not silently assumed success. Independent settled work may proceed where that gate does not apply.
 
@@ -14,24 +14,24 @@ These are proposed development groups. The owner deferred dates, duration and fi
 
 **Task identity:** `I<number>-T<number>` below is a work locator under the existing issue, not a replacement requirement ID or a new backlog item. Preserve the issue's exact criterion register and scope constraints; map observed results to individual criteria. A task may need further splitting after the actual implementation seam is known. Deferred issues #3/#4/#17/#18/#21/#23 stay outside these groups and are not implemented by this plan.
 
-**Estimation:** ranges are uncalibrated planning estimates of total owner work (implementation/investigation, learning, documentation, tests and review), not measurements or commitments. They exclude unknown external waiting and purchased service costs. The owner has 20 total project hours/week; never equate one group with one week, invent velocity or infer a calendar deadline. Re-estimate from actuals after early slices. Later groups have lower confidence and their detailed cases must be refined before selection. Work locators, not table position or issue number, define execution precedence; independent items may run in either order once dependencies hold.
+Work locators define execution precedence. Refine later groups from implementation evidence before selecting their next demonstrable slice.
 
 ## Dependency-Ordered Allocation
 
-| Group | Demonstrable goal | Execution sequence | Total owner-work estimate |
-| --- | --- | --- | --- |
-| 01 | Reviewed scope, host prerequisites and implementation inputs | [#1](https://github.com/Farhad-V/Web-Resumefolio/issues/1) → [#2](https://github.com/Farhad-V/Web-Resumefolio/issues/2) → [#7](https://github.com/Farhad-V/Web-Resumefolio/issues/7) → [#8](https://github.com/Farhad-V/Web-Resumefolio/issues/8) → [#9](https://github.com/Farhad-V/Web-Resumefolio/issues/9) | 16–32 h; uncalibrated |
-| 02 | Repeatable isolated applications, transactional SMTP and backup prerequisites | [#37](https://github.com/Farhad-V/Web-Resumefolio/issues/37) → [#5](https://github.com/Farhad-V/Web-Resumefolio/issues/5) → [#6](https://github.com/Farhad-V/Web-Resumefolio/issues/6) | 28–56 h; uncalibrated |
-| 03 | Invited private access with current authorization | [#10](https://github.com/Farhad-V/Web-Resumefolio/issues/10) | 24–48 h; uncalibrated |
-| 04 | Bounded admission and proven identity/native Git boundary | [#41](https://github.com/Farhad-V/Web-Resumefolio/issues/41) → [#38](https://github.com/Farhad-V/Web-Resumefolio/issues/38) | 36–72 h; uncalibrated |
-| 05 | Usable private workspace, profile/resume drafts and media | [#11](https://github.com/Farhad-V/Web-Resumefolio/issues/11) → [#12](https://github.com/Farhad-V/Web-Resumefolio/issues/12) → [#13](https://github.com/Farhad-V/Web-Resumefolio/issues/13) | 56–112 h; uncalibrated |
-| 06 | Exact PDF variants, atomic publication and protected history | [#14](https://github.com/Farhad-V/Web-Resumefolio/issues/14) → [#40](https://github.com/Farhad-V/Web-Resumefolio/issues/40) | 44–88 h; uncalibrated |
-| 07 | Protected selected sharing and manual application history | [#15](https://github.com/Farhad-V/Web-Resumefolio/issues/15) → [#16](https://github.com/Farhad-V/Web-Resumefolio/issues/16) | 44–88 h; uncalibrated |
-| 08 | Scoped production integration and real native Git | [#39](https://github.com/Farhad-V/Web-Resumefolio/issues/39) → [#20](https://github.com/Farhad-V/Web-Resumefolio/issues/20) | 44–88 h; uncalibrated |
-| 09 | Repository issues/fixed board and account lifecycle | [#22](https://github.com/Farhad-V/Web-Resumefolio/issues/22) → [#19](https://github.com/Farhad-V/Web-Resumefolio/issues/19) → [#24](https://github.com/Farhad-V/Web-Resumefolio/issues/24) | 44–88 h; uncalibrated |
-| 10 | Integrated criterion evidence and isolated restore | [#25](https://github.com/Farhad-V/Web-Resumefolio/issues/25) → [#27](https://github.com/Farhad-V/Web-Resumefolio/issues/27) | 32–64 h; uncalibrated |
-| 11 | Measured quality and usable operating guidance | [#26](https://github.com/Farhad-V/Web-Resumefolio/issues/26) → [#28](https://github.com/Farhad-V/Web-Resumefolio/issues/28) | 24–48 h; uncalibrated |
-| 12 | Reviewed release candidate and separately authorized deployment | [#29](https://github.com/Farhad-V/Web-Resumefolio/issues/29) | 8–16 h; uncalibrated |
+| Group | Demonstrable goal | Execution sequence |
+| --- | --- | --- |
+| 01 | Reviewed scope, host prerequisites and implementation inputs | [#1](https://github.com/Farhad-V/Web-Resumefolio/issues/1) → [#2](https://github.com/Farhad-V/Web-Resumefolio/issues/2) → [#7](https://github.com/Farhad-V/Web-Resumefolio/issues/7) → [#8](https://github.com/Farhad-V/Web-Resumefolio/issues/8) → [#9](https://github.com/Farhad-V/Web-Resumefolio/issues/9) |
+| 02 | Repeatable isolated applications, transactional SMTP and backup prerequisites | [#37](https://github.com/Farhad-V/Web-Resumefolio/issues/37) → [#5](https://github.com/Farhad-V/Web-Resumefolio/issues/5) → [#6](https://github.com/Farhad-V/Web-Resumefolio/issues/6) |
+| 03 | Invited private access with current authorization | [#10](https://github.com/Farhad-V/Web-Resumefolio/issues/10) |
+| 04 | Bounded admission and proven identity/native Git boundary | [#41](https://github.com/Farhad-V/Web-Resumefolio/issues/41) → [#38](https://github.com/Farhad-V/Web-Resumefolio/issues/38) |
+| 05 | Usable private workspace, profile/resume drafts and media | [#11](https://github.com/Farhad-V/Web-Resumefolio/issues/11) → [#12](https://github.com/Farhad-V/Web-Resumefolio/issues/12) → [#13](https://github.com/Farhad-V/Web-Resumefolio/issues/13) |
+| 06 | Exact PDF variants, atomic publication and protected history | [#14](https://github.com/Farhad-V/Web-Resumefolio/issues/14) → [#40](https://github.com/Farhad-V/Web-Resumefolio/issues/40) |
+| 07 | Protected selected sharing and manual application history | [#15](https://github.com/Farhad-V/Web-Resumefolio/issues/15) → [#16](https://github.com/Farhad-V/Web-Resumefolio/issues/16) |
+| 08 | Scoped production integration and real native Git | [#39](https://github.com/Farhad-V/Web-Resumefolio/issues/39) → [#20](https://github.com/Farhad-V/Web-Resumefolio/issues/20) |
+| 09 | Repository issues/fixed board and account lifecycle | [#22](https://github.com/Farhad-V/Web-Resumefolio/issues/22) → [#19](https://github.com/Farhad-V/Web-Resumefolio/issues/19) → [#24](https://github.com/Farhad-V/Web-Resumefolio/issues/24) |
+| 10 | Integrated criterion evidence and isolated restore | [#25](https://github.com/Farhad-V/Web-Resumefolio/issues/25) → [#27](https://github.com/Farhad-V/Web-Resumefolio/issues/27) |
+| 11 | Measured quality and usable operating guidance | [#26](https://github.com/Farhad-V/Web-Resumefolio/issues/26) → [#28](https://github.com/Farhad-V/Web-Resumefolio/issues/28) |
+| 12 | Reviewed release candidate and separately authorized deployment | [#29](https://github.com/Farhad-V/Web-Resumefolio/issues/29) |
 
 The numeric Development order shown on the GitHub Sprint Backlog (when present) mirrors this sequence. It is a stable reading/start order, not an additional dependency between otherwise independent items. Dependency admission always takes precedence.
 
@@ -41,7 +41,7 @@ The numeric Development order shown on the GitHub Sprint Backlog (when present) 
 
 **Status:** proposed; all implementation checks not executed. Near-term task/check definitions are expanded below; current external evidence still determines readiness.
 
-**Entry:** Start with existing owner scope/capacity decisions and safe read-only access to the actual host/prerequisite inventory.
+**Entry:** Start with existing owner scope/responsibilities decisions and safe read-only access to the actual host/prerequisite inventory.
 
 **Exit/demonstration:** Reviewed scope, host prerequisites and implementation inputs, demonstrated by the item checks below and the common completion rules. Retain failures, unavailable inputs and remaining scope explicitly.
 
@@ -49,14 +49,14 @@ The numeric Development order shown on the GitHub Sprint Backlog (when present) 
 
 ### Development order 01: PBI-001 / #1
 
-**Proposed group:** Sprint 01. **Owner:** Farhad. **Estimate:** 2–4 total work hours, uncalibrated. **Prerequisites:** None.
+**Proposed group:** Sprint 01. **Owner:** Farhad. **Prerequisites:** None.
 
-**Observable outcome:** Record the actual 20 total project hours/week, including learning/docs/tests/operations. Preserve old dates only as historical; no new delivery deadline is promised.
+**Observable outcome:** Record the selected MVP scope, exclusions and delivery responsibilities.
 
 **Implementation/checklist slices:**
 
-- [ ] **I1-T01: Record scope and capacity.** Deliver: Document 20 total project hours/week including learning, documentation, tests and operations; identify MVP/deferred boundaries. Acceptance/verification: Check against the owner's recorded decisions; exclude historical dates from current commitments.
-- [ ] **I1-T02: Record planning constraints.** Deliver: List current operating obligations, unresolved inputs and review owner. Acceptance/verification: No invented staffing, velocity, dates or accepted outcomes.
+- [ ] **I1-T01: Record scope and responsibilities.** Deliver: Document MVP/deferred boundaries and the responsible delivery owner. Acceptance/verification: Check against the owner's recorded scope decisions.
+- [ ] **I1-T02: Record planning constraints.** Deliver: List current operating obligations, unresolved inputs and review owner. Acceptance/verification: No invented staffing or accepted outcomes.
 
 **Evidence/exit:** apply the common completion rules and the exact applicable criteria already retained on this issue. Each executed check records criterion, candidate revision, environment, expected/actual outcome and sanitized evidence. All checkboxes remain pending until demonstrated.
 
@@ -64,7 +64,7 @@ The numeric Development order shown on the GitHub Sprint Backlog (when present) 
 
 ### Development order 02: PBI-002 / #2
 
-**Proposed group:** Sprint 01. **Owner:** Farhad. **Estimate:** 4–8 total work hours, uncalibrated. **Prerequisites:** None.
+**Proposed group:** Sprint 01. **Owner:** Farhad. **Prerequisites:** None.
 
 **Observable outcome:** Record sanitized actual host resources/workloads, disk reservation headroom, independent users/DB/storage and required Nginx modules. No infrastructure change is implied by this investigation.
 
@@ -79,13 +79,13 @@ The numeric Development order shown on the GitHub Sprint Backlog (when present) 
 
 ### Development order 03: PBI-007 / #7
 
-**Proposed group:** Sprint 01. **Owner:** Farhad. **Estimate:** 2–4 total work hours, uncalibrated. **Prerequisites:** [#1](https://github.com/Farhad-V/Web-Resumefolio/issues/1).
+**Proposed group:** Sprint 01. **Owner:** Farhad. **Prerequisites:** [#1](https://github.com/Farhad-V/Web-Resumefolio/issues/1).
 
-**Observable outcome:** Review the current scope, dependencies, 20-hour capacity, risk and evidence gates. Preserve original M-01 acceptance without claiming later outcome acceptance.
+**Observable outcome:** Review the current scope, dependencies, risk and evidence gates. Preserve original M-01 acceptance without claiming later outcome acceptance.
 
 **Implementation/checklist slices:**
 
-- [ ] **I7-T01: Reconcile planning records.** Deliver: Review scope, capacity, dependencies and risk follow-ups against #1 and selected baseline. Acceptance/verification: No conflicting current deadline or deferred feature in the MVP path.
+- [ ] **I7-T01: Reconcile planning records.** Deliver: Review scope, responsibilities, dependencies and risk follow-ups against #1 and selected baseline. Acceptance/verification: No conflicting scope or deferred feature in the MVP path.
 - [ ] **I7-T02: Review evidence gates.** Deliver: Record exact required G0/G1 inputs, responsible follow-up and conditional blockers. Acceptance/verification: Planning acceptance does not claim setup, runtime or release acceptance.
 
 **Evidence/exit:** apply the common completion rules and the exact applicable criteria already retained on this issue. Each executed check records criterion, candidate revision, environment, expected/actual outcome and sanitized evidence. All checkboxes remain pending until demonstrated.
@@ -94,7 +94,7 @@ The numeric Development order shown on the GitHub Sprint Backlog (when present) 
 
 ### Development order 04: PBI-008 / #8
 
-**Proposed group:** Sprint 01. **Owner:** Farhad. **Estimate:** 4–8 total work hours, uncalibrated. **Prerequisites:** [#7](https://github.com/Farhad-V/Web-Resumefolio/issues/7).
+**Proposed group:** Sprint 01. **Owner:** Farhad. **Prerequisites:** [#7](https://github.com/Farhad-V/Web-Resumefolio/issues/7).
 
 **Observable outcome:** Review the selected Baseline, preserved criterion dispositions and 10 supplemental checks as an implementation input. Establish the applicable specification-to-test-plan mapping and requirements walkthrough; actual product results and actor acceptance remain PBI-025/G6, not prerequisites to Setup.
 
@@ -109,7 +109,7 @@ The numeric Development order shown on the GitHub Sprint Backlog (when present) 
 
 ### Development order 05: PBI-009 / #9
 
-**Proposed group:** Sprint 01. **Owner:** Farhad. **Estimate:** 4–8 total work hours, uncalibrated. **Prerequisites:** [#8](https://github.com/Farhad-V/Web-Resumefolio/issues/8).
+**Proposed group:** Sprint 01. **Owner:** Farhad. **Prerequisites:** [#8](https://github.com/Farhad-V/Web-Resumefolio/issues/8).
 
 **Observable outcome:** Use selected T01–T10 and Q-D decisions, separate Core/ProjectForge trust/storage, private media and recovery design. Resolve real compatibility/feasibility findings; selected documents are not installed runtime evidence. Setup is PBI-030.
 
@@ -134,7 +134,7 @@ The numeric Development order shown on the GitHub Sprint Backlog (when present) 
 
 ### Development order 06: PBI-030 / #37
 
-**Proposed group:** Sprint 02. **Owner:** Farhad. **Estimate:** 16–32 total work hours, uncalibrated. **Prerequisites:** [#2](https://github.com/Farhad-V/Web-Resumefolio/issues/2), [#9](https://github.com/Farhad-V/Web-Resumefolio/issues/9).
+**Proposed group:** Sprint 02. **Owner:** Farhad. **Prerequisites:** [#2](https://github.com/Farhad-V/Web-Resumefolio/issues/2), [#9](https://github.com/Farhad-V/Web-Resumefolio/issues/9).
 
 **Observable outcome:** Create Core and independent ProjectForge scaffolds using selected maintained versions, isolated MySQL databases/users, lockfiles and clean build/test commands. No demo migration or live server change; document verified Setup.
 
@@ -152,7 +152,7 @@ The numeric Development order shown on the GitHub Sprint Backlog (when present) 
 
 ### Development order 07: PBI-005 / #5
 
-**Proposed group:** Sprint 02. **Owner:** Farhad. **Estimate:** 4–8 total work hours, uncalibrated. **Prerequisites:** [#2](https://github.com/Farhad-V/Web-Resumefolio/issues/2).
+**Proposed group:** Sprint 02. **Owner:** Farhad. **Prerequisites:** [#2](https://github.com/Farhad-V/Web-Resumefolio/issues/2).
 
 **Observable outcome:** Select actual operator SMTP configuration, demonstrate receipt with authorized test addresses, truthful outcomes, throttling and recovery. Never expose secrets or confuse log transport with delivery.
 
@@ -167,7 +167,7 @@ The numeric Development order shown on the GitHub Sprint Backlog (when present) 
 
 ### Development order 08: PBI-006 / #6
 
-**Proposed group:** Sprint 02. **Owner:** Farhad. **Estimate:** 8–16 total work hours, uncalibrated. **Prerequisites:** [#2](https://github.com/Farhad-V/Web-Resumefolio/issues/2).
+**Proposed group:** Sprint 02. **Owner:** Farhad. **Prerequisites:** [#2](https://github.com/Farhad-V/Web-Resumefolio/issues/2).
 
 **Observable outcome:** Verify restic destination capacity/access, separate recovery keys, consistent Core/ProjectForge capture and 7 daily/4 weekly retention; prepare isolated restore procedure. Actual restore is PBI-027.
 
@@ -193,7 +193,7 @@ The numeric Development order shown on the GitHub Sprint Backlog (when present) 
 
 ### Development order 09: PBI-010 / #10
 
-**Proposed group:** Sprint 03. **Owner:** Farhad. **Estimate:** 24–48 total work hours, uncalibrated. **Prerequisites:** [#37](https://github.com/Farhad-V/Web-Resumefolio/issues/37), [#5](https://github.com/Farhad-V/Web-Resumefolio/issues/5).
+**Proposed group:** Sprint 03. **Owner:** Farhad. **Prerequisites:** [#37](https://github.com/Farhad-V/Web-Resumefolio/issues/37), [#5](https://github.com/Farhad-V/Web-Resumefolio/issues/5).
 
 **Observable outcome:** Implement admin invitation, no public signup, Login/recovery/Admin TOTP, current-session revocation, explicit policies and private cross-user denial. SMTP acceptance depends on PBI-005.
 
@@ -220,7 +220,7 @@ The numeric Development order shown on the GitHub Sprint Backlog (when present) 
 
 ### Development order 10: PBI-034 / #41
 
-**Proposed group:** Sprint 04. **Owner:** Farhad. **Estimate:** 20–40 total work hours, uncalibrated. **Prerequisites:** [#2](https://github.com/Farhad-V/Web-Resumefolio/issues/2), [#37](https://github.com/Farhad-V/Web-Resumefolio/issues/37).
+**Proposed group:** Sprint 04. **Owner:** Farhad. **Prerequisites:** [#2](https://github.com/Farhad-V/Web-Resumefolio/issues/2), [#37](https://github.com/Farhad-V/Web-Resumefolio/issues/37).
 
 **Observable outcome:** Implement selected per-file/user/global quotas including temporary/quarantine bytes, disk reserve and concurrent reservations; bound Git requests/processes and deny exhaustion safely without losing committed data.
 
@@ -236,7 +236,7 @@ The numeric Development order shown on the GitHub Sprint Backlog (when present) 
 
 ### Development order 11: PBI-031 / #38
 
-**Proposed group:** Sprint 04. **Owner:** Farhad. **Estimate:** 16–32 total work hours, uncalibrated. **Prerequisites:** [#2](https://github.com/Farhad-V/Web-Resumefolio/issues/2), [#37](https://github.com/Farhad-V/Web-Resumefolio/issues/37), [#10](https://github.com/Farhad-V/Web-Resumefolio/issues/10).
+**Proposed group:** Sprint 04. **Owner:** Farhad. **Prerequisites:** [#2](https://github.com/Farhad-V/Web-Resumefolio/issues/2), [#37](https://github.com/Farhad-V/Web-Resumefolio/issues/37), [#10](https://github.com/Farhad-V/Web-Resumefolio/issues/10).
 
 **Observable outcome:** Run real isolated clients plus OAuth state/PKCE/redirect, current-account revocation, forged/expired/wrong-repo credentials, dumb/anonymous transport denial, paths/header/env/hooks and quota/ref races. Failures require Design revision before enabling Git, never a fake pass.
 
@@ -262,7 +262,7 @@ The numeric Development order shown on the GitHub Sprint Backlog (when present) 
 
 ### Development order 12: PBI-011 / #11
 
-**Proposed group:** Sprint 05. **Owner:** Farhad. **Estimate:** 12–24 total work hours, uncalibrated. **Prerequisites:** [#10](https://github.com/Farhad-V/Web-Resumefolio/issues/10).
+**Proposed group:** Sprint 05. **Owner:** Farhad. **Prerequisites:** [#10](https://github.com/Farhad-V/Web-Resumefolio/issues/10).
 
 **Observable outcome:** Provide authorized navigation and dashboard for Core/manual applications/basic ProjectForge. Keyboard/mobile/language/failure states must not imply unauthorized data or completed external actions.
 
@@ -277,7 +277,7 @@ The numeric Development order shown on the GitHub Sprint Backlog (when present) 
 
 ### Development order 13: PBI-012 / #12
 
-**Proposed group:** Sprint 05. **Owner:** Farhad. **Estimate:** 24–48 total work hours, uncalibrated. **Prerequisites:** [#10](https://github.com/Farhad-V/Web-Resumefolio/issues/10).
+**Proposed group:** Sprint 05. **Owner:** Farhad. **Prerequisites:** [#10](https://github.com/Farhad-V/Web-Resumefolio/issues/10).
 
 **Observable outcome:** Private Profile, multiple tailored resumes/portfolio, manual English/German variants, selected source preview/apply and independent overrides. Publishing is separately confirmed and stale edits conflict.
 
@@ -293,7 +293,7 @@ The numeric Development order shown on the GitHub Sprint Backlog (when present) 
 
 ### Development order 14: PBI-013 / #13
 
-**Proposed group:** Sprint 05. **Owner:** Farhad. **Estimate:** 20–40 total work hours, uncalibrated. **Prerequisites:** [#2](https://github.com/Farhad-V/Web-Resumefolio/issues/2), [#10](https://github.com/Farhad-V/Web-Resumefolio/issues/10), [#41](https://github.com/Farhad-V/Web-Resumefolio/issues/41).
+**Proposed group:** Sprint 05. **Owner:** Farhad. **Prerequisites:** [#2](https://github.com/Farhad-V/Web-Resumefolio/issues/2), [#10](https://github.com/Farhad-V/Web-Resumefolio/issues/10), [#41](https://github.com/Farhad-V/Web-Resumefolio/issues/41).
 
 **Observable outcome:** Same Core server outside public webroot, selected supported video/audio/image/text/PDF formats and safe YouTube embeds. Quarantine/type/dimension checks, private-by-default storage and per-resume selection; upload never publishes.
 
@@ -319,7 +319,7 @@ The numeric Development order shown on the GitHub Sprint Backlog (when present) 
 
 ### Development order 15: PBI-014 / #14
 
-**Proposed group:** Sprint 06. **Owner:** Farhad. **Estimate:** 20–40 total work hours, uncalibrated. **Prerequisites:** [#12](https://github.com/Farhad-V/Web-Resumefolio/issues/12), [#13](https://github.com/Farhad-V/Web-Resumefolio/issues/13).
+**Proposed group:** Sprint 06. **Owner:** Farhad. **Prerequisites:** [#12](https://github.com/Farhad-V/Web-Resumefolio/issues/12), [#13](https://github.com/Farhad-V/Web-Resumefolio/issues/13).
 
 **Observable outcome:** Trusted-template Dompdf, EN/DE fonts/page flow, separate generated/uploaded modes and immutable private artifacts. Missing/failed language is explicit; remote resources and arbitrary user HTML are disabled.
 
@@ -335,7 +335,7 @@ The numeric Development order shown on the GitHub Sprint Backlog (when present) 
 
 ### Development order 16: PBI-033 / #40
 
-**Proposed group:** Sprint 06. **Owner:** Farhad. **Estimate:** 24–48 total work hours, uncalibrated. **Prerequisites:** [#12](https://github.com/Farhad-V/Web-Resumefolio/issues/12), [#13](https://github.com/Farhad-V/Web-Resumefolio/issues/13), [#14](https://github.com/Farhad-V/Web-Resumefolio/issues/14).
+**Proposed group:** Sprint 06. **Owner:** Farhad. **Prerequisites:** [#12](https://github.com/Farhad-V/Web-Resumefolio/issues/12), [#13](https://github.com/Farhad-V/Web-Resumefolio/issues/13), [#14](https://github.com/Farhad-V/Web-Resumefolio/issues/14).
 
 **Observable outcome:** Source/draft/publication/submission identities, optimistic versions, immutable bytes and protected reference reservations, short local transactions/outbox/idempotency and cleanup reconciliation. Interrupted capture cannot appear complete or delete referenced history.
 
@@ -361,7 +361,7 @@ The numeric Development order shown on the GitHub Sprint Backlog (when present) 
 
 ### Development order 17: PBI-015 / #15
 
-**Proposed group:** Sprint 07. **Owner:** Farhad. **Estimate:** 20–40 total work hours, uncalibrated. **Prerequisites:** [#12](https://github.com/Farhad-V/Web-Resumefolio/issues/12), [#13](https://github.com/Farhad-V/Web-Resumefolio/issues/13), [#14](https://github.com/Farhad-V/Web-Resumefolio/issues/14), [#40](https://github.com/Farhad-V/Web-Resumefolio/issues/40).
+**Proposed group:** Sprint 07. **Owner:** Farhad. **Prerequisites:** [#12](https://github.com/Farhad-V/Web-Resumefolio/issues/12), [#13](https://github.com/Farhad-V/Web-Resumefolio/issues/13), [#14](https://github.com/Farhad-V/Web-Resumefolio/issues/14), [#40](https://github.com/Farhad-V/Web-Resumefolio/issues/40).
 
 **Observable outcome:** Employer views only the selected published resume/media/PDF without owner login. Link/password revocation applies to every future preview/direct/range request; no public storage URL or shared-cache bypass. Any access statistics must be minimal, private and avoid adding new analytics scope.
 
@@ -377,7 +377,7 @@ The numeric Development order shown on the GitHub Sprint Backlog (when present) 
 
 ### Development order 18: PBI-016 / #16
 
-**Proposed group:** Sprint 07. **Owner:** Farhad. **Estimate:** 24–48 total work hours, uncalibrated. **Prerequisites:** [#12](https://github.com/Farhad-V/Web-Resumefolio/issues/12), [#14](https://github.com/Farhad-V/Web-Resumefolio/issues/14), [#40](https://github.com/Farhad-V/Web-Resumefolio/issues/40).
+**Proposed group:** Sprint 07. **Owner:** Farhad. **Prerequisites:** [#12](https://github.com/Farhad-V/Web-Resumefolio/issues/12), [#14](https://github.com/Farhad-V/Web-Resumefolio/issues/14), [#40](https://github.com/Farhad-V/Web-Resumefolio/issues/40).
 
 **Observable outcome:** Company/opportunity, authored cover letter, manual status, next action and follow-up date. Capture actual submitted immutable bytes/checksums and append corrections/resubmissions; no email/calendar dependency or invented send success.
 
@@ -403,7 +403,7 @@ The numeric Development order shown on the GitHub Sprint Backlog (when present) 
 
 ### Development order 19: PBI-032 / #39
 
-**Proposed group:** Sprint 08. **Owner:** Farhad. **Estimate:** 20–40 total work hours, uncalibrated. **Prerequisites:** [#10](https://github.com/Farhad-V/Web-Resumefolio/issues/10), [#38](https://github.com/Farhad-V/Web-Resumefolio/issues/38).
+**Proposed group:** Sprint 08. **Owner:** Farhad. **Prerequisites:** [#10](https://github.com/Farhad-V/Web-Resumefolio/issues/10), [#38](https://github.com/Farhad-V/Web-Resumefolio/issues/38).
 
 **Observable outcome:** OAuth authorization code + PKCE binds immutable Core identity; independent sessions/databases. Short-lived signed audience/scoped API tokens, local grants and fresh fail-closed Core status checks; correct timeout/retry behavior and no browser service-wide bearer.
 
@@ -419,7 +419,7 @@ The numeric Development order shown on the GitHub Sprint Backlog (when present) 
 
 ### Development order 20: PBI-020 / #20
 
-**Proposed group:** Sprint 08. **Owner:** Farhad. **Estimate:** 24–48 total work hours, uncalibrated. **Prerequisites:** [#41](https://github.com/Farhad-V/Web-Resumefolio/issues/41), [#38](https://github.com/Farhad-V/Web-Resumefolio/issues/38), [#39](https://github.com/Farhad-V/Web-Resumefolio/issues/39).
+**Proposed group:** Sprint 08. **Owner:** Farhad. **Prerequisites:** [#41](https://github.com/Farhad-V/Web-Resumefolio/issues/41), [#38](https://github.com/Farhad-V/Web-Resumefolio/issues/38), [#39](https://github.com/Farhad-V/Web-Resumefolio/issues/39).
 
 **Observable outcome:** Independent ProjectForge native bare Git/Smart HTTP with scoped expiring PATs, current Core status and repository grants; real clone/fetch/pull/push and safe file/history browsing. Dedicated process/path/hook/env isolation; no SSH/user workflow runner.
 
@@ -445,7 +445,7 @@ The numeric Development order shown on the GitHub Sprint Backlog (when present) 
 
 ### Development order 21: PBI-022 / #22
 
-**Proposed group:** Sprint 09. **Owner:** Farhad. **Estimate:** 16–32 total work hours, uncalibrated. **Prerequisites:** [#39](https://github.com/Farhad-V/Web-Resumefolio/issues/39), [#20](https://github.com/Farhad-V/Web-Resumefolio/issues/20).
+**Proposed group:** Sprint 09. **Owner:** Farhad. **Prerequisites:** [#39](https://github.com/Farhad-V/Web-Resumefolio/issues/39), [#20](https://github.com/Farhad-V/Web-Resumefolio/issues/20).
 
 **Observable outcome:** Authorized issue creation, updates, assignee and repository context. Basic issue access does not grant repository writes. Milestone/release management and advanced collaboration UI are outside product MVP; GitHub project Milestones used to manage this work are unrelated.
 
@@ -460,7 +460,7 @@ The numeric Development order shown on the GitHub Sprint Backlog (when present) 
 
 ### Development order 22: PBI-019 / #19
 
-**Proposed group:** Sprint 09. **Owner:** Farhad. **Estimate:** 8–16 total work hours, uncalibrated. **Prerequisites:** [#22](https://github.com/Farhad-V/Web-Resumefolio/issues/22).
+**Proposed group:** Sprint 09. **Owner:** Farhad. **Prerequisites:** [#22](https://github.com/Farhad-V/Web-Resumefolio/issues/22).
 
 **Observable outcome:** Fixed To do / In progress / Done board for authorized issues, explicit assignee/priority/due date, safe movement and membership changes. General backlog/Sprints/configurable column workflows are after MVP.
 
@@ -475,7 +475,7 @@ The numeric Development order shown on the GitHub Sprint Backlog (when present) 
 
 ### Development order 23: PBI-024 / #24
 
-**Proposed group:** Sprint 09. **Owner:** Farhad. **Estimate:** 20–40 total work hours, uncalibrated. **Prerequisites:** [#10](https://github.com/Farhad-V/Web-Resumefolio/issues/10), [#13](https://github.com/Farhad-V/Web-Resumefolio/issues/13), [#40](https://github.com/Farhad-V/Web-Resumefolio/issues/40).
+**Proposed group:** Sprint 09. **Owner:** Farhad. **Prerequisites:** [#10](https://github.com/Farhad-V/Web-Resumefolio/issues/10), [#13](https://github.com/Farhad-V/Web-Resumefolio/issues/13), [#40](https://github.com/Farhad-V/Web-Resumefolio/issues/40).
 
 **Observable outcome:** Current account revocation, private-content policies, 30-day trash, reference-aware cleanup and bounded append-only audit metadata. Preserve actual history and reapply deletion/revocation after restore; no admin implicit content access.
 
@@ -501,7 +501,7 @@ The numeric Development order shown on the GitHub Sprint Backlog (when present) 
 
 ### Development order 24: PBI-025 / #25
 
-**Proposed group:** Sprint 10. **Owner:** Farhad. **Estimate:** 20–40 total work hours, uncalibrated. **Prerequisites:** [#11](https://github.com/Farhad-V/Web-Resumefolio/issues/11), [#15](https://github.com/Farhad-V/Web-Resumefolio/issues/15), [#16](https://github.com/Farhad-V/Web-Resumefolio/issues/16), [#39](https://github.com/Farhad-V/Web-Resumefolio/issues/39), [#19](https://github.com/Farhad-V/Web-Resumefolio/issues/19), [#24](https://github.com/Farhad-V/Web-Resumefolio/issues/24).
+**Proposed group:** Sprint 10. **Owner:** Farhad. **Prerequisites:** [#11](https://github.com/Farhad-V/Web-Resumefolio/issues/11), [#15](https://github.com/Farhad-V/Web-Resumefolio/issues/15), [#16](https://github.com/Farhad-V/Web-Resumefolio/issues/16), [#39](https://github.com/Farhad-V/Web-Resumefolio/issues/39), [#19](https://github.com/Farhad-V/Web-Resumefolio/issues/19), [#24](https://github.com/Farhad-V/Web-Resumefolio/issues/24).
 
 **Observable outcome:** Run requirement-linked positive/denied/stale/failure/regression journeys against the identified candidate; intended actor review and complete sanitized evidence. Deferred provider/review/runner paths are not release prerequisites.
 
@@ -517,7 +517,7 @@ The numeric Development order shown on the GitHub Sprint Backlog (when present) 
 
 ### Development order 25: PBI-027 / #27
 
-**Proposed group:** Sprint 10. **Owner:** Farhad. **Estimate:** 12–24 total work hours, uncalibrated. **Prerequisites:** [#6](https://github.com/Farhad-V/Web-Resumefolio/issues/6), [#40](https://github.com/Farhad-V/Web-Resumefolio/issues/40), [#20](https://github.com/Farhad-V/Web-Resumefolio/issues/20), [#24](https://github.com/Farhad-V/Web-Resumefolio/issues/24).
+**Proposed group:** Sprint 10. **Owner:** Farhad. **Prerequisites:** [#6](https://github.com/Farhad-V/Web-Resumefolio/issues/6), [#40](https://github.com/Farhad-V/Web-Resumefolio/issues/40), [#20](https://github.com/Farhad-V/Web-Resumefolio/issues/20), [#24](https://github.com/Farhad-V/Web-Resumefolio/issues/24).
 
 **Observable outcome:** Timed isolated encrypted backup restore of both systems, immutable artifacts, Git refs, current grants/deletion/revocation and outbox without external replay. Test code rollback separately from data recovery.
 
@@ -543,7 +543,7 @@ The numeric Development order shown on the GitHub Sprint Backlog (when present) 
 
 ### Development order 26: PBI-026 / #26
 
-**Proposed group:** Sprint 11. **Owner:** Farhad. **Estimate:** 16–32 total work hours, uncalibrated. **Prerequisites:** [#41](https://github.com/Farhad-V/Web-Resumefolio/issues/41), [#25](https://github.com/Farhad-V/Web-Resumefolio/issues/25).
+**Proposed group:** Sprint 11. **Owner:** Farhad. **Prerequisites:** [#41](https://github.com/Farhad-V/Web-Resumefolio/issues/41), [#25](https://github.com/Farhad-V/Web-Resumefolio/issues/25).
 
 **Observable outcome:** Measure selected T09 workload, latency/error limits, browser/keyboard/zoom and WCAG target plus PDF bounds and disk quotas. Targets are not prior measurements and no 30-day availability result is invented.
 
@@ -559,7 +559,7 @@ The numeric Development order shown on the GitHub Sprint Backlog (when present) 
 
 ### Development order 27: PBI-028 / #28
 
-**Proposed group:** Sprint 11. **Owner:** Farhad. **Estimate:** 8–16 total work hours, uncalibrated. **Prerequisites:** [#25](https://github.com/Farhad-V/Web-Resumefolio/issues/25), [#27](https://github.com/Farhad-V/Web-Resumefolio/issues/27).
+**Proposed group:** Sprint 11. **Owner:** Farhad. **Prerequisites:** [#25](https://github.com/Farhad-V/Web-Resumefolio/issues/25), [#27](https://github.com/Farhad-V/Web-Resumefolio/issues/27).
 
 **Observable outcome:** Document real clean Setup/run/test, actual interfaces, user/admin flows, backup/restore, patching and operational response; link candidate-specific evidence. Keep documentation current with implementation.
 
@@ -584,7 +584,7 @@ The numeric Development order shown on the GitHub Sprint Backlog (when present) 
 
 ### Development order 28: PBI-029 / #29
 
-**Proposed group:** Sprint 12. **Owner:** Farhad. **Estimate:** 8–16 total work hours, uncalibrated. **Prerequisites:** [#25](https://github.com/Farhad-V/Web-Resumefolio/issues/25), [#27](https://github.com/Farhad-V/Web-Resumefolio/issues/27), [#26](https://github.com/Farhad-V/Web-Resumefolio/issues/26), [#28](https://github.com/Farhad-V/Web-Resumefolio/issues/28).
+**Proposed group:** Sprint 12. **Owner:** Farhad. **Prerequisites:** [#25](https://github.com/Farhad-V/Web-Resumefolio/issues/25), [#27](https://github.com/Farhad-V/Web-Resumefolio/issues/27), [#26](https://github.com/Farhad-V/Web-Resumefolio/issues/26), [#28](https://github.com/Farhad-V/Web-Resumefolio/issues/28).
 
 **Observable outcome:** Before any deployment confirm required gate evidence, actual candidate, credentials/TLS, compatible migrations, tested recovery and owner Release decision. Then execute the separately reviewed deployment procedure and record live checks. Creating this issue performs no deployment.
 

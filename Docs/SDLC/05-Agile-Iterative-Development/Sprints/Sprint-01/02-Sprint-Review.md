@@ -147,7 +147,7 @@ The proposed sprint goal is scope/host/readiness. Earlier unexecuted setup check
 
 | Check | Expected result | Status |
 | --- | --- | --- |
-| S01-T01 Scope and dependencies | Capacity/scope #1 and actual host/isolation #2 have exact readiness evidence or named blockers. | Not executed |
+| S01-T01 Scope and dependencies | Scope/responsibilities #1 and actual host/isolation #2 have exact readiness evidence or named blockers. | Not executed |
 | S01-T02 Host/readiness | #7 planning, #8 criterion coverage and #9 design baseline have exact reviewed evidence or explicit blockers. | Not executed |
 | S01-T03 Next-slice readiness | Setup prerequisites and planned checks are explicit; no execution inferred. | Not executed |
 

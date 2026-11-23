@@ -2344,7 +2344,7 @@ Source authority remains [QSR-D10–D12](../02-Requirements-Engineering/01-Softw
 
 **Recorded observation:**
 
-20 total project hours/week, including learning/documentation/testing
+Work follows the selected scope, dependencies and demonstrated outcomes.
 
 **Limit / implication:**
 
