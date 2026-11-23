@@ -13,7 +13,7 @@ This plan defines how Farhad selects, delivers and verifies the Resumefolio MVP.
 
 Resumefolio uses **Agile with Upfront Architecture**. Establish the system boundaries, quality constraints and consequential decisions early. Refine the requirements and design of the selected capability during development using evidence and feedback.
 
-Use the [product backlog](../02-Requirements-Engineering/02-Product-Backlog.md) and [GitHub board](https://github.com/users/Farhad-V/projects/7/views/1) to track work. Apply the [development cycle](#stage-5-agile-iterative-development) in reviewable increments.
+Use the [product backlog](../02-Requirements-Engineering/02-Product-Backlog/README.md) and [GitHub board](https://github.com/users/Farhad-V/projects/7/views/1) to track work. Apply the [development cycle](#stage-5-agile-iterative-development) in reviewable increments.
 
 | Sprint record | What to record |
 | --- | --- |
@@ -78,7 +78,7 @@ The stage structure and deliverable types follow the SDLC Complete Engineering G
 | Stage | Project documentation |
 | --- | --- |
 | 1. Project Planning / Initiation | [Project charter](01-Project-Charter.md), [management plan](#deliverables-and-control) and [feasibility and risks](03-Feasibility-And-Risk-Assessment.md) |
-| 2. Requirements Engineering | [SRS](../02-Requirements-Engineering/01-Software-Requirements-Specification.md), [product backlog](../02-Requirements-Engineering/02-Product-Backlog.md) and [traceability matrix](../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md) |
+| 2. Requirements Engineering | [SRS](../02-Requirements-Engineering/01-Software-Requirements-Specification/README.md), [product backlog](../02-Requirements-Engineering/02-Product-Backlog/README.md) and [traceability matrix](../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md) |
 | 3. System Analysis | [System analysis](../03-System-Analysis/01-System-Context-And-Gap-Analysis.md) |
 | 4. System Design | [HLD](../04-System-Design/01-High-Level-Design/01-Introduction.md), [UI/UX](../04-System-Design/02-UI-UX-Design/01-Introduction.md), [LLD](../04-System-Design/03-Low-Level-Design/01-Introduction.md), [database](../04-System-Design/03-Low-Level-Design/04-Database-Design.md), [API](../04-System-Design/03-Low-Level-Design/05-API-Specification.md), [ADRs](../04-System-Design/ADR/Decision-Index.md) |
 | 5. Agile Iterative Development | [Development guide](../05-Agile-Iterative-Development/00-Agile-Iterative-Development.md) |
@@ -102,9 +102,9 @@ The guide identifies 15 deliverable types. These links point to the owning docum
 | 1. Project Charter | [Project charter](01-Project-Charter.md) |
 | 2. Project Management Plan | [Project management plan](#deliverables-and-control) |
 | 3. Feasibility & Risk Assessment | [Feasibility and risk assessment](03-Feasibility-And-Risk-Assessment.md) |
-| 4. Software Requirements Specification | [SRS](../02-Requirements-Engineering/01-Software-Requirements-Specification.md) |
-| 5. Product Backlog | [Product backlog](../02-Requirements-Engineering/02-Product-Backlog.md) |
-| 6. Requirements Traceability Matrix | [Requirements traceability matrix](../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md) |
+| 4. Software Requirements Specification | [SRS](../02-Requirements-Engineering/01-Software-Requirements-Specification/README.md) |
+| 5. Product Backlog | [Product backlog](../02-Requirements-Engineering/02-Product-Backlog/README.md) |
+| 6. Requirements Traceability Matrix | [Requirements traceability matrix](../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md) |
 | 7. System Analysis Document | [Actors, scenarios, models and rules](../03-System-Analysis/01-System-Context-And-Gap-Analysis.md) |
 | 8. Software Architecture Document | [Architecture](../04-System-Design/01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-software-architecture-md) and [architecture decisions](../04-System-Design/ADR/Decision-Index.md#design-record-07-design-decisions-design-decisions-md) |
 | 9. UI/UX Design Specification | [Interaction and accessibility design](../04-System-Design/02-UI-UX-Design/01-Introduction.md). Record screen-level details with the relevant implementation package. |
@@ -121,6 +121,6 @@ The selected MVP baseline and design are documented. Begin stage 5 with [isolate
 
 Mark an item complete when its intended outcome is demonstrated, applicable checks have recorded evidence and affected documents reflect the implementation. A proposed or blocked outcome stays visible with its owner and follow-up issue.
 
-For surprise behavior, record expected versus observed behavior, affected revision and priority. After a fix, run the affected check and relevant regression cases. Update the [RTM](../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md) with the verified result or the reason it remains pending.
+For surprise behavior, record expected versus observed behavior, affected revision and priority. After a fix, run the affected check and relevant regression cases. Update the [RTM](../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md) with the verified result or the reason it remains pending.
 
 Record status and decisions when they change in the owning issue. Summarize the increment in the sprint review and carry process improvements into the next sprint plan. Use the [maintenance plan](../07-Maintenance-Evolution/01-Maintenance-Plan.md) for production follow-up after release.

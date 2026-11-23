@@ -29,11 +29,11 @@ The development process may use sprint records and developer CI/CD without enabl
 
 | Activity | Required output | Owning record |
 | --- | --- | --- |
-| Backlog refinement | Concrete user/technical outcome, exact criteria, dependencies and unresolved inputs | [Product backlog](../02-Requirements-Engineering/02-Product-Backlog.md) and linked issue |
+| Backlog refinement | Concrete user/technical outcome, exact criteria, dependencies and unresolved inputs | [Product backlog](../02-Requirements-Engineering/02-Product-Backlog/README.md) and linked issue |
 | Planning | Demonstrable goal, selected work, prerequisites and planned checks | Sprint Planning |
 | Detailed analysis/design | Affected operation/data/UI contracts, current authority and failure/recovery behavior | Owning SRS/HLD/UI/UX/LLD and work item |
 | Implementation | Scoped code/configuration/migrations attributable to a revision | Actual repository/work item; no implied work from a document status |
-| Verification | Relevant normal, denied, stale/concurrent/interrupted and operational checks | Test case/result and [RTM](../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md) |
+| Verification | Relevant normal, denied, stale/concurrent/interrupted and operational checks | Test case/result and [RTM](../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md) |
 | Review | Demonstrated result versus goal, evidence, limitations and feedback | Sprint Review |
 | Retrospective | Actionable process improvement and follow-up | Sprint Retrospective |
 | Next selection | Independently demonstrable outcome consistent with current evidence | Refined backlog and next planning record |

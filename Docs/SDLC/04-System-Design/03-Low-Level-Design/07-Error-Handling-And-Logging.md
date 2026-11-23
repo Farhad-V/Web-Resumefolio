@@ -134,6 +134,6 @@ Restrict log storage/exports, review growth and retention under the selected ope
 | Operational failure | Log/export/storage problems follow the defined policy without fabricated business success or lost required records |
 | Severity / volume | Expected rejections remain distinguishable from meaningful failures and required evidence is retained |
 
-Record criterion/case, actual revision/configuration, fixtures, observed response/event fields and limitations. Use [Unit Test Design](10-Unit-Test-Design.md), [Traceability](11-Traceability.md) and the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md). Align sensitive-data rules with [Security Implementation](08-Security-Implementation.md) and recovery with the [runbook](../../06-Deployment-Release/02-Runbook.md).
+Record criterion/case, actual revision/configuration, fixtures, observed response/event fields and limitations. Use [Unit Test Design](10-Unit-Test-Design.md), [Traceability](11-Traceability.md) and the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md). Align sensitive-data rules with [Security Implementation](08-Security-Implementation.md) and recovery with the [runbook](../../06-Deployment-Release/02-Runbook.md).
 
 This document configures no logger, executes no failure test and claims no runtime pass. Actual field schemas, alert/retention settings and recovery evidence must be attached to the implementing work.

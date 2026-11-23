@@ -120,7 +120,7 @@ For each finding, identify the failed criterion or documented usability concern,
 
 Record untested criteria, unsupported configurations, third-party content limitations and unresolved requirement dispositions explicitly. Do not convert missing coverage into a pass or claim whole-product AA conformance from a small sample.
 
-Use [Usability Testing](12-Usability-Testing.md), [Development Handoff](13-Handoff-To-Development.md) and [UI/UX Traceability](14-Traceability.md) with the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md). The [SRS quality/accessibility requirements](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-quality-security-and-recovery-requirements) retain governing status.
+Use [Usability Testing](12-Usability-Testing.md), [Development Handoff](13-Handoff-To-Development.md) and [UI/UX Traceability](14-Traceability.md) with the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md). The [SRS quality/accessibility requirements](../../02-Requirements-Engineering/01-Software-Requirements-Specification/03-Requirements-Specification/14-Quality-Security-And-Recovery-Requirements.md#requirements-specification-quality-security-and-recovery-requirements) retain governing status.
 
 ## Existing Design Records and References
 

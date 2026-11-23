@@ -6,7 +6,7 @@
 
 Non-functional quality is verified on an identifiable candidate under a defined workload and configuration. Architecture provides the mechanisms; measured behavior and criterion-linked evidence establish whether they are adequate. A functioning page, healthy process or completed backup job does not establish every quality attribute.
 
-The governing source is the [SRS quality, security and recovery requirements](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-quality-security-and-recovery-requirements). Preserve selected scope and the recorded status of proposed thresholds. Do not invent latency, concurrency, uptime, retention, accessibility-conformance, RPO or RTO targets in this chapter.
+The governing source is the [SRS quality, security and recovery requirements](../../02-Requirements-Engineering/01-Software-Requirements-Specification/03-Requirements-Specification/14-Quality-Security-And-Recovery-Requirements.md#requirements-specification-quality-security-and-recovery-requirements). Preserve selected scope and the recorded status of proposed thresholds. Do not invent latency, concurrency, uptime, retention, accessibility-conformance, RPO or RTO targets in this chapter.
 
 ## 11.1 Scalability
 
@@ -146,4 +146,4 @@ For each verification record, capture:
 - Comparison with the criterion, limitations, unresolved inputs and linked evidence artifacts.
 - Resulting gate status, follow-up owner and corrective/revisit work where needed.
 
-Use the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md) for exact criterion-level links and fresh results. Track unresolved trade-offs in [Risks & Key Decisions](12-Risks-And-Key-Decisions.md). Report an attribute as unverified when evidence is absent; completion of this strategy is not a benchmark result, release approval or demonstrated operational readiness.
+Use the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md) for exact criterion-level links and fresh results. Track unresolved trade-offs in [Risks & Key Decisions](12-Risks-And-Key-Decisions.md). Report an attribute as unverified when evidence is absent; completion of this strategy is not a benchmark result, release approval or demonstrated operational readiness.

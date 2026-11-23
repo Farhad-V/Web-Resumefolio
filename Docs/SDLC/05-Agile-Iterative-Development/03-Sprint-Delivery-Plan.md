@@ -1,6 +1,6 @@
 # Sprint Delivery Plan
 
-[Development overview](00-Agile-Iterative-Development.md) · [Product backlog](../02-Requirements-Engineering/02-Product-Backlog.md) · [Test strategy](02-Test-Strategy.md) · [RTM](../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md)
+[Development overview](00-Agile-Iterative-Development.md) · [Product backlog](../02-Requirements-Engineering/02-Product-Backlog/README.md) · [Test strategy](02-Test-Strategy.md) · [RTM](../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md)
 
 ## Selection, Verification and Completion Rules
 

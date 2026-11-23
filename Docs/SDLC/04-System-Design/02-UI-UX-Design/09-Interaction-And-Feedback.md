@@ -123,6 +123,6 @@ Separate confirmed business state from failed downstream effects. A mail failure
 | Keyboard board / modal | Complete operation, predictable focus and no drag-only requirement |
 | Reduced motion / narrow layout | Essential feedback, focus and actions remain available and unobscured |
 
-Record actor/context, candidate, expected/observed outcomes, browser/input/assistive setup, limitations and follow-up. Link feedback components to [Screen Specifications](08-Screen-Specifications.md), [Design System](07-Design-System.md) and exact criteria through [UI/UX Traceability](14-Traceability.md) / [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md).
+Record actor/context, candidate, expected/observed outcomes, browser/input/assistive setup, limitations and follow-up. Link feedback components to [Screen Specifications](08-Screen-Specifications.md), [Design System](07-Design-System.md) and exact criteria through [UI/UX Traceability](14-Traceability.md) / [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md).
 
 Use [Usability Testing](12-Usability-Testing.md) for observation and [Development Handoff](13-Handoff-To-Development.md) for implementable behavior. No runtime success, completed usability study or accessibility conformance is asserted by this specification.

@@ -46,7 +46,7 @@ Requirements and accepted scope define required behavior. Selected ADRs explain 
 
 Selected decisions do not establish compatible package builds, capacity, actor/transport behavior, SMTP delivery, protected backup placement or demonstrated restore. ADR-006 retains mandatory boundary verification before dependent enablement. Do not reopen settled stack choices merely because proof is pending, or bypass a gate to make the selected architecture appear operational.
 
-Use [Project Setup](../../05-Agile-Iterative-Development/01-Project-Setup.md), [Test Strategy](../../05-Agile-Iterative-Development/02-Test-Strategy.md), [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md) and [Deployment Plan](../../06-Deployment-Release/01-Deployment-Plan.md) for actual implementation and acceptance evidence. Preserve failed, blocked and unexecuted results explicitly.
+Use [Project Setup](../../05-Agile-Iterative-Development/01-Project-Setup.md), [Test Strategy](../../05-Agile-Iterative-Development/02-Test-Strategy.md), [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md) and [Deployment Plan](../../06-Deployment-Release/01-Deployment-Plan.md) for actual implementation and acceptance evidence. Preserve failed, blocked and unexecuted results explicitly.
 
 ## ADR Template and Change Contract
 

@@ -61,6 +61,6 @@ Use the [release/deployment flow](01-Deployment-Plan.md#release-and-deployment-d
 
 ## Sources and Handoff
 
-Use [ADR decisions](../04-System-Design/ADR/Decision-Index.md), [RTM](../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md), [Test Strategy](../05-Agile-Iterative-Development/02-Test-Strategy.md) and [Sprint Review](../05-Agile-Iterative-Development/Sprints/Sprint-01/02-Sprint-Review.md) for scope/status/evidence. The deployment plan/runbook governs operations; [Maintenance](../07-Maintenance-Evolution/01-Maintenance-Plan.md) carries verified procedures/known issues.
+Use [ADR decisions](../04-System-Design/ADR/Decision-Index.md), [RTM](../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md), [Test Strategy](../05-Agile-Iterative-Development/02-Test-Strategy.md) and [Sprint Review](../05-Agile-Iterative-Development/Sprints/Sprint-01/02-Sprint-Review.md) for scope/status/evidence. The deployment plan/runbook governs operations; [Maintenance](../07-Maintenance-Evolution/01-Maintenance-Plan.md) carries verified procedures/known issues.
 
 No tag, release, deployment, test pass or notification is created by completing these notes. Add no documentary update dates or invented release results.

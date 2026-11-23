@@ -2,7 +2,7 @@
 
 [Previous: API Specification](05-API-Specification.md) · [Low-Level Design introduction](01-Introduction.md) · [Next: Error Handling and Logging](07-Error-Handling-And-Logging.md)
 
-This chapter specifies guarded operation steps and decision rules for the selected MVP. The algorithms are implementation contracts to refine and verify, not executed code or a new source of business policy. The [SRS](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md), selected ADRs and owning module contracts govern behavior and unresolved inputs.
+This chapter specifies guarded operation steps and decision rules for the selected MVP. The algorithms are implementation contracts to refine and verify, not executed code or a new source of business policy. The [SRS](../../02-Requirements-Engineering/01-Software-Requirements-Specification/README.md), selected ADRs and owning module contracts govern behavior and unresolved inputs.
 
 ## 6.1 Operation Flows
 
@@ -53,7 +53,7 @@ Record the immutable event and exact material metadata/digests with applicable d
 
 Mutable application status, next action and follow-up are distinct operations with expected-version/authority rules. Recording a manual submission does not automatically send it to an employer.
 
-Application status follows the [owner-selected manual policy](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#owner-selected-manual-application-status): allow any of the seven existing statuses from any current status, including backward/reopened states and explicit same-status progress events. Reason is optional. Validate current owner/input/expected version, then append attributed before/after status and offer-outcome snapshots plus effective/recorded times in the same local write as the new current state. Clear current offer outcome when leaving Offer; preserve its history. Missing exact-material capture stays explicitly incomplete and does not prevent manual status selection. No external event or capture completion automatically changes status; no status edit rewrites actual submitted material.
+Application status follows the [owner-selected manual policy](../../02-Requirements-Engineering/01-Software-Requirements-Specification/03-Requirements-Specification/09-Manual-Application-Management.md#owner-selected-manual-application-status): allow any of the seven existing statuses from any current status, including backward/reopened states and explicit same-status progress events. Reason is optional. Validate current owner/input/expected version, then append attributed before/after status and offer-outcome snapshots plus effective/recorded times in the same local write as the new current state. Clear current offer outcome when leaving Offer; preserve its history. Missing exact-material capture stays explicitly incomplete and does not prevent manual status selection. No external event or capture completion automatically changes status; no status edit rewrites actual submitted material.
 
 ### Admit, Replace and Reclaim Artifacts
 
@@ -131,6 +131,6 @@ Error shapes and diagnostic bounds belong in [Error Handling and Logging](07-Err
 
 For each algorithm, derive checks from its guards and invariants, not merely from line-by-line implementation. Include allowed/denied, stale, duplicate/mismatched, concurrent, interrupted and recovery cases where applicable. Use real MySQL/concurrency and actual Git/delivery facilities when the guarantee depends on them.
 
-Record exact criterion, operation, candidate, configuration, fixtures, expected/observed outcomes and evidence. Link [Detailed Module Design](03-Detailed-Module-Design.md), [Database Design](04-Database-Design.md), [API Specification](05-API-Specification.md), [Unit Test Design](10-Unit-Test-Design.md) and [Traceability](11-Traceability.md) / [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md).
+Record exact criterion, operation, candidate, configuration, fixtures, expected/observed outcomes and evidence. Link [Detailed Module Design](03-Detailed-Module-Design.md), [Database Design](04-Database-Design.md), [API Specification](05-API-Specification.md), [Unit Test Design](10-Unit-Test-Design.md) and [Traceability](11-Traceability.md) / [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md).
 
 These algorithms create no implemented methods, executed tests, new product scope or deployment authority. UML/source rendering and local-link checks verify documentation artifacts only.

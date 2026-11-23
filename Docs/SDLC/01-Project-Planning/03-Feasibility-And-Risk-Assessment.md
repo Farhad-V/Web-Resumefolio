@@ -46,7 +46,7 @@ All items below are open. Farhad owns follow-up and records evidence with the as
 | Economic | The plan uses the existing host and tools. Additional cost has not been established. | Capacity evidence and documented cost or licensing review if the current resources prove insufficient. |
 | Operational | The design identifies required mail, monitoring, backup and recovery responsibilities. They still require demonstration. | Recorded mail delivery, service checks and isolated recovery through the [deployment plan](../06-Deployment-Release/01-Deployment-Plan.md) and [runbook](../06-Deployment-Release/02-Runbook.md). |
 
-The [underlying feasibility study](../02-Requirements-Engineering/01-Software-Requirements-Specification.md#process-and-approach-02-feasibility-study) supplies supporting context. The [test strategy](../05-Agile-Iterative-Development/02-Test-Strategy.md) defines how to record execution evidence.
+The [underlying feasibility study](../02-Requirements-Engineering/01-Software-Requirements-Specification/01-Process-And-Approach/01-Feasibility-Study.md#process-and-approach-02-feasibility-study) supplies supporting context. The [test strategy](../05-Agile-Iterative-Development/02-Test-Strategy.md) defines how to record execution evidence.
 
 ### Risk decision flow
 

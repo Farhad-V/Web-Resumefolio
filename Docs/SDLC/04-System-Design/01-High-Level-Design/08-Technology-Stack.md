@@ -125,6 +125,6 @@ This chapter does not execute or claim any application setup, install dependenci
 
 Use the [selected baseline ADR](../ADR/ADR-006-Selected-Mvp-Implementation-Baseline.md) for governing implementation choices and the [frontend ADR](../ADR/ADR-007-React-Inertia-Frontend.md) for its selected amendment. [Project Setup](../../05-Agile-Iterative-Development/01-Project-Setup.md) records actual environment evidence.
 
-Implementation details remain in [Detailed Module Design](../03-Low-Level-Design/03-Detailed-Module-Design.md), [Database Design](../03-Low-Level-Design/04-Database-Design.md) and the [API specification](../03-Low-Level-Design/05-API-Specification.md). Link exact verification criteria and fresh results through the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md).
+Implementation details remain in [Detailed Module Design](../03-Low-Level-Design/03-Detailed-Module-Design.md), [Database Design](../03-Low-Level-Design/04-Database-Design.md) and the [API specification](../03-Low-Level-Design/05-API-Specification.md). Link exact verification criteria and fresh results through the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md).
 
 Continue with [Deployment Architecture](09-Deployment-Architecture.md) for environments, hosting boundaries, promotion and recovery.

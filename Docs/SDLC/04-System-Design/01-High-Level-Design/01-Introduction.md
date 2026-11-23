@@ -73,7 +73,7 @@ This introductory view reuses the HLD's dark-mode PlantUML diagram. It shows act
 | ADR | Architecture Decision Record documenting a consequential choice, alternatives, rationale and status. |
 | RTM | Requirements Traceability Matrix linking individual requirements and acceptance criteria to design and verification evidence. |
 
-Use the [SRS data definitions](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#data-definitions) for the authoritative domain vocabulary. This glossary summarizes terms needed to read the architecture.
+Use the [SRS data definitions](../../02-Requirements-Engineering/01-Software-Requirements-Specification/05-Data-Definitions/README.md#data-definitions) for the authoritative domain vocabulary. This glossary summarizes terms needed to read the architecture.
 
 ## 1.4 References
 
@@ -81,9 +81,9 @@ Use the [SRS data definitions](../../02-Requirements-Engineering/01-Software-Req
 | --- | --- |
 | [Project charter](../../01-Project-Planning/01-Project-Charter.md#mvp-scope) | Product objectives and MVP scope. |
 | [Project management plan](../../01-Project-Planning/02-Project-Management-Plan.md#stage-4-system-design) | SDLC placement, design deliverables and development handoff. |
-| [Software Requirements Specification](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md) | Required behavior, constraints and domain definitions. |
+| [Software Requirements Specification](../../02-Requirements-Engineering/01-Software-Requirements-Specification/README.md) | Required behavior, constraints and domain definitions. |
 | [System Analysis](../../03-System-Analysis/01-System-Context-And-Gap-Analysis.md) | Analyzed context, domain boundaries and design inputs. |
-| [Requirements Traceability Matrix](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md) | Criterion-level mappings, evidence and unresolved verification. |
+| [Requirements Traceability Matrix](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md) | Criterion-level mappings, evidence and unresolved verification. |
 | [Architecture decisions](../ADR/Decision-Index.md) | Decision status, alternatives and rationale. |
 | [Selected implementation baseline ADR](../ADR/ADR-006-Selected-Mvp-Implementation-Baseline.md) | Selected MVP implementation direction. |
 | [Frontend ADR](../ADR/ADR-007-React-Inertia-Frontend.md) | React/Inertia application UI and the retained PDF-template boundary. |
@@ -127,7 +127,7 @@ The following consolidated views summarize the design; the linked chapters provi
 | Recoverability | Protected backups and isolated restoration of records and bytes | Restore rehearsal including file digests and repository consistency |
 | Practical initial hosting | Shared host with separate application identities and limits | Capacity and isolation checks; shared host failure risk recorded |
 
-No numeric latency, capacity, availability, RPO or RTO target is invented here. Applicable acceptance criteria and measured evidence must be linked through the [requirements traceability matrix](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md).
+No numeric latency, capacity, availability, RPO or RTO target is invented here. Applicable acceptance criteria and measured evidence must be linked through the [requirements traceability matrix](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md).
 
 ### 1.8.2 System context
 
@@ -256,7 +256,7 @@ The [ADR index](../ADR/Decision-Index.md) owns decision status, alternatives and
 | Git, issues and Kanban | ProjectForge; sections 5 and 7 | Transfer permissions, file history and issue/board authorization |
 | Quality, deployment and recovery | Operations; sections 9–11 | Measured workloads, accessibility, deployment and restore evidence |
 
-Use the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md) for exact requirement/criterion identifiers and evidence. This area-level mapping does not replace criterion-level traceability.
+Use the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md) for exact requirement/criterion identifiers and evidence. This area-level mapping does not replace criterion-level traceability.
 
 Before implementing a capability, confirm its ADR status, owning data, interface contract, failure outcomes and acceptance criteria. Refine the corresponding LLD and test references. Before release, attach fresh evidence for authorization, immutable history, API/Git boundaries, locked builds, deployment and recovery. Track unresolved gates explicitly.
 

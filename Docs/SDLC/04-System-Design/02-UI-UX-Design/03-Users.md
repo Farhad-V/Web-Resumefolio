@@ -122,10 +122,10 @@ Use synthetic owner, other-owner, link-scoped recipient, collaborator and admini
 
 Record task prerequisites, actor/grants, resource/data versions, expected outcome and actual observations on an identifiable candidate. Distinguish usability difficulty from authorization failure and accessibility defects. Link follow-up to the owning criterion/work item and retest affected behavior after a change.
 
-No participant sessions or findings are asserted here. Use [Usability Testing](12-Usability-Testing.md) for evidence collection and [UI/UX Traceability](14-Traceability.md) / [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md) for criterion links.
+No participant sessions or findings are asserted here. Use [Usability Testing](12-Usability-Testing.md) for evidence collection and [UI/UX Traceability](14-Traceability.md) / [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md) for criterion links.
 
 ## Sources and Handoff
 
-The [SRS](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md), [source scenarios](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#scenarios-and-models-user-stories-and-scenarios) and [HLD System Context](../01-High-Level-Design/03-System-Context.md) define required behavior and authority. [Design Goals and Principles](02-Design-Goals-And-Principles.md) explains interaction priorities; [Information Architecture](04-Information-Architecture.md) and [User Flows](05-User-Flows.md) refine navigation and tasks.
+The [SRS](../../02-Requirements-Engineering/01-Software-Requirements-Specification/README.md), [source scenarios](../../02-Requirements-Engineering/01-Software-Requirements-Specification/04-Scenarios-And-Models/02-User-Stories-And-Scenarios.md#scenarios-and-models-user-stories-and-scenarios) and [HLD System Context](../01-High-Level-Design/03-System-Context.md) define required behavior and authority. [Design Goals and Principles](02-Design-Goals-And-Principles.md) explains interaction priorities; [Information Architecture](04-Information-Architecture.md) and [User Flows](05-User-Flows.md) refine navigation and tasks.
 
 When refining a screen, identify the active role, resource/action authority, intended outcome, relevant language/revision and failure/recovery states. Keep assumed needs separate from observed findings and product permission checks separate from UI visibility. Update profiles only when scope, governing policy or actual evidence changes their task meaning.

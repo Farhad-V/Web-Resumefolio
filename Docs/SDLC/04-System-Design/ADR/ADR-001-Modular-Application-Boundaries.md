@@ -48,7 +48,7 @@ Independent systems add identity, API and native Git compatibility/failure oblig
 | Truthful recovery | Lost responses, repeated commands, interrupted durable work and protected references remain attributable |
 | Operational fit | Representative combined workload and isolated restore of records/private artifacts/Git state |
 
-Use [LLD Traceability](../03-Low-Level-Design/11-Traceability.md) and the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md) for exact criteria and candidate-specific results. No test pass, risk closure or capacity claim follows from completing this record.
+Use [LLD Traceability](../03-Low-Level-Design/11-Traceability.md) and the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md) for exact criteria and candidate-specific results. No test pass, risk closure or capacity claim follows from completing this record.
 
 ## Revisit Rules
 
@@ -92,7 +92,7 @@ The proposed placement of all nine owners in one trusted application is supersed
 
 The product combines private professional presentation, controlled sharing, manual applications, communication/calendar, work/Sprints, real Git collaboration and conditionally safe workflow execution/deployment. It must preserve current resource-specific authority and independent source/draft/publication/actual-submission meaning.
 
-Use [accepted scope](../../01-Project-Planning/01-Project-Charter.md#mvp-scope), [resource constraints](../../01-Project-Planning/03-Feasibility-And-Risk-Assessment.md#resource-constraints), [architecture drivers/options](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-01-design-drivers-and-solution-options-md), [analysis domain responsibilities](../../03-System-Analysis/02-Domain-And-Information-Analysis.md#analysis-domain-and-information-analysis--03-domain-model-and-object-oriented-view) and [source decisions](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#change-and-baseline-open-questions-and-decisions).
+Use [accepted scope](../../01-Project-Planning/01-Project-Charter.md#mvp-scope), [resource constraints](../../01-Project-Planning/03-Feasibility-And-Risk-Assessment.md#resource-constraints), [architecture drivers/options](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-01-design-drivers-and-solution-options-md), [analysis domain responsibilities](../../03-System-Analysis/02-Domain-And-Information-Analysis.md#analysis-domain-and-information-analysis--03-domain-model-and-object-oriented-view) and [source decisions](../../02-Requirements-Engineering/01-Software-Requirements-Specification/07-Change-And-Baseline/03-Requirements-Questions-And-Decisions.md#change-and-baseline-open-questions-and-decisions).
 
 The recorded small-server observation is an infrastructure input, not a final deployment choice or measured capacity. Initial ten-user scope and possible growth do not define concurrency. Provider access, native Git facilities, untrusted-code containment and usable recovery remain dependent evidence gates.
 

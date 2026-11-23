@@ -31,8 +31,8 @@ Personal mail/calendar, AI, advanced review/releases, general Sprints and user w
 | Reference | Authority / purpose |
 | --- | --- |
 | [Project charter](../../01-Project-Planning/01-Project-Charter.md#mvp-scope) | Accepted product scope |
-| [SRS](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md) | Requirement wording, domain definitions and recorded status |
-| [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md) | Exact criterion applicability, gates and implementation/execution evidence |
+| [SRS](../../02-Requirements-Engineering/01-Software-Requirements-Specification/README.md) | Requirement wording, domain definitions and recorded status |
+| [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md) | Exact criterion applicability, gates and implementation/execution evidence |
 | [System Analysis](../../03-System-Analysis/01-System-Context-And-Gap-Analysis.md) | Logical domain/scenario inputs and unresolved analysis questions |
 | [HLD](../01-High-Level-Design/01-Introduction.md) | Independent systems, component ownership, data/security and deployment boundaries |
 | [UI/UX](../02-UI-UX-Design/01-Introduction.md) and [development handoff](../02-UI-UX-Design/13-Handoff-To-Development.md) | Task, screen/state, accessibility and input/output presentation contracts |

@@ -1,0 +1,3304 @@
+
+<a id="validation-and-traceability-proposed-criterion-locators"></a>
+
+# proposed-criterion-locators.json
+
+```json
+{
+  "date": "2026-11-01",
+  "count": 470,
+  "authority": "Proposed criterion locators; PRP-D04-AC01 wording updated to the explicitly owner-accepted core policy. Other criteria and baseline status unchanged.",
+  "records": [
+    {
+      "proposed_locator": "ACC-D01-AC01",
+      "candidate": "ACC-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "criterion": "Given two distinct test accounts, when each performs a permitted own-account operation, the operation is attributed to the corresponding account context.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "ACC-D01-AC02",
+      "candidate": "ACC-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "criterion": "Given no valid account context, when an account-protected operation is requested, that operation does not execute as an authenticated user.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "ACC-D01-AC03",
+      "candidate": "ACC-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "criterion": "Given account A's valid context, when a request supplies account B's identity as input, that input alone does not change the authenticated actor to B.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "ACC-D02-AC01",
+      "candidate": "ACC-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "criterion": "Given valid access and permission to two sections, when the user navigates between them, the user is not required to sign in again only for that navigation.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "ACC-D02-AC02",
+      "candidate": "ACC-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "criterion": "Given a valid account context but no authority for the destination resource/action, navigation or a direct request does not grant that authority.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "ACC-D03-AC01",
+      "candidate": "ACC-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "criterion": "Given an actor with read permission but no modification permission in the agreed matrix, a direct modification request does not change the protected resource.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "ACC-D03-AC02",
+      "candidate": "ACC-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "criterion": "Given no permission to a private resource, direct read/list/download requests do not disclose its protected content.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "ACC-D03-AC03",
+      "candidate": "ACC-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "criterion": "Hiding a control or changing a request's resource identifier does not substitute for authorization of the requested operation.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "ACC-D04-AC01",
+      "candidate": "ACC-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "criterion": "Given A and B with separate private resumes/email/application records and no grant between them, A cannot retrieve or modify B's protected content through direct requests.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "ACC-D04-AC02",
+      "candidate": "ACC-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "criterion": "List/search/navigation in A's private context does not expose B's protected content merely because B's identifiers are supplied or guessed.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "ACC-D04-AC03",
+      "candidate": "ACC-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "criterion": "A legitimate collaboration or employer-sharing grant exposes only its defined scope, not unrelated resources.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "ACC-D05-AC01",
+      "candidate": "ACC-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "criterion": "Given a valid board-specific grant, the participant can perform the actions actually granted for that board and cannot perform actions outside that grant.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "ACC-D05-AC02",
+      "candidate": "ACC-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "criterion": "The board invitation alone grants no access to the owner's private email, unrelated resumes or repositories.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "ACC-D05-AC03",
+      "candidate": "ACC-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "criterion": "A request for a different project/board/repository must have its own applicable authority; membership in one is insufficient by itself.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "ACC-D06-AC01",
+      "candidate": "ACC-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "criterion": "Given an eligible active link and correct password, the viewer can access its selected shared content without registering/signing in to a user workspace.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "ACC-D06-AC02",
+      "candidate": "ACC-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "criterion": "Given no valid sharing authorization or an incorrect password, the protected content is not disclosed.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "ACC-D06-AC03",
+      "candidate": "ACC-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "criterion": "Successful sharing access does not create access to the private user workspace, other resumes, email or collaboration resources.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "ACC-D07-AC01",
+      "candidate": "ACC-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "criterion": "Without valid authorization for the protected file/PDF, direct retrieval does not disclose its protected contents.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "ACC-D07-AC02",
+      "candidate": "ACC-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "criterion": "With valid sharing access, only the selected content and download options available for that resume/language can be retrieved.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "ACC-D07-AC03",
+      "candidate": "ACC-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "criterion": "Substituting an unshared or unrelated file reference does not disclose that content.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "ACC-D08-AC01",
+      "candidate": "ACC-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "criterion": "An unrelated user cannot change another owner's sharing password or link state through a direct request.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "ACC-D08-AC02",
+      "candidate": "ACC-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "criterion": "After the owner disables a link, a fresh viewer context using that link is denied protected content.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "ACC-D08-AC03",
+      "candidate": "ACC-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "criterion": "For a fresh viewer context after a password change, the previous password does not newly authorize sharing access and the current password works only while the link is eligible.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "ACC-D09-AC01",
+      "candidate": "ACC-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "criterion": "For an administrative action agreed in the matrix, an actor without the required grant cannot perform it through UI or direct requests.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "ACC-D09-AC02",
+      "candidate": "ACC-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "criterion": "The actor with that agreed grant can perform it only within its stated scope and resource/state conditions.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "ACC-D09-AC03",
+      "candidate": "ACC-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "criterion": "Merely identifying a person as project owner or assigning an unrelated product role does not bypass the specified product grant.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "ACC-D10-AC01",
+      "candidate": "ACC-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "criterion": "A caller lacking a defined role/membership-management grant cannot increase their own permissions or another account's permissions through a direct request.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "ACC-D10-AC02",
+      "candidate": "ACC-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "criterion": "A granted action respects the allowed target resource and permission scope; it does not grant authority outside that scope.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "ACC-D11-AC01",
+      "candidate": "ACC-D11",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "criterion": "Given a required verification step has not successfully completed because delivery/service is unavailable, a protected request is not treated as successfully authenticated on that basis.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "ACC-D11-AC02",
+      "candidate": "ACC-D11",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "criterion": "Failure handling exposes no secret verification value in ordinary user-facing feedback or shared evidence.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "ACC-D12-AC01",
+      "candidate": "ACC-D12",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "criterion": "Once the scope/effective point of sign-out is agreed, a request using only the ended context is denied the access that sign-out removes.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "ACC-D12-AC02",
+      "candidate": "ACC-D12",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "criterion": "Once the effect/effective point of account or membership revocation is agreed, subsequent requests outside remaining authority are denied.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "ACC-D12-AC03",
+      "candidate": "ACC-D12",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/accounts-authentication-and-permissions.md",
+      "criterion": "Other still-valid contexts are affected only as explicitly specified by the selected policy.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D01-AC01",
+      "candidate": "AFO-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "An authorized configuration change can be made without editing source code; the resulting effective policy values are identifiable through the agreed administration view.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D01-AC02",
+      "candidate": "AFO-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "A caller lacking the applicable administrative grant cannot change those values through UI or direct requests.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D01-AC03",
+      "candidate": "AFO-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "An invalid value is not silently reported as successfully active; the previous effective policy or explicit failed/unapplied state remains identifiable.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D02-AC01",
+      "candidate": "AFO-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "Given a request exceeds an applicable lower-level constraint, increasing the application setting does not make the request falsely succeed.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D02-AC02",
+      "candidate": "AFO-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "Where the administrative design validates policy against a defined supported envelope, an incompatible setting is rejected or explicitly identified as unapplied rather than silently accepted as effective.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D02-AC03",
+      "candidate": "AFO-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "The configuration guide identifies applicable external limits and the scope of actual verification.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D03-AC01",
+      "candidate": "AFO-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "With agreed unit and inclusive/exclusive boundary semantics, a file exceeding the applicable limit is rejected without becoming usable successful content.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D03-AC02",
+      "candidate": "AFO-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "Boundary cases just below, at and above the limit match that agreed policy when other eligibility conditions are satisfied.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D03-AC03",
+      "candidate": "AFO-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "Supplying inaccurate client size metadata alone cannot bypass the size rule.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D04-AC01",
+      "candidate": "AFO-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "An admission that exceeds the available allowance under the agreed accounting rule is not reported as successful usable content.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D04-AC02",
+      "candidate": "AFO-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "Concurrent controlled requests that individually appear to fit but jointly exceed that allowance cannot all succeed in violation of the defined quota.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D04-AC03",
+      "candidate": "AFO-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "Accounted usage after successful/failed operations matches the agreed inclusion and release rules; failed work is not silently counted as permanent successful content.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D05-AC01",
+      "candidate": "AFO-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "Content that fails a required validation is not presented as valid usable evidence/PDF merely because its filename or declared type looks acceptable.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D05-AC02",
+      "candidate": "AFO-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "Agreed supported samples can complete the intended upload/processing/display path when access and resource conditions are met.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D05-AC03",
+      "candidate": "AFO-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "Rejection or processing failure has an identifiable result; no false successful preview/download is shown.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D06-AC01",
+      "candidate": "AFO-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "A caller lacking an action grant cannot modify another user's protected file/association through a direct request.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D06-AC02",
+      "candidate": "AFO-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "Direct protected retrieval does not disclose file/PDF contents without the applicable authorization and sharing availability.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D06-AC03",
+      "candidate": "AFO-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "A legitimate shared or collaboration context grants no unrelated file access merely because identifiers/paths are supplied.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D07-AC01",
+      "candidate": "AFO-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "Interrupted upload or required processing failure does not leave the file presented as complete usable content.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D07-AC02",
+      "candidate": "AFO-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "A completed operation exposes only the content/result associated with its successful request and allowed resource context.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D07-AC03",
+      "candidate": "AFO-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "Failure handling does not silently damage unrelated existing content or release quota still needed by retained material.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D08-AC01",
+      "candidate": "AFO-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "After replacing editable source content, preserved material captured as actually submitted remains unchanged by that replacement.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D08-AC02",
+      "candidate": "AFO-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "A replacement that fails before its required completion does not falsely report the new content as successfully available.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D08-AC03",
+      "candidate": "AFO-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "Removing one association does not silently remove unrelated content or retained references contrary to the agreed lifecycle rules.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D09-AC01",
+      "candidate": "AFO-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "Successful, failed and still-incomplete operations are distinguishable in the agreed relevant view/feedback.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D09-AC02",
+      "candidate": "AFO-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "Once warning conditions and timing are defined, controlled threshold scenarios produce the specified warning to the authorized recipient.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D09-AC03",
+      "candidate": "AFO-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "A normal user cannot obtain unrelated users' private file content or secret operational configuration through failure/warning details.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D10-AC01",
+      "candidate": "AFO-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "Once audited events/fields are defined, controlled selected operations produce records consistent with their actual actor/target/outcome.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D10-AC02",
+      "candidate": "AFO-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "Callers lacking audit-view/change authority cannot retrieve or modify protected audit evidence through a direct request.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D10-AC03",
+      "candidate": "AFO-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "Ordinary audit/output records do not disclose passwords, private keys, access tokens or authentication codes.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D11-AC01",
+      "candidate": "AFO-D11",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "Controlled eligible cleanup candidates are reclaimed under the selected procedure and release only the usage defined by the accounting policy.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D11-AC02",
+      "candidate": "AFO-D11",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "Material still required by another valid reference or preserved submission is not removed merely because a source operation failed or a source association changed.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D11-AC03",
+      "candidate": "AFO-D11",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "Partial cleanup failure remains identifiable and does not falsely report complete reclamation or remove unrelated protected material.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D12-AC01",
+      "candidate": "AFO-D12",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "Guidance identifies the application/configuration/environment it describes, relevant dependencies and responsibility without secrets.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D12-AC02",
+      "candidate": "AFO-D12",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "Unperformed procedure checks are identified as such; no successful recovery is inferred from backup-file existence.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "AFO-D12-AC03",
+      "candidate": "AFO-D12",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/administration-files-and-operational-behavior.md",
+      "criterion": "Before relevant release/readiness acceptance, actual restoration/integrity evidence and remaining blockers are linked as required by the existing milestone/deliverable criteria.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BIZ-D01-AC01",
+      "candidate": "BIZ-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-requirements.md",
+      "criterion": "A reviewed representative workflow starts from reusable professional information and produces a tailored resume with selected supporting content.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BIZ-D01-AC02",
+      "candidate": "BIZ-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-requirements.md",
+      "criterion": "Resume-specific selections, presentation and overrides can differ without unintentionally changing unrelated resumes.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BIZ-D01-AC03",
+      "candidate": "BIZ-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-requirements.md",
+      "criterion": "Intended shared-information updates and language-specific content follow explicit reviewed rules, preserving resume-specific overrides.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BIZ-D02-AC01",
+      "candidate": "BIZ-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-requirements.md",
+      "criterion": "The intended viewer can access selected content through the agreed password-protected path without requiring a product account.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BIZ-D02-AC02",
+      "candidate": "BIZ-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-requirements.md",
+      "criterion": "Incorrect credentials, disabled links and unauthorized direct file/PDF requests do not disclose protected content under the reviewed policy.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BIZ-D02-AC03",
+      "candidate": "BIZ-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-requirements.md",
+      "criterion": "Shared access does not grant unrelated private-resource access; owner sharing controls affect subsequent retrieval as explicitly specified.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BIZ-D03-AC01",
+      "candidate": "BIZ-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-requirements.md",
+      "criterion": "A reviewed workflow records company/position, associates a resume, saves a manually written cover letter and records application progress.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BIZ-D03-AC02",
+      "candidate": "BIZ-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-requirements.md",
+      "criterion": "The record identifies the actual submitted material separately from later editable/live content.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BIZ-D03-AC03",
+      "candidate": "BIZ-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-requirements.md",
+      "criterion": "Later source edits do not overwrite the preserved submitted resume/cover-letter copies; follow-up uses the corresponding application context.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BIZ-D04-AC01",
+      "candidate": "BIZ-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-requirements.md",
+      "criterion": "The agreed representative cross-section workflows do not require separate sign-in solely because the section changes while the account context remains valid.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BIZ-D04-AC02",
+      "candidate": "BIZ-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-requirements.md",
+      "criterion": "Information intended for reuse is available in its defined authorized context without unnecessary duplicate entry under the reviewed rules.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BIZ-D04-AC03",
+      "candidate": "BIZ-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-requirements.md",
+      "criterion": "Collaborator and employer-sharing contexts remain limited; access to one resource does not expose unrelated email, resumes or repositories.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BIZ-D04-AC04",
+      "candidate": "BIZ-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-requirements.md",
+      "criterion": "Real Git/work collaboration and conditional workflow execution remain within the agreed scope and their actual verification/feasibility gates.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BIZ-D05-AC01",
+      "candidate": "BIZ-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-requirements.md",
+      "criterion": "Agreed workflows and access boundaries are evaluated against an identified candidate in the intended environment before release acceptance.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BIZ-D05-AC02",
+      "candidate": "BIZ-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-requirements.md",
+      "criterion": "Measurable workload, performance and recovery criteria are defined through requirements/design and assessed with actual evidence rather than assumed from user counts.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BIZ-D05-AC03",
+      "candidate": "BIZ-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-requirements.md",
+      "criterion": "Restoration is demonstrated in a separate environment with relevant data-integrity/consistency checks, and operating/update/recovery guidance corresponds to the evaluated version.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BIZ-D05-AC04",
+      "candidate": "BIZ-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-requirements.md",
+      "criterion": "Material resource, cost or delivery conflicts are recorded with options and actual owner decisions, not hidden by scope reduction or unsupported readiness claims.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BRL-D01-AC01",
+      "candidate": "BRL-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
+      "criterion": "A board collaborator cannot obtain private email, unrelated resumes or repositories through that membership.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BRL-D01-AC02",
+      "candidate": "BRL-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
+      "criterion": "A caller without the applicable grant cannot perform the protected operation by changing a resource reference or making a direct request.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BRL-D01-AC03",
+      "candidate": "BRL-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
+      "criterion": "Administrative view, transfer, delete and restore operations are permitted only as explicitly defined in the reviewed action matrix.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BRL-D02-AC01",
+      "candidate": "BRL-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
+      "criterion": "Editing one resume's selection, layout or override does not silently apply that edit to another resume.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BRL-D02-AC02",
+      "candidate": "BRL-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
+      "criterion": "Defined shared-profile update cases produce the reviewed result for linked, omitted and overridden content.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BRL-D02-AC03",
+      "candidate": "BRL-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
+      "criterion": "Source removal produces the agreed reference/visibility result without silently altering preserved submitted material.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BRL-D03-AC01",
+      "candidate": "BRL-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
+      "criterion": "Unselected evidence and unrelated private resources are not retrievable through the employer context.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BRL-D03-AC02",
+      "candidate": "BRL-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
+      "criterion": "Generated/uploaded/both/neither settings and separately available English/German uploaded PDFs yield only the permitted downloads.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BRL-D03-AC03",
+      "candidate": "BRL-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
+      "criterion": "A direct file/PDF request cannot bypass authorization or disabled download availability.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BRL-D04-AC01",
+      "candidate": "BRL-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
+      "criterion": "A disabled link cannot authorize a new protected retrieval under the agreed effective-change semantics.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BRL-D04-AC02",
+      "candidate": "BRL-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
+      "criterion": "Password-change and existing-session cases follow the explicitly reviewed revocation policy for all protected resource paths.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BRL-D04-AC03",
+      "candidate": "BRL-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
+      "criterion": "Product wording distinguishes retrieval restrictions from possession of an already legitimately downloaded copy.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BRL-D05-AC01",
+      "candidate": "BRL-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
+      "criterion": "Later profile, resume, cover-letter or source-PDF edits do not overwrite preserved submitted copies.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BRL-D05-AC02",
+      "candidate": "BRL-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
+      "criterion": "The user can distinguish preserved submission material from a current source or live view.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BRL-D05-AC03",
+      "candidate": "BRL-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
+      "criterion": "Incomplete/failed capture is distinguishable from successful preservation; no success claim is made for missing required material.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BRL-D06-AC01",
+      "candidate": "BRL-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
+      "criterion": "Inputs outside agreed required-field/value/format/reference rules produce the defined rejected or incomplete outcome.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BRL-D06-AC02",
+      "candidate": "BRL-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
+      "criterion": "Interrupted save, file replacement or capture is not presented as successful completion.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BRL-D06-AC03",
+      "candidate": "BRL-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
+      "criterion": "Defined concurrent/repeated-change cases preserve the reviewed invariant or report a distinguishable conflict/failure.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BRL-D07-AC01",
+      "candidate": "BRL-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
+      "criterion": "Reviewed local/provider edit and deletion cases produce the specified result for the selected account and data category.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BRL-D07-AC02",
+      "candidate": "BRL-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
+      "criterion": "Provider rejection, access loss or conflict is distinguishable from successful synchronization or delivery.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BRL-D07-AC03",
+      "candidate": "BRL-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
+      "criterion": "Disconnecting does not silently delete provider data or imply a local purge unless an explicit authorized policy requires that action.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BRL-D08-AC01",
+      "candidate": "BRL-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
+      "criterion": "Removing a single association does not remove unrelated content contrary to the reviewed reference policy.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BRL-D08-AC02",
+      "candidate": "BRL-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
+      "criterion": "Source deletion does not implicitly destroy required preserved submissions.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BRL-D08-AC03",
+      "candidate": "BRL-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
+      "criterion": "Ineligible or partially failed reclamation is reported as such, with no false claim that all data or storage usage has been removed.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BRL-D09-AC01",
+      "candidate": "BRL-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
+      "criterion": "A later isolated restoration check verifies required records, files and relationships for the selected recovery point.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BRL-D09-AC02",
+      "candidate": "BRL-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
+      "criterion": "Restored sharing/membership/connection state is reconciled under an explicit access policy rather than assumed safe because it was backed up.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BRL-D09-AC03",
+      "candidate": "BRL-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
+      "criterion": "Missing artifacts or unreconciled references are recorded as limitations/failures, not a complete successful restoration.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BRL-D10-AC01",
+      "candidate": "BRL-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
+      "criterion": "Manually maintained English/German content follows the defined availability policy without an automatic translation step.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BRL-D10-AC02",
+      "candidate": "BRL-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
+      "criterion": "Agreed event-time, recorded-time and displayed-time cases remain distinguishable where the domain requires them.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "BRL-D10-AC03",
+      "candidate": "BRL-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/business-rules-and-data-lifecycle.md",
+      "criterion": "Calendar/time-zone and submission-history examples produce the reviewed dates/order, including relevant boundary cases.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "DOM-D01-AC01",
+      "candidate": "DOM-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/domain-requirements-and-constraints.md",
+      "criterion": "A reviewed example distinguishes reusable profile content, resume-specific selection/override, evidence selection and a PDF rendition.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "DOM-D01-AC02",
+      "candidate": "DOM-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/domain-requirements-and-constraints.md",
+      "criterion": "Domain documents use the same term for the same concept, or explicitly record a justified distinction.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "DOM-D01-AC03",
+      "candidate": "DOM-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/domain-requirements-and-constraints.md",
+      "criterion": "Changing a resume-specific choice does not silently change unrelated resumes.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "DOM-D02-AC01",
+      "candidate": "DOM-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/domain-requirements-and-constraints.md",
+      "criterion": "After capture and later source edits, preserved actual submitted material remains distinguishable and is not overwritten by those edits.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "DOM-D02-AC02",
+      "candidate": "DOM-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/domain-requirements-and-constraints.md",
+      "criterion": "Recording application progress does not imply automatic submission to a job platform or proof an employer received/read it.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "DOM-D02-AC03",
+      "candidate": "DOM-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/domain-requirements-and-constraints.md",
+      "criterion": "Correction, resubmission and deletion cases follow explicit history policies once reviewed.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "DOM-D03-AC01",
+      "candidate": "DOM-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/domain-requirements-and-constraints.md",
+      "criterion": "Board membership grants no unrelated private email, resume or repository access.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "DOM-D03-AC02",
+      "candidate": "DOM-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/domain-requirements-and-constraints.md",
+      "criterion": "Employer access exposes only the intended resume and selected permitted material.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "DOM-D03-AC03",
+      "candidate": "DOM-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/domain-requirements-and-constraints.md",
+      "criterion": "Altered references or direct requests do not bypass denied operations.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "DOM-D04-AC01",
+      "candidate": "DOM-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/domain-requirements-and-constraints.md",
+      "criterion": "Required workflows allow manually entered/reviewed English and German content under defined availability rules.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "DOM-D04-AC02",
+      "candidate": "DOM-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/domain-requirements-and-constraints.md",
+      "criterion": "A missing translation is handled by an explicit policy rather than an assumed automatic translation step.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "DOM-D04-AC03",
+      "candidate": "DOM-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/domain-requirements-and-constraints.md",
+      "criterion": "Scope/requirements do not make an excluded AI or submission service a prerequisite.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "DOM-D05-AC01",
+      "candidate": "DOM-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/domain-requirements-and-constraints.md",
+      "criterion": "Gmail/Calendar operations map to justified access and a dated official-source assessment.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "DOM-D05-AC02",
+      "candidate": "DOM-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/domain-requirements-and-constraints.md",
+      "criterion": "Applicable verification, restrictions, limits and unresolved costs/exceptions are recorded against the actual deployment model.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "DOM-D05-AC03",
+      "candidate": "DOM-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/domain-requirements-and-constraints.md",
+      "criterion": "A blocked required operation produces an explicit owner decision path, not silent scope removal or a feasibility claim.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "DOM-D06-AC01",
+      "candidate": "DOM-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/domain-requirements-and-constraints.md",
+      "criterion": "The assessment identifies data categories, purpose, access recipients, provider/hosting flows, retention/deletion questions and backup implications.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "DOM-D06-AC02",
+      "candidate": "DOM-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/domain-requirements-and-constraints.md",
+      "criterion": "Each asserted external obligation identifies an authoritative source, date, applicability rationale and affected requirement.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "DOM-D06-AC03",
+      "candidate": "DOM-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/domain-requirements-and-constraints.md",
+      "criterion": "Unknown controller/processor, user-location, contractual or legal questions remain explicit rather than becoming an unsupported compliance statement.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "DOM-D07-AC01",
+      "candidate": "DOM-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/domain-requirements-and-constraints.md",
+      "criterion": "A selected component/asset has a specific version/source, actual license/terms, obligations and review disposition.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "DOM-D07-AC02",
+      "candidate": "DOM-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/domain-requirements-and-constraints.md",
+      "criterion": "Unknown or conflicting reuse rights remain blockers for affected adoption until resolved.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "DOM-D07-AC03",
+      "candidate": "DOM-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/domain-requirements-and-constraints.md",
+      "criterion": "No automatic demo migration or reference-project modification is introduced as an implicit requirement.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "DOM-D08-AC01",
+      "candidate": "DOM-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/domain-requirements-and-constraints.md",
+      "criterion": "Selected options identify how they satisfy Laravel/OOP and actual resource/budget constraints.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "DOM-D08-AC02",
+      "candidate": "DOM-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/domain-requirements-and-constraints.md",
+      "criterion": "Initial 10-user checks specify workload/concurrency; approximately 1,000 users remain a growth direction until separately demonstrated.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "DOM-D08-AC03",
+      "candidate": "DOM-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/domain-requirements-and-constraints.md",
+      "criterion": "CI/CD enabling depends on reviewed feasibility/security limits, and recovery acceptance depends on actual restoration evidence.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D01-AC01",
+      "candidate": "EGC-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "A controlled authorized connection identifies the intended account without exposing credential/token values.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D01-AC02",
+      "candidate": "EGC-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "Denied or incomplete consent does not appear as a successfully usable connection for unavailable operations.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D01-AC03",
+      "candidate": "EGC-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "Account/calendar selection cases do not silently read or change a different account/calendar.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D02-AC01",
+      "candidate": "EGC-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "The operation/permission matrix justifies each requested permission and identifies unavailable operations after partial/lost grants.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D02-AC02",
+      "candidate": "EGC-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "Another user, board collaborator or employer context cannot read/use the private connection through altered references or direct requests.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D02-AC03",
+      "candidate": "EGC-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "Ordinary errors, logs and exported review evidence do not expose tokens, codes or secrets.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D03-AC01",
+      "candidate": "EGC-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "Controlled messages show the defined sender, recipient, time, subject and content in the correct account context once the field/view rules are agreed.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D03-AC02",
+      "candidate": "EGC-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "Empty, loading, unavailable and stale/partial data are distinguishable from a complete current mailbox result.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D03-AC03",
+      "candidate": "EGC-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "Message content and attachment retrieval respect resource access and the reviewed safe-rendering/file policy.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D04-AC01",
+      "candidate": "EGC-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "Defined valid recipient/content inputs remain in the intended compose context.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D04-AC02",
+      "candidate": "EGC-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "Invalid inputs and failed draft persistence do not produce a false saved/sent outcome.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D04-AC03",
+      "candidate": "EGC-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "Restoring or discarding a draft follows the reviewed local/provider authority and does not overwrite an unrelated draft.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D05-AC01",
+      "candidate": "EGC-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "A controlled send uses the intended account/message under the agreed send/confirmation interaction.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D05-AC02",
+      "candidate": "EGC-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "Provider acceptance, rejection, pending work and unknown outcome are distinguishable as applicable; acceptance is not labeled recipient delivery/read confirmation.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D05-AC03",
+      "candidate": "EGC-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "Retry after an ambiguous response follows a defined reconciliation policy rather than blindly duplicating the external send.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D06-AC01",
+      "candidate": "EGC-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "A controlled reply identifies the intended original message/conversation and sender account.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D06-AC02",
+      "candidate": "EGC-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "Recipient/reply behavior matches the reviewed rules rather than silently sending to unrelated addresses.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D06-AC03",
+      "candidate": "EGC-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "Reply failures retain a distinguishable outcome without a false successful-send claim.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D07-AC01",
+      "candidate": "EGC-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "Representative agreed activity types can be recorded/viewed and changed under the approved operation matrix.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D07-AC02",
+      "candidate": "EGC-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "Invalid required fields/time intervals produce defined feedback rather than a false saved event.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D07-AC03",
+      "candidate": "EGC-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "Agreed all-day/time-zone/daylight-saving cases preserve intended time meaning in relevant views and provider mappings.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D08-AC01",
+      "candidate": "EGC-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "Defined local/provider edits and deletions produce the agreed result for the selected category/calendar.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D08-AC02",
+      "candidate": "EGC-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "Concurrent divergence or invalid synchronization state invokes the defined reconciliation path without silently destroying unrelated local data.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D08-AC03",
+      "candidate": "EGC-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "Partial/failed refresh is not presented as fully current; reconnect/repeated-refresh cases follow the reviewed duplicate policy.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D09-AC01",
+      "candidate": "EGC-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "Related items resolve to the correct application and authorized account/activity.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D09-AC02",
+      "candidate": "EGC-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "Association does not grant unrelated collaborators/employer viewers private message access.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D09-AC03",
+      "candidate": "EGC-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "Later source changes/removal follow the reviewed policy and do not overwrite preserved actual submitted material.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D10-AC01",
+      "candidate": "EGC-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "Defined reminder examples target the authorized recipient and intended activity/time context.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D10-AC02",
+      "candidate": "EGC-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "Activity cancellation/change or loss of access yields the reviewed pending-reminder result.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D10-AC03",
+      "candidate": "EGC-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "Scheduled, attempted, failed and confirmed outcomes are distinguished according to the selected channel's evidence.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D11-AC01",
+      "candidate": "EGC-D11",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "Unavailable grants do not permit protected provider operations or a false connected/usable status for those operations.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D11-AC02",
+      "candidate": "EGC-D11",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "Disconnect does not silently delete provider data or imply a local purge unless explicitly authorized by reviewed policy.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D11-AC03",
+      "candidate": "EGC-D11",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "Reconnect reconciles selected identity/mappings/pending work under the agreed policy without silently sending stale queued mail or duplicating events.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D12-AC01",
+      "candidate": "EGC-D12",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "Consent denial, expired/revoked access, rate/resource limits, provider outage and ambiguous outbound outcomes have explicit user-visible handling.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D12-AC02",
+      "candidate": "EGC-D12",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "Retrying/reconciling follows operation-specific safety rules and does not bypass grants or falsely claim success.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EGC-D12-AC03",
+      "candidate": "EGC-D12",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/email-calendar-and-google-integration.md",
+      "criterion": "Evidence identifies actual account/audience, configuration, granted operations, observed limits and blockers without exposing secrets.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EIF-D01-AC01",
+      "candidate": "EIF-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md",
+      "criterion": "Each applicable IF-01–IF-08 entry maps to a contract using section 4, with an explicit owner/status and linked requirements.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EIF-D01-AC02",
+      "candidate": "EIF-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md",
+      "criterion": "Required inputs, outputs, validity conditions and success/denial/failure examples are defined or marked as blocking questions.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EIF-D01-AC03",
+      "candidate": "EIF-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md",
+      "criterion": "A documented interface version/change identifies affected consumers and compatibility consequences rather than silently promising universal support.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EIF-D02-AC01",
+      "candidate": "EIF-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md",
+      "criterion": "Representative agreed workflows identify the relevant resource/account and available operation without implying unauthorized capability.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EIF-D02-AC02",
+      "candidate": "EIF-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md",
+      "criterion": "Required-field errors identify the affected input and recoverable next action; loading, empty, incomplete, success and failure states are distinguishable.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EIF-D02-AC03",
+      "candidate": "EIF-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md",
+      "criterion": "Agreed keyboard, focus, labels, contrast and layout cases pass in the explicitly supported client/viewport matrix once criteria are defined.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EIF-D03-AC01",
+      "candidate": "EIF-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md",
+      "criterion": "Cross-user/direct-reference requests cannot retrieve or mutate unrelated protected resources.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EIF-D03-AC02",
+      "candidate": "EIF-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md",
+      "criterion": "Employer access is limited to the intended resume and selected available material; board membership grants no private mail access.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EIF-D03-AC03",
+      "candidate": "EIF-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md",
+      "criterion": "Denied access and grant-change behavior follow the reviewed contract without disclosing protected content or secrets.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EIF-D04-AC01",
+      "candidate": "EIF-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md",
+      "criterion": "Agreed valid/invalid file and size/quota cases produce the reviewed result with explicit units/boundaries.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EIF-D04-AC02",
+      "candidate": "EIF-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md",
+      "criterion": "Generated/uploaded PDF and language availability choices apply to direct retrieval as well as the displayed controls.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EIF-D04-AC03",
+      "candidate": "EIF-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md",
+      "criterion": "Interrupted processing/transfer or failed replacement does not appear as completed usable content or overwrite preserved submitted material through a source edit.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EIF-D05-AC01",
+      "candidate": "EIF-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md",
+      "criterion": "Each agreed provider operation maps to justified access, selected account/calendar and defined request/result meaning.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EIF-D05-AC02",
+      "candidate": "EIF-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md",
+      "criterion": "Consent denial, missing/revoked grants and provider rejection do not appear as successful authorized operations.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EIF-D05-AC03",
+      "candidate": "EIF-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md",
+      "criterion": "Synchronization scope, conflicts, deletion, disconnect and reconnect follow explicitly reviewed rules rather than an assumed direction or source of truth.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EIF-D06-AC01",
+      "candidate": "EIF-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md",
+      "criterion": "Later checks with supported real clients demonstrate agreed authorized transfer operations and corresponding repository content/history results.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EIF-D06-AC02",
+      "candidate": "EIF-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md",
+      "criterion": "Unauthorized repository/ref changes and rejected/conflicting operations produce the defined result without an interface bypass.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EIF-D06-AC03",
+      "candidate": "EIF-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md",
+      "criterion": "Failed/interrupted/repeated transfers have observable client/product outcomes consistent with the reviewed repository integrity rules.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EIF-D07-AC01",
+      "candidate": "EIF-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md",
+      "criterion": "Supported/unsupported YAML examples produce the defined validation result rather than an assumed compatibility with every external workflow ecosystem.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EIF-D07-AC02",
+      "candidate": "EIF-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md",
+      "criterion": "Execution/deployment actions without required authority/approval cannot use the protected target or unrelated secrets.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EIF-D07-AC03",
+      "candidate": "EIF-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md",
+      "criterion": "Later controlled output/log/artifact cases enforce defined access, secret handling and resource limits; failures are distinguishable from successful deployment.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EIF-D08-AC01",
+      "candidate": "EIF-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md",
+      "criterion": "Relevant timeout, disconnect, limit and provider rejection cases yield distinguishable truthful outcomes and permitted next actions.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EIF-D08-AC02",
+      "candidate": "EIF-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md",
+      "criterion": "A send/deployment outcome supported only as unknown is not reported as success or blindly repeated contrary to the reviewed policy.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EIF-D08-AC03",
+      "candidate": "EIF-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md",
+      "criterion": "Error/diagnostic information identifies useful context without exposing secrets or unrelated private content.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EIF-D09-AC01",
+      "candidate": "EIF-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md",
+      "criterion": "Operational guidance identifies selected dependencies, required non-secret configuration, compatibility and responsible operator.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EIF-D09-AC02",
+      "candidate": "EIF-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md",
+      "criterion": "Notification/delivery attempts are not confused with confirmed receipt, and a user Gmail connection is not assumed to provide authentication/recovery mail.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EIF-D09-AC03",
+      "candidate": "EIF-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md",
+      "criterion": "Later restoration evidence checks required records/artifacts/relationships and restored access against the agreed coverage; backup-file existence alone is not a recovery Pass.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EIF-D10-AC01",
+      "candidate": "EIF-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md",
+      "criterion": "Agreed English/German text and file examples preserve intended content under the selected representation without automatic translation.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EIF-D10-AC02",
+      "candidate": "EIF-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md",
+      "criterion": "Relevant time-zone/all-day and source-revision examples have the defined meaning across local/provider/file views.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "EIF-D10-AC03",
+      "candidate": "EIF-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/external-interface-requirements.md",
+      "criterion": "Interface replacement/deletion/synchronization does not silently overwrite preserved actual submitted copies or remove unrelated referenced data.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "GIT-D01-AC01",
+      "candidate": "GIT-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md",
+      "criterion": "A valid authorized creation produces an identifiable hosted repository usable by the agreed Git interface, not merely an external link.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "GIT-D01-AC02",
+      "candidate": "GIT-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md",
+      "criterion": "Invalid/conflicting creation inputs and failed provisioning do not appear as successful usable repositories.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "GIT-D01-AC03",
+      "candidate": "GIT-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md",
+      "criterion": "Creation or metadata changes do not grant access to unrelated private resources.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "GIT-D02-AC01",
+      "candidate": "GIT-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md",
+      "criterion": "A caller without read authority cannot clone/fetch or browse protected content/history through a direct path.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "GIT-D02-AC02",
+      "candidate": "GIT-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md",
+      "criterion": "A caller without write/management authority cannot push, merge, change visibility or grant themselves privileges.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "GIT-D02-AC03",
+      "candidate": "GIT-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md",
+      "criterion": "Changing membership/credentials produces the reviewed subsequent-access result; unrelated board membership supplies no repository grant.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "GIT-D03-AC01",
+      "candidate": "GIT-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md",
+      "criterion": "Later supported-client checks retrieve the expected repository content and history through real Clone/Fetch operations.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "GIT-D03-AC02",
+      "candidate": "GIT-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md",
+      "criterion": "Client Pull integrates fetched data according to the reviewed supported-client scenarios; client conflicts are not mislabeled server success.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "GIT-D03-AC03",
+      "candidate": "GIT-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md",
+      "criterion": "Authorized Push updates the intended allowed refs; denied/rejected/interrupted operations expose truthful outcomes under defined integrity rules.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "GIT-D04-AC01",
+      "candidate": "GIT-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md",
+      "criterion": "A selected branch/revision shows the correct permitted file content and associated history in representative examples.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "GIT-D04-AC02",
+      "candidate": "GIT-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md",
+      "criterion": "Missing/deleted revisions and unsupported/binary/large content have defined feedback rather than incorrect content or a false empty repository.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "GIT-D04-AC03",
+      "candidate": "GIT-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md",
+      "criterion": "Branch changes require the agreed authority and do not silently rewrite unrelated refs.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "GIT-D05-AC01",
+      "candidate": "GIT-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md",
+      "criterion": "An authorized fork contains the expected source revision/history under the agreed capture semantics.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "GIT-D05-AC02",
+      "candidate": "GIT-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md",
+      "criterion": "Forking does not implicitly grant write authority over the source repository.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "GIT-D05-AC03",
+      "candidate": "GIT-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md",
+      "criterion": "Unauthorized forks or visibility changes cannot expose protected source content contrary to the reviewed fork policy.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "GIT-D06-AC01",
+      "candidate": "GIT-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md",
+      "criterion": "A valid pull request identifies the intended source and target and displays the agreed comparison.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "GIT-D06-AC02",
+      "candidate": "GIT-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md",
+      "criterion": "Authorized comments/review outcomes remain associated with their intended request/context.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "GIT-D06-AC03",
+      "candidate": "GIT-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md",
+      "criterion": "Changed source/target revisions produce the defined update/stale-review behavior rather than silently treating an old review as approval of new content.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "GIT-D07-AC01",
+      "candidate": "GIT-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md",
+      "criterion": "A permitted merge produces the expected target history/content for the chosen merge policy.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "GIT-D07-AC02",
+      "candidate": "GIT-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md",
+      "criterion": "Conflict or failed eligibility prevents a false merged status and does not silently overwrite unrelated target work.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "GIT-D07-AC03",
+      "candidate": "GIT-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md",
+      "criterion": "Concurrent target/source changes invoke the defined recheck/conflict behavior; merge does not inherently authorize production deployment.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "GIT-D08-AC01",
+      "candidate": "GIT-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md",
+      "criterion": "Representative issue/milestone records remain associated with the intended repository and permitted relationships.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "GIT-D08-AC02",
+      "candidate": "GIT-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md",
+      "criterion": "Valid transitions/updates follow the reviewed action matrix; invalid or unauthorized changes are rejected.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "GIT-D08-AC03",
+      "candidate": "GIT-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md",
+      "criterion": "Repository issue tracking does not automatically become the product Kanban/Sprint model or expose unrelated project data.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "GIT-D09-AC01",
+      "candidate": "GIT-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md",
+      "criterion": "A representative tag/release resolves to its defined repository/ref/revision and reviewed descriptive information.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "GIT-D09-AC02",
+      "candidate": "GIT-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md",
+      "criterion": "Unauthorized tag/release mutation or protected asset retrieval is denied.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "GIT-D09-AC03",
+      "candidate": "GIT-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md",
+      "criterion": "If release assets are included by the reviewed policy, admission, download and replacement follow applicable file/access rules.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "GIT-D10-AC01",
+      "candidate": "GIT-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md",
+      "criterion": "Archive/delete/transfer cases follow explicit consequences for forks, requests, comments, issues, releases and artifacts rather than an invented cascade.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "GIT-D10-AC02",
+      "candidate": "GIT-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md",
+      "criterion": "Defined size/quota/failed-work scenarios enforce the selected accounting policy without falsely reporting completed reclamation.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "GIT-D10-AC03",
+      "candidate": "GIT-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/git-hosting-and-collaboration.md",
+      "criterion": "Later isolated restoration checks required repository objects/refs and related metadata/permissions; backup existence alone is not a recovery Pass.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "APP-D01-AC01",
+      "candidate": "APP-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md",
+      "criterion": "A valid application identifies the intended company/position without silently substituting another opportunity.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "APP-D01-AC02",
+      "candidate": "APP-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md",
+      "criterion": "Missing or invalid required information produces the agreed incomplete/rejected outcome rather than false completion.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "APP-D01-AC03",
+      "candidate": "APP-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md",
+      "criterion": "Editing one application context does not silently change unrelated applications contrary to the reviewed reuse policy.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "APP-D02-AC01",
+      "candidate": "APP-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md",
+      "criterion": "The selected resume belongs to an allowed resource context and is identifiable from the application.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "APP-D02-AC02",
+      "candidate": "APP-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md",
+      "criterion": "Cross-user or invalid resume references cannot associate or disclose unrelated protected content.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "APP-D02-AC03",
+      "candidate": "APP-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md",
+      "criterion": "Changing the current association does not overwrite material already preserved as actually submitted.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "APP-D03-AC01",
+      "candidate": "APP-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md",
+      "criterion": "Agreed valid manually entered content is retained for the intended application.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "APP-D03-AC02",
+      "candidate": "APP-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md",
+      "criterion": "Failed/incomplete save does not appear as successfully saved content.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "APP-D03-AC03",
+      "candidate": "APP-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md",
+      "criterion": "Later source edits do not overwrite a cover-letter copy already preserved as submitted.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "APP-D04-AC01",
+      "candidate": "APP-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md",
+      "criterion": "A permitted transition yields the intended current state and reviewed history information.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "APP-D04-AC02",
+      "candidate": "APP-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md",
+      "criterion": "An invalid or unauthorized transition produces defined feedback without false state completion.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "APP-D04-AC03",
+      "candidate": "APP-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md",
+      "criterion": "Examples such as withdrawal, rejection, repeated interviews or correction are handled according to explicitly chosen rules rather than an assumed one-way sequence.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "APP-D05-AC01",
+      "candidate": "APP-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md",
+      "criterion": "The user can distinguish source selection, recorded submission progress and successfully preserved actual materials.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "APP-D05-AC02",
+      "candidate": "APP-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md",
+      "criterion": "A saved status alone is not represented as evidence of an external platform submission, employer receipt or message read.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "APP-D05-AC03",
+      "candidate": "APP-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md",
+      "criterion": "If required capture is missing/failed, preservation remains distinguishably incomplete; progress/capture atomicity follows a reviewed rule.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "APP-D06-AC01",
+      "candidate": "APP-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md",
+      "criterion": "After capture, profile/resume/cover-letter/source-PDF edits do not overwrite preserved material.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "APP-D06-AC02",
+      "candidate": "APP-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md",
+      "criterion": "The preserved set corresponds to the actual user-identified submitted materials/revision under the reviewed capture policy, not an assumed latest live resume.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "APP-D06-AC03",
+      "candidate": "APP-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md",
+      "criterion": "Retrieval distinguishes historical material from editable source and follows applicable access rules.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "APP-D07-AC01",
+      "candidate": "APP-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md",
+      "criterion": "Defined correction examples identify the affected record and produce the reviewed history/result.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "APP-D07-AC02",
+      "candidate": "APP-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md",
+      "criterion": "A newly submitted set is not silently substituted for a previously preserved set as though it were the original.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "APP-D07-AC03",
+      "candidate": "APP-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md",
+      "criterion": "Failed/repeated capture attempts yield the defined outcome without falsely claiming a complete new set.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "APP-D08-AC01",
+      "candidate": "APP-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md",
+      "criterion": "A related message/activity resolves to the intended account/application context.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "APP-D08-AC02",
+      "candidate": "APP-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md",
+      "criterion": "A collaborator or employer viewer gains no private correspondence access merely from an application relationship.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "APP-D08-AC03",
+      "candidate": "APP-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md",
+      "criterion": "Provider changes/removal do not silently overwrite preserved actual submitted copies.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "APP-D09-AC01",
+      "candidate": "APP-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md",
+      "criterion": "Direct/cross-user requests cannot read or mutate unrelated protected application/history material.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "APP-D09-AC02",
+      "candidate": "APP-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md",
+      "criterion": "Source unlink/replacement does not implicitly erase preserved submissions; deliberate archive/delete follows the reviewed consequences.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "APP-D09-AC03",
+      "candidate": "APP-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/manual-application-management.md",
+      "criterion": "Later isolated restoration checks the application, preserved artifacts and access consistency; partial recovery is not a complete Pass.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PDF-D01-AC01",
+      "candidate": "PDF-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md",
+      "criterion": "Representative generated output corresponds to the intended resume and defined revision, not an unrelated or silently stale source.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PDF-D01-AC02",
+      "candidate": "PDF-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md",
+      "criterion": "Agreed text, selected evidence treatment and formatting/pagination examples produce the reviewed output.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PDF-D01-AC03",
+      "candidate": "PDF-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md",
+      "criterion": "Failed/incomplete generation is distinguishable from a successfully available PDF.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PDF-D02-AC01",
+      "candidate": "PDF-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md",
+      "criterion": "Separately provided English/German uploaded PDFs retain the intended resume/language association.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PDF-D02-AC02",
+      "candidate": "PDF-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md",
+      "criterion": "Unsupported/invalid/over-limit input produces the reviewed rejection without a false completed upload.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PDF-D02-AC03",
+      "candidate": "PDF-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md",
+      "criterion": "Replacement does not silently alter another language/resume or overwrite preserved actual submitted copies.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PDF-D03-AC01",
+      "candidate": "PDF-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md",
+      "criterion": "Generated-only, uploaded-only, both and neither cases expose only the permitted available variants.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PDF-D03-AC02",
+      "candidate": "PDF-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md",
+      "criterion": "English/German uploaded availability is respected without silently substituting a disabled/unavailable language.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PDF-D03-AC03",
+      "candidate": "PDF-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md",
+      "criterion": "Changes for one resume do not silently alter another resume or bypass retrieval authorization.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PDF-D04-AC01",
+      "candidate": "PDF-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md",
+      "criterion": "A fresh viewer can access eligible shared content using the correct password without creating a product account.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PDF-D04-AC02",
+      "candidate": "PDF-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md",
+      "criterion": "Missing/incorrect password does not newly authorize protected content.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PDF-D04-AC03",
+      "candidate": "PDF-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md",
+      "criterion": "The sharing context grants no private workspace, unrelated resumes, mail, repositories or unselected evidence.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PDF-D05-AC01",
+      "candidate": "PDF-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md",
+      "criterion": "A direct file/PDF URL cannot bypass missing/invalid sharing authorization or disabled variant availability.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PDF-D05-AC02",
+      "candidate": "PDF-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md",
+      "criterion": "Changing resume/file identifiers cannot disclose unrelated or unselected protected material.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PDF-D05-AC03",
+      "candidate": "PDF-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md",
+      "criterion": "Authorized retrieval returns only the intended permitted artifact in its reviewed context.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PDF-D06-AC01",
+      "candidate": "PDF-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md",
+      "criterion": "An unrelated actor cannot change another owner's password/link state through direct requests.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PDF-D06-AC02",
+      "candidate": "PDF-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md",
+      "criterion": "After disabling, a fresh viewer context cannot obtain protected content through the link.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PDF-D06-AC03",
+      "candidate": "PDF-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md",
+      "criterion": "After a password change, the old password does not newly authorize a fresh viewer; the current password works only for an eligible link.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PDF-D07-AC01",
+      "candidate": "PDF-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md",
+      "criterion": "Defined source edits produce the agreed live-view revision rather than an assumed automatic publish action.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PDF-D07-AC02",
+      "candidate": "PDF-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md",
+      "criterion": "The artifact offered as a current generated rendition corresponds to the defined revision or is identified as stale/unavailable under the reviewed policy.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PDF-D07-AC03",
+      "candidate": "PDF-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md",
+      "criterion": "Changing live content does not overwrite the separately preserved actual submitted material.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PDF-D08-AC01",
+      "candidate": "PDF-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md",
+      "criterion": "Owner-facing guidance does not claim disabling/changing password removes a previously downloaded copy.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PDF-D08-AC02",
+      "candidate": "PDF-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md",
+      "criterion": "A live shared resume/PDF is not presented as proof of the exact material previously submitted.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PDF-D08-AC03",
+      "candidate": "PDF-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md",
+      "criterion": "If a PDF is captured as actual submitted material, later source replacement does not overwrite that preserved copy.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PDF-D09-AC01",
+      "candidate": "PDF-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md",
+      "criterion": "Defined invalid/oversized/processing-failure cases do not publish partial output as a successful usable PDF.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PDF-D09-AC02",
+      "candidate": "PDF-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md",
+      "criterion": "A failed replacement follows the agreed existing-artifact/reference policy without silently damaging unrelated data.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PDF-D09-AC03",
+      "candidate": "PDF-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md",
+      "criterion": "Error output does not expose private paths, tokens/passwords or unrelated file content.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PDF-D10-AC01",
+      "candidate": "PDF-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md",
+      "criterion": "Removing a link does not imply physical deletion of every referenced artifact or unrelated historical copy.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PDF-D10-AC02",
+      "candidate": "PDF-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md",
+      "criterion": "Source-file removal does not silently destroy a required preserved submitted set.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PDF-D10-AC03",
+      "candidate": "PDF-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/pdf-and-controlled-sharing.md",
+      "criterion": "Later isolated restoration checks artifacts, references and permitted restored access; old enabled links/grants are reconciled under an explicit policy.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PRP-D01-AC01",
+      "candidate": "PRP-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md",
+      "criterion": "Representative valid records retain the intended user/content context and agreed information.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PRP-D01-AC02",
+      "candidate": "PRP-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md",
+      "criterion": "Missing/invalid required input has defined feedback rather than false successful completion.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PRP-D01-AC03",
+      "candidate": "PRP-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md",
+      "criterion": "Agreed information can be selected for a tailored resume without manually re-entering the same shared content as a prerequisite.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PRP-D02-AC01",
+      "candidate": "PRP-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md",
+      "criterion": "A representative resume contains the intended selected information and omits deliberately unselected information.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PRP-D02-AC02",
+      "candidate": "PRP-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md",
+      "criterion": "The resume remains identifiable independently from another tailored resume and its intended content choices.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PRP-D02-AC03",
+      "candidate": "PRP-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md",
+      "criterion": "Invalid or inaccessible source references cannot disclose unrelated private information or appear as a successful association.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PRP-D03-AC01",
+      "candidate": "PRP-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md",
+      "criterion": "With two resumes using a shared source item, changing an override in one leaves the other's independent content choices intact.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PRP-D03-AC02",
+      "candidate": "PRP-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md",
+      "criterion": "Changing one resume's layout/selection does not silently apply that same change to the other resume.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PRP-D03-AC03",
+      "candidate": "PRP-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md",
+      "criterion": "Intended source edits versus resume overrides are distinguishable in the reviewed editing workflow.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PRP-D04-AC01",
+      "candidate": "PRP-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md",
+      "criterion": "Editing shared profile information does not automatically change an existing resume draft or published view; the owner previews the changes, explicitly applies selected source changes without overwriting resume-specific overrides, and separately confirms publication.",
+      "status": "Core behavior owner-accepted November 1, 2026; criterion locator unchanged; implementation verification pending"
+    },
+    {
+      "proposed_locator": "PRP-D04-AC02",
+      "candidate": "PRP-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md",
+      "criterion": "An overridden field retains its independent meaning under the reviewed precedence rules rather than being silently replaced by the source change.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PRP-D04-AC03",
+      "candidate": "PRP-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md",
+      "criterion": "Omitted content is not silently added to a resume, and source updates do not overwrite preserved actual submitted copies.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PRP-D05-AC01",
+      "candidate": "PRP-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md",
+      "criterion": "Representative supported evidence categories retain the intended skill/project relationship and agreed descriptive content.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PRP-D05-AC02",
+      "candidate": "PRP-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md",
+      "criterion": "Invalid/unsupported/inaccessible items produce defined feedback without a false completed association.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PRP-D05-AC03",
+      "candidate": "PRP-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md",
+      "criterion": "A repository link is treated as the intended reference, not as evidence that the product hosts that repository or controls its external availability.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PRP-D06-AC01",
+      "candidate": "PRP-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md",
+      "criterion": "Selecting or omitting evidence on one resume does not silently change another resume's selection.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PRP-D06-AC02",
+      "candidate": "PRP-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md",
+      "criterion": "Employer context exposes only selected permitted evidence and grants no general access to the private evidence collection.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PRP-D06-AC03",
+      "candidate": "PRP-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md",
+      "criterion": "Direct requests for unselected/unrelated protected files cannot bypass the boundary merely because their identifiers are known.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PRP-D07-AC01",
+      "candidate": "PRP-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md",
+      "criterion": "Representative manually entered language variants retain their intended text and language context.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PRP-D07-AC02",
+      "candidate": "PRP-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md",
+      "criterion": "Editing one variant does not automatically translate or overwrite another language's professional wording.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PRP-D07-AC03",
+      "candidate": "PRP-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md",
+      "criterion": "Missing/incomplete-language cases produce the reviewed availability/fallback result rather than a silently fabricated translation.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PRP-D08-AC01",
+      "candidate": "PRP-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md",
+      "criterion": "A reviewed representative view shows the intended selected text/evidence and distinguishes missing or unavailable content.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PRP-D08-AC02",
+      "candidate": "PRP-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md",
+      "criterion": "Layout/long-content/link/media examples have defined results in the agreed supported client/viewport matrix.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PRP-D08-AC03",
+      "candidate": "PRP-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md",
+      "criterion": "PDF evidence representation follows the reviewed rendition contract; it does not imply interactive video or every web behavior is embedded in a PDF.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PRP-D09-AC01",
+      "candidate": "PRP-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md",
+      "criterion": "Defined invalid/over-limit/unsupported input has the reviewed result and is not presented as successfully usable evidence.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PRP-D09-AC02",
+      "candidate": "PRP-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md",
+      "criterion": "Interrupted save/upload/required processing is distinguishable from complete success and follows explicit existing-content/reference rules.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PRP-D09-AC03",
+      "candidate": "PRP-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md",
+      "criterion": "Defined rich-content/file/link cases do not bypass reviewed safe-display or privacy controls, and ordinary feedback exposes no secrets/unrelated content.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PRP-D10-AC01",
+      "candidate": "PRP-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md",
+      "criterion": "Unlinking evidence from one resume does not implicitly delete unrelated evidence or another valid association contrary to reviewed policy.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PRP-D10-AC02",
+      "candidate": "PRP-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md",
+      "criterion": "Source edit/replacement/removal does not silently overwrite or erase required preserved actual submitted resume/cover-letter material.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PRP-D10-AC03",
+      "candidate": "PRP-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/profiles-resumes-and-portfolio.md",
+      "criterion": "Later isolated restoration checks required records/artifacts/references and restored access; missing artifacts are not reported as complete recovery.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PKS-D01-AC01",
+      "candidate": "PKS-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "criterion": "A valid project/board is identifiable in its intended authorized work context.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PKS-D01-AC02",
+      "candidate": "PKS-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "criterion": "Missing/invalid required data or failed creation has defined feedback rather than false usable completion.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PKS-D01-AC03",
+      "candidate": "PKS-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "criterion": "Selecting/changing one work context does not silently modify unrelated project/board information.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PKS-D02-AC01",
+      "candidate": "PKS-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "criterion": "An authorized valid configuration displays the intended columns/order without silently losing represented work.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PKS-D02-AC02",
+      "candidate": "PKS-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "criterion": "A permitted move produces the reviewed card/location/state outcome; denied/invalid moves do not appear completed.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PKS-D02-AC03",
+      "candidate": "PKS-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "criterion": "Renaming/removing a column containing work follows explicit mapping/reference rules rather than an assumed destructive cascade.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PKS-D03-AC01",
+      "candidate": "PKS-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "criterion": "Representative feature, defect, improvement and investigation examples retain their intended work meaning without being forced to be one implementation task.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PKS-D03-AC02",
+      "candidate": "PKS-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "criterion": "Valid authorized edits/order changes produce the agreed list state; invalid or denied changes have defined feedback.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PKS-D03-AC03",
+      "candidate": "PKS-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "criterion": "Item identity and relevant context remain distinguishable when represented on boards or selected for a Sprint.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PKS-D04-AC01",
+      "candidate": "PKS-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "criterion": "A representative item can be refined into agreed smaller tasks while retaining the intended item identity and delivery context.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PKS-D04-AC02",
+      "candidate": "PKS-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "criterion": "Reparenting/removing a task follows the reviewed relationship policy without silently deleting unrelated work.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PKS-D04-AC03",
+      "candidate": "PKS-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "criterion": "Task completion alone does not mark the item accepted unless the explicit completion policy's conditions are satisfied.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PKS-D05-AC01",
+      "candidate": "PKS-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "criterion": "Valid assignment targets only participants eligible under the selected policy and does not itself grant unrelated access.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PKS-D05-AC02",
+      "candidate": "PKS-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "criterion": "Defined priority/due-date examples preserve the intended value/time meaning; invalid inputs yield explicit feedback.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PKS-D05-AC03",
+      "candidate": "PKS-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "criterion": "Member removal or work-context changes produce the agreed assignment/reminder result rather than silently targeting an unauthorized person.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PKS-D06-AC01",
+      "candidate": "PKS-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "criterion": "Allowed participants can perform only their reviewed project/board/item/task actions.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PKS-D06-AC02",
+      "candidate": "PKS-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "criterion": "Altered references/direct requests cannot expose or mutate unrelated private work, mail, resumes or repositories.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PKS-D06-AC03",
+      "candidate": "PKS-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "criterion": "A caller without grant-management authority cannot add themselves or escalate another participant's permissions.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PKS-D07-AC01",
+      "candidate": "PKS-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "criterion": "A representative Sprint identifies the intended goal and selected item identities without silently changing the Product Backlog source.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PKS-D07-AC02",
+      "candidate": "PKS-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "criterion": "Invalid or unauthorized selection/date/state changes produce defined feedback.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PKS-D07-AC03",
+      "candidate": "PKS-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "criterion": "Defined work additions/removals or goal/date changes produce the reviewed Sprint context/history outcome rather than an assumed fixed or unrestricted policy.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PKS-D08-AC01",
+      "candidate": "PKS-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "criterion": "A representative Sprint Backlog makes its goal, selected items and agreed delivery-plan information identifiable together.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PKS-D08-AC02",
+      "candidate": "PKS-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "criterion": "Agreed task refinements/plan changes remain associated with the correct Sprint/item context.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PKS-D08-AC03",
+      "candidate": "PKS-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "criterion": "A board view or item list alone is not presented as the complete Sprint Backlog when goal or required plan information is missing.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PKS-D09-AC01",
+      "candidate": "PKS-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "criterion": "Defined completion examples evaluate the applicable task/item acceptance conditions rather than only column position or due date.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PKS-D09-AC02",
+      "candidate": "PKS-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "criterion": "Incomplete Sprint work remains identifiable with an explicit disposition; ending a Sprint does not silently erase or accept it.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PKS-D09-AC03",
+      "candidate": "PKS-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "criterion": "If carry-over/reselection is permitted, it follows the reviewed policy without duplicate/conflicting work relationships or a false original completion claim.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PKS-D10-AC01",
+      "candidate": "PKS-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "criterion": "Defined project/task-to-calendar or item-to-repository examples retain correct identity and independent permissions.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PKS-D10-AC02",
+      "candidate": "PKS-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "criterion": "An agreed report identifies its population, filters/time meaning and calculation rules; missing/incomplete data is not presented as proven delivery performance.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PKS-D10-AC03",
+      "candidate": "PKS-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "criterion": "If an automation is accepted, its authorized trigger/action and failure/repetition effects match the reviewed rule without silently sending messages or deploying code.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PKS-D11-AC01",
+      "candidate": "PKS-D11",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "criterion": "Interrupted/failed/conflicting changes do not appear as completed moves, assignments or plan updates contrary to the reviewed policy.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PKS-D11-AC02",
+      "candidate": "PKS-D11",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "criterion": "Removing a project/board/column/item/Sprint follows defined reference consequences rather than an invented universal cascade.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "PKS-D11-AC03",
+      "candidate": "PKS-D11",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/projects-kanban-and-sprints.md",
+      "criterion": "Later isolated restoration checks required work relationships, order/state and access; partial data or stale grants are not reported as complete safe recovery.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D01-AC01",
+      "candidate": "QSR-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Each selected workflow has explicit timing boundaries, measurement/aggregation, threshold and workload definition before performance acceptance.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D01-AC02",
+      "candidate": "QSR-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Later results record actual durations/errors and compare them with that exact criterion, including relevant warm/cold or processing states if selected.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D01-AC03",
+      "candidate": "QSR-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "A failed/partial operation is not counted as a successful fast response merely because it returned quickly.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D02-AC01",
+      "candidate": "QSR-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "The capacity model identifies data/file/repository volumes, concurrent activity, processing/jobs and competing services rather than equating users with concurrency.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D02-AC02",
+      "candidate": "QSR-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Defined quota/limit/saturation cases produce the reviewed admission, warning or failure outcome without falsely completing work.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D02-AC03",
+      "candidate": "QSR-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Larger-growth claims are supported only for the evaluated configuration/workload; initial results are not extrapolated as proven 1,000-user capacity.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D03-AC01",
+      "candidate": "QSR-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Representative tasks can be completed under the agreed client/viewport/input matrix with required labels, keyboard/focus and error behavior.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D03-AC02",
+      "candidate": "QSR-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Loading, empty, invalid, denied, incomplete and successful states are distinguishable without relying on color alone.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D03-AC03",
+      "candidate": "QSR-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "English/German content and long/media-rich examples follow defined layout/language rules rather than hiding required actions or silently fabricating translations.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D04-AC01",
+      "candidate": "QSR-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Availability evaluation defines covered paths, observation interval, success/degradation criteria and maintenance treatment before setting a target.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D04-AC02",
+      "candidate": "QSR-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Controlled local/provider outages produce reviewed bounded feedback rather than false current data, send success or recovery completion.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D04-AC03",
+      "candidate": "QSR-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Recovery from interruption reconciles pending/unknown work under operation-specific policy without assuming safe blind repetition.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D05-AC01",
+      "candidate": "QSR-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Allowed/denied cross-user and altered-reference cases preserve private resources, including direct files/PDFs and non-browser clients.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D05-AC02",
+      "candidate": "QSR-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Board collaboration grants no unrelated private mail/resume/repository access; employer viewing remains selected-content only.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D05-AC03",
+      "candidate": "QSR-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Membership/password/link/credential changes produce the explicit new-request and existing-session outcomes required by their reviewed policies.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D06-AC01",
+      "candidate": "QSR-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Ordinary logs/errors/repository examples expose no passwords, tokens, private keys or authentication codes.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D06-AC02",
+      "candidate": "QSR-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Defined private content and backup/configuration access cases are restricted to explicitly permitted actors/operations.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D06-AC03",
+      "candidate": "QSR-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Later selected transport/storage/credential mechanisms have documented protection, renewal/revocation and recovery behavior with actual configuration evidence.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D07-AC01",
+      "candidate": "QSR-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Selected malformed/unsupported/unsafe content cases follow reviewed rejection or safe-display rules without unauthorized disclosure/action.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D07-AC02",
+      "candidate": "QSR-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Before enabling jobs, controlled execution checks verify required isolation, permissions, secret/output access, limits and cleanup in the selected environment.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D07-AC03",
+      "candidate": "QSR-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "A Push/merge/workflow result does not inherently authorize production deployment; target actions require defined approval/authority.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D08-AC01",
+      "candidate": "QSR-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Later source edits do not overwrite actual submitted resume/cover-letter material or independent resume overrides contrary to agreed propagation rules.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D08-AC02",
+      "candidate": "QSR-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Concurrent/interrupted/repeated operations follow defined conflict/reconciliation policies without false completed state or unrelated damage.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D08-AC03",
+      "candidate": "QSR-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Provider acceptance is not misrepresented as recipient delivery/read confirmation, and unknown outbound effects are not blindly repeated contrary to policy.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D09-AC01",
+      "candidate": "QSR-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "An eligible removal follows its explicit authority/reference policy; a missing policy does not trigger an assumed cascade.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D09-AC02",
+      "candidate": "QSR-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Source replacement/unlink does not silently destroy required submitted copies or unrelated referenced content.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D09-AC03",
+      "candidate": "QSR-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Retention/reclamation and restored-deleted-data cases follow explicit category-specific rules with partial outcomes identifiable.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D10-AC01",
+      "candidate": "QSR-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "The coverage record includes or explicitly disposes of each subject in section 4 with dependencies and known exclusions.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D10-AC02",
+      "candidate": "QSR-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Later backup evidence identifies candidate/environment, included recovery point/material, actual outcome and access without exposing secrets.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D10-AC03",
+      "candidate": "QSR-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Missed/failed/incomplete backup work is distinguishable from successful covered backup creation under the reviewed operational policy.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D11-AC01",
+      "candidate": "QSR-D11",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Before target acceptance, each scenario defines loss event, chosen recovery point, tolerable data loss, timing start/end boundaries and usable-state criteria.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D11-AC02",
+      "candidate": "QSR-D11",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Later restoration verifies required records/artifacts/references and actual core workflow outcomes, not only extraction or process startup.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D11-AC03",
+      "candidate": "QSR-D11",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Measured loss/time and incomplete coverage are compared with the agreed RPO/RTO and limitations; unavailable evidence is not labeled Pass.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D12-AC01",
+      "candidate": "QSR-D12",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Restored sharing links/password contexts, memberships and credentials follow the agreed treatment of later revocation rather than being blindly reactivated.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D12-AC02",
+      "candidate": "QSR-D12",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Provider/Git/run mappings and pending send/deployment/reminder work are reconciled under defined authority/outcome rules before automatic continuation, if any.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D12-AC03",
+      "candidate": "QSR-D12",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Known deleted-data reappearance or missing newer external changes is handled and disclosed as the reviewed recovery limitation, not silently accepted as current truth.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D13-AC01",
+      "candidate": "QSR-D13",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Defined successful/failed/pending operations and selected thresholds produce the specified observable evidence or feedback.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D13-AC02",
+      "candidate": "QSR-D13",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Selected sensitive operations are attributable under the reviewed audit policy without leaking secrets/private content into ordinary output.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D13-AC03",
+      "candidate": "QSR-D13",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Unauthorized viewers cannot read/change protected diagnostics/audit evidence through a direct path.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D14-AC01",
+      "candidate": "QSR-D14",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Setup/update/maintenance guidance identifies the candidate/environment, compatibility assumptions, non-secret configuration and operator responsibility.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D14-AC02",
+      "candidate": "QSR-D14",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Later authorized procedure checks record actual results and limitations; unperformed steps are marked as such.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "QSR-D14-AC03",
+      "candidate": "QSR-D14",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/quality-security-and-recovery-requirements.md",
+      "criterion": "Failed update/data-change scenarios have a reviewed recovery approach, including compatibility and irreversible-change limits, rather than an untested universal rollback claim.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D01-AC01",
+      "candidate": "USR-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "A representative user can select shared information without re-entering it for every resume.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D01-AC02",
+      "candidate": "USR-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "Two opportunity-specific resumes retain their independent selections, layouts and overrides after changes under the agreed source-update policy.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D01-AC03",
+      "candidate": "USR-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "The user can select evidence for each resume without exposing their entire private evidence collection.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D02-AC01",
+      "candidate": "USR-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "The owner can configure generated, uploaded, both or neither for each resume and the permitted uploaded language variants.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D02-AC02",
+      "candidate": "USR-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "Only the intended selected material is retrievable in the employer context, including direct file/PDF paths.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D02-AC03",
+      "candidate": "USR-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "The owner can change the sharing password or disable the link under the reviewed access-change policy.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D03-AC01",
+      "candidate": "USR-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "A fresh viewer with the correct password can reach eligible selected content without product registration.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D03-AC02",
+      "candidate": "USR-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "Wrong/missing password, disabled link and unselected/disabled file requests do not disclose protected material.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D03-AC03",
+      "candidate": "USR-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "Language/variant unavailability and relevant access failure have defined understandable outcomes rather than unrelated private content.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D04-AC01",
+      "candidate": "USR-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "A representative application retains the intended company/position and allowed resume association.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D04-AC02",
+      "candidate": "USR-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "The applicant can prepare cover-letter content manually and distinguish save failure from completed persistence.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D04-AC03",
+      "candidate": "USR-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "Progress follows reviewed transitions without implying automatic external submission or employer receipt.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D05-AC01",
+      "candidate": "USR-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "Captured actual submitted material remains distinguishable after later source edits/replacement.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D05-AC02",
+      "candidate": "USR-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "Incomplete/failed preservation is distinguishable from a completed historical set.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D05-AC03",
+      "candidate": "USR-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "Corrections/resubmissions follow a reviewed policy rather than silently substituting a new set for the original.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D06-AC01",
+      "candidate": "USR-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "Representative permitted mail operations use the intended selected account and expose truthful outcomes.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D06-AC02",
+      "candidate": "USR-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "Agreed activities and application relationships preserve intended time/context and independent private access.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D06-AC03",
+      "candidate": "USR-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "Access loss, conflict, unavailable data and uncertain outbound effects are distinguishable with defined next actions.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D07-AC01",
+      "candidate": "USR-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "Representative work retains distinct Backlog Item/task meanings and valid assignment/priority/due dates.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D07-AC02",
+      "candidate": "USR-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "The Sprint view/plan identifies goal, selected work and delivery plan together under reviewed change rules.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D07-AC03",
+      "candidate": "USR-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "Incomplete work remains identifiable at Sprint end; board movement alone is not item acceptance.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D08-AC01",
+      "candidate": "USR-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "An accepted applicable grant permits only the reviewed actions on its intended resources.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D08-AC02",
+      "candidate": "USR-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "An invitation or board membership alone does not expose private mail, unrelated resumes or repositories.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D08-AC03",
+      "candidate": "USR-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "Changed/revoked membership has the defined subsequent operation outcome and cannot be bypassed by direct references.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D09-AC01",
+      "candidate": "USR-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "Supported real-client examples demonstrate intended Clone/Fetch/Pull/Push outcomes in the authorized repository.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D09-AC02",
+      "candidate": "USR-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "A review/merge example identifies source/target revisions and handles conflicts or changed state under reviewed rules.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D09-AC03",
+      "candidate": "USR-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "Repository issues/milestones/tags/releases retain their intended context without implying deployment.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D10-AC01",
+      "candidate": "USR-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "Supported/unsupported definitions have explicit validation outcomes.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D10-AC02",
+      "candidate": "USR-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "Authorized runs have identifiable definitions/revisions and truthful result/log/artifact access.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D10-AC03",
+      "candidate": "USR-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "Push/merge/run success does not inherently authorize a protected deployment target or unrelated secrets.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D11-AC01",
+      "candidate": "USR-D11",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "A permitted policy edit follows explicit ranges/infrastructure limits and reports the effective outcome.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D11-AC02",
+      "candidate": "USR-D11",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "Unauthorized policy/content/audit operations are denied across direct paths.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D11-AC03",
+      "candidate": "USR-D11",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "Relevant incomplete/failed/quota outcomes are distinguishable without exposing secrets/unrelated private data.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D12-AC01",
+      "candidate": "USR-D12",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "Guidance identifies dependencies, non-secret configuration, responsibility and actual checked versus unperformed steps.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D12-AC02",
+      "candidate": "USR-D12",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "Later isolated restoration checks required artifacts/relationships/workflows and safe restored access against decided targets.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "USR-D12-AC03",
+      "candidate": "USR-D12",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/user-requirements.md",
+      "criterion": "Failures, limitations and pending external actions remain explicit rather than an untested successful recovery or rollback claim.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D01-AC01",
+      "candidate": "YML-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "Supported examples identify intended checks/build steps, inputs and relevant configuration.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D01-AC02",
+      "candidate": "YML-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "Malformed/unsupported definitions produce defined validation feedback rather than silently executing unrecognized behavior.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D01-AC03",
+      "candidate": "YML-D01",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "The effective definition/version is distinguishable from an arbitrary unreviewed latest file.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D02-AC01",
+      "candidate": "YML-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "Selected trigger examples create only the intended permitted work.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D02-AC02",
+      "candidate": "YML-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "Unauthorized actors, altered repository references and ineligible events cannot start protected execution.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D02-AC03",
+      "candidate": "YML-D02",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "Repeated/concurrent trigger events follow explicit deduplication/admission rules with distinguishable results.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D03-AC01",
+      "candidate": "YML-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "A later branch change does not silently relabel an existing run as having evaluated different code.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D03-AC02",
+      "candidate": "YML-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "Permitted result inspection distinguishes separate attempts and their defined relationship to a rerun.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D03-AC03",
+      "candidate": "YML-D03",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "Evidence identifies environment/input limits without exposing secret values.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D04-AC01",
+      "candidate": "YML-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "Later controlled attempts cannot access unrelated private repository/user/host data beyond permitted inputs.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D04-AC02",
+      "candidate": "YML-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "Allowed execution cannot gain administrative/host authority merely through crafted code or definition inputs.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D04-AC03",
+      "candidate": "YML-D04",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "Isolation failure or inability to establish required controls blocks enabling the affected execution capability.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D05-AC01",
+      "candidate": "YML-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "An ineligible run/fork/event cannot obtain a protected secret through normal or altered requests.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D05-AC02",
+      "candidate": "YML-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "Ordinary log/artifact/status examples do not expose secret values under the defined handling policy.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D05-AC03",
+      "candidate": "YML-D05",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "Credential change/revocation and failed secret availability have explicit outcomes rather than an authorization bypass.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D06-AC01",
+      "candidate": "YML-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "Defined eligible/over-limit requests produce reviewed admitted/pending/rejected outcomes.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D06-AC02",
+      "candidate": "YML-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "Later controlled limit-exceeding runs have distinguishable terminated/failed outcomes and defined cleanup/accounting.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D06-AC03",
+      "candidate": "YML-D06",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "Combined-workload findings evaluate impact on other required workflows; a user count alone is not execution capacity evidence.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D07-AC01",
+      "candidate": "YML-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "Pending/running/completed/failed/cancelled or equivalent selected states are distinguishable under the final state model.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D07-AC02",
+      "candidate": "YML-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "A required step failure, missing output or interrupted execution cannot produce a false successful overall result.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D07-AC03",
+      "candidate": "YML-D07",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "Unavailable/unknown runner state is reported/reconciled under the defined policy rather than invented success.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D08-AC01",
+      "candidate": "YML-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "Authorized inspection shows intended run/attempt output without mixing another user/repository context.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D08-AC02",
+      "candidate": "YML-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "Unauthorized direct log/artifact requests cannot bypass repository/run/output authority.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D08-AC03",
+      "candidate": "YML-D08",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "Partial/truncated/unavailable outputs are distinguishable; defined active/unsafe content is not served contrary to reviewed policy.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D09-AC01",
+      "candidate": "YML-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "Cancellation request and confirmed execution termination are distinguishable under the reviewed state rules.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D09-AC02",
+      "candidate": "YML-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "Runner loss leaves an observable unresolved/failed state with defined reconciliation, not false success.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D09-AC03",
+      "candidate": "YML-D09",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "Rerunning a deployment/send/other consequential step follows its explicit approval/reconciliation policy rather than blind automatic replay.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D10-AC01",
+      "candidate": "YML-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "A Push/merge/successful check alone cannot use an otherwise unauthorized deployment target/credential.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D10-AC02",
+      "candidate": "YML-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "A permitted deployment identifies intended code/artifact revision, target and applicable approval context.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D10-AC03",
+      "candidate": "YML-D10",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "Rejected/failed/unknown target outcomes are distinguishable from successful usable deployment; recovery follows reviewed version/data compatibility rules.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D11-AC01",
+      "candidate": "YML-D11",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "A later run cannot read a prior run's protected workspace/secret residue contrary to isolation policy.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D11-AC02",
+      "candidate": "YML-D11",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "Required retained evidence/artifacts are not deleted merely because temporary work is eligible for cleanup.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D11-AC03",
+      "candidate": "YML-D11",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "Partial cleanup or accounting failure is distinguishable from complete reclamation and does not silently remove unrelated data.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D12-AC01",
+      "candidate": "YML-D12",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "The evaluation identifies selected environment, combined workload, supported operations, control checks, costs and unresolved blockers.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D12-AC02",
+      "candidate": "YML-D12",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "Required security/resource blockers prevent treating execution as enabled/accepted merely because YAML parsing or Git hosting works.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    },
+    {
+      "proposed_locator": "YML-D12-AC03",
+      "candidate": "YML-D12",
+      "source": "docs/SDLC/02-requirements-engineering/03-requirements-specification/yaml-workflows-and-cicd.md",
+      "criterion": "Guidance covers versioned setup, failure/cancellation/cleanup, updates and recovery without replaying stale work or exposing secrets.",
+      "status": "Proposed locator; criterion wording unchanged; semantic coverage/execution not established"
+    }
+  ]
+}
+```

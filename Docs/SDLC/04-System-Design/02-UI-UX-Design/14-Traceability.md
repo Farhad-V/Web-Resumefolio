@@ -2,7 +2,7 @@
 
 [Previous: Handoff to Development](13-Handoff-To-Development.md) · [UI/UX Design introduction](01-Introduction.md) · [Next: Appendices](15-Appendices.md)
 
-UI/UX traceability connects required user behavior to actor/task context, screens and states, reusable components, owning server contracts and verification evidence. The [SRS](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md) owns requirement meaning; the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md) owns individual criterion mappings, scope dispositions and actual results. This chapter provides an experience-level map without creating a competing criterion register.
+UI/UX traceability connects required user behavior to actor/task context, screens and states, reusable components, owning server contracts and verification evidence. The [SRS](../../02-Requirements-Engineering/01-Software-Requirements-Specification/README.md) owns requirement meaning; the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md) owns individual criterion mappings, scope dispositions and actual results. This chapter provides an experience-level map without creating a competing criterion register.
 
 ## Requirements and User Stories → Screens
 

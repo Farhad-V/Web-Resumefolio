@@ -113,7 +113,7 @@ Use confirmation where consequences warrant it, not for every reversible edit. P
 | Repository work | Current grants/entitlement, keyboard board action, stale issue, real allowed/denied Git transfers |
 | Recovery states | Lost response, unavailable authority, preserved permitted input and no blind consequential repeat |
 
-Record actor/grants, initial data/version, task, expected result, candidate/environment and actual outcome. Link normal and relevant denied/stale/interrupted paths to exact criteria through [UI/UX Traceability](14-Traceability.md) and the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md). Use [Usability Testing](12-Usability-Testing.md) for task observation and [Development Handoff](13-Handoff-To-Development.md) for implementable screen/contract details.
+Record actor/grants, initial data/version, task, expected result, candidate/environment and actual outcome. Link normal and relevant denied/stale/interrupted paths to exact criteria through [UI/UX Traceability](14-Traceability.md) and the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md). Use [Usability Testing](12-Usability-Testing.md) for task observation and [Development Handoff](13-Handoff-To-Development.md) for implementable screen/contract details.
 
 ## Existing Design Records
 

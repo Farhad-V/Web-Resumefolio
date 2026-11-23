@@ -16,7 +16,7 @@ The MVP experience should help users prepare professional materials deliberately
 | Recoverable interaction | Know whether an action completed and what can safely happen next | Distinct validation, conflict, pending, unavailable and confirmed states; preserve permitted input | User recovers without losing safe work or repeating an uncertain consequential effect |
 | Inclusive operation | Complete essential journeys using intended input and viewport conditions | Semantic controls, keyboard paths, visible focus, responsive content and accessible feedback | Actual journey-level accessibility/usability observations on recorded configurations |
 
-These are design objectives, not observed research findings or invented numerical acceptance thresholds. Exact expected outcomes and criterion status remain in the [SRS](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md) and [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md).
+These are design objectives, not observed research findings or invented numerical acceptance thresholds. Exact expected outcomes and criterion status remain in the [SRS](../../02-Requirements-Engineering/01-Software-Requirements-Specification/README.md) and [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md).
 
 ## Design Principles
 
@@ -89,7 +89,7 @@ Repository actions reflect current permitted scope. Issue-write permission is no
 | Deferred capabilities | Personal mail/calendar, AI, advanced review/releases, general Sprints and user workflow execution do not enter MVP flows |
 | Dark-mode PlantUML documentation | Use editable PlantUML and matching renders for UML; diagram styling does not select the product UI theme |
 
-The [frontend ADR](../ADR/ADR-007-React-Inertia-Frontend.md), [accepted update/publication policy](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#change-and-baseline-open-questions-and-decisions--id-owner-accepted-profile-update-policy) and [HLD](../01-High-Level-Design/01-Introduction.md) govern these boundaries.
+The [frontend ADR](../ADR/ADR-007-React-Inertia-Frontend.md), [accepted update/publication policy](../../02-Requirements-Engineering/01-Software-Requirements-Specification/07-Change-And-Baseline/03-Requirements-Questions-And-Decisions.md#change-and-baseline-open-questions-and-decisions--id-owner-accepted-profile-update-policy) and [HLD](../01-High-Level-Design/01-Introduction.md) govern these boundaries.
 
 ## Experience Acceptance
 

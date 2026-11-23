@@ -100,7 +100,7 @@ Use [ADR decisions](../04-System-Design/ADR/Decision-Index.md) for consequential
 
 Use the [Test Strategy](../05-Agile-Iterative-Development/02-Test-Strategy.md) and matching real facilities for authority, concurrency, exact bytes/native Git and recovery guarantees. Unit fakes and process health cannot establish those boundaries. Check actual UI/accessibility paths when affected, with configured browser/input/assistive context.
 
-Link candidate/build, safe configuration identity, fixtures, expected/observed results, failed/blocked/unexecuted checks and limitations to the owning work item and [RTM](../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md). Promote only through the deployment plan/runbook; maintenance urgency does not silently waive required authority or verification gates.
+Link candidate/build, safe configuration identity, fixtures, expected/observed results, failed/blocked/unexecuted checks and limitations to the owning work item and [RTM](../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md). Promote only through the deployment plan/runbook; maintenance urgency does not silently waive required authority or verification gates.
 
 After actual recovery/change, record what happened, residual exposure, follow-up and any procedure improvement supported by evidence. Update runbook, release/operating records and affected design/traceability together. Reassess earlier evidence invalidated by code, dependency or environment changes.
 

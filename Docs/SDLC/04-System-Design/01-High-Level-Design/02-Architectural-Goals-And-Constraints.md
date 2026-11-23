@@ -23,7 +23,7 @@ Three outcomes guide architecture review: the employer sees only authorized sele
 
 ## 2.2 Key Quality Attributes
 
-The following scenarios define what the architecture must support. They summarize verification concerns and do not assign new requirement identifiers, service targets or acceptance status. Exact criteria and their status belong in the [SRS](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-quality-security-and-recovery-requirements) and [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md).
+The following scenarios define what the architecture must support. They summarize verification concerns and do not assign new requirement identifiers, service targets or acceptance status. Exact criteria and their status belong in the [SRS](../../02-Requirements-Engineering/01-Software-Requirements-Specification/03-Requirements-Specification/14-Quality-Security-And-Recovery-Requirements.md#requirements-specification-quality-security-and-recovery-requirements) and [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md).
 
 | Attribute | Representative stimulus | Required architectural response | Evidence to collect |
 | --- | --- | --- | --- |
@@ -115,7 +115,7 @@ For a proposed design change, establish the affected requirement and selected de
 7. Are performance and accessibility conclusions supported by the actual candidate and applicable criteria?
 8. Are changed contracts, migrations, ADR status, diagrams and criterion-level traces updated together?
 
-Use [Risks & Key Decisions](12-Risks-And-Key-Decisions.md) to follow unresolved architecture risks and the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md) for exact evidence links. Assign an owner and required evidence to unresolved gates; documentation completion alone does not establish release readiness.
+Use [Risks & Key Decisions](12-Risks-And-Key-Decisions.md) to follow unresolved architecture risks and the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md) for exact evidence links. Assign an owner and required evidence to unresolved gates; documentation completion alone does not establish release readiness.
 
 ## 2.6 Related Architecture Views
 

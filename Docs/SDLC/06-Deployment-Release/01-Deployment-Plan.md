@@ -22,7 +22,7 @@ The publication step is a future gated action, not evidence that a tag/release e
 | Operations | Verified setup/builds, current authorization, bounded resources/diagnostics, protected backups and consistent recovery |
 | Deferred | Personal mail/calendar, AI, advanced review/releases, general Sprints and user workflow/deployment execution |
 
-Farhad retains decision/delivery authority under the recorded project structure. Do not invent operators, release approvals, hosting purchases or accepted residual risks. A completed sprint/green build is not the full release gate. Use [ADR decisions](../04-System-Design/ADR/Decision-Index.md) and the [RTM](../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md) for governing scope and status.
+Farhad retains decision/delivery authority under the recorded project structure. Do not invent operators, release approvals, hosting purchases or accepted residual risks. A completed sprint/green build is not the full release gate. Use [ADR decisions](../04-System-Design/ADR/Decision-Index.md) and the [RTM](../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md) for governing scope and status.
 
 ## Release Evidence
 

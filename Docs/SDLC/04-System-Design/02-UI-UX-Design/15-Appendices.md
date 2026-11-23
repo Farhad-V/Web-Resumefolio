@@ -9,14 +9,14 @@ This appendix collects canonical references, current UI/UX diagrams/wireframes a
 | Question | Governing record |
 | --- | --- |
 | What is in the MVP? | [Project charter](../../01-Project-Planning/01-Project-Charter.md#mvp-scope) and selected requirement dispositions |
-| What behavior and terminology are required? | [SRS](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md), including accepted update/publication policy and data definitions |
+| What behavior and terminology are required? | [SRS](../../02-Requirements-Engineering/01-Software-Requirements-Specification/README.md), including accepted update/publication policy and data definitions |
 | Who performs the tasks? | [Users](03-Users.md); role profiles are requirements-derived, not fabricated research findings |
 | How are tasks organized? | [Information Architecture](04-Information-Architecture.md) and [User Flows](05-User-Flows.md) |
 | What is reviewable visually? | [Wireframes and Prototypes](06-Wireframes-And-Prototypes.md); low-fidelity artifacts are available, high-fidelity/interactive approval is not asserted |
 | Which component and screen behavior applies? | [Design System](07-Design-System.md), [Screen Specifications](08-Screen-Specifications.md) and [Interaction and Feedback](09-Interaction-And-Feedback.md) |
 | What must be verified inclusively? | [Accessibility](10-Accessibility.md) and [Responsive and Localization](11-Responsive-And-Localization.md) |
 | Where are observations and implementation inputs recorded? | [Usability Testing](12-Usability-Testing.md) and [Handoff to Development](13-Handoff-To-Development.md) |
-| Where is exact coverage/evidence? | [UI/UX Traceability](14-Traceability.md) and the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md) |
+| Where is exact coverage/evidence? | [UI/UX Traceability](14-Traceability.md) and the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md) |
 | Which architecture and contracts constrain the UI? | [HLD](../01-High-Level-Design/01-Introduction.md), [Detailed Module Design](../03-Low-Level-Design/03-Detailed-Module-Design.md) and [API specification](../03-Low-Level-Design/05-API-Specification.md) |
 | Which frontend choice is selected? | [Frontend ADR](../ADR/ADR-007-React-Inertia-Frontend.md): React/Inertia in independent Laravel applications, trusted Blade PDF path |
 

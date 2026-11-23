@@ -50,7 +50,7 @@ Design for intended desktop/mobile browser use, keyboard operation and assistive
 
 ### Content, Publication and Historical Truth
 
-Preserve the [accepted update/publication policy](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#change-and-baseline-open-questions-and-decisions--id-owner-accepted-profile-update-policy). Changes are previewed/selected/applied explicitly, publication requires its own confirmation, and independently authored text and actual submitted materials remain preserved.
+Preserve the [accepted update/publication policy](../../02-Requirements-Engineering/01-Software-Requirements-Specification/07-Change-And-Baseline/03-Requirements-Questions-And-Decisions.md#change-and-baseline-open-questions-and-decisions--id-owner-accepted-profile-update-policy). Changes are previewed/selected/applied explicitly, publication requires its own confirmation, and independently authored text and actual submitted materials remain preserved.
 
 The interface must identify the material being edited or viewed and the operation that completed. Avoid a single ambiguous “saved” message for draft persistence, publication, PDF creation and remote effects. A history view must resolve exact retained material rather than silently showing today's live resume.
 
@@ -96,14 +96,14 @@ Architectural relationships are documented in the [HLD System Context](../01-Hig
 | Reference | Authority |
 | --- | --- |
 | [Project charter](../../01-Project-Planning/01-Project-Charter.md#mvp-scope) | Accepted product scope |
-| [SRS](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md) and [user stories/scenarios](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#scenarios-and-models-user-stories-and-scenarios) | Required user behavior, definitions and criterion status |
-| [Interface requirements](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-external-interface-requirements) and [quality/accessibility disposition](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-quality-security-and-recovery-requirements--id-resolution-q-d25) | Interaction/accessibility constraints and unresolved targets |
+| [SRS](../../02-Requirements-Engineering/01-Software-Requirements-Specification/README.md) and [user stories/scenarios](../../02-Requirements-Engineering/01-Software-Requirements-Specification/04-Scenarios-And-Models/02-User-Stories-And-Scenarios.md#scenarios-and-models-user-stories-and-scenarios) | Required user behavior, definitions and criterion status |
+| [Interface requirements](../../02-Requirements-Engineering/01-Software-Requirements-Specification/03-Requirements-Specification/07-External-Interface-Requirements.md#requirements-specification-external-interface-requirements) and [quality/accessibility disposition](../../02-Requirements-Engineering/01-Software-Requirements-Specification/03-Requirements-Specification/14-Quality-Security-And-Recovery-Requirements.md#requirements-specification-quality-security-and-recovery-requirements--id-resolution-q-d25) | Interaction/accessibility constraints and unresolved targets |
 | [Analysis interactions](../../03-System-Analysis/03-Processes-Scenarios-And-Business-Rules.md#analysis-behavioral-and-scenario-analysis--06-scenario-based-view) | Logical scenarios and behavior inputs |
 | [HLD](../01-High-Level-Design/01-Introduction.md) and [Security Architecture](../01-High-Level-Design/10-Security-Architecture.md) | System ownership, current authority and private-content boundaries |
 | [Component design](../03-Low-Level-Design/02-Module-Breakdown.md#design-record-03-component-and-module-design-component-and-module-design-md) and [Detailed Module Design](../03-Low-Level-Design/03-Detailed-Module-Design.md) | Owning operations and invariants |
 | [API specification](../03-Low-Level-Design/05-API-Specification.md) | Permitted results, errors, request identity and retry semantics |
 | [Frontend ADR](../ADR/ADR-007-React-Inertia-Frontend.md) | React/Inertia inside independent Laravel applications, with trusted Blade PDF templates |
-| [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md) | Exact criteria, scope disposition and implementation/execution evidence |
+| [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md) | Exact criteria, scope disposition and implementation/execution evidence |
 
 ## Design Authority and Handoff
 

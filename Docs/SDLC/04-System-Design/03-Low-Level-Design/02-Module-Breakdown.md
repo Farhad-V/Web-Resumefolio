@@ -74,7 +74,7 @@ Shared helper code may support formatting, transport or bounded diagnostics, but
 | Durable recovery | Interrupted finalization, pending references and filesystem/Git/database disagreement remain reconcilable |
 | Composition | Actual bindings/configuration support both isolated applications without hidden shared authority |
 
-Link exact criteria and actual revision-specific evidence through [Traceability](11-Traceability.md) and the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md). Proposed signatures, module counts and rendered diagrams do not establish implemented boundaries or a runtime pass.
+Link exact criteria and actual revision-specific evidence through [Traceability](11-Traceability.md) and the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md). Proposed signatures, module counts and rendered diagrams do not establish implemented boundaries or a runtime pass.
 
 ## Retained Modularity and Component Records
 
@@ -101,7 +101,7 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Source context
 
-This document refines the [logical component catalog](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md), [runtime protocol](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-03-process-view-concurrency-and-runtime-behavior-md) and [OO principles](03-Detailed-Module-Design.md#design-record-02-detailed-and-object-oriented-design-01-design-principles-and-object-oriented-approach-md). Required meanings remain in the [analysis domain model](../../03-System-Analysis/02-Domain-And-Information-Analysis.md#analysis-domain-and-information-analysis--03-domain-model-and-object-oriented-view), [operation contracts](../../03-System-Analysis/03-Processes-Scenarios-And-Business-Rules.md#analysis-business-rules-and-operation-contracts--10-domain-constraints-and-operation-contracts) and [source decisions](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#change-and-baseline-open-questions-and-decisions).
+This document refines the [logical component catalog](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md), [runtime protocol](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-03-process-view-concurrency-and-runtime-behavior-md) and [OO principles](03-Detailed-Module-Design.md#design-record-02-detailed-and-object-oriented-design-01-design-principles-and-object-oriented-approach-md). Required meanings remain in the [analysis domain model](../../03-System-Analysis/02-Domain-And-Information-Analysis.md#analysis-domain-and-information-analysis--03-domain-model-and-object-oriented-view), [operation contracts](../../03-System-Analysis/03-Processes-Scenarios-And-Business-Rules.md#analysis-business-rules-and-operation-contracts--10-domain-constraints-and-operation-contracts) and [source decisions](../../02-Requirements-Engineering/01-Software-Requirements-Specification/07-Change-And-Baseline/03-Requirements-Questions-And-Decisions.md#change-and-baseline-open-questions-and-decisions).
 
 <a id="design-record-03-component-and-module-design-01-modularity-dependencies-and-encapsulation-md--heading-1-module-boundaries-and-owned-responsibilities"></a>
 

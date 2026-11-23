@@ -136,6 +136,6 @@ See [Deployment Architecture](09-Deployment-Architecture.md) and the [runbook](.
 | Secrets/diagnostics | No credentials/private bytes/host paths in responses, logs, source or frontend output |
 | Isolation/recovery | Effective process/storage/database separation, protected backup access and isolated restore consistency |
 
-Use the [SRS](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md) for governing security/quality requirements, [Detailed Module Design](../03-Low-Level-Design/03-Detailed-Module-Design.md) for policy and operation boundaries, [Database Design](../03-Low-Level-Design/04-Database-Design.md) for integrity mechanisms and the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md) for exact criteria and fresh evidence.
+Use the [SRS](../../02-Requirements-Engineering/01-Software-Requirements-Specification/README.md) for governing security/quality requirements, [Detailed Module Design](../03-Low-Level-Design/03-Detailed-Module-Design.md) for policy and operation boundaries, [Database Design](../03-Low-Level-Design/04-Database-Design.md) for integrity mechanisms and the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md) for exact criteria and fresh evidence.
 
 Record unmet gates and residual risks with an owner and required evidence. Documentation, mock success or a green health response does not establish secure deployment, compliance certification or passed runtime verification.

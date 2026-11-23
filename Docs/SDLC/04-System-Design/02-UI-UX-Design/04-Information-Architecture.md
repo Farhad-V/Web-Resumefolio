@@ -124,7 +124,7 @@ For English/German professional variants, preserve the selected content language
 
 Record actor/grants, candidate, data/version context, browser/input/viewport, expected and observed result, limitations and follow-up. No usability observation or accessibility pass is established by the map alone.
 
-Use [User Flows](05-User-Flows.md), [Screen Specifications](08-Screen-Specifications.md) and [Development Handoff](13-Handoff-To-Development.md) to refine executable behavior. Link exact criteria through [UI/UX Traceability](14-Traceability.md) and the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md). The [HLD System Context](../01-High-Level-Design/03-System-Context.md) and [API specification](../03-Low-Level-Design/05-API-Specification.md) govern authority and result contracts.
+Use [User Flows](05-User-Flows.md), [Screen Specifications](08-Screen-Specifications.md) and [Development Handoff](13-Handoff-To-Development.md) to refine executable behavior. Link exact criteria through [UI/UX Traceability](14-Traceability.md) and the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md). The [HLD System Context](../01-High-Level-Design/03-System-Context.md) and [API specification](../03-Low-Level-Design/05-API-Specification.md) govern authority and result contracts.
 
 ## Existing Design Records
 

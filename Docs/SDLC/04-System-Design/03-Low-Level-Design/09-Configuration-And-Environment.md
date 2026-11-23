@@ -107,7 +107,7 @@ Changing a database target or private root must not silently disconnect retained
 | Backup/restore | Protected access and isolated consistent records/artifacts/Git recovery with safe pending-effect handling |
 | Flags | Enabled/disabled direct-entry/job behavior preserves authority and protected state |
 
-Record actual commands only after successful execution under authorized setup. Link candidate/environment, safe configuration metadata, cases, observed result, limitations and follow-up to the work item and [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md). Do not expose secret dumps as evidence.
+Record actual commands only after successful execution under authorized setup. Link candidate/environment, safe configuration metadata, cases, observed result, limitations and follow-up to the work item and [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md). Do not expose secret dumps as evidence.
 
 ## 9.5 Handoff and References
 

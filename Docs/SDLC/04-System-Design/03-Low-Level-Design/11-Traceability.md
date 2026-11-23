@@ -2,7 +2,7 @@
 
 [Previous: Unit Test Design](10-Unit-Test-Design.md) · [Low-Level Design introduction](01-Introduction.md) · [Next: Appendices](12-Appendices.md)
 
-Traceability connects exact required behavior to an owning operation, data/interface contract, actual implementation and fresh verification. The [SRS](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md) owns requirement meaning and the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md) owns criterion applicability and recorded results. This chapter is the LLD navigation map, not a duplicate criterion register or a declaration that implementation exists.
+Traceability connects exact required behavior to an owning operation, data/interface contract, actual implementation and fresh verification. The [SRS](../../02-Requirements-Engineering/01-Software-Requirements-Specification/README.md) owns requirement meaning and the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md) owns criterion applicability and recorded results. This chapter is the LLD navigation map, not a duplicate criterion register or a declaration that implementation exists.
 
 ## 11.1 HLD Components → LLD Modules
 

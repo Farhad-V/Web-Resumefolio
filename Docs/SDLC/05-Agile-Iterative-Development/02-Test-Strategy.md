@@ -62,7 +62,7 @@ Report passed, failed, blocked and not executed with actual evidence and limitat
 
 ## Cross-stage Handoff
 
-Use [LLD Traceability](../04-System-Design/03-Low-Level-Design/11-Traceability.md), [UI/UX accessibility](../04-System-Design/02-UI-UX-Design/10-Accessibility.md), [Usability Testing](../04-System-Design/02-UI-UX-Design/12-Usability-Testing.md) and [RTM](../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md) for actual criterion/evidence relationships. The [deployment plan](../06-Deployment-Release/01-Deployment-Plan.md) and runbook own separate release/operational acceptance.
+Use [LLD Traceability](../04-System-Design/03-Low-Level-Design/11-Traceability.md), [UI/UX accessibility](../04-System-Design/02-UI-UX-Design/10-Accessibility.md), [Usability Testing](../04-System-Design/02-UI-UX-Design/12-Usability-Testing.md) and [RTM](../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md) for actual criterion/evidence relationships. The [deployment plan](../06-Deployment-Release/01-Deployment-Plan.md) and runbook own separate release/operational acceptance.
 
 ## Existing Gate, STLC and Acceptance Records
 
@@ -89,7 +89,7 @@ For each recorded case, include the criterion, prerequisites and test data, step
 
 | Step | Activity | Evidence or exit condition |
 | --- | --- | --- |
-| Requirements review | Identify the in-scope criteria, actor, allowed behavior and important denial or failure paths. | Each selected criterion links to a planned check or an open question in the [RTM](../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md). |
+| Requirements review | Identify the in-scope criteria, actor, allowed behavior and important denial or failure paths. | Each selected criterion links to a planned check or an open question in the [RTM](../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md). |
 | Test planning | Select unit, integration, end-to-end, usability or operational checks based on risk. Identify fixtures, dependencies and the environment. | Planned checks have an expected result and a defined scope. |
 | Test design | Specify the input, initial state, action and observable result. Include relevant denial, stale state and retry behavior. | Cases are reviewable in the owning issue or test suite. See [unit test design](../04-System-Design/03-Low-Level-Design/10-Unit-Test-Design.md) and [usability testing](../04-System-Design/02-UI-UX-Design/12-Usability-Testing.md). |
 | Environment preparation | Set up isolated databases, stores, test accounts and controlled mail. Record the revision, dependency versions and build. | A clean build and basic checks run using synthetic fixtures in the identified environment. See [project setup](01-Project-Setup.md). |

@@ -99,7 +99,7 @@ After a separately authorized implementation, inspect the actual screen behavior
 
 Check direct requests/current authorization, exact historical materials and real integration at their owning boundaries. Mocked UI success does not prove Git interoperability, SMTP delivery, private filesystem isolation or restoration. Keep usability observation distinct from accessibility criterion assessment and functional acceptance.
 
-Attach actual source revision, case/result and evidence to the owning issue and [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md). Keep failed, blocked and unexecuted checks visible; do not copy expected behavior into an observed-result field.
+Attach actual source revision, case/result and evidence to the owning issue and [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md). Keep failed, blocked and unexecuted checks visible; do not copy expected behavior into an observed-result field.
 
 ## Change Handling and Closure
 

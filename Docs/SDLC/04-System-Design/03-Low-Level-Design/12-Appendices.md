@@ -8,13 +8,13 @@ This appendix organizes supporting rationale, implementation-view records and ca
 
 | Subject | Owning source |
 | --- | --- |
-| Scope and required behavior | [Project charter](../../01-Project-Planning/01-Project-Charter.md#mvp-scope) and [SRS](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md) |
+| Scope and required behavior | [Project charter](../../01-Project-Planning/01-Project-Charter.md#mvp-scope) and [SRS](../../02-Requirements-Engineering/01-Software-Requirements-Specification/README.md) |
 | Architecture and decisions | [HLD](../01-High-Level-Design/01-Introduction.md) and [ADR index](../ADR/Decision-Index.md) |
 | Ownership and operations | [Module Breakdown](02-Module-Breakdown.md) and [Detailed Module Design](03-Detailed-Module-Design.md) |
 | Persistence and interfaces | [Database Design](04-Database-Design.md) and [API Specification](05-API-Specification.md) |
 | Guards and outcomes | [Algorithms and Business Rules](06-Algorithms-And-Business-Rules.md), [Error Handling and Logging](07-Error-Handling-And-Logging.md) |
 | Enforcement/configuration | [Security Implementation](08-Security-Implementation.md) and [Configuration and Environment](09-Configuration-And-Environment.md) |
-| Planned checks and evidence | [Unit Test Design](10-Unit-Test-Design.md), [LLD Traceability](11-Traceability.md) and [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md) |
+| Planned checks and evidence | [Unit Test Design](10-Unit-Test-Design.md), [LLD Traceability](11-Traceability.md) and [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md) |
 | User-facing contract | [UI/UX handoff](../02-UI-UX-Design/13-Handoff-To-Development.md) and screen/interaction records |
 | Executed setup/testing | [Project Setup](../../05-Agile-Iterative-Development/01-Project-Setup.md) and [Test Strategy](../../05-Agile-Iterative-Development/02-Test-Strategy.md) |
 | Release and recovery | [Deployment Plan](../../06-Deployment-Release/01-Deployment-Plan.md) and [Runbook](../../06-Deployment-Release/02-Runbook.md) |
@@ -288,7 +288,7 @@ Current MVP scope and selected mechanisms: [Baseline](https://github.com/Farhad-
 
 #### Authoritative inputs
 
-Follow the [working method and change control](../../01-Project-Planning/02-Project-Management-Plan.md#delivery-approach), [source questions and decisions](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md#change-and-baseline-open-questions-and-decisions), [architecture options](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-01-design-drivers-and-solution-options-md), [component boundaries](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md), [OO principles](03-Detailed-Module-Design.md#design-record-02-detailed-and-object-oriented-design-01-design-principles-and-object-oriented-approach-md) and [design review/handoff](../01-High-Level-Design/14-Appendices.md#design-record-06-design-quality-and-security-analysis-05-design-review-traceability-and-handoff-md).
+Follow the [working method and change control](../../01-Project-Planning/02-Project-Management-Plan.md#delivery-approach), [source questions and decisions](../../02-Requirements-Engineering/01-Software-Requirements-Specification/07-Change-And-Baseline/03-Requirements-Questions-And-Decisions.md#change-and-baseline-open-questions-and-decisions), [architecture options](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-01-design-drivers-and-solution-options-md), [component boundaries](../01-High-Level-Design/14-Appendices.md#design-record-01-software-architecture-02-system-decomposition-and-boundaries-md), [OO principles](03-Detailed-Module-Design.md#design-record-02-detailed-and-object-oriented-design-01-design-principles-and-object-oriented-approach-md) and [design review/handoff](../01-High-Level-Design/14-Appendices.md#design-record-06-design-quality-and-security-analysis-05-design-review-traceability-and-handoff-md).
 
 <a id="design-record-02-detailed-and-object-oriented-design-05-design-evolution-refactoring-and-technical-debt-md--heading-1-change-risk-defect-and-debt"></a>
 
@@ -1187,7 +1187,7 @@ save('churn-complexity','Illustrative churn versus complexity hotspot chart')
 body=(ROOT/DOC).read_text(encoding='utf-8-sig')
 body=body.replace('· [Evidence](#6-verification-and-completion)','· [Evidence](#6-verification-and-completion) · [Visual package](#8-evolution-and-debt-visual-package)',1)
 body+='\n## 8. Evolution and debt visual package\n\nAll comparisons below are **hypothetical design examples** unless an exact inspected candidate is explicitly identified. No implementation debt, actual architecture erosion, migration, measured hotspot or completed release is established. Legacy replacement is a conditional engineering pattern, not added product scope.\n\n'
-for i,(n,(title,code,caption)) in enumerate(views.items(),1):body+=f'### 8.{i} {title}\n\n![{title}](diagrams/{n}.svg)\n\n[PlantUML](diagrams/{n}.puml) · [PNG](diagrams/{n}.png)\n\n{caption}\n\n'
+for i,(n,(title,code,caption)) in enumerate(views.items(),1):body+=f'### 8.{i} {title}\n\n![{title}](Diagrams/{n}.svg)\n\n[PlantUML](Diagrams/{n}.puml) · [PNG](Diagrams/{n}.png)\n\n{caption}\n\n'
 body+='''### 8.12 Smell-to-refactoring mapping
 
 | Indicator to investigate | Candidate remedy | Evidence and preservation check |
@@ -1212,12 +1212,12 @@ This is a register **template**, not a second live backlog. No evidenced impleme
 ### 8.14 Classification, prioritization and measurement aids
 
 '''
-for n,title in chart_titles.items():body+=f'![{title}](diagrams/{n}.svg)\n\n[SVG](diagrams/{n}.svg) · [PNG](diagrams/{n}.png)\n\n'
+for n,title in chart_titles.items():body+=f'![{title}](Diagrams/{n}.svg)\n\n[SVG](Diagrams/{n}.svg) · [PNG](Diagrams/{n}.png)\n\n'
 body+='''Quadrant labels classify how a deficiency arose, not whether it is acceptable. Impact/effort is qualitative: source violations and commitment-blocking security, privacy, history or recovery gates take precedence over convenience. Neither chart allocates work or authorizes deferral.
 
 The interest curves show possible maintenance-friction shapes, not forecast hours, money, deadlines or a claim that all debt compounds. The hotspot chart contains **four invented points**, not file names or project measurements. For a real chart, fix the candidate/history window, define churn (including rename/generated-file handling), choose a compatible complexity measure and inspect the high-churn/high-complexity candidates before recording findings. High values alone do not establish debt; small frequently changed files and complex stable algorithms can be legitimate.
 
-[Synthetic chart data](diagrams/evolution-chart-data.json) · [Reproducible package generator](diagrams/evolution-visuals-generator.py). The generator defaults to staging; its explicit publish option checks saved target hashes before writing. No measurement collection or product execution occurs.
+[Synthetic chart data](Diagrams/evolution-chart-data.json) · [Reproducible package generator](Diagrams/evolution-visuals-generator.py). The generator defaults to staging; its explicit publish option checks saved target hashes before writing. No measurement collection or product execution occurs.
 
 ### 8.15 Evolution decision record
 

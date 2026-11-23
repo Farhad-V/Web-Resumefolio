@@ -1,8 +1,4 @@
-# Product Backlog
-
-Use the [GitHub board](https://github.com/users/Farhad-V/projects/7/views/1) and linked issues for priority, execution status and evidence. The [SRS](01-Software-Requirements-Specification.md) defines the required behavior. Use the [traceability matrix](03-Requirements-Traceability-Matrix.md) to resolve the applicable acceptance criteria. The package list retains existing issue identities and dependencies from the recorded backlog.
-
-Follow the [dependency-ordered delivery plan](../05-Agile-Iterative-Development/03-Sprint-Delivery-Plan.md): scope/host/readiness first, then [isolated project setup](../05-Agile-Iterative-Development/01-Project-Setup.md). During [backlog refinement](../05-Agile-Iterative-Development/Sprints/Sprint-01/01-Sprint-Planning.md), give each selected issue an observable outcome and the specific acceptance checks that apply. Track deferred scope separately from the MVP path.
+# Backlog Items
 
 | Work item | Outcome | Dependencies | Requirement areas and gates |
 | --- | --- | --- | --- |
@@ -36,11 +32,3 @@ Follow the [dependency-ordered delivery plan](../05-Agile-Iterative-Development/
 | <a id="pbi-034"></a>[PBI-034](https://github.com/Farhad-V/Web-Resumefolio/issues/41) | Enforce storage reservations and bounded Git/media admission | PBI-002, PBI-030 | AFO / QSR / GIT; G2; G5 |
 
 [Recorded package details and deferred work](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/Project-Management/product-backlog.md).
-
-## Readiness and evidence
-
-A work item is ready to select when its expected outcome, acceptance checks, prerequisites and owning design are clear. If the work is too broad to demonstrate, split by observable user outcome. Capture actual results and follow-up on the existing issue. Keep deferred work out of the selected sprint scope unless the scope decision is updated.
-
-## Task Slices, Order and Completion
-
-The [Sprint Delivery Plan](../05-Agile-Iterative-Development/03-Sprint-Delivery-Plan.md) and development-plan section on each current MVP issue define the ordered task slices, observable results, verification. Existing 28 MVP issue identities are preserved; task checklists refine them without creating duplicate backlog items. Six deferred issues remain after MVP. Planning completion does not close any execution or acceptance item.

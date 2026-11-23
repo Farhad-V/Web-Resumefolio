@@ -61,7 +61,7 @@ Personal mail and calendar connections, AI, automatic translation, automatic sub
 
 Farhad approved the MVP scope with Resumefolio Core and a separate ProjectForge system. The planned stable release is version 1.0.0. Evaluate the candidate against the [release criteria](../06-Deployment-Release/01-Deployment-Plan.md) before tagging or publishing it.
 
-Use the [project management plan](02-Project-Management-Plan.md) to record scope changes and their impact on design and verification. The [SRS](../02-Requirements-Engineering/01-Software-Requirements-Specification.md#requirements-specification-requirements-specification) owns detailed behavior and acceptance criteria.
+Use the [project management plan](02-Project-Management-Plan.md) to record scope changes and their impact on design and verification. The [SRS](../02-Requirements-Engineering/01-Software-Requirements-Specification/03-Requirements-Specification/17-Software-Requirements-Specification.md#requirements-specification-requirements-specification) owns detailed behavior and acceptance criteria.
 
 ## MVP outcome checks
 
@@ -73,4 +73,4 @@ Use the [project management plan](02-Project-Management-Plan.md) to record scope
 | ProjectForge collaboration works within current grants | A permitted Git client and collaborator complete the selected operations. Unauthorized operations and stale issue changes are denied without overwriting newer work. |
 | Release and recovery are supportable | Record the candidate, supported interfaces, verification results, unresolved risks and successful isolated recovery evidence. |
 
-The [requirements traceability matrix](../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md) tracks applicable criteria, design ownership and verification status.
+The [requirements traceability matrix](../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md) tracks applicable criteria, design ownership and verification status.

@@ -116,6 +116,6 @@ Do not populate observed-result/pass fields from the expected-result text. Recor
 
 Before implementing a rule, link its invariant to the governing operation and exact criterion. Select the narrowest meaningful test boundary, then include broader evidence only where the guarantee requires it. Reassess affected cases when policy, schema, adapter or configuration changes invalidate previous assumptions.
 
-Use [Detailed Module Design](03-Detailed-Module-Design.md), [Database Design](04-Database-Design.md), [API Specification](05-API-Specification.md), [Algorithms and Business Rules](06-Algorithms-And-Business-Rules.md) and [Security Implementation](08-Security-Implementation.md) for contract details. Record implementation/results centrally in [Traceability](11-Traceability.md) and the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md).
+Use [Detailed Module Design](03-Detailed-Module-Design.md), [Database Design](04-Database-Design.md), [API Specification](05-API-Specification.md), [Algorithms and Business Rules](06-Algorithms-And-Business-Rules.md) and [Security Implementation](08-Security-Implementation.md) for contract details. Record implementation/results centrally in [Traceability](11-Traceability.md) and the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md).
 
 This chapter adds no runnable tests or production changes and executes no product checks. Documentation links and diagram rendering establish artifact consistency only.

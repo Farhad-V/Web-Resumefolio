@@ -1,0 +1,122 @@
+
+<a id="validation-and-traceability-operating-check-2026-11-01"></a>
+
+# operating-check-2026-11-01.json
+
+```json
+{
+  "activity": "RV-D06",
+  "observed_at_utc": "2026-11-01T12:58:32.030154+00:00",
+  "method": "Authorized read-only SSH; selected .env declarations reduced to presence flags, no credential values printed or stored; selected processes/cron/timers, tool availability, composer.lock license metadata and live TLS verification",
+  "env_presence": {
+    "GOOGLE_CLIENT_ID": false,
+    "GOOGLE_CLIENT_SECRET": false,
+    "GOOGLE_REDIRECT_URI": false,
+    "MAIL_HOST": true,
+    "MAIL_USERNAME": false,
+    "MAIL_PASSWORD": false,
+    "MAIL_FROM_ADDRESS": true,
+    "AWS_ACCESS_KEY_ID": false,
+    "AWS_SECRET_ACCESS_KEY": false,
+    "AWS_BUCKET": false
+  },
+  "env_declarations": {
+    "mail_transport": "log",
+    "smtp_host_is_common_development_placeholder": true,
+    "app_debug_enabled": false
+  },
+  "follow_up_checks": {
+    "config_cache_present": false,
+    "cached_mail_default": "not-inspected; no cache file found",
+    "kvm_device_present": false,
+    "certbot_timer_enabled": true,
+    "certbot_timer_active": true,
+    "certbot_renewal_definition_count": 1
+  },
+  "tools_present": {
+    "docker": false,
+    "podman": false,
+    "restic": false,
+    "borg": false,
+    "certbot": true,
+    "git": true,
+    "supervisord": false
+  },
+  "active_artisan_process_counts": {
+    "queue_work": 0,
+    "horizon": 0,
+    "schedule_work": 0
+  },
+  "schedule_cron_counts": {
+    "root": 0,
+    "www-data": 0
+  },
+  "selected_timer_names": [
+    "certbot.timer",
+    "dpkg-db-backup.timer"
+  ],
+  "tls_public_certificate": {
+    "verified": true,
+    "not_before": "Oct 9 00:20:19 2026 GMT",
+    "not_after": "Jan 7 00:20:18 2027 GMT",
+    "dns_names": [
+      "resumefolio.de",
+      "www.resumefolio.de"
+    ]
+  },
+  "selected_declared_license_metadata": [
+    {
+      "package": "dompdf/dompdf",
+      "version": "v3.1.5",
+      "license": [
+        "LGPL-2.1"
+      ]
+    },
+    {
+      "package": "dompdf/php-font-lib",
+      "version": "1.0.2",
+      "license": [
+        "LGPL-2.1-or-later"
+      ]
+    },
+    {
+      "package": "dompdf/php-svg-lib",
+      "version": "1.0.2",
+      "license": [
+        "LGPL-3.0-or-later"
+      ]
+    },
+    {
+      "package": "nette/schema",
+      "version": "v1.3.5",
+      "license": [
+        "BSD-3-Clause",
+        "GPL-2.0-only",
+        "GPL-3.0-only"
+      ]
+    },
+    {
+      "package": "nette/utils",
+      "version": "v4.1.4",
+      "license": [
+        "BSD-3-Clause",
+        "GPL-2.0-only",
+        "GPL-3.0-only"
+      ]
+    }
+  ],
+  "delivery_owner": "Farhad",
+  "tracking_access": {
+    "github_search": "422 repository not searchable or not permitted",
+    "direct_issue_fetch": "No usable title/body/state/number returned for local issue-8 URL; live status not verified",
+    "ui_inventory": "No existing provider-console browser tabs were available; no account login attempted"
+  },
+  "limits": [
+    ".env presence/absence does not prove all effective process environment or any external OAuth project state",
+    "Other users, process managers, timers, hosts or backup methods may exist outside the bounded search",
+    "Certificate validity and an enabled timer do not demonstrate a successful renewal challenge or reload",
+    "Lock-file license declarations are metadata, not complete applicable license/compliance conclusions",
+    "No mail sent, OAuth consent granted, job run, package installed, backup created, restore performed or production settings changed"
+  ]
+}
+```

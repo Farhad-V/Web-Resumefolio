@@ -6,7 +6,7 @@
 
 ## 13.1 Requirements → Components Mapping
 
-Traceability connects governing behavior to an owning design, implementation and observable verification. The [SRS](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md) owns requirement meaning. The [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md) owns the individual requirement/criterion mappings and execution evidence. This chapter provides the architecture-level map without duplicating the criterion register or changing scope/disposition.
+Traceability connects governing behavior to an owning design, implementation and observable verification. The [SRS](../../02-Requirements-Engineering/01-Software-Requirements-Specification/README.md) owns requirement meaning. The [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md) owns the individual requirement/criterion mappings and execution evidence. This chapter provides the architecture-level map without duplicating the criterion register or changing scope/disposition.
 
 | Requirement area | Owning component / boundary | HLD provision | Verification focus |
 | --- | --- | --- | --- |
@@ -30,12 +30,12 @@ A shared concern must still identify the actual resource owner and entry point. 
 | Source / record | Authority |
 | --- | --- |
 | [Project charter](../../01-Project-Planning/01-Project-Charter.md#mvp-scope) | Product/MVP scope |
-| [SRS](../../02-Requirements-Engineering/01-Software-Requirements-Specification.md) | Requirement wording, domain definitions and recorded status |
-| [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md) and its linked criterion register | Exact criterion identity, applicability, gates and evidence references |
+| [SRS](../../02-Requirements-Engineering/01-Software-Requirements-Specification/README.md) | Requirement wording, domain definitions and recorded status |
+| [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md) and its linked criterion register | Exact criterion identity, applicability, gates and evidence references |
 | [ADR index](../ADR/Decision-Index.md) | Consequential design choices and selected/superseded status |
 | HLD chapters | Architectural ownership, invariants and cross-system constraints |
 | [Detailed Module Design](../03-Low-Level-Design/03-Detailed-Module-Design.md), [Database Design](../03-Low-Level-Design/04-Database-Design.md), [API specification](../03-Low-Level-Design/05-API-Specification.md) | Owning operations, persistence and executable interface contracts |
-| [Product backlog](../../02-Requirements-Engineering/02-Product-Backlog.md) and implementation work item | Scoped delivery work and actual source revision |
+| [Product backlog](../../02-Requirements-Engineering/02-Product-Backlog/README.md) and implementation work item | Scoped delivery work and actual source revision |
 | [Test strategy](../../05-Agile-Iterative-Development/02-Test-Strategy.md) and execution record | Planned cases, expected outcomes, actual observations and evidence |
 | [Deployment plan](../../06-Deployment-Release/01-Deployment-Plan.md) / [runbook](../../06-Deployment-Release/02-Runbook.md) | Candidate-specific release, deployment and recovery evidence |
 

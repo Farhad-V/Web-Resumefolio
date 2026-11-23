@@ -145,6 +145,6 @@ These controls are obligations to implement and verify. They do not establish nu
 | Local/remote outcome truth | Exercise stale writes, repeated identities, lost responses and interrupted durable work |
 | Operational readiness | Verify locked builds, resource policy, monitoring and isolated restore consistency |
 
-Refine the owning component, data and API contracts before implementing a selected capability. Link exact acceptance criteria and fresh evidence in the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix.md). If evidence requires changing a selected architectural choice, update the relevant ADR and affected views rather than silently bypassing the constraint.
+Refine the owning component, data and API contracts before implementing a selected capability. Link exact acceptance criteria and fresh evidence in the [RTM](../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md). If evidence requires changing a selected architectural choice, update the relevant ADR and affected views rather than silently bypassing the constraint.
 
 Continue with [Components](05-Components.md) for module responsibilities and [Integration & Interfaces](07-Integration-And-Interfaces.md) for communication contracts.
