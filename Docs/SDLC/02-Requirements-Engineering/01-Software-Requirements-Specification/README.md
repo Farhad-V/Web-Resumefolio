@@ -1,46 +1,31 @@
 # Software Requirements Specification (SRS)
 
-## Introduction
+Resumefolio provides a private professional workspace and a separately authorized ProjectForge collaboration system. This folder defines required behavior; domain files own the detailed wording and acceptance criteria.
 
-This is the requirements entry point for Resumefolio. It serves the project owner, implementation and test work. The [project charter](../../01-Project-Planning/01-Project-Charter.md#mvp-scope) defines the MVP release boundary. The [detailed specification](03-Requirements-Specification/17-Software-Requirements-Specification.md#requirements-specification-requirements-specification) and its domain documents own the individual requirement wording and acceptance criteria.
+## Read this first
 
-## Overall description
-
-Resumefolio Core provides the private workspace. ProjectForge is a separate system connected through scoped authorization. The principal users are invited account holders, an owner or administrator, employers with a protected share and repository collaborators with assigned permissions. The [operating constraints](../../01-Project-Planning/03-Feasibility-And-Risk-Assessment.md#resource-constraints) cover the host, separate databases and private storage. Setup and runtime assumptions still require verification.
-
-## Functional requirements
-
-| Capability | Detailed requirements |
+| In the MVP | Deferred beyond the MVP |
 | --- | --- |
-| Invited identity and resource access | [Accounts and permissions](03-Requirements-Specification/01-Accounts-Authentication-And-Permissions.md#requirements-specification-accounts-authentication-and-permissions) |
-| Professional profile, independent resumes and portfolio | [Professional presentation](03-Requirements-Specification/12-Profiles-Resumes-And-Portfolio.md#requirements-specification-profiles-resumes-and-portfolio) |
-| Private files, generated or uploaded PDFs and controlled employer sharing | [Files and operations](03-Requirements-Specification/02-Administration-Files-And-Operational-Behavior.md#requirements-specification-administration-files-and-operational-behavior) and [PDF and sharing](03-Requirements-Specification/11-Pdf-And-Controlled-Sharing.md#requirements-specification-pdf-and-controlled-sharing) |
-| Manual applications and immutable submitted history | [Application management](03-Requirements-Specification/09-Manual-Application-Management.md#requirements-specification-manual-application-management) and [business rules](03-Requirements-Specification/04-Business-Rules-And-Data-Lifecycle.md#requirements-specification-business-rules-and-data-lifecycle) |
-| Scoped ProjectForge repositories, issues and simple Kanban | [Git collaboration](03-Requirements-Specification/08-Git-Hosting-And-Collaboration.md#requirements-specification-git-hosting-and-collaboration) and [work management](03-Requirements-Specification/13-Projects-Kanban-And-Sprints.md#requirements-specification-projects-kanban-and-sprints) |
+| Invited accounts and resource-specific permissions | Personal Google mail and calendar integration |
+| Profiles, independent resumes, portfolio and private files | Advanced work management and Git collaboration |
+| PDF generation/upload and controlled employer sharing | User-controlled YAML workflow execution and deployment |
+| Manual applications and immutable submitted history | Features not selected by the accepted scope |
+| Basic ProjectForge Git, issues and simple Kanban | |
 
-## Non-functional requirements
+The [project charter](../../01-Project-Planning/01-Project-Charter.md#mvp-scope) governs scope. The table above is a reading summary; use each domain's selected policies and criteria for exact conditions. Verification and baseline acceptance retain their recorded status.
 
-Use the [quality, security and recovery requirements](03-Requirements-Specification/14-Quality-Security-And-Recovery-Requirements.md#requirements-specification-quality-security-and-recovery-requirements) for authorization, performance, accessibility, availability, resilience and operational checks. Preserve the recorded status of any proposed thresholds or compliance targets. Verification applies to the actual release candidate.
+## Choose a reading path
 
-## External interfaces
+| Need | Start here |
+| --- | --- |
+| Implement or test a feature | [Requirements by domain](03-Requirements-Specification/README.md) → [traceability matrix](../03-Requirements-Traceability-Matrix/README.md) |
+| Understand user behavior | [Scenarios](04-Scenarios-And-Models/README.md) |
+| Clarify terminology or data | [Data definitions](05-Data-Definitions/README.md) |
+| Understand people and sources | [Stakeholders and elicitation](02-Stakeholders-And-Elicitation/README.md) |
+| Review a decision or propose a change | [Change and baseline](07-Change-And-Baseline/README.md) |
+| Inspect review methods or dated evidence | [Validation and traceability](06-Validation-And-Traceability/README.md) |
+| Understand the requirements process | [Process and approach](01-Process-And-Approach/README.md) |
 
-The [interface requirements](03-Requirements-Specification/07-External-Interface-Requirements.md#requirements-specification-external-interface-requirements) cover user-facing interactions, service boundaries, supported communication and integration behavior. Technical details are in the [system design](../../01-Project-Planning/02-Project-Management-Plan.md#stage-4-system-design).
+## Working rules
 
-## Supporting evidence and changes
-
-- [Business goals](03-Requirements-Specification/03-Business-Requirements.md#requirements-specification-business-requirements) and [stakeholder needs](02-Stakeholders-And-Elicitation/04-Stakeholders-And-Elicitation.md#stakeholders-and-elicitation-stakeholders-and-elicitation)
-- [User stories and scenarios](04-Scenarios-And-Models/02-User-Stories-And-Scenarios.md#scenarios-and-models-user-stories-and-scenarios) and [analysis models](../../03-System-Analysis/01-System-Context-And-Gap-Analysis.md)
-- [Glossary](05-Data-Definitions/03-Requirements-Glossary.md#data-definitions-glossary) and [data dictionary](05-Data-Definitions/02-Data-Dictionary.md#data-definitions-data-dictionary)
-- [Decisions and open issues](07-Change-And-Baseline/03-Requirements-Questions-And-Decisions.md#change-and-baseline-open-questions-and-decisions), [review and evidence](06-Validation-And-Traceability/07-Validation-And-Traceability.md#validation-and-traceability-validation-and-traceability) and [change control](07-Change-And-Baseline/02-Requirements-Change-Control.md#change-and-baseline-change-control)
-- [Product backlog](../02-Product-Backlog/README.md) and [requirements traceability matrix](../03-Requirements-Traceability-Matrix/README.md)
-
-## Topic files
-
-- [Process and Approach](01-Process-And-Approach/README.md)
-- [Stakeholders and Elicitation](02-Stakeholders-And-Elicitation/README.md)
-- [Requirements Specification](03-Requirements-Specification/README.md)
-- [Scenarios and Models](04-Scenarios-And-Models/README.md)
-- [Data Definitions](05-Data-Definitions/README.md)
-- [Validation and Traceability](06-Validation-And-Traceability/README.md)
-- [Change and Baseline](07-Change-And-Baseline/README.md)
-- [Working agreement for requirement changes](08-Working-Agreement-For-Requirement-Changes.md)
+Use stable requirement and criterion IDs when linking to a behavior. Keep execution status in the [backlog and linked issues](../02-Product-Backlog/README.md). Consult the [SRS authority record](03-Requirements-Specification/17-Software-Requirements-Specification.md) for source ownership and baseline limits, and the [change agreement](08-Working-Agreement-For-Requirement-Changes.md) when updating requirements.

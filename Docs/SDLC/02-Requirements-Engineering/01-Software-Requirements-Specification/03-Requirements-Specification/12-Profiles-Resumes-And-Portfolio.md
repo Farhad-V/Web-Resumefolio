@@ -4,6 +4,13 @@
 <a id="requirements-specification-profiles-resumes-and-portfolio--heading-resumefolio--profiles-resumes-and-portfolio"></a>
 # Resumefolio — Profiles, Resumes and Portfolio
 
+**Quick read — Profiles, resumes and portfolio.** Covers professional presentation and independent resume content. Check publication and history rules when changing shared material.
+
+[3. Proposed Requirements](#requirements-specification-profiles-resumes-and-portfolio--heading-3-proposed-requirements) · [6. Open Decisions and Gates](#requirements-specification-profiles-resumes-and-portfolio--heading-6-open-decisions-and-gates) · [Selected Policies and Future Proposals](#requirements-specification-profiles-resumes-and-portfolio--heading-selected-policies-and-future-proposals)
+
+[Domain index](README.md) · [Acceptance trace](../../03-Requirements-Traceability-Matrix/README.md)
+
+
 Current implementation choices and scope: [Baseline](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/baseline/README.md). Runtime verification remains subject to its gates.
 
 | Item | Current position |
@@ -431,6 +438,9 @@ pre-implementation agreement remain pending. This revision changes no accepted
 scope, selects no architecture and performs no account/file/publication operation.
 
 <a id="requirements-specification-profiles-resumes-and-portfolio--heading-8-diagram-maintenance"></a>
+<details>
+<summary>Supporting reference: 8. Diagram Maintenance</summary>
+
 ## 8. Diagram Maintenance
 
 | Diagram | Source | SVG | PNG |
@@ -458,6 +468,10 @@ Use actual installed paths on other machines; save UTF-8 without BOM.
 
 [Specification index](16-Requirements-Specification-Guide.md#requirements-specification-requirements-specification-overview) · [SRS entry point](17-Software-Requirements-Specification.md#requirements-specification-requirements-specification)
 · [Requirements index]()
+
+</details>
+
+
 
 <a id="requirements-specification-profiles-resumes-and-portfolio--heading-selected-policies-and-future-proposals"></a>
 ## Selected Policies and Future Proposals

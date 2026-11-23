@@ -4,6 +4,13 @@
 <a id="requirements-specification-administration-files-and-operational-behavior--heading-resumefolio--administration-files-and-operational-behavior"></a>
 # Resumefolio — Administration, Files and Operational Behavior
 
+**Quick read — Files and operations.** Private file handling, owner-controlled operating policies and bounded storage. Check applicable admission, authorization and recovery criteria before exposing content.
+
+[Selected Policies and Future Proposals](#requirements-specification-administration-files-and-operational-behavior--heading-selected-policies-and-future-proposals) · [3. Proposed Requirements and Acceptance Criteria](#requirements-specification-administration-files-and-operational-behavior--heading-3-proposed-requirements-and-acceptance-criteria) · [7. Open Policy Decisions and Gates](#requirements-specification-administration-files-and-operational-behavior--heading-7-open-policy-decisions-and-gates)
+
+[Domain index](README.md) · [Acceptance trace](../../03-Requirements-Traceability-Matrix/README.md)
+
+
 **Status.** MVP file and operating policies are selected. Enforcement, capacity and recovery still need evidence.
 
 [Decisions and rationale](#requirements-specification-administration-files-and-operational-behavior--heading-selected-policies-and-future-proposals) · [Requirements](#requirements-specification-administration-files-and-operational-behavior--heading-3-proposed-requirements-and-acceptance-criteria) · [File flow](#requirements-specification-administration-files-and-operational-behavior--heading-4-file-operation-and-failure-flow) · [Verification](#requirements-specification-administration-files-and-operational-behavior--heading-6-scenarios-and-planned-verification)
@@ -480,6 +487,9 @@ planning acceptance remain unchanged; no actual file, server or account operatio
 is performed by this documentation revision.
 
 <a id="requirements-specification-administration-files-and-operational-behavior--heading-9-diagram-maintenance"></a>
+<details>
+<summary>Supporting reference: 9. Diagram Maintenance</summary>
+
 ## 9. Diagram Maintenance
 
 | Diagram | Editable source | Scalable view | Preview |
@@ -511,6 +521,10 @@ Retain source and SVG/PNG outputs in version control.
 
 [Specification index](16-Requirements-Specification-Guide.md#requirements-specification-requirements-specification-overview) · [SRS entry point](17-Software-Requirements-Specification.md#requirements-specification-requirements-specification)
 · [Requirements index]()
+
+</details>
+
+
 
 <a id="requirements-specification-administration-files-and-operational-behavior--heading-mvp-private-media-flow"></a>
 ## MVP private-media flow

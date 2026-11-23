@@ -3,6 +3,11 @@
 
 # proposed-criterion-locators.json
 
+Dated supporting evidence. Consult the [evidence guide](README.md) for context; use the [traceability matrix](../../03-Requirements-Traceability-Matrix/README.md) for current criterion lookup. The record below retains its original observations and limits.
+
+<details>
+<summary>Open the full recorded evidence</summary>
+
 ```json
 {
   "date": "2026-11-01",
@@ -3302,3 +3307,5 @@
   ]
 }
 ```
+
+</details>

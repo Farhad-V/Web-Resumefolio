@@ -4,6 +4,13 @@
 <a id="requirements-specification-email-calendar-and-google-integration--heading-resumefolio--email-calendar-and-google-integration"></a>
 # Resumefolio — Email, Calendar and Google Integration
 
+**Quick read — Deferred: personal Google integration.** Personal mail and calendar integration is after MVP. These proposals do not authorize adding provider integration to the current release.
+
+[3. Proposed Requirements](#requirements-specification-email-calendar-and-google-integration--heading-3-proposed-requirements) · [8. Open Decisions and Review Gates](#requirements-specification-email-calendar-and-google-integration--heading-8-open-decisions-and-review-gates) · [Selected Policies and Future Proposals](#requirements-specification-email-calendar-and-google-integration--heading-selected-policies-and-future-proposals)
+
+[Domain index](README.md) · [Acceptance trace](../../03-Requirements-Traceability-Matrix/README.md)
+
+
 Current implementation choices and scope: [Baseline](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/baseline/README.md). Runtime verification remains subject to its gates.
 
 | Item | Current position |
@@ -381,6 +388,9 @@ limits. Use controlled accounts/recipients and authorized data; no tests have ru
 No production messages, contacts, secrets or event content belong in repository evidence.
 
 <a id="requirements-specification-email-calendar-and-google-integration--heading-7-official-provider-source-notes"></a>
+<details>
+<summary>Supporting reference: 7. Official Provider Source Notes</summary>
+
 ## 7. Official Provider Source Notes
 
 Limited documentation check dated **October 31, 2026**. These findings describe
@@ -397,6 +407,10 @@ at scope selection and release; record actual applicability separately.
 This check does not choose API versus another permitted integration mechanism,
 prove current project access, audit all Google terms or satisfy GAP-D02. No exact
 quota, price, grant lifetime, approval deadline or assessment exemption is asserted.
+
+</details>
+
+
 
 <a id="requirements-specification-email-calendar-and-google-integration--heading-8-open-decisions-and-review-gates"></a>
 ## 8. Open Decisions and Review Gates
@@ -439,6 +453,9 @@ No EGC candidate is accepted, no account is connected, no message/event operatio
 is performed, no access/feasibility approval is claimed, and M-02 remains pending.
 
 <a id="requirements-specification-email-calendar-and-google-integration--heading-10-diagram-maintenance"></a>
+<details>
+<summary>Supporting reference: 10. Diagram Maintenance</summary>
+
 ## 10. Diagram Maintenance
 
 | Diagram | Source | SVG | PNG |
@@ -452,6 +469,10 @@ file/section links. Colors supplement labels; save UTF-8 without BOM.
 
 [Specification index](16-Requirements-Specification-Guide.md#requirements-specification-requirements-specification-overview) · [SRS entry point](17-Software-Requirements-Specification.md#requirements-specification-requirements-specification)
 · [Requirements index]()
+
+</details>
+
+
 
 <a id="requirements-specification-email-calendar-and-google-integration--heading-selected-policies-and-future-proposals"></a>
 ## Selected Policies and Future Proposals
@@ -513,6 +534,11 @@ Current MVP answers are selected in the Baseline. Only explicitly deferred detai
 **Remaining evidence / acceptance condition:** Owner review of the proposed rule and its affected criteria is required; no product test is reported.
 
 <a id="requirements-specification-email-calendar-and-google-integration--heading-november-1-2026--q-d15-owner-clarification"></a>
+<details>
+<summary>Dated supporting record: November 1, 2026 — Q-D15 Owner Clarification</summary>
+
 ## November 1, 2026 — Q-D15 Owner Clarification
 
 The owner confirmed no OAuth project has been created. Treat Google integration setup as not yet established; do not keep asking for an existing project ID or infer readiness from an installed package. The proposed operations/scopes remain inputs to later setup. Intended audience, project ownership, consent/client/redirect configuration, applicable provider conditions and controlled actual operation evidence are still required before the dependent gate. This clarification neither removes the agreed integration nor creates an account or credentials.
+
+</details>

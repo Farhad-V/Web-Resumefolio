@@ -4,6 +4,13 @@
 <a id="requirements-specification-domain-requirements-and-constraints--heading-resumefolio--domain-requirements-and-constraints"></a>
 # Resumefolio — Domain Requirements and Constraints
 
+**Quick read — Domain constraints.** Records constraints that cross feature boundaries. Apply them alongside the relevant functional criteria.
+
+[Selected Policies and Future Proposals](#requirements-specification-domain-requirements-and-constraints--heading-selected-policies-and-future-proposals)
+
+[Domain index](README.md) · [Acceptance trace](../../03-Requirements-Traceability-Matrix/README.md)
+
+
 Current implementation choices and scope: [Baseline](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/baseline/README.md). Runtime verification remains subject to its gates.
 
 | Item | Current position |
@@ -289,6 +296,9 @@ No global question IDs, accepted legal obligations, product Pass results or new
 baseline acceptance are allocated by this revision. M-02 remains pending.
 
 <a id="requirements-specification-domain-requirements-and-constraints--heading-7-diagram-maintenance"></a>
+<details>
+<summary>Supporting reference: 7. Diagram Maintenance</summary>
+
 ## 7. Diagram Maintenance
 
 | Diagram | Source | SVG | PNG |
@@ -303,6 +313,10 @@ arrows, render output and file/section links after changes. Save UTF-8 without B
 [Specification index](16-Requirements-Specification-Guide.md#requirements-specification-requirements-specification-overview) · [SRS entry point](17-Software-Requirements-Specification.md#requirements-specification-requirements-specification)
 · [Requirements index]()
 
+</details>
+
+
+
 <a id="requirements-specification-domain-requirements-and-constraints--heading-selected-policies-and-future-proposals"></a>
 ## Selected Policies and Future Proposals
 
@@ -315,6 +329,11 @@ Current MVP answers are selected in the Baseline. Only explicitly deferred detai
 [Selected answer and remaining evidence](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/baseline/policy-decisions.md#q-d27). Apply this policy to the MVP slice; the original criteria above remain subject to their [current dispositions](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/baseline/criterion-dispositions.csv).
 
 <a id="requirements-specification-domain-requirements-and-constraints--heading-november-1-2026--q-d27-operating-findings"></a>
+<details>
+<summary>Dated supporting record: November 1, 2026 — Q-D27 Operating Findings</summary>
+
 ## November 1, 2026 — Q-D27 Operating Findings
 
 The [bounded operating assessment](../06-Validation-And-Traceability/07-Validation-And-Traceability.md#validation-and-traceability-validation-and-traceability--heading-remaining-verification) and [sanitized observations](../06-Validation-And-Traceability/02-Operating-Check-2026-11-01json.md#validation-and-traceability-operating-check-2026-11-01) now establish the inspected mail/OAuth declarations, absence of matching workers/cron in the checked paths, current certificate dates, enabled renewal timer and selected tool/license metadata. No cached config file was found. These are facts about the existing deployment, not proof of absent external accounts/backups or acceptance of that deployment as the future design. Actual delivery, renewal execution, background processing, complete license/applicability review and recovery remain gated.
+
+</details>

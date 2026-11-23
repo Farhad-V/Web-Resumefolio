@@ -4,6 +4,13 @@
 <a id="requirements-specification-quality-security-and-recovery-requirements--heading-resumefolio--quality-security-and-recovery-requirements"></a>
 # Resumefolio — Quality, Security and Recovery Requirements
 
+**Quick read — Quality, security and recovery.** Cross-cutting quality and recovery obligations apply to functional work. Preserve the distinction between agreed checks, proposed numeric targets and demonstrated results.
+
+[3. Proposed Requirements](#requirements-specification-quality-security-and-recovery-requirements--heading-3-proposed-requirements) · [7. Open Targets and Decision Gates](#requirements-specification-quality-security-and-recovery-requirements--heading-7-open-targets-and-decision-gates) · [Selected Policies and Future Proposals](#requirements-specification-quality-security-and-recovery-requirements--heading-selected-policies-and-future-proposals)
+
+[Domain index](README.md) · [Acceptance trace](../../03-Requirements-Traceability-Matrix/README.md)
+
+
 Current implementation choices and scope: [Baseline](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/baseline/README.md). Runtime verification remains subject to its gates.
 
 | Item | Current position |
@@ -500,6 +507,9 @@ by this revision. M-02 and later readiness milestones remain pending. No load,
 security, backup, restoration, cleanup or production change is executed here.
 
 <a id="requirements-specification-quality-security-and-recovery-requirements--heading-9-diagram-maintenance"></a>
+<details>
+<summary>Supporting reference: 9. Diagram Maintenance</summary>
+
 ## 9. Diagram Maintenance
 
 | Diagram | Source | SVG | PNG |
@@ -528,6 +538,10 @@ Use actual installed paths on other machines; save UTF-8 without BOM.
 [Specification index](16-Requirements-Specification-Guide.md#requirements-specification-requirements-specification-overview) · [SRS entry point](17-Software-Requirements-Specification.md#requirements-specification-requirements-specification)
 · [Requirements index]()
 
+</details>
+
+
+
 <a id="requirements-specification-quality-security-and-recovery-requirements--heading-target-decision-contracts--quantitative-acceptance-blockers"></a>
 ## Target Decision Contracts — Quantitative Acceptance Blockers
 
@@ -545,11 +559,18 @@ Use actual installed paths on other machines; save UTF-8 without BOM.
 Farhad coordinates each decision. Record the actual agreed value, unit, environment/workload, rationale, source/date and affected criteria in the primary record when established. Do not replace TBD with an unverified industry default or mark these contracts as satisfied criteria.
 
 <a id="requirements-specification-quality-security-and-recovery-requirements--heading-november-1-2026--infrastructure-inputs-to-target-decisions"></a>
+<details>
+<summary>Dated supporting record: November 1, 2026 — Infrastructure Inputs to Target Decisions</summary>
+
 ## November 1, 2026 — Infrastructure Inputs to Target Decisions
 
 Use the [recorded server snapshot](../01-Process-And-Approach/01-Feasibility-Study.md#process-and-approach-02-feasibility-study--id-server-observation-2026-11-01) when refining QSR-D01/D02 and QSR-D10–D12. Allocation is 2 vCPU / 4 GB RAM / 40 GB local disk; the supplied low-load guest output showed about 2.8 GiB available RAM and 30 G available on `/`, with Nginx/MySQL/PHP and an existing Laravel deployment. These observations replace unknown inventory inputs, not missing workload/threshold decisions.
 
 Do not convert these quantities into concurrency, request latency, upload quota, availability percentage or recovery promises. Account for existing and proposed workloads, storage growth and temporary processing demand. Backup destination and actual restoration remain unverified. Q-D24–Q-D27 retain the remaining actions; target decision contracts and owner acceptance gates above still apply.
+
+</details>
+
+
 
 <a id="requirements-specification-quality-security-and-recovery-requirements--heading-selected-policies-and-future-proposals"></a>
 ## Selected Policies and Future Proposals
@@ -569,6 +590,11 @@ Current MVP answers are selected in the Baseline. Only explicitly deferred detai
 [Selected answer and remaining evidence](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/baseline/policy-decisions.md#q-d26). Apply this policy to the MVP slice; the original criteria above remain subject to their [current dispositions](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/baseline/criterion-dispositions.csv).
 
 <a id="requirements-specification-quality-security-and-recovery-requirements--heading-november-1-2026--q-d26-backup-setup-clarification"></a>
+<details>
+<summary>Dated supporting record: November 1, 2026 — Q-D26 Backup Setup Clarification</summary>
+
 ## November 1, 2026 — Q-D26 Backup Setup Clarification
 
 The owner confirmed backups have not been set up. Treat recovery as an unfulfilled prerequisite, not a merely unreported successful arrangement. Proposed coverage/retention/RPO/RTO remain proposals; independent destination, key access, schedule and consistent usable restoration still need actual setup/evidence at their gates. Neither free server disk nor the observed dpkg backup timer satisfies application recovery. This clarification makes no purchase, configures nothing and does not claim provider-account backup settings were inspected.
+
+</details>

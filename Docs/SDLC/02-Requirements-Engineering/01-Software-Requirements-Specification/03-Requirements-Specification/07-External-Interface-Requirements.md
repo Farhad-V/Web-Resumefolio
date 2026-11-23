@@ -4,6 +4,13 @@
 <a id="requirements-specification-external-interface-requirements--heading-resumefolio--external-interface-requirements"></a>
 # Resumefolio — External Interface Requirements
 
+**Quick read — External interfaces.** Defines expectations at user, system and communication boundaries. Exact implementation contracts belong to system design.
+
+[7. Open Decisions and Gates](#requirements-specification-external-interface-requirements--heading-7-open-decisions-and-gates)
+
+[Domain index](README.md) · [Acceptance trace](../../03-Requirements-Traceability-Matrix/README.md)
+
+
 Current implementation choices and scope: [Baseline](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/baseline/README.md). Runtime verification remains subject to its gates.
 
 | Item | Current position |
@@ -404,6 +411,9 @@ and critical evidence remain pending. No EIF candidate is accepted, no productio
 interface is configured and M-02 is not completed by this revision.
 
 <a id="requirements-specification-external-interface-requirements--heading-9-diagram-maintenance"></a>
+<details>
+<summary>Supporting reference: 9. Diagram Maintenance</summary>
+
 ## 9. Diagram Maintenance
 
 | Diagram | Source | SVG | PNG |
@@ -430,3 +440,5 @@ Use actual installed tool paths on other machines; save UTF-8 without BOM.
 
 [Specification index](16-Requirements-Specification-Guide.md#requirements-specification-requirements-specification-overview) · [SRS entry point](17-Software-Requirements-Specification.md#requirements-specification-requirements-specification)
 · [Requirements index]()
+
+</details>

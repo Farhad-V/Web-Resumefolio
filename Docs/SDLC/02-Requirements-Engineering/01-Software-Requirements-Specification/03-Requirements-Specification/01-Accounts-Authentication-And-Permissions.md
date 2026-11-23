@@ -4,6 +4,13 @@
 <a id="requirements-specification-accounts-authentication-and-permissions--heading-resumefolio--accounts-authentication-and-permissions"></a>
 # Resumefolio — Accounts, Authentication and Permissions
 
+**Quick read — Accounts and access.** Invited accounts, recovery, scoped sign-in and per-resource authorization. Employer disclosure and ProjectForge access retain their own permission boundaries.
+
+[Selected Policies and Future Proposals](#requirements-specification-accounts-authentication-and-permissions--heading-selected-policies-and-future-proposals) · [3. Proposed Requirements and Acceptance Criteria](#requirements-specification-accounts-authentication-and-permissions--heading-3-proposed-requirements-and-acceptance-criteria) · [8. Remaining Verification](#requirements-specification-accounts-authentication-and-permissions--heading-8-remaining-verification)
+
+[Domain index](README.md) · [Acceptance trace](../../03-Requirements-Traceability-Matrix/README.md)
+
+
 <a id="requirements-specification-accounts-authentication-and-permissions--heading-mvp-account-admission-and-authority"></a>
 ## MVP account admission and authority
 
@@ -489,6 +496,9 @@ Demonstrate invitation and recovery email receipt. Test cross-user access, direc
 Use the [criterion mapping and review findings](../06-Validation-And-Traceability/07-Validation-And-Traceability.md#validation-and-traceability-validation-and-traceability) to link each applicable requirement to a scenario and its actual evidence.
 
 <a id="requirements-specification-accounts-authentication-and-permissions--heading-10-diagram-maintenance"></a>
+<details>
+<summary>Supporting reference: 10. Diagram Maintenance</summary>
+
 ## 10. Diagram Maintenance
 
 | Diagram | Editable source | Scalable view | Preview |
@@ -500,3 +510,5 @@ Regenerate both SVG and PNG when a diagram source changes.
 
 [Specification index](16-Requirements-Specification-Guide.md#requirements-specification-requirements-specification-overview) · [SRS entry point](17-Software-Requirements-Specification.md#requirements-specification-requirements-specification)
 · [Requirements index]()
+
+</details>

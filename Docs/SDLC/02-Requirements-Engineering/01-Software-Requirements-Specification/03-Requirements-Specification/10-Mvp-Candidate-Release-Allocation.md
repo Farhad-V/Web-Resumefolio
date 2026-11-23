@@ -4,6 +4,11 @@
 <a id="requirements-specification-mvp-release-allocation--heading-mvp-candidate-release-allocation"></a>
 # MVP Candidate Release Allocation
 
+**Quick read — Candidate release allocation.** Maps proposed records to a candidate release. Confirm the accepted scope and criterion applicability before selecting work.
+
+[Domain index](README.md) · [Acceptance trace](../../03-Requirements-Traceability-Matrix/README.md)
+
+
 Current implementation choices and scope: [Baseline](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/baseline/README.md). Runtime verification remains subject to its gates.
 
 Updated November 4, 2026 from [OWNER-MVP-2026-11-04](../../../01-Project-Planning/01-Project-Charter.md#release-decision). This is release allocation, not priority approval or acceptance of all proposed numerical policies/criteria. Candidate IDs and original source criteria are preserved. Mixed records require criterion-level separation before implementation acceptance.

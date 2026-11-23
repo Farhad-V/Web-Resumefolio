@@ -1,11 +1,19 @@
 # Requirements Traceability Matrix
 
-The [SRS](../01-Software-Requirements-Specification/README.md) owns each requirement. This matrix indexes 157 requirement records and 470 source criteria from the selected register, including deferred and conditional items. The [criterion register](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/baseline/criterion-dispositions.csv) contains the exact acceptance checks, applicability and methods. The [supplemental criteria](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/baseline/supplemental-acceptance.md) are additional MVP release checks.
+Use this folder to connect a requirement or acceptance criterion to design and verification. It indexes 157 requirement records and 470 source criteria, including deferred and conditional items.
 
-Requirement-level links identify an owning area; criterion-level links below identify specific operations, schema or recovery clauses. A mapped design provision is not an implementation or product-test pass. The [Software Design Document](../../01-Project-Planning/02-Project-Management-Plan.md#stage-4-system-design) provides the overview of HLD, UI/UX and LLD. Confirm the exact design provision and record the implementation revision, test case, actual result and evidence in the linked work item as they become available. See [testing](../../05-Agile-Iterative-Development/02-Test-Strategy.md) and the [product backlog](../02-Product-Backlog/README.md).
+## Find what you need
 
-## Contents
+| Task | Reference |
+| --- | --- |
+| Locate a requirement and its owning design area | [Open](01-Requirement-Coverage.md) |
+| Locate an exact criterion and design provision | [Open](02-Criterion-Coverage.md) |
+| Record a tested revision, result and evidence | [Open](03-Recording-Verified-Evidence.md) |
 
-- [Requirement Coverage](01-Requirement-Coverage.md)
-- [Criterion Coverage](02-Criterion-Coverage.md)
-- [Recording Verified Evidence](03-Recording-Verified-Evidence.md)
+## How to use this record
+
+A design link proves coverage intent, not implementation or a passing test. Check applicability before treating a criterion as an MVP release obligation. The [source criterion register](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/baseline/criterion-dispositions.csv) retains exact checks and methods; [supplemental criteria](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/baseline/supplemental-acceptance.md) add MVP release checks.
+
+The [SRS](../01-Software-Requirements-Specification/README.md) owns behavior and acceptance wording. Use the [test strategy](../../05-Agile-Iterative-Development/02-Test-Strategy.md) for verification methods.
+
+[Back to Requirements Engineering](../README.md)

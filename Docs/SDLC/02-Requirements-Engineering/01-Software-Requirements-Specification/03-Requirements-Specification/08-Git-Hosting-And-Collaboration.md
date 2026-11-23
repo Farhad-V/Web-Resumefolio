@@ -4,6 +4,13 @@
 <a id="requirements-specification-git-hosting-and-collaboration--heading-resumefolio--git-hosting-and-collaboration"></a>
 # Resumefolio — Git Hosting and Collaboration
 
+**Quick read — Git collaboration.** Covers ProjectForge Git access and collaboration behavior. Distinguish the selected basic repository slice from advanced proposals.
+
+[3. Proposed Requirements](#requirements-specification-git-hosting-and-collaboration--heading-3-proposed-requirements) · [6. Open Decisions and Gates](#requirements-specification-git-hosting-and-collaboration--heading-6-open-decisions-and-gates) · [Selected Policies and Future Proposals](#requirements-specification-git-hosting-and-collaboration--heading-selected-policies-and-future-proposals)
+
+[Domain index](README.md) · [Acceptance trace](../../03-Requirements-Traceability-Matrix/README.md)
+
+
 Current implementation choices and scope: [Baseline](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/baseline/README.md). Runtime verification remains subject to its gates.
 
 | Item | Current position |
@@ -349,6 +356,9 @@ remain pending. This revision changes no accepted scope and performs no live
 repository, application-submission, sharing, file or provider operation.
 
 <a id="requirements-specification-git-hosting-and-collaboration--heading-8-diagram-maintenance"></a>
+<details>
+<summary>Supporting reference: 8. Diagram Maintenance</summary>
+
 ## 8. Diagram Maintenance
 
 | Diagram | Source | SVG | PNG |
@@ -376,6 +386,10 @@ Use actual tool paths on other machines; save UTF-8 without BOM.
 
 [Specification index](16-Requirements-Specification-Guide.md#requirements-specification-requirements-specification-overview) · [SRS entry point](17-Software-Requirements-Specification.md#requirements-specification-requirements-specification)
 · [Requirements index]()
+
+</details>
+
+
 
 <a id="requirements-specification-git-hosting-and-collaboration--heading-selected-policies-and-future-proposals"></a>
 ## Selected Policies and Future Proposals

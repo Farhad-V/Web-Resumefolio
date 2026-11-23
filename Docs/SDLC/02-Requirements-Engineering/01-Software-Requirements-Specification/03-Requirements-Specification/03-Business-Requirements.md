@@ -4,6 +4,11 @@
 <a id="requirements-specification-business-requirements--heading-resumefolio--business-requirements"></a>
 # Resumefolio — Business Requirements
 
+**Quick read — Business goals.** Explains the outcomes the product should support. Use domain records for implementable behavior and the charter for the selected release boundary.
+
+[Domain index](README.md) · [Acceptance trace](../../03-Requirements-Traceability-Matrix/README.md)
+
+
 Current implementation choices and scope: [Baseline](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/baseline/README.md). Runtime verification remains subject to its gates.
 
 | Item | Current position |
@@ -332,6 +337,9 @@ evidence limits, scope mappings and review questions. Added two diagrams. The
 original accepted purpose/objectives remain authoritative and unchanged.
 
 <a id="requirements-specification-business-requirements--heading-7-diagram-maintenance"></a>
+<details>
+<summary>Supporting reference: 7. Diagram Maintenance</summary>
+
 ## 7. Diagram Maintenance
 
 | Diagram | Editable source | Scalable view | Preview |
@@ -363,3 +371,5 @@ Retain sources and SVG/PNG outputs in version control.
 
 [Specification index](16-Requirements-Specification-Guide.md#requirements-specification-requirements-specification-overview) · [SRS entry point](17-Software-Requirements-Specification.md#requirements-specification-requirements-specification)
 · [Requirements index]()
+
+</details>

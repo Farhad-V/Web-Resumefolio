@@ -4,6 +4,13 @@
 <a id="requirements-specification-business-rules-and-data-lifecycle--heading-resumefolio--business-rules-and-data-lifecycle"></a>
 # Resumefolio — Business Rules and Data Lifecycle
 
+**Quick read — Business rules and lifecycle.** Defines relationships, publication rules and retained history across records. Read the applicable invariant before designing a state change.
+
+[6. Open Decisions and Gates](#requirements-specification-business-rules-and-data-lifecycle--heading-6-open-decisions-and-gates)
+
+[Domain index](README.md) · [Acceptance trace](../../03-Requirements-Traceability-Matrix/README.md)
+
+
 Current implementation choices and scope: [Baseline](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/baseline/README.md). Runtime verification remains subject to its gates.
 
 | Item | Current position |
@@ -386,6 +393,9 @@ pending. This revision authorizes no deletion, synchronization, cleanup or recov
 operation and changes no accepted scope.
 
 <a id="requirements-specification-business-rules-and-data-lifecycle--heading-8-diagram-maintenance"></a>
+<details>
+<summary>Supporting reference: 8. Diagram Maintenance</summary>
+
 ## 8. Diagram Maintenance
 
 | Diagram | Editable source | Scalable view | Preview |
@@ -411,6 +421,10 @@ Save as UTF-8 without BOM; use the actual installed tool paths on other machines
 
 [Specification index](16-Requirements-Specification-Guide.md#requirements-specification-requirements-specification-overview) · [SRS entry point](17-Software-Requirements-Specification.md#requirements-specification-requirements-specification)
 · [Requirements index]()
+
+</details>
+
+
 
 <a id="requirements-specification-business-rules-and-data-lifecycle--heading-owner-accepted-source-update-rule--november-1-2026"></a>
 ## Owner-accepted Source-update Rule — November 1, 2026

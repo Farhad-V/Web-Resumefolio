@@ -1,11 +1,19 @@
 # Product Backlog
 
-Use the [GitHub board](https://github.com/users/Farhad-V/projects/7/views/1) and linked issues for priority, execution status and evidence. The [SRS](../01-Software-Requirements-Specification/README.md) defines the required behavior. Use the [traceability matrix](../03-Requirements-Traceability-Matrix/README.md) to resolve the applicable acceptance criteria. The package list retains existing issue identities and dependencies from the recorded backlog.
+Use this folder to find delivery work and prerequisites. The [GitHub board](https://github.com/users/Farhad-V/projects/7/views/1) and linked issues hold priority, execution status and evidence.
 
-Follow the [dependency-ordered delivery plan](../../05-Agile-Iterative-Development/03-Sprint-Delivery-Plan.md): scope/host/readiness first, then [isolated project setup](../../05-Agile-Iterative-Development/01-Project-Setup.md). During [backlog refinement](../../05-Agile-Iterative-Development/Sprints/Sprint-01/01-Sprint-Planning.md), give each selected issue an observable outcome and the specific acceptance checks that apply. Track deferred scope separately from the MVP path.
+## Find what you need
 
-## Contents
+| Task | Reference |
+| --- | --- |
+| Find an issue and its dependencies | [Open](01-Backlog-Items.md) |
+| Decide whether work is ready to select | [Open](02-Readiness-And-Evidence.md) |
+| Break work into demonstrable steps | [Open](03-Task-Slices-And-Completion.md) |
 
-- [Backlog Items](01-Backlog-Items.md)
-- [Readiness And Evidence](02-Readiness-And-Evidence.md)
-- [Task Slices And Completion](03-Task-Slices-And-Completion.md)
+## How to use this record
+
+Select work using the [dependency-ordered delivery plan](../../05-Agile-Iterative-Development/03-Sprint-Delivery-Plan.md). Keep existing issue IDs; refine broad items without duplicating them. Deferred work stays outside the selected sprint unless scope changes.
+
+The [SRS](../01-Software-Requirements-Specification/README.md) owns behavior and acceptance wording. Use the [test strategy](../../05-Agile-Iterative-Development/02-Test-Strategy.md) for verification methods.
+
+[Back to Requirements Engineering](../README.md)
