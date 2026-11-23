@@ -16,11 +16,11 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 | Item | Current position |
 | --- | --- |
 | Owner | Farhad; sole delivery and operations owner |
-| Status | Proposed quality specification — numerical targets, detailed controls and acceptance pending |
+| Status | Selected MVP slice; future clauses remain deferred; implementation and acceptance evidence remain required; see [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) |
 | Basis | Accepted scope/resource constraints; DEC-017/018/019/024/025/028 and planning follow-up |
-| Candidate references | QSR-D01–QSR-D14 are provisional document-local references, not allocated global requirement IDs |
-| Priority | Unassigned; order does not establish delivery priority or an accepted risk rating |
-| Revision | October 31, 2026 |
+| Candidate references | QSR-D01–QSR-D14: retained stable source IDs; criterion scope follows [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) |
+| Priority | [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) define Must within MVP slice / Later; file order is not execution order |
+| Source record date | October 31, 2026 |
 
 **At a glance:** Evaluate quality against explicit conditions and observable
 criteria. Protect resource boundaries, preserve truthful and consistent outcomes,
@@ -95,9 +95,7 @@ Colors supplement labels. All areas require bounded evidence for their own crite
 <a id="requirements-specification-quality-security-and-recovery-requirements--heading-3-proposed-requirements"></a>
 ## 3. Proposed Requirements
 
-All candidates are **Proposed**, owner **Farhad**, priority **Unassigned**.
-Conditions below identify scenario contexts, not newly approved operational actions.
-Conditional criteria remain acceptance-blocked until the relevant policies are decided.
+Farhad owns these records. Read their retained IDs and original criteria using the [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules). Only the selected MVP criteria are current delivery obligations. Planned checks do not establish executed results or personal owner acceptance.
 
 <a id="requirements-specification-quality-security-and-recovery-requirements--heading-qsr-d01-response-performance-under-defined-workloads"></a>
 ### QSR-D01: Response Performance Under Defined Workloads
@@ -543,6 +541,11 @@ Use actual installed paths on other machines; save UTF-8 without BOM.
 
 
 <a id="requirements-specification-quality-security-and-recovery-requirements--heading-target-decision-contracts--quantitative-acceptance-blockers"></a>
+Current target selection is recorded by [Q-D25](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/baseline/policy-decisions.md#q-d25) and [Q-D26](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/baseline/policy-decisions.md#q-d26). Measurement and an isolated restore remain evidence gates. The November 1 questions below predate those selections.
+
+<details>
+<summary>Historical target questions — November 1, 2026</summary>
+
 ## Target Decision Contracts — Quantitative Acceptance Blockers
 
 **Actual owner input, November 1, 2026:** In this conversation the owner confirmed that no previous numerical response/recovery targets are available. This supplies provenance for the open status; it does not authorize arbitrary values. Q-D25/Q-D26 remain open. Missing numerical targets block affected quantitative acceptance, not all conceptual analysis.
@@ -562,6 +565,8 @@ Farhad coordinates each decision. Record the actual agreed value, unit, environm
 <details>
 <summary>Dated supporting record: November 1, 2026 — Infrastructure Inputs to Target Decisions</summary>
 
+</details>
+
 ## November 1, 2026 — Infrastructure Inputs to Target Decisions
 
 Use the [recorded server snapshot](../01-Process-And-Approach/01-Feasibility-Study.md#process-and-approach-02-feasibility-study--id-server-observation-2026-11-01) when refining QSR-D01/D02 and QSR-D10–D12. Allocation is 2 vCPU / 4 GB RAM / 40 GB local disk; the supplied low-load guest output showed about 2.8 GiB available RAM and 30 G available on `/`, with Nginx/MySQL/PHP and an existing Laravel deployment. These observations replace unknown inventory inputs, not missing workload/threshold decisions.
@@ -575,7 +580,7 @@ Do not convert these quantities into concurrency, request latency, upload quota,
 <a id="requirements-specification-quality-security-and-recovery-requirements--heading-selected-policies-and-future-proposals"></a>
 ## Selected Policies and Future Proposals
 
-Current MVP answers are selected in the Baseline. Only explicitly deferred details below remain proposals; product tests and operational evidence are still required.
+Use the [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) and the [decision index](../07-Change-And-Baseline/03-Requirements-Questions-And-Decisions.md#change-and-baseline-open-questions-and-decisions--heading-current-dispositions) to distinguish selected MVP policies, deferred proposals and remaining evidence.
 
 <a id="requirements-specification-quality-security-and-recovery-requirements--id-resolution-q-d25"></a>
 <a id="requirements-specification-quality-security-and-recovery-requirements--heading-q-d25-selected-policy"></a>

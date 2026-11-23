@@ -16,11 +16,11 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 | Item | Current position |
 | --- | --- |
 | Owner | Farhad; sole delivery and operations owner |
-| Status | Proposed product specification — detailed policy and acceptance pending |
+| Status | Selected MVP slice; future clauses remain deferred; implementation and acceptance evidence remain required; see [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) |
 | Planning basis | DEC-020/028; conditional CI/CD is separately DEC-019 |
-| Candidate references | GIT-D01–GIT-D10 are provisional document-local references, not allocated global requirement IDs |
-| Priority | Unassigned; document order is not delivery priority |
-| Revision | October 31, 2026 |
+| Candidate references | GIT-D01–GIT-D10: retained stable source IDs; criterion scope follows [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) |
+| Priority | [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) define Must within MVP slice / Later; file order is not execution order |
+| Source record date | October 31, 2026 |
 
 **At a glance:** Host and collaborate on real Git repositories, not only repository links or a browser simulation. Define browser and Git-client authority together, preserve revision context during review/merge, and keep workflow execution and deployment authorization separate.
 
@@ -32,7 +32,7 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 <a id="requirements-specification-git-hosting-and-collaboration--heading-projectforge-mvp-responsibility-and-boundary"></a>
 ## ProjectForge MVP responsibility and boundary
 
-ProjectForge is a separate system connected to the core through an authenticated user-scoped API. MVP includes real repositories, clone/fetch/pull/push, repository permissions, file/history browsing, issues and simple Kanban. Git commits normally occur in the client. Full advanced review/merge/releases, fork/review workflows, milestones, advanced backlog/Sprints and YAML execution/deployment are deferred. The engine, database, physical deployment and Git transport remain undecided. No shared core database/transaction or full GitHub parity is promised.
+ProjectForge is a separate system connected to the core through an authenticated user-scoped API. MVP includes real repositories, clone/fetch/pull/push, repository permissions, file/history browsing, issues and simple Kanban. Git commits normally occur in the client. Full advanced review/merge/releases, fork/review workflows, milestones, advanced backlog/Sprints and YAML execution/deployment are deferred. The [selected implementation baseline](../../../04-System-Design/ADR/ADR-006-Selected-Mvp-Implementation-Baseline.md) records the engine, database, topology and transport; compatibility, real transfer and isolation evidence remain required. No shared core database/transaction or full GitHub parity is promised.
 
 Authority: [OWNER-MVP-2026-11-04](../../../01-Project-Planning/01-Project-Charter.md#release-decision). [Candidate allocation](10-Mvp-Candidate-Release-Allocation.md#requirements-specification-mvp-release-allocation).
 
@@ -46,7 +46,7 @@ comments, review, Merge, Issues, Milestones, Tags and Releases. That was the his
 Product hosting differs from using GitHub to develop Resumefolio. A product Push,
 merge, tag or release does not inherently authorize production deployment.
 [YAML/CI/CD](19-Yaml-Workflows-And-Cicd.md#requirements-specification-yaml-workflows-and-cicd) retains DEC-019 feasibility/security gates.
-No Git engine, transport, frontend, public visibility model or client version is selected.
+Use [ADR-006](../../../04-System-Design/ADR/ADR-006-Selected-Mvp-Implementation-Baseline.md) and [ADR-007](../../../04-System-Design/ADR/ADR-007-React-Inertia-Frontend.md) for selected mechanisms and frontend. This domain records required behavior; it does not establish successful interoperability.
 
 Use [Accounts](01-Accounts-Authentication-And-Permissions.md#requirements-specification-accounts-authentication-and-permissions),
 [External Interfaces](07-External-Interface-Requirements.md#requirements-specification-external-interface-requirements),
@@ -69,8 +69,7 @@ Use [Accounts](01-Accounts-Authentication-And-Permissions.md#requirements-specif
 <a id="requirements-specification-git-hosting-and-collaboration--heading-3-proposed-requirements"></a>
 ## 3. Proposed Requirements
 
-All records are **Proposed**, owner **Farhad**, priority **Unassigned**. Actor/condition
-descriptions identify scenario contexts, not newly granted permissions.
+Farhad owns these records. Read their retained IDs and original criteria using the [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules). Only the selected MVP criteria are current delivery obligations. Planned checks do not establish executed results or personal owner acceptance.
 
 <a id="requirements-specification-git-hosting-and-collaboration--heading-git-d01-repository-creation-and-ownership"></a>
 ### GIT-D01: Repository Creation and Ownership
@@ -394,7 +393,7 @@ Use actual tool paths on other machines; save UTF-8 without BOM.
 <a id="requirements-specification-git-hosting-and-collaboration--heading-selected-policies-and-future-proposals"></a>
 ## Selected Policies and Future Proposals
 
-Current MVP answers are selected in the Baseline. Only explicitly deferred details below remain proposals; product tests and operational evidence are still required.
+Use the [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) and the [decision index](../07-Change-And-Baseline/03-Requirements-Questions-And-Decisions.md#change-and-baseline-open-questions-and-decisions--heading-current-dispositions) to distinguish selected MVP policies, deferred proposals and remaining evidence.
 
 <a id="requirements-specification-git-hosting-and-collaboration--id-resolution-q-d21"></a>
 <a id="requirements-specification-git-hosting-and-collaboration--heading-q-d21-selected-policy"></a>

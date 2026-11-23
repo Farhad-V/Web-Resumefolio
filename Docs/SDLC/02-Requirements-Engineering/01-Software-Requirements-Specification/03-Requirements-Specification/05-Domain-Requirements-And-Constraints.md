@@ -16,10 +16,10 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 | Item | Current position |
 | --- | --- |
 | Owner | Farhad; sole delivery and operations owner |
-| Status | Proposed domain specification — review and applicability findings pending |
-| References | DOM-D01–DOM-D08 are provisional document-local references; final global IDs remain unallocated |
-| Priority | Unassigned; document order does not establish delivery priority |
-| Revision | October 31, 2026 |
+| Status | Selected MVP slice; future clauses remain deferred; implementation and acceptance evidence remain required; see [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) |
+| References | DOM-D01–DOM-D08: retained stable source IDs; criterion scope follows [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) |
+| Priority | [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) define Must within MVP slice / Later; file order is not execution order |
+| Source record date | October 31, 2026 |
 
 **At a glance:** Preserve professional-information, application-history and
 resource-access meaning while working within accepted project constraints.
@@ -58,9 +58,7 @@ Labels carry the meaning independently of color.
 <a id="requirements-specification-domain-requirements-and-constraints--heading-2-proposed-domain-requirements"></a>
 ## 2. Proposed Domain Requirements
 
-Every record below has owner **Farhad**, status **Proposed**, and priority
-**Unassigned**. Acceptance criteria describe future checks; no product verification
-or legal/provider compliance conclusion is recorded.
+Farhad owns these records. Read their retained IDs and original criteria using the [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules). Only the selected MVP criteria are current delivery obligations. Planned checks do not establish executed results or personal owner acceptance.
 
 <a id="requirements-specification-domain-requirements-and-constraints--heading-dom-d01-consistent-professional-information-meaning"></a>
 ### DOM-D01: Consistent Professional-information Meaning
@@ -80,7 +78,7 @@ variants shall retain their reviewed domain meanings across affected workflows.
 - Changing a resume-specific choice does not silently change unrelated resumes.
 
 **Planned verification:** Dictionary/document walkthrough and later cross-resume
-examples. **Open:** Exact fields, required values, propagation and rendition revision.
+examples. **Source refinement note:** Exact fields, required values, propagation and rendition revision.
 
 <a id="requirements-specification-domain-requirements-and-constraints--heading-dom-d02-application-history-represents-actual-submitted-material"></a>
 ### DOM-D02: Application History Represents Actual Submitted Material
@@ -99,7 +97,7 @@ resume/cover-letter material from later source changes and current shared views.
 - Correction, resubmission and deletion cases follow explicit history policies once reviewed.
 
 **Planned verification:** Submission/source-edit walkthrough and later history
-checks. **Open:** Capture/artifact boundaries, provenance, correction and retention;
+checks. **Source refinement note:** Capture/artifact boundaries, provenance, correction and retention;
 see [Business Rules and Lifecycle](04-Business-Rules-And-Data-Lifecycle.md#requirements-specification-business-rules-and-data-lifecycle).
 
 <a id="requirements-specification-domain-requirements-and-constraints--heading-dom-d03-authorization-follows-the-resource-and-operation"></a>
@@ -119,7 +117,7 @@ operation and state, including direct file/PDF retrieval and provider operations
 - Altered references or direct requests do not bypass denied operations.
 
 **Planned verification:** Later cross-user/action matrix checks.
-**Open:** Exact roles/grants and lifecycle effects; the
+**Source refinement note:** Exact roles/grants and lifecycle effects; the
 [Accounts matrix](01-Accounts-Authentication-And-Permissions.md#requirements-specification-accounts-authentication-and-permissions--heading-7-role-resource-and-operation-matrix)
 remains the permission specification entry point.
 
@@ -140,7 +138,7 @@ translation or automatic external application submission.
 - Scope/requirements do not make an excluded AI or submission service a prerequisite.
 
 **Planned verification:** Scope review and later manual journeys.
-**Open:** Language completeness and fallback; no ATS, hiring or productivity outcome is guaranteed.
+**Source refinement note:** Language completeness and fallback; no ATS, hiring or productivity outcome is guaranteed.
 
 <a id="requirements-specification-domain-requirements-and-constraints--heading-dom-d05-explicit-external-service-applicability"></a>
 ### DOM-D05: Explicit External-service Applicability
@@ -160,7 +158,7 @@ integration commitments are accepted.
 - A blocked required operation produces an explicit owner decision path, not silent scope removal or a feasibility claim.
 
 **Planned verification:** Assessment record inspection and later authorized operation
-checks. **Open:** Actual project credentials/configuration, access findings and
+checks. **Source refinement note:** Actual project credentials/configuration, access findings and
 costs; see [Google Integration](06-Email-Calendar-And-Google-Integration.md#requirements-specification-email-calendar-and-google-integration).
 
 <a id="requirements-specification-domain-requirements-and-constraints--heading-dom-d06-establish-information-handling-applicability"></a>
@@ -181,7 +179,7 @@ obligations, with unresolved questions and decision owners visible.
 - Unknown controller/processor, user-location, contractual or legal questions remain explicit rather than becoming an unsupported compliance statement.
 
 **Planned verification:** Review actual operating model and evidence; obtain
-appropriate clarification where necessary. **Open:** Actual roles/jurisdictions,
+appropriate clarification where necessary. **Source refinement note:** Actual roles/jurisdictions,
 notices, rights handling, service terms and retention obligations. Server location
 alone is not a completed applicability assessment. No legal conclusion is made here.
 
@@ -203,7 +201,7 @@ findings before adoption; existing reference projects shall remain preserved.
 - No automatic demo migration or reference-project modification is introduced as an implicit requirement.
 
 **Planned verification:** Later component/asset inventory and license inspection.
-**Open:** Actual selections, attribution/distribution duties and compatibility;
+**Source refinement note:** Actual selections, attribution/distribution duties and compatibility;
 no component license or ownership claim is invented.
 
 <a id="requirements-specification-domain-requirements-and-constraints--heading-dom-d08-evidence-based-operation-within-constraints"></a>
@@ -224,7 +222,7 @@ execution safety and recovery outcomes.
 - CI/CD enabling depends on reviewed feasibility/security limits, and recovery acceptance depends on actual restoration evidence.
 
 **Planned verification:** Design review, resource findings and later bounded
-capacity/execution/recovery checks. **Open:** Numerical limits, architecture,
+capacity/execution/recovery checks. **Source refinement note:** Numerical limits, architecture,
 RPO/RTO, cost allowance and actual forecast; no new purchase is assumed.
 
 <a id="requirements-specification-domain-requirements-and-constraints--heading-3-accepted-project-constraints-and-open-evidence"></a>
@@ -320,7 +318,7 @@ arrows, render output and file/section links after changes. Save UTF-8 without B
 <a id="requirements-specification-domain-requirements-and-constraints--heading-selected-policies-and-future-proposals"></a>
 ## Selected Policies and Future Proposals
 
-Current MVP answers are selected in the Baseline. Only explicitly deferred details below remain proposals; product tests and operational evidence are still required.
+Use the [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) and the [decision index](../07-Change-And-Baseline/03-Requirements-Questions-And-Decisions.md#change-and-baseline-open-questions-and-decisions--heading-current-dispositions) to distinguish selected MVP policies, deferred proposals and remaining evidence.
 
 <a id="requirements-specification-domain-requirements-and-constraints--id-resolution-q-d27"></a>
 <a id="requirements-specification-domain-requirements-and-constraints--heading-q-d27-selected-policy"></a>

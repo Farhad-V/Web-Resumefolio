@@ -1,6 +1,6 @@
 # Requirements Traceability Matrix
 
-Use this folder to connect a requirement or acceptance criterion to design and verification. It indexes 157 requirement records and 470 source criteria, including deferred and conditional items.
+Use this folder to connect a requirement or acceptance criterion to design and verification. It indexes 157 requirement records. Criterion coverage contains 480 rows: 470 source criteria plus 10 supplemental MVP checks. Deferred and conditional items retain their scope dispositions.
 
 ## Find what you need
 

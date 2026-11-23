@@ -4,6 +4,8 @@
 <a id="scenarios-and-models-user-stories-and-scenarios--heading-resumefolio--user-stories-and-scenarios"></a>
 # Resumefolio — User Stories and Scenarios
 
+**Scope and status:** Interpret this supporting view using the [current record rules](../03-Requirements-Specification/15-Requirement-Priority-And-Readiness.md#current-record-rules). Original open fields do not override selected policies. Personal Google integration, advanced Sprint/review features and YAML execution remain after MVP; only the selected criteria apply to current work.
+
 Start with [resume tailoring](#scenarios-and-models-user-stories-and-scenarios--heading-uc-d01-tailor-two-resumes-without-losing-independent-choices), [protected sharing](#scenarios-and-models-user-stories-and-scenarios--heading-uc-d03-view-a-protected-resume-and-retrieve-only-selected-material) or [manual applications](#scenarios-and-models-user-stories-and-scenarios--heading-uc-d04-prepare-a-manual-application-and-record-progress). The [MVP baseline](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/baseline/README.md) identifies which behaviors apply to the current release.
 
 Each bundle describes an actor goal and its normal, alternative, denied, failure and recovery paths. The scenarios are proposed and await review and execution. Use the [catalog](#scenarios-and-models-user-stories-and-scenarios--heading-2-use-case-and-story-catalog) to find other flows, including provider and workflow scenarios for later releases.

@@ -4,6 +4,8 @@
 <a id="data-definitions-data-definitions--heading-resumefolio--data-definitions-guide"></a>
 # Resumefolio — Data Definitions Guide
 
+**Scope and status:** Interpret this supporting view using the [current record rules](../03-Requirements-Specification/15-Requirement-Priority-And-Readiness.md#current-record-rules). Original open fields do not override selected policies. Personal Google integration, advanced Sprint/review features and YAML execution remain after MVP; only the selected criteria apply to current work.
+
 Current implementation choices and scope: [Baseline](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/baseline/README.md). Runtime verification remains subject to its gates.
 
 | Item | Current position |

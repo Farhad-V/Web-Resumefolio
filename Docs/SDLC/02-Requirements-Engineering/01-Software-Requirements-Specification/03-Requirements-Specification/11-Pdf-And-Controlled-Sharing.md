@@ -16,11 +16,11 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 | Item | Current position |
 | --- | --- |
 | Owner | Farhad; sole delivery and operations owner |
-| Status | Proposed product specification — detailed policy and acceptance pending |
+| Status | Selected MVP slice; future clauses remain deferred; implementation and acceptance evidence remain required; see [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) |
 | Planning basis | DEC-025/024/026/027/028; EXT-001 |
-| Candidate references | PDF-D01–PDF-D10 are provisional document-local references, not allocated global requirement IDs |
-| Priority | Unassigned; document order is not delivery priority |
-| Revision | October 31, 2026 |
+| Candidate references | PDF-D01–PDF-D10: retained stable source IDs; criterion scope follows [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) |
+| Priority | [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) define Must within MVP slice / Later; file order is not execution order |
+| Source record date | October 31, 2026 |
 
 **At a glance:** Provide generated and uploaded resume PDFs with per-resume download choices and separately controlled English/German uploaded availability. Protect employer access and direct file paths, retain owner controls, and distinguish live views from downloaded or preserved submitted copies.
 
@@ -86,8 +86,7 @@ an authorized owner may privately preview/download an otherwise unshared artifac
 <a id="requirements-specification-pdf-and-controlled-sharing--heading-3-proposed-requirements"></a>
 ## 3. Proposed Requirements
 
-All records are **Proposed**, owner **Farhad**, priority **Unassigned**. Detailed
-layout, availability and password/session policies remain pending.
+Farhad owns these records. Read their retained IDs and original criteria using the [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules). Only the selected MVP criteria are current delivery obligations. Planned checks do not establish executed results or personal owner acceptance.
 
 <a id="requirements-specification-pdf-and-controlled-sharing--heading-pdf-d01-generated-resume-pdf"></a>
 ### PDF-D01: Generated Resume PDF
@@ -412,7 +411,7 @@ Use actual tool paths on other machines; save UTF-8 without BOM.
 <a id="requirements-specification-pdf-and-controlled-sharing--heading-selected-policies-and-future-proposals"></a>
 ## Selected Policies and Future Proposals
 
-Current MVP answers are selected in the Baseline. Only explicitly deferred details below remain proposals; product tests and operational evidence are still required.
+Use the [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) and the [decision index](../07-Change-And-Baseline/03-Requirements-Questions-And-Decisions.md#change-and-baseline-open-questions-and-decisions--heading-current-dispositions) to distinguish selected MVP policies, deferred proposals and remaining evidence.
 
 <a id="requirements-specification-pdf-and-controlled-sharing--id-resolution-q-d10"></a>
 <a id="requirements-specification-pdf-and-controlled-sharing--heading-q-d10-selected-policy"></a>

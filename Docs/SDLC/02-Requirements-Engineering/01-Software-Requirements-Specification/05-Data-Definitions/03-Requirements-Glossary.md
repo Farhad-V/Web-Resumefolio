@@ -4,6 +4,8 @@
 <a id="data-definitions-glossary--heading-resumefolio--requirements-glossary"></a>
 # Resumefolio — Requirements Glossary
 
+**Scope and status:** Interpret this supporting view using the [current record rules](../03-Requirements-Specification/15-Requirement-Priority-And-Readiness.md#current-record-rules). Original open fields do not override selected policies. Personal Google integration, advanced Sprint/review features and YAML execution remain after MVP; only the selected criteria apply to current work.
+
 | Item | Current position |
 | --- | --- |
 | Purpose | Give recurring terms one clear working meaning across requirements |

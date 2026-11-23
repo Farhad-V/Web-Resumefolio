@@ -4,6 +4,8 @@
 <a id="data-definitions-data-dictionary--heading-resumefolio--data-dictionary"></a>
 # Resumefolio — Data Dictionary
 
+**Scope and status:** Interpret this supporting view using the [current record rules](../03-Requirements-Specification/15-Requirement-Priority-And-Readiness.md#current-record-rules). Original open fields do not override selected policies. Personal Google integration, advanced Sprint/review features and YAML execution remain after MVP; only the selected criteria apply to current work.
+
 | Item | Current position |
 | --- | --- |
 | Purpose | Define conceptual information used in requirements, including meaning, responsibility and applicable boundaries |

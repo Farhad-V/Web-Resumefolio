@@ -10,10 +10,10 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 | --- | --- |
 | Purpose | Navigate the distributed Software Requirements Specification (SRS), its detailed drafts and remaining review work |
 | Owner | Farhad; sole project delivery and operations owner |
-| Status | Proposed documentation set — M-02 requirements baseline pending |
-| Inventory | 16 primary specification documents: 15 detailed proposed drafts and one SRS entry point; plus a supporting priority/readiness register |
-| Candidate records | 157 provisional document-local records in the 15 detailed drafts; not final global IDs, approved requirements or verified capabilities |
-| Revision | November 1, 2026 — functional/non-functional reading routes added |
+| Status | Current navigation to selected MVP slices and deferred source records; see [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) |
+| Inventory | 15 domain record sets, one SRS authority overview and supporting navigation/allocation records |
+| Candidate records | 157 retained stable IDs; current criterion applicability and priority are defined by the selected registers |
+| Source record date | November 1, 2026 — functional/non-functional reading routes added |
 
 **Start with [Functional Requirements](17-Software-Requirements-Specification.md#requirements-specification-requirements-specification--id-functional-requirements) and [Non-Functional Requirements](17-Software-Requirements-Specification.md#requirements-specification-requirements-specification--id-non-functional-requirements)** for explicit classification. Continue with **[the SRS entry point](17-Software-Requirements-Specification.md#requirements-specification-requirements-specification)** for product
 boundary and requirement levels. Use this guide to find the primary record owner,
@@ -31,8 +31,8 @@ their domain files rather than duplicating them in this index.
 | --- | --- |
 | Why is the product needed, and what is its boundary? | [SRS](17-Software-Requirements-Specification.md#requirements-specification-requirements-specification) → [Business outcomes](03-Business-Requirements.md#requirements-specification-business-requirements) → [Accepted Scope](../../../01-Project-Planning/01-Project-Charter.md#mvp-scope) |
 | Who needs what, and with which authority? | [Actors](../02-Stakeholders-And-Elicitation/01-Actors-And-System-Context.md#stakeholders-and-elicitation-actors-and-system-context) → [User Requirements](18-User-Requirements.md#requirements-specification-user-requirements) → [Accounts](01-Accounts-Authentication-And-Permissions.md#requirements-specification-accounts-authentication-and-permissions) → [Scenarios](../04-Scenarios-And-Models/02-User-Stories-And-Scenarios.md#scenarios-and-models-user-stories-and-scenarios) |
-| How do professional information and applications fit together? | [Profiles/Resumes](12-Profiles-Resumes-And-Portfolio.md#requirements-specification-profiles-resumes-and-portfolio) → [PDF/Sharing](11-Pdf-And-Controlled-Sharing.md#requirements-specification-pdf-and-controlled-sharing) → [Applications](09-Manual-Application-Management.md#requirements-specification-manual-application-management) → [Google Integration](06-Email-Calendar-And-Google-Integration.md#requirements-specification-email-calendar-and-google-integration) |
-| How is collaborative work organized? | [Projects/Kanban/Sprints](13-Projects-Kanban-And-Sprints.md#requirements-specification-projects-kanban-and-sprints) → [Git Hosting](08-Git-Hosting-And-Collaboration.md#requirements-specification-git-hosting-and-collaboration) → [YAML/CI/CD](19-Yaml-Workflows-And-Cicd.md#requirements-specification-yaml-workflows-and-cicd) |
+| How do professional information and applications fit together? | [Profiles/Resumes](12-Profiles-Resumes-And-Portfolio.md#requirements-specification-profiles-resumes-and-portfolio) → [PDF/Sharing](11-Pdf-And-Controlled-Sharing.md#requirements-specification-pdf-and-controlled-sharing) → [Applications](09-Manual-Application-Management.md#requirements-specification-manual-application-management); after MVP: [Google Integration](06-Email-Calendar-And-Google-Integration.md#requirements-specification-email-calendar-and-google-integration) |
+| How is collaborative work organized? | [Projects/Kanban/Sprints](13-Projects-Kanban-And-Sprints.md#requirements-specification-projects-kanban-and-sprints) → [Git Hosting](08-Git-Hosting-And-Collaboration.md#requirements-specification-git-hosting-and-collaboration); after MVP: [YAML/CI/CD](19-Yaml-Workflows-And-Cicd.md#requirements-specification-yaml-workflows-and-cicd) |
 | Which rules apply across all features? | [Business Lifecycle](04-Business-Rules-And-Data-Lifecycle.md#requirements-specification-business-rules-and-data-lifecycle) → [Domain Constraints](05-Domain-Requirements-And-Constraints.md#requirements-specification-domain-requirements-and-constraints) → [Interfaces](07-External-Interface-Requirements.md#requirements-specification-external-interface-requirements) → [Quality/Security/Recovery](14-Quality-Security-And-Recovery-Requirements.md#requirements-specification-quality-security-and-recovery-requirements) |
 | What is needed to operate and review the release? | [Administration/Files](02-Administration-Files-And-Operational-Behavior.md#requirements-specification-administration-files-and-operational-behavior) → [Quality/Recovery](14-Quality-Security-And-Recovery-Requirements.md#requirements-specification-quality-security-and-recovery-requirements) → [Traceability](../06-Validation-And-Traceability/07-Validation-And-Traceability.md#validation-and-traceability-validation-and-traceability--heading-traceability) → [Baseline criteria](../07-Change-And-Baseline/04-Requirements-Review-And-Baseline-Criteria.md#change-and-baseline-requirements-review-and-baseline-criteria) |
 
@@ -49,32 +49,30 @@ draft status and open decisions are explicit rather than distinguished by color 
 ## Documents
 
 The table covers the 16 primary specification documents in this folder. The [priority/readiness register](15-Requirement-Priority-And-Readiness.md#requirements-specification-requirements-priority-and-readiness) is a supporting attribute view, not an additional primary requirements draft.
-**Detailed draft** means proposed records with criteria/methods/open decisions; it
-does not mean the questions are resolved, the records approved or the product tested.
+The source records retain drafting history. The [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) determine current scope and priority; selected policy does not establish tested capability.
 
-| Document | Primary responsibility | Current content / remaining boundary |
-| --- | --- | --- |
-| [Software Requirements Specification](17-Software-Requirements-Specification.md#requirements-specification-requirements-specification) | SRS entry point, product boundary and requirement levels | Expanded overview, scope/primary ownership, conventions and review gates; baseline pending |
-| [Business Requirements](03-Business-Requirements.md#requirements-specification-business-requirements) | Intended business outcomes and success evidence | Detailed draft; 5 BIZ-D records; intended benefit is not measured benefit |
-| [User Requirements](18-User-Requirements.md#requirements-specification-user-requirements) | Actor goals, contexts and expected outcomes | Detailed draft; 12 USR-D records; derived actor goals and scenarios still require owner review |
-| [Accounts, Authentication and Permissions](01-Accounts-Authentication-And-Permissions.md#requirements-specification-accounts-authentication-and-permissions) | Identity, resource/action isolation, sharing and explicit administrative powers | Detailed draft; 12 ACC-D records; exact auth/grant/session policies pending |
-| [Profiles, Resumes and Portfolio](12-Profiles-Resumes-And-Portfolio.md#requirements-specification-profiles-resumes-and-portfolio) | Reusable information, independent tailoring, evidence and manual language variants | Detailed draft; 10 PRP-D records; fields, propagation and presentation policies pending |
-| [PDF and Controlled Sharing](11-Pdf-And-Controlled-Sharing.md#requirements-specification-pdf-and-controlled-sharing) | Generated/uploaded PDFs, availability, employer links and direct retrieval | Detailed draft; 10 PDF-D records; rendition, session/revocation and lifecycle details pending |
-| [Manual Application Management](09-Manual-Application-Management.md#requirements-specification-manual-application-management) | Company/opportunity, manual cover letters, progress and actual submitted copies | Detailed draft; 9 APP-D records; capture, transitions, corrections and retention pending |
-| [Email, Calendar and Google Integration](06-Email-Calendar-And-Google-Integration.md#requirements-specification-email-calendar-and-google-integration) | Authorized mail/calendar operations, synchronization and failures | Detailed draft; 12 EGC-D records; limited dated provider-source notes, actual project access unverified |
-| [Projects, Kanban and Sprints](13-Projects-Kanban-And-Sprints.md#requirements-specification-projects-kanban-and-sprints) | Boards, items/tasks, assignments, collaboration and Sprint Backlog | Detailed draft; 11 PKS-D records; relationships, workflows and completion policies pending |
-| [Git Hosting and Collaboration](08-Git-Hosting-And-Collaboration.md#requirements-specification-git-hosting-and-collaboration) | Real Git clients, repository presentation, forks/review/merge and tracking/releases | Detailed draft; 10 GIT-D records; transports, grants, review and lifecycle policies pending |
-| [YAML Workflows and CI/CD](19-Yaml-Workflows-And-Cicd.md#requirements-specification-yaml-workflows-and-cicd) | Supported syntax/execution, isolation, secrets, limits and deployment controls | Detailed draft; 12 YML-D records; execution, isolation, limits and deployment policies/evidence pending |
-| [Administration, Files and Operational Behavior](02-Administration-Files-And-Operational-Behavior.md#requirements-specification-administration-files-and-operational-behavior) | Policy configuration, file admission, quotas, failures, cleanup and operational evidence | Detailed draft; 12 AFO-D records; limits, powers, accounting and retention pending |
-| [Business Rules and Data Lifecycle](04-Business-Rules-And-Data-Lifecycle.md#requirements-specification-business-rules-and-data-lifecycle) | Cross-module invariants, ownership, updates, history, retirement and recovery | Detailed draft; 10 BRL-D records; detailed propagation/synchronization/removal rules pending |
-| [Domain Requirements and Constraints](05-Domain-Requirements-And-Constraints.md#requirements-specification-domain-requirements-and-constraints) | Domain meaning, product policies, project mandates and external applicability | Detailed draft; 8 DOM-D records; provider/legal/licensing applicability investigations incomplete |
-| [External Interface Requirements](07-External-Interface-Requirements.md#requirements-specification-external-interface-requirements) | Eight boundary inventories and explicit interaction contracts | Detailed draft; 10 EIF-D records; exact protocols, representations, clients and actual access findings pending |
-| [Quality, Security and Recovery](14-Quality-Security-And-Recovery-Requirements.md#requirements-specification-quality-security-and-recovery-requirements) | Measurement contracts, controls, capacity, backup coverage and demonstrated recovery | Detailed draft; 14 QSR-D records; targets, controls and actual verification/restoration pending |
+| Document | Primary responsibility |
+| --- | --- |
+| [Software Requirements Specification](17-Software-Requirements-Specification.md#requirements-specification-requirements-specification) | SRS entry point, product boundary and requirement levels |
+| [Business Requirements](03-Business-Requirements.md#requirements-specification-business-requirements) | Intended business outcomes and success evidence |
+| [User Requirements](18-User-Requirements.md#requirements-specification-user-requirements) | Actor goals, contexts and expected outcomes |
+| [Accounts, Authentication and Permissions](01-Accounts-Authentication-And-Permissions.md#requirements-specification-accounts-authentication-and-permissions) | Identity, resource/action isolation, sharing and explicit administrative powers |
+| [Profiles, Resumes and Portfolio](12-Profiles-Resumes-And-Portfolio.md#requirements-specification-profiles-resumes-and-portfolio) | Reusable information, independent tailoring, evidence and manual language variants |
+| [PDF and Controlled Sharing](11-Pdf-And-Controlled-Sharing.md#requirements-specification-pdf-and-controlled-sharing) | Generated/uploaded PDFs, availability, employer links and direct retrieval |
+| [Manual Application Management](09-Manual-Application-Management.md#requirements-specification-manual-application-management) | Company/opportunity, manual cover letters, progress and actual submitted copies |
+| [Email, Calendar and Google Integration](06-Email-Calendar-And-Google-Integration.md#requirements-specification-email-calendar-and-google-integration) | Authorized mail/calendar operations, synchronization and failures |
+| [Projects, Kanban and Sprints](13-Projects-Kanban-And-Sprints.md#requirements-specification-projects-kanban-and-sprints) | Boards, items/tasks, assignments, collaboration and Sprint Backlog |
+| [Git Hosting and Collaboration](08-Git-Hosting-And-Collaboration.md#requirements-specification-git-hosting-and-collaboration) | Real Git clients, repository presentation, forks/review/merge and tracking/releases |
+| [YAML Workflows and CI/CD](19-Yaml-Workflows-And-Cicd.md#requirements-specification-yaml-workflows-and-cicd) | Supported syntax/execution, isolation, secrets, limits and deployment controls |
+| [Administration, Files and Operational Behavior](02-Administration-Files-And-Operational-Behavior.md#requirements-specification-administration-files-and-operational-behavior) | Policy configuration, file admission, quotas, failures, cleanup and operational evidence |
+| [Business Rules and Data Lifecycle](04-Business-Rules-And-Data-Lifecycle.md#requirements-specification-business-rules-and-data-lifecycle) | Cross-module invariants, ownership, updates, history, retirement and recovery |
+| [Domain Requirements and Constraints](05-Domain-Requirements-And-Constraints.md#requirements-specification-domain-requirements-and-constraints) | Domain meaning, product policies, project mandates and external applicability |
+| [External Interface Requirements](07-External-Interface-Requirements.md#requirements-specification-external-interface-requirements) | Eight boundary inventories and explicit interaction contracts |
+| [Quality, Security and Recovery](14-Quality-Security-And-Recovery-Requirements.md#requirements-specification-quality-security-and-recovery-requirements) | Measurement contracts, controls, capacity, backup coverage and demonstrated recovery |
 
-Counts describe this working set on the revision date and require updating when
-records change. Prefixes are local draft references; they do not establish the
-final FR/NFR/business-rule identifier convention. No priority order or approval is
-inferred from row order or document length.
+Current applicability and priority are maintained through the [priority/readiness register](15-Requirement-Priority-And-Readiness.md#scope-and-priority-by-domain); this navigation table does not maintain a second status register.
+
+Keep existing IDs when the working set changes. Document order and length do not establish priority, approval or tested capability.
 
 <a id="requirements-specification-requirements-specification-overview--heading-3-cross-document-boundaries"></a>
 ## 3. Cross-document Boundaries
@@ -205,4 +203,4 @@ source/SVG/PNG outputs together. See the [shared diagram guide](../../Diagrams/D
 <a id="requirements-specification-requirements-specification-overview--heading-course-aligned-refinement--november-1-2026"></a>
 ## Course-Aligned Refinement — November 1, 2026
 
-Use the [proposed priority/readiness register](15-Requirement-Priority-And-Readiness.md#requirements-specification-requirements-priority-and-readiness) as a supporting attribute view, not a sixteenth primary requirement draft. The 15 primary drafts still contain 157 candidates. Their actual priorities remain unassigned; proposals are explicitly separate. Quality targets have decision contracts, and external scenario narratives are separated from later verification steps. M-02 remains pending.
+The [priority/readiness register](15-Requirement-Priority-And-Readiness.md) explains current applicability for all 157 IDs. The selected registers supersede original proposed priorities within MVP. Target selection, measured performance, actor validation and release acceptance are distinct states.

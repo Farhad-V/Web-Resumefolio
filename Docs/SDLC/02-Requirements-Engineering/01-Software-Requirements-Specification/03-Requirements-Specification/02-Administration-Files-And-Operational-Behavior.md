@@ -84,8 +84,7 @@ physical storage architecture, deployed service or unlimited administrative powe
 
 Configure policy through the agreed administrative interface; no code edits should
 be required for the policy values covered by DEC-018. Configuration does not create
-physical capacity. Initial defaults, per-file/per-user/project/global scopes,
-units, thresholds and capacity margins remain undecided.
+physical capacity. [Q-D24](../07-Change-And-Baseline/03-Requirements-Questions-And-Decisions.md#change-and-baseline-open-questions-and-decisions--id-q-d24) records the selected policy and limits; verify enforcement and actual capacity before admitting production data.
 
 <a id="requirements-specification-administration-files-and-operational-behavior--heading-3-proposed-requirements-and-acceptance-criteria"></a>
 ## 3. Proposed Requirements and Acceptance Criteria
@@ -93,11 +92,7 @@ units, thresholds and capacity margins remain undecided.
 <a id="requirements-specification-administration-files-and-operational-behavior--heading-shared-record-metadata"></a>
 ### Shared record metadata
 
-All AFO-D records are **Proposed**, coordinated by the project owner and pending
-actual review. Document-local references are not final FR/NFR allocation. No
-priority, approval or completed verification is invented; use the existing
-value/risk/dependency method when ordering work. Sources and rationale are stated
-per record, with criteria, planned checks and open dependencies.
+Farhad owns these records. Read their retained IDs and original criteria using the [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules). Only the selected MVP criteria are current delivery obligations. Planned checks do not establish executed results or personal owner acceptance.
 
 - **Policy and capacity:** [AFO-D01](#requirements-specification-administration-files-and-operational-behavior--heading-afo-d01-owner-configurable-upload-and-storage-policy), [AFO-D02](#requirements-specification-administration-files-and-operational-behavior--heading-afo-d02-policy-consistent-with-evaluated-infrastructure), [AFO-D03](#requirements-specification-administration-files-and-operational-behavior--heading-afo-d03-per-file-admission-limit), [AFO-D04](#requirements-specification-administration-files-and-operational-behavior--heading-afo-d04-aggregate-quota-and-concurrent-admission)
 - **Admission, access and file lifecycle:** [AFO-D05](#requirements-specification-administration-files-and-operational-behavior--heading-afo-d05-supported-content-and-validation), [AFO-D06](#requirements-specification-administration-files-and-operational-behavior--heading-afo-d06-file-resource-authorization-and-isolation), [AFO-D07](#requirements-specification-administration-files-and-operational-behavior--heading-afo-d07-truthful-completion-and-interrupted-operation-handling), [AFO-D08](#requirements-specification-administration-files-and-operational-behavior--heading-afo-d08-safe-replacement-and-lifecycle-effects)

@@ -16,11 +16,11 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 | Item | Current position |
 | --- | --- |
 | Owner | Farhad |
-| Status | Core source-update/apply/publication/history policy owner-accepted November 1, 2026; remaining detailed requirements pending |
+| Status | Selected MVP slice; future clauses remain deferred; implementation and acceptance evidence remain required; see [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) |
 | Planning basis | DEC-027/026/015; related DEC-028/025/024/023/018 |
-| Candidate references | PRP-D01–PRP-D10 are provisional document-local references, not allocated global requirement IDs |
-| Priority | Unassigned; document order is not delivery priority |
-| Revision | October 31, 2026 |
+| Candidate references | PRP-D01–PRP-D10: retained stable source IDs; criterion scope follows [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) |
+| Priority | [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) define Must within MVP slice / Later; file order is not execution order |
+| Source record date | October 31, 2026 |
 
 **At a glance:** Reuse professional information without losing control of each
 tailored resume. Associate externally created evidence with skills/projects,
@@ -106,9 +106,7 @@ Profile-to-resume propagation and save-to-live publication remain separate decis
 <a id="requirements-specification-profiles-resumes-and-portfolio--heading-3-proposed-requirements"></a>
 ## 3. Proposed Requirements
 
-Every candidate is **Proposed**, owner **Farhad**, priority **Unassigned**. Criteria
-are planned observations, not actual product results. A criterion depending on an
-undecided field/propagation/presentation policy remains blocked for acceptance.
+Farhad owns these records. Read their retained IDs and original criteria using the [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules). Only the selected MVP criteria are current delivery obligations. Planned checks do not establish executed results or personal owner acceptance.
 
 <a id="requirements-specification-profiles-resumes-and-portfolio--heading-prp-d01-reusable-professional-information"></a>
 ### PRP-D01: Reusable Professional Information
@@ -293,7 +291,7 @@ media and links in screen versus PDF output.
 **Planned verification:** Later preview/live/PDF content comparisons and selected
 client/accessibility examples. **Open detail:** Save/preview/publication revision,
 templates, layout, pagination, fonts, link/media representation and measurable
-accessibility criteria; no renderer, theme library or PDF tool is selected.
+accessibility criteria. Use the [implementation baseline](../../../04-System-Design/ADR/ADR-006-Selected-Mvp-Implementation-Baseline.md) for selected rendering and PDF mechanisms; this requirement does not establish tested output.
 
 <a id="requirements-specification-profiles-resumes-and-portfolio--heading-prp-d09-safe-content-admission-and-truthful-save-outcomes"></a>
 ### PRP-D09: Safe Content Admission and Truthful Save Outcomes
@@ -476,7 +474,7 @@ Use actual installed paths on other machines; save UTF-8 without BOM.
 <a id="requirements-specification-profiles-resumes-and-portfolio--heading-selected-policies-and-future-proposals"></a>
 ## Selected Policies and Future Proposals
 
-Current MVP answers are selected in the Baseline. Only explicitly deferred details below remain proposals; product tests and operational evidence are still required.
+Use the [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) and the [decision index](../07-Change-And-Baseline/03-Requirements-Questions-And-Decisions.md#change-and-baseline-open-questions-and-decisions--heading-current-dispositions) to distinguish selected MVP policies, deferred proposals and remaining evidence.
 
 <a id="requirements-specification-profiles-resumes-and-portfolio--id-resolution-q-d06"></a>
 <a id="requirements-specification-profiles-resumes-and-portfolio--heading-q-d06-selected-policy"></a>

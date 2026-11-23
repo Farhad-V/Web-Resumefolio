@@ -16,11 +16,11 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 | Item | Current position |
 | --- | --- |
 | Owner | Farhad |
-| Status | Proposed product requirements — detailed behavior and provider access pending |
+| Status | Deferred after MVP; source proposals retained for future review; see [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) |
 | Planning authority | DEC-022/028/023; ASM-02/DEP-03/GAP-D02 |
-| Candidate references | EGC-D01–EGC-D12 are provisional document-local IDs, not allocated global requirements  **After MVP.** |
-| Priority | Unassigned; no delivery ordering implied |
-| Revision / source check | October 31, 2026 |
+| Candidate references | EGC-D01–EGC-D12: retained stable source IDs; criterion scope follows [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) |
+| Priority | [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) define Must within MVP slice / Later; file order is not execution order |
+| Source record date | October 31, 2026 |
 
 **At a glance:** Users work with their Gmail and agreed calendar activities within
 authorized product workflows. Sending, receiving, synchronization and reminders
@@ -87,9 +87,7 @@ Record material refinements and scope changes explicitly.
 <a id="requirements-specification-email-calendar-and-google-integration--heading-3-proposed-requirements"></a>
 ## 3. Proposed Requirements
 
-Each candidate has owner **Farhad**, status **Proposed**, priority **Unassigned**.
-Sources identify accepted inclusions or proposed supporting detail. Acceptance
-criteria are planned observations, not evidence of an implemented integration.
+Farhad owns these records. Read their retained IDs and original criteria using the [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules). This domain is deferred after MVP. Planned checks do not establish executed results or personal owner acceptance.
 
 <a id="requirements-specification-email-calendar-and-google-integration--heading-egc-d01-authorized-connection-and-account-context"></a>
 ### EGC-D01: Authorized Connection and Account Context
@@ -108,7 +106,7 @@ and connection context for provider operations under the reviewed access policy.
 - Account/calendar selection cases do not silently read or change a different account/calendar.
 
 **Planned verification:** Later controlled connect/deny/select cases.
-**Open:** Supported account count/types, account linking, consent details and
+**Source refinement note:** Supported account count/types, account linking, consent details and
 connection states; product sign-in is distinct from provider authorization.
 
 <a id="requirements-specification-email-calendar-and-google-integration--heading-egc-d02-justified-permissions-and-private-resource-isolation"></a>
@@ -129,7 +127,7 @@ required capabilities and credentials excluded from normal output.
 - Ordinary errors, logs and exported review evidence do not expose tokens, codes or secrets.
 
 **Planned verification:** Matrix review and later allowed/denied/grant-loss cases.
-**Open:** Exact scopes, token protection, revocation and administrative powers;
+**Source refinement note:** Exact scopes, token protection, revocation and administrative powers;
 no broad mailbox permission or Google sign-in choice is selected here.
 
 <a id="requirements-specification-email-calendar-and-google-integration--heading-egc-d03-read-authorized-correspondence"></a>
@@ -149,7 +147,7 @@ safe content/attachment behavior.
 - Message content and attachment retrieval respect resource access and the reviewed safe-rendering/file policy.
 
 **Planned verification:** Later representative plain/rich/attachment and empty/error
-cases. **Open:** Thread/list/search coverage, pagination, unread actions, content
+cases. **Source refinement note:** Thread/list/search coverage, pagination, unread actions, content
 format, remote content/tracking, sanitization and download handling.
 
 <a id="requirements-specification-email-calendar-and-google-integration--heading-egc-d04-manual-compose-and-draft-handling"></a>
@@ -169,7 +167,7 @@ draft persistence, validation and abandonment behavior explicitly defined.
 - Restoring or discarding a draft follows the reviewed local/provider authority and does not overwrite an unrelated draft.
 
 **Planned verification:** Later validation/save/failure/abandon cases.
-**Open:** Required fields, recipient limits, CC/BCC, formatting, attachments,
+**Source refinement note:** Required fields, recipient limits, CC/BCC, formatting, attachments,
 local/provider drafts, autosave/recovery and duplicate handling.
 
 <a id="requirements-specification-email-calendar-and-google-integration--heading-egc-d05-deliberate-send-and-truthful-outcome"></a>
@@ -190,7 +188,7 @@ by available provider evidence.
 - Retry after an ambiguous response follows a defined reconciliation policy rather than blindly duplicating the external send.
 
 **Planned verification:** Later authorized test-recipient cases and controlled
-rejection/timeout/uncertainty. **Open:** Confirmation UX, pending/cancel semantics,
+rejection/timeout/uncertainty. **Source refinement note:** Confirmation UX, pending/cancel semantics,
 provider evidence, duplicate prevention and safe retry; no exactly-once guarantee.
 
 <a id="requirements-specification-email-calendar-and-google-integration--heading-egc-d06-reply-context-and-conversation-association"></a>
@@ -209,7 +207,7 @@ conversation context while allowing user review before sending.
 - Reply failures retain a distinguishable outcome without a false successful-send claim.
 
 **Planned verification:** Later representative thread/reply/failure cases.
-**Open:** Reply-all, quoted content, signatures, threading rules and attachments;
+**Source refinement note:** Reply-all, quoted content, signatures, threading rules and attachments;
 not every mail-client feature is implied by the accepted reply inclusion.
 
 <a id="requirements-specification-email-calendar-and-google-integration--heading-egc-d07-calendar-activities-and-time-meaning"></a>
@@ -229,7 +227,7 @@ operations and required fields with explicit time-zone, access and validation ru
 - Agreed all-day/time-zone/daylight-saving cases preserve intended time meaning in relevant views and provider mappings.
 
 **Planned verification:** Later activity/permission/time-boundary cases.
-**Open:** Views, local versus provider events, allowed actions, all-day rules,
+**Source refinement note:** Views, local versus provider events, allowed actions, all-day rules,
 recurrence, attendees/invitations, shared calendars and cancellation side effects.
 
 <a id="requirements-specification-email-calendar-and-google-integration--heading-egc-d08-explicit-synchronization-contract"></a>
@@ -250,7 +248,7 @@ contract with observable success, partial and failed outcomes.
 - Partial/failed refresh is not presented as fully current; reconnect/repeated-refresh cases follow the reviewed duplicate policy.
 
 **Planned verification:** Later divergence, deletion, partial refresh and recovery
-cases. **Open:** Complete contract in section 4, cadence, scope and implementation;
+cases. **Source refinement note:** Complete contract in section 4, cadence, scope and implementation;
 no bidirectional, real-time, webhook or last-write-wins choice is assumed.
 
 <a id="requirements-specification-email-calendar-and-google-integration--heading-egc-d09-application-relationships-preserve-boundaries"></a>
@@ -270,7 +268,7 @@ application work using explicit link/copy, access and removal semantics.
 - Later source changes/removal follow the reviewed policy and do not overwrite preserved actual submitted material.
 
 **Planned verification:** Later application association/access/removal cases.
-**Open:** Relation cardinality, displayed/copied fields, provider deletion and
+**Source refinement note:** Relation cardinality, displayed/copied fields, provider deletion and
 whether any actual sent content is part of submission capture; no automatic capture assumed.
 
 <a id="requirements-specification-email-calendar-and-google-integration--heading-egc-d10-reminders-and-notification-outcomes"></a>
@@ -290,7 +288,7 @@ permission-change, cancellation and outcome rules for selected activities.
 - Scheduled, attempted, failed and confirmed outcomes are distinguished according to the selected channel's evidence.
 
 **Planned verification:** Later controlled timing/change/denial/delivery cases.
-**Open:** Local/provider authority, channels, timing/tolerance, retry and duplicate
+**Source refinement note:** Local/provider authority, channels, timing/tolerance, retry and duplicate
 behavior; no external notification service or guaranteed delivery is selected.
 
 <a id="requirements-specification-email-calendar-and-google-integration--heading-egc-d11-disconnect-revocation-and-reconnect"></a>
@@ -310,7 +308,7 @@ explicit consequences for operations, pending work, credentials and retained loc
 - Reconnect reconciles selected identity/mappings/pending work under the agreed policy without silently sending stale queued mail or duplicating events.
 
 **Planned verification:** Later revoke/disconnect/reconnect and account-mismatch
-cases. **Open:** Local retention, credential invalidation/revocation scope, pending
+cases. **Source refinement note:** Local retention, credential invalidation/revocation scope, pending
 work, stale views and application references; no retention duration is set.
 
 <a id="requirements-specification-email-calendar-and-google-integration--heading-egc-d12-bounded-failures-recovery-and-feasibility-evidence"></a>
@@ -331,7 +329,7 @@ and representative operation evidence within applicable conditions and resources
 - Evidence identifies actual account/audience, configuration, granted operations, observed limits and blockers without exposing secrets.
 
 **Planned verification:** Source/configuration inspection and later controlled
-operation/failure checks. **Open:** Limits, timeout/backoff, refresh/recovery methods,
+operation/failure checks. **Source refinement note:** Limits, timeout/backoff, refresh/recovery methods,
 verification obligations/costs and support effort; none is proven here.
 
 <a id="requirements-specification-email-calendar-and-google-integration--heading-4-synchronization-and-lifecycle-contract"></a>
@@ -477,13 +475,13 @@ file/section links. Colors supplement labels; save UTF-8 without BOM.
 <a id="requirements-specification-email-calendar-and-google-integration--heading-selected-policies-and-future-proposals"></a>
 ## Selected Policies and Future Proposals
 
-Current MVP answers are selected in the Baseline. Only explicitly deferred details below remain proposals; product tests and operational evidence are still required.
+Use the [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) and the [decision index](../07-Change-And-Baseline/03-Requirements-Questions-And-Decisions.md#change-and-baseline-open-questions-and-decisions--heading-current-dispositions) to distinguish selected MVP policies, deferred proposals and remaining evidence.
 
 <a id="requirements-specification-email-calendar-and-google-integration--id-resolution-q-d15"></a>
 <a id="requirements-specification-email-calendar-and-google-integration--heading-proposed-answer-q-d15-google-access-and-applicability"></a>
 ### Proposed answer Q-D15: Google access and applicability
 
-**Affected records:** EGC-D01/D02/D12; DOM-D05; ASM-02/DEP-03/GAP-D02. **Disposition:** Evidence-gated investigation with a complete proposal.
+**Affected records:** EGC-D01/D02/D12; DOM-D05; ASM-02/DEP-03/GAP-D02. **Current disposition: Deferred after MVP.** The following investigation and proposal are future work; they do not block the current MVP.
 
 1. Require per-user explicit OAuth authorization for the selected Google account; show connected identity and granted capability state. Users own their private mail/calendar context. Do not assume a product-wide service account can read personal Gmail or that a Codex connector proves this product has credentials.
 

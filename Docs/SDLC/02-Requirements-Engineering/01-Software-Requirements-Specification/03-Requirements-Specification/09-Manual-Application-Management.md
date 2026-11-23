@@ -16,11 +16,11 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 | Item | Current position |
 | --- | --- |
 | Owner | Farhad; sole delivery and operations owner |
-| Status | Proposed product specification — detailed policy and acceptance pending |
+| Status | Selected MVP slice; future clauses remain deferred; implementation and acceptance evidence remain required; see [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) |
 | Planning basis | DEC-023/027/022/028; submitted-copy source EXT-002 |
-| Candidate references | APP-D01–APP-D09 are provisional document-local references, not allocated global requirement IDs |
-| Priority | Unassigned; document order is not delivery priority |
-| Revision | October 31, 2026 |
+| Candidate references | APP-D01–APP-D09: retained stable source IDs; criterion scope follows [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) |
+| Priority | [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) define Must within MVP slice / Later; file order is not execution order |
+| Source record date | October 31, 2026 |
 
 **At a glance:** Record companies, opportunities, manually written cover letters and progress. Preserve the resume and cover letter actually submitted so later edits do not rewrite history. A live sharing link, current source, recorded status and preserved submitted copy are different things.
 
@@ -68,8 +68,7 @@ Use [Business Lifecycle](04-Business-Rules-And-Data-Lifecycle.md#requirements-sp
 <a id="requirements-specification-manual-application-management--heading-3-proposed-requirements"></a>
 ## 3. Proposed Requirements
 
-All records are **Proposed**, owner **Farhad**, priority **Unassigned**. The final
-status set, capture mechanism and retention policy remain undecided.
+Farhad owns these records. Read their retained IDs and original criteria using the [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules). Only the selected MVP criteria are current delivery obligations. Planned checks do not establish executed results or personal owner acceptance.
 
 <a id="requirements-specification-manual-application-management--heading-app-d01-company-and-opportunity-context"></a>
 ### APP-D01: Company and Opportunity Context
@@ -385,7 +384,7 @@ Use actual tool paths on other machines; save UTF-8 without BOM.
 <a id="requirements-specification-manual-application-management--heading-selected-policies-and-future-proposals"></a>
 ## Selected Policies and Future Proposals
 
-Current MVP answers are selected in the Baseline. Only explicitly deferred details below remain proposals; product tests and operational evidence are still required.
+Use the [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) and the [decision index](../07-Change-And-Baseline/03-Requirements-Questions-And-Decisions.md#change-and-baseline-open-questions-and-decisions--heading-current-dispositions) to distinguish selected MVP policies, deferred proposals and remaining evidence.
 
 <a id="requirements-specification-manual-application-management--id-resolution-q-d12"></a>
 <a id="requirements-specification-manual-application-management--heading-q-d12-selected-policy"></a>

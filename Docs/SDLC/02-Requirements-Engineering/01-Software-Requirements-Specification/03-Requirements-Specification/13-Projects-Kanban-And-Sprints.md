@@ -16,11 +16,11 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 | Item | Current position |
 | --- | --- |
 | Owner | Farhad; sole project delivery and operations owner |
-| Status | Proposed product specification — detailed workflows and acceptance pending |
+| Status | Selected MVP slice; future clauses remain deferred; implementation and acceptance evidence remain required; see [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) |
 | Planning basis | DEC-021/028; related DEC-022/020/017 and GAP-D06 |
-| Candidate references | PKS-D01–PKS-D11 are provisional document-local references, not allocated global requirement IDs |
-| Priority | Unassigned; document order is not delivery priority |
-| Revision | October 31, 2026 |
+| Candidate references | PKS-D01–PKS-D11: retained stable source IDs; criterion scope follows [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) |
+| Priority | [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) define Must within MVP slice / Later; file order is not execution order |
+| Source record date | October 31, 2026 |
 
 **At a glance:** Organize authorized work through projects, boards, configurable
 columns, tasks, Product Backlogs and Sprints. A Backlog Item may be refined into
@@ -102,9 +102,7 @@ backlog-to-project, item-to-task and item-to-Sprint cardinalities remain open.
 <a id="requirements-specification-projects-kanban-and-sprints--heading-3-proposed-requirements"></a>
 ## 3. Proposed Requirements
 
-Every candidate has owner **Farhad**, status **Proposed**, priority **Unassigned**.
-Actor/condition descriptions are scenario contexts, not new grants. Conditional
-criteria cannot be accepted until the referenced fields/workflows are decided.
+Farhad owns these records. Read their retained IDs and original criteria using the [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules). Only the selected MVP criteria are current delivery obligations. Planned checks do not establish executed results or personal owner acceptance.
 
 <a id="requirements-specification-projects-kanban-and-sprints--heading-pks-d01-project-and-board-context"></a>
 ### PKS-D01: Project and Board Context
@@ -481,7 +479,7 @@ Use actual installed paths on other machines; save UTF-8 without BOM.
 <a id="requirements-specification-projects-kanban-and-sprints--heading-selected-policies-and-future-proposals"></a>
 ## Selected Policies and Future Proposals
 
-Current MVP answers are selected in the Baseline. Only explicitly deferred details below remain proposals; product tests and operational evidence are still required.
+Use the [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) and the [decision index](../07-Change-And-Baseline/03-Requirements-Questions-And-Decisions.md#change-and-baseline-open-questions-and-decisions--heading-current-dispositions) to distinguish selected MVP policies, deferred proposals and remaining evidence.
 
 <a id="requirements-specification-projects-kanban-and-sprints--id-resolution-q-d18"></a>
 <a id="requirements-specification-projects-kanban-and-sprints--heading-proposed-answer-q-d18-work-structures-and-workflow"></a>

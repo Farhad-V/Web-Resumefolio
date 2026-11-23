@@ -16,11 +16,11 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 | Item | Current position |
 | --- | --- |
 | Owner | Farhad; sole delivery and operations owner |
-| Status | Proposed product specification — detailed policy and acceptance pending |
+| Status | Deferred after MVP; source proposals retained for future review; see [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) |
 | Planning basis | DEC-019/028/018/017; GAP-D09 and resource follow-up |
-| Candidate references | YML-D01–YML-D12 are provisional document-local references, not allocated global requirement IDs  **After MVP.** |
-| Priority | Unassigned; document order is not delivery priority |
-| Revision | October 31, 2026 |
+| Candidate references | YML-D01–YML-D12: retained stable source IDs; criterion scope follows [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) |
+| Priority | [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) define Must within MVP slice / Later; file order is not execution order |
+| Source record date | October 31, 2026 |
 
 **At a glance:** Provide agreed real workflow execution, not only YAML validation or Git integrity checks. Define supported behavior, untrusted-code isolation, secrets, limits and outputs; deployment authority stays separate. Execution remains conditional on evidence-based feasibility/security gates.
 
@@ -79,9 +79,7 @@ model. Authorized authorship does not grant host, other-tenant or arbitrary netw
 <a id="requirements-specification-yaml-workflows-and-cicd--heading-3-proposed-requirements"></a>
 ## 3. Proposed Requirements
 
-Every record is **Proposed**, owner **Farhad**, priority **Unassigned**. All execution
-criteria are future controlled checks after the applicable prerequisites. No
-requirement below establishes that the existing server can safely run jobs.
+Farhad owns these records. Read their retained IDs and original criteria using the [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules). This domain is deferred after MVP. Planned checks do not establish executed results or personal owner acceptance.
 
 <a id="requirements-specification-yaml-workflows-and-cicd--heading-yml-d01-defined-supported-workflow-contract"></a>
 ### YML-D01: Defined Supported Workflow Contract
@@ -441,13 +439,13 @@ Use actual tool paths on other machines; save UTF-8 without BOM.
 <a id="requirements-specification-yaml-workflows-and-cicd--heading-selected-policies-and-future-proposals"></a>
 ## Selected Policies and Future Proposals
 
-Current MVP answers are selected in the Baseline. Only explicitly deferred details below remain proposals; product tests and operational evidence are still required.
+Use the [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) and the [decision index](../07-Change-And-Baseline/03-Requirements-Questions-And-Decisions.md#change-and-baseline-open-questions-and-decisions--heading-current-dispositions) to distinguish selected MVP policies, deferred proposals and remaining evidence.
 
 <a id="requirements-specification-yaml-workflows-and-cicd--id-resolution-q-d23"></a>
 <a id="requirements-specification-yaml-workflows-and-cicd--heading-proposed-answer-q-d23-workflow-contract-and-enabling-gate"></a>
 ### Proposed answer Q-D23: Workflow contract and enabling gate
 
-**Affected records:** YML-D01–YML-D12; QSR-D07/D12; GAP-D09. **Disposition:** Evidence-gated investigation with a complete proposal.
+**Affected records:** YML-D01–YML-D12; QSR-D07/D12; GAP-D09. **Current disposition: Deferred after MVP.** The following investigation and proposal are future work; they do not block the current MVP.
 
 1. Propose versioned YAML contract: schema_version, workflow name, allowed triggers, repository revision, jobs, ordered command steps, per-step/job timeout and declared artifact paths. Reject unknown executable keys/unsupported expressions. Initial triggers are explicit manual run and authorized push; never silently claim GitHub Actions parity.
 

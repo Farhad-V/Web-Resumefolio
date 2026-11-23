@@ -6,6 +6,8 @@
 
 The [selected Baseline](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/baseline/README.md) owns the current answers. Technical/policy choices are selected for the applicable MVP slice; user validation, environment, native Git security, capacity and restore still need evidence. Future-only topics are deferred and do not block MVP.
 
+For source-status labels, mixed criteria and Must/Later priority, use the [current record rules](../03-Requirements-Specification/15-Requirement-Priority-And-Readiness.md#current-record-rules). Dated proposals below the selected policy references do not reopen resolved MVP choices.
+
 **Key decisions and why they matter**
 
 | Decision | Reason |

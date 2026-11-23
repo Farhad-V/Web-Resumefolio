@@ -19,7 +19,7 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 | Source authority | Owner scope plus selected Baseline policies; original sources retained below |
 | Draft references | BIZ-D01–BIZ-D05 are provisional document-local references, not final BIZ identifier allocation |
 | Evidence position | Intended outcomes and proposed assessment criteria; no measured benefit or delivery success is claimed |
-| Revision | October 31, 2026 |
+| Source record date | October 31, 2026 |
 
 **At a glance:** Resumefolio should help users reuse professional information,
 prepare relevant presentations, control disclosure, preserve application history
@@ -77,11 +77,7 @@ new baseline decision.
 <a id="requirements-specification-business-requirements--heading-shared-record-metadata"></a>
 ### Shared record metadata
 
-All five BIZ-D records are **Proposed**, coordinated by Farhad and pending actual
-owner review. Their document-local references do not allocate the final BIZ
-convention. No priority ranking, target improvement percentage, actual review date
-or benefit measurement is invented. Sources retain their existing planning-level
-acceptance; the detailed outcome records below do not inherit new acceptance.
+Farhad owns these records. Read their retained IDs and original criteria using the [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules). Only the selected MVP criteria are current delivery obligations. Planned checks do not establish executed results or personal owner acceptance.
 
 <a id="requirements-specification-business-requirements--heading-biz-d01-reusable-information-and-relevant-professional-presentation"></a>
 ### BIZ-D01: Reusable Information and Relevant Professional Presentation
@@ -293,7 +289,7 @@ invented by this outcome map.
 | Version 1 scope | Full agreed scope retained; product AI/automatic translation/automatic demo migration excluded | Material changes require explicit owner decision and impacts; no silent reduction |
 | Resource/budget | Existing server/resources; no assumed paid service or new infrastructure | Inspect actual capacity/cost allowance and compare options before commitment |
 | Solo delivery/operation | Work follows the selected scope, dependencies and demonstrated outcomes. | Quantify usable capacity and full engineering/maintenance effort when forecasting |
-| Delivery target | November 8, 2026 requested; current schedule snapshots provisional | Forecast after analysis/design, then reconcile backlog/Sprints/milestones before coding |
+| Historical delivery request | November 8, 2026 source request; not a current forecast or commitment | Forecast after analysis/design, then reconcile backlog/Sprints/milestones before coding |
 | Success measures | Observable criteria proposed above; no quantified benefit baseline or target improvement agreed | Decide whether extra benefit measurement is needed and, if so, its method/population/target |
 | External service and execution viability | Google/email/server/recovery/CI findings remain open | Respect existing ASM/DEP/RSK and GAP-D01–GAP-D11 gates before dependent acceptance |
 | Intended-use validation | Actor goals have planning sources; detailed interpretation/user feedback remains to develop | Perform actual scoped walkthroughs/reviews, recording participants and evidence limits |

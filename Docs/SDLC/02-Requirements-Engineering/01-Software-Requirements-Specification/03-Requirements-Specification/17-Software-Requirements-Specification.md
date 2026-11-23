@@ -10,14 +10,13 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 | --- | --- |
 | Purpose | Coordinate the distributed SRS: authority, product boundary, requirement levels, source ownership and acceptance gates |
 | Owner | Farhad; sole delivery and operations owner |
-| Status | Proposed SRS overview — M-02 baseline pending |
-| Detailed content | 15 primary specification drafts with 157 provisional candidate records; this overview allocates no duplicate product requirements |
+| Status | Selected MVP specification and retained future proposals; runtime, actor and release evidence remain separate |
+| Detailed content | 15 domain record sets with 157 retained stable IDs; no duplicate requirements allocated by this overview |
 | Planning authority | Accepted Version 1 scope and constraints; M-01 accepted only for the identified snapshot under DEC-116 |
-| Revision | November 1, 2026 — explicit functional/non-functional navigation; baseline still pending |
+| Source record date | November 1, 2026; read subsequent selected decisions through the [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) |
 
 **At a glance:** the MVP combines core professional presentation/private media/manual applications with separately authorized basic ProjectForge. Mail/calendar and advanced work/Git/execution are future. All paths retain resource-specific access. This SRS coordinates required outcomes and evidence;
-domain files own the primary wording. Detailed policies and verification remain
-open, and documentation completion does not constitute baseline or release approval.
+domain files own the primary wording. Current policies and remaining verification follow the [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules). Documentation completion does not establish product or release acceptance.
 
 [Authority](#requirements-specification-requirements-specification--heading-1-status-and-authority) · [Context](#requirements-specification-requirements-specification--heading-2-introduction-system-boundary-and-operating-context)
 · [Levels](#requirements-specification-requirements-specification--heading-3-requirement-levels-and-record-conventions) · [Functional requirements](#requirements-specification-requirements-specification--id-functional-requirements)
@@ -46,9 +45,7 @@ silently replace the accepted planning snapshot or record a new owner decision.
 | Verification/review result | Record actual candidate, method, outcome/evidence and limits only when performed |
 | Baseline/change decision | Identify owner outcome and reviewed revision; document material impacts and follow-up |
 
-The records in this set remain proposed. No global FR/NFR notation, priority
-ranking, detailed role policy or numeric service target is established merely by
-the local candidate prefixes or the presentation order.
+The retained IDs identify the original records. Current priority, selected policy and criterion scope follow the [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules). Presentation order does not establish implementation order, measured capability or release acceptance.
 
 <a id="requirements-specification-requirements-specification--id-introduction-system-boundary-and-operating-context"></a>
 <a id="requirements-specification-requirements-specification--heading-2-introduction-system-boundary-and-operating-context"></a>
@@ -65,7 +62,7 @@ The MVP core supports private professional information and independent resumes/p
 | Execution/deployment | Real agreed execution only after required feasibility/security/resource gates; Push/merge does not inherently authorize production deployment |
 | Operating scale | Initial target 10 users; workload/concurrency/capacity need evidence; roughly 1,000 users is a growth direction |
 | Delivery resources | Work follows the selected scope, dependencies and demonstrated outcomes. |
-| Delivery date | November 8, 2026 requested target, not a validated forecast |
+| Historical requested date | November 8, 2026; retained source context, not a current delivery commitment or forecast |
 
 Product AI, automatic translation and automatic legacy-demo migration remain
 excluded. Manually maintained English/German content is included. Portfolio
@@ -95,8 +92,7 @@ tool demonstration does not prove a product requirement has been implemented.
 Each final allocated record needs identifier, level/type, source, rationale,
 actor/context, obligation, observable criteria, owner, justified priority, actual
 status, planned method, dependencies and unresolved decisions. Use the
-[requirement template](#requirements-specification-requirements-specification). Local references
-such as PRP-D01 remain proposed navigation until the final convention is reconciled.
+[requirement template](#requirements-specification-requirements-specification). Retain stable source references such as PRP-D01; the selected registers map their applicable criteria without renumbering.
 
 Use explicit stimulus/environment/response/measurement for quantitative quality.
 Do not replace undecided thresholds, retention or recovery targets with arbitrary
@@ -153,7 +149,7 @@ Operation and quality are complementary aspects, not mutually exclusive file lab
 <a id="requirements-specification-requirements-specification--heading-34-shared-readiness-and-identifier-rules"></a>
 ### 3.4 Shared Readiness and Identifier Rules
 
-Both categories remain proposed and follow the same source, criterion, feasibility, traceability and owner-review gates. Existing 157 candidate identifiers remain unchanged; the headings FR/NFR do not create 157 new records or establish a new numbering convention. [Priority proposals](15-Requirement-Priority-And-Readiness.md#requirements-specification-requirements-priority-and-readiness) remain proposals. [Quantitative target contracts](14-Quality-Security-And-Recovery-Requirements.md#requirements-specification-quality-security-and-recovery-requirements) explicitly retain missing numerical decisions as acceptance blockers. This classification is navigation, not baseline acceptance.
+Functional and non-functional headings organize the existing 157 records; they create no new IDs. Apply the [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) to scope, priority and selected target decisions. Actual performance, recovery and user validation require their own evidence.
 
 <a id="requirements-specification-requirements-specification--id-functional-areas"></a>
 <a id="requirements-specification-requirements-specification--heading-4-functional-areas-and-primary-record-ownership"></a>
@@ -262,7 +258,7 @@ Follow the [diagram guide](../../Diagrams/Diagram-Catalog.md). Save UTF-8 withou
 editable sources and SVG/PNG outputs together. Colors supplement labels; diagrams
 are conceptual requirements models, not selected architecture or actual acceptance.
 
-**Current outcome:** Expanded proposed distributed SRS overview. No duplicate SRS
+**Document outcome:** Coordinated SRS overview with selected MVP dispositions and retained source history. No duplicate SRS
 candidate IDs are allocated; no owner baseline acceptance or implementation,
 provider, capacity, security or recovery result is established by this revision.
 
@@ -273,7 +269,7 @@ provider, capacity, security or recovery result is established by this revision.
 
 The stakeholder-facing specification is provided by business/user outcomes, actor/context descriptions and concise external use cases. The system/software view adds necessary behavioral, quality, interface and imposed-constraint detail in the primary domain records. These are linked views of one specification, not duplicated competing requirements or a mandated two-file layout. FAU V02 slides 10–12 and 25 permit domain-specific organization.
 
-The [priority/readiness register](15-Requirement-Priority-And-Readiness.md#requirements-specification-requirements-priority-and-readiness) provides per-candidate proposals without changing accepted scope. Actual priorities remain unassigned. The [quality target decision contracts](14-Quality-Security-And-Recovery-Requirements.md#requirements-specification-quality-security-and-recovery-requirements) explicitly identify missing quantitative decisions. Context and external use-case modeling are part of Requirements Engineering; later System Analysis refines internal domain relationships and behavior.
+The [priority/readiness register](15-Requirement-Priority-And-Readiness.md) owns interpretation of selected priorities and mixed criteria. The quality records preserve target-selection provenance and remaining measurement gates. Requirements Engineering models external behavior; System Analysis refines internal relationships.
 
 Keep stakeholder goals concise. Supporting audit/administration obligations remain in their appropriate detailed records rather than crowding high-level use cases with implementation detail. Existing candidate IDs are usable unique locators; preservation matters more than adopting a particular FR/NFR spelling.
 

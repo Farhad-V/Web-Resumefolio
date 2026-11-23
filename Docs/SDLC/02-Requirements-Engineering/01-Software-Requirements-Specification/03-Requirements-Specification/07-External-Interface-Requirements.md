@@ -16,10 +16,10 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 | Item | Current position |
 | --- | --- |
 | Owner | Farhad; sole delivery and operations owner |
-| Status | Proposed specification — interface contracts and acceptance pending |
-| Candidate references | EIF-D01–EIF-D10 are provisional document-local references, not allocated global requirement IDs |
-| Priority | Unassigned; record order is not delivery priority |
-| Revision | October 31, 2026 |
+| Status | Selected MVP slice; future clauses remain deferred; implementation and acceptance evidence remain required; see [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) |
+| Candidate references | EIF-D01–EIF-D10: retained stable source IDs; criterion scope follows [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) |
+| Priority | [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) define Must within MVP slice / Later; file order is not execution order |
+| Source record date | October 31, 2026 |
 
 **At a glance:** Define what crosses the product boundary, who may request it,
 which information is exchanged and how success, denial and uncertainty appear.
@@ -87,10 +87,7 @@ Colors supplement labels.
 <a id="requirements-specification-external-interface-requirements--heading-3-proposed-interface-requirements"></a>
 ## 3. Proposed Interface Requirements
 
-Every record has owner **Farhad**, status **Proposed**, priority **Unassigned**.
-Acceptance criteria describe planned observations. Numerical limits, client
-versions and policies referenced by conditional criteria must be decided before
-affected acceptance. No product tests have been executed for these records.
+Farhad owns these records. Read their retained IDs and original criteria using the [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules). Only the selected MVP criteria are current delivery obligations. Planned checks do not establish executed results or personal owner acceptance.
 
 <a id="requirements-specification-external-interface-requirements--heading-eif-d01-reviewable-interface-contracts"></a>
 ### EIF-D01: Reviewable Interface Contracts
@@ -109,7 +106,7 @@ identifying participants, operations, information, authority and observable outc
 - A documented interface version/change identifies affected consumers and compatibility consequences rather than silently promising universal support.
 
 **Planned verification:** Contract inspection and later consumer/provider checks.
-**Open:** Final IDs, exact schemas/protocols/versions and compatibility policy;
+**Source refinement note:** Final IDs, exact schemas/protocols/versions and compatibility policy;
 this does not create a public developer API or backward-compatibility guarantee.
 
 <a id="requirements-specification-external-interface-requirements--heading-eif-d02-clear-operable-user-interaction"></a>
@@ -130,7 +127,7 @@ accessibility criteria.
 - Agreed keyboard, focus, labels, contrast and layout cases pass in the explicitly supported client/viewport matrix once criteria are defined.
 
 **Planned verification:** Later task walkthroughs and selected accessibility/client
-checks. **Open:** Target browsers/devices, responsive behavior, interface language,
+checks. **Source refinement note:** Target browsers/devices, responsive behavior, interface language,
 accessibility standard/level and measurable criteria. No mobile app, browser
 version list or formal accessibility conformance is claimed.
 
@@ -152,7 +149,7 @@ non-browser clients.
 - Denied access and grant-change behavior follow the reviewed contract without disclosing protected content or secrets.
 
 **Planned verification:** Later allowed/denied path matrix, direct files, provider
-references and Git-client cases. **Open:** Role/action matrix, session/grant-change
+references and Git-client cases. **Source refinement note:** Role/action matrix, session/grant-change
 timing and credential methods; see [Accounts](01-Accounts-Authentication-And-Permissions.md#requirements-specification-accounts-authentication-and-permissions).
 
 <a id="requirements-specification-external-interface-requirements--heading-eif-d04-protected-file-and-pdf-exchange"></a>
@@ -173,7 +170,7 @@ truthful completion outcomes.
 - Interrupted processing/transfer or failed replacement does not appear as completed usable content or overwrite preserved submitted material through a source edit.
 
 **Planned verification:** Later admission/retrieval/failure and preserved-history
-checks. **Open:** Formats, metadata, content validation, processing, safe serving,
+checks. **Source refinement note:** Formats, metadata, content validation, processing, safe serving,
 limits, cancellation and replacement/reference policy; no numeric quota is invented.
 
 <a id="requirements-specification-external-interface-requirements--heading-eif-d05-explicit-google-provider-contracts"></a>
@@ -194,7 +191,7 @@ access findings before dependent development.
 - Synchronization scope, conflicts, deletion, disconnect and reconnect follow explicitly reviewed rules rather than an assumed direction or source of truth.
 
 **Planned verification:** Contract/applicability review and later controlled provider
-operations. **Open:** Actual project access, mechanism/scopes, verification conditions,
+operations. **Source refinement note:** Actual project access, mechanism/scopes, verification conditions,
 limits/costs and full synchronization contract; [Google Integration](06-Email-Calendar-And-Google-Integration.md#requirements-specification-email-calendar-and-google-integration)
 contains the dated official-source notes. No provider capability is newly verified here.
 
@@ -216,7 +213,7 @@ repository/ref and outcome rules.
 - Failed/interrupted/repeated transfers have observable client/product outcomes consistent with the reviewed repository integrity rules.
 
 **Planned verification:** Later isolated real-client compatibility, permission and
-failure cases. **Open:** Transport(s), credential lifetime/revocation, clients/versions,
+failure cases. **Source refinement note:** Transport(s), credential lifetime/revocation, clients/versions,
 protected refs, object/transfer limits and concurrency. Neither SSH nor HTTPS nor a
 Git engine is selected; development GitHub is not product-hosting evidence.
 
@@ -238,7 +235,7 @@ supported contract and feasibility/security gates.
 - Later controlled output/log/artifact cases enforce defined access, secret handling and resource limits; failures are distinguishable from successful deployment.
 
 **Planned verification:** Later isolated validation/execution/security checks after
-the enabling gate. **Open:** Syntax, triggers, runner/isolation, network access,
+the enabling gate. **Source refinement note:** Syntax, triggers, runner/isolation, network access,
 output retention, approvals and numerical limits. No webhook, marketplace action,
 arbitrary remote target or actual execution is introduced by this draft.
 
@@ -260,7 +257,7 @@ repetition rules for externally consequential operations.
 - Error/diagnostic information identifies useful context without exposing secrets or unrelated private content.
 
 **Planned verification:** Later controlled failure, ambiguous-effect and retry
-scenarios per interface. **Open:** Timeout/backoff, cancellation, reconciliation,
+scenarios per interface. **Source refinement note:** Timeout/backoff, cancellation, reconciliation,
 deduplication and evidence; no global retry policy or exactly-once guarantee.
 
 <a id="requirements-specification-external-interface-requirements--heading-eif-d09-operational-configuration-and-recovery-boundaries"></a>
@@ -281,7 +278,7 @@ version/environment-specific procedures and later evidence.
 - Later restoration evidence checks required records/artifacts/relationships and restored access against the agreed coverage; backup-file existence alone is not a recovery Pass.
 
 **Planned verification:** Later configuration/procedure inspection and authorized
-delivery/isolated restore checks. **Open:** Actual services, deployment/network/TLS
+delivery/isolated restore checks. **Source refinement note:** Actual services, deployment/network/TLS
 arrangements, notification channel, backup access/coverage and RPO/RTO; no extra
 infrastructure or custom hardware interface is assumed.
 
@@ -303,7 +300,7 @@ with the reviewed dictionary and lifecycle rules.
 - Interface replacement/deletion/synchronization does not silently overwrite preserved actual submitted copies or remove unrelated referenced data.
 
 **Planned verification:** Later round-trip, time/language, reference/removal and
-history checks. **Open:** Exact representations, field optionality, mapping,
+history checks. **Source refinement note:** Exact representations, field optionality, mapping,
 version compatibility and retention; [Business Rules and Lifecycle](04-Business-Rules-And-Data-Lifecycle.md#requirements-specification-business-rules-and-data-lifecycle)
 remain the cross-module invariant reference. No schema/export format is selected.
 

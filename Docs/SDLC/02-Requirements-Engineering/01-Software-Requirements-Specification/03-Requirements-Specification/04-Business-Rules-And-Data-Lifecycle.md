@@ -16,16 +16,16 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 | Item | Current position |
 | --- | --- |
 | Owner | Farhad |
-| Status | Proposed requirements — detailed policies and acceptance pending |
+| Status | Selected MVP slice; future clauses remain deferred; implementation and acceptance evidence remain required; see [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) |
 | Basis | Accepted Version 1 scope; proposed cross-module refinements identified below |
-| References | BRL-D01–BRL-D10 are provisional, document-local references, not allocated global requirement IDs |
-| Priority | Not yet assigned; no ordering implies delivery priority |
-| Revision | October 31, 2026 |
+| References | BRL-D01–BRL-D10: retained stable source IDs; criterion scope follows [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) |
+| Priority | [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) define Must within MVP slice / Later; file order is not execution order |
+| Source record date | October 31, 2026 |
 
 **At a glance:** Keep editable professional information, controlled live sharing
 and preserved application history distinct. Define authority and consequences
 before propagating changes, synchronizing external data or removing information.
-No retention duration, deletion cascade or recovery guarantee is established here.
+Use [Q-D14](../07-Change-And-Baseline/03-Requirements-Questions-And-Decisions.md#change-and-baseline-open-questions-and-decisions--id-q-d14) for selected retirement/retention policy and [Q-D26](../07-Change-And-Baseline/03-Requirements-Questions-And-Decisions.md#change-and-baseline-open-questions-and-decisions--id-q-d26) for recovery design. Actual restoration remains unproven until tested.
 
 [Rules](#requirements-specification-business-rules-and-data-lifecycle--heading-2-proposed-business-rules) · [Lifecycle](#requirements-specification-business-rules-and-data-lifecycle--heading-3-lifecycle-boundaries)
 · [Retirement review](#requirements-specification-business-rules-and-data-lifecycle--heading-4-retirement-and-recovery-review) · [Open decisions](#requirements-specification-business-rules-and-data-lifecycle--heading-6-open-decisions-and-gates)
@@ -40,8 +40,7 @@ does to information and its dependents. Neither selects storage architecture.
 
 Use [Version 1 Scope](../../../01-Project-Planning/01-Project-Charter.md#mvp-scope) as the source for
 DEC-028–DEC-017 and DEC-015, and [Planning Completion Criteria](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/01-project-planning/10-planning-completion-criteria.md)
-for dependent gates. Scope inclusion is accepted; the detailed obligations below
-remain proposed. Their planned checks have not been executed.
+for dependent gates. Apply the [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) to select the MVP clauses; their planned checks do not establish executed results.
 
 Related definitions and domain owners:
 
@@ -61,10 +60,7 @@ document is complete or accepted. Farhad coordinates review and unresolved polic
 <a id="requirements-specification-business-rules-and-data-lifecycle--heading-2-proposed-business-rules"></a>
 ## 2. Proposed Business Rules
 
-All records below share status **Proposed**, owner **Farhad**, and
-priority **Unassigned**. Each contains a source/rationale, obligation, observable
-criteria, planned verification and remaining definition. Use the
-[requirement template](17-Software-Requirements-Specification.md#requirements-specification-requirements-specification) when allocating final IDs.
+Farhad owns these records. Read their retained IDs and original criteria using the [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules). Only the selected MVP criteria are current delivery obligations. Planned checks do not establish executed results or personal owner acceptance.
 
 <a id="requirements-specification-business-rules-and-data-lifecycle--heading-brl-d01-resource-specific-authority"></a>
 ### BRL-D01: Resource-specific Authority
@@ -84,7 +80,7 @@ Ownership or membership in one context shall not imply authority over unrelated 
 - Administrative view, transfer, delete and restore operations are permitted only as explicitly defined in the reviewed action matrix.
 
 **Planned verification:** Allowed/denied cross-user and direct-operation scenarios.
-**Open:** Complete actor/resource/action/state matrix, ownership transfer, account
+**Source refinement note:** Complete actor/resource/action/state matrix, ownership transfer, account
 closure and administrative powers; do not infer universal administrator access.
 
 <a id="requirements-specification-business-rules-and-data-lifecycle--heading-brl-d02-shared-information-and-independent-tailoring"></a>
@@ -106,7 +102,7 @@ confirmation and actual submitted documents remain unchanged.
 - Source removal produces the agreed reference/visibility result without silently altering preserved submitted material.
 
 **Planned verification:** Two-resume source-edit, override and source-removal cases.
-**Open:** Link versus copy semantics, update trigger, precedence, user preview and
+**Source refinement note:** Link versus copy semantics, update trigger, precedence, user preview and
 conflict handling; automatic propagation is not selected.
 
 <a id="requirements-specification-business-rules-and-data-lifecycle--heading-brl-d03-explicit-shared-content-and-download-availability"></a>
@@ -126,7 +122,7 @@ selected evidence and enabled PDF variants under the applicable access rules.
 - A direct file/PDF request cannot bypass authorization or disabled download availability.
 
 **Planned verification:** Selection/variant/language matrix and direct retrieval.
-**Open:** Save versus publish trigger, live revision visibility, missing-language
+**Source refinement note:** Save versus publish trigger, live revision visibility, missing-language
 behavior, generation revision and stale rendition invalidation. No separate
 publication workflow or automatic language fallback is assumed.
 
@@ -147,7 +143,7 @@ policy across pages, files and PDFs without claiming removal of downloaded copie
 - Product wording distinguishes retrieval restrictions from possession of an already legitimately downloaded copy.
 
 **Planned verification:** Before/after change cases, existing sessions and direct
-requests. **Open:** Effective instant, active/in-flight requests, sessions and
+requests. **Source refinement note:** Effective instant, active/in-flight requests, sessions and
 cached delivery controls; no duration or instantaneous global revocation promise.
 
 <a id="requirements-specification-business-rules-and-data-lifecycle--heading-brl-d05-preserve-actual-submitted-materials"></a>
@@ -166,7 +162,7 @@ cover letter actually submitted, distinct from editable source and live sharing.
 - Incomplete/failed capture is distinguishable from successful preservation; no success claim is made for missing required material.
 
 **Planned verification:** Capture followed by independent source edits and controlled
-failure. **Open:** Exact capture trigger, represented revision/artifacts, manually
+failure. **Source refinement note:** Exact capture trigger, represented revision/artifacts, manually
 supplied actual materials, provenance, correction/resubmission and explicit
 deletion authority. Preservation does not imply indefinite retention or a backup.
 
@@ -187,7 +183,7 @@ relationship conditions before it is reported as successfully completed.
 - Defined concurrent/repeated-change cases preserve the reviewed invariant or report a distinguishable conflict/failure.
 
 **Planned verification:** Valid/invalid boundaries, interrupted operations and
-conflicting/repeated requests after semantics are defined. **Open:** Field rules,
+conflicting/repeated requests after semantics are defined. **Source refinement note:** Field rules,
 application statuses/transitions, duplicate handling, concurrency and retry policy.
 No transaction mechanism or database constraint implementation is selected.
 
@@ -209,7 +205,7 @@ outcome before synchronization is accepted.
 - Disconnecting does not silently delete provider data or imply a local purge unless an explicit authorized policy requires that action.
 
 **Planned verification:** Controlled provider/local divergence, conflict, rejection,
-disconnect and reconnect cases after feasibility/access checks. **Open:** Scope,
+disconnect and reconnect cases after feasibility/access checks. **Source refinement note:** Scope,
 refresh timing, retries, duplication, pending work, local retention, mappings and
 reconnect reconciliation; no bidirectional or last-write-wins policy is assumed.
 
@@ -231,9 +227,9 @@ retention obligations before affected information is removed.
 - Ineligible or partially failed reclamation is reported as such, with no false claim that all data or storage usage has been removed.
 
 **Planned verification:** Shared-reference, submission-reference, eligible/ineligible
-and partial-failure cases. **Open:** Cascade/block/detach decisions per relationship,
+and partial-failure cases. **Source refinement note:** Cascade/block/detach decisions per relationship,
 archive availability, retention, trash if any, purge timing and quota release.
-Soft deletion and automatic cleanup are not established requirements.
+The selected MVP retirement and cleanup boundary is defined by [Q-D14](../07-Change-And-Baseline/03-Requirements-Questions-And-Decisions.md#change-and-baseline-open-questions-and-decisions--id-q-d14); source refinements beyond that boundary remain proposals.
 
 <a id="requirements-specification-business-rules-and-data-lifecycle--heading-brl-d09-recovery-preserves-defined-business-consistency"></a>
 ### BRL-D09: Recovery Preserves Defined Business Consistency
@@ -253,7 +249,7 @@ restoration policy.
 - Missing artifacts or unreconciled references are recorded as limitations/failures, not a complete successful restoration.
 
 **Planned verification:** Later authorized isolated restore/integrity/access checks.
-**Open:** Coverage including repositories/configuration/required keys, recovery
+**Source refinement note:** Coverage including repositories/configuration/required keys, recovery
 points, RPO/RTO, expired/revoked access and deleted-data reappearance. No recovery
 target, retention period or successful restoration is claimed.
 
@@ -274,7 +270,7 @@ the meanings established in the reviewed dictionary and domain rules.
 - Calendar/time-zone and submission-history examples produce the reviewed dates/order, including relevant boundary cases.
 
 **Planned verification:** Language availability and domain-specific time examples.
-**Open:** Required metadata, precision/time zones, correction/provenance and missing
+**Source refinement note:** Required metadata, precision/time zones, correction/provenance and missing
 values; this does not prescribe timestamp fields or a storage representation.
 
 <a id="requirements-specification-business-rules-and-data-lifecycle--heading-3-lifecycle-boundaries"></a>

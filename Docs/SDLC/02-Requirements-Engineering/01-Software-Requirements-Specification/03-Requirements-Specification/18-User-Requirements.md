@@ -16,11 +16,11 @@ Current implementation choices and scope: [Baseline](https://github.com/Farhad-V
 | Item | Current position |
 | --- | --- |
 | Owner | Farhad; sole delivery and operations owner |
-| Status | Proposed product specification — detailed policy and acceptance pending |
+| Status | Selected MVP slice; future clauses remain deferred; implementation and acceptance evidence remain required; see [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) |
 | Planning basis | Accepted scope DEC-028–DEC-017 and stakeholder perspectives |
-| Candidate references | USR-D01–USR-D12 are provisional document-local references, not allocated global requirement IDs |
-| Priority | Unassigned; document order is not delivery priority |
-| Revision | October 31, 2026 |
+| Candidate references | USR-D01–USR-D12: retained stable source IDs; criterion scope follows [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) |
+| Priority | [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) define Must within MVP slice / Later; file order is not execution order |
+| Source record date | October 31, 2026 |
 
 **At a glance:** Describe what each actor needs to achieve in user language. These goals are derived from planning sources, not new interviews or universal permission grants. Detailed behavior stays in domain specifications; quality and exceptional paths apply across journeys.
 
@@ -63,9 +63,7 @@ remain in the interface and quality specifications, not assumptions about users.
 <a id="requirements-specification-user-requirements--heading-3-proposed-requirements"></a>
 ## 3. Proposed Requirements
 
-Every candidate is **Proposed**, owner **Farhad**, priority **Unassigned**. Criteria
-are user-observable assessment examples; dependent policies must be decided before
-acceptance. No interview validation or product Pass result is implied.
+Farhad owns these records. Read their retained IDs and original criteria using the [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules). Only the selected MVP criteria are current delivery obligations. Planned checks do not establish executed results or personal owner acceptance.
 
 <a id="requirements-specification-user-requirements--heading-usr-d01-reuse-and-tailor-professional-information"></a>
 ### USR-D01: Reuse and Tailor Professional Information
@@ -422,7 +420,7 @@ Use actual tool paths on other machines; save UTF-8 without BOM.
 <a id="requirements-specification-user-requirements--heading-selected-policies-and-future-proposals"></a>
 ## Selected Policies and Future Proposals
 
-Current MVP answers are selected in the Baseline. Only explicitly deferred details below remain proposals; product tests and operational evidence are still required.
+Use the [current record rules](15-Requirement-Priority-And-Readiness.md#current-record-rules) and the [decision index](../07-Change-And-Baseline/03-Requirements-Questions-And-Decisions.md#change-and-baseline-open-questions-and-decisions--heading-current-dispositions) to distinguish selected MVP policies, deferred proposals and remaining evidence.
 
 <a id="requirements-specification-user-requirements--id-resolution-q-d02"></a>
 <a id="requirements-specification-user-requirements--heading-q-d02-selected-policy"></a>
