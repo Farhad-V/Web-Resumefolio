@@ -76,13 +76,13 @@ Use the existing sprint review vocabulary consistently. Record actual checks/obs
 
 ## Sprint 01
 
-**Proposed candidate goal:** establish scope, host and readiness evidence for candidate issues #1, #2, #7, #8 and #9. Confirm selected issues, prerequisites and checks in Planning before recording execution as started. Project Setup owns the actual environment and successful commands.
+**Goal:** review scope, host and readiness evidence for selected issues #1, #2, #7, #8 and #9. Work has started on #1; I1-T01 is accepted and I1-T02 awaits review. Project Setup owns actual environment execution.
 
-- [Sprint Planning](Sprints/Sprint-01/01-Sprint-Planning.md)
+- [Sprint Planning and Sprint Backlog](Sprints/Sprint-01/01-Sprint-Planning.md#sprint-backlog)
 - [Sprint Review](Sprints/Sprint-01/02-Sprint-Review.md)
 - [Sprint Retrospective](Sprints/Sprint-01/03-Sprint-Retrospective.md)
 
-The review is the current capability progress record, with implementation not started and tests not executed. This overview creates no setup, build, migration or test result.
+Item evidence is linked from the Sprint Backlog and Review. Review and Retrospective are pending; product implementation and runtime tests have not started.
 
 ## Sprint 02
 

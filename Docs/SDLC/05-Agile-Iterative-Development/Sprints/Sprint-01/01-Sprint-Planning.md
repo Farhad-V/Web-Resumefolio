@@ -2,30 +2,26 @@
 
 [Development overview](../../00-Agile-Iterative-Development.md) · [Review](02-Sprint-Review.md) · [Retrospective](03-Sprint-Retrospective.md)
 
-**Status: proposed; execution not recorded.** Candidate goal: establish scope, host and readiness before isolated setup. Candidate issues: [#1](https://github.com/Farhad-V/Web-Resumefolio/issues/1), [#2](https://github.com/Farhad-V/Web-Resumefolio/issues/2), [#7](https://github.com/Farhad-V/Web-Resumefolio/issues/7), [#8](https://github.com/Farhad-V/Web-Resumefolio/issues/8), [#9](https://github.com/Farhad-V/Web-Resumefolio/issues/9).
+**Goal:** review MVP scope, actual host prerequisites and implementation inputs before isolated setup. Farhad owns delivery and decisions. Work has started on #1; this record does not claim a planning meeting or completed readiness gate.
 
-## Sprint Planning
+## Sprint Backlog
 
-Confirm each issue's exact outcome, criterion, dependency and readiness evidence. Demonstrate the reviewed scope/host/prerequisite records and unresolved inputs; documentation existence alone does not prove implementation or host readiness. No accepted result is recorded.
+This is the evolving plan for the selected work, not a copy of the [Product Backlog](../../../02-Requirements-Engineering/02-Product-Backlog/README.md). The [GitHub board](https://github.com/users/Farhad-V/projects/7/views/1) owns live execution status; issues own exact acceptance criteria.
 
-## Backlog Refinement
+| Order / issue | Outcome | Prerequisite | Recorded position |
+| --- | --- | --- | --- |
+| [#1](https://github.com/Farhad-V/Web-Resumefolio/issues/1) | Scope, exclusions, responsibilities and constraints | None | Review; I1-T01 accepted, I1-T02 review pending. [Evidence](Evidence/PBI-001.md) |
+| [#2](https://github.com/Farhad-V/Web-Resumefolio/issues/2) | Actual host capacity and isolation inventory | None | No fresh execution evidence in this sprint |
+| [#7](https://github.com/Farhad-V/Web-Resumefolio/issues/7) | Planning, risks and evidence gates | #1 | Pending dependency acceptance |
+| [#8](https://github.com/Farhad-V/Web-Resumefolio/issues/8) | Applicable requirements and criterion coverage | #7 | Pending dependency acceptance |
+| [#9](https://github.com/Farhad-V/Web-Resumefolio/issues/9) | Selected design contracts and setup handoff | #8 | Pending dependency acceptance |
 
-Follow the [proposed allocation](../../00-Agile-Iterative-Development.md#proposed-sprint-allocation) and current issue definitions. Keep blocked inputs explicit; split unrelated outcomes before commitment. Farhad owns delivery and decisions. Setup #37, SMTP #5 and backup prerequisites #6 are proposed for Sprint 02.
+Start/read in order **#1 → #2 → #7 → #8 → #9**; #2 is independent. Use the existing [item slices](../../03-Sprint-Delivery-Plan.md#sprint-01), record actual evidence under this sprint and refine the backlog as inputs change. Setup #37, SMTP #5 and backup prerequisites #6 remain in Sprint 02.
 
-## Planned Acceptance Checks
+## Planned checks and exit
 
-| Locator | Expected result | Current execution |
-| --- | --- | --- |
-| S01-T01 | Scope/responsibilities #1 and actual host/isolation #2 satisfy their exact readiness checks or retain named blockers. | Not executed |
-| S01-T02 | Planning #7, criterion coverage #8 and design/technical baseline #9 are reviewed in dependency order, with exact gaps and follow-ups. | Not executed |
-| S01-T03 | The proposed next setup slice has explicit prerequisites and planned checks, without claiming setup execution. | Not executed |
+- **S01-T01:** #1 scope/responsibilities and #2 host/isolation have exact evidence or named blockers. Partial documentary evidence exists for #1; the combined check is incomplete.
+- **S01-T02:** #7 → #8 → #9 have reviewed planning, criterion and design evidence. Not executed.
+- **S01-T03:** the next setup slice has explicit prerequisites and planned checks. Not executed.
 
-These locators map to the [Review execution record](02-Sprint-Review.md#sprint-01-test-execution-record). Earlier unexecuted setup checks have moved to [Sprint 02 Planning](../Sprint-02/01-Sprint-Planning.md) as S02 checks; no prior execution evidence is discarded.
-
-## Scope and Exclusions
-
-Preserve selected MVP boundaries and settled architecture. No application code, environment setup, test pass, deployment or completed readiness gate is established by this plan. Confirm prerequisites and exact issue acceptance before execution. Record actual design, implementation and verification in [Review](02-Sprint-Review.md#detailed-analysis-and-design); preserve failed, blocked and unexecuted results.
-
-## Ordered Work and Exit
-
-Follow **#1 → #2 → #7 → #8 → #9** as the reading/start sequence; #2 is independent of #1, while #7 → #8 → #9 is a dependency chain. Use [Sprint 01 item slices](../../03-Sprint-Delivery-Plan.md#sprint-01) for tasks, expected checks. No actual completion is inferred from existing documentation. Before accepting readiness, identify safe setup targets and any gate-specific blocker without fabricating host observations, legal/license evidence or runtime compatibility.
+Exit requires reviewed item-level results and explicit remaining gaps. Documentation does not establish runtime, legal/license, capacity or release acceptance. Preserve selected MVP exclusions; no application code or server change belongs to this sprint record.
