@@ -5,3 +5,5 @@ The [Sprint Delivery Plan](../../05-Agile-Iterative-Development/03-Sprint-Delive
 At each start, check result, blocker, review and completion, synchronize the issue body/checklists, Project Kanban, Sprint Planning/Backlog and applicable Milestone outcome/evidence with linked item evidence. Check a subtask only when its own definition is demonstrated; documentation alone is not readiness. End each work segment with an accessible evidence link and actual status.
 
 Close a Milestone only after its outcome criteria and review are satisfied, not from issue counts. Check release/version-tag eligibility against the [release policy](../../06-Deployment-Release/01-Deployment-Plan.md#stable-mvp-release); tag only the verified revision under explicit release-publication authority. Sprint completion alone creates no tag or release.
+
+Before any project edit, create a separate branch. Commit and push changes on that branch, open a pull request, and merge only after applicable checks and review succeed. Do not commit changes directly to main.
