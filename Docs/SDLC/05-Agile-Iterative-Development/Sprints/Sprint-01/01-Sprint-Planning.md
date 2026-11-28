@@ -13,7 +13,7 @@ This is the evolving plan for the selected work, not a copy of the [Product Back
 | [#1](https://github.com/Farhad-V/Web-Resumefolio/issues/1) | Scope, exclusions, responsibilities and constraints | None | Done; both documentary slices explicitly accepted. [Evidence](Evidence/PBI-001.md) |
 | [#2](https://github.com/Farhad-V/Web-Resumefolio/issues/2) | Actual host capacity and isolation inventory | None | In Progress; [inventory complete](Evidence/PBI-002.md), candidate targets checked; provisional capacity allocation pending; independent off-host backup destination not selected/verified; isolation unverified |
 | [#7](https://github.com/Farhad-V/Web-Resumefolio/issues/7) | Planning, risks and evidence gates | #1 accepted | Review; [planning/gate evidence](Evidence/PBI-007.md), owner disposition pending |
-| [#8](https://github.com/Farhad-V/Web-Resumefolio/issues/8) | Applicable requirements and criterion coverage | #7 | Not started; pending dependency acceptance |
+| [#8](https://github.com/Farhad-V/Web-Resumefolio/issues/8) | Applicable requirements and criterion coverage | #7 | To do; [preliminary coverage check](Evidence/PBI-008.md), formal selection awaits #7 acceptance |
 | [#9](https://github.com/Farhad-V/Web-Resumefolio/issues/9) | Selected design contracts and setup handoff | #8 | Not started; pending dependency acceptance |
 
 Start/read in order **#1 → #2 → #7 → #8 → #9**; #2 is independent. Use the existing [item slices](../../03-Sprint-Delivery-Plan.md#sprint-01), record actual evidence under this sprint and refine the backlog as inputs change. Setup #37, SMTP #5 and backup prerequisites #6 remain in Sprint 02.
