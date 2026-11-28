@@ -2,7 +2,7 @@
 
 [Development overview](../../00-Agile-Iterative-Development.md) · [Review](02-Sprint-Review.md) · [Retrospective](03-Sprint-Retrospective.md)
 
-**Goal:** review MVP scope, actual host prerequisites and implementation inputs before isolated setup. Farhad owns delivery and decisions. Work has started on #1, #2, #7 and #8; this record does not claim a planning meeting or completed readiness gate.
+**Goal:** review MVP scope, actual host prerequisites and implementation inputs before isolated setup. Farhad owns delivery and decisions. The five selected items have been investigated; this record does not claim a planning meeting or completed readiness gate.
 
 ## Sprint Backlog
 
@@ -11,7 +11,7 @@ This is the evolving plan for the selected work, not a copy of the [Product Back
 | Order / issue | Outcome | Prerequisite | Recorded position |
 | --- | --- | --- | --- |
 | [#1](https://github.com/Farhad-V/Web-Resumefolio/issues/1) | Scope, exclusions, responsibilities and constraints | None | Done; both documentary slices explicitly accepted. [Evidence](Evidence/PBI-001.md) |
-| [#2](https://github.com/Farhad-V/Web-Resumefolio/issues/2) | Actual host capacity and isolation inventory | None | In Progress; [inventory complete](Evidence/PBI-002.md), candidate targets checked; provisional capacity allocation pending; independent off-host backup destination not selected/verified; isolation unverified |
+| [#2](https://github.com/Farhad-V/Web-Resumefolio/issues/2) | Actual host capacity and isolation inventory | None | Done; [prerequisite assessment](Evidence/PBI-002.md#readiness-disposition-and-handoff) explicitly accepted with setup holds retained |
 | [#7](https://github.com/Farhad-V/Web-Resumefolio/issues/7) | Planning, risks and evidence gates | #1 accepted | Done; [planning/gate review accepted](Evidence/PBI-007.md) |
 | [#8](https://github.com/Farhad-V/Web-Resumefolio/issues/8) | Applicable requirements and criterion coverage | #7 accepted | Done; [coverage and check plan](Evidence/PBI-008.md) explicitly owner-accepted |
 | [#9](https://github.com/Farhad-V/Web-Resumefolio/issues/9) | Selected design contracts and setup handoff | #8 accepted | Done; [design/setup handoff](Evidence/PBI-009.md) explicitly owner-accepted |
@@ -20,9 +20,9 @@ Start/read in order **#1 → #2 → #7 → #8 → #9**; #2 is independent. Use t
 
 ## Planned checks and exit
 
-- **S01-T01:** #1 scope/responsibilities and #2 host/isolation have exact evidence or named blockers. #1 documentary outcome is accepted; #2 has partial host readiness evidence; the combined check is incomplete.
-- **S01-T02:** #7/#8/#9 documentary outcomes accepted. Combined readiness still requires the outstanding #2 evidence.
-- **S01-T03:** [setup handoff](Evidence/PBI-009.md#i9-t02-bounded-handoff) records prerequisites/checks; #2 readiness remains unresolved. No setup execution.
+- **S01-T01:** #1 scope/responsibilities and #2 host/isolation have exact evidence or named blockers. #1/#2 documentary outcomes accepted; actual host findings and named technical holds retained.
+- **S01-T02:** #7/#8/#9 documentary outcomes accepted.
+- **S01-T03:** [setup handoff](Evidence/PBI-009.md#i9-t02-bounded-handoff) records prerequisites/checks; #2 assessment accepted; technical admission holds remain and setup is unexecuted.
 
 Exit requires reviewed item-level results and explicit remaining gaps. Documentation does not establish runtime, legal/license, capacity or release acceptance. Preserve selected MVP exclusions; no application code or server change belongs to this sprint record.
 
