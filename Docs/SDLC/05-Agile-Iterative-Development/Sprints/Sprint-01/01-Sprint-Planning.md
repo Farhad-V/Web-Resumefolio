@@ -25,3 +25,9 @@ Start/read in order **#1 → #2 → #7 → #8 → #9**; #2 is independent. Use t
 - **S01-T03:** the next setup slice has explicit prerequisites and planned checks. Not executed.
 
 Exit requires reviewed item-level results and explicit remaining gaps. Documentation does not establish runtime, legal/license, capacity or release acceptance. Preserve selected MVP exclusions; no application code or server change belongs to this sprint record.
+
+## Milestone and release alignment
+
+Checked against existing GitHub assignments and the [outcome catalog](https://github.com/Farhad-V/Web-Resumefolio/blob/1f2acaa351ac306cb57cbe4fe9742e8bd90720d9/docs/MVP/SDLC/01-project-planning/08-roadmap-and-milestones.md#2-milestone-catalog): #1/#7 contribute to [M-01](https://github.com/Farhad-V/Web-Resumefolio/milestone/1) (reviewed planning and assigned unknowns); #8 to [M-02](https://github.com/Farhad-V/Web-Resumefolio/milestone/2) (reviewed requirements/scenarios/criteria); #2/#9 to [M-03](https://github.com/Farhad-V/Web-Resumefolio/milestone/3) (justified feasibility/design and resource/dependency evidence). Assignments match; all three remain open. M-01's accepted historical snapshot does not close current follow-up. Partial item evidence or Sprint 01 completion cannot close these outcomes; M-03 also has work beyond this sprint.
+
+Under the [release policy](../../../06-Deployment-Release/01-Deployment-Plan.md#stable-mvp-release), the planned first stable tag is v1.0.0: exact applicable MVP criteria, required security/operational gates, isolated restore and rollback verification must pass on an identified candidate, with explicit release-publication authority. Deployment is separately authorized and verified. No tag/release is created by this alignment check.
