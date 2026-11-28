@@ -12,8 +12,8 @@ Available item evidence: [#1 scope and constraints](Evidence/PBI-001.md). Farhad
 
 | Check | Current evidence |
 | --- | --- |
-| S01-T01 | #1 documentary outcome accepted; [#2 host inventory](Evidence/PBI-002.md), isolation/capacity outstanding |
+| S01-T01 | #1 accepted; [#2 prerequisite investigation](Evidence/PBI-002.md) prepared for owner review with named holds |
 | S01-T02 | #7/#8/#9 documentary outcomes accepted |
-| S01-T03 | Handoff prepared; #2 readiness unresolved; no setup execution |
+| S01-T03 | Handoff accepted; #2 assessment pending owner review; no setup execution |
 
 At review, record the actual candidate, demonstrated results, owner feedback and remaining work against the [Sprint Backlog](01-Sprint-Planning.md#sprint-backlog). Product implementation and runtime tests have not started; consult the [RTM](../../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md) for criterion-level status.
