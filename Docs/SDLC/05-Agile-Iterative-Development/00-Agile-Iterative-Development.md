@@ -76,13 +76,13 @@ Use the existing sprint review vocabulary consistently. Record actual checks/obs
 
 ## Sprint 01
 
-**Goal:** review scope, host and readiness evidence for selected issues #1, #2, #7, #8 and #9. #1, #2, #7, #8 and #9 investigations are accepted and complete; Sprint Review and Retrospective remain pending. Technical holds are retained in the setup handoff. Project Setup owns actual environment execution.
+**Goal:** review scope, host and readiness evidence for selected issues #1, #2, #7, #8 and #9. #1, #2, #7, #8 and #9 investigations, Sprint Review and Retrospective are accepted and complete. Technical holds are retained in the setup handoff. Project Setup owns actual environment execution.
 
 - [Sprint Planning and Sprint Backlog](Sprints/Sprint-01/01-Sprint-Planning.md#sprint-backlog)
 - [Sprint Review](Sprints/Sprint-01/02-Sprint-Review.md)
 - [Sprint Retrospective](Sprints/Sprint-01/03-Sprint-Retrospective.md)
 
-Item evidence is linked from the Sprint Backlog and Review. Review and Retrospective are pending; product implementation and runtime tests have not started.
+Item evidence is linked from the Sprint Backlog and Review. Review records the accepted preparatory outcome; Retrospective records the agreed reporting improvement. Sprint 02 planning is next; product implementation has not started.
 
 ## Sprint 02
 

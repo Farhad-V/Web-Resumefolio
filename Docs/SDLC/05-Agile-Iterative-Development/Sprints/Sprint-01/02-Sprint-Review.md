@@ -4,16 +4,18 @@
 
 ## Iteration review
 
-**Pending: no Sprint Review has been conducted.** Farhad is the review owner. No sprint outcome, readiness gate or release acceptance is recorded.
+**Completed and owner-accepted.** Farhad reviewed the outcomes with Codex in the voice conversation and explicitly accepted the summary. Reviewed evidence baseline: 2ce6269. All five selected Issues are closed/Done.
 
-Available item evidence: [#1 scope and constraints](Evidence/PBI-001.md). Farhad explicitly accepted both slices and the combined #1 documentary outcome. [#7 planning/gate review](Evidence/PBI-007.md) is explicitly accepted. [#8 coverage review and check plan](Evidence/PBI-008.md) are explicitly owner-accepted. [#9 design/setup handoff](Evidence/PBI-009.md) is explicitly owner-accepted. These item decisions are not a Sprint Review meeting.
+**Goal achieved:** scope, actual host prerequisites and implementation inputs were reviewed before isolated setup. Accepted results: [scope/responsibilities](Evidence/PBI-001.md), [host assessment](Evidence/PBI-002.md), [planning/dependencies](Evidence/PBI-007.md), [criterion coverage](Evidence/PBI-008.md) and [design/setup handoff](Evidence/PBI-009.md).
 
 ## Sprint 01 test execution record
 
-| Check | Current evidence |
+| Check | Review disposition |
 | --- | --- |
-| S01-T01 | #1/#2 documentary outcomes accepted; [host findings and named holds](Evidence/PBI-002.md) retained |
-| S01-T02 | #7/#8/#9 documentary outcomes accepted |
-| S01-T03 | Handoff and #2 assessment accepted; technical holds retained; no setup execution |
+| S01-T01 | Scope and actual host findings accepted; missing prerequisites remain named setup holds. |
+| S01-T02 | Planning, criterion coverage and selected design review accepted. |
+| S01-T03 | Setup prerequisites, owning follow-ups and planned checks accepted; setup not executed. |
 
-At review, record the actual candidate, demonstrated results, owner feedback and remaining work against the [Sprint Backlog](01-Sprint-Planning.md#sprint-backlog). Product implementation and runtime tests have not started; consult the [RTM](../../../02-Requirements-Engineering/03-Requirements-Traceability-Matrix/README.md) for criterion-level status.
+These are documentary review outcomes, not runtime test passes or host admission. Existing technical holds follow their owning work items; Milestone acceptance remains separate.
+
+**Owner feedback:** the result matches the intended preparatory goal. Next is Sprint 02 planning for isolated local setup (#37), transactional SMTP (#5) and backup prerequisites (#6), with actual safe-environment readiness checked before execution. No Sprint 02 work is started by this review.
