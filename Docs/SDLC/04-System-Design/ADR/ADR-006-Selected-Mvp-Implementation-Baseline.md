@@ -1,6 +1,6 @@
 # ADR-006 — Selected MVP Implementation Baseline
 
-[Decision index](Decision-Index.md) · [ADR-005 boundaries](ADR-005-Owner-Mvp-System-Boundaries.md) · [ADR-006 baseline]()
+[Decision index](Decision-Index.md) · [ADR-005 boundaries](ADR-005-Owner-Mvp-System-Boundaries.md) · [ADR-006 baseline](#decision-and-precedence)
 
 ## Current Status
 
