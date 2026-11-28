@@ -14,15 +14,15 @@ This is the evolving plan for the selected work, not a copy of the [Product Back
 | [#2](https://github.com/Farhad-V/Web-Resumefolio/issues/2) | Actual host capacity and isolation inventory | None | In Progress; [inventory complete](Evidence/PBI-002.md), candidate targets checked; provisional capacity allocation pending; independent off-host backup destination not selected/verified; isolation unverified |
 | [#7](https://github.com/Farhad-V/Web-Resumefolio/issues/7) | Planning, risks and evidence gates | #1 accepted | Done; [planning/gate review accepted](Evidence/PBI-007.md) |
 | [#8](https://github.com/Farhad-V/Web-Resumefolio/issues/8) | Applicable requirements and criterion coverage | #7 accepted | Done; [coverage and check plan](Evidence/PBI-008.md) explicitly owner-accepted |
-| [#9](https://github.com/Farhad-V/Web-Resumefolio/issues/9) | Selected design contracts and setup handoff | #8 accepted | To do; prerequisite satisfied |
+| [#9](https://github.com/Farhad-V/Web-Resumefolio/issues/9) | Selected design contracts and setup handoff | #8 accepted | Review candidate; [design/setup handoff](Evidence/PBI-009.md), owner disposition pending |
 
 Start/read in order **#1 → #2 → #7 → #8 → #9**; #2 is independent. Use the existing [item slices](../../03-Sprint-Delivery-Plan.md#sprint-01), record actual evidence under this sprint and refine the backlog as inputs change. Setup #37, SMTP #5 and backup prerequisites #6 remain in Sprint 02.
 
 ## Planned checks and exit
 
 - **S01-T01:** #1 scope/responsibilities and #2 host/isolation have exact evidence or named blockers. #1 documentary outcome is accepted; #2 has partial host readiness evidence; the combined check is incomplete.
-- **S01-T02:** #7/#8 accepted; #9 not started. Combined check incomplete.
-- **S01-T03:** the next setup slice has explicit prerequisites and planned checks. Not executed.
+- **S01-T02:** #7/#8 accepted; #9 documentary checks prepared for review. Combined check incomplete.
+- **S01-T03:** [setup handoff](Evidence/PBI-009.md#i9-t02-bounded-handoff) records prerequisites/checks; #2 readiness remains unresolved. No setup execution.
 
 Exit requires reviewed item-level results and explicit remaining gaps. Documentation does not establish runtime, legal/license, capacity or release acceptance. Preserve selected MVP exclusions; no application code or server change belongs to this sprint record.
 

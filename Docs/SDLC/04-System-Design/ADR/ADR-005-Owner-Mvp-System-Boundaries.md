@@ -1,6 +1,6 @@
 # ADR-005 — Owner MVP System Boundaries
 
-[Decision index](Decision-Index.md) · [ADR-005 boundaries]() · [ADR-006 baseline](ADR-006-Selected-Mvp-Implementation-Baseline.md)
+[Decision index](Decision-Index.md) · [ADR-005 boundaries](#decision-and-allocation) · [ADR-006 baseline](ADR-006-Selected-Mvp-Implementation-Baseline.md)
 
 ## Current Status
 
