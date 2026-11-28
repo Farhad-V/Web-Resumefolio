@@ -76,7 +76,7 @@ Use the existing sprint review vocabulary consistently. Record actual checks/obs
 
 ## Sprint 01
 
-**Goal:** review scope, host and readiness evidence for selected issues #1, #2, #7, #8 and #9. #1 is accepted and complete; #2 is In Progress and #7 awaits review. Project Setup owns actual environment execution.
+**Goal:** review scope, host and readiness evidence for selected issues #1, #2, #7, #8 and #9. #1 and #7 are accepted and complete; #2 and #8 are In Progress. Project Setup owns actual environment execution.
 
 - [Sprint Planning and Sprint Backlog](Sprints/Sprint-01/01-Sprint-Planning.md#sprint-backlog)
 - [Sprint Review](Sprints/Sprint-01/02-Sprint-Review.md)
