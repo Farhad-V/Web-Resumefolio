@@ -13,15 +13,15 @@ This is the evolving plan for the selected work, not a copy of the [Product Back
 | [#1](https://github.com/Farhad-V/Web-Resumefolio/issues/1) | Scope, exclusions, responsibilities and constraints | None | Done; both documentary slices explicitly accepted. [Evidence](Evidence/PBI-001.md) |
 | [#2](https://github.com/Farhad-V/Web-Resumefolio/issues/2) | Actual host capacity and isolation inventory | None | In Progress; [inventory complete](Evidence/PBI-002.md), candidate targets checked; provisional capacity allocation pending; independent off-host backup destination not selected/verified; isolation unverified |
 | [#7](https://github.com/Farhad-V/Web-Resumefolio/issues/7) | Planning, risks and evidence gates | #1 accepted | Done; [planning/gate review accepted](Evidence/PBI-007.md) |
-| [#8](https://github.com/Farhad-V/Web-Resumefolio/issues/8) | Applicable requirements and criterion coverage | #7 accepted | In Progress; [coverage review](Evidence/PBI-008.md), supplemental links reconciled; full walkthrough pending |
-| [#9](https://github.com/Farhad-V/Web-Resumefolio/issues/9) | Selected design contracts and setup handoff | #8 | Not started; pending dependency acceptance |
+| [#8](https://github.com/Farhad-V/Web-Resumefolio/issues/8) | Applicable requirements and criterion coverage | #7 accepted | Done; [coverage and check plan](Evidence/PBI-008.md) explicitly owner-accepted |
+| [#9](https://github.com/Farhad-V/Web-Resumefolio/issues/9) | Selected design contracts and setup handoff | #8 accepted | To do; prerequisite satisfied |
 
 Start/read in order **#1 → #2 → #7 → #8 → #9**; #2 is independent. Use the existing [item slices](../../03-Sprint-Delivery-Plan.md#sprint-01), record actual evidence under this sprint and refine the backlog as inputs change. Setup #37, SMTP #5 and backup prerequisites #6 remain in Sprint 02.
 
 ## Planned checks and exit
 
 - **S01-T01:** #1 scope/responsibilities and #2 host/isolation have exact evidence or named blockers. #1 documentary outcome is accepted; #2 has partial host readiness evidence; the combined check is incomplete.
-- **S01-T02:** #7 accepted; #8 coverage review in progress; #9 not started. Combined check incomplete.
+- **S01-T02:** #7/#8 accepted; #9 not started. Combined check incomplete.
 - **S01-T03:** the next setup slice has explicit prerequisites and planned checks. Not executed.
 
 Exit requires reviewed item-level results and explicit remaining gaps. Documentation does not establish runtime, legal/license, capacity or release acceptance. Preserve selected MVP exclusions; no application code or server change belongs to this sprint record.
