@@ -11,7 +11,7 @@ This is the evolving plan for the selected work, not a copy of the [Product Back
 | Order / issue | Outcome | Prerequisite | Recorded position |
 | --- | --- | --- | --- |
 | [#1](https://github.com/Farhad-V/Web-Resumefolio/issues/1) | Scope, exclusions, responsibilities and constraints | None | Review; I1-T01 accepted, I1-T02 review pending. [Evidence](Evidence/PBI-001.md) |
-| [#2](https://github.com/Farhad-V/Web-Resumefolio/issues/2) | Actual host capacity and isolation inventory | None | In Progress; [inventory complete](Evidence/PBI-002.md), candidate targets checked; isolation/full resource budget unverified |
+| [#2](https://github.com/Farhad-V/Web-Resumefolio/issues/2) | Actual host capacity and isolation inventory | None | In Progress; [inventory complete](Evidence/PBI-002.md), candidate targets checked; provisional budget and backup-disk input pending; isolation unverified |
 | [#7](https://github.com/Farhad-V/Web-Resumefolio/issues/7) | Planning, risks and evidence gates | #1 | Not started; pending dependency acceptance |
 | [#8](https://github.com/Farhad-V/Web-Resumefolio/issues/8) | Applicable requirements and criterion coverage | #7 | Not started; pending dependency acceptance |
 | [#9](https://github.com/Farhad-V/Web-Resumefolio/issues/9) | Selected design contracts and setup handoff | #8 | Not started; pending dependency acceptance |
