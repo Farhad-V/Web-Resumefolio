@@ -12,7 +12,7 @@ Available item evidence: [#1 scope and constraints](Evidence/PBI-001.md). Farhad
 
 | Check | Current evidence |
 | --- | --- |
-| S01-T01 | Partial #1 documentary evidence; #2 host evidence outstanding |
+| S01-T01 | Partial #1 documentary and [#2 host inventory](Evidence/PBI-002.md); isolation/resource budget outstanding |
 | S01-T02 | Not executed |
 | S01-T03 | Not executed |
 

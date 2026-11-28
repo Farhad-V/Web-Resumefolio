@@ -11,7 +11,7 @@ This is the evolving plan for the selected work, not a copy of the [Product Back
 | Order / issue | Outcome | Prerequisite | Recorded position |
 | --- | --- | --- | --- |
 | [#1](https://github.com/Farhad-V/Web-Resumefolio/issues/1) | Scope, exclusions, responsibilities and constraints | None | Review; I1-T01 accepted, I1-T02 review pending. [Evidence](Evidence/PBI-001.md) |
-| [#2](https://github.com/Farhad-V/Web-Resumefolio/issues/2) | Actual host capacity and isolation inventory | None | No fresh execution evidence in this sprint |
+| [#2](https://github.com/Farhad-V/Web-Resumefolio/issues/2) | Actual host capacity and isolation inventory | None | In Progress; [fresh inventory](Evidence/PBI-002.md), isolation/resource budget unverified |
 | [#7](https://github.com/Farhad-V/Web-Resumefolio/issues/7) | Planning, risks and evidence gates | #1 | Pending dependency acceptance |
 | [#8](https://github.com/Farhad-V/Web-Resumefolio/issues/8) | Applicable requirements and criterion coverage | #7 | Pending dependency acceptance |
 | [#9](https://github.com/Farhad-V/Web-Resumefolio/issues/9) | Selected design contracts and setup handoff | #8 | Pending dependency acceptance |
@@ -20,7 +20,7 @@ Start/read in order **#1 → #2 → #7 → #8 → #9**; #2 is independent. Use t
 
 ## Planned checks and exit
 
-- **S01-T01:** #1 scope/responsibilities and #2 host/isolation have exact evidence or named blockers. Partial documentary evidence exists for #1; the combined check is incomplete.
+- **S01-T01:** #1 scope/responsibilities and #2 host/isolation have exact evidence or named blockers. Partial #1 documentary and #2 host evidence exists; the combined check is incomplete.
 - **S01-T02:** #7 → #8 → #9 have reviewed planning, criterion and design evidence. Not executed.
 - **S01-T03:** the next setup slice has explicit prerequisites and planned checks. Not executed.
 
